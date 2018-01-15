@@ -5,8 +5,11 @@
     ],
     "jsRules": {},
     "rules": {
+        "completed-docs": true,
         "max-line-length": false,
-        "no-trailing-whitespace": false
+        "no-trailing-whitespace": false,
+        "max-classes-per-file": false,
+        "array-type": false
     },
-    "rulesDirectory": []    
+    "rulesDirectory": []
 }

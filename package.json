@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "mocha -r ts-node/register test/**/*.ts",
-    "lint": "tslint src/*.ts test/*.ts -t verbose"
+    "lint": "tslint src/{,**/}*.ts test/{,**/}*.ts -t verbose --project ./tsconfig.json"
   },
   "dependencies": {
     "@types/bluebird": "^3.5.18",

@@ -116,3 +116,5 @@ SDKs/PHP/vendor/*
 SDKs/PHP/testReports/*
 SDKs/servercreds.json
 /dist/*
+/servercreds.json
+servercreds.json

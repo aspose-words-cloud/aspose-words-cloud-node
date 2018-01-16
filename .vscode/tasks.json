@@ -24,6 +24,7 @@
             }
         },
         {
+            "label": "runTsLint",
             "type": "npm",
             "script": "lint",
             "problemMatcher": {

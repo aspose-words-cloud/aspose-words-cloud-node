@@ -26,22 +26,31 @@ import request = require("request");
 import { Configuration } from "./configuration";
 import { invokeApiMethod } from "./requestHelper";
 
+/**
+ * Authentication logic for api calls
+ */
 export interface IAuthentication {
-    /*
-    * Apply authentication settings to header and query params.
-    */
+    /**
+     * Apply authentication settings to header and query params.
+     */
     applyToRequest(requestOptions: request.Options, configuration: Configuration): void;
 
-    /*
-    * Handle 401 response.
-    */
+    /**
+     * Handle 401 response.
+     */
     handle401response(configuration: Configuration);
 }
 
+/**
+ * Implements OAuth authentication 
+ */
 export class OAuth implements IAuthentication {
     private accessToken: string;
     private refreshToken: string;
 
+     /**
+      * Apply authentication settings to header and query params.
+      */
     public async applyToRequest(requestOptions: request.Options, configuration: Configuration): Promise<void> {
         if (this.accessToken == null) {
             await this._requestToken(configuration);
@@ -54,6 +63,9 @@ export class OAuth implements IAuthentication {
         return Promise.resolve();
     }
 
+    /**
+     * Handle 401 response.
+     */
     public async handle401response(configuration: Configuration) {
         await this._refreshToken(configuration);
     }

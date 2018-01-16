@@ -5,7 +5,28 @@
     ],
     "jsRules": {},
     "rules": {
-        "completed-docs": true,
+        "completed-docs": [
+            true,
+            {
+                "properties": {
+                    "privacies": [
+                        "public",
+                        "protected"
+                    ]
+                },
+                "methods": {
+                    "privacies": [
+                        "public",
+                        "protected"
+                    ]
+                },
+                "classes": true,
+                "functions": true,
+                "interfaces": true,
+                "namespaces": true,
+                "types": true                
+            }
+        ],
         "max-line-length": false,
         "no-trailing-whitespace": false,
         "max-classes-per-file": false,

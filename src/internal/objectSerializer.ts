@@ -35,38 +35,14 @@ const primitives = [
     "any",
 ];
 
+/**
+ * Serialisation helper.
+ */
 export class ObjectSerializer {
 
-    public static findCorrectType(data: any, expectedType: string) {
-        if (data === undefined) {
-            return expectedType;
-        } else if (primitives.indexOf(expectedType.toLowerCase()) !== -1) {
-            return expectedType;
-        } else if (expectedType === "Date") {
-            return expectedType;
-        } else {
-            if (enumsMap[expectedType]) {
-                return expectedType;
-            }
-
-            if (!typeMap[expectedType]) {
-                return expectedType; // w/e we don't know the type
-            }
-
-            // Check the discriminator
-            const discriminatorProperty = typeMap[expectedType].discriminator;
-            if (discriminatorProperty == null) {
-                return expectedType; // the type does not have a discriminator. use it.
-            } else {
-                if (data[discriminatorProperty]) {
-                    return data[discriminatorProperty]; // use the type given in the discriminator
-                } else {
-                    return expectedType; // discriminator was not present (or an empty string)
-                }
-            }
-        }
-    }
-
+    /**
+     * Serilize object to json string.
+     */
     public static serialize(data: any, type: string) {
         if (data === undefined) {
             return data;
@@ -106,6 +82,9 @@ export class ObjectSerializer {
         }
     }
 
+    /**
+     * Deserialize object from json string
+     */
     public static deserialize(data: any, type: string) {
         // polymorphism may change the actual type.
         type = ObjectSerializer.findCorrectType(data, type);
@@ -143,6 +122,36 @@ export class ObjectSerializer {
                 }
             }
             return instance;
+        }
+    }
+
+    private static findCorrectType(data: any, expectedType: string) {
+        if (data === undefined) {
+            return expectedType;
+        } else if (primitives.indexOf(expectedType.toLowerCase()) !== -1) {
+            return expectedType;
+        } else if (expectedType === "Date") {
+            return expectedType;
+        } else {
+            if (enumsMap[expectedType]) {
+                return expectedType;
+            }
+
+            if (!typeMap[expectedType]) {
+                return expectedType; // w/e we don't know the type
+            }
+
+            // Check the discriminator
+            const discriminatorProperty = typeMap[expectedType].discriminator;
+            if (discriminatorProperty == null) {
+                return expectedType; // the type does not have a discriminator. use it.
+            } else {
+                if (data[discriminatorProperty]) {
+                    return data[discriminatorProperty]; // use the type given in the discriminator
+                } else {
+                    return expectedType; // discriminator was not present (or an empty string)
+                }
+            }
         }
     }
 }

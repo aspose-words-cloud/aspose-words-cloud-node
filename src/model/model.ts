@@ -22,11 +22,14 @@
 * SOFTWARE.
 */
 
-/*
-* Base class for all responses.
-*/
+/**
+ * Base class for all responses.
+ */
 export class AsposeResponse {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "code",
@@ -39,27 +42,33 @@ export class AsposeResponse {
             type: "string",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return AsposeResponse.attributeTypeMap;
     }
 
-    /*
-    * Response status code.
-    */
+    /**
+     * Response status code.
+     */
     public code: number;
     
-    /*
-    * Response status.
-    */
+    /**
+     * Response status.
+     */
     public status: string;
     
 }
 
-/*
-* DTO for bookmark updating.
-*/
+/**
+ * DTO for bookmark updating.
+ */
 export class BookmarkData {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "name",
@@ -72,27 +81,33 @@ export class BookmarkData {
             type: "string",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return BookmarkData.attributeTypeMap;
     }
 
-    /*
-    * Gets or sets the name of the bookmark.
-    */
+    /**
+     * Gets or sets the name of the bookmark.
+     */
     public name: string;
     
-    /*
-    * Gets or sets the text enclosed in the bookmark.
-    */
+    /**
+     * Gets or sets the text enclosed in the bookmark.
+     */
     public text: string;
     
 }
 
-/*
-* container class for individual bookmarks outline level
-*/
+/**
+ * container class for individual bookmarks outline level
+ */
 export class BookmarksOutlineLevelData {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "name",
@@ -105,27 +120,33 @@ export class BookmarksOutlineLevelData {
             type: "number",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return BookmarksOutlineLevelData.attributeTypeMap;
     }
 
-    /*
-    * Specify the bookmark's name
-    */
+    /**
+     * Specify the bookmark's name
+     */
     public name: string;
     
-    /*
-    * Specify the bookmark's level
-    */
+    /**
+     * Specify the bookmark's level
+     */
     public bookmarksOutlineLevel: number;
     
 }
 
-/*
-* Container class for compare documents
-*/
+/**
+ * Container class for compare documents
+ */
 export class CompareData {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "comparingWithDocument",
@@ -143,32 +164,38 @@ export class CompareData {
             type: "Date",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return CompareData.attributeTypeMap;
     }
 
-    /*
-    * Path to document to compare at the server.
-    */
+    /**
+     * Path to document to compare at the server.
+     */
     public comparingWithDocument: string;
     
-    /*
-    * Initials of the author to use for revisions.
-    */
+    /**
+     * Initials of the author to use for revisions.
+     */
     public author: string;
     
-    /*
-    * The date and time to use for revisions.             
-    */
+    /**
+     * The date and time to use for revisions.             
+     */
     public dateTime: Date;
     
 }
 
-/*
-* Represents Words document DTO.
-*/
+/**
+ * Represents Words document DTO.
+ */
 export class Document {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "links",
@@ -201,38 +228,41 @@ export class Document {
             type: "DocumentProperties",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return Document.attributeTypeMap;
     }
 
-    /*
-    * A list of links that originate from this document.
-    */
+    /**
+     * A list of links that originate from this document.
+     */
     public links: Array<Link>;
     
-    /*
-    * Gets the name of the file.
-    */
+    /**
+     * Gets the name of the file.
+     */
     public fileName: string;
     
-    /*
-    * Gets the original format of the document.
-    */
+    /**
+     * Gets the original format of the document.
+     */
     public sourceFormat: Document.SourceFormatEnum;
     
-    /*
-    * Returns true if the document is encrypted and requires a password to open. 
-    */
+    /**
+     * Returns true if the document is encrypted and requires a password to open. 
+     */
     public isEncrypted: boolean;
     
-    /*
-    * Returns true if the document contains a digital signature. This property merely informs that a  digital signature is present on a document, but it does not specify whether the signature is valid or not. 
-    */
+    /**
+     * Returns true if the document contains a digital signature. This property merely informs that a  digital signature is present on a document, but it does not specify whether the signature is valid or not. 
+     */
     public isSigned: boolean;
     
-    /*
-    * Returns document properties.
-    */
+    /**
+     * Returns document properties.
+     */
     public documentProperties: DocumentProperties;
     
 }
@@ -266,11 +296,14 @@ export namespace Document {
     }
 }
 // tslint:enable:quotemark
-/*
-* Represents a document which will be appended to the original resource document.
-*/
+/**
+ * Represents a document which will be appended to the original resource document.
+ */
 export class DocumentEntry {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "href",
@@ -283,27 +316,33 @@ export class DocumentEntry {
             type: "string",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return DocumentEntry.attributeTypeMap;
     }
 
-    /*
-    * Path to document to append at the server.
-    */
+    /**
+     * Path to document to append at the server.
+     */
     public href: string;
     
-    /*
-    * Defines which formatting will be used: appended or destination document.Can be KeepSourceFormatting or UseDestinationStyles.
-    */
+    /**
+     * Defines which formatting will be used: appended or destination document.Can be KeepSourceFormatting or UseDestinationStyles.
+     */
     public importFormatMode: string;
     
 }
 
-/*
-* Represents a list of documents which will be appended to the original resource document.
-*/
+/**
+ * Represents a list of documents which will be appended to the original resource document.
+ */
 export class DocumentEntryList {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "documentEntries",
@@ -311,22 +350,28 @@ export class DocumentEntryList {
             type: "Array<DocumentEntry>",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return DocumentEntryList.attributeTypeMap;
     }
 
-    /*
-    * List of documents.
-    */
+    /**
+     * List of documents.
+     */
     public documentEntries: Array<DocumentEntry>;
     
 }
 
-/*
-* Represents a position in the document tree.
-*/
+/**
+ * Represents a position in the document tree.
+ */
 export class DocumentPosition {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "node",
@@ -339,27 +384,33 @@ export class DocumentPosition {
             type: "number",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return DocumentPosition.attributeTypeMap;
     }
 
-    /*
-    * Link to  node.
-    */
+    /**
+     * Link to  node.
+     */
     public node: NodeLink;
     
-    /*
-    * Offset into the node.
-    */
+    /**
+     * Offset into the node.
+     */
     public offset: number;
     
 }
 
-/*
-* Container for the document's statistical data
-*/
+/**
+ * Container for the document's statistical data
+ */
 export class DocumentStatData {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "wordCount",
@@ -387,42 +438,48 @@ export class DocumentStatData {
             type: "Array<PageStatData>",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return DocumentStatData.attributeTypeMap;
     }
 
-    /*
-    * Total count of words in the document
-    */
+    /**
+     * Total count of words in the document
+     */
     public wordCount: number;
     
-    /*
-    * Total count of paragraphs in the document
-    */
+    /**
+     * Total count of paragraphs in the document
+     */
     public paragraphCount: number;
     
-    /*
-    * Total count of pages in the document
-    */
+    /**
+     * Total count of pages in the document
+     */
     public pageCount: number;
     
-    /*
-    * Detailed statistics of footnotes
-    */
+    /**
+     * Detailed statistics of footnotes
+     */
     public footnotesStatData: FootnotesStatData;
     
-    /*
-    * Detailed statistics of all pages
-    */
+    /**
+     * Detailed statistics of all pages
+     */
     public pageStatData: Array<PageStatData>;
     
 }
 
-/*
-* Container class for Downsample options
-*/
+/**
+ * Container class for Downsample options
+ */
 export class DownsampleOptionsData {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "downsampleImages",
@@ -440,32 +497,38 @@ export class DownsampleOptionsData {
             type: "number",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return DownsampleOptionsData.attributeTypeMap;
     }
 
-    /*
-    * Specifies whether images should be downsampled.
-    */
+    /**
+     * Specifies whether images should be downsampled.
+     */
     public downsampleImages: boolean;
     
-    /*
-    * Specifies the resolution in pixels per inch which the images should be downsampled to.
-    */
+    /**
+     * Specifies the resolution in pixels per inch which the images should be downsampled to.
+     */
     public resolution: number;
     
-    /*
-    * Specifies the threshold resolution in pixels per inch. If resolution of an image in the document is less than threshold value,  the downsampling algorithm will not be applied. A value of 0 means the threshold check is not used and all images that can be reduced in size are downsampled.
-    */
+    /**
+     * Specifies the threshold resolution in pixels per inch. If resolution of an image in the document is less than threshold value,  the downsampling algorithm will not be applied. A value of 0 means the threshold check is not used and all images that can be reduced in size are downsampled.
+     */
     public resolutionThreshold: number;
     
 }
 
-/*
-* Container for the footnotes statistical data
-*/
+/**
+ * Container for the footnotes statistical data
+ */
 export class FootnotesStatData {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "wordCount",
@@ -478,27 +541,33 @@ export class FootnotesStatData {
             type: "number",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return FootnotesStatData.attributeTypeMap;
     }
 
-    /*
-    * Total count of words in footnotes
-    */
+    /**
+     * Total count of words in footnotes
+     */
     public wordCount: number;
     
-    /*
-    * Total count of paragraphs in footnotes
-    */
+    /**
+     * Total count of paragraphs in footnotes
+     */
     public paragraphCount: number;
     
 }
 
-/*
-* Allows to specify additional System.Drawing.Graphics quality options.
-*/
+/**
+ * Allows to specify additional System.Drawing.Graphics quality options.
+ */
 export class GraphicsQualityOptionsData {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "compositingMode",
@@ -531,38 +600,41 @@ export class GraphicsQualityOptionsData {
             type: "GraphicsQualityOptionsData.TextRenderingHintEnum",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return GraphicsQualityOptionsData.attributeTypeMap;
     }
 
-    /*
-    * Gets or sets a value that specifies how composited images are drawn to this Graphics.
-    */
+    /**
+     * Gets or sets a value that specifies how composited images are drawn to this Graphics.
+     */
     public compositingMode: GraphicsQualityOptionsData.CompositingModeEnum;
     
-    /*
-    * Gets or sets the rendering quality of composited images drawn to this Graphics.
-    */
+    /**
+     * Gets or sets the rendering quality of composited images drawn to this Graphics.
+     */
     public compositingQuality: GraphicsQualityOptionsData.CompositingQualityEnum;
     
-    /*
-    * Gets or sets the interpolation mode associated with this Graphics.
-    */
+    /**
+     * Gets or sets the interpolation mode associated with this Graphics.
+     */
     public interpolationMode: GraphicsQualityOptionsData.InterpolationModeEnum;
     
-    /*
-    * Gets or sets the rendering quality for this Graphics.
-    */
+    /**
+     * Gets or sets the rendering quality for this Graphics.
+     */
     public smoothingMode: GraphicsQualityOptionsData.SmoothingModeEnum;
     
-    /*
-    * Gets or sets text layout information (such as alignment, orientation and tab stops) display manipulations (such as ellipsis insertion and national digit substitution) and OpenType features.
-    */
+    /**
+     * Gets or sets text layout information (such as alignment, orientation and tab stops) display manipulations (such as ellipsis insertion and national digit substitution) and OpenType features.
+     */
     public stringFormat: StringFormatData;
     
-    /*
-    * Gets or sets the rendering mode for text associated with this Graphics.
-    */
+    /**
+     * Gets or sets the rendering mode for text associated with this Graphics.
+     */
     public textRenderingHint: GraphicsQualityOptionsData.TextRenderingHintEnum;
     
 }
@@ -611,11 +683,14 @@ export namespace GraphicsQualityOptionsData {
     }
 }
 // tslint:enable:quotemark
-/*
-* Provides information for the object link. This is supposed to be an atom:link, therefore it should have all attributes specified here http://tools.ietf.org/html/rfc4287#section-4.2.7
-*/
+/**
+ * Provides information for the object link. This is supposed to be an atom:link, therefore it should have all attributes specified here http://tools.ietf.org/html/rfc4287#section-4.2.7
+ */
 export class Link {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "href",
@@ -638,37 +713,43 @@ export class Link {
             type: "string",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return Link.attributeTypeMap;
     }
 
-    /*
-    * The \"href\" attribute contains the link's IRI. atom:link elements MUST have an href attribute, whose value MUST be a IRI reference
-    */
+    /**
+     * The \"href\" attribute contains the link's IRI. atom:link elements MUST have an href attribute, whose value MUST be a IRI reference
+     */
     public href: string;
     
-    /*
-    * atom:link elements MAY have a \"rel\" attribute that indicates the link relation type.  If the \"rel\" attribute is not present, the link element MUST be interpreted as if the link relation type is \"alternate\".
-    */
+    /**
+     * atom:link elements MAY have a \"rel\" attribute that indicates the link relation type.  If the \"rel\" attribute is not present, the link element MUST be interpreted as if the link relation type is \"alternate\".
+     */
     public rel: string;
     
-    /*
-    * On the link element, the \"type\" attribute's value is an advisory media type: it is a hint about the type of the representation that is expected to be returned when the value of the href attribute is dereferenced.  Note that the type attribute does not override the actual media type returned with the representation.
-    */
+    /**
+     * On the link element, the \"type\" attribute's value is an advisory media type: it is a hint about the type of the representation that is expected to be returned when the value of the href attribute is dereferenced.  Note that the type attribute does not override the actual media type returned with the representation.
+     */
     public type: string;
     
-    /*
-    * The \"title\" attribute conveys human-readable information about the link.  The content of the \"title\" attribute is Language-Sensitive.
-    */
+    /**
+     * The \"title\" attribute conveys human-readable information about the link.  The content of the \"title\" attribute is Language-Sensitive.
+     */
     public title: string;
     
 }
 
-/*
-* Reference to document.
-*/
+/**
+ * Reference to document.
+ */
 export class LinkElement {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "link",
@@ -676,22 +757,28 @@ export class LinkElement {
             type: "WordsApiLink",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return LinkElement.attributeTypeMap;
     }
 
-    /*
-    * Link to the document.
-    */
+    /**
+     * Link to the document.
+     */
     public link: WordsApiLink;
     
 }
 
-/*
-* Contains data for load web document
-*/
+/**
+ * Contains data for load web document
+ */
 export class LoadWebDocumentData {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "loadingDocumentUrl",
@@ -704,27 +791,33 @@ export class LoadWebDocumentData {
             type: "SaveOptionsData",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return LoadWebDocumentData.attributeTypeMap;
     }
 
-    /*
-    * Web document url
-    */
+    /**
+     * Web document url
+     */
     public loadingDocumentUrl: string;
     
-    /*
-    * Save options
-    */
+    /**
+     * Save options
+     */
     public saveOptions: SaveOptionsData;
     
 }
 
-/*
-* container class for options of metafile rendering
-*/
+/**
+ * container class for options of metafile rendering
+ */
 export class MetafileRenderingOptionsData {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "emfPlusDualRenderingMode",
@@ -742,32 +835,38 @@ export class MetafileRenderingOptionsData {
             type: "boolean",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return MetafileRenderingOptionsData.attributeTypeMap;
     }
 
-    /*
-    * Determines how EMF+ Dual metafiles should be rendered
-    */
+    /**
+     * Determines how EMF+ Dual metafiles should be rendered
+     */
     public emfPlusDualRenderingMode: string;
     
-    /*
-    * Determines how metafile images should be rendered
-    */
+    /**
+     * Determines how metafile images should be rendered
+     */
     public renderingMode: string;
     
-    /*
-    * Determines how WMF metafiles with embedded EMF metafiles should be rendered
-    */
+    /**
+     * Determines how WMF metafiles with embedded EMF metafiles should be rendered
+     */
     public useEmfEmbeddedToWmf: boolean;
     
 }
 
-/*
-* result of the operation which modifies the original document and saves the result
-*/
+/**
+ * result of the operation which modifies the original document and saves the result
+ */
 export class ModificationOperationResult {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "source",
@@ -780,27 +879,33 @@ export class ModificationOperationResult {
             type: "FileLink",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return ModificationOperationResult.attributeTypeMap;
     }
 
-    /*
-    * Link to the source document (source for the modification operation)
-    */
+    /**
+     * Link to the source document (source for the modification operation)
+     */
     public source: FileLink;
     
-    /*
-    * Link to the dest document (result of the modification operation)
-    */
+    /**
+     * Link to the dest document (result of the modification operation)
+     */
     public dest: FileLink;
     
 }
 
-/*
-* container class for outline options
-*/
+/**
+ * container class for outline options
+ */
 export class OutlineOptionsData {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "bookmarksOutlineLevels",
@@ -823,37 +928,43 @@ export class OutlineOptionsData {
             type: "number",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return OutlineOptionsData.attributeTypeMap;
     }
 
-    /*
-    * Allows to specify individual bookmarks outline level
-    */
+    /**
+     * Allows to specify individual bookmarks outline level
+     */
     public bookmarksOutlineLevels: Array<BookmarksOutlineLevelData>;
     
-    /*
-    * Specifies the default level in the document outline at which to display Word bookmarks
-    */
+    /**
+     * Specifies the default level in the document outline at which to display Word bookmarks
+     */
     public defaultBookmarksOutlineLevel: number;
     
-    /*
-    * Specifies how many levels in the document outline to show expanded when the file is viewed
-    */
+    /**
+     * Specifies how many levels in the document outline to show expanded when the file is viewed
+     */
     public expandedOutlineLevels: number;
     
-    /*
-    * Specifies how many levels of headings (paragraphs formatted with the Heading styles) to include in the document outline
-    */
+    /**
+     * Specifies how many levels of headings (paragraphs formatted with the Heading styles) to include in the document outline
+     */
     public headingsOutlineLevels: number;
     
 }
 
-/*
-* Class is used for insert page number request building.
-*/
+/**
+ * Class is used for insert page number request building.
+ */
 export class PageNumber {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "format",
@@ -876,37 +987,43 @@ export class PageNumber {
             type: "boolean",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return PageNumber.attributeTypeMap;
     }
 
-    /*
-    * Page number format, e.g. \"{PAGE} of {NUMPAGES}\".
-    */
+    /**
+     * Page number format, e.g. \"{PAGE} of {NUMPAGES}\".
+     */
     public format: string;
     
-    /*
-    * Text alignment, possible values are left, right, center or justify.
-    */
+    /**
+     * Text alignment, possible values are left, right, center or justify.
+     */
     public alignment: string;
     
-    /*
-    * If true the page number is added at the top of the page, else at the bottom.
-    */
+    /**
+     * If true the page number is added at the top of the page, else at the bottom.
+     */
     public isTop: boolean;
     
-    /*
-    * If true the page number is added on first page too.
-    */
+    /**
+     * If true the page number is added on first page too.
+     */
     public setPageNumberOnFirstPage: boolean;
     
 }
 
-/*
-* Container for the page's statistical data
-*/
+/**
+ * Container for the page's statistical data
+ */
 export class PageStatData {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "pageNumber",
@@ -929,37 +1046,43 @@ export class PageStatData {
             type: "FootnotesStatData",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return PageStatData.attributeTypeMap;
     }
 
-    /*
-    * Page number
-    */
+    /**
+     * Page number
+     */
     public pageNumber: number;
     
-    /*
-    * Total count of words in the page
-    */
+    /**
+     * Total count of words in the page
+     */
     public wordCount: number;
     
-    /*
-    * Total count of paragraphs in the page
-    */
+    /**
+     * Total count of paragraphs in the page
+     */
     public paragraphCount: number;
     
-    /*
-    * Detailed statistics of footnotes
-    */
+    /**
+     * Detailed statistics of footnotes
+     */
     public footnotesStatData: FootnotesStatData;
     
 }
 
-/*
-* Paragraph element
-*/
+/**
+ * Paragraph element
+ */
 export class ParagraphInsert {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "text",
@@ -967,22 +1090,28 @@ export class ParagraphInsert {
             type: "string",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return ParagraphInsert.attributeTypeMap;
     }
 
-    /*
-    * Paragraph's text
-    */
+    /**
+     * Paragraph's text
+     */
     public text: string;
     
 }
 
-/*
-* container class for details of digital signature
-*/
+/**
+ * container class for details of digital signature
+ */
 export class PdfDigitalSignatureDetailsData {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "certificateFilename",
@@ -1010,42 +1139,48 @@ export class PdfDigitalSignatureDetailsData {
             type: "Date",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return PdfDigitalSignatureDetailsData.attributeTypeMap;
     }
 
-    /*
-    * certificate's filename using for signing
-    */
+    /**
+     * certificate's filename using for signing
+     */
     public certificateFilename: string;
     
-    /*
-    * hash algorithm
-    */
+    /**
+     * hash algorithm
+     */
     public hashAlgorithm: string;
     
-    /*
-    * location of the signing
-    */
+    /**
+     * location of the signing
+     */
     public location: string;
     
-    /*
-    * reason for the signing
-    */
+    /**
+     * reason for the signing
+     */
     public reason: string;
     
-    /*
-    * date of the signing
-    */
+    /**
+     * date of the signing
+     */
     public signatureDate: Date;
     
 }
 
-/*
-* container class for details of encryption
-*/
+/**
+ * container class for details of encryption
+ */
 export class PdfEncryptionDetailsData {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "encryptionAlgorithm",
@@ -1068,37 +1203,43 @@ export class PdfEncryptionDetailsData {
             type: "string",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return PdfEncryptionDetailsData.attributeTypeMap;
     }
 
-    /*
-    * Specifies the encryption algorithm to use
-    */
+    /**
+     * Specifies the encryption algorithm to use
+     */
     public encryptionAlgorithm: string;
     
-    /*
-    * Specifies the owner password for the encrypted PDF document
-    */
+    /**
+     * Specifies the owner password for the encrypted PDF document
+     */
     public ownerPassword: string;
     
-    /*
-    * Specifies the operations that are allowed to a user on an encrypted PDF document
-    */
+    /**
+     * Specifies the operations that are allowed to a user on an encrypted PDF document
+     */
     public permissions: string;
     
-    /*
-    * Specifies the user password required for opening the encrypted PDF document
-    */
+    /**
+     * Specifies the user password required for opening the encrypted PDF document
+     */
     public userPassword: string;
     
 }
 
-/*
-* Preferred width.
-*/
+/**
+ * Preferred width.
+ */
 export class PreferredWidth {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "type",
@@ -1111,18 +1252,21 @@ export class PreferredWidth {
             type: "number",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return PreferredWidth.attributeTypeMap;
     }
 
-    /*
-    * Gets the unit of measure used for this preferred width value.
-    */
+    /**
+     * Gets the unit of measure used for this preferred width value.
+     */
     public type: PreferredWidth.TypeEnum;
     
-    /*
-    * Gets or sets the preferred width value. The unit of measure is specified in the  property.
-    */
+    /**
+     * Gets or sets the preferred width value. The unit of measure is specified in the  property.
+     */
     public value: number;
     
 }
@@ -1137,11 +1281,14 @@ export namespace PreferredWidth {
     }
 }
 // tslint:enable:quotemark
-/*
-* Container for the data about protection of the document
-*/
+/**
+ * Container for the data about protection of the document
+ */
 export class ProtectionData {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "protectionType",
@@ -1149,22 +1296,28 @@ export class ProtectionData {
             type: "string",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return ProtectionData.attributeTypeMap;
     }
 
-    /*
-    * Type of the protection
-    */
+    /**
+     * Type of the protection
+     */
     public protectionType: string;
     
 }
 
-/*
-* Request on changing of protection
-*/
+/**
+ * Request on changing of protection
+ */
 export class ProtectionRequest {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "password",
@@ -1182,32 +1335,38 @@ export class ProtectionRequest {
             type: "string",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return ProtectionRequest.attributeTypeMap;
     }
 
-    /*
-    * Current password
-    */
+    /**
+     * Current password
+     */
     public password: string;
     
-    /*
-    * New password
-    */
+    /**
+     * New password
+     */
     public newPassword: string;
     
-    /*
-    * New type of protection
-    */
+    /**
+     * New type of protection
+     */
     public protectionType: string;
     
 }
 
-/*
-* Class for document replace text request building.
-*/
+/**
+ * Class for document replace text request building.
+ */
 export class ReplaceTextRequest {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "oldValue",
@@ -1235,42 +1394,48 @@ export class ReplaceTextRequest {
             type: "boolean",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return ReplaceTextRequest.attributeTypeMap;
     }
 
-    /*
-    * Old text value (or regex pattern ) to replace.
-    */
+    /**
+     * Old text value (or regex pattern ) to replace.
+     */
     public oldValue: string;
     
-    /*
-    * New text value to replace by.
-    */
+    /**
+     * New text value to replace by.
+     */
     public newValue: string;
     
-    /*
-    * Flag, true means the search is case-sensitive; false means the search is not case-sensitive.
-    */
+    /**
+     * Flag, true means the search is case-sensitive; false means the search is not case-sensitive.
+     */
     public isMatchCase: boolean;
     
-    /*
-    * Flag, means that only whole word matched are replaced.
-    */
+    /**
+     * Flag, means that only whole word matched are replaced.
+     */
     public isMatchWholeWord: boolean;
     
-    /*
-    * Flag, means that  contains regex expression.
-    */
+    /**
+     * Flag, means that  contains regex expression.
+     */
     public isOldValueRegex: boolean;
     
 }
 
-/*
-* base container class for save options data
-*/
+/**
+ * base container class for save options data
+ */
 export class SaveOptionsData {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "colorMode",
@@ -1313,57 +1478,63 @@ export class SaveOptionsData {
             type: "boolean",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return SaveOptionsData.attributeTypeMap;
     }
 
-    /*
-    * Gets or sets a value determining how colors are rendered. { Normal | Grayscale}
-    */
+    /**
+     * Gets or sets a value determining how colors are rendered. { Normal | Grayscale}
+     */
     public colorMode: string;
     
-    /*
-    * format of save
-    */
+    /**
+     * format of save
+     */
     public saveFormat: string;
     
-    /*
-    * name of destination file
-    */
+    /**
+     * name of destination file
+     */
     public fileName: string;
     
-    /*
-    * Gets or sets a value determining how DrawingML shapes are rendered. { Fallback | DrawingML }
-    */
+    /**
+     * Gets or sets a value determining how DrawingML shapes are rendered. { Fallback | DrawingML }
+     */
     public dmlRenderingMode: string;
     
-    /*
-    * Gets or sets a value determining how DrawingML effects are rendered. { Simplified | None | Fine }
-    */
+    /**
+     * Gets or sets a value determining how DrawingML effects are rendered. { Simplified | None | Fine }
+     */
     public dmlEffectsRenderingMode: string;
     
-    /*
-    * Controls zip output or not. Default value is false.
-    */
+    /**
+     * Controls zip output or not. Default value is false.
+     */
     public zipOutput: boolean;
     
-    /*
-    * Gets or sets value determining whether content of  is updated before saving.
-    */
+    /**
+     * Gets or sets value determining whether content of  is updated before saving.
+     */
     public updateSdtContent: boolean;
     
-    /*
-    * Gets or sets a value determining if fields should be updated before saving the document to a fixed page format. Default value for this property is true
-    */
+    /**
+     * Gets or sets a value determining if fields should be updated before saving the document to a fixed page format. Default value for this property is true
+     */
     public updateFields: boolean;
     
 }
 
-/*
-* Result of saving.
-*/
+/**
+ * Result of saving.
+ */
 export class SaveResult {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "sourceDocument",
@@ -1381,32 +1552,38 @@ export class SaveResult {
             type: "Array<FileLink>",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return SaveResult.attributeTypeMap;
     }
 
-    /*
-    * Link to source document.
-    */
+    /**
+     * Link to source document.
+     */
     public sourceDocument: FileLink;
     
-    /*
-    * Link to destination document.
-    */
+    /**
+     * Link to destination document.
+     */
     public destDocument: FileLink;
     
-    /*
-    * Links to additional items (css, images etc).
-    */
+    /**
+     * Links to additional items (css, images etc).
+     */
     public additionalItems: Array<FileLink>;
     
 }
 
-/*
-* Result of search operation.
-*/
+/**
+ * Result of search operation.
+ */
 export class SearchResult {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "rangeStart",
@@ -1419,27 +1596,33 @@ export class SearchResult {
             type: "DocumentPosition",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return SearchResult.attributeTypeMap;
     }
 
-    /*
-    * Link to result range start node.
-    */
+    /**
+     * Link to result range start node.
+     */
     public rangeStart: DocumentPosition;
     
-    /*
-    * Link to result range end node.
-    */
+    /**
+     * Link to result range end node.
+     */
     public rangeEnd: DocumentPosition;
     
 }
 
-/*
-* Result of splitting document.
-*/
+/**
+ * Result of splitting document.
+ */
 export class SplitDocumentResult {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "sourceDocument",
@@ -1457,32 +1640,38 @@ export class SplitDocumentResult {
             type: "FileLink",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return SplitDocumentResult.attributeTypeMap;
     }
 
-    /*
-    * Linkt to the source document.
-    */
+    /**
+     * Linkt to the source document.
+     */
     public sourceDocument: FileLink;
     
-    /*
-    * Array of pages.
-    */
+    /**
+     * Array of pages.
+     */
     public pages: Array<FileLink>;
     
-    /*
-    * Link to the file archive with pages.
-    */
+    /**
+     * Link to the file archive with pages.
+     */
     public zippedPages: FileLink;
     
 }
 
-/*
-* Child nodes of  or 
-*/
+/**
+ * Child nodes of  or 
+ */
 export class StoryChildNodes {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "childNodes",
@@ -1490,22 +1679,28 @@ export class StoryChildNodes {
             type: "Array<NodeLink>",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return StoryChildNodes.attributeTypeMap;
     }
 
-    /*
-    * Child nodes.        
-    */
+    /**
+     * Child nodes.        
+     */
     public childNodes: Array<NodeLink>;
     
 }
 
-/*
-* Allows to specify System.Drawing.StringFormat options.
-*/
+/**
+ * Allows to specify System.Drawing.StringFormat options.
+ */
 export class StringFormatData {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "alignment",
@@ -1533,33 +1728,36 @@ export class StringFormatData {
             type: "StringFormatData.TrimmingEnum",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return StringFormatData.attributeTypeMap;
     }
 
-    /*
-    * Gets or sets horizontal alignment of the string.
-    */
+    /**
+     * Gets or sets horizontal alignment of the string.
+     */
     public alignment: StringFormatData.AlignmentEnum;
     
-    /*
-    * Gets or sets a System.Drawing.StringFormatFlags enumeration that contains formatting information.
-    */
+    /**
+     * Gets or sets a System.Drawing.StringFormatFlags enumeration that contains formatting information.
+     */
     public formatFlags: StringFormatData.FormatFlagsEnum;
     
-    /*
-    * Gets or sets the System.Drawing.Text.HotkeyPrefix object for this System.Drawing.StringFormat object.
-    */
+    /**
+     * Gets or sets the System.Drawing.Text.HotkeyPrefix object for this System.Drawing.StringFormat object.
+     */
     public hotkeyPrefix: StringFormatData.HotkeyPrefixEnum;
     
-    /*
-    * Gets or sets the vertical alignment of the string.
-    */
+    /**
+     * Gets or sets the vertical alignment of the string.
+     */
     public lineAlignment: StringFormatData.LineAlignmentEnum;
     
-    /*
-    * Gets or sets the System.Drawing.StringTrimming enumeration for this System.Drawing.StringFormat object.
-    */
+    /**
+     * Gets or sets the System.Drawing.StringTrimming enumeration for this System.Drawing.StringFormat object.
+     */
     public trimming: StringFormatData.TrimmingEnum;
     
 }
@@ -1603,11 +1801,14 @@ export namespace StringFormatData {
     }
 }
 // tslint:enable:quotemark
-/*
-* Table cell element
-*/
+/**
+ * Table cell element
+ */
 export class TableCellInsert {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "insertAfter",
@@ -1615,22 +1816,28 @@ export class TableCellInsert {
             type: "number",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return TableCellInsert.attributeTypeMap;
     }
 
-    /*
-    * Table cell will be inserted after cell with specified 0-based index.
-    */
+    /**
+     * Table cell will be inserted after cell with specified 0-based index.
+     */
     public insertAfter: number;
     
 }
 
-/*
-* Table element
-*/
+/**
+ * Table element
+ */
 export class TableInsert {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "postion",
@@ -1648,32 +1855,38 @@ export class TableInsert {
             type: "number",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return TableInsert.attributeTypeMap;
     }
 
-    /*
-    * Table will be inserted before specified position.
-    */
+    /**
+     * Table will be inserted before specified position.
+     */
     public postion: DocumentPosition;
     
-    /*
-    * Count of columns. Default is 2.
-    */
+    /**
+     * Count of columns. Default is 2.
+     */
     public columnsCount: number;
     
-    /*
-    * Count of rows. Default is 2.
-    */
+    /**
+     * Count of rows. Default is 2.
+     */
     public rowsCount: number;
     
 }
 
-/*
-* Table row element
-*/
+/**
+ * Table row element
+ */
 export class TableRowInsert {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "insertAfter",
@@ -1686,27 +1899,33 @@ export class TableRowInsert {
             type: "number",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return TableRowInsert.attributeTypeMap;
     }
 
-    /*
-    * Table row will be inserted after row with specified 0-based index.
-    */
+    /**
+     * Table row will be inserted after row with specified 0-based index.
+     */
     public insertAfter: number;
     
-    /*
-    * Count of columns. Default is 1.
-    */
+    /**
+     * Count of columns. Default is 1.
+     */
     public columnsCount: number;
     
 }
 
-/*
-* Class for insert watermark text request building. 
-*/
+/**
+ * Class for insert watermark text request building. 
+ */
 export class WatermarkText {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "text",
@@ -1719,27 +1938,33 @@ export class WatermarkText {
             type: "number",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return WatermarkText.attributeTypeMap;
     }
 
-    /*
-    * The watermark text.
-    */
+    /**
+     * The watermark text.
+     */
     public text: string;
     
-    /*
-    * The watermark rotation angle.
-    */
+    /**
+     * The watermark rotation angle.
+     */
     public rotationAngle: number;
     
 }
 
-/*
-* Utility class for  serialization
-*/
+/**
+ * Utility class for  serialization
+ */
 export class XmlColor {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "web",
@@ -1752,27 +1977,33 @@ export class XmlColor {
             type: "number",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return XmlColor.attributeTypeMap;
     }
 
-    /*
-    * HTML string color representation
-    */
+    /**
+     * HTML string color representation
+     */
     public web: string;
     
-    /*
-    * Alpha component of color structure
-    */
+    /**
+     * Alpha component of color structure
+     */
     public alpha: number;
     
 }
 
-/*
-* Represents a single bookmark.
-*/
+/**
+ * Represents a single bookmark.
+ */
 export class Bookmark extends LinkElement {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "name",
@@ -1785,27 +2016,33 @@ export class Bookmark extends LinkElement {
             type: "string",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(Bookmark.attributeTypeMap);
     }
 
-    /*
-    * Gets or sets the name of the bookmark.
-    */
+    /**
+     * Gets or sets the name of the bookmark.
+     */
     public name: string;
     
-    /*
-    * Gets or sets the text enclosed in the bookmark.
-    */
+    /**
+     * Gets or sets the text enclosed in the bookmark.
+     */
     public text: string;
     
 }
 
-/*
-* This resonse should be returned by the service when handling:  GET bookmarks/{bookmarkName}.
-*/
+/**
+ * This resonse should be returned by the service when handling:  GET bookmarks/{bookmarkName}.
+ */
 export class BookmarkResponse extends AsposeResponse {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "bookmark",
@@ -1813,22 +2050,28 @@ export class BookmarkResponse extends AsposeResponse {
             type: "Bookmark",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(BookmarkResponse.attributeTypeMap);
     }
 
-    /*
-    * Bookmark.
-    */
+    /**
+     * Bookmark.
+     */
     public bookmark: Bookmark;
     
 }
 
-/*
-* Represents an array of bookmarks.
-*/
+/**
+ * Represents an array of bookmarks.
+ */
 export class Bookmarks extends LinkElement {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "bookmarkList",
@@ -1836,22 +2079,28 @@ export class Bookmarks extends LinkElement {
             type: "Array<Bookmark>",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(Bookmarks.attributeTypeMap);
     }
 
-    /*
-    * Array of bookmarks.
-    */
+    /**
+     * Array of bookmarks.
+     */
     public bookmarkList: Array<Bookmark>;
     
 }
 
-/*
-* This resonse should be returned by the service when handling:  GET bookmarks.
-*/
+/**
+ * This resonse should be returned by the service when handling:  GET bookmarks.
+ */
 export class BookmarksResponse extends AsposeResponse {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "bookmarks",
@@ -1859,27 +2108,38 @@ export class BookmarksResponse extends AsposeResponse {
             type: "Bookmarks",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(BookmarksResponse.attributeTypeMap);
     }
 
-    /*
-    * Bookmarks which are contained in document.
-    */
+    /**
+     * Bookmarks which are contained in document.
+     */
     public bookmarks: Bookmarks;
     
 }
 
-/*
-* Represents a border of an object.
-*/
+/**
+ * Represents a border of an object.
+ */
 export class Border extends LinkElement {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            name: "borderType",
-            baseName: "BorderType",
-            type: "Border.BorderTypeEnum",
+            name: "lineStyle",
+            baseName: "LineStyle",
+            type: "Border.LineStyleEnum",
+        },        
+        {
+            name: "lineWidth",
+            baseName: "LineWidth",
+            type: "number",
         },        
         {
             name: "color",
@@ -1892,71 +2152,58 @@ export class Border extends LinkElement {
             type: "number",
         },        
         {
-            name: "lineStyle",
-            baseName: "LineStyle",
-            type: "Border.LineStyleEnum",
-        },        
-        {
-            name: "lineWidth",
-            baseName: "LineWidth",
-            type: "number",
-        },        
-        {
             name: "shadow",
             baseName: "Shadow",
             type: "boolean",
+        },        
+        {
+            name: "borderType",
+            baseName: "BorderType",
+            type: "Border.BorderTypeEnum",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(Border.attributeTypeMap);
     }
 
-    /*
-    * Gets or sets the border type.             
-    */
-    public borderType: Border.BorderTypeEnum;
-    
-    /*
-    * Gets or sets the border color.             
-    */
-    public color: XmlColor;
-    
-    /*
-    * Gets or sets distance of the border from text or from the page edge in points.
-    */
-    public distanceFromText: number;
-    
-    /*
-    * Gets or sets the border style.
-    */
+    /**
+     * Gets or sets the border style.
+     */
     public lineStyle: Border.LineStyleEnum;
     
-    /*
-    * Gets or sets the border width in points.
-    */
+    /**
+     * Gets or sets the border width in points.
+     */
     public lineWidth: number;
     
-    /*
-    * Gets or sets a value indicating whether the border has a shadow.
-    */
+    /**
+     * Gets or sets the border color.             
+     */
+    public color: XmlColor;
+    
+    /**
+     * Gets or sets distance of the border from text or from the page edge in points.
+     */
+    public distanceFromText: number;
+    
+    /**
+     * Gets or sets a value indicating whether the border has a shadow.
+     */
     public shadow: boolean;
+    
+    /**
+     * Gets or sets the border type.             
+     */
+    public borderType: Border.BorderTypeEnum;
     
 }
 
 // tslint:disable:quotemark
 // tslint:disable-next-line:no-namespace
 export namespace Border {
-    export enum BorderTypeEnum {
-        Bottom = 'Bottom' as any,
-        Left = 'Left' as any,
-        Right = 'Right' as any,
-        Top = 'Top' as any,
-        Horizontal = 'Horizontal' as any,
-        Vertical = 'Vertical' as any,
-        DiagonalDown = 'DiagonalDown' as any,
-        DiagonalUp = 'DiagonalUp' as any,
-        None = 'None' as any,
-    }
     export enum LineStyleEnum {
         None = 'None' as any,
         Single = 'Single' as any,
@@ -1986,13 +2233,27 @@ export namespace Border {
         Outset = 'Outset' as any,
         Inset = 'Inset' as any,
     }
+    export enum BorderTypeEnum {
+        Bottom = 'Bottom' as any,
+        Left = 'Left' as any,
+        Right = 'Right' as any,
+        Top = 'Top' as any,
+        Horizontal = 'Horizontal' as any,
+        Vertical = 'Vertical' as any,
+        DiagonalDown = 'DiagonalDown' as any,
+        DiagonalUp = 'DiagonalUp' as any,
+        None = 'None' as any,
+    }
 }
 // tslint:enable:quotemark
-/*
-* This resonse should be returned by the service when handling: GET {nodeWithBorders}/borders.
-*/
+/**
+ * This resonse should be returned by the service when handling: GET {nodeWithBorders}/borders.
+ */
 export class BorderResponse extends AsposeResponse {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "border",
@@ -2000,22 +2261,28 @@ export class BorderResponse extends AsposeResponse {
             type: "Border",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(BorderResponse.attributeTypeMap);
     }
 
-    /*
-    * Table.
-    */
+    /**
+     * Table.
+     */
     public border: Border;
     
 }
 
-/*
-* Collection of borders.
-*/
+/**
+ * Collection of borders.
+ */
 export class BordersCollection extends LinkElement {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "list",
@@ -2023,22 +2290,28 @@ export class BordersCollection extends LinkElement {
             type: "Array<Border>",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(BordersCollection.attributeTypeMap);
     }
 
-    /*
-    * Collection of comments
-    */
+    /**
+     * Collection of comments
+     */
     public list: Array<Border>;
     
 }
 
-/*
-* This resonse should be returned by the service when handling: GET {nodeWithBorders}/borders.
-*/
+/**
+ * This resonse should be returned by the service when handling: GET {nodeWithBorders}/borders.
+ */
 export class BordersResponse extends AsposeResponse {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "borders",
@@ -2046,36 +2319,48 @@ export class BordersResponse extends AsposeResponse {
             type: "BordersCollection",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(BordersResponse.attributeTypeMap);
     }
 
-    /*
-    * Table.
-    */
+    /**
+     * Table.
+     */
     public borders: BordersCollection;
     
 }
 
-/*
-* Comment link.
-*/
+/**
+ * Comment link.
+ */
 export class CommentLink extends LinkElement {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
     ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(CommentLink.attributeTypeMap);
     }
 
 }
 
-/*
-* This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/comments/0 
-*/
+/**
+ * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/comments/0 
+ */
 export class CommentResponse extends AsposeResponse {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "comment",
@@ -2083,22 +2368,28 @@ export class CommentResponse extends AsposeResponse {
             type: "Comment",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(CommentResponse.attributeTypeMap);
     }
 
-    /*
-    * Comment information
-    */
+    /**
+     * Comment information
+     */
     public comment: Comment;
     
 }
 
-/*
-* Collection of comments.
-*/
+/**
+ * Collection of comments.
+ */
 export class CommentsCollection extends LinkElement {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "commentList",
@@ -2106,22 +2397,28 @@ export class CommentsCollection extends LinkElement {
             type: "Array<Comment>",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(CommentsCollection.attributeTypeMap);
     }
 
-    /*
-    * Collection of comments
-    */
+    /**
+     * Collection of comments
+     */
     public commentList: Array<Comment>;
     
 }
 
-/*
-* This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/comments 
-*/
+/**
+ * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/comments 
+ */
 export class CommentsResponse extends AsposeResponse {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "comments",
@@ -2129,22 +2426,28 @@ export class CommentsResponse extends AsposeResponse {
             type: "CommentsCollection",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(CommentsResponse.attributeTypeMap);
     }
 
-    /*
-    * Collection of comments.
-    */
+    /**
+     * Collection of comments.
+     */
     public comments: CommentsCollection;
     
 }
 
-/*
-* container class for doc/dot save options
-*/
+/**
+ * container class for doc/dot save options
+ */
 export class DocSaveOptionsData extends SaveOptionsData {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "password",
@@ -2157,27 +2460,33 @@ export class DocSaveOptionsData extends SaveOptionsData {
             type: "boolean",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(DocSaveOptionsData.attributeTypeMap);
     }
 
-    /*
-    * Password
-    */
+    /**
+     * Password
+     */
     public password: string;
     
-    /*
-    * Determine whether or not save RoutingSlip data saved to output document
-    */
+    /**
+     * Determine whether or not save RoutingSlip data saved to output document
+     */
     public saveRoutingSlip: boolean;
     
 }
 
-/*
-* Collection of document properties.
-*/
+/**
+ * Collection of document properties.
+ */
 export class DocumentProperties extends LinkElement {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "list",
@@ -2185,6 +2494,9 @@ export class DocumentProperties extends LinkElement {
             type: "Array<DocumentProperty>",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(DocumentProperties.attributeTypeMap);
     }
@@ -2193,11 +2505,14 @@ export class DocumentProperties extends LinkElement {
     
 }
 
-/*
-* This resonse should be returned by the service when handling:  GET /documentProperties.
-*/
+/**
+ * This resonse should be returned by the service when handling:  GET /documentProperties.
+ */
 export class DocumentPropertiesResponse extends AsposeResponse {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "documentProperties",
@@ -2205,22 +2520,28 @@ export class DocumentPropertiesResponse extends AsposeResponse {
             type: "DocumentProperties",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(DocumentPropertiesResponse.attributeTypeMap);
     }
 
-    /*
-    * Collection of document properties.
-    */
+    /**
+     * Collection of document properties.
+     */
     public documentProperties: DocumentProperties;
     
 }
 
-/*
-* Words document property DTO.
-*/
+/**
+ * Words document property DTO.
+ */
 export class DocumentProperty extends LinkElement {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "name",
@@ -2238,32 +2559,38 @@ export class DocumentProperty extends LinkElement {
             type: "boolean",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(DocumentProperty.attributeTypeMap);
     }
 
-    /*
-    * Name of the document property.
-    */
+    /**
+     * Name of the document property.
+     */
     public name: string;
     
-    /*
-    * String value of the document property. 
-    */
+    /**
+     * String value of the document property. 
+     */
     public value: string;
     
-    /*
-    * Flag indicates whether the property is built-in or not. If true the property is built-in, if false the property is custom.
-    */
+    /**
+     * Flag indicates whether the property is built-in or not. If true the property is built-in, if false the property is custom.
+     */
     public builtIn: boolean;
     
 }
 
-/*
-* This resonse should be returned by the service when handling:  GET documentProperties/{propertyName}.
-*/
+/**
+ * This resonse should be returned by the service when handling:  GET documentProperties/{propertyName}.
+ */
 export class DocumentPropertyResponse extends AsposeResponse {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "documentProperty",
@@ -2271,22 +2598,28 @@ export class DocumentPropertyResponse extends AsposeResponse {
             type: "DocumentProperty",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(DocumentPropertyResponse.attributeTypeMap);
     }
 
-    /*
-    * Document property.
-    */
+    /**
+     * Document property.
+     */
     public documentProperty: DocumentProperty;
     
 }
 
-/*
-* Represents the response with document description.
-*/
+/**
+ * Represents the response with document description.
+ */
 export class DocumentResponse extends AsposeResponse {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "document",
@@ -2294,22 +2627,28 @@ export class DocumentResponse extends AsposeResponse {
             type: "Document",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(DocumentResponse.attributeTypeMap);
     }
 
-    /*
-    * Document description.
-    */
+    /**
+     * Document description.
+     */
     public document: Document;
     
 }
 
-/*
-* Represents drawing objects collection DTO.
-*/
+/**
+ * Represents drawing objects collection DTO.
+ */
 export class DrawingObjectCollection extends LinkElement {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "list",
@@ -2317,22 +2656,28 @@ export class DrawingObjectCollection extends LinkElement {
             type: "Array<LinkElement>",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(DrawingObjectCollection.attributeTypeMap);
     }
 
-    /*
-    * Collection of DrawingObjects links 
-    */
+    /**
+     * Collection of DrawingObjects links 
+     */
     public list: Array<LinkElement>;
     
 }
 
-/*
-* Response for \"drawingObjects/n\" resource.
-*/
+/**
+ * Response for \"drawingObjects/n\" resource.
+ */
 export class DrawingObjectResponse extends AsposeResponse {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "drawingObject",
@@ -2340,22 +2685,28 @@ export class DrawingObjectResponse extends AsposeResponse {
             type: "DrawingObject",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(DrawingObjectResponse.attributeTypeMap);
     }
 
-    /*
-    * Drawing object.
-    */
+    /**
+     * Drawing object.
+     */
     public drawingObject: DrawingObject;
     
 }
 
-/*
-* This resonse should be returned by the service when handling:  GET /drawingObjects.
-*/
+/**
+ * This resonse should be returned by the service when handling:  GET /drawingObjects.
+ */
 export class DrawingObjectsResponse extends AsposeResponse {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "drawingObjects",
@@ -2363,22 +2714,28 @@ export class DrawingObjectsResponse extends AsposeResponse {
             type: "DrawingObjectCollection",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(DrawingObjectsResponse.attributeTypeMap);
     }
 
-    /*
-    * Collection of drawing objects.
-    */
+    /**
+     * Collection of drawing objects.
+     */
     public drawingObjects: DrawingObjectCollection;
     
 }
 
-/*
-* Represents DTO for collection of fields.
-*/
+/**
+ * Represents DTO for collection of fields.
+ */
 export class FieldCollection extends LinkElement {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "list",
@@ -2386,22 +2743,28 @@ export class FieldCollection extends LinkElement {
             type: "Array<Field>",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(FieldCollection.attributeTypeMap);
     }
 
-    /*
-    * Collection of fields
-    */
+    /**
+     * Collection of fields
+     */
     public list: Array<Field>;
     
 }
 
-/*
-* Represents a collection of merge fields within a document. 
-*/
+/**
+ * Represents a collection of merge fields within a document. 
+ */
 export class FieldNames extends LinkElement {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "names",
@@ -2409,6 +2772,9 @@ export class FieldNames extends LinkElement {
             type: "Array<string>",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(FieldNames.attributeTypeMap);
     }
@@ -2417,11 +2783,14 @@ export class FieldNames extends LinkElement {
     
 }
 
-/*
-* This resonse should be returned by the service when handling:  GET /{name}/mailMergeFieldNames.
-*/
+/**
+ * This resonse should be returned by the service when handling:  GET /{name}/mailMergeFieldNames.
+ */
 export class FieldNamesResponse extends AsposeResponse {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "fieldNames",
@@ -2429,22 +2798,28 @@ export class FieldNamesResponse extends AsposeResponse {
             type: "FieldNames",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(FieldNamesResponse.attributeTypeMap);
     }
 
-    /*
-    * Collection of mail merge fields.
-    */
+    /**
+     * Collection of mail merge fields.
+     */
     public fieldNames: FieldNames;
     
 }
 
-/*
-* This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/paragraphs/{0}/fields/{1} 
-*/
+/**
+ * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/paragraphs/{0}/fields/{1} 
+ */
 export class FieldResponse extends AsposeResponse {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "field",
@@ -2452,22 +2827,28 @@ export class FieldResponse extends AsposeResponse {
             type: "Field",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(FieldResponse.attributeTypeMap);
     }
 
-    /*
-    * Field information
-    */
+    /**
+     * Field information
+     */
     public field: Field;
     
 }
 
-/*
-* This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/{nodePath}/fields
-*/
+/**
+ * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/{nodePath}/fields
+ */
 export class FieldsResponse extends AsposeResponse {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "fields",
@@ -2475,36 +2856,48 @@ export class FieldsResponse extends AsposeResponse {
             type: "FieldCollection",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(FieldsResponse.attributeTypeMap);
     }
 
-    /*
-    * Collection of fields.
-    */
+    /**
+     * Collection of fields.
+     */
     public fields: FieldCollection;
     
 }
 
-/*
-* Provides information for the file link.
-*/
+/**
+ * Provides information for the file link.
+ */
 export class FileLink extends Link {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
     ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(FileLink.attributeTypeMap);
     }
 
 }
 
-/*
-* Contains common options that can be specified when saving a document into fixed page formats (PDF, XPS, SWF, images etc).
-*/
+/**
+ * Contains common options that can be specified when saving a document into fixed page formats (PDF, XPS, SWF, images etc).
+ */
 export class FixedPageSaveOptionsData extends SaveOptionsData {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "jpegQuality",
@@ -2537,138 +2930,54 @@ export class FixedPageSaveOptionsData extends SaveOptionsData {
             type: "number",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(FixedPageSaveOptionsData.attributeTypeMap);
     }
 
-    /*
-    * Determines the quality of the JPEG images inside PDF document.
-    */
+    /**
+     * Determines the quality of the JPEG images inside PDF document.
+     */
     public jpegQuality: number;
     
-    /*
-    * Allows to specify metafile rendering options.
-    */
+    /**
+     * Allows to specify metafile rendering options.
+     */
     public metafileRenderingOptions: MetafileRenderingOptionsData;
     
-    /*
-    * Indicates the symbol set that is used to represent numbers while rendering to fixed page formats
-    */
+    /**
+     * Indicates the symbol set that is used to represent numbers while rendering to fixed page formats
+     */
     public numeralFormat: string;
     
-    /*
-    * Flag indicates whether it is required to optimize output of XPS.  If this flag is set redundant nested canvases and empty canvases are removed, also neighbor glyphs with the same formatting are concatenated.  Note: The accuracy of the content display may be affected if this property is set to true.  Default is false.
-    */
+    /**
+     * Flag indicates whether it is required to optimize output of XPS.  If this flag is set redundant nested canvases and empty canvases are removed, also neighbor glyphs with the same formatting are concatenated.  Note: The accuracy of the content display may be affected if this property is set to true.  Default is false.
+     */
     public optimizeOutput: boolean;
     
-    /*
-    * Determines number of pages to render
-    */
+    /**
+     * Determines number of pages to render
+     */
     public pageCount: number;
     
-    /*
-    * Determines 0-based index of the first page to render
-    */
+    /**
+     * Determines 0-based index of the first page to render
+     */
     public pageIndex: number;
     
 }
 
-/*
-* Font element             
-*/
+/**
+ * Font element             
+ */
 export class Font extends LinkElement {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            name: "allCaps",
-            baseName: "AllCaps",
-            type: "boolean",
-        },        
-        {
-            name: "bidi",
-            baseName: "Bidi",
-            type: "boolean",
-        },        
-        {
-            name: "bold",
-            baseName: "Bold",
-            type: "boolean",
-        },        
-        {
-            name: "boldBi",
-            baseName: "BoldBi",
-            type: "boolean",
-        },        
-        {
-            name: "border",
-            baseName: "Border",
-            type: "Border",
-        },        
-        {
-            name: "color",
-            baseName: "Color",
-            type: "XmlColor",
-        },        
-        {
-            name: "complexScript",
-            baseName: "ComplexScript",
-            type: "boolean",
-        },        
-        {
-            name: "doubleStrikeThrough",
-            baseName: "DoubleStrikeThrough",
-            type: "boolean",
-        },        
-        {
-            name: "emboss",
-            baseName: "Emboss",
-            type: "boolean",
-        },        
-        {
-            name: "engrave",
-            baseName: "Engrave",
-            type: "boolean",
-        },        
-        {
-            name: "hidden",
-            baseName: "Hidden",
-            type: "boolean",
-        },        
-        {
-            name: "highlightColor",
-            baseName: "HighlightColor",
-            type: "XmlColor",
-        },        
-        {
-            name: "italic",
-            baseName: "Italic",
-            type: "boolean",
-        },        
-        {
-            name: "italicBi",
-            baseName: "ItalicBi",
-            type: "boolean",
-        },        
-        {
-            name: "kerning",
-            baseName: "Kerning",
-            type: "number",
-        },        
-        {
-            name: "localeId",
-            baseName: "LocaleId",
-            type: "number",
-        },        
-        {
-            name: "localeIdBi",
-            baseName: "LocaleIdBi",
-            type: "number",
-        },        
-        {
-            name: "localeIdFarEast",
-            baseName: "LocaleIdFarEast",
-            type: "number",
-        },        
         {
             name: "name",
             baseName: "Name",
@@ -2695,31 +3004,6 @@ export class Font extends LinkElement {
             type: "string",
         },        
         {
-            name: "noProofing",
-            baseName: "NoProofing",
-            type: "boolean",
-        },        
-        {
-            name: "outline",
-            baseName: "Outline",
-            type: "boolean",
-        },        
-        {
-            name: "position",
-            baseName: "Position",
-            type: "number",
-        },        
-        {
-            name: "scaling",
-            baseName: "Scaling",
-            type: "number",
-        },        
-        {
-            name: "shadow",
-            baseName: "Shadow",
-            type: "boolean",
-        },        
-        {
             name: "size",
             baseName: "Size",
             type: "number",
@@ -2730,14 +3014,29 @@ export class Font extends LinkElement {
             type: "number",
         },        
         {
-            name: "smallCaps",
-            baseName: "SmallCaps",
+            name: "bold",
+            baseName: "Bold",
             type: "boolean",
         },        
         {
-            name: "spacing",
-            baseName: "Spacing",
-            type: "number",
+            name: "boldBi",
+            baseName: "BoldBi",
+            type: "boolean",
+        },        
+        {
+            name: "italic",
+            baseName: "Italic",
+            type: "boolean",
+        },        
+        {
+            name: "italicBi",
+            baseName: "ItalicBi",
+            type: "boolean",
+        },        
+        {
+            name: "color",
+            baseName: "Color",
+            type: "XmlColor",
         },        
         {
             name: "strikeThrough",
@@ -2745,18 +3044,28 @@ export class Font extends LinkElement {
             type: "boolean",
         },        
         {
-            name: "styleIdentifier",
-            baseName: "StyleIdentifier",
-            type: "Font.StyleIdentifierEnum",
+            name: "doubleStrikeThrough",
+            baseName: "DoubleStrikeThrough",
+            type: "boolean",
         },        
         {
-            name: "styleName",
-            baseName: "StyleName",
-            type: "string",
+            name: "shadow",
+            baseName: "Shadow",
+            type: "boolean",
         },        
         {
-            name: "subscript",
-            baseName: "Subscript",
+            name: "outline",
+            baseName: "Outline",
+            type: "boolean",
+        },        
+        {
+            name: "emboss",
+            baseName: "Emboss",
+            type: "boolean",
+        },        
+        {
+            name: "engrave",
+            baseName: "Engrave",
             type: "boolean",
         },        
         {
@@ -2765,9 +3074,24 @@ export class Font extends LinkElement {
             type: "boolean",
         },        
         {
-            name: "textEffect",
-            baseName: "TextEffect",
-            type: "Font.TextEffectEnum",
+            name: "subscript",
+            baseName: "Subscript",
+            type: "boolean",
+        },        
+        {
+            name: "smallCaps",
+            baseName: "SmallCaps",
+            type: "boolean",
+        },        
+        {
+            name: "allCaps",
+            baseName: "AllCaps",
+            type: "boolean",
+        },        
+        {
+            name: "hidden",
+            baseName: "Hidden",
+            type: "boolean",
         },        
         {
             name: "underline",
@@ -2778,217 +3102,324 @@ export class Font extends LinkElement {
             name: "underlineColor",
             baseName: "UnderlineColor",
             type: "XmlColor",
+        },        
+        {
+            name: "scaling",
+            baseName: "Scaling",
+            type: "number",
+        },        
+        {
+            name: "spacing",
+            baseName: "Spacing",
+            type: "number",
+        },        
+        {
+            name: "position",
+            baseName: "Position",
+            type: "number",
+        },        
+        {
+            name: "kerning",
+            baseName: "Kerning",
+            type: "number",
+        },        
+        {
+            name: "highlightColor",
+            baseName: "HighlightColor",
+            type: "XmlColor",
+        },        
+        {
+            name: "textEffect",
+            baseName: "TextEffect",
+            type: "Font.TextEffectEnum",
+        },        
+        {
+            name: "bidi",
+            baseName: "Bidi",
+            type: "boolean",
+        },        
+        {
+            name: "complexScript",
+            baseName: "ComplexScript",
+            type: "boolean",
+        },        
+        {
+            name: "noProofing",
+            baseName: "NoProofing",
+            type: "boolean",
+        },        
+        {
+            name: "localeId",
+            baseName: "LocaleId",
+            type: "number",
+        },        
+        {
+            name: "localeIdBi",
+            baseName: "LocaleIdBi",
+            type: "number",
+        },        
+        {
+            name: "localeIdFarEast",
+            baseName: "LocaleIdFarEast",
+            type: "number",
+        },        
+        {
+            name: "border",
+            baseName: "Border",
+            type: "Border",
+        },        
+        {
+            name: "styleName",
+            baseName: "StyleName",
+            type: "string",
+        },        
+        {
+            name: "styleIdentifier",
+            baseName: "StyleIdentifier",
+            type: "Font.StyleIdentifierEnum",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(Font.attributeTypeMap);
     }
 
-    /*
-    * True if the font is formatted as all capital letters.             
-    */
-    public allCaps: boolean;
-    
-    /*
-    * Specifies whether the contents of this run shall have right-to-left characteristics.             
-    */
-    public bidi: boolean;
-    
-    /*
-    * True if the font is formatted as bold.             
-    */
-    public bold: boolean;
-    
-    /*
-    * True if the right-to-left text is formatted as bold.             
-    */
-    public boldBi: boolean;
-    
-    /*
-    * Border object that specifies border for the font.
-    */
-    public border: Border;
-    
-    /*
-    * Gets or sets the color of the font.             
-    */
-    public color: XmlColor;
-    
-    /*
-    * Specifies whether the contents of this run shall be treated as complex script text regardless of their Unicode character values when determining the formatting for this run.             
-    */
-    public complexScript: boolean;
-    
-    /*
-    * True if the font is formatted as double strikethrough text.             
-    */
-    public doubleStrikeThrough: boolean;
-    
-    /*
-    * True if the font is formatted as embossed.             
-    */
-    public emboss: boolean;
-    
-    /*
-    * True if the font is formatted as engraved.             
-    */
-    public engrave: boolean;
-    
-    /*
-    * True if the font is formatted as hidden text.             
-    */
-    public hidden: boolean;
-    
-    /*
-    * Gets or sets the highlight (marker) color.             
-    */
-    public highlightColor: XmlColor;
-    
-    /*
-    * True if the font is formatted as italic.             
-    */
-    public italic: boolean;
-    
-    /*
-    * True if the right-to-left text is formatted as italic.             
-    */
-    public italicBi: boolean;
-    
-    /*
-    * Gets or sets the font size at which kerning starts.             
-    */
-    public kerning: number;
-    
-    /*
-    * Gets or sets the locale identifier (language) of the formatted characters.             
-    */
-    public localeId: number;
-    
-    /*
-    * Gets or sets the locale identifier (language) of the formatted right-to-left characters.             
-    */
-    public localeIdBi: number;
-    
-    /*
-    * Gets or sets the locale identifier (language) of the formatted Asian characters.             
-    */
-    public localeIdFarEast: number;
-    
-    /*
-    * Gets or sets the name of the font             
-    */
+    /**
+     * Gets or sets the name of the font             
+     */
     public name: string;
     
-    /*
-    * Returns or sets the font used for Latin text (characters with character codes from 0 (zero) through 127).             
-    */
+    /**
+     * Returns or sets the font used for Latin text (characters with character codes from 0 (zero) through 127).             
+     */
     public nameAscii: string;
     
-    /*
-    * Returns or sets the name of the font in a right-to-left language document.             
-    */
+    /**
+     * Returns or sets the name of the font in a right-to-left language document.             
+     */
     public nameBi: string;
     
-    /*
-    * Returns or sets an East Asian font name.             
-    */
+    /**
+     * Returns or sets an East Asian font name.             
+     */
     public nameFarEast: string;
     
-    /*
-    * Returns or sets the font used for characters with character codes from 128 through 255.             
-    */
+    /**
+     * Returns or sets the font used for characters with character codes from 128 through 255.             
+     */
     public nameOther: string;
     
-    /*
-    * True when the formatted characters are not to be spell checked.
-    */
-    public noProofing: boolean;
-    
-    /*
-    * True if the font is formatted as outline.             
-    */
-    public outline: boolean;
-    
-    /*
-    * Gets or sets the position of text (in points) relative to the base line. A positive number raises the text, and a negative number lowers it.             
-    */
-    public position: number;
-    
-    /*
-    * Gets or sets character width scaling in percent.             
-    */
-    public scaling: number;
-    
-    /*
-    * True if the font is formatted as shadowed.             
-    */
-    public shadow: boolean;
-    
-    /*
-    * Gets or sets the font size in points.             
-    */
+    /**
+     * Gets or sets the font size in points.             
+     */
     public size: number;
     
-    /*
-    * Gets or sets the font size in points used in a right-to-left document.             
-    */
+    /**
+     * Gets or sets the font size in points used in a right-to-left document.             
+     */
     public sizeBi: number;
     
-    /*
-    * True if the font is formatted as small capital letters.             
-    */
-    public smallCaps: boolean;
+    /**
+     * True if the font is formatted as bold.             
+     */
+    public bold: boolean;
     
-    /*
-    * Returns or sets the spacing (in points) between characters.             
-    */
-    public spacing: number;
+    /**
+     * True if the right-to-left text is formatted as bold.             
+     */
+    public boldBi: boolean;
     
-    /*
-    * True if the font is formatted as strikethrough text.             
-    */
+    /**
+     * True if the font is formatted as italic.             
+     */
+    public italic: boolean;
+    
+    /**
+     * True if the right-to-left text is formatted as italic.             
+     */
+    public italicBi: boolean;
+    
+    /**
+     * Gets or sets the color of the font.             
+     */
+    public color: XmlColor;
+    
+    /**
+     * True if the font is formatted as strikethrough text.             
+     */
     public strikeThrough: boolean;
     
-    /*
-    * Gets or sets the locale independent style identifier of the character style applied to this formatting.
-    */
-    public styleIdentifier: Font.StyleIdentifierEnum;
+    /**
+     * True if the font is formatted as double strikethrough text.             
+     */
+    public doubleStrikeThrough: boolean;
     
-    /*
-    * Gets or sets the name of the character style applied to this formatting.             
-    */
-    public styleName: string;
+    /**
+     * True if the font is formatted as shadowed.             
+     */
+    public shadow: boolean;
     
-    /*
-    * True if the font is formatted as subscript.             
-    */
-    public subscript: boolean;
+    /**
+     * True if the font is formatted as outline.             
+     */
+    public outline: boolean;
     
-    /*
-    * True if the font is formatted as superscript.             
-    */
+    /**
+     * True if the font is formatted as embossed.             
+     */
+    public emboss: boolean;
+    
+    /**
+     * True if the font is formatted as engraved.             
+     */
+    public engrave: boolean;
+    
+    /**
+     * True if the font is formatted as superscript.             
+     */
     public superscript: boolean;
     
-    /*
-    * Gets or sets the font animation effect.
-    */
-    public textEffect: Font.TextEffectEnum;
+    /**
+     * True if the font is formatted as subscript.             
+     */
+    public subscript: boolean;
     
-    /*
-    * Gets or sets the type of underline applied to the font.
-    */
+    /**
+     * True if the font is formatted as small capital letters.             
+     */
+    public smallCaps: boolean;
+    
+    /**
+     * True if the font is formatted as all capital letters.             
+     */
+    public allCaps: boolean;
+    
+    /**
+     * True if the font is formatted as hidden text.             
+     */
+    public hidden: boolean;
+    
+    /**
+     * Gets or sets the type of underline applied to the font.
+     */
     public underline: Font.UnderlineEnum;
     
-    /*
-    * Gets or sets the color of the underline applied to the font.
-    */
+    /**
+     * Gets or sets the color of the underline applied to the font.
+     */
     public underlineColor: XmlColor;
+    
+    /**
+     * Gets or sets character width scaling in percent.             
+     */
+    public scaling: number;
+    
+    /**
+     * Returns or sets the spacing (in points) between characters.             
+     */
+    public spacing: number;
+    
+    /**
+     * Gets or sets the position of text (in points) relative to the base line. A positive number raises the text, and a negative number lowers it.             
+     */
+    public position: number;
+    
+    /**
+     * Gets or sets the font size at which kerning starts.             
+     */
+    public kerning: number;
+    
+    /**
+     * Gets or sets the highlight (marker) color.             
+     */
+    public highlightColor: XmlColor;
+    
+    /**
+     * Gets or sets the font animation effect.
+     */
+    public textEffect: Font.TextEffectEnum;
+    
+    /**
+     * Specifies whether the contents of this run shall have right-to-left characteristics.             
+     */
+    public bidi: boolean;
+    
+    /**
+     * Specifies whether the contents of this run shall be treated as complex script text regardless of their Unicode character values when determining the formatting for this run.             
+     */
+    public complexScript: boolean;
+    
+    /**
+     * True when the formatted characters are not to be spell checked.
+     */
+    public noProofing: boolean;
+    
+    /**
+     * Gets or sets the locale identifier (language) of the formatted characters.             
+     */
+    public localeId: number;
+    
+    /**
+     * Gets or sets the locale identifier (language) of the formatted right-to-left characters.             
+     */
+    public localeIdBi: number;
+    
+    /**
+     * Gets or sets the locale identifier (language) of the formatted Asian characters.             
+     */
+    public localeIdFarEast: number;
+    
+    /**
+     * Border object that specifies border for the font.
+     */
+    public border: Border;
+    
+    /**
+     * Gets or sets the name of the character style applied to this formatting.             
+     */
+    public styleName: string;
+    
+    /**
+     * Gets or sets the locale independent style identifier of the character style applied to this formatting.
+     */
+    public styleIdentifier: Font.StyleIdentifierEnum;
     
 }
 
 // tslint:disable:quotemark
 // tslint:disable-next-line:no-namespace
 export namespace Font {
+    export enum UnderlineEnum {
+        None = 'None' as any,
+        Single = 'Single' as any,
+        Words = 'Words' as any,
+        Double = 'Double' as any,
+        Dotted = 'Dotted' as any,
+        Thick = 'Thick' as any,
+        Dash = 'Dash' as any,
+        DotDash = 'DotDash' as any,
+        DotDotDash = 'DotDotDash' as any,
+        Wavy = 'Wavy' as any,
+        DottedHeavy = 'DottedHeavy' as any,
+        DashHeavy = 'DashHeavy' as any,
+        DotDashHeavy = 'DotDashHeavy' as any,
+        DotDotDashHeavy = 'DotDotDashHeavy' as any,
+        WavyHeavy = 'WavyHeavy' as any,
+        DashLong = 'DashLong' as any,
+        WavyDouble = 'WavyDouble' as any,
+        DashLongHeavy = 'DashLongHeavy' as any,
+    }
+    export enum TextEffectEnum {
+        None = 'None' as any,
+        LasVegasLights = 'LasVegasLights' as any,
+        BlinkingBackground = 'BlinkingBackground' as any,
+        SparkleText = 'SparkleText' as any,
+        MarchingBlackAnts = 'MarchingBlackAnts' as any,
+        MarchingRedAnts = 'MarchingRedAnts' as any,
+        Shimmer = 'Shimmer' as any,
+    }
     export enum StyleIdentifierEnum {
         Normal = 'Normal' as any,
         Heading1 = 'Heading1' as any,
@@ -3364,42 +3795,16 @@ export namespace Font {
         User = 'User' as any,
         Nil = 'Nil' as any,
     }
-    export enum TextEffectEnum {
-        None = 'None' as any,
-        LasVegasLights = 'LasVegasLights' as any,
-        BlinkingBackground = 'BlinkingBackground' as any,
-        SparkleText = 'SparkleText' as any,
-        MarchingBlackAnts = 'MarchingBlackAnts' as any,
-        MarchingRedAnts = 'MarchingRedAnts' as any,
-        Shimmer = 'Shimmer' as any,
-    }
-    export enum UnderlineEnum {
-        None = 'None' as any,
-        Single = 'Single' as any,
-        Words = 'Words' as any,
-        Double = 'Double' as any,
-        Dotted = 'Dotted' as any,
-        Thick = 'Thick' as any,
-        Dash = 'Dash' as any,
-        DotDash = 'DotDash' as any,
-        DotDotDash = 'DotDotDash' as any,
-        Wavy = 'Wavy' as any,
-        DottedHeavy = 'DottedHeavy' as any,
-        DashHeavy = 'DashHeavy' as any,
-        DotDashHeavy = 'DotDashHeavy' as any,
-        DotDotDashHeavy = 'DotDotDashHeavy' as any,
-        WavyHeavy = 'WavyHeavy' as any,
-        DashLong = 'DashLong' as any,
-        WavyDouble = 'WavyDouble' as any,
-        DashLongHeavy = 'DashLongHeavy' as any,
-    }
 }
 // tslint:enable:quotemark
-/*
-* This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/paragraphs/{0}/runs/{1}/font 
-*/
+/**
+ * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/paragraphs/{0}/runs/{1}/font 
+ */
 export class FontResponse extends AsposeResponse {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "font",
@@ -3407,22 +3812,28 @@ export class FontResponse extends AsposeResponse {
             type: "Font",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(FontResponse.attributeTypeMap);
     }
 
-    /*
-    * Font
-    */
+    /**
+     * Font
+     */
     public font: Font;
     
 }
 
-/*
-* Collection of footnotes.
-*/
+/**
+ * Collection of footnotes.
+ */
 export class FootnoteCollection extends LinkElement {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "list",
@@ -3430,22 +3841,28 @@ export class FootnoteCollection extends LinkElement {
             type: "Array<Footnote>",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(FootnoteCollection.attributeTypeMap);
     }
 
-    /*
-    * Collection of foonotes links 
-    */
+    /**
+     * Collection of foonotes links 
+     */
     public list: Array<Footnote>;
     
 }
 
-/*
-* This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/footnote/0 
-*/
+/**
+ * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/footnote/0 
+ */
 export class FootnoteResponse extends AsposeResponse {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "footnote",
@@ -3453,22 +3870,28 @@ export class FootnoteResponse extends AsposeResponse {
             type: "Footnote",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(FootnoteResponse.attributeTypeMap);
     }
 
-    /*
-    * Footnote information
-    */
+    /**
+     * Footnote information
+     */
     public footnote: Footnote;
     
 }
 
-/*
-* This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/footnotes 
-*/
+/**
+ * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/footnotes 
+ */
 export class FootnotesResponse extends AsposeResponse {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "footnotes",
@@ -3476,22 +3899,28 @@ export class FootnotesResponse extends AsposeResponse {
             type: "FootnoteCollection",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(FootnotesResponse.attributeTypeMap);
     }
 
-    /*
-    * Collection of footnotes.
-    */
+    /**
+     * Collection of footnotes.
+     */
     public footnotes: FootnoteCollection;
     
 }
 
-/*
-* Represents DTO for collection of formfields.
-*/
+/**
+ * Represents DTO for collection of formfields.
+ */
 export class FormFieldCollection extends LinkElement {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "list",
@@ -3499,22 +3928,28 @@ export class FormFieldCollection extends LinkElement {
             type: "Array<FormField>",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(FormFieldCollection.attributeTypeMap);
     }
 
-    /*
-    * Collection of formfields
-    */
+    /**
+     * Collection of formfields
+     */
     public list: Array<FormField>;
     
 }
 
-/*
-* This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/paragraphs/{0}/formfields/{1} 
-*/
+/**
+ * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/paragraphs/{0}/formfields/{1} 
+ */
 export class FormFieldResponse extends AsposeResponse {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "formField",
@@ -3522,22 +3957,28 @@ export class FormFieldResponse extends AsposeResponse {
             type: "FormField",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(FormFieldResponse.attributeTypeMap);
     }
 
-    /*
-    * Field information
-    */
+    /**
+     * Field information
+     */
     public formField: FormField;
     
 }
 
-/*
-* This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/{nodePath}/formfields
-*/
+/**
+ * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/{nodePath}/formfields
+ */
 export class FormFieldsResponse extends AsposeResponse {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "formFields",
@@ -3545,22 +3986,28 @@ export class FormFieldsResponse extends AsposeResponse {
             type: "FormFieldCollection",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(FormFieldsResponse.attributeTypeMap);
     }
 
-    /*
-    * Collection of form fields.
-    */
+    /**
+     * Collection of form fields.
+     */
     public formFields: FormFieldCollection;
     
 }
 
-/*
-* HeaderFooter link element
-*/
+/**
+ * HeaderFooter link element
+ */
 export class HeaderFooterLink extends LinkElement {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "type",
@@ -3568,13 +4015,16 @@ export class HeaderFooterLink extends LinkElement {
             type: "HeaderFooterLink.TypeEnum",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(HeaderFooterLink.attributeTypeMap);
     }
 
-    /*
-    * Paragraph's text
-    */
+    /**
+     * Paragraph's text
+     */
     public type: HeaderFooterLink.TypeEnum;
     
 }
@@ -3592,11 +4042,14 @@ export namespace HeaderFooterLink {
     }
 }
 // tslint:enable:quotemark
-/*
-* Collection of links to header/footers
-*/
+/**
+ * Collection of links to header/footers
+ */
 export class HeaderFooterLinkCollection extends LinkElement {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "list",
@@ -3604,22 +4057,28 @@ export class HeaderFooterLinkCollection extends LinkElement {
             type: "Array<HeaderFooterLink>",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(HeaderFooterLinkCollection.attributeTypeMap);
     }
 
-    /*
-    * Collection of section's links
-    */
+    /**
+     * Collection of section's links
+     */
     public list: Array<HeaderFooterLink>;
     
 }
 
-/*
-* This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/headersfooters/{0} 
-*/
+/**
+ * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/headersfooters/{0} 
+ */
 export class HeaderFooterResponse extends AsposeResponse {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "headerFooter",
@@ -3627,22 +4086,28 @@ export class HeaderFooterResponse extends AsposeResponse {
             type: "HeaderFooter",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(HeaderFooterResponse.attributeTypeMap);
     }
 
-    /*
-    * HeaderFooter
-    */
+    /**
+     * HeaderFooter
+     */
     public headerFooter: HeaderFooter;
     
 }
 
-/*
-* This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/headersfooters 
-*/
+/**
+ * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/headersfooters 
+ */
 export class HeaderFootersResponse extends AsposeResponse {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "headerFooters",
@@ -3650,22 +4115,28 @@ export class HeaderFootersResponse extends AsposeResponse {
             type: "HeaderFooterLinkCollection",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(HeaderFootersResponse.attributeTypeMap);
     }
 
-    /*
-    * Collection of headers/footers
-    */
+    /**
+     * Collection of headers/footers
+     */
     public headerFooters: HeaderFooterLinkCollection;
     
 }
 
-/*
-* container class for html save options
-*/
+/**
+ * container class for html save options
+ */
 export class HtmlSaveOptionsData extends SaveOptionsData {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "prettyFormat",
@@ -3853,193 +4324,196 @@ export class HtmlSaveOptionsData extends SaveOptionsData {
             type: "boolean",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(HtmlSaveOptionsData.attributeTypeMap);
     }
 
-    /*
-    * Specifies whether or not use pretty formats output
-    */
+    /**
+     * Specifies whether or not use pretty formats output
+     */
     public prettyFormat: boolean;
     
-    /*
-    * Specifies whether negative left and right indents of paragraphs are allowed (not normalized)
-    */
+    /**
+     * Specifies whether negative left and right indents of paragraphs are allowed (not normalized)
+     */
     public allowNegativeIndent: boolean;
     
-    /*
-    * Specifies the name of the CSS file written when the document is exported to HTML
-    */
+    /**
+     * Specifies the name of the CSS file written when the document is exported to HTML
+     */
     public cssStyleSheetFileName: string;
     
-    /*
-    * Specifies how CSS styles are exported
-    */
+    /**
+     * Specifies how CSS styles are exported
+     */
     public cssStyleSheetType: string;
     
-    /*
-    * Specifies how the document should be split when saving
-    */
+    /**
+     * Specifies how the document should be split when saving
+     */
     public documentSplitCriteria: string;
     
-    /*
-    * Specifies the maximum level of headings at which to split the document
-    */
+    /**
+     * Specifies the maximum level of headings at which to split the document
+     */
     public documentSplitHeadingLevel: number;
     
-    /*
-    * Specifies the encoding to use when exporting
-    */
+    /**
+     * Specifies the encoding to use when exporting
+     */
     public encoding: string;
     
-    /*
-    * Specifies whether to export built-in and custom document properties
-    */
+    /**
+     * Specifies whether to export built-in and custom document properties
+     */
     public exportDocumentProperties: boolean;
     
-    /*
-    * Specifies whether fonts resources should be embedded to HTML in Base64 encoding.  Default is false.
-    */
+    /**
+     * Specifies whether fonts resources should be embedded to HTML in Base64 encoding.  Default is false.
+     */
     public exportFontsAsBase64: boolean;
     
-    /*
-    * Specifies whether font resources should be exported
-    */
+    /**
+     * Specifies whether font resources should be exported
+     */
     public exportFontResources: boolean;
     
-    /*
-    * Specifies how headers and footers are output
-    */
+    /**
+     * Specifies how headers and footers are output
+     */
     public exportHeadersFootersMode: string;
     
-    /*
-    * Specifies whether images are saved in Base64 format
-    */
+    /**
+     * Specifies whether images are saved in Base64 format
+     */
     public exportImagesAsBase64: boolean;
     
-    /*
-    * Specifies whether language information is exported
-    */
+    /**
+     * Specifies whether language information is exported
+     */
     public exportLanguageInformation: boolean;
     
-    /*
-    * Controls how list labels are output
-    */
+    /**
+     * Controls how list labels are output
+     */
     public exportListLabels: string;
     
-    /*
-    * Specifies whether to convert metafiles into raster images when exporting
-    */
+    /**
+     * Specifies whether to convert metafiles into raster images when exporting
+     */
     public exportMetafileAsRaster: boolean;
     
-    /*
-    * Specifies whether original URL should be used as the URL of the linked images. Default value is false.
-    */
+    /**
+     * Specifies whether original URL should be used as the URL of the linked images. Default value is false.
+     */
     public exportOriginalUrlForLinkedImages: boolean;
     
-    /*
-    * Specifies whether page margins is exported to HTML, MHTML or EPUB. Default is false.
-    */
+    /**
+     * Specifies whether page margins is exported to HTML, MHTML or EPUB. Default is false.
+     */
     public exportPageMargins: boolean;
     
-    /*
-    * Specifies whether page setup is exported
-    */
+    /**
+     * Specifies whether page setup is exported
+     */
     public exportPageSetup: boolean;
     
-    /*
-    * Specifies whether font sizes should be output in relative units when saving
-    */
+    /**
+     * Specifies whether font sizes should be output in relative units when saving
+     */
     public exportRelativeFontSize: boolean;
     
-    /*
-    * Specifies whether to write the roundtrip information when saving to HTML Default value is true.
-    */
+    /**
+     * Specifies whether to write the roundtrip information when saving to HTML Default value is true.
+     */
     public exportRoundtripInformation: boolean;
     
-    /*
-    * Controls how textboxes represented by Aspose.Words.Drawing.Shape are saved to HTML, MHTML or EPUB. Default value is false.    When set to true, exports textboxes as inline \"svg\" elements. When false, exports as \"image\" elements.
-    */
+    /**
+     * Controls how textboxes represented by Aspose.Words.Drawing.Shape are saved to HTML, MHTML or EPUB. Default value is false.    When set to true, exports textboxes as inline \"svg\" elements. When false, exports as \"image\" elements.
+     */
     public exportTextBoxAsSvg: boolean;
     
-    /*
-    * Controls how text input form fields are saved
-    */
+    /**
+     * Controls how text input form fields are saved
+     */
     public exportTextInputFormFieldAsText: boolean;
     
-    /*
-    * Specifies whether to write page numbers to table of contents when saving
-    */
+    /**
+     * Specifies whether to write page numbers to table of contents when saving
+     */
     public exportTocPageNumbers: boolean;
     
-    /*
-    * Specifies whether to write the DOCTYPE declaration when saving
-    */
+    /**
+     * Specifies whether to write the DOCTYPE declaration when saving
+     */
     public exportXhtmlTransitional: boolean;
     
-    /*
-    * Specifies the physical folder where fonts are saved when exporting a document
-    */
+    /**
+     * Specifies the physical folder where fonts are saved when exporting a document
+     */
     public fontsFolder: string;
     
-    /*
-    * Specifies the name of the folder used to construct font URIs
-    */
+    /**
+     * Specifies the name of the folder used to construct font URIs
+     */
     public fontsFolderAlias: string;
     
-    /*
-    * Controls which font resources need subsetting when saving
-    */
+    /**
+     * Controls which font resources need subsetting when saving
+     */
     public fontResourcesSubsettingSizeThreshold: number;
     
-    /*
-    * Specifies version of HTML standard that should be used when saving the document to HTML or MHTML.   Default value is Aspose.Words.Saving.HtmlVersion.Xhtml.
-    */
+    /**
+     * Specifies version of HTML standard that should be used when saving the document to HTML or MHTML.   Default value is Aspose.Words.Saving.HtmlVersion.Xhtml.
+     */
     public htmlVersion: HtmlSaveOptionsData.HtmlVersionEnum;
     
-    /*
-    * Specifies the physical folder where images are saved when exporting a document
-    */
+    /**
+     * Specifies the physical folder where images are saved when exporting a document
+     */
     public imagesFolder: string;
     
-    /*
-    * Specifies the name of the folder used to construct image URIs
-    */
+    /**
+     * Specifies the name of the folder used to construct image URIs
+     */
     public imagesFolderAlias: string;
     
-    /*
-    * Specifies the output resolution for images when exporting
-    */
+    /**
+     * Specifies the output resolution for images when exporting
+     */
     public imageResolution: number;
     
-    /*
-    * Controls how OfficeMath objects are exported to HTML, MHTML or EPUB.  Default value is HtmlOfficeMathOutputMode.Image.
-    */
+    /**
+     * Controls how OfficeMath objects are exported to HTML, MHTML or EPUB.  Default value is HtmlOfficeMathOutputMode.Image.
+     */
     public officeMathOutputMode: HtmlSaveOptionsData.OfficeMathOutputModeEnum;
     
-    /*
-    * Specifies a physical folder where all resources like images, fonts, and external CSS are saved when a document is exported to HTML. Default is an empty string.
-    */
+    /**
+     * Specifies a physical folder where all resources like images, fonts, and external CSS are saved when a document is exported to HTML. Default is an empty string.
+     */
     public resourceFolder: string;
     
-    /*
-    * Specifies the name of the folder used to construct URIs of all resources written into an HTML document.  Default is an empty string.
-    */
+    /**
+     * Specifies the name of the folder used to construct URIs of all resources written into an HTML document.  Default is an empty string.
+     */
     public resourceFolderAlias: string;
     
-    /*
-    * Specifies whether images are scaled by Aspose.Words to the bounding shape size when exporting
-    */
+    /**
+     * Specifies whether images are scaled by Aspose.Words to the bounding shape size when exporting
+     */
     public scaleImageToShapeSize: boolean;
     
-    /*
-    * Controls how table, row and cell widths are exported
-    */
+    /**
+     * Controls how table, row and cell widths are exported
+     */
     public tableWidthOutputMode: string;
     
-    /*
-    * Controls how drop-down form fields are saved to HTML. Default value is false.
-    */
+    /**
+     * Controls how drop-down form fields are saved to HTML. Default value is false.
+     */
     public exportDropDownFormFieldAsText: boolean;
     
 }
@@ -4058,11 +4532,14 @@ export namespace HtmlSaveOptionsData {
     }
 }
 // tslint:enable:quotemark
-/*
-* Hyperlink element.
-*/
+/**
+ * Hyperlink element.
+ */
 export class Hyperlink extends LinkElement {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "displayText",
@@ -4075,27 +4552,33 @@ export class Hyperlink extends LinkElement {
             type: "string",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(Hyperlink.attributeTypeMap);
     }
 
-    /*
-    * Hypelink's display text
-    */
+    /**
+     * Hypelink's display text
+     */
     public displayText: string;
     
-    /*
-    * Value
-    */
+    /**
+     * Value
+     */
     public value: string;
     
 }
 
-/*
-* This resonse should be returned by the service when handling:  GET /{name}/hyperlinks/{hyperlinkIndex} .
-*/
+/**
+ * This resonse should be returned by the service when handling:  GET /{name}/hyperlinks/{hyperlinkIndex} .
+ */
 export class HyperlinkResponse extends AsposeResponse {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "hyperlink",
@@ -4103,22 +4586,28 @@ export class HyperlinkResponse extends AsposeResponse {
             type: "Hyperlink",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(HyperlinkResponse.attributeTypeMap);
     }
 
-    /*
-    * Hyperlink.
-    */
+    /**
+     * Hyperlink.
+     */
     public hyperlink: Hyperlink;
     
 }
 
-/*
-* Collection of .
-*/
+/**
+ * Collection of .
+ */
 export class Hyperlinks extends LinkElement {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "hyperlinkList",
@@ -4126,22 +4615,28 @@ export class Hyperlinks extends LinkElement {
             type: "Array<Hyperlink>",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(Hyperlinks.attributeTypeMap);
     }
 
-    /*
-    * Array of .
-    */
+    /**
+     * Array of .
+     */
     public hyperlinkList: Array<Hyperlink>;
     
 }
 
-/*
-* This resonse should be returned by the service when handling:  GET /{name}/hyperlinks .
-*/
+/**
+ * This resonse should be returned by the service when handling:  GET /{name}/hyperlinks .
+ */
 export class HyperlinksResponse extends AsposeResponse {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "hyperlinks",
@@ -4149,22 +4644,28 @@ export class HyperlinksResponse extends AsposeResponse {
             type: "Hyperlinks",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(HyperlinksResponse.attributeTypeMap);
     }
 
-    /*
-    * Collection of hyperlinks.
-    */
+    /**
+     * Collection of hyperlinks.
+     */
     public hyperlinks: Hyperlinks;
     
 }
 
-/*
-* Reference to node
-*/
+/**
+ * Reference to node
+ */
 export class NodeLink extends LinkElement {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "nodeId",
@@ -4172,22 +4673,28 @@ export class NodeLink extends LinkElement {
             type: "string",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(NodeLink.attributeTypeMap);
     }
 
-    /*
-    * Node id
-    */
+    /**
+     * Node id
+     */
     public nodeId: string;
     
 }
 
-/*
-* container class for odt/ott save options
-*/
+/**
+ * container class for odt/ott save options
+ */
 export class OdtSaveOptionsData extends SaveOptionsData {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "prettyFormat",
@@ -4200,27 +4707,33 @@ export class OdtSaveOptionsData extends SaveOptionsData {
             type: "boolean",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(OdtSaveOptionsData.attributeTypeMap);
     }
 
-    /*
-    * Specifies whether or not use pretty formats output
-    */
+    /**
+     * Specifies whether or not use pretty formats output
+     */
     public prettyFormat: boolean;
     
-    /*
-    * Specifies whether export should correspond to ODT specification 1.1 strictly
-    */
+    /**
+     * Specifies whether export should correspond to ODT specification 1.1 strictly
+     */
     public isStrictSchema11: boolean;
     
 }
 
-/*
-* This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/officeMathObjects/0 
-*/
+/**
+ * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/officeMathObjects/0 
+ */
 export class OfficeMathObjectResponse extends AsposeResponse {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "officeMathObject",
@@ -4228,22 +4741,28 @@ export class OfficeMathObjectResponse extends AsposeResponse {
             type: "OfficeMathObject",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(OfficeMathObjectResponse.attributeTypeMap);
     }
 
-    /*
-    * OfficeMathObject information
-    */
+    /**
+     * OfficeMathObject information
+     */
     public officeMathObject: OfficeMathObject;
     
 }
 
-/*
-* Collection of OfficeMath objects.
-*/
+/**
+ * Collection of OfficeMath objects.
+ */
 export class OfficeMathObjectsCollection extends LinkElement {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "list",
@@ -4251,22 +4770,28 @@ export class OfficeMathObjectsCollection extends LinkElement {
             type: "Array<OfficeMathObject>",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(OfficeMathObjectsCollection.attributeTypeMap);
     }
 
-    /*
-    * Collection of OfficeMath objects.
-    */
+    /**
+     * Collection of OfficeMath objects.
+     */
     public list: Array<OfficeMathObject>;
     
 }
 
-/*
-* This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/OfficeMathObjects 
-*/
+/**
+ * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/OfficeMathObjects 
+ */
 export class OfficeMathObjectsResponse extends AsposeResponse {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "officeMathObjects",
@@ -4274,22 +4799,28 @@ export class OfficeMathObjectsResponse extends AsposeResponse {
             type: "OfficeMathObjectsCollection",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(OfficeMathObjectsResponse.attributeTypeMap);
     }
 
-    /*
-    * Collection of OfficeMath objects.
-    */
+    /**
+     * Collection of OfficeMath objects.
+     */
     public officeMathObjects: OfficeMathObjectsCollection;
     
 }
 
-/*
-* container class for docx/docm/dotx/dotm/flatopc save options
-*/
+/**
+ * container class for docx/docm/dotx/dotm/flatopc save options
+ */
 export class OoxmlSaveOptionsData extends SaveOptionsData {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "prettyFormat",
@@ -4307,156 +4838,42 @@ export class OoxmlSaveOptionsData extends SaveOptionsData {
             type: "string",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(OoxmlSaveOptionsData.attributeTypeMap);
     }
 
-    /*
-    * Specifies whether or not use pretty formats output
-    */
+    /**
+     * Specifies whether or not use pretty formats output
+     */
     public prettyFormat: boolean;
     
-    /*
-    * Specifies the OOXML version for the output document
-    */
+    /**
+     * Specifies the OOXML version for the output document
+     */
     public compliance: string;
     
-    /*
-    * Specifies a password to encrypt document using ECMA376 Standard encryption algorithm
-    */
+    /**
+     * Specifies a password to encrypt document using ECMA376 Standard encryption algorithm
+     */
     public password: string;
     
 }
 
-/*
-* Represents the page setup properties of a section.             
-*/
+/**
+ * Represents the page setup properties of a section.             
+ */
 export class PageSetup extends LinkElement {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            name: "bidi",
-            baseName: "Bidi",
-            type: "boolean",
-        },        
-        {
-            name: "borderAlwaysInFront",
-            baseName: "BorderAlwaysInFront",
-            type: "boolean",
-        },        
-        {
-            name: "borderAppliesTo",
-            baseName: "BorderAppliesTo",
-            type: "PageSetup.BorderAppliesToEnum",
-        },        
-        {
-            name: "borderDistanceFrom",
-            baseName: "BorderDistanceFrom",
-            type: "PageSetup.BorderDistanceFromEnum",
-        },        
-        {
-            name: "bottomMargin",
-            baseName: "BottomMargin",
-            type: "number",
-        },        
         {
             name: "differentFirstPageHeaderFooter",
             baseName: "DifferentFirstPageHeaderFooter",
-            type: "boolean",
-        },        
-        {
-            name: "firstPageTray",
-            baseName: "FirstPageTray",
-            type: "number",
-        },        
-        {
-            name: "footerDistance",
-            baseName: "FooterDistance",
-            type: "number",
-        },        
-        {
-            name: "gutter",
-            baseName: "Gutter",
-            type: "number",
-        },        
-        {
-            name: "headerDistance",
-            baseName: "HeaderDistance",
-            type: "number",
-        },        
-        {
-            name: "leftMargin",
-            baseName: "LeftMargin",
-            type: "number",
-        },        
-        {
-            name: "lineNumberCountBy",
-            baseName: "LineNumberCountBy",
-            type: "number",
-        },        
-        {
-            name: "lineNumberDistanceFromText",
-            baseName: "LineNumberDistanceFromText",
-            type: "number",
-        },        
-        {
-            name: "lineNumberRestartMode",
-            baseName: "LineNumberRestartMode",
-            type: "PageSetup.LineNumberRestartModeEnum",
-        },        
-        {
-            name: "lineStartingNumber",
-            baseName: "LineStartingNumber",
-            type: "number",
-        },        
-        {
-            name: "orientation",
-            baseName: "Orientation",
-            type: "PageSetup.OrientationEnum",
-        },        
-        {
-            name: "otherPagesTray",
-            baseName: "OtherPagesTray",
-            type: "number",
-        },        
-        {
-            name: "pageHeight",
-            baseName: "PageHeight",
-            type: "number",
-        },        
-        {
-            name: "pageNumberStyle",
-            baseName: "PageNumberStyle",
-            type: "PageSetup.PageNumberStyleEnum",
-        },        
-        {
-            name: "pageStartingNumber",
-            baseName: "PageStartingNumber",
-            type: "number",
-        },        
-        {
-            name: "pageWidth",
-            baseName: "PageWidth",
-            type: "number",
-        },        
-        {
-            name: "paperSize",
-            baseName: "PaperSize",
-            type: "PageSetup.PaperSizeEnum",
-        },        
-        {
-            name: "restartPageNumbering",
-            baseName: "RestartPageNumbering",
-            type: "boolean",
-        },        
-        {
-            name: "rightMargin",
-            baseName: "RightMargin",
-            type: "number",
-        },        
-        {
-            name: "rtlGutter",
-            baseName: "RtlGutter",
             type: "boolean",
         },        
         {
@@ -4470,183 +4887,324 @@ export class PageSetup extends LinkElement {
             type: "boolean",
         },        
         {
+            name: "verticalAlignment",
+            baseName: "VerticalAlignment",
+            type: "PageSetup.VerticalAlignmentEnum",
+        },        
+        {
+            name: "bidi",
+            baseName: "Bidi",
+            type: "boolean",
+        },        
+        {
+            name: "pageWidth",
+            baseName: "PageWidth",
+            type: "number",
+        },        
+        {
+            name: "pageHeight",
+            baseName: "PageHeight",
+            type: "number",
+        },        
+        {
+            name: "paperSize",
+            baseName: "PaperSize",
+            type: "PageSetup.PaperSizeEnum",
+        },        
+        {
+            name: "orientation",
+            baseName: "Orientation",
+            type: "PageSetup.OrientationEnum",
+        },        
+        {
+            name: "leftMargin",
+            baseName: "LeftMargin",
+            type: "number",
+        },        
+        {
+            name: "rightMargin",
+            baseName: "RightMargin",
+            type: "number",
+        },        
+        {
             name: "topMargin",
             baseName: "TopMargin",
             type: "number",
         },        
         {
-            name: "verticalAlignment",
-            baseName: "VerticalAlignment",
-            type: "PageSetup.VerticalAlignmentEnum",
+            name: "bottomMargin",
+            baseName: "BottomMargin",
+            type: "number",
+        },        
+        {
+            name: "headerDistance",
+            baseName: "HeaderDistance",
+            type: "number",
+        },        
+        {
+            name: "footerDistance",
+            baseName: "FooterDistance",
+            type: "number",
+        },        
+        {
+            name: "gutter",
+            baseName: "Gutter",
+            type: "number",
+        },        
+        {
+            name: "firstPageTray",
+            baseName: "FirstPageTray",
+            type: "number",
+        },        
+        {
+            name: "otherPagesTray",
+            baseName: "OtherPagesTray",
+            type: "number",
+        },        
+        {
+            name: "pageNumberStyle",
+            baseName: "PageNumberStyle",
+            type: "PageSetup.PageNumberStyleEnum",
+        },        
+        {
+            name: "restartPageNumbering",
+            baseName: "RestartPageNumbering",
+            type: "boolean",
+        },        
+        {
+            name: "pageStartingNumber",
+            baseName: "PageStartingNumber",
+            type: "number",
+        },        
+        {
+            name: "lineNumberRestartMode",
+            baseName: "LineNumberRestartMode",
+            type: "PageSetup.LineNumberRestartModeEnum",
+        },        
+        {
+            name: "lineNumberCountBy",
+            baseName: "LineNumberCountBy",
+            type: "number",
+        },        
+        {
+            name: "lineNumberDistanceFromText",
+            baseName: "LineNumberDistanceFromText",
+            type: "number",
+        },        
+        {
+            name: "lineStartingNumber",
+            baseName: "LineStartingNumber",
+            type: "number",
+        },        
+        {
+            name: "rtlGutter",
+            baseName: "RtlGutter",
+            type: "boolean",
+        },        
+        {
+            name: "borderAlwaysInFront",
+            baseName: "BorderAlwaysInFront",
+            type: "boolean",
+        },        
+        {
+            name: "borderDistanceFrom",
+            baseName: "BorderDistanceFrom",
+            type: "PageSetup.BorderDistanceFromEnum",
+        },        
+        {
+            name: "borderAppliesTo",
+            baseName: "BorderAppliesTo",
+            type: "PageSetup.BorderAppliesToEnum",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(PageSetup.attributeTypeMap);
     }
 
-    /*
-    * Specifies that this section contains bidirectional (complex scripts) text.             
-    */
-    public bidi: boolean;
-    
-    /*
-    * Specifies where the page border is positioned relative to intersecting texts and objects.             
-    */
-    public borderAlwaysInFront: boolean;
-    
-    /*
-    * Specifies which pages the page border is printed on.             
-    */
-    public borderAppliesTo: PageSetup.BorderAppliesToEnum;
-    
-    /*
-    * Gets or sets a value that indicates whether the specified page border is measured from the edge of the page or from the text it surrounds.             
-    */
-    public borderDistanceFrom: PageSetup.BorderDistanceFromEnum;
-    
-    /*
-    * Returns or sets the distance (in points) between the bottom edge of the page and the bottom boundary of the body text.             
-    */
-    public bottomMargin: number;
-    
-    /*
-    * True if a different header or footer is used on the first page.             
-    */
+    /**
+     * True if a different header or footer is used on the first page.             
+     */
     public differentFirstPageHeaderFooter: boolean;
     
-    /*
-    * Gets or sets the paper tray (bin) to use for the first page of a section. The value is implementation (printer) specific.             
-    */
-    public firstPageTray: number;
-    
-    /*
-    * Returns or sets the distance (in points) between the footer and the bottom of the page.             
-    */
-    public footerDistance: number;
-    
-    /*
-    * Gets or sets the amount of extra space added to the margin for document binding.             
-    */
-    public gutter: number;
-    
-    /*
-    * Returns or sets the distance (in points) between the header and the top of the page.             
-    */
-    public headerDistance: number;
-    
-    /*
-    * Returns or sets the distance (in points) between the left edge of the page and the left boundary of the body text.             
-    */
-    public leftMargin: number;
-    
-    /*
-    * Returns or sets the numeric increment for line numbers.             
-    */
-    public lineNumberCountBy: number;
-    
-    /*
-    * Gets or sets distance between the right edge of line numbers and the left edge of the document.             
-    */
-    public lineNumberDistanceFromText: number;
-    
-    /*
-    * Gets or sets the way line numbering runs  that is, whether it starts over at the beginning of a new page or section or runs continuously.             
-    */
-    public lineNumberRestartMode: PageSetup.LineNumberRestartModeEnum;
-    
-    /*
-    * Gets or sets the starting line number.             
-    */
-    public lineStartingNumber: number;
-    
-    /*
-    * Returns or sets the orientation of the page.             
-    */
-    public orientation: PageSetup.OrientationEnum;
-    
-    /*
-    * Gets or sets the paper tray (bin) to be used for all but the first page of a section. The value is implementation (printer) specific.             
-    */
-    public otherPagesTray: number;
-    
-    /*
-    * Returns or sets the height of the page in points.             
-    */
-    public pageHeight: number;
-    
-    /*
-    * Gets or sets the page number format.             
-    */
-    public pageNumberStyle: PageSetup.PageNumberStyleEnum;
-    
-    /*
-    * Gets or sets the starting page number of the section.             
-    */
-    public pageStartingNumber: number;
-    
-    /*
-    * Returns or sets the width of the page in points.             
-    */
-    public pageWidth: number;
-    
-    /*
-    * Returns or sets the paper size.             
-    */
-    public paperSize: PageSetup.PaperSizeEnum;
-    
-    /*
-    * True if page numbering restarts at the beginning of the section.             
-    */
-    public restartPageNumbering: boolean;
-    
-    /*
-    * Returns or sets the distance (in points) between the right edge of the page and the right boundary of the body text.             
-    */
-    public rightMargin: number;
-    
-    /*
-    * Gets or sets whether Microsoft Word uses gutters for the section based on a right-to-left language or a left-to-right language.             
-    */
-    public rtlGutter: boolean;
-    
-    /*
-    * Returns or sets the type of section break for the specified object.             
-    */
+    /**
+     * Returns or sets the type of section break for the specified object.             
+     */
     public sectionStart: PageSetup.SectionStartEnum;
     
-    /*
-    * True if endnotes are printed at the end of the next section that doesn't suppress endnotes.                 Suppressed endnotes are printed before the endnotes in that section.             
-    */
+    /**
+     * True if endnotes are printed at the end of the next section that doesn't suppress endnotes.                 Suppressed endnotes are printed before the endnotes in that section.             
+     */
     public suppressEndnotes: boolean;
     
-    /*
-    * Returns or sets the distance (in points) between the top edge of the page and the top boundary of the body text.             
-    */
+    /**
+     * Returns or sets the vertical alignment of text on each page in a document or section.             
+     */
+    public verticalAlignment: PageSetup.VerticalAlignmentEnum;
+    
+    /**
+     * Specifies that this section contains bidirectional (complex scripts) text.             
+     */
+    public bidi: boolean;
+    
+    /**
+     * Returns or sets the width of the page in points.             
+     */
+    public pageWidth: number;
+    
+    /**
+     * Returns or sets the height of the page in points.             
+     */
+    public pageHeight: number;
+    
+    /**
+     * Returns or sets the paper size.             
+     */
+    public paperSize: PageSetup.PaperSizeEnum;
+    
+    /**
+     * Returns or sets the orientation of the page.             
+     */
+    public orientation: PageSetup.OrientationEnum;
+    
+    /**
+     * Returns or sets the distance (in points) between the left edge of the page and the left boundary of the body text.             
+     */
+    public leftMargin: number;
+    
+    /**
+     * Returns or sets the distance (in points) between the right edge of the page and the right boundary of the body text.             
+     */
+    public rightMargin: number;
+    
+    /**
+     * Returns or sets the distance (in points) between the top edge of the page and the top boundary of the body text.             
+     */
     public topMargin: number;
     
-    /*
-    * Returns or sets the vertical alignment of text on each page in a document or section.             
-    */
-    public verticalAlignment: PageSetup.VerticalAlignmentEnum;
+    /**
+     * Returns or sets the distance (in points) between the bottom edge of the page and the bottom boundary of the body text.             
+     */
+    public bottomMargin: number;
+    
+    /**
+     * Returns or sets the distance (in points) between the header and the top of the page.             
+     */
+    public headerDistance: number;
+    
+    /**
+     * Returns or sets the distance (in points) between the footer and the bottom of the page.             
+     */
+    public footerDistance: number;
+    
+    /**
+     * Gets or sets the amount of extra space added to the margin for document binding.             
+     */
+    public gutter: number;
+    
+    /**
+     * Gets or sets the paper tray (bin) to use for the first page of a section. The value is implementation (printer) specific.             
+     */
+    public firstPageTray: number;
+    
+    /**
+     * Gets or sets the paper tray (bin) to be used for all but the first page of a section. The value is implementation (printer) specific.             
+     */
+    public otherPagesTray: number;
+    
+    /**
+     * Gets or sets the page number format.             
+     */
+    public pageNumberStyle: PageSetup.PageNumberStyleEnum;
+    
+    /**
+     * True if page numbering restarts at the beginning of the section.             
+     */
+    public restartPageNumbering: boolean;
+    
+    /**
+     * Gets or sets the starting page number of the section.             
+     */
+    public pageStartingNumber: number;
+    
+    /**
+     * Gets or sets the way line numbering runs  that is, whether it starts over at the beginning of a new page or section or runs continuously.             
+     */
+    public lineNumberRestartMode: PageSetup.LineNumberRestartModeEnum;
+    
+    /**
+     * Returns or sets the numeric increment for line numbers.             
+     */
+    public lineNumberCountBy: number;
+    
+    /**
+     * Gets or sets distance between the right edge of line numbers and the left edge of the document.             
+     */
+    public lineNumberDistanceFromText: number;
+    
+    /**
+     * Gets or sets the starting line number.             
+     */
+    public lineStartingNumber: number;
+    
+    /**
+     * Gets or sets whether Microsoft Word uses gutters for the section based on a right-to-left language or a left-to-right language.             
+     */
+    public rtlGutter: boolean;
+    
+    /**
+     * Specifies where the page border is positioned relative to intersecting texts and objects.             
+     */
+    public borderAlwaysInFront: boolean;
+    
+    /**
+     * Gets or sets a value that indicates whether the specified page border is measured from the edge of the page or from the text it surrounds.             
+     */
+    public borderDistanceFrom: PageSetup.BorderDistanceFromEnum;
+    
+    /**
+     * Specifies which pages the page border is printed on.             
+     */
+    public borderAppliesTo: PageSetup.BorderAppliesToEnum;
     
 }
 
 // tslint:disable:quotemark
 // tslint:disable-next-line:no-namespace
 export namespace PageSetup {
-    export enum BorderAppliesToEnum {
-        AllPages = 'AllPages' as any,
-        FirstPage = 'FirstPage' as any,
-        OtherPages = 'OtherPages' as any,
-    }
-    export enum BorderDistanceFromEnum {
-        Text = 'Text' as any,
-        PageEdge = 'PageEdge' as any,
-    }
-    export enum LineNumberRestartModeEnum {
-        RestartPage = 'RestartPage' as any,
-        RestartSection = 'RestartSection' as any,
+    export enum SectionStartEnum {
         Continuous = 'Continuous' as any,
+        NewColumn = 'NewColumn' as any,
+        NewPage = 'NewPage' as any,
+        EvenPage = 'EvenPage' as any,
+        OddPage = 'OddPage' as any,
+    }
+    export enum VerticalAlignmentEnum {
+        Top = 'Top' as any,
+        Center = 'Center' as any,
+        Justify = 'Justify' as any,
+        Bottom = 'Bottom' as any,
+    }
+    export enum PaperSizeEnum {
+        A3 = 'A3' as any,
+        A4 = 'A4' as any,
+        A5 = 'A5' as any,
+        B4 = 'B4' as any,
+        B5 = 'B5' as any,
+        Executive = 'Executive' as any,
+        Folio = 'Folio' as any,
+        Ledger = 'Ledger' as any,
+        Legal = 'Legal' as any,
+        Letter = 'Letter' as any,
+        EnvelopeDL = 'EnvelopeDL' as any,
+        Quarto = 'Quarto' as any,
+        Statement = 'Statement' as any,
+        Tabloid = 'Tabloid' as any,
+        Paper10x14 = 'Paper10x14' as any,
+        Paper11x17 = 'Paper11x17' as any,
+        Custom = 'Custom' as any,
     }
     export enum OrientationEnum {
         Portrait = 'Portrait' as any,
@@ -4717,45 +5275,30 @@ export namespace PageSetup {
         None = 'None' as any,
         Custom = 'Custom' as any,
     }
-    export enum PaperSizeEnum {
-        A3 = 'A3' as any,
-        A4 = 'A4' as any,
-        A5 = 'A5' as any,
-        B4 = 'B4' as any,
-        B5 = 'B5' as any,
-        Executive = 'Executive' as any,
-        Folio = 'Folio' as any,
-        Ledger = 'Ledger' as any,
-        Legal = 'Legal' as any,
-        Letter = 'Letter' as any,
-        EnvelopeDL = 'EnvelopeDL' as any,
-        Quarto = 'Quarto' as any,
-        Statement = 'Statement' as any,
-        Tabloid = 'Tabloid' as any,
-        Paper10x14 = 'Paper10x14' as any,
-        Paper11x17 = 'Paper11x17' as any,
-        Custom = 'Custom' as any,
-    }
-    export enum SectionStartEnum {
+    export enum LineNumberRestartModeEnum {
+        RestartPage = 'RestartPage' as any,
+        RestartSection = 'RestartSection' as any,
         Continuous = 'Continuous' as any,
-        NewColumn = 'NewColumn' as any,
-        NewPage = 'NewPage' as any,
-        EvenPage = 'EvenPage' as any,
-        OddPage = 'OddPage' as any,
     }
-    export enum VerticalAlignmentEnum {
-        Top = 'Top' as any,
-        Center = 'Center' as any,
-        Justify = 'Justify' as any,
-        Bottom = 'Bottom' as any,
+    export enum BorderDistanceFromEnum {
+        Text = 'Text' as any,
+        PageEdge = 'PageEdge' as any,
+    }
+    export enum BorderAppliesToEnum {
+        AllPages = 'AllPages' as any,
+        FirstPage = 'FirstPage' as any,
+        OtherPages = 'OtherPages' as any,
     }
 }
 // tslint:enable:quotemark
-/*
-* Collection of links to paragraphs
-*/
+/**
+ * Collection of links to paragraphs
+ */
 export class ParagraphLinkCollection extends LinkElement {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "paragraphLinkList",
@@ -4763,22 +5306,28 @@ export class ParagraphLinkCollection extends LinkElement {
             type: "Array<ParagraphLink>",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(ParagraphLinkCollection.attributeTypeMap);
     }
 
-    /*
-    * Collection of paragraph's links
-    */
+    /**
+     * Collection of paragraph's links
+     */
     public paragraphLinkList: Array<ParagraphLink>;
     
 }
 
-/*
-* This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/paragraphs 
-*/
+/**
+ * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/paragraphs 
+ */
 export class ParagraphLinkCollectionResponse extends AsposeResponse {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "paragraphs",
@@ -4786,22 +5335,28 @@ export class ParagraphLinkCollectionResponse extends AsposeResponse {
             type: "ParagraphLinkCollection",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(ParagraphLinkCollectionResponse.attributeTypeMap);
     }
 
-    /*
-    * Collection of paragraphs
-    */
+    /**
+     * Collection of paragraphs
+     */
     public paragraphs: ParagraphLinkCollection;
     
 }
 
-/*
-* This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/paragraphs/{0} 
-*/
+/**
+ * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/paragraphs/{0} 
+ */
 export class ParagraphResponse extends AsposeResponse {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "paragraph",
@@ -4809,22 +5364,28 @@ export class ParagraphResponse extends AsposeResponse {
             type: "Paragraph",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(ParagraphResponse.attributeTypeMap);
     }
 
-    /*
-    * Paragraph
-    */
+    /**
+     * Paragraph
+     */
     public paragraph: Paragraph;
     
 }
 
-/*
-* Response for the request of data about protection
-*/
+/**
+ * Response for the request of data about protection
+ */
 export class ProtectionDataResponse extends AsposeResponse {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "protectionData",
@@ -4837,27 +5398,33 @@ export class ProtectionDataResponse extends AsposeResponse {
             type: "FileLink",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(ProtectionDataResponse.attributeTypeMap);
     }
 
-    /*
-    * Protection's data of the document
-    */
+    /**
+     * Protection's data of the document
+     */
     public protectionData: ProtectionData;
     
-    /*
-    * Link to the document
-    */
+    /**
+     * Link to the document
+     */
     public documentLink: FileLink;
     
 }
 
-/*
-* Response for the request on changing protection of the document
-*/
+/**
+ * Response for the request on changing protection of the document
+ */
 export class ProtectionResponse extends AsposeResponse {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "protectionResult",
@@ -4870,27 +5437,33 @@ export class ProtectionResponse extends AsposeResponse {
             type: "FileLink",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(ProtectionResponse.attributeTypeMap);
     }
 
-    /*
-    * Result of the changing of protection
-    */
+    /**
+     * Result of the changing of protection
+     */
     public protectionResult: boolean;
     
-    /*
-    * Link to the document
-    */
+    /**
+     * Link to the document
+     */
     public documentLink: FileLink;
     
 }
 
-/*
-* Response for \"Replace text\" action.
-*/
+/**
+ * Response for \"Replace text\" action.
+ */
 export class ReplaceTextResponse extends AsposeResponse {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "matches",
@@ -4903,27 +5476,33 @@ export class ReplaceTextResponse extends AsposeResponse {
             type: "FileLink",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(ReplaceTextResponse.attributeTypeMap);
     }
 
-    /*
-    * Number of occurrences of the captured text in the document.
-    */
+    /**
+     * Number of occurrences of the captured text in the document.
+     */
     public matches: number;
     
-    /*
-    * Link to the document.
-    */
+    /**
+     * Link to the document.
+     */
     public documentLink: FileLink;
     
 }
 
-/*
-* response of the modification operations for the revisions collection (now these are acceptAll and rejectAll)
-*/
+/**
+ * response of the modification operations for the revisions collection (now these are acceptAll and rejectAll)
+ */
 export class RevisionsModificationResponse extends AsposeResponse {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "result",
@@ -4931,22 +5510,28 @@ export class RevisionsModificationResponse extends AsposeResponse {
             type: "ModificationOperationResult",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(RevisionsModificationResponse.attributeTypeMap);
     }
 
-    /*
-    * result of the modification operations for the revisions collection
-    */
+    /**
+     * result of the modification operations for the revisions collection
+     */
     public result: ModificationOperationResult;
     
 }
 
-/*
-* container class for rtf save options
-*/
+/**
+ * container class for rtf save options
+ */
 export class RtfSaveOptionsData extends SaveOptionsData {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "prettyFormat",
@@ -4964,32 +5549,38 @@ export class RtfSaveOptionsData extends SaveOptionsData {
             type: "boolean",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(RtfSaveOptionsData.attributeTypeMap);
     }
 
-    /*
-    * Specifies whether or not use pretty formats output
-    */
+    /**
+     * Specifies whether or not use pretty formats output
+     */
     public prettyFormat: boolean;
     
-    /*
-    * Allows to make output RTF documents smaller in size, but if they contain RTL (right-to-left) text, it will not be displayed correctly
-    */
+    /**
+     * Allows to make output RTF documents smaller in size, but if they contain RTL (right-to-left) text, it will not be displayed correctly
+     */
     public exportCompactSize: boolean;
     
-    /*
-    * Specifies whether the keywords for \"old readers\" are written to RTF or not
-    */
+    /**
+     * Specifies whether the keywords for \"old readers\" are written to RTF or not
+     */
     public exportImagesForOldReaders: boolean;
     
 }
 
-/*
-* This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/paragraphs/{0}/runs/{1} 
-*/
+/**
+ * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/paragraphs/{0}/runs/{1} 
+ */
 export class RunResponse extends AsposeResponse {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "run",
@@ -4997,22 +5588,28 @@ export class RunResponse extends AsposeResponse {
             type: "Run",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(RunResponse.attributeTypeMap);
     }
 
-    /*
-    * Run
-    */
+    /**
+     * Run
+     */
     public run: Run;
     
 }
 
-/*
-* Represents DTO for collection of runs.
-*/
+/**
+ * Represents DTO for collection of runs.
+ */
 export class Runs extends LinkElement {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "list",
@@ -5020,22 +5617,28 @@ export class Runs extends LinkElement {
             type: "Array<Run>",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(Runs.attributeTypeMap);
     }
 
-    /*
-    * Collection of fields
-    */
+    /**
+     * Collection of fields
+     */
     public list: Array<Run>;
     
 }
 
-/*
-* This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/{paragraphPath}/runs
-*/
+/**
+ * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/{paragraphPath}/runs
+ */
 export class RunsResponse extends AsposeResponse {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "runs",
@@ -5043,22 +5646,28 @@ export class RunsResponse extends AsposeResponse {
             type: "Runs",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(RunsResponse.attributeTypeMap);
     }
 
-    /*
-    * Collection of runs.
-    */
+    /**
+     * Collection of runs.
+     */
     public runs: Runs;
     
 }
 
-/*
-* Save response.
-*/
+/**
+ * Save response.
+ */
 export class SaveResponse extends AsposeResponse {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "saveResult",
@@ -5066,22 +5675,28 @@ export class SaveResponse extends AsposeResponse {
             type: "SaveResult",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(SaveResponse.attributeTypeMap);
     }
 
-    /*
-    * Save result.
-    */
+    /**
+     * Save result.
+     */
     public saveResult: SaveResult;
     
 }
 
-/*
-* This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/search 
-*/
+/**
+ * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/search 
+ */
 export class SearchResponse extends AsposeResponse {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "searchingPattern",
@@ -5094,27 +5709,33 @@ export class SearchResponse extends AsposeResponse {
             type: "SearchResultsCollection",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(SearchResponse.attributeTypeMap);
     }
 
-    /*
-    * A regular expression pattern used to find matches.
-    */
+    /**
+     * A regular expression pattern used to find matches.
+     */
     public searchingPattern: string;
     
-    /*
-    * Collection of search results.
-    */
+    /**
+     * Collection of search results.
+     */
     public searchResults: SearchResultsCollection;
     
 }
 
-/*
-* Collection of search results.
-*/
+/**
+ * Collection of search results.
+ */
 export class SearchResultsCollection extends LinkElement {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "resultsList",
@@ -5122,22 +5743,28 @@ export class SearchResultsCollection extends LinkElement {
             type: "Array<SearchResult>",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(SearchResultsCollection.attributeTypeMap);
     }
 
-    /*
-    * Collection of comments
-    */
+    /**
+     * Collection of comments
+     */
     public resultsList: Array<SearchResult>;
     
 }
 
-/*
-* Section element
-*/
+/**
+ * Section element
+ */
 export class Section extends LinkElement {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "paragraphs",
@@ -5165,56 +5792,68 @@ export class Section extends LinkElement {
             type: "Array<NodeLink>",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(Section.attributeTypeMap);
     }
 
-    /*
-    * Link to Paragraphs resource
-    */
+    /**
+     * Link to Paragraphs resource
+     */
     public paragraphs: LinkElement;
     
-    /*
-    * Link to PageSetup resource
-    */
+    /**
+     * Link to PageSetup resource
+     */
     public pageSetup: LinkElement;
     
-    /*
-    * Link to HeaderFooters resource
-    */
+    /**
+     * Link to HeaderFooters resource
+     */
     public headerFooters: LinkElement;
     
-    /*
-    * Link to Tables resource
-    */
+    /**
+     * Link to Tables resource
+     */
     public tables: LinkElement;
     
-    /*
-    * Child nodes.
-    */
+    /**
+     * Child nodes.
+     */
     public childNodes: Array<NodeLink>;
     
 }
 
-/*
-* Section link element
-*/
+/**
+ * Section link element
+ */
 export class SectionLink extends LinkElement {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
     ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(SectionLink.attributeTypeMap);
     }
 
 }
 
-/*
-* Collection of links to sections
-*/
+/**
+ * Collection of links to sections
+ */
 export class SectionLinkCollection extends LinkElement {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "sectionLinkList",
@@ -5222,22 +5861,28 @@ export class SectionLinkCollection extends LinkElement {
             type: "Array<SectionLink>",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(SectionLinkCollection.attributeTypeMap);
     }
 
-    /*
-    * Collection of section's links
-    */
+    /**
+     * Collection of section's links
+     */
     public sectionLinkList: Array<SectionLink>;
     
 }
 
-/*
-* This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/sections 
-*/
+/**
+ * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/sections 
+ */
 export class SectionLinkCollectionResponse extends AsposeResponse {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "sections",
@@ -5245,22 +5890,28 @@ export class SectionLinkCollectionResponse extends AsposeResponse {
             type: "SectionLinkCollection",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(SectionLinkCollectionResponse.attributeTypeMap);
     }
 
-    /*
-    * Collection of sections
-    */
+    /**
+     * Collection of sections
+     */
     public sections: SectionLinkCollection;
     
 }
 
-/*
-* This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/sections/{0}/PageSetup 
-*/
+/**
+ * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/sections/{0}/PageSetup 
+ */
 export class SectionPageSetupResponse extends AsposeResponse {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "pageSetup",
@@ -5268,22 +5919,28 @@ export class SectionPageSetupResponse extends AsposeResponse {
             type: "PageSetup",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(SectionPageSetupResponse.attributeTypeMap);
     }
 
-    /*
-    * Section
-    */
+    /**
+     * Section
+     */
     public pageSetup: PageSetup;
     
 }
 
-/*
-* This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/sections/{0} 
-*/
+/**
+ * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/sections/{0} 
+ */
 export class SectionResponse extends AsposeResponse {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "section",
@@ -5291,22 +5948,28 @@ export class SectionResponse extends AsposeResponse {
             type: "Section",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(SectionResponse.attributeTypeMap);
     }
 
-    /*
-    * Section
-    */
+    /**
+     * Section
+     */
     public section: Section;
     
 }
 
-/*
-* This resonse should be returned by the service when handling:  POST /{name}/split .
-*/
+/**
+ * This resonse should be returned by the service when handling:  POST /{name}/split .
+ */
 export class SplitDocumentResponse extends AsposeResponse {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "splitResult",
@@ -5314,22 +5977,28 @@ export class SplitDocumentResponse extends AsposeResponse {
             type: "SplitDocumentResult",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(SplitDocumentResponse.attributeTypeMap);
     }
 
-    /*
-    * Resylt of splitting document.
-    */
+    /**
+     * Resylt of splitting document.
+     */
     public splitResult: SplitDocumentResult;
     
 }
 
-/*
-* Response for the request of the document's statistical data
-*/
+/**
+ * Response for the request of the document's statistical data
+ */
 export class StatDataResponse extends AsposeResponse {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "statData",
@@ -5342,27 +6011,33 @@ export class StatDataResponse extends AsposeResponse {
             type: "FileLink",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(StatDataResponse.attributeTypeMap);
     }
 
-    /*
-    * Statistical data of the document
-    */
+    /**
+     * Statistical data of the document
+     */
     public statData: DocumentStatData;
     
-    /*
-    * Link to the document
-    */
+    /**
+     * Link to the document
+     */
     public documentLink: FileLink;
     
 }
 
-/*
-* Represents all formatting for a table row.
-*/
+/**
+ * Represents all formatting for a table row.
+ */
 export class TableCellFormat extends LinkElement {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "bottomPadding",
@@ -5425,68 +6100,71 @@ export class TableCellFormat extends LinkElement {
             type: "boolean",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(TableCellFormat.attributeTypeMap);
     }
 
-    /*
-    * Returns or sets the amount of space (in points) to add below the contents of cell.
-    */
+    /**
+     * Returns or sets the amount of space (in points) to add below the contents of cell.
+     */
     public bottomPadding: number;
     
-    /*
-    * If true, fits text in the cell, compressing each paragraph to the width of the cell.
-    */
+    /**
+     * If true, fits text in the cell, compressing each paragraph to the width of the cell.
+     */
     public fitText: boolean;
     
-    /*
-    * Specifies how the cell is merged horizontally with other cells in the row.
-    */
+    /**
+     * Specifies how the cell is merged horizontally with other cells in the row.
+     */
     public horizontalMerge: TableCellFormat.HorizontalMergeEnum;
     
-    /*
-    * Returns or sets the amount of space (in points) to add to the left of the contents of cell.
-    */
+    /**
+     * Returns or sets the amount of space (in points) to add to the left of the contents of cell.
+     */
     public leftPadding: number;
     
-    /*
-    * Returns or sets the orientation of text in a table cell.
-    */
+    /**
+     * Returns or sets the orientation of text in a table cell.
+     */
     public orientation: TableCellFormat.OrientationEnum;
     
-    /*
-    * Returns or sets the preferred width of the cell.
-    */
+    /**
+     * Returns or sets the preferred width of the cell.
+     */
     public preferredWidth: PreferredWidth;
     
-    /*
-    * Returns or sets the amount of space (in points) to add to the right of the contents of cell.
-    */
+    /**
+     * Returns or sets the amount of space (in points) to add to the right of the contents of cell.
+     */
     public rightPadding: number;
     
-    /*
-    * Returns or sets the amount of space (in points) to add above the contents of cell.
-    */
+    /**
+     * Returns or sets the amount of space (in points) to add above the contents of cell.
+     */
     public topPadding: number;
     
-    /*
-    * Returns or sets the vertical alignment of text in the cell.
-    */
+    /**
+     * Returns or sets the vertical alignment of text in the cell.
+     */
     public verticalAlignment: TableCellFormat.VerticalAlignmentEnum;
     
-    /*
-    * Specifies how the cell is merged with other cells vertically.
-    */
+    /**
+     * Specifies how the cell is merged with other cells vertically.
+     */
     public verticalMerge: TableCellFormat.VerticalMergeEnum;
     
-    /*
-    * Gets the width of the cell in points.
-    */
+    /**
+     * Gets the width of the cell in points.
+     */
     public width: number;
     
-    /*
-    * If true, wrap text for the cell.
-    */
+    /**
+     * If true, wrap text for the cell.
+     */
     public wrapText: boolean;
     
 }
@@ -5519,11 +6197,14 @@ export namespace TableCellFormat {
     }
 }
 // tslint:enable:quotemark
-/*
-* This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/tables/{0}/rows/{1}/cells/{2}/cellformat
-*/
+/**
+ * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/tables/{0}/rows/{1}/cells/{2}/cellformat
+ */
 export class TableCellFormatResponse extends AsposeResponse {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "cellFormat",
@@ -5531,22 +6212,28 @@ export class TableCellFormatResponse extends AsposeResponse {
             type: "TableCellFormat",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(TableCellFormatResponse.attributeTypeMap);
     }
 
-    /*
-    * Table.
-    */
+    /**
+     * Table.
+     */
     public cellFormat: TableCellFormat;
     
 }
 
-/*
-* This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/tables/{0}
-*/
+/**
+ * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/tables/{0}
+ */
 export class TableCellResponse extends AsposeResponse {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "cell",
@@ -5554,22 +6241,28 @@ export class TableCellResponse extends AsposeResponse {
             type: "TableCell",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(TableCellResponse.attributeTypeMap);
     }
 
-    /*
-    * Table cell.
-    */
+    /**
+     * Table cell.
+     */
     public cell: TableCell;
     
 }
 
-/*
-* Collection of links to tables
-*/
+/**
+ * Collection of links to tables
+ */
 export class TableLinkCollection extends LinkElement {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "tableLinkList",
@@ -5577,22 +6270,28 @@ export class TableLinkCollection extends LinkElement {
             type: "Array<TableLink>",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(TableLinkCollection.attributeTypeMap);
     }
 
-    /*
-    * Collection of table's links
-    */
+    /**
+     * Collection of table's links
+     */
     public tableLinkList: Array<TableLink>;
     
 }
 
-/*
-* This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/tables.
-*/
+/**
+ * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/tables.
+ */
 export class TableLinkCollectionResponse extends AsposeResponse {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "tables",
@@ -5600,22 +6299,28 @@ export class TableLinkCollectionResponse extends AsposeResponse {
             type: "TableLinkCollection",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(TableLinkCollectionResponse.attributeTypeMap);
     }
 
-    /*
-    * Collection of tables.
-    */
+    /**
+     * Collection of tables.
+     */
     public tables: TableLinkCollection;
     
 }
 
-/*
-* Represents the table properties.             
-*/
+/**
+ * Represents the table properties.             
+ */
 export class TableProperties extends LinkElement {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "alignment",
@@ -5628,9 +6333,29 @@ export class TableProperties extends LinkElement {
             type: "boolean",
         },        
         {
+            name: "preferredWidth",
+            baseName: "PreferredWidth",
+            type: "PreferredWidth",
+        },        
+        {
             name: "bidi",
             baseName: "Bidi",
             type: "boolean",
+        },        
+        {
+            name: "leftPadding",
+            baseName: "LeftPadding",
+            type: "number",
+        },        
+        {
+            name: "rightPadding",
+            baseName: "RightPadding",
+            type: "number",
+        },        
+        {
+            name: "topPadding",
+            baseName: "TopPadding",
+            type: "number",
         },        
         {
             name: "bottomPadding",
@@ -5648,24 +6373,9 @@ export class TableProperties extends LinkElement {
             type: "number",
         },        
         {
-            name: "leftPadding",
-            baseName: "LeftPadding",
-            type: "number",
-        },        
-        {
-            name: "preferredWidth",
-            baseName: "PreferredWidth",
-            type: "PreferredWidth",
-        },        
-        {
-            name: "rightPadding",
-            baseName: "RightPadding",
-            type: "number",
-        },        
-        {
-            name: "styleIdentifier",
-            baseName: "StyleIdentifier",
-            type: "TableProperties.StyleIdentifierEnum",
+            name: "styleOptions",
+            baseName: "StyleOptions",
+            type: "TableProperties.StyleOptionsEnum",
         },        
         {
             name: "styleName",
@@ -5673,94 +6383,92 @@ export class TableProperties extends LinkElement {
             type: "string",
         },        
         {
-            name: "styleOptions",
-            baseName: "StyleOptions",
-            type: "TableProperties.StyleOptionsEnum",
+            name: "styleIdentifier",
+            baseName: "StyleIdentifier",
+            type: "TableProperties.StyleIdentifierEnum",
         },        
         {
             name: "textWrapping",
             baseName: "TextWrapping",
             type: "TableProperties.TextWrappingEnum",
-        },        
-        {
-            name: "topPadding",
-            baseName: "TopPadding",
-            type: "number",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(TableProperties.attributeTypeMap);
     }
 
-    /*
-    * Specifies how an inline table is aligned in the document.
-    */
+    /**
+     * Specifies how an inline table is aligned in the document.
+     */
     public alignment: TableProperties.AlignmentEnum;
     
-    /*
-    * Allows Microsoft Word and Aspose.Words to automatically resize cells in a table to fit their contents.
-    */
+    /**
+     * Allows Microsoft Word and Aspose.Words to automatically resize cells in a table to fit their contents.
+     */
     public allowAutoFit: boolean;
     
-    /*
-    * Gets or sets whether this is a right-to-left table.
-    */
-    public bidi: boolean;
-    
-    /*
-    * Gets or sets the amount of space (in points) to add below the contents of cells.
-    */
-    public bottomPadding: number;
-    
-    /*
-    * Gets or sets the amount of space (in points) between the cells.
-    */
-    public cellSpacing: number;
-    
-    /*
-    * Gets or sets the value that represents the left indent of the table.
-    */
-    public leftIndent: number;
-    
-    /*
-    * Gets or sets the amount of space (in points) to add to the left of the contents of cells.
-    */
-    public leftPadding: number;
-    
-    /*
-    * Gets or sets the table preferred width.  Preferred width can be specified as a percentage, number of points or a special \"auto\" value.
-    */
+    /**
+     * Gets or sets the table preferred width.  Preferred width can be specified as a percentage, number of points or a special \"auto\" value.
+     */
     public preferredWidth: PreferredWidth;
     
-    /*
-    * Gets or sets the amount of space (in points) to add to the right of the contents of cells.
-    */
+    /**
+     * Gets or sets whether this is a right-to-left table.
+     */
+    public bidi: boolean;
+    
+    /**
+     * Gets or sets the amount of space (in points) to add to the left of the contents of cells.
+     */
+    public leftPadding: number;
+    
+    /**
+     * Gets or sets the amount of space (in points) to add to the right of the contents of cells.
+     */
     public rightPadding: number;
     
-    /*
-    * Gets or sets the locale independent style identifier of the table style applied to this table.
-    */
-    public styleIdentifier: TableProperties.StyleIdentifierEnum;
+    /**
+     * Gets or sets the amount of space (in points) to add above the contents of cells.
+     */
+    public topPadding: number;
     
-    /*
-    * Gets or sets the name of the table style applied to this table.
-    */
-    public styleName: string;
+    /**
+     * Gets or sets the amount of space (in points) to add below the contents of cells.
+     */
+    public bottomPadding: number;
     
-    /*
-    * Gets or sets bit flags that specify how a table style is applied to this table.
-    */
+    /**
+     * Gets or sets the amount of space (in points) between the cells.
+     */
+    public cellSpacing: number;
+    
+    /**
+     * Gets or sets the value that represents the left indent of the table.
+     */
+    public leftIndent: number;
+    
+    /**
+     * Gets or sets bit flags that specify how a table style is applied to this table.
+     */
     public styleOptions: TableProperties.StyleOptionsEnum;
     
-    /*
-    * Get or sets TextWrapping  for table.
-    */
-    public textWrapping: TableProperties.TextWrappingEnum;
+    /**
+     * Gets or sets the name of the table style applied to this table.
+     */
+    public styleName: string;
     
-    /*
-    * Gets or sets the amount of space (in points) to add above the contents of cells.
-    */
-    public topPadding: number;
+    /**
+     * Gets or sets the locale independent style identifier of the table style applied to this table.
+     */
+    public styleIdentifier: TableProperties.StyleIdentifierEnum;
+    
+    /**
+     * Get or sets TextWrapping  for table.
+     */
+    public textWrapping: TableProperties.TextWrappingEnum;
     
 }
 
@@ -5771,6 +6479,17 @@ export namespace TableProperties {
         Left = 'Left' as any,
         Center = 'Center' as any,
         Right = 'Right' as any,
+    }
+    export enum StyleOptionsEnum {
+        None = 'None' as any,
+        FirstRow = 'FirstRow' as any,
+        LastRow = 'LastRow' as any,
+        FirstColumn = 'FirstColumn' as any,
+        LastColumn = 'LastColumn' as any,
+        RowBands = 'RowBands' as any,
+        Default = 'Default' as any,
+        ColumnBands = 'ColumnBands' as any,
+        Default2003 = 'Default2003' as any,
     }
     export enum StyleIdentifierEnum {
         Normal = 'Normal' as any,
@@ -6147,17 +6866,6 @@ export namespace TableProperties {
         User = 'User' as any,
         Nil = 'Nil' as any,
     }
-    export enum StyleOptionsEnum {
-        None = 'None' as any,
-        FirstRow = 'FirstRow' as any,
-        LastRow = 'LastRow' as any,
-        FirstColumn = 'FirstColumn' as any,
-        LastColumn = 'LastColumn' as any,
-        RowBands = 'RowBands' as any,
-        Default = 'Default' as any,
-        ColumnBands = 'ColumnBands' as any,
-        Default2003 = 'Default2003' as any,
-    }
     export enum TextWrappingEnum {
         Default = 'Default' as any,
         None = 'None' as any,
@@ -6165,11 +6873,14 @@ export namespace TableProperties {
     }
 }
 // tslint:enable:quotemark
-/*
-* This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/tables/{0}/properties
-*/
+/**
+ * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/tables/{0}/properties
+ */
 export class TablePropertiesResponse extends AsposeResponse {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "properties",
@@ -6177,22 +6888,28 @@ export class TablePropertiesResponse extends AsposeResponse {
             type: "TableProperties",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(TablePropertiesResponse.attributeTypeMap);
     }
 
-    /*
-    * Table.
-    */
+    /**
+     * Table.
+     */
     public properties: TableProperties;
     
 }
 
-/*
-* This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/tables/{0}
-*/
+/**
+ * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/tables/{0}
+ */
 export class TableResponse extends AsposeResponse {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "table",
@@ -6200,22 +6917,28 @@ export class TableResponse extends AsposeResponse {
             type: "Table",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(TableResponse.attributeTypeMap);
     }
 
-    /*
-    * Table.
-    */
+    /**
+     * Table.
+     */
     public table: Table;
     
 }
 
-/*
-* Represents all formatting for a table row.
-*/
+/**
+ * Represents all formatting for a table row.
+ */
 export class TableRowFormat extends LinkElement {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "height",
@@ -6238,28 +6961,31 @@ export class TableRowFormat extends LinkElement {
             type: "boolean",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(TableRowFormat.attributeTypeMap);
     }
 
-    /*
-    * Gets or sets the height of the table row in points.
-    */
+    /**
+     * Gets or sets the height of the table row in points.
+     */
     public height: number;
     
-    /*
-    * Gets or sets the rule for determining the height of the table row.
-    */
+    /**
+     * Gets or sets the rule for determining the height of the table row.
+     */
     public heightRule: TableRowFormat.HeightRuleEnum;
     
-    /*
-    * True if the text in a table row is allowed to split across a page break.
-    */
+    /**
+     * True if the text in a table row is allowed to split across a page break.
+     */
     public allowBreakAcrossPages: boolean;
     
-    /*
-    * True if the row is repeated as a table heading on every page when the table spans more than one page.
-    */
+    /**
+     * True if the row is repeated as a table heading on every page when the table spans more than one page.
+     */
     public headingFormat: boolean;
     
 }
@@ -6274,11 +7000,14 @@ export namespace TableRowFormat {
     }
 }
 // tslint:enable:quotemark
-/*
-* This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/tables/{0}/rows/{1}/rowformat
-*/
+/**
+ * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/tables/{0}/rows/{1}/rowformat
+ */
 export class TableRowFormatResponse extends AsposeResponse {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "rowFormat",
@@ -6286,22 +7015,28 @@ export class TableRowFormatResponse extends AsposeResponse {
             type: "TableRowFormat",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(TableRowFormatResponse.attributeTypeMap);
     }
 
-    /*
-    * Table.
-    */
+    /**
+     * Table.
+     */
     public rowFormat: TableRowFormat;
     
 }
 
-/*
-* This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/tables/{0}
-*/
+/**
+ * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/tables/{0}
+ */
 export class TableRowResponse extends AsposeResponse {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "row",
@@ -6309,22 +7044,28 @@ export class TableRowResponse extends AsposeResponse {
             type: "TableRow",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(TableRowResponse.attributeTypeMap);
     }
 
-    /*
-    * Table row.
-    */
+    /**
+     * Table row.
+     */
     public row: TableRow;
     
 }
 
-/*
-* Represents text DTO.
-*/
+/**
+ * Represents text DTO.
+ */
 export class TextItem extends LinkElement {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "text",
@@ -6332,6 +7073,9 @@ export class TextItem extends LinkElement {
             type: "string",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(TextItem.attributeTypeMap);
     }
@@ -6340,11 +7084,14 @@ export class TextItem extends LinkElement {
     
 }
 
-/*
-* Represents text items DTO.
-*/
+/**
+ * Represents text items DTO.
+ */
 export class TextItems extends LinkElement {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "list",
@@ -6352,6 +7099,9 @@ export class TextItems extends LinkElement {
             type: "Array<TextItem>",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(TextItems.attributeTypeMap);
     }
@@ -6360,11 +7110,14 @@ export class TextItems extends LinkElement {
     
 }
 
-/*
-* This resonse should be returned by the service when handling:  GET /{name}/textItems .
-*/
+/**
+ * This resonse should be returned by the service when handling:  GET /{name}/textItems .
+ */
 export class TextItemsResponse extends AsposeResponse {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "textItems",
@@ -6372,22 +7125,28 @@ export class TextItemsResponse extends AsposeResponse {
             type: "TextItems",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(TextItemsResponse.attributeTypeMap);
     }
 
-    /*
-    * Collection of text items.
-    */
+    /**
+     * Collection of text items.
+     */
     public textItems: TextItems;
     
 }
 
-/*
-* Container class for text save options.
-*/
+/**
+ * Container class for text save options.
+ */
 export class TextSaveOptionsData extends SaveOptionsData {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "encoding",
@@ -6420,47 +7179,53 @@ export class TextSaveOptionsData extends SaveOptionsData {
             type: "boolean",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(TextSaveOptionsData.attributeTypeMap);
     }
 
-    /*
-    * Specifies the encoding to use when exporting in plain text format
-    */
+    /**
+     * Specifies the encoding to use when exporting in plain text format
+     */
     public encoding: string;
     
-    /*
-    * Specifies whether to output headers and footers when exporting in plain text format
-    */
+    /**
+     * Specifies whether to output headers and footers when exporting in plain text format
+     */
     public exportHeadersFooters: boolean;
     
-    /*
-    * Allows to specify whether the page breaks should be preserved during export. The default value is false.
-    */
+    /**
+     * Allows to specify whether the page breaks should be preserved during export. The default value is false.
+     */
     public forcePageBreaks: boolean;
     
-    /*
-    * Specifies the string to use as a paragraph break when exporting in plain text format
-    */
+    /**
+     * Specifies the string to use as a paragraph break when exporting in plain text format
+     */
     public paragraphBreak: string;
     
-    /*
-    * Specifies whether the program should attempt to preserve layout of tables when saving in the plain text format
-    */
+    /**
+     * Specifies whether the program should attempt to preserve layout of tables when saving in the plain text format
+     */
     public preserveTableLayout: boolean;
     
-    /*
-    * Specifies whether the program should simplify list labels in case of complex label formatting not being adequately represented by plain text
-    */
+    /**
+     * Specifies whether the program should simplify list labels in case of complex label formatting not being adequately represented by plain text
+     */
     public simplifyListLabels: boolean;
     
 }
 
-/*
-* container class for wml save options
-*/
+/**
+ * container class for wml save options
+ */
 export class WordMLSaveOptionsData extends SaveOptionsData {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "prettyFormat",
@@ -6468,22 +7233,28 @@ export class WordMLSaveOptionsData extends SaveOptionsData {
             type: "boolean",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(WordMLSaveOptionsData.attributeTypeMap);
     }
 
-    /*
-    * Specifies whether or not use pretty formats output
-    */
+    /**
+     * Specifies whether or not use pretty formats output
+     */
     public prettyFormat: boolean;
     
 }
 
-/*
-* Response for Api error
-*/
+/**
+ * Response for Api error
+ */
 export class WordsApiErrorResponse extends AsposeResponse {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "message",
@@ -6491,36 +7262,48 @@ export class WordsApiErrorResponse extends AsposeResponse {
             type: "string",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(WordsApiErrorResponse.attributeTypeMap);
     }
 
-    /*
-    * Error message.
-    */
+    /**
+     * Error message.
+     */
     public message: string;
     
 }
 
-/*
-* Provides information for the words api resource link.
-*/
+/**
+ * Provides information for the words api resource link.
+ */
 export class WordsApiLink extends Link {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
     ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(WordsApiLink.attributeTypeMap);
     }
 
 }
 
-/*
-* container class for xaml flow save options
-*/
+/**
+ * container class for xaml flow save options
+ */
 export class XamlFlowSaveOptionsData extends SaveOptionsData {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "imagesFolder",
@@ -6533,27 +7316,33 @@ export class XamlFlowSaveOptionsData extends SaveOptionsData {
             type: "string",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(XamlFlowSaveOptionsData.attributeTypeMap);
     }
 
-    /*
-    * Specifies the physical folder where images are saved when exporting
-    */
+    /**
+     * Specifies the physical folder where images are saved when exporting
+     */
     public imagesFolder: string;
     
-    /*
-    * Specifies the name of the folder used to construct image URIs
-    */
+    /**
+     * Specifies the name of the folder used to construct image URIs
+     */
     public imagesFolderAlias: string;
     
 }
 
-/*
-* Comment.
-*/
+/**
+ * Comment.
+ */
 export class Comment extends CommentLink {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "rangeStart",
@@ -6591,66 +7380,78 @@ export class Comment extends CommentLink {
             type: "StoryChildNodes",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(Comment.attributeTypeMap);
     }
 
-    /*
-    * Link to comment range start node.
-    */
+    /**
+     * Link to comment range start node.
+     */
     public rangeStart: DocumentPosition;
     
-    /*
-    * Link to comment range end node.
-    */
+    /**
+     * Link to comment range end node.
+     */
     public rangeEnd: DocumentPosition;
     
-    /*
-    * Returns or sets the author name for a comment.
-    */
+    /**
+     * Returns or sets the author name for a comment.
+     */
     public author: string;
     
-    /*
-    * Returns or sets the initials of the user associated with a specific comment.
-    */
+    /**
+     * Returns or sets the initials of the user associated with a specific comment.
+     */
     public initial: string;
     
-    /*
-    * Gets the date and time that the comment was made.
-    */
+    /**
+     * Gets the date and time that the comment was made.
+     */
     public dateTime: Date;
     
-    /*
-    * This is a convenience property that allows to easily get or set text of the comment.
-    */
+    /**
+     * This is a convenience property that allows to easily get or set text of the comment.
+     */
     public text: string;
     
-    /*
-    * Content of comment
-    */
+    /**
+     * Content of comment
+     */
     public content: StoryChildNodes;
     
 }
 
-/*
-* Represents link for Drawing Object DTO.
-*/
+/**
+ * Represents link for Drawing Object DTO.
+ */
 export class DrawingObjectLink extends NodeLink {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
     ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(DrawingObjectLink.attributeTypeMap);
     }
 
 }
 
-/*
-* Container class for epub save options.
-*/
+/**
+ * Container class for epub save options.
+ */
 export class EpubSaveOptionsData extends HtmlSaveOptionsData {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "epubNavigationMapLevel",
@@ -6658,13 +7459,16 @@ export class EpubSaveOptionsData extends HtmlSaveOptionsData {
             type: "number",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(EpubSaveOptionsData.attributeTypeMap);
     }
 
-    /*
-    * Specifies the maximum level of headings populated to the navigation map when exporting
-    */
+    /**
+     * Specifies the maximum level of headings populated to the navigation map when exporting
+     */
     public epubNavigationMapLevel: number;
     
 }
@@ -6674,11 +7478,14 @@ export class EpubSaveOptionsData extends HtmlSaveOptionsData {
 export namespace EpubSaveOptionsData {
 }
 // tslint:enable:quotemark
-/*
-* Field link
-*/
+/**
+ * Field link
+ */
 export class FieldLink extends NodeLink {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "fieldCode",
@@ -6686,36 +7493,48 @@ export class FieldLink extends NodeLink {
             type: "string",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(FieldLink.attributeTypeMap);
     }
 
-    /*
-    * Field code
-    */
+    /**
+     * Field code
+     */
     public fieldCode: string;
     
 }
 
-/*
-* Footnote link.
-*/
+/**
+ * Footnote link.
+ */
 export class FootnoteLink extends NodeLink {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
     ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(FootnoteLink.attributeTypeMap);
     }
 
 }
 
-/*
-* FromField
-*/
+/**
+ * FromField
+ */
 export class FormField extends NodeLink {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "name",
@@ -6763,62 +7582,68 @@ export class FormField extends NodeLink {
             type: "string",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(FormField.attributeTypeMap);
     }
 
-    /*
-    * Gets or sets the form field name.
-    */
+    /**
+     * Gets or sets the form field name.
+     */
     public name: string;
     
-    /*
-    * True if a form field is enabled.
-    */
+    /**
+     * True if a form field is enabled.
+     */
     public enabled: boolean;
     
-    /*
-    * Returns or sets the text that's displayed in the status bar when a form field has the focus.
-    */
+    /**
+     * Returns or sets the text that's displayed in the status bar when a form field has the focus.
+     */
     public statusText: string;
     
-    /*
-    * Specifies the source of the text that's displayed in the status bar when a form field has the focus.
-    */
+    /**
+     * Specifies the source of the text that's displayed in the status bar when a form field has the focus.
+     */
     public ownStatus: boolean;
     
-    /*
-    * Returns or sets the text that's displayed in a message box when the form field has the focus and the user presses F1.
-    */
+    /**
+     * Returns or sets the text that's displayed in a message box when the form field has the focus and the user presses F1.
+     */
     public helpText: string;
     
-    /*
-    * Specifies the source of the text that's displayed in a message box when a form field has the focus and the user presses F1.
-    */
+    /**
+     * Specifies the source of the text that's displayed in a message box when a form field has the focus and the user presses F1.
+     */
     public ownHelp: boolean;
     
-    /*
-    * True if references to the specified form field are automatically updated whenever the field is exited.
-    */
+    /**
+     * True if references to the specified form field are automatically updated whenever the field is exited.
+     */
     public calculateOnExit: boolean;
     
-    /*
-    * Returns or sets an entry macro name for the form field.
-    */
+    /**
+     * Returns or sets an entry macro name for the form field.
+     */
     public entryMacro: string;
     
-    /*
-    * Returns or sets an exit macro name for the form field.
-    */
+    /**
+     * Returns or sets an exit macro name for the form field.
+     */
     public exitMacro: string;
     
 }
 
-/*
-* Section element
-*/
+/**
+ * Section element
+ */
 export class HeaderFooter extends HeaderFooterLink {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "paragraphs",
@@ -6831,18 +7656,21 @@ export class HeaderFooter extends HeaderFooterLink {
             type: "LinkElement",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(HeaderFooter.attributeTypeMap);
     }
 
-    /*
-    * Link to Paragraphs resource
-    */
+    /**
+     * Link to Paragraphs resource
+     */
     public paragraphs: LinkElement;
     
-    /*
-    * Link to DrawingObjects resource
-    */
+    /**
+     * Link to DrawingObjects resource
+     */
     public drawingObjects: LinkElement;
     
 }
@@ -6852,11 +7680,14 @@ export class HeaderFooter extends HeaderFooterLink {
 export namespace HeaderFooter {
 }
 // tslint:enable:quotemark
-/*
-* container class for fixed html save options
-*/
+/**
+ * container class for fixed html save options
+ */
 export class HtmlFixedSaveOptionsData extends FixedPageSaveOptionsData {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "cssClassNamesPrefix",
@@ -6919,77 +7750,83 @@ export class HtmlFixedSaveOptionsData extends FixedPageSaveOptionsData {
             type: "number",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(HtmlFixedSaveOptionsData.attributeTypeMap);
     }
 
-    /*
-    * Specifies prefix which is added to all class names in style.css file. Default value is \"aw\".
-    */
+    /**
+     * Specifies prefix which is added to all class names in style.css file. Default value is \"aw\".
+     */
     public cssClassNamesPrefix: string;
     
-    /*
-    * Specifies whether the CSS (Cascading Style Sheet) should be embedded into Html document.
-    */
+    /**
+     * Specifies whether the CSS (Cascading Style Sheet) should be embedded into Html document.
+     */
     public exportEmbeddedCss: boolean;
     
-    /*
-    * Specifies whether fonts should be embedded into Html document in Base64 format.
-    */
+    /**
+     * Specifies whether fonts should be embedded into Html document in Base64 format.
+     */
     public exportEmbeddedFonts: boolean;
     
-    /*
-    * Specifies whether images should be embedded into Html document in Base64 format.
-    */
+    /**
+     * Specifies whether images should be embedded into Html document in Base64 format.
+     */
     public exportEmbeddedImages: boolean;
     
-    /*
-    * Gets or sets indication of whether form fields are exported as interactive items (as 'input' tag) rather than converted to text or graphics.
-    */
+    /**
+     * Gets or sets indication of whether form fields are exported as interactive items (as 'input' tag) rather than converted to text or graphics.
+     */
     public exportFormFields: boolean;
     
-    /*
-    * Encoding.
-    */
+    /**
+     * Encoding.
+     */
     public encoding: string;
     
-    /*
-    * Specifies export format of fonts
-    */
+    /**
+     * Specifies export format of fonts
+     */
     public fontFormat: string;
     
-    /*
-    * Specifies the physical folder where resources are saved when exporting a document
-    */
+    /**
+     * Specifies the physical folder where resources are saved when exporting a document
+     */
     public resourcesFolder: string;
     
-    /*
-    * Specifies the name of the folder used to construct resource URIs
-    */
+    /**
+     * Specifies the name of the folder used to construct resource URIs
+     */
     public resourcesFolderAlias: string;
     
-    /*
-    * Specifies whether border around pages should be shown.
-    */
+    /**
+     * Specifies whether border around pages should be shown.
+     */
     public showPageBorder: boolean;
     
-    /*
-    * Specifies the horizontal alignment of pages in an HTML document. Default value is HtmlFixedHorizontalPageAlignment.Center.
-    */
+    /**
+     * Specifies the horizontal alignment of pages in an HTML document. Default value is HtmlFixedHorizontalPageAlignment.Center.
+     */
     public pageHorizontalAlignment: string;
     
-    /*
-    * Specifies the margins around pages in an HTML document. The margins value is measured in points and should be equal to or greater than 0. Default value is 10 points.
-    */
+    /**
+     * Specifies the margins around pages in an HTML document. The margins value is measured in points and should be equal to or greater than 0. Default value is 10 points.
+     */
     public pageMargins: number;
     
 }
 
-/*
-* Container abstract class for image save options
-*/
+/**
+ * Container abstract class for image save options
+ */
 export class ImageSaveOptionsData extends FixedPageSaveOptionsData {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "imageBrightness",
@@ -7057,85 +7894,94 @@ export class ImageSaveOptionsData extends FixedPageSaveOptionsData {
             type: "boolean",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(ImageSaveOptionsData.attributeTypeMap);
     }
 
-    /*
-    * Brightness of image
-    */
+    /**
+     * Brightness of image
+     */
     public imageBrightness: number;
     
-    /*
-    * Color mode of image
-    */
+    /**
+     * Color mode of image
+     */
     public imageColorMode: string;
     
-    /*
-    * Contrast of image
-    */
+    /**
+     * Contrast of image
+     */
     public imageContrast: number;
     
-    /*
-    * Allows to specify additional System.Drawing.Graphics quality options.
-    */
+    /**
+     * Allows to specify additional System.Drawing.Graphics quality options.
+     */
     public graphicsQualityOptions: GraphicsQualityOptionsData;
     
-    /*
-    * Pixel format of image
-    */
+    /**
+     * Pixel format of image
+     */
     public pixelFormat: string;
     
-    /*
-    * Background (paper) color of image
-    */
+    /**
+     * Background (paper) color of image
+     */
     public paperColor: string;
     
-    /*
-    * Sets both horizontal and vertical resolution for the generated images, in dots per inch.  This property has effect only when saving to raster image formats. The default value is 96.
-    */
+    /**
+     * Sets both horizontal and vertical resolution for the generated images, in dots per inch.  This property has effect only when saving to raster image formats. The default value is 96.
+     */
     public resolution: number;
     
-    /*
-    * Gets or sets the horizontal resolution for the generated images, in dots per inch.  This property has effect only when saving to raster image formats. The default value is 96.
-    */
+    /**
+     * Gets or sets the horizontal resolution for the generated images, in dots per inch.  This property has effect only when saving to raster image formats. The default value is 96.
+     */
     public horizontalResolution: number;
     
-    /*
-    * Gets or sets the vertical resolution for the generated images, in dots per inch.  This property has effect only when saving to raster image formats. The default value is 96.
-    */
+    /**
+     * Gets or sets the vertical resolution for the generated images, in dots per inch.  This property has effect only when saving to raster image formats. The default value is 96.
+     */
     public verticalResolution: number;
     
-    /*
-    * Zoom factor of image
-    */
+    /**
+     * Zoom factor of image
+     */
     public scale: number;
     
-    /*
-    * Determine whether or not to use high quality (i.e. slow) rendering algorithms
-    */
+    /**
+     * Determine whether or not to use high quality (i.e. slow) rendering algorithms
+     */
     public useHighQualityRendering: boolean;
     
-    /*
-    * Determine whether or not to use anti-aliasing for rendering
-    */
+    /**
+     * Determine whether or not to use anti-aliasing for rendering
+     */
     public useAntiAliasing: boolean;
     
-    /*
-    * Gets or sets a value determining whether to use GDI+ or Aspose.Words metafile renderer when saving to EMF.
-    */
+    /**
+     * Gets or sets a value determining whether to use GDI+ or Aspose.Words metafile renderer when saving to EMF.
+     */
     public useGdiEmfRenderer: boolean;
     
 }
 
-/*
-* Container class for mhtml save options.
-*/
+/**
+ * Container class for mhtml save options.
+ */
 export class MhtmlSaveOptionsData extends HtmlSaveOptionsData {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
     ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(MhtmlSaveOptionsData.attributeTypeMap);
     }
@@ -7147,25 +7993,34 @@ export class MhtmlSaveOptionsData extends HtmlSaveOptionsData {
 export namespace MhtmlSaveOptionsData {
 }
 // tslint:enable:quotemark
-/*
-* OfficeMath object link element
-*/
+/**
+ * OfficeMath object link element
+ */
 export class OfficeMathLink extends NodeLink {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
     ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(OfficeMathLink.attributeTypeMap);
     }
 
 }
 
-/*
-* Paragraph element
-*/
+/**
+ * Paragraph element
+ */
 export class Paragraph extends NodeLink {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "childNodes",
@@ -7173,22 +8028,28 @@ export class Paragraph extends NodeLink {
             type: "Array<NodeLink>",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(Paragraph.attributeTypeMap);
     }
 
-    /*
-    * Child nodes
-    */
+    /**
+     * Child nodes
+     */
     public childNodes: Array<NodeLink>;
     
 }
 
-/*
-* Paragraph link element
-*/
+/**
+ * Paragraph link element
+ */
 export class ParagraphLink extends NodeLink {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "text",
@@ -7196,22 +8057,28 @@ export class ParagraphLink extends NodeLink {
             type: "string",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(ParagraphLink.attributeTypeMap);
     }
 
-    /*
-    * Paragraph's text
-    */
+    /**
+     * Paragraph's text
+     */
     public text: string;
     
 }
 
-/*
-* Container class for pcl save options
-*/
+/**
+ * Container class for pcl save options
+ */
 export class PclSaveOptionsData extends FixedPageSaveOptionsData {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "falllbackFontName",
@@ -7224,27 +8091,33 @@ export class PclSaveOptionsData extends FixedPageSaveOptionsData {
             type: "boolean",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(PclSaveOptionsData.attributeTypeMap);
     }
 
-    /*
-    * Name of the font that will be used if no expected font is found in printer and built-in fonts collections.
-    */
+    /**
+     * Name of the font that will be used if no expected font is found in printer and built-in fonts collections.
+     */
     public falllbackFontName: string;
     
-    /*
-    * Gets or sets a value determining whether or not complex transformed elements should be rasterized before saving to PCL document.  Default is true.
-    */
+    /**
+     * Gets or sets a value determining whether or not complex transformed elements should be rasterized before saving to PCL document.  Default is true.
+     */
     public rasterizeTransformedElements: boolean;
     
 }
 
-/*
-* container class for pdf save options
-*/
+/**
+ * container class for pdf save options
+ */
 export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "bookmarksOutlineLevel",
@@ -7392,162 +8265,168 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
             type: "boolean",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(PdfSaveOptionsData.attributeTypeMap);
     }
 
-    /*
-    * Specifies the level in the PDF document outline at which to display Word bookmarks
-    */
+    /**
+     * Specifies the level in the PDF document outline at which to display Word bookmarks
+     */
     public bookmarksOutlineLevel: number;
     
-    /*
-    * Specifies whether to convert footnote/endnote references in main text story into active hyperlinks. When clicked the hyperlink will lead to the corresponding footnote/endnote. Default is false.
-    */
+    /**
+     * Specifies whether to convert footnote/endnote references in main text story into active hyperlinks. When clicked the hyperlink will lead to the corresponding footnote/endnote. Default is false.
+     */
     public createNoteHyperlinks: boolean;
     
-    /*
-    * Specifies the PDF standards compliance level for output documents
-    */
+    /**
+     * Specifies the PDF standards compliance level for output documents
+     */
     public compliance: string;
     
-    /*
-    * Specifies the details for signing the output PDF document
-    */
+    /**
+     * Specifies the details for signing the output PDF document
+     */
     public digitalSignatureDetails: PdfDigitalSignatureDetailsData;
     
-    /*
-    * A flag specifying whether the window’s title bar should display the document title taken from the Title entry of the document information dictionary.
-    */
+    /**
+     * A flag specifying whether the window’s title bar should display the document title taken from the Title entry of the document information dictionary.
+     */
     public displayDocTitle: boolean;
     
-    /*
-    * Specifies whether or not the images should be downsampled
-    */
+    /**
+     * Specifies whether or not the images should be downsampled
+     */
     public downsampleImages: boolean;
     
-    /*
-    * Specifies the resolution in pixels per inch to which the images should be downsampled
-    */
+    /**
+     * Specifies the resolution in pixels per inch to which the images should be downsampled
+     */
     public downsampleResolution: number;
     
-    /*
-    * Allows to specify downsample options.
-    */
+    /**
+     * Allows to specify downsample options.
+     */
     public downsampleOptions: DownsampleOptionsData;
     
-    /*
-    * Controls how fonts are embedded into the resulting PDF documents
-    */
+    /**
+     * Controls how fonts are embedded into the resulting PDF documents
+     */
     public embedFullFonts: boolean;
     
-    /*
-    * Determines whether or not to embed standard windows fonts Arial and Times New Roman
-    */
+    /**
+     * Determines whether or not to embed standard windows fonts Arial and Times New Roman
+     */
     public embedStandardWindowsFonts: boolean;
     
-    /*
-    * Specifies the details for encrypting the output PDF document
-    */
+    /**
+     * Specifies the details for encrypting the output PDF document
+     */
     public encryptionDetails: PdfEncryptionDetailsData;
     
-    /*
-    * Specifies how many levels in the PDF document outline to show expanded when the PDF file is viewed
-    */
+    /**
+     * Specifies how many levels in the PDF document outline to show expanded when the PDF file is viewed
+     */
     public expandedOutlineLevels: number;
     
-    /*
-    * Determines whether or not to export custom properties of document as Metadata
-    */
+    /**
+     * Determines whether or not to export custom properties of document as Metadata
+     */
     public exportCustomPropertiesAsMetadata: boolean;
     
-    /*
-    * Determines whether or not to export document structure
-    */
+    /**
+     * Determines whether or not to export document structure
+     */
     public exportDocumentStructure: boolean;
     
-    /*
-    * Specifies the font embedding mode
-    */
+    /**
+     * Specifies the font embedding mode
+     */
     public fontEmbeddingMode: string;
     
-    /*
-    * Specifies how many levels of headings (paragraphs formatted with the Heading styles) to include in the PDF document outline
-    */
+    /**
+     * Specifies how many levels of headings (paragraphs formatted with the Heading styles) to include in the PDF document outline
+     */
     public headingsOutlineLevels: number;
     
-    /*
-    * Specifies compression type to be used for all images in the document
-    */
+    /**
+     * Specifies compression type to be used for all images in the document
+     */
     public imageCompression: string;
     
-    /*
-    * Determines whether hyperlinks in the output Pdf document are forced to be opened in a new window (or tab) of a browser
-    */
+    /**
+     * Determines whether hyperlinks in the output Pdf document are forced to be opened in a new window (or tab) of a browser
+     */
     public openHyperlinksInNewWindow: boolean;
     
-    /*
-    * Allows to specify outline options
-    */
+    /**
+     * Allows to specify outline options
+     */
     public outlineOptions: OutlineOptionsData;
     
-    /*
-    * Specifies how the PDF document should be displayed when opened in the PDF reader
-    */
+    /**
+     * Specifies how the PDF document should be displayed when opened in the PDF reader
+     */
     public pageMode: string;
     
-    /*
-    * Specifies how the color space will be selected for the images in PDF document.
-    */
+    /**
+     * Specifies how the color space will be selected for the images in PDF document.
+     */
     public imageColorSpaceExportMode: string;
     
-    /*
-    * Specifies whether to preserve Microsoft Word form fields as form fields in PDF or convert them to text
-    */
+    /**
+     * Specifies whether to preserve Microsoft Word form fields as form fields in PDF or convert them to text
+     */
     public preserveFormFields: boolean;
     
-    /*
-    * Specifies compression type to be used for all textual content in the document
-    */
+    /**
+     * Specifies compression type to be used for all textual content in the document
+     */
     public textCompression: string;
     
-    /*
-    * Determines whether or not to substitute TrueType fonts Arial, Times New Roman, Courier New and Symbol with core PDF Type 1 fonts
-    */
+    /**
+     * Determines whether or not to substitute TrueType fonts Arial, Times New Roman, Courier New and Symbol with core PDF Type 1 fonts
+     */
     public useCoreFonts: boolean;
     
-    /*
-    * Determines whether the document should be saved using a booklet printing layout
-    */
+    /**
+     * Determines whether the document should be saved using a booklet printing layout
+     */
     public useBookFoldPrintingSettings: boolean;
     
-    /*
-    * Determines what type of zoom should be applied when a document is opened with a PDF viewer
-    */
+    /**
+     * Determines what type of zoom should be applied when a document is opened with a PDF viewer
+     */
     public zoomBehavior: string;
     
-    /*
-    * Determines zoom factor (in percentages) for a document
-    */
+    /**
+     * Determines zoom factor (in percentages) for a document
+     */
     public zoomFactor: number;
     
-    /*
-    * Gets or sets a value determining the way  are exported to PDF file. Default value is .
-    */
+    /**
+     * Gets or sets a value determining the way  are exported to PDF file. Default value is .
+     */
     public customPropertiesExport: string;
     
-    /*
-    * Gets or sets a value determining whether or not to preblend transparent images with black background color.
-    */
+    /**
+     * Gets or sets a value determining whether or not to preblend transparent images with black background color.
+     */
     public preblendImages: boolean;
     
 }
 
-/*
-* container class for ps save options
-*/
+/**
+ * container class for ps save options
+ */
 export class PsSaveOptionsData extends FixedPageSaveOptionsData {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "useBookFoldPrintingSettings",
@@ -7555,22 +8434,28 @@ export class PsSaveOptionsData extends FixedPageSaveOptionsData {
             type: "boolean",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(PsSaveOptionsData.attributeTypeMap);
     }
 
-    /*
-    * Determines whether the document should be saved using a booklet printing layout
-    */
+    /**
+     * Determines whether the document should be saved using a booklet printing layout
+     */
     public useBookFoldPrintingSettings: boolean;
     
 }
 
-/*
-* Run link element
-*/
+/**
+ * Run link element
+ */
 export class RunLink extends NodeLink {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "text",
@@ -7578,22 +8463,28 @@ export class RunLink extends NodeLink {
             type: "string",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(RunLink.attributeTypeMap);
     }
 
-    /*
-    * Run's text
-    */
+    /**
+     * Run's text
+     */
     public text: string;
     
 }
 
-/*
-* container class for svg save options
-*/
+/**
+ * container class for svg save options
+ */
 export class SvgSaveOptionsData extends FixedPageSaveOptionsData {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "exportEmbeddedImages",
@@ -7626,47 +8517,53 @@ export class SvgSaveOptionsData extends FixedPageSaveOptionsData {
             type: "string",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(SvgSaveOptionsData.attributeTypeMap);
     }
 
-    /*
-    * Specified whether images should be embedded into SVG document as base64
-    */
+    /**
+     * Specified whether images should be embedded into SVG document as base64
+     */
     public exportEmbeddedImages: boolean;
     
-    /*
-    * Specifies if the output SVG should fill the available viewport area (browser window or container). When set to true width and height of output SVG are set to 100%.
-    */
+    /**
+     * Specifies if the output SVG should fill the available viewport area (browser window or container). When set to true width and height of output SVG are set to 100%.
+     */
     public fitToViewPort: boolean;
     
-    /*
-    * Specifies the physical folder where resources (images) are saved when exporting
-    */
+    /**
+     * Specifies the physical folder where resources (images) are saved when exporting
+     */
     public resourcesFolder: string;
     
-    /*
-    * Specifies the name of the folder used to construct image URIs
-    */
+    /**
+     * Specifies the name of the folder used to construct image URIs
+     */
     public resourcesFolderAlias: string;
     
-    /*
-    * Show/hide page stepper
-    */
+    /**
+     * Show/hide page stepper
+     */
     public showPageBorder: boolean;
     
-    /*
-    * Determines how text should be rendered
-    */
+    /**
+     * Determines how text should be rendered
+     */
     public textOutputMode: string;
     
 }
 
-/*
-* container class for swf save options
-*/
+/**
+ * container class for swf save options
+ */
 export class SwfSaveOptionsData extends FixedPageSaveOptionsData {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "allowReadMode",
@@ -7774,122 +8671,128 @@ export class SwfSaveOptionsData extends FixedPageSaveOptionsData {
             type: "boolean",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(SwfSaveOptionsData.attributeTypeMap);
     }
 
-    /*
-    * Allows to enable read mode
-    */
+    /**
+     * Allows to enable read mode
+     */
     public allowReadMode: boolean;
     
-    /*
-    * Specifies the level in the SWF document outline at which to display Word bookmarks
-    */
+    /**
+     * Specifies the level in the SWF document outline at which to display Word bookmarks
+     */
     public bookmarksOutlineLevel: number;
     
-    /*
-    * Specifies whether the generated SWF document should be compressed or not
-    */
+    /**
+     * Specifies whether the generated SWF document should be compressed or not
+     */
     public compressed: boolean;
     
-    /*
-    * Enable/disable context menu
-    */
+    /**
+     * Enable/disable context menu
+     */
     public enableContextMenu: boolean;
     
-    /*
-    * Specifies how many levels in the SWF document outline to show expanded when the SWF file is viewed
-    */
+    /**
+     * Specifies how many levels in the SWF document outline to show expanded when the SWF file is viewed
+     */
     public expandedOutlineLevels: number;
     
-    /*
-    * Specifies how many levels of headings (paragraphs formatted with the Heading styles) to include in the SWF document outline
-    */
+    /**
+     * Specifies how many levels of headings (paragraphs formatted with the Heading styles) to include in the SWF document outline
+     */
     public headingsOutlineLevels: number;
     
-    /*
-    * Control flags used to configure appearance of left panel of SWF viewer
-    */
+    /**
+     * Control flags used to configure appearance of left panel of SWF viewer
+     */
     public leftPaneControlFlags: string;
     
-    /*
-    * Image that will be displayed as logo in the top right corner of the viewer as string in base64 format
-    */
+    /**
+     * Image that will be displayed as logo in the top right corner of the viewer as string in base64 format
+     */
     public logoImageBytes: string;
     
-    /*
-    * Specifies the full hyperlink address for a logo
-    */
+    /**
+     * Specifies the full hyperlink address for a logo
+     */
     public logoLink: string;
     
-    /*
-    * Allows to specify outline options
-    */
+    /**
+     * Allows to specify outline options
+     */
     public outlineOptions: OutlineOptionsData;
     
-    /*
-    * Show/hide bottom pane
-    */
+    /**
+     * Show/hide bottom pane
+     */
     public showBottomPane: boolean;
     
-    /*
-    * Show/hide fullscreen button
-    */
+    /**
+     * Show/hide fullscreen button
+     */
     public showFullScreen: boolean;
     
-    /*
-    * Show/hide left pane
-    */
+    /**
+     * Show/hide left pane
+     */
     public showLeftPane: boolean;
     
-    /*
-    * Specifies whether border around pages should be shown
-    */
+    /**
+     * Specifies whether border around pages should be shown
+     */
     public showPageBorder: boolean;
     
-    /*
-    * Show/hide page stepper
-    */
+    /**
+     * Show/hide page stepper
+     */
     public showPageStepper: boolean;
     
-    /*
-    * Show/hide search section
-    */
+    /**
+     * Show/hide search section
+     */
     public showSearch: boolean;
     
-    /*
-    * Show/hide whole top pane
-    */
+    /**
+     * Show/hide whole top pane
+     */
     public showTopPane: boolean;
     
-    /*
-    * Start with opened left pane
-    */
+    /**
+     * Start with opened left pane
+     */
     public startOpenLeftPane: boolean;
     
-    /*
-    * Specifies a font used for tooltips in SWF viewer
-    */
+    /**
+     * Specifies a font used for tooltips in SWF viewer
+     */
     public toolTipsFontName: string;
     
-    /*
-    * Control flags used to configure appearance of top panel of SWF viewer
-    */
+    /**
+     * Control flags used to configure appearance of top panel of SWF viewer
+     */
     public topPaneControlFlags: string;
     
-    /*
-    * Specifies whether the generated SWF document should include the integrated document viewer or not
-    */
+    /**
+     * Specifies whether the generated SWF document should include the integrated document viewer or not
+     */
     public viewerIncluded: boolean;
     
 }
 
-/*
-* Table element
-*/
+/**
+ * Table element
+ */
 export class Table extends NodeLink {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "tableRowList",
@@ -7902,27 +8805,33 @@ export class Table extends NodeLink {
             type: "TableProperties",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(Table.attributeTypeMap);
     }
 
-    /*
-    * Collection of table's rows.
-    */
+    /**
+     * Collection of table's rows.
+     */
     public tableRowList: Array<TableRow>;
     
-    /*
-    * Table properties.
-    */
+    /**
+     * Table properties.
+     */
     public tableProperties: TableProperties;
     
 }
 
-/*
-* Table cell element.
-*/
+/**
+ * Table cell element.
+ */
 export class TableCell extends NodeLink {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "childNodes",
@@ -7930,36 +8839,48 @@ export class TableCell extends NodeLink {
             type: "Array<NodeLink>",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(TableCell.attributeTypeMap);
     }
 
-    /*
-    * Child nodes.
-    */
+    /**
+     * Child nodes.
+     */
     public childNodes: Array<NodeLink>;
     
 }
 
-/*
-* Table link element
-*/
+/**
+ * Table link element
+ */
 export class TableLink extends NodeLink {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
     ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(TableLink.attributeTypeMap);
     }
 
 }
 
-/*
-* Table row element.
-*/
+/**
+ * Table row element.
+ */
 export class TableRow extends NodeLink {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "tableCellList",
@@ -7972,27 +8893,33 @@ export class TableRow extends NodeLink {
             type: "TableRowFormat",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(TableRow.attributeTypeMap);
     }
 
-    /*
-    * Collection of table's rows.
-    */
+    /**
+     * Collection of table's rows.
+     */
     public tableCellList: Array<TableCell>;
     
-    /*
-    * Provides access to the formatting properties of the row.
-    */
+    /**
+     * Provides access to the formatting properties of the row.
+     */
     public rowFormat: TableRowFormat;
     
 }
 
-/*
-* container class for xaml fixed save options
-*/
+/**
+ * container class for xaml fixed save options
+ */
 export class XamlFixedSaveOptionsData extends FixedPageSaveOptionsData {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "resourcesFolder",
@@ -8005,27 +8932,33 @@ export class XamlFixedSaveOptionsData extends FixedPageSaveOptionsData {
             type: "string",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(XamlFixedSaveOptionsData.attributeTypeMap);
     }
 
-    /*
-    * Specifies the physical folder where resources (images and fonts) are saved when exporting a document to fixed page Xaml format. Default is null.
-    */
+    /**
+     * Specifies the physical folder where resources (images and fonts) are saved when exporting a document to fixed page Xaml format. Default is null.
+     */
     public resourcesFolder: string;
     
-    /*
-    * Specifies the name of the folder used to construct image URIs written into an fixed page Xaml document. Default is null.
-    */
+    /**
+     * Specifies the name of the folder used to construct image URIs written into an fixed page Xaml document. Default is null.
+     */
     public resourcesFolderAlias: string;
     
 }
 
-/*
-* Container class for xps save options.
-*/
+/**
+ * Container class for xps save options.
+ */
 export class XpsSaveOptionsData extends FixedPageSaveOptionsData {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "bookmarksOutlineLevel",
@@ -8048,51 +8981,63 @@ export class XpsSaveOptionsData extends FixedPageSaveOptionsData {
             type: "boolean",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(XpsSaveOptionsData.attributeTypeMap);
     }
 
-    /*
-    * Specifies the level in the XPS document outline at which to display Word bookmarks.
-    */
+    /**
+     * Specifies the level in the XPS document outline at which to display Word bookmarks.
+     */
     public bookmarksOutlineLevel: number;
     
-    /*
-    * Specifies how many levels of headings (paragraphs formatted with the Heading styles) to include in the XPS document outline.
-    */
+    /**
+     * Specifies how many levels of headings (paragraphs formatted with the Heading styles) to include in the XPS document outline.
+     */
     public headingsOutlineLevels: number;
     
-    /*
-    * Allows to specify outline options
-    */
+    /**
+     * Allows to specify outline options
+     */
     public outlineOptions: OutlineOptionsData;
     
-    /*
-    * Determines whether the document should be saved using a booklet printing layout
-    */
+    /**
+     * Determines whether the document should be saved using a booklet printing layout
+     */
     public useBookFoldPrintingSettings: boolean;
     
 }
 
-/*
-* Container class for bmp save options.
-*/
+/**
+ * Container class for bmp save options.
+ */
 export class BmpSaveOptionsData extends ImageSaveOptionsData {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
     ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(BmpSaveOptionsData.attributeTypeMap);
     }
 
 }
 
-/*
-* Represents Drawing Object DTO.
-*/
+/**
+ * Represents Drawing Object DTO.
+ */
 export class DrawingObject extends DrawingObjectLink {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "renderLinks",
@@ -8145,58 +9090,61 @@ export class DrawingObject extends DrawingObjectLink {
             type: "DrawingObject.WrapTypeEnum",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(DrawingObject.attributeTypeMap);
     }
 
-    /*
-    * A list of links that originate from this .
-    */
+    /**
+     * A list of links that originate from this .
+     */
     public renderLinks: Array<WordsApiLink>;
     
-    /*
-    * Width of the drawing objects in points.
-    */
+    /**
+     * Width of the drawing objects in points.
+     */
     public width: number;
     
-    /*
-    * Height of the drawing object in points.
-    */
+    /**
+     * Height of the drawing object in points.
+     */
     public height: number;
     
-    /*
-    * Link to ole object. Can be null if shape does not have ole data.
-    */
+    /**
+     * Link to ole object. Can be null if shape does not have ole data.
+     */
     public oleDataLink: WordsApiLink;
     
-    /*
-    * Link to image data. Can be null if shape does not have an image.
-    */
+    /**
+     * Link to image data. Can be null if shape does not have an image.
+     */
     public imageDataLink: WordsApiLink;
     
-    /*
-    * Specifies where the distance to the image is measured from.             
-    */
+    /**
+     * Specifies where the distance to the image is measured from.             
+     */
     public relativeHorizontalPosition: DrawingObject.RelativeHorizontalPositionEnum;
     
-    /*
-    * Distance in points from the origin to the left side of the image.             
-    */
+    /**
+     * Distance in points from the origin to the left side of the image.             
+     */
     public left: number;
     
-    /*
-    * Specifies where the distance to the image measured from.
-    */
+    /**
+     * Specifies where the distance to the image measured from.
+     */
     public relativeVerticalPosition: DrawingObject.RelativeVerticalPositionEnum;
     
-    /*
-    * Distance in points from the origin to the top side of the image.
-    */
+    /**
+     * Distance in points from the origin to the top side of the image.
+     */
     public top: number;
     
-    /*
-    * Specifies how to wrap text around the image.
-    */
+    /**
+     * Specifies how to wrap text around the image.
+     */
     public wrapType: DrawingObject.WrapTypeEnum;
     
 }
@@ -8237,25 +9185,34 @@ export namespace DrawingObject {
     }
 }
 // tslint:enable:quotemark
-/*
-* Container class for emf save options.
-*/
+/**
+ * Container class for emf save options.
+ */
 export class EmfSaveOptionsData extends ImageSaveOptionsData {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
     ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(EmfSaveOptionsData.attributeTypeMap);
     }
 
 }
 
-/*
-* Field
-*/
+/**
+ * Field
+ */
 export class Field extends FieldLink {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "result",
@@ -8268,27 +9225,33 @@ export class Field extends FieldLink {
             type: "string",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(Field.attributeTypeMap);
     }
 
-    /*
-    * Field result
-    */
+    /**
+     * Field result
+     */
     public result: string;
     
-    /*
-    * Gets or sets LCID of the field.
-    */
+    /**
+     * Gets or sets LCID of the field.
+     */
     public localeId: string;
     
 }
 
-/*
-* Footnote.
-*/
+/**
+ * Footnote.
+ */
 export class Footnote extends FootnoteLink {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "position",
@@ -8316,33 +9279,36 @@ export class Footnote extends FootnoteLink {
             type: "StoryChildNodes",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(Footnote.attributeTypeMap);
     }
 
-    /*
-    * Link to comment range start node.
-    */
+    /**
+     * Link to comment range start node.
+     */
     public position: DocumentPosition;
     
-    /*
-    * Returns a value that specifies whether this is a footnote or endnote.
-    */
+    /**
+     * Returns a value that specifies whether this is a footnote or endnote.
+     */
     public footnoteType: Footnote.FootnoteTypeEnum;
     
-    /*
-    * Gets/sets custom reference mark to be used for this footnote. Default value is , meaning auto-numbered footnotes are used.
-    */
+    /**
+     * Gets/sets custom reference mark to be used for this footnote. Default value is , meaning auto-numbered footnotes are used.
+     */
     public referenceMark: string;
     
-    /*
-    * This is a convenience property that allows to easily get or set text of the footnote.
-    */
+    /**
+     * This is a convenience property that allows to easily get or set text of the footnote.
+     */
     public text: string;
     
-    /*
-    * Content of footnote.
-    */
+    /**
+     * Content of footnote.
+     */
     public content: StoryChildNodes;
     
 }
@@ -8356,11 +9322,14 @@ export namespace Footnote {
     }
 }
 // tslint:enable:quotemark
-/*
-* FormField checkbox element
-*/
+/**
+ * FormField checkbox element
+ */
 export class FormFieldCheckbox extends FormField {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "isCheckBoxExactSize",
@@ -8378,32 +9347,38 @@ export class FormFieldCheckbox extends FormField {
             type: "boolean",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(FormFieldCheckbox.attributeTypeMap);
     }
 
-    /*
-    * Gets or sets the boolean value that indicates whether the size of the textbox is automatic or specified explicitly.
-    */
+    /**
+     * Gets or sets the boolean value that indicates whether the size of the textbox is automatic or specified explicitly.
+     */
     public isCheckBoxExactSize: boolean;
     
-    /*
-    * Gets or sets the size of the checkbox in points. Has effect only when  is true.
-    */
+    /**
+     * Gets or sets the size of the checkbox in points. Has effect only when  is true.
+     */
     public checkBoxSize: number;
     
-    /*
-    * Gets or sets the checked status of the check box form field.
-    */
+    /**
+     * Gets or sets the checked status of the check box form field.
+     */
     public checked: boolean;
     
 }
 
-/*
-* FormField dropdownlist element
-*/
+/**
+ * FormField dropdownlist element
+ */
 export class FormFieldDropDown extends FormField {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "dropDownSelectedIndex",
@@ -8416,27 +9391,33 @@ export class FormFieldDropDown extends FormField {
             type: "Array<string>",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(FormFieldDropDown.attributeTypeMap);
     }
 
-    /*
-    * Gets or sets the index specifying the currently selected item in a dropdown form field.
-    */
+    /**
+     * Gets or sets the index specifying the currently selected item in a dropdown form field.
+     */
     public dropDownSelectedIndex: number;
     
-    /*
-    * Provides access to the items of a dropdown form field.
-    */
+    /**
+     * Provides access to the items of a dropdown form field.
+     */
     public dropDownItems: Array<string>;
     
 }
 
-/*
-* FormField text input element
-*/
+/**
+ * FormField text input element
+ */
 export class FormFieldTextInput extends FormField {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "textInputFormat",
@@ -8459,28 +9440,31 @@ export class FormFieldTextInput extends FormField {
             type: "number",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(FormFieldTextInput.attributeTypeMap);
     }
 
-    /*
-    * Returns or sets the text formatting for a text form field.
-    */
+    /**
+     * Returns or sets the text formatting for a text form field.
+     */
     public textInputFormat: string;
     
-    /*
-    * Gets or sets the type of a text form field.
-    */
+    /**
+     * Gets or sets the type of a text form field.
+     */
     public textInputType: FormFieldTextInput.TextInputTypeEnum;
     
-    /*
-    * Gets or sets the default string or a calculation expression of a text form field. 
-    */
+    /**
+     * Gets or sets the default string or a calculation expression of a text form field. 
+     */
     public textInputDefault: string;
     
-    /*
-    * Maximum length for the text field. Zero when the length is not limited.
-    */
+    /**
+     * Maximum length for the text field. Zero when the length is not limited.
+     */
     public maxLength: number;
     
 }
@@ -8498,39 +9482,54 @@ export namespace FormFieldTextInput {
     }
 }
 // tslint:enable:quotemark
-/*
-* Container class for gif save options.
-*/
+/**
+ * Container class for gif save options.
+ */
 export class GifSaveOptionsData extends ImageSaveOptionsData {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
     ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(GifSaveOptionsData.attributeTypeMap);
     }
 
 }
 
-/*
-* container class for jpeg save options.
-*/
+/**
+ * container class for jpeg save options.
+ */
 export class JpegSaveOptionsData extends ImageSaveOptionsData {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
     ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(JpegSaveOptionsData.attributeTypeMap);
     }
 
 }
 
-/*
-* OfficeMath object.
-*/
+/**
+ * OfficeMath object.
+ */
 export class OfficeMathObject extends OfficeMathLink {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "content",
@@ -8553,28 +9552,31 @@ export class OfficeMathObject extends OfficeMathLink {
             type: "OfficeMathObject.MathObjectTypeEnum",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(OfficeMathObject.attributeTypeMap);
     }
 
-    /*
-    * Content of footnote.
-    */
+    /**
+     * Content of footnote.
+     */
     public content: StoryChildNodes;
     
-    /*
-    * Gets/sets Office Math display format type which represents whether an equation is displayed inline with the text or displayed on its own line.
-    */
+    /**
+     * Gets/sets Office Math display format type which represents whether an equation is displayed inline with the text or displayed on its own line.
+     */
     public displayType: OfficeMathObject.DisplayTypeEnum;
     
-    /*
-    * Gets/sets Office Math justification.
-    */
+    /**
+     * Gets/sets Office Math justification.
+     */
     public justification: OfficeMathObject.JustificationEnum;
     
-    /*
-    * Gets type Aspose.Words.Math.OfficeMath.MathObjectType of this Office Math object.
-    */
+    /**
+     * Gets type Aspose.Words.Math.OfficeMath.MathObjectType of this Office Math object.
+     */
     public mathObjectType: OfficeMathObject.MathObjectTypeEnum;
     
 }
@@ -8628,39 +9630,54 @@ export namespace OfficeMathObject {
     }
 }
 // tslint:enable:quotemark
-/*
-* container class for png save options.
-*/
+/**
+ * container class for png save options.
+ */
 export class PngSaveOptionsData extends ImageSaveOptionsData {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
     ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(PngSaveOptionsData.attributeTypeMap);
     }
 
 }
 
-/*
-* Run element
-*/
+/**
+ * Run element
+ */
 export class Run extends RunLink {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
     ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(Run.attributeTypeMap);
     }
 
 }
 
-/*
-* Container class for tiff save options.
-*/
+/**
+ * Container class for tiff save options.
+ */
 export class TiffSaveOptionsData extends ImageSaveOptionsData {
 
+    /**
+     * Attribute type map
+     */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             name: "tiffBinarizationMethod",
@@ -8673,18 +9690,21 @@ export class TiffSaveOptionsData extends ImageSaveOptionsData {
             type: "string",
         }    ];
 
+    /**
+     * Returns attribute type map
+     */
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(TiffSaveOptionsData.attributeTypeMap);
     }
 
-    /*
-    * Specifies method used while converting images to 1 bpp format.
-    */
+    /**
+     * Specifies method used while converting images to 1 bpp format.
+     */
     public tiffBinarizationMethod: string;
     
-    /*
-    * Type of compression.
-    */
+    /**
+     * Type of compression.
+     */
     public tiffCompression: string;
     
 }
@@ -8702,29 +9722,29 @@ const enumsMap = {
     "StringFormatData.HotkeyPrefixEnum": StringFormatData.HotkeyPrefixEnum,
     "StringFormatData.LineAlignmentEnum": StringFormatData.LineAlignmentEnum,
     "StringFormatData.TrimmingEnum": StringFormatData.TrimmingEnum,
-    "Border.BorderTypeEnum": Border.BorderTypeEnum,
     "Border.LineStyleEnum": Border.LineStyleEnum,
-    "Font.StyleIdentifierEnum": Font.StyleIdentifierEnum,
-    "Font.TextEffectEnum": Font.TextEffectEnum,
+    "Border.BorderTypeEnum": Border.BorderTypeEnum,
     "Font.UnderlineEnum": Font.UnderlineEnum,
+    "Font.TextEffectEnum": Font.TextEffectEnum,
+    "Font.StyleIdentifierEnum": Font.StyleIdentifierEnum,
     "HeaderFooterLink.TypeEnum": HeaderFooterLink.TypeEnum,
     "HtmlSaveOptionsData.HtmlVersionEnum": HtmlSaveOptionsData.HtmlVersionEnum,
     "HtmlSaveOptionsData.OfficeMathOutputModeEnum": HtmlSaveOptionsData.OfficeMathOutputModeEnum,
-    "PageSetup.BorderAppliesToEnum": PageSetup.BorderAppliesToEnum,
-    "PageSetup.BorderDistanceFromEnum": PageSetup.BorderDistanceFromEnum,
-    "PageSetup.LineNumberRestartModeEnum": PageSetup.LineNumberRestartModeEnum,
-    "PageSetup.OrientationEnum": PageSetup.OrientationEnum,
-    "PageSetup.PageNumberStyleEnum": PageSetup.PageNumberStyleEnum,
-    "PageSetup.PaperSizeEnum": PageSetup.PaperSizeEnum,
     "PageSetup.SectionStartEnum": PageSetup.SectionStartEnum,
     "PageSetup.VerticalAlignmentEnum": PageSetup.VerticalAlignmentEnum,
+    "PageSetup.PaperSizeEnum": PageSetup.PaperSizeEnum,
+    "PageSetup.OrientationEnum": PageSetup.OrientationEnum,
+    "PageSetup.PageNumberStyleEnum": PageSetup.PageNumberStyleEnum,
+    "PageSetup.LineNumberRestartModeEnum": PageSetup.LineNumberRestartModeEnum,
+    "PageSetup.BorderDistanceFromEnum": PageSetup.BorderDistanceFromEnum,
+    "PageSetup.BorderAppliesToEnum": PageSetup.BorderAppliesToEnum,
     "TableCellFormat.HorizontalMergeEnum": TableCellFormat.HorizontalMergeEnum,
     "TableCellFormat.OrientationEnum": TableCellFormat.OrientationEnum,
     "TableCellFormat.VerticalAlignmentEnum": TableCellFormat.VerticalAlignmentEnum,
     "TableCellFormat.VerticalMergeEnum": TableCellFormat.VerticalMergeEnum,
     "TableProperties.AlignmentEnum": TableProperties.AlignmentEnum,
-    "TableProperties.StyleIdentifierEnum": TableProperties.StyleIdentifierEnum,
     "TableProperties.StyleOptionsEnum": TableProperties.StyleOptionsEnum,
+    "TableProperties.StyleIdentifierEnum": TableProperties.StyleIdentifierEnum,
     "TableProperties.TextWrappingEnum": TableProperties.TextWrappingEnum,
     "TableRowFormat.HeightRuleEnum": TableRowFormat.HeightRuleEnum,
     "DrawingObject.RelativeHorizontalPositionEnum": DrawingObject.RelativeHorizontalPositionEnum,
@@ -8912,5453 +9932,5453 @@ const typeMap = {
 
 export {enumsMap, typeMap};
 
-/*
-* Request model for AcceptAllRevisions operation.
-*/
+/**
+ * Request model for AcceptAllRevisions operation.
+ */
 export class AcceptAllRevisionsRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 }
 
-/*
-* Request model for CreateOrUpdateDocumentProperty operation.
-*/
+/**
+ * Request model for CreateOrUpdateDocumentProperty operation.
+ */
 export class CreateOrUpdateDocumentPropertyRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * The property name.
-    */
+    /**
+     * The property name.
+     */
     public propertyName: string;
 
-    /*
-    * The property with new value.
-    */
+    /**
+     * The property with new value.
+     */
     public property: DocumentProperty;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 
-    /*
-    * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-    */
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
     public revisionAuthor: string;
 
-    /*
-    * The date and time to use for revisions.
-    */
+    /**
+     * The date and time to use for revisions.
+     */
     public revisionDateTime: string;
 }
 
-/*
-* Request model for DeleteBorder operation.
-*/
+/**
+ * Request model for DeleteBorder operation.
+ */
 export class DeleteBorderRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Path to node with border(node should be cell or row).
-    */
+    /**
+     * Path to node with border(node should be cell or row).
+     */
     public nodePath: string;
 
-    /*
-    * Object's index
-    */
+    /**
+     * Object's index
+     */
     public index: number;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 
-    /*
-    * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-    */
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
     public revisionAuthor: string;
 
-    /*
-    * The date and time to use for revisions.
-    */
+    /**
+     * The date and time to use for revisions.
+     */
     public revisionDateTime: string;
 }
 
-/*
-* Request model for DeleteBorders operation.
-*/
+/**
+ * Request model for DeleteBorders operation.
+ */
 export class DeleteBordersRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Path to node with borders(node should be cell or row).
-    */
+    /**
+     * Path to node with borders(node should be cell or row).
+     */
     public nodePath: string;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 
-    /*
-    * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-    */
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
     public revisionAuthor: string;
 
-    /*
-    * The date and time to use for revisions.
-    */
+    /**
+     * The date and time to use for revisions.
+     */
     public revisionDateTime: string;
 }
 
-/*
-* Request model for DeleteComment operation.
-*/
+/**
+ * Request model for DeleteComment operation.
+ */
 export class DeleteCommentRequest {
-    /*
-    * The file name.
-    */
+    /**
+     * The file name.
+     */
     public name: string;
 
-    /*
-    * Comment index
-    */
+    /**
+     * Comment index
+     */
     public commentIndex: number;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 
-    /*
-    * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-    */
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
     public revisionAuthor: string;
 
-    /*
-    * The date and time to use for revisions.
-    */
+    /**
+     * The date and time to use for revisions.
+     */
     public revisionDateTime: string;
 }
 
-/*
-* Request model for DeleteDocumentMacros operation.
-*/
+/**
+ * Request model for DeleteDocumentMacros operation.
+ */
 export class DeleteDocumentMacrosRequest {
-    /*
-    * The file name.
-    */
+    /**
+     * The file name.
+     */
     public name: string;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 
-    /*
-    * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-    */
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
     public revisionAuthor: string;
 
-    /*
-    * The date and time to use for revisions.
-    */
+    /**
+     * The date and time to use for revisions.
+     */
     public revisionDateTime: string;
 }
 
-/*
-* Request model for DeleteDocumentProperty operation.
-*/
+/**
+ * Request model for DeleteDocumentProperty operation.
+ */
 export class DeleteDocumentPropertyRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * The property name.
-    */
+    /**
+     * The property name.
+     */
     public propertyName: string;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 
-    /*
-    * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-    */
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
     public revisionAuthor: string;
 
-    /*
-    * The date and time to use for revisions.
-    */
+    /**
+     * The date and time to use for revisions.
+     */
     public revisionDateTime: string;
 }
 
-/*
-* Request model for DeleteDocumentWatermark operation.
-*/
+/**
+ * Request model for DeleteDocumentWatermark operation.
+ */
 export class DeleteDocumentWatermarkRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 
-    /*
-    * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-    */
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
     public revisionAuthor: string;
 
-    /*
-    * The date and time to use for revisions.
-    */
+    /**
+     * The date and time to use for revisions.
+     */
     public revisionDateTime: string;
 }
 
-/*
-* Request model for DeleteDrawingObject operation.
-*/
+/**
+ * Request model for DeleteDrawingObject operation.
+ */
 export class DeleteDrawingObjectRequest {
-    /*
-    * The file name.
-    */
+    /**
+     * The file name.
+     */
     public name: string;
 
-    /*
-    * Object's index
-    */
+    /**
+     * Object's index
+     */
     public index: number;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 
-    /*
-    * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-    */
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
     public revisionAuthor: string;
 
-    /*
-    * The date and time to use for revisions.
-    */
+    /**
+     * The date and time to use for revisions.
+     */
     public revisionDateTime: string;
 
-    /*
-    * Path to node, which contains collection of drawing objects.
-    */
+    /**
+     * Path to node, which contains collection of drawing objects.
+     */
     public nodePath: string;
 }
 
-/*
-* Request model for DeleteField operation.
-*/
+/**
+ * Request model for DeleteField operation.
+ */
 export class DeleteFieldRequest {
-    /*
-    * The file name.
-    */
+    /**
+     * The file name.
+     */
     public name: string;
 
-    /*
-    * Object's index
-    */
+    /**
+     * Object's index
+     */
     public index: number;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 
-    /*
-    * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-    */
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
     public revisionAuthor: string;
 
-    /*
-    * The date and time to use for revisions.
-    */
+    /**
+     * The date and time to use for revisions.
+     */
     public revisionDateTime: string;
 
-    /*
-    * Path to node, which contains collection of fields.
-    */
+    /**
+     * Path to node, which contains collection of fields.
+     */
     public nodePath: string;
 }
 
-/*
-* Request model for DeleteFields operation.
-*/
+/**
+ * Request model for DeleteFields operation.
+ */
 export class DeleteFieldsRequest {
-    /*
-    * The file name.
-    */
+    /**
+     * The file name.
+     */
     public name: string;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 
-    /*
-    * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-    */
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
     public revisionAuthor: string;
 
-    /*
-    * The date and time to use for revisions.
-    */
+    /**
+     * The date and time to use for revisions.
+     */
     public revisionDateTime: string;
 
-    /*
-    * Path to node, which contains collection of fields.
-    */
+    /**
+     * Path to node, which contains collection of fields.
+     */
     public nodePath: string;
 }
 
-/*
-* Request model for DeleteFootnote operation.
-*/
+/**
+ * Request model for DeleteFootnote operation.
+ */
 export class DeleteFootnoteRequest {
-    /*
-    * The file name.
-    */
+    /**
+     * The file name.
+     */
     public name: string;
 
-    /*
-    * Object's index
-    */
+    /**
+     * Object's index
+     */
     public index: number;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 
-    /*
-    * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-    */
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
     public revisionAuthor: string;
 
-    /*
-    * The date and time to use for revisions.
-    */
+    /**
+     * The date and time to use for revisions.
+     */
     public revisionDateTime: string;
 
-    /*
-    * Path to node, which contains collection of footnotes.
-    */
+    /**
+     * Path to node, which contains collection of footnotes.
+     */
     public nodePath: string;
 }
 
-/*
-* Request model for DeleteFormField operation.
-*/
+/**
+ * Request model for DeleteFormField operation.
+ */
 export class DeleteFormFieldRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Object's index
-    */
+    /**
+     * Object's index
+     */
     public index: number;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 
-    /*
-    * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-    */
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
     public revisionAuthor: string;
 
-    /*
-    * The date and time to use for revisions.
-    */
+    /**
+     * The date and time to use for revisions.
+     */
     public revisionDateTime: string;
 
-    /*
-    * Path to node that contains collection of formfields.
-    */
+    /**
+     * Path to node that contains collection of formfields.
+     */
     public nodePath: string;
 }
 
-/*
-* Request model for DeleteHeaderFooter operation.
-*/
+/**
+ * Request model for DeleteHeaderFooter operation.
+ */
 export class DeleteHeaderFooterRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Object's index
-    */
+    /**
+     * Object's index
+     */
     public index: number;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 
-    /*
-    * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-    */
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
     public revisionAuthor: string;
 
-    /*
-    * The date and time to use for revisions.
-    */
+    /**
+     * The date and time to use for revisions.
+     */
     public revisionDateTime: string;
 
-    /*
-    * Path to parent section.
-    */
+    /**
+     * Path to parent section.
+     */
     public sectionPath: string;
 }
 
-/*
-* Request model for DeleteHeadersFooters operation.
-*/
+/**
+ * Request model for DeleteHeadersFooters operation.
+ */
 export class DeleteHeadersFootersRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 
-    /*
-    * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-    */
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
     public revisionAuthor: string;
 
-    /*
-    * The date and time to use for revisions.
-    */
+    /**
+     * The date and time to use for revisions.
+     */
     public revisionDateTime: string;
 
-    /*
-    * Path to parent section.
-    */
+    /**
+     * Path to parent section.
+     */
     public sectionPath: string;
 
-    /*
-    * List of types of headers and footers.
-    */
+    /**
+     * List of types of headers and footers.
+     */
     public headersFootersTypes: string;
 }
 
-/*
-* Request model for DeleteOfficeMathObject operation.
-*/
+/**
+ * Request model for DeleteOfficeMathObject operation.
+ */
 export class DeleteOfficeMathObjectRequest {
-    /*
-    * The file name.
-    */
+    /**
+     * The file name.
+     */
     public name: string;
 
-    /*
-    * Object's index
-    */
+    /**
+     * Object's index
+     */
     public index: number;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 
-    /*
-    * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-    */
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
     public revisionAuthor: string;
 
-    /*
-    * The date and time to use for revisions.
-    */
+    /**
+     * The date and time to use for revisions.
+     */
     public revisionDateTime: string;
 
-    /*
-    * Path to node, which contains collection of OfficeMath objects.
-    */
+    /**
+     * Path to node, which contains collection of OfficeMath objects.
+     */
     public nodePath: string;
 }
 
-/*
-* Request model for DeleteParagraph operation.
-*/
+/**
+ * Request model for DeleteParagraph operation.
+ */
 export class DeleteParagraphRequest {
-    /*
-    * The file name.
-    */
+    /**
+     * The file name.
+     */
     public name: string;
 
-    /*
-    * Object's index
-    */
+    /**
+     * Object's index
+     */
     public index: number;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 
-    /*
-    * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-    */
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
     public revisionAuthor: string;
 
-    /*
-    * The date and time to use for revisions.
-    */
+    /**
+     * The date and time to use for revisions.
+     */
     public revisionDateTime: string;
 
-    /*
-    * Path to node which contains paragraphs.
-    */
+    /**
+     * Path to node which contains paragraphs.
+     */
     public nodePath: string;
 }
 
-/*
-* Request model for DeleteRun operation.
-*/
+/**
+ * Request model for DeleteRun operation.
+ */
 export class DeleteRunRequest {
-    /*
-    * The file name.
-    */
+    /**
+     * The file name.
+     */
     public name: string;
 
-    /*
-    * Path to parent paragraph.
-    */
+    /**
+     * Path to parent paragraph.
+     */
     public paragraphPath: string;
 
-    /*
-    * Object's index
-    */
+    /**
+     * Object's index
+     */
     public index: number;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 
-    /*
-    * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-    */
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
     public revisionAuthor: string;
 
-    /*
-    * The date and time to use for revisions.
-    */
+    /**
+     * The date and time to use for revisions.
+     */
     public revisionDateTime: string;
 }
 
-/*
-* Request model for DeleteTable operation.
-*/
+/**
+ * Request model for DeleteTable operation.
+ */
 export class DeleteTableRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Object's index
-    */
+    /**
+     * Object's index
+     */
     public index: number;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 
-    /*
-    * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-    */
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
     public revisionAuthor: string;
 
-    /*
-    * The date and time to use for revisions.
-    */
+    /**
+     * The date and time to use for revisions.
+     */
     public revisionDateTime: string;
 
-    /*
-    * Path to node, which contains tables.
-    */
+    /**
+     * Path to node, which contains tables.
+     */
     public nodePath: string;
 }
 
-/*
-* Request model for DeleteTableCell operation.
-*/
+/**
+ * Request model for DeleteTableCell operation.
+ */
 export class DeleteTableCellRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Path to table row.
-    */
+    /**
+     * Path to table row.
+     */
     public tableRowPath: string;
 
-    /*
-    * Object's index
-    */
+    /**
+     * Object's index
+     */
     public index: number;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 
-    /*
-    * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-    */
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
     public revisionAuthor: string;
 
-    /*
-    * The date and time to use for revisions.
-    */
+    /**
+     * The date and time to use for revisions.
+     */
     public revisionDateTime: string;
 }
 
-/*
-* Request model for DeleteTableRow operation.
-*/
+/**
+ * Request model for DeleteTableRow operation.
+ */
 export class DeleteTableRowRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Path to table.
-    */
+    /**
+     * Path to table.
+     */
     public tablePath: string;
 
-    /*
-    * Object's index
-    */
+    /**
+     * Object's index
+     */
     public index: number;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 
-    /*
-    * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-    */
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
     public revisionAuthor: string;
 
-    /*
-    * The date and time to use for revisions.
-    */
+    /**
+     * The date and time to use for revisions.
+     */
     public revisionDateTime: string;
 }
 
-/*
-* Request model for DeleteUnprotectDocument operation.
-*/
+/**
+ * Request model for DeleteUnprotectDocument operation.
+ */
 export class DeleteUnprotectDocumentRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * with protection settings.            
-    */
+    /**
+     * with protection settings.            
+     */
     public protectionRequest: ProtectionRequest;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 }
 
-/*
-* Request model for GetBorder operation.
-*/
+/**
+ * Request model for GetBorder operation.
+ */
 export class GetBorderRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Path to node with border(node should be cell or row).
-    */
+    /**
+     * Path to node with border(node should be cell or row).
+     */
     public nodePath: string;
 
-    /*
-    * Object's index
-    */
+    /**
+     * Object's index
+     */
     public index: number;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 }
 
-/*
-* Request model for GetBorders operation.
-*/
+/**
+ * Request model for GetBorders operation.
+ */
 export class GetBordersRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Path to node with borders(node should be cell or row).
-    */
+    /**
+     * Path to node with borders(node should be cell or row).
+     */
     public nodePath: string;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 }
 
-/*
-* Request model for GetComment operation.
-*/
+/**
+ * Request model for GetComment operation.
+ */
 export class GetCommentRequest {
-    /*
-    * The file name.
-    */
+    /**
+     * The file name.
+     */
     public name: string;
 
-    /*
-    * Comment index
-    */
+    /**
+     * Comment index
+     */
     public commentIndex: number;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 }
 
-/*
-* Request model for GetComments operation.
-*/
+/**
+ * Request model for GetComments operation.
+ */
 export class GetCommentsRequest {
-    /*
-    * The file name.
-    */
+    /**
+     * The file name.
+     */
     public name: string;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 }
 
-/*
-* Request model for GetDocument operation.
-*/
+/**
+ * Request model for GetDocument operation.
+ */
 export class GetDocumentRequest {
-    /*
-    * The file name.
-    */
+    /**
+     * The file name.
+     */
     public documentName: string;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 }
 
-/*
-* Request model for GetDocumentBookmarkByName operation.
-*/
+/**
+ * Request model for GetDocumentBookmarkByName operation.
+ */
 export class GetDocumentBookmarkByNameRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * The bookmark name.
-    */
+    /**
+     * The bookmark name.
+     */
     public bookmarkName: string;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 }
 
-/*
-* Request model for GetDocumentBookmarks operation.
-*/
+/**
+ * Request model for GetDocumentBookmarks operation.
+ */
 export class GetDocumentBookmarksRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 }
 
-/*
-* Request model for GetDocumentDrawingObjectByIndex operation.
-*/
+/**
+ * Request model for GetDocumentDrawingObjectByIndex operation.
+ */
 export class GetDocumentDrawingObjectByIndexRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Object's index
-    */
+    /**
+     * Object's index
+     */
     public index: number;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Path to node, which contains collection of drawing objects.
-    */
+    /**
+     * Path to node, which contains collection of drawing objects.
+     */
     public nodePath: string;
 }
 
-/*
-* Request model for GetDocumentDrawingObjectImageData operation.
-*/
+/**
+ * Request model for GetDocumentDrawingObjectImageData operation.
+ */
 export class GetDocumentDrawingObjectImageDataRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Object's index
-    */
+    /**
+     * Object's index
+     */
     public index: number;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Path to node, which contains collection of drawing objects.
-    */
+    /**
+     * Path to node, which contains collection of drawing objects.
+     */
     public nodePath: string;
 }
 
-/*
-* Request model for GetDocumentDrawingObjectOleData operation.
-*/
+/**
+ * Request model for GetDocumentDrawingObjectOleData operation.
+ */
 export class GetDocumentDrawingObjectOleDataRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Object's index
-    */
+    /**
+     * Object's index
+     */
     public index: number;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Path to node, which contains collection of drawing objects.
-    */
+    /**
+     * Path to node, which contains collection of drawing objects.
+     */
     public nodePath: string;
 }
 
-/*
-* Request model for GetDocumentDrawingObjects operation.
-*/
+/**
+ * Request model for GetDocumentDrawingObjects operation.
+ */
 export class GetDocumentDrawingObjectsRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Path to node, which contains collection of drawing objects.
-    */
+    /**
+     * Path to node, which contains collection of drawing objects.
+     */
     public nodePath: string;
 }
 
-/*
-* Request model for GetDocumentFieldNames operation.
-*/
+/**
+ * Request model for GetDocumentFieldNames operation.
+ */
 export class GetDocumentFieldNamesRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * If true, result includes \"mustache\" field names.
-    */
+    /**
+     * If true, result includes \"mustache\" field names.
+     */
     public useNonMergeFields: boolean;
 }
 
-/*
-* Request model for GetDocumentHyperlinkByIndex operation.
-*/
+/**
+ * Request model for GetDocumentHyperlinkByIndex operation.
+ */
 export class GetDocumentHyperlinkByIndexRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * The hyperlink index.
-    */
+    /**
+     * The hyperlink index.
+     */
     public hyperlinkIndex: number;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 }
 
-/*
-* Request model for GetDocumentHyperlinks operation.
-*/
+/**
+ * Request model for GetDocumentHyperlinks operation.
+ */
 export class GetDocumentHyperlinksRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 }
 
-/*
-* Request model for GetDocumentParagraph operation.
-*/
+/**
+ * Request model for GetDocumentParagraph operation.
+ */
 export class GetDocumentParagraphRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Object's index
-    */
+    /**
+     * Object's index
+     */
     public index: number;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Path to node which contains paragraphs.
-    */
+    /**
+     * Path to node which contains paragraphs.
+     */
     public nodePath: string;
 }
 
-/*
-* Request model for GetDocumentParagraphRun operation.
-*/
+/**
+ * Request model for GetDocumentParagraphRun operation.
+ */
 export class GetDocumentParagraphRunRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Path to parent paragraph.
-    */
+    /**
+     * Path to parent paragraph.
+     */
     public paragraphPath: string;
 
-    /*
-    * Object's index
-    */
+    /**
+     * Object's index
+     */
     public index: number;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 }
 
-/*
-* Request model for GetDocumentParagraphRunFont operation.
-*/
+/**
+ * Request model for GetDocumentParagraphRunFont operation.
+ */
 export class GetDocumentParagraphRunFontRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Path to parent paragraph.
-    */
+    /**
+     * Path to parent paragraph.
+     */
     public paragraphPath: string;
 
-    /*
-    * Object's index
-    */
+    /**
+     * Object's index
+     */
     public index: number;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 }
 
-/*
-* Request model for GetDocumentParagraphRuns operation.
-*/
+/**
+ * Request model for GetDocumentParagraphRuns operation.
+ */
 export class GetDocumentParagraphRunsRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Path to parent paragraph.
-    */
+    /**
+     * Path to parent paragraph.
+     */
     public paragraphPath: string;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 }
 
-/*
-* Request model for GetDocumentParagraphs operation.
-*/
+/**
+ * Request model for GetDocumentParagraphs operation.
+ */
 export class GetDocumentParagraphsRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Path to node which contains paragraphs.
-    */
+    /**
+     * Path to node which contains paragraphs.
+     */
     public nodePath: string;
 }
 
-/*
-* Request model for GetDocumentProperties operation.
-*/
+/**
+ * Request model for GetDocumentProperties operation.
+ */
 export class GetDocumentPropertiesRequest {
-    /*
-    * The document's name.
-    */
+    /**
+     * The document's name.
+     */
     public name: string;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 }
 
-/*
-* Request model for GetDocumentProperty operation.
-*/
+/**
+ * Request model for GetDocumentProperty operation.
+ */
 export class GetDocumentPropertyRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * The property name.
-    */
+    /**
+     * The property name.
+     */
     public propertyName: string;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 }
 
-/*
-* Request model for GetDocumentProtection operation.
-*/
+/**
+ * Request model for GetDocumentProtection operation.
+ */
 export class GetDocumentProtectionRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 }
 
-/*
-* Request model for GetDocumentStatistics operation.
-*/
+/**
+ * Request model for GetDocumentStatistics operation.
+ */
 export class GetDocumentStatisticsRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Support including/excluding comments from the WordCount. Default value is \"true\".
-    */
+    /**
+     * Support including/excluding comments from the WordCount. Default value is \"true\".
+     */
     public includeComments: boolean;
 
-    /*
-    * Support including/excluding footnotes from the WordCount. Default value is \"false\".
-    */
+    /**
+     * Support including/excluding footnotes from the WordCount. Default value is \"false\".
+     */
     public includeFootnotes: boolean;
 
-    /*
-    * Support including/excluding shape's text from the WordCount. Default value is \"false\"
-    */
+    /**
+     * Support including/excluding shape's text from the WordCount. Default value is \"false\"
+     */
     public includeTextInShapes: boolean;
 }
 
-/*
-* Request model for GetDocumentTextItems operation.
-*/
+/**
+ * Request model for GetDocumentTextItems operation.
+ */
 export class GetDocumentTextItemsRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 }
 
-/*
-* Request model for GetDocumentWithFormat operation.
-*/
+/**
+ * Request model for GetDocumentWithFormat operation.
+ */
 export class GetDocumentWithFormatRequest {
-    /*
-    * The file name.
-    */
+    /**
+     * The file name.
+     */
     public name: string;
 
-    /*
-    * The destination format.
-    */
+    /**
+     * The destination format.
+     */
     public format: string;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Path to save result
-    */
+    /**
+     * Path to save result
+     */
     public outPath: string;
 
-    /*
-    * Folder in filestorage with custom fonts.
-    */
+    /**
+     * Folder in filestorage with custom fonts.
+     */
     public fontsLocation: string;
 }
 
-/*
-* Request model for GetField operation.
-*/
+/**
+ * Request model for GetField operation.
+ */
 export class GetFieldRequest {
-    /*
-    * The file name.
-    */
+    /**
+     * The file name.
+     */
     public name: string;
 
-    /*
-    * Object's index
-    */
+    /**
+     * Object's index
+     */
     public index: number;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Path to node, which contains collection of fields.
-    */
+    /**
+     * Path to node, which contains collection of fields.
+     */
     public nodePath: string;
 }
 
-/*
-* Request model for GetFields operation.
-*/
+/**
+ * Request model for GetFields operation.
+ */
 export class GetFieldsRequest {
-    /*
-    * The file name.
-    */
+    /**
+     * The file name.
+     */
     public name: string;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Path to node, which contains collection of fields.
-    */
+    /**
+     * Path to node, which contains collection of fields.
+     */
     public nodePath: string;
 }
 
-/*
-* Request model for GetFootnote operation.
-*/
+/**
+ * Request model for GetFootnote operation.
+ */
 export class GetFootnoteRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Object's index
-    */
+    /**
+     * Object's index
+     */
     public index: number;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Path to node, which contains collection of footnotes.
-    */
+    /**
+     * Path to node, which contains collection of footnotes.
+     */
     public nodePath: string;
 }
 
-/*
-* Request model for GetFootnotes operation.
-*/
+/**
+ * Request model for GetFootnotes operation.
+ */
 export class GetFootnotesRequest {
-    /*
-    * The file name.
-    */
+    /**
+     * The file name.
+     */
     public name: string;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Path to node, which contains collection of footnotes.
-    */
+    /**
+     * Path to node, which contains collection of footnotes.
+     */
     public nodePath: string;
 }
 
-/*
-* Request model for GetFormField operation.
-*/
+/**
+ * Request model for GetFormField operation.
+ */
 export class GetFormFieldRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Object's index
-    */
+    /**
+     * Object's index
+     */
     public index: number;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Path to node that contains collection of formfields.
-    */
+    /**
+     * Path to node that contains collection of formfields.
+     */
     public nodePath: string;
 }
 
-/*
-* Request model for GetFormFields operation.
-*/
+/**
+ * Request model for GetFormFields operation.
+ */
 export class GetFormFieldsRequest {
-    /*
-    * The file name.
-    */
+    /**
+     * The file name.
+     */
     public name: string;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Path to node containing collection of form fields.
-    */
+    /**
+     * Path to node containing collection of form fields.
+     */
     public nodePath: string;
 }
 
-/*
-* Request model for GetHeaderFooter operation.
-*/
+/**
+ * Request model for GetHeaderFooter operation.
+ */
 export class GetHeaderFooterRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Header/footer index.
-    */
+    /**
+     * Header/footer index.
+     */
     public headerFooterIndex: number;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * List of types of headers and footers.
-    */
+    /**
+     * List of types of headers and footers.
+     */
     public filterByType: string;
 }
 
-/*
-* Request model for GetHeaderFooterOfSection operation.
-*/
+/**
+ * Request model for GetHeaderFooterOfSection operation.
+ */
 export class GetHeaderFooterOfSectionRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Header/footer index.
-    */
+    /**
+     * Header/footer index.
+     */
     public headerFooterIndex: number;
 
-    /*
-    * Section index.
-    */
+    /**
+     * Section index.
+     */
     public sectionIndex: number;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * List of types of headers and footers.
-    */
+    /**
+     * List of types of headers and footers.
+     */
     public filterByType: string;
 }
 
-/*
-* Request model for GetHeaderFooters operation.
-*/
+/**
+ * Request model for GetHeaderFooters operation.
+ */
 export class GetHeaderFootersRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Path to parent section.
-    */
+    /**
+     * Path to parent section.
+     */
     public sectionPath: string;
 
-    /*
-    * List of types of headers and footers.
-    */
+    /**
+     * List of types of headers and footers.
+     */
     public filterByType: string;
 }
 
-/*
-* Request model for GetOfficeMathObject operation.
-*/
+/**
+ * Request model for GetOfficeMathObject operation.
+ */
 export class GetOfficeMathObjectRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Object's index
-    */
+    /**
+     * Object's index
+     */
     public index: number;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Path to node, which contains collection of OfficeMath objects.
-    */
+    /**
+     * Path to node, which contains collection of OfficeMath objects.
+     */
     public nodePath: string;
 }
 
-/*
-* Request model for GetOfficeMathObjects operation.
-*/
+/**
+ * Request model for GetOfficeMathObjects operation.
+ */
 export class GetOfficeMathObjectsRequest {
-    /*
-    * The file name.
-    */
+    /**
+     * The file name.
+     */
     public name: string;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Path to node, which contains collection of OfficeMath objects.
-    */
+    /**
+     * Path to node, which contains collection of OfficeMath objects.
+     */
     public nodePath: string;
 }
 
-/*
-* Request model for GetSection operation.
-*/
+/**
+ * Request model for GetSection operation.
+ */
 export class GetSectionRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Section index
-    */
+    /**
+     * Section index
+     */
     public sectionIndex: number;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 }
 
-/*
-* Request model for GetSectionPageSetup operation.
-*/
+/**
+ * Request model for GetSectionPageSetup operation.
+ */
 export class GetSectionPageSetupRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Section index
-    */
+    /**
+     * Section index
+     */
     public sectionIndex: number;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 }
 
-/*
-* Request model for GetSections operation.
-*/
+/**
+ * Request model for GetSections operation.
+ */
 export class GetSectionsRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 }
 
-/*
-* Request model for GetTable operation.
-*/
+/**
+ * Request model for GetTable operation.
+ */
 export class GetTableRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Object's index
-    */
+    /**
+     * Object's index
+     */
     public index: number;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Path to node, which contains tables.
-    */
+    /**
+     * Path to node, which contains tables.
+     */
     public nodePath: string;
 }
 
-/*
-* Request model for GetTableCell operation.
-*/
+/**
+ * Request model for GetTableCell operation.
+ */
 export class GetTableCellRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Path to table row.
-    */
+    /**
+     * Path to table row.
+     */
     public tableRowPath: string;
 
-    /*
-    * Object's index
-    */
+    /**
+     * Object's index
+     */
     public index: number;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 }
 
-/*
-* Request model for GetTableCellFormat operation.
-*/
+/**
+ * Request model for GetTableCellFormat operation.
+ */
 export class GetTableCellFormatRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Path to table row.
-    */
+    /**
+     * Path to table row.
+     */
     public tableRowPath: string;
 
-    /*
-    * Object's index
-    */
+    /**
+     * Object's index
+     */
     public index: number;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 }
 
-/*
-* Request model for GetTableProperties operation.
-*/
+/**
+ * Request model for GetTableProperties operation.
+ */
 export class GetTablePropertiesRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Object's index
-    */
+    /**
+     * Object's index
+     */
     public index: number;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Path to node, which contains tables.
-    */
+    /**
+     * Path to node, which contains tables.
+     */
     public nodePath: string;
 }
 
-/*
-* Request model for GetTableRow operation.
-*/
+/**
+ * Request model for GetTableRow operation.
+ */
 export class GetTableRowRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Path to table.
-    */
+    /**
+     * Path to table.
+     */
     public tablePath: string;
 
-    /*
-    * Object's index
-    */
+    /**
+     * Object's index
+     */
     public index: number;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 }
 
-/*
-* Request model for GetTableRowFormat operation.
-*/
+/**
+ * Request model for GetTableRowFormat operation.
+ */
 export class GetTableRowFormatRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Path to table.
-    */
+    /**
+     * Path to table.
+     */
     public tablePath: string;
 
-    /*
-    * Object's index
-    */
+    /**
+     * Object's index
+     */
     public index: number;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 }
 
-/*
-* Request model for GetTables operation.
-*/
+/**
+ * Request model for GetTables operation.
+ */
 export class GetTablesRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Path to node, which contains tables.
-    */
+    /**
+     * Path to node, which contains tables.
+     */
     public nodePath: string;
 }
 
-/*
-* Request model for InsertTable operation.
-*/
+/**
+ * Request model for InsertTable operation.
+ */
 export class InsertTableRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 
-    /*
-    * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-    */
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
     public revisionAuthor: string;
 
-    /*
-    * The date and time to use for revisions.
-    */
+    /**
+     * The date and time to use for revisions.
+     */
     public revisionDateTime: string;
 
-    /*
-    * Table parameters/
-    */
+    /**
+     * Table parameters/
+     */
     public table: TableInsert;
 
-    /*
-    * Path to node, which contains tables.
-    */
+    /**
+     * Path to node, which contains tables.
+     */
     public nodePath: string;
 }
 
-/*
-* Request model for InsertTableCell operation.
-*/
+/**
+ * Request model for InsertTableCell operation.
+ */
 export class InsertTableCellRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Path to table row.
-    */
+    /**
+     * Path to table row.
+     */
     public tableRowPath: string;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 
-    /*
-    * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-    */
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
     public revisionAuthor: string;
 
-    /*
-    * The date and time to use for revisions.
-    */
+    /**
+     * The date and time to use for revisions.
+     */
     public revisionDateTime: string;
 
-    /*
-    * Table cell parameters/
-    */
+    /**
+     * Table cell parameters/
+     */
     public cell: TableCellInsert;
 }
 
-/*
-* Request model for InsertTableRow operation.
-*/
+/**
+ * Request model for InsertTableRow operation.
+ */
 export class InsertTableRowRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Path to table.
-    */
+    /**
+     * Path to table.
+     */
     public tablePath: string;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 
-    /*
-    * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-    */
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
     public revisionAuthor: string;
 
-    /*
-    * The date and time to use for revisions.
-    */
+    /**
+     * The date and time to use for revisions.
+     */
     public revisionDateTime: string;
 
-    /*
-    * Table row parameters/
-    */
+    /**
+     * Table row parameters/
+     */
     public row: TableRowInsert;
 }
 
-/*
-* Request model for PostAppendDocument operation.
-*/
+/**
+ * Request model for PostAppendDocument operation.
+ */
 export class PostAppendDocumentRequest {
-    /*
-    * Original document name.
-    */
+    /**
+     * Original document name.
+     */
     public name: string;
 
-    /*
-    * with a list of documents to append.            
-    */
+    /**
+     * with a list of documents to append.            
+     */
     public documentList: DocumentEntryList;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 
-    /*
-    * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-    */
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
     public revisionAuthor: string;
 
-    /*
-    * The date and time to use for revisions.
-    */
+    /**
+     * The date and time to use for revisions.
+     */
     public revisionDateTime: string;
 }
 
-/*
-* Request model for PostChangeDocumentProtection operation.
-*/
+/**
+ * Request model for PostChangeDocumentProtection operation.
+ */
 export class PostChangeDocumentProtectionRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * with protection settings.            
-    */
+    /**
+     * with protection settings.            
+     */
     public protectionRequest: ProtectionRequest;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 }
 
-/*
-* Request model for PostComment operation.
-*/
+/**
+ * Request model for PostComment operation.
+ */
 export class PostCommentRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Comment index
-    */
+    /**
+     * Comment index
+     */
     public commentIndex: number;
 
-    /*
-    * Comment data.
-    */
+    /**
+     * Comment data.
+     */
     public comment: Comment;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 
-    /*
-    * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-    */
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
     public revisionAuthor: string;
 
-    /*
-    * The date and time to use for revisions.
-    */
+    /**
+     * The date and time to use for revisions.
+     */
     public revisionDateTime: string;
 }
 
-/*
-* Request model for PostCompareDocument operation.
-*/
+/**
+ * Request model for PostCompareDocument operation.
+ */
 export class PostCompareDocumentRequest {
-    /*
-    * Original document name.
-    */
+    /**
+     * Original document name.
+     */
     public name: string;
 
-    /*
-    * with a document to compare.            
-    */
+    /**
+     * with a document to compare.            
+     */
     public compareData: CompareData;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 }
 
-/*
-* Request model for PostDocumentExecuteMailMerge operation.
-*/
+/**
+ * Request model for PostDocumentExecuteMailMerge operation.
+ */
 export class PostDocumentExecuteMailMergeRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * With regions flag.
-    */
+    /**
+     * With regions flag.
+     */
     public withRegions: boolean;
 
-    /*
-    * Mail merge data
-    */
+    /**
+     * Mail merge data
+     */
     public data: string;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Mail merge data.
-    */
+    /**
+     * Mail merge data.
+     */
     public mailMergeDataFile: string;
 
-    /*
-    * Clean up options.
-    */
+    /**
+     * Clean up options.
+     */
     public cleanup: string;
 
-    /*
-    * Gets or sets a value indicating whether paragraph with TableStart or              TableEnd field should be fully included into mail merge region or particular range between TableStart and TableEnd fields.              The default value is true.
-    */
+    /**
+     * Gets or sets a value indicating whether paragraph with TableStart or              TableEnd field should be fully included into mail merge region or particular range between TableStart and TableEnd fields.              The default value is true.
+     */
     public useWholeParagraphAsRegion: boolean;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved with autogenerated name.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved with autogenerated name.
+     */
     public destFileName: string;
 }
 
-/*
-* Request model for PostDocumentParagraphRunFont operation.
-*/
+/**
+ * Request model for PostDocumentParagraphRunFont operation.
+ */
 export class PostDocumentParagraphRunFontRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Font dto object
-    */
+    /**
+     * Font dto object
+     */
     public fontDto: Font;
 
-    /*
-    * Path to parent paragraph.
-    */
+    /**
+     * Path to parent paragraph.
+     */
     public paragraphPath: string;
 
-    /*
-    * Object's index
-    */
+    /**
+     * Object's index
+     */
     public index: number;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 
-    /*
-    * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-    */
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
     public revisionAuthor: string;
 
-    /*
-    * The date and time to use for revisions.
-    */
+    /**
+     * The date and time to use for revisions.
+     */
     public revisionDateTime: string;
 }
 
-/*
-* Request model for PostDocumentSaveAs operation.
-*/
+/**
+ * Request model for PostDocumentSaveAs operation.
+ */
 export class PostDocumentSaveAsRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Save options.
-    */
+    /**
+     * Save options.
+     */
     public saveOptionsData: SaveOptionsData;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 
-    /*
-    * Folder in filestorage with custom fonts.
-    */
+    /**
+     * Folder in filestorage with custom fonts.
+     */
     public fontsLocation: string;
 }
 
-/*
-* Request model for PostDrawingObject operation.
-*/
+/**
+ * Request model for PostDrawingObject operation.
+ */
 export class PostDrawingObjectRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Drawing object parameters
-    */
+    /**
+     * Drawing object parameters
+     */
     public drawingObject: string;
 
-    /*
-    * File with image
-    */
+    /**
+     * File with image
+     */
     public imageFile: Buffer;
 
-    /*
-    * Object's index
-    */
+    /**
+     * Object's index
+     */
     public index: number;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 
-    /*
-    * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-    */
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
     public revisionAuthor: string;
 
-    /*
-    * The date and time to use for revisions.
-    */
+    /**
+     * The date and time to use for revisions.
+     */
     public revisionDateTime: string;
 
-    /*
-    * Path to node, which contains collection of drawing objects.
-    */
+    /**
+     * Path to node, which contains collection of drawing objects.
+     */
     public nodePath: string;
 }
 
-/*
-* Request model for PostExecuteTemplate operation.
-*/
+/**
+ * Request model for PostExecuteTemplate operation.
+ */
 export class PostExecuteTemplateRequest {
-    /*
-    * The template document name.
-    */
+    /**
+     * The template document name.
+     */
     public name: string;
 
-    /*
-    * Mail merge data
-    */
+    /**
+     * Mail merge data
+     */
     public data: string;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Clean up options.
-    */
+    /**
+     * Clean up options.
+     */
     public cleanup: string;
 
-    /*
-    * Gets or sets a value indicating whether paragraph with TableStart or  TableEnd field should be fully included into mail merge region or particular range between TableStart and TableEnd fields.   The default value is true.
-    */
+    /**
+     * Gets or sets a value indicating whether paragraph with TableStart or  TableEnd field should be fully included into mail merge region or particular range between TableStart and TableEnd fields.   The default value is true.
+     */
     public useWholeParagraphAsRegion: boolean;
 
-    /*
-    * Merge with regions or not. True by default
-    */
+    /**
+     * Merge with regions or not. True by default
+     */
     public withRegions: boolean;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved with autogenerated name.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved with autogenerated name.
+     */
     public destFileName: string;
 }
 
-/*
-* Request model for PostField operation.
-*/
+/**
+ * Request model for PostField operation.
+ */
 export class PostFieldRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Field data.
-    */
+    /**
+     * Field data.
+     */
     public field: Field;
 
-    /*
-    * Object's index
-    */
+    /**
+     * Object's index
+     */
     public index: number;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 
-    /*
-    * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-    */
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
     public revisionAuthor: string;
 
-    /*
-    * The date and time to use for revisions.
-    */
+    /**
+     * The date and time to use for revisions.
+     */
     public revisionDateTime: string;
 
-    /*
-    * Path to node, which contains collection of fields.
-    */
+    /**
+     * Path to node, which contains collection of fields.
+     */
     public nodePath: string;
 }
 
-/*
-* Request model for PostFootnote operation.
-*/
+/**
+ * Request model for PostFootnote operation.
+ */
 export class PostFootnoteRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Footnote data.
-    */
+    /**
+     * Footnote data.
+     */
     public footnoteDto: Footnote;
 
-    /*
-    * Object's index
-    */
+    /**
+     * Object's index
+     */
     public index: number;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 
-    /*
-    * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-    */
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
     public revisionAuthor: string;
 
-    /*
-    * The date and time to use for revisions.
-    */
+    /**
+     * The date and time to use for revisions.
+     */
     public revisionDateTime: string;
 
-    /*
-    * Path to node, which contains collection of footnotes.
-    */
+    /**
+     * Path to node, which contains collection of footnotes.
+     */
     public nodePath: string;
 }
 
-/*
-* Request model for PostFormField operation.
-*/
+/**
+ * Request model for PostFormField operation.
+ */
 export class PostFormFieldRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * From field data.
-    */
+    /**
+     * From field data.
+     */
     public formField: FormField;
 
-    /*
-    * Object's index
-    */
+    /**
+     * Object's index
+     */
     public index: number;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 
-    /*
-    * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-    */
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
     public revisionAuthor: string;
 
-    /*
-    * The date and time to use for revisions.
-    */
+    /**
+     * The date and time to use for revisions.
+     */
     public revisionDateTime: string;
 
-    /*
-    * Path to node that contains collection of formfields.
-    */
+    /**
+     * Path to node that contains collection of formfields.
+     */
     public nodePath: string;
 }
 
-/*
-* Request model for PostInsertDocumentWatermarkImage operation.
-*/
+/**
+ * Request model for PostInsertDocumentWatermarkImage operation.
+ */
 export class PostInsertDocumentWatermarkImageRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * File with image
-    */
+    /**
+     * File with image
+     */
     public imageFile: Buffer;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 
-    /*
-    * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-    */
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
     public revisionAuthor: string;
 
-    /*
-    * The date and time to use for revisions.
-    */
+    /**
+     * The date and time to use for revisions.
+     */
     public revisionDateTime: string;
 
-    /*
-    * The watermark rotation angle.
-    */
+    /**
+     * The watermark rotation angle.
+     */
     public rotationAngle: number;
 
-    /*
-    * The image file server full name. If the name is empty the image is expected in request content.
-    */
+    /**
+     * The image file server full name. If the name is empty the image is expected in request content.
+     */
     public image: string;
 }
 
-/*
-* Request model for PostInsertDocumentWatermarkText operation.
-*/
+/**
+ * Request model for PostInsertDocumentWatermarkText operation.
+ */
 export class PostInsertDocumentWatermarkTextRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * with the watermark data.            
-    */
+    /**
+     * with the watermark data.            
+     */
     public watermarkText: WatermarkText;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 
-    /*
-    * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-    */
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
     public revisionAuthor: string;
 
-    /*
-    * The date and time to use for revisions.
-    */
+    /**
+     * The date and time to use for revisions.
+     */
     public revisionDateTime: string;
 }
 
-/*
-* Request model for PostInsertPageNumbers operation.
-*/
+/**
+ * Request model for PostInsertPageNumbers operation.
+ */
 export class PostInsertPageNumbersRequest {
-    /*
-    * A document name.
-    */
+    /**
+     * A document name.
+     */
     public name: string;
 
-    /*
-    * with the page numbers settings.
-    */
+    /**
+     * with the page numbers settings.
+     */
     public pageNumber: PageNumber;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 
-    /*
-    * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-    */
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
     public revisionAuthor: string;
 
-    /*
-    * The date and time to use for revisions.
-    */
+    /**
+     * The date and time to use for revisions.
+     */
     public revisionDateTime: string;
 }
 
-/*
-* Request model for PostLoadWebDocument operation.
-*/
+/**
+ * Request model for PostLoadWebDocument operation.
+ */
 export class PostLoadWebDocumentRequest {
-    /*
-    * Parameters of loading.
-    */
+    /**
+     * Parameters of loading.
+     */
     public data: LoadWebDocumentData;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 }
 
-/*
-* Request model for PostReplaceText operation.
-*/
+/**
+ * Request model for PostReplaceText operation.
+ */
 export class PostReplaceTextRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * with the replace operation settings.            
-    */
+    /**
+     * with the replace operation settings.            
+     */
     public replaceText: ReplaceTextRequest;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 
-    /*
-    * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-    */
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
     public revisionAuthor: string;
 
-    /*
-    * The date and time to use for revisions.
-    */
+    /**
+     * The date and time to use for revisions.
+     */
     public revisionDateTime: string;
 }
 
-/*
-* Request model for PostRun operation.
-*/
+/**
+ * Request model for PostRun operation.
+ */
 export class PostRunRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Run data.
-    */
+    /**
+     * Run data.
+     */
     public run: Run;
 
-    /*
-    * Path to parent paragraph.
-    */
+    /**
+     * Path to parent paragraph.
+     */
     public paragraphPath: string;
 
-    /*
-    * Object's index
-    */
+    /**
+     * Object's index
+     */
     public index: number;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 
-    /*
-    * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-    */
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
     public revisionAuthor: string;
 
-    /*
-    * The date and time to use for revisions.
-    */
+    /**
+     * The date and time to use for revisions.
+     */
     public revisionDateTime: string;
 }
 
-/*
-* Request model for PostSplitDocument operation.
-*/
+/**
+ * Request model for PostSplitDocument operation.
+ */
 export class PostSplitDocumentRequest {
-    /*
-    * Original document name.
-    */
+    /**
+     * Original document name.
+     */
     public name: string;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 
-    /*
-    * Format to split.
-    */
+    /**
+     * Format to split.
+     */
     public format: string;
 
-    /*
-    * Start page.
-    */
+    /**
+     * Start page.
+     */
     public from: number;
 
-    /*
-    * End page.
-    */
+    /**
+     * End page.
+     */
     public to: number;
 
-    /*
-    * ZipOutput or not.
-    */
+    /**
+     * ZipOutput or not.
+     */
     public zipOutput: boolean;
 
-    /*
-    * Folder in filestorage with custom fonts.
-    */
+    /**
+     * Folder in filestorage with custom fonts.
+     */
     public fontsLocation: string;
 }
 
-/*
-* Request model for PostUpdateDocumentBookmark operation.
-*/
+/**
+ * Request model for PostUpdateDocumentBookmark operation.
+ */
 export class PostUpdateDocumentBookmarkRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * with new bookmark data.            
-    */
+    /**
+     * with new bookmark data.            
+     */
     public bookmarkData: BookmarkData;
 
-    /*
-    * The bookmark name.
-    */
+    /**
+     * The bookmark name.
+     */
     public bookmarkName: string;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 
-    /*
-    * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-    */
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
     public revisionAuthor: string;
 
-    /*
-    * The date and time to use for revisions.
-    */
+    /**
+     * The date and time to use for revisions.
+     */
     public revisionDateTime: string;
 }
 
-/*
-* Request model for PostUpdateDocumentFields operation.
-*/
+/**
+ * Request model for PostUpdateDocumentFields operation.
+ */
 export class PostUpdateDocumentFieldsRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 }
 
-/*
-* Request model for PutComment operation.
-*/
+/**
+ * Request model for PutComment operation.
+ */
 export class PutCommentRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Comment data.
-    */
+    /**
+     * Comment data.
+     */
     public comment: Comment;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 
-    /*
-    * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-    */
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
     public revisionAuthor: string;
 
-    /*
-    * The date and time to use for revisions.
-    */
+    /**
+     * The date and time to use for revisions.
+     */
     public revisionDateTime: string;
 }
 
-/*
-* Request model for PutConvertDocument operation.
-*/
+/**
+ * Request model for PutConvertDocument operation.
+ */
 export class PutConvertDocumentRequest {
-    /*
-    * Converting document
-    */
+    /**
+     * Converting document
+     */
     public document: Buffer;
 
-    /*
-    * Format to convert.
-    */
+    /**
+     * Format to convert.
+     */
     public format: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Path for saving operation result to the local storage.
-    */
+    /**
+     * Path for saving operation result to the local storage.
+     */
     public outPath: string;
 
-    /*
-    * Folder in filestorage with custom fonts.
-    */
+    /**
+     * Folder in filestorage with custom fonts.
+     */
     public fontsLocation: string;
 }
 
-/*
-* Request model for PutCreateDocument operation.
-*/
+/**
+ * Request model for PutCreateDocument operation.
+ */
 export class PutCreateDocumentRequest {
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * The file name.
-    */
+    /**
+     * The file name.
+     */
     public fileName: string;
 
-    /*
-    * The document folder.
-    */
+    /**
+     * The document folder.
+     */
     public folder: string;
 }
 
-/*
-* Request model for PutDocumentFieldNames operation.
-*/
+/**
+ * Request model for PutDocumentFieldNames operation.
+ */
 export class PutDocumentFieldNamesRequest {
-    /*
-    * File with template
-    */
+    /**
+     * File with template
+     */
     public template: Buffer;
 
-    /*
-    * Use non merge fields or not.
-    */
+    /**
+     * Use non merge fields or not.
+     */
     public useNonMergeFields: boolean;
 }
 
-/*
-* Request model for PutDocumentSaveAsTiff operation.
-*/
+/**
+ * Request model for PutDocumentSaveAsTiff operation.
+ */
 export class PutDocumentSaveAsTiffRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Tiff save options.
-    */
+    /**
+     * Tiff save options.
+     */
     public saveOptions: TiffSaveOptionsData;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 
-    /*
-    * The resulting file name.
-    */
+    /**
+     * The resulting file name.
+     */
     public resultFile: string;
 
-    /*
-    * Use antialiasing flag.
-    */
+    /**
+     * Use antialiasing flag.
+     */
     public useAntiAliasing: boolean;
 
-    /*
-    * Use high quality flag.
-    */
+    /**
+     * Use high quality flag.
+     */
     public useHighQualityRendering: boolean;
 
-    /*
-    * Brightness for the generated images.
-    */
+    /**
+     * Brightness for the generated images.
+     */
     public imageBrightness: number;
 
-    /*
-    * Color mode for the generated images.
-    */
+    /**
+     * Color mode for the generated images.
+     */
     public imageColorMode: string;
 
-    /*
-    * The contrast for the generated images.
-    */
+    /**
+     * The contrast for the generated images.
+     */
     public imageContrast: number;
 
-    /*
-    * The images numeral format.
-    */
+    /**
+     * The images numeral format.
+     */
     public numeralFormat: string;
 
-    /*
-    * Number of pages to render.
-    */
+    /**
+     * Number of pages to render.
+     */
     public pageCount: number;
 
-    /*
-    * Page index to start rendering.
-    */
+    /**
+     * Page index to start rendering.
+     */
     public pageIndex: number;
 
-    /*
-    * Background image color.
-    */
+    /**
+     * Background image color.
+     */
     public paperColor: string;
 
-    /*
-    * The pixel format of generated images.
-    */
+    /**
+     * The pixel format of generated images.
+     */
     public pixelFormat: string;
 
-    /*
-    * The resolution of generated images.
-    */
+    /**
+     * The resolution of generated images.
+     */
     public resolution: number;
 
-    /*
-    * Zoom factor for generated images.
-    */
+    /**
+     * Zoom factor for generated images.
+     */
     public scale: number;
 
-    /*
-    * The compression tipe.
-    */
+    /**
+     * The compression tipe.
+     */
     public tiffCompression: string;
 
-    /*
-    * Optional, default is Fallback.
-    */
+    /**
+     * Optional, default is Fallback.
+     */
     public dmlRenderingMode: string;
 
-    /*
-    * Optional, default is Simplified.
-    */
+    /**
+     * Optional, default is Simplified.
+     */
     public dmlEffectsRenderingMode: string;
 
-    /*
-    * Optional, Tiff binarization method, possible values are: FloydSteinbergDithering, Threshold.
-    */
+    /**
+     * Optional, Tiff binarization method, possible values are: FloydSteinbergDithering, Threshold.
+     */
     public tiffBinarizationMethod: string;
 
-    /*
-    * Optional. A value determining zip output or not.
-    */
+    /**
+     * Optional. A value determining zip output or not.
+     */
     public zipOutput: boolean;
 
-    /*
-    * Folder in filestorage with custom fonts.
-    */
+    /**
+     * Folder in filestorage with custom fonts.
+     */
     public fontsLocation: string;
 }
 
-/*
-* Request model for PutDrawingObject operation.
-*/
+/**
+ * Request model for PutDrawingObject operation.
+ */
 export class PutDrawingObjectRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Drawing object parameters
-    */
+    /**
+     * Drawing object parameters
+     */
     public drawingObject: string;
 
-    /*
-    * File with image
-    */
+    /**
+     * File with image
+     */
     public imageFile: Buffer;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 
-    /*
-    * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-    */
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
     public revisionAuthor: string;
 
-    /*
-    * The date and time to use for revisions.
-    */
+    /**
+     * The date and time to use for revisions.
+     */
     public revisionDateTime: string;
 
-    /*
-    * Path to node, which contains collection of drawing objects.
-    */
+    /**
+     * Path to node, which contains collection of drawing objects.
+     */
     public nodePath: string;
 }
 
-/*
-* Request model for PutExecuteMailMergeOnline operation.
-*/
+/**
+ * Request model for PutExecuteMailMergeOnline operation.
+ */
 export class PutExecuteMailMergeOnlineRequest {
-    /*
-    * File with template
-    */
+    /**
+     * File with template
+     */
     public template: Buffer;
 
-    /*
-    * File with mailmerge data
-    */
+    /**
+     * File with mailmerge data
+     */
     public data: Buffer;
 
-    /*
-    * With regions flag.
-    */
+    /**
+     * With regions flag.
+     */
     public withRegions: boolean;
 
-    /*
-    * Clean up options.
-    */
+    /**
+     * Clean up options.
+     */
     public cleanup: string;
 }
 
-/*
-* Request model for PutExecuteTemplateOnline operation.
-*/
+/**
+ * Request model for PutExecuteTemplateOnline operation.
+ */
 export class PutExecuteTemplateOnlineRequest {
-    /*
-    * File with template
-    */
+    /**
+     * File with template
+     */
     public template: Buffer;
 
-    /*
-    * File with mailmerge data
-    */
+    /**
+     * File with mailmerge data
+     */
     public data: Buffer;
 
-    /*
-    * Clean up options.
-    */
+    /**
+     * Clean up options.
+     */
     public cleanup: string;
 
-    /*
-    * Gets or sets a value indicating whether paragraph with TableStart or              TableEnd field should be fully included into mail merge region or particular range between TableStart and TableEnd fields.              The default value is true.
-    */
+    /**
+     * Gets or sets a value indicating whether paragraph with TableStart or              TableEnd field should be fully included into mail merge region or particular range between TableStart and TableEnd fields.              The default value is true.
+     */
     public useWholeParagraphAsRegion: boolean;
 
-    /*
-    * Merge with regions or not. True by default
-    */
+    /**
+     * Merge with regions or not. True by default
+     */
     public withRegions: boolean;
 }
 
-/*
-* Request model for PutField operation.
-*/
+/**
+ * Request model for PutField operation.
+ */
 export class PutFieldRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Field data.
-    */
+    /**
+     * Field data.
+     */
     public field: Field;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 
-    /*
-    * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-    */
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
     public revisionAuthor: string;
 
-    /*
-    * The date and time to use for revisions.
-    */
+    /**
+     * The date and time to use for revisions.
+     */
     public revisionDateTime: string;
 
-    /*
-    * Path to node, which contains collection of fields.
-    */
+    /**
+     * Path to node, which contains collection of fields.
+     */
     public nodePath: string;
 
-    /*
-    * Field will be inserted before node with id=\"nodeId\".
-    */
+    /**
+     * Field will be inserted before node with id=\"nodeId\".
+     */
     public insertBeforeNode: string;
 }
 
-/*
-* Request model for PutFootnote operation.
-*/
+/**
+ * Request model for PutFootnote operation.
+ */
 export class PutFootnoteRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Footnote data.
-    */
+    /**
+     * Footnote data.
+     */
     public footnoteDto: Footnote;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 
-    /*
-    * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-    */
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
     public revisionAuthor: string;
 
-    /*
-    * The date and time to use for revisions.
-    */
+    /**
+     * The date and time to use for revisions.
+     */
     public revisionDateTime: string;
 
-    /*
-    * Path to node, which contains collection of footnotes.
-    */
+    /**
+     * Path to node, which contains collection of footnotes.
+     */
     public nodePath: string;
 }
 
-/*
-* Request model for PutFormField operation.
-*/
+/**
+ * Request model for PutFormField operation.
+ */
 export class PutFormFieldRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * From field data.
-    */
+    /**
+     * From field data.
+     */
     public formField: FormField;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 
-    /*
-    * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-    */
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
     public revisionAuthor: string;
 
-    /*
-    * The date and time to use for revisions.
-    */
+    /**
+     * The date and time to use for revisions.
+     */
     public revisionDateTime: string;
 
-    /*
-    * Path to node that contains collection of formfields.
-    */
+    /**
+     * Path to node that contains collection of formfields.
+     */
     public nodePath: string;
 
-    /*
-    * Form field will be inserted before node with index.
-    */
+    /**
+     * Form field will be inserted before node with index.
+     */
     public insertBeforeNode: string;
 }
 
-/*
-* Request model for PutHeaderFooter operation.
-*/
+/**
+ * Request model for PutHeaderFooter operation.
+ */
 export class PutHeaderFooterRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Type of header/footer.
-    */
+    /**
+     * Type of header/footer.
+     */
     public headerFooterType: string;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 
-    /*
-    * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-    */
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
     public revisionAuthor: string;
 
-    /*
-    * The date and time to use for revisions.
-    */
+    /**
+     * The date and time to use for revisions.
+     */
     public revisionDateTime: string;
 
-    /*
-    * Path to parent section.
-    */
+    /**
+     * Path to parent section.
+     */
     public sectionPath: string;
 }
 
-/*
-* Request model for PutParagraph operation.
-*/
+/**
+ * Request model for PutParagraph operation.
+ */
 export class PutParagraphRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Paragraph data.
-    */
+    /**
+     * Paragraph data.
+     */
     public paragraph: ParagraphInsert;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 
-    /*
-    * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-    */
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
     public revisionAuthor: string;
 
-    /*
-    * The date and time to use for revisions.
-    */
+    /**
+     * The date and time to use for revisions.
+     */
     public revisionDateTime: string;
 
-    /*
-    * Path to node which contains paragraphs.
-    */
+    /**
+     * Path to node which contains paragraphs.
+     */
     public nodePath: string;
 
-    /*
-    * Paragraph will be inserted before node with index.
-    */
+    /**
+     * Paragraph will be inserted before node with index.
+     */
     public insertBeforeNode: string;
 }
 
-/*
-* Request model for PutProtectDocument operation.
-*/
+/**
+ * Request model for PutProtectDocument operation.
+ */
 export class PutProtectDocumentRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * with protection settings.            
-    */
+    /**
+     * with protection settings.            
+     */
     public protectionRequest: ProtectionRequest;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 }
 
-/*
-* Request model for PutRun operation.
-*/
+/**
+ * Request model for PutRun operation.
+ */
 export class PutRunRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Path to parent paragraph.
-    */
+    /**
+     * Path to parent paragraph.
+     */
     public paragraphPath: string;
 
-    /*
-    * Run data.
-    */
+    /**
+     * Run data.
+     */
     public run: Run;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 
-    /*
-    * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-    */
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
     public revisionAuthor: string;
 
-    /*
-    * The date and time to use for revisions.
-    */
+    /**
+     * The date and time to use for revisions.
+     */
     public revisionDateTime: string;
 
-    /*
-    * Paragraph will be inserted before node with index.
-    */
+    /**
+     * Paragraph will be inserted before node with index.
+     */
     public insertBeforeNode: string;
 }
 
-/*
-* Request model for RejectAllRevisions operation.
-*/
+/**
+ * Request model for RejectAllRevisions operation.
+ */
 export class RejectAllRevisionsRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 }
 
-/*
-* Request model for RenderDrawingObject operation.
-*/
+/**
+ * Request model for RenderDrawingObject operation.
+ */
 export class RenderDrawingObjectRequest {
-    /*
-    * The file name.
-    */
+    /**
+     * The file name.
+     */
     public name: string;
 
-    /*
-    * The destination format.
-    */
+    /**
+     * The destination format.
+     */
     public format: string;
 
-    /*
-    * Object's index
-    */
+    /**
+     * Object's index
+     */
     public index: number;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Path to node, which contains drawing objects.
-    */
+    /**
+     * Path to node, which contains drawing objects.
+     */
     public nodePath: string;
 
-    /*
-    * Folder in filestorage with custom fonts.
-    */
+    /**
+     * Folder in filestorage with custom fonts.
+     */
     public fontsLocation: string;
 }
 
-/*
-* Request model for RenderMathObject operation.
-*/
+/**
+ * Request model for RenderMathObject operation.
+ */
 export class RenderMathObjectRequest {
-    /*
-    * The file name.
-    */
+    /**
+     * The file name.
+     */
     public name: string;
 
-    /*
-    * The destination format.
-    */
+    /**
+     * The destination format.
+     */
     public format: string;
 
-    /*
-    * Object's index
-    */
+    /**
+     * Object's index
+     */
     public index: number;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Path to node, which contains office math objects.
-    */
+    /**
+     * Path to node, which contains office math objects.
+     */
     public nodePath: string;
 
-    /*
-    * Folder in filestorage with custom fonts.
-    */
+    /**
+     * Folder in filestorage with custom fonts.
+     */
     public fontsLocation: string;
 }
 
-/*
-* Request model for RenderPage operation.
-*/
+/**
+ * Request model for RenderPage operation.
+ */
 export class RenderPageRequest {
-    /*
-    * The file name.
-    */
+    /**
+     * The file name.
+     */
     public name: string;
 
-    /*
-    * Comment index
-    */
+    /**
+     * Comment index
+     */
     public pageIndex: number;
 
-    /*
-    * The destination format.
-    */
+    /**
+     * The destination format.
+     */
     public format: string;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Folder in filestorage with custom fonts.
-    */
+    /**
+     * Folder in filestorage with custom fonts.
+     */
     public fontsLocation: string;
 }
 
-/*
-* Request model for RenderParagraph operation.
-*/
+/**
+ * Request model for RenderParagraph operation.
+ */
 export class RenderParagraphRequest {
-    /*
-    * The file name.
-    */
+    /**
+     * The file name.
+     */
     public name: string;
 
-    /*
-    * The destination format.
-    */
+    /**
+     * The destination format.
+     */
     public format: string;
 
-    /*
-    * Object's index
-    */
+    /**
+     * Object's index
+     */
     public index: number;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Path to node, which contains paragraphs.
-    */
+    /**
+     * Path to node, which contains paragraphs.
+     */
     public nodePath: string;
 
-    /*
-    * Folder in filestorage with custom fonts.
-    */
+    /**
+     * Folder in filestorage with custom fonts.
+     */
     public fontsLocation: string;
 }
 
-/*
-* Request model for RenderTable operation.
-*/
+/**
+ * Request model for RenderTable operation.
+ */
 export class RenderTableRequest {
-    /*
-    * The file name.
-    */
+    /**
+     * The file name.
+     */
     public name: string;
 
-    /*
-    * The destination format.
-    */
+    /**
+     * The destination format.
+     */
     public format: string;
 
-    /*
-    * Object's index
-    */
+    /**
+     * Object's index
+     */
     public index: number;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Path to node, which contains tables.
-    */
+    /**
+     * Path to node, which contains tables.
+     */
     public nodePath: string;
 
-    /*
-    * Folder in filestorage with custom fonts.
-    */
+    /**
+     * Folder in filestorage with custom fonts.
+     */
     public fontsLocation: string;
 }
 
-/*
-* Request model for ResetCache operation.
-*/
+/**
+ * Request model for ResetCache operation.
+ */
 export class ResetCacheRequest {
 }
 
-/*
-* Request model for Search operation.
-*/
+/**
+ * Request model for Search operation.
+ */
 export class SearchRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * The regular expression used to find matches.
-    */
+    /**
+     * The regular expression used to find matches.
+     */
     public pattern: string;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 }
 
-/*
-* Request model for UpdateBorder operation.
-*/
+/**
+ * Request model for UpdateBorder operation.
+ */
 export class UpdateBorderRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Border properties
-    */
+    /**
+     * Border properties
+     */
     public borderProperties: Border;
 
-    /*
-    * Path to node with border(node should be cell or row).
-    */
+    /**
+     * Path to node with border(node should be cell or row).
+     */
     public nodePath: string;
 
-    /*
-    * Object's index
-    */
+    /**
+     * Object's index
+     */
     public index: number;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 
-    /*
-    * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-    */
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
     public revisionAuthor: string;
 
-    /*
-    * The date and time to use for revisions.
-    */
+    /**
+     * The date and time to use for revisions.
+     */
     public revisionDateTime: string;
 }
 
-/*
-* Request model for UpdateSectionPageSetup operation.
-*/
+/**
+ * Request model for UpdateSectionPageSetup operation.
+ */
 export class UpdateSectionPageSetupRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Section index
-    */
+    /**
+     * Section index
+     */
     public sectionIndex: number;
 
-    /*
-    * Page setup properties dto
-    */
+    /**
+     * Page setup properties dto
+     */
     public pageSetup: PageSetup;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 
-    /*
-    * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-    */
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
     public revisionAuthor: string;
 
-    /*
-    * The date and time to use for revisions.
-    */
+    /**
+     * The date and time to use for revisions.
+     */
     public revisionDateTime: string;
 }
 
-/*
-* Request model for UpdateTableCellFormat operation.
-*/
+/**
+ * Request model for UpdateTableCellFormat operation.
+ */
 export class UpdateTableCellFormatRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Path to table row.
-    */
+    /**
+     * Path to table row.
+     */
     public tableRowPath: string;
 
-    /*
-    * Object's index
-    */
+    /**
+     * Object's index
+     */
     public index: number;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 
-    /*
-    * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-    */
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
     public revisionAuthor: string;
 
-    /*
-    * The date and time to use for revisions.
-    */
+    /**
+     * The date and time to use for revisions.
+     */
     public revisionDateTime: string;
 
-    /*
-    * The properties.
-    */
+    /**
+     * The properties.
+     */
     public format: TableCellFormat;
 }
 
-/*
-* Request model for UpdateTableProperties operation.
-*/
+/**
+ * Request model for UpdateTableProperties operation.
+ */
 export class UpdateTablePropertiesRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Object's index
-    */
+    /**
+     * Object's index
+     */
     public index: number;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 
-    /*
-    * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-    */
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
     public revisionAuthor: string;
 
-    /*
-    * The date and time to use for revisions.
-    */
+    /**
+     * The date and time to use for revisions.
+     */
     public revisionDateTime: string;
 
-    /*
-    * The properties.
-    */
+    /**
+     * The properties.
+     */
     public properties: TableProperties;
 
-    /*
-    * Path to node, which contains tables.
-    */
+    /**
+     * Path to node, which contains tables.
+     */
     public nodePath: string;
 }
 
-/*
-* Request model for UpdateTableRowFormat operation.
-*/
+/**
+ * Request model for UpdateTableRowFormat operation.
+ */
 export class UpdateTableRowFormatRequest {
-    /*
-    * The document name.
-    */
+    /**
+     * The document name.
+     */
     public name: string;
 
-    /*
-    * Path to table.
-    */
+    /**
+     * Path to table.
+     */
     public tablePath: string;
 
-    /*
-    * Object's index
-    */
+    /**
+     * Object's index
+     */
     public index: number;
 
-    /*
-    * Original document folder.
-    */
+    /**
+     * Original document folder.
+     */
     public folder: string;
 
-    /*
-    * File storage, which have to be used.
-    */
+    /**
+     * File storage, which have to be used.
+     */
     public storage: string;
 
-    /*
-    * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-    */
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
     public loadEncoding: string;
 
-    /*
-    * Password for opening an encrypted document.
-    */
+    /**
+     * Password for opening an encrypted document.
+     */
     public password: string;
 
-    /*
-    * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-    */
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
     public destFileName: string;
 
-    /*
-    * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-    */
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
     public revisionAuthor: string;
 
-    /*
-    * The date and time to use for revisions.
-    */
+    /**
+     * The date and time to use for revisions.
+     */
     public revisionDateTime: string;
 
-    /*
-    * Table row format.
-    */
+    /**
+     * Table row format.
+     */
     public format: TableRowFormat;
 }

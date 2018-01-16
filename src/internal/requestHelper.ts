@@ -26,6 +26,12 @@ import request = require("request");
 import requestDebug = require("request-debug");
 import { Configuration } from "./configuration";
 
+/**
+ * Invoke api method
+ * @param requestOptions request parameters
+ * @param confguration api configuration
+ * @param notApplyAuthToRequest if setted to true, auth is not applied to request
+ */
 export async function invokeApiMethod(requestOptions: request.Options, confguration: Configuration, notApplyAuthToRequest?: boolean): Promise<request.RequestResponse> {
     try {
         return await invokeApiMethodInternal(requestOptions, confguration, notApplyAuthToRequest);
@@ -38,6 +44,12 @@ export async function invokeApiMethod(requestOptions: request.Options, confgurat
     }
 }
 
+/**
+ * Invoke api method
+ * @param requestOptions request parameters
+ * @param confguration api configuration
+ * @param notApplyAuthToRequest if setted to true, auth is not applied to request
+ */
 async function invokeApiMethodInternal(requestOptions: request.Options, confguration: Configuration, notApplyAuthToRequest?: boolean): Promise<request.RequestResponse> {
     requestDebug(request, (type, data, r) => {
         if (r.writeDebugToConsole) {
@@ -81,5 +93,8 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
     });
 }
 
+/**
+ * Exception, indicating necessity of request repeat
+ */
 class NeedRepeatException extends Error {
 }

@@ -2501,6 +2501,9 @@ export class DocumentProperties extends LinkElement {
         return super.getAttributeTypeMap().concat(DocumentProperties.attributeTypeMap);
     }
 
+    /**
+     * Collection of document properties.
+     */
     public list: Array<DocumentProperty>;
     
 }
@@ -2779,6 +2782,9 @@ export class FieldNames extends LinkElement {
         return super.getAttributeTypeMap().concat(FieldNames.attributeTypeMap);
     }
 
+    /**
+     * Collection of fields names.
+     */
     public names: Array<string>;
     
 }
@@ -7080,6 +7086,9 @@ export class TextItem extends LinkElement {
         return super.getAttributeTypeMap().concat(TextItem.attributeTypeMap);
     }
 
+    /**
+     * Text.
+     */
     public text: string;
     
 }
@@ -7106,6 +7115,9 @@ export class TextItems extends LinkElement {
         return super.getAttributeTypeMap().concat(TextItems.attributeTypeMap);
     }
 
+    /**
+     * Collection of text items.
+     */
     public list: Array<TextItem>;
     
 }

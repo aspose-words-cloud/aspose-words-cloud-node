@@ -27,7 +27,7 @@ import "mocha-sinon";
 import * as sinon from "sinon";
 
 import { GetDocumentRequest } from "../../src/model/model";
-import { wordsApiInitializer } from "../baseTest";
+import { initializeWordsApi } from "../baseTest";
 
 describe("oauth tests", () => {
 
@@ -37,7 +37,7 @@ describe("oauth tests", () => {
         this.skip();
         this.timeout(30000);
 
-        const wordsApi = wordsApiInitializer();
+        const wordsApi = initializeWordsApi();
         wordsApi.configuration.baseUrl = "http://localhost:8081";
         // TODO: put document to storage
         // TODO: move folder name to constants

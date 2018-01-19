@@ -27,13 +27,13 @@ import "mocha-sinon";
 import * as sinon from "sinon";
 
 import { GetDocumentRequest } from "../../src/model/model";
-import { wordsApiInitializer } from "../baseTest";
+import { initializeWordsApi } from "../baseTest";
 
 describe("configuration tests", () => {
 
     it("should write request to console if debugMode is setted to true", () => {
 
-        const wordsApi = wordsApiInitializer();
+        const wordsApi = initializeWordsApi();
 
         // TODO: put document to storage
         // TODO: move folder name to constants
@@ -55,7 +55,7 @@ describe("configuration tests", () => {
 
     it("should not write to console if debugMode is setted to false", () => {
 
-        const wordsApi = wordsApiInitializer();
+        const wordsApi = initializeWordsApi();
 
         // TODO: put document to storage
         // TODO: move folder name to constants

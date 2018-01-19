@@ -26,13 +26,13 @@ import "mocha";
 
 import { expect } from "chai";
 import { GetDocumentRequest } from "../../src/model/model";
-import { wordsApiInitializer } from "../baseTest";
+import { initializeWordsApi } from "../baseTest";
 
 describe("errorHandling tests", () => {
 
     it("If file does not exist, 400 response should be returned with message 'Error while loading file '", () => {
 
-        const wordsApi = wordsApiInitializer();        
+        const wordsApi = initializeWordsApi();        
         const request = new GetDocumentRequest();
         request.documentName = "noFileWithThisName.docx";
                         

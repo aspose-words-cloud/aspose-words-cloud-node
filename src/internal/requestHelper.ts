@@ -25,6 +25,7 @@
 import request = require("request");
 import requestDebug = require("request-debug");
 import { Configuration } from "./configuration";
+import { ObjectSerializer } from "./objectSerializer";
 
 /**
  * Invoke api method
@@ -84,7 +85,13 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
                     await auth.handle401response(confguration);
                     reject(new NeedRepeatException());
                 } else {
-                    reject(response);
+                    try {
+                        const result =  ObjectSerializer.deserialize(response.body, "WordsApiErrorResponse");
+                        reject({message: result.message, code: response.statusCode});    
+                    } catch (error) {
+                        reject({message: "Error while parse server error: " + error});  
+                    }
+                    
                 }
             }
         });

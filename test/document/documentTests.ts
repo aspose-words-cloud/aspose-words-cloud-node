@@ -26,21 +26,21 @@ import { expect } from "chai";
 import "mocha";
 
 import { GetDocumentRequest } from "../../src/model/model";
-import { initializeStorageApi, initializeWordsApi } from "../baseTest";
+import * as BaseTest from "../baseTest";
 
 describe("getDocument function", () => {
 
   it("should return response with code 200", () => {
 
-    const storageApi = initializeStorageApi();
-    const wordsApi = initializeWordsApi();
+    const storageApi = BaseTest.initializeStorageApi();
+    const wordsApi = BaseTest.initializeWordsApi();
 
-    const localPath = "./testData/Conversion/";
-    const remotePath = "Temp/SdkTests/TestData/DocumentActions/Document";
+    const localPath = BaseTest.localBaseTestDataFolder + "Conversion";
+    const remotePath = BaseTest.remoteBaseTestDataFolder + "Conversion";
     const filename = "test_doc.docx";
 
-    return new Promise((resolve, reject) => {
-      storageApi.PutCreate(remotePath + "/" + filename, null, null, localPath + filename, (responseMessage) => {
+    return new Promise((resolve) => {
+      storageApi.PutCreate(remotePath + "/" + filename, null, null, localPath + "/" + filename, (responseMessage) => {
         expect(responseMessage.status).to.equal("OK");
         resolve();
       });      

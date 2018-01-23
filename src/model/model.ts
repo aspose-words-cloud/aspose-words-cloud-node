@@ -10657,6 +10657,10 @@ export class AcceptAllRevisionsRequest {
      * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
+    
+    public constructor(init?: Partial<AcceptAllRevisionsRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -10712,6 +10716,10 @@ export class CreateOrUpdateDocumentPropertyRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+    
+    public constructor(init?: Partial<CreateOrUpdateDocumentPropertyRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -10767,6 +10775,10 @@ export class DeleteBorderRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+    
+    public constructor(init?: Partial<DeleteBorderRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -10817,6 +10829,10 @@ export class DeleteBordersRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+    
+    public constructor(init?: Partial<DeleteBordersRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -10867,6 +10883,10 @@ export class DeleteCommentRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+    
+    public constructor(init?: Partial<DeleteCommentRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -10912,6 +10932,10 @@ export class DeleteDocumentMacrosRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+    
+    public constructor(init?: Partial<DeleteDocumentMacrosRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -10962,6 +10986,10 @@ export class DeleteDocumentPropertyRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+    
+    public constructor(init?: Partial<DeleteDocumentPropertyRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -11007,6 +11035,10 @@ export class DeleteDocumentWatermarkRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+    
+    public constructor(init?: Partial<DeleteDocumentWatermarkRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -11062,6 +11094,10 @@ export class DeleteDrawingObjectRequest {
      * Path to node, which contains collection of drawing objects.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<DeleteDrawingObjectRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -11117,6 +11153,10 @@ export class DeleteFieldRequest {
      * Path to node, which contains collection of fields.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<DeleteFieldRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -11167,6 +11207,10 @@ export class DeleteFieldsRequest {
      * Path to node, which contains collection of fields.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<DeleteFieldsRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -11222,6 +11266,10 @@ export class DeleteFootnoteRequest {
      * Path to node, which contains collection of footnotes.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<DeleteFootnoteRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -11277,6 +11325,10 @@ export class DeleteFormFieldRequest {
      * Path to node that contains collection of formfields.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<DeleteFormFieldRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -11332,6 +11384,10 @@ export class DeleteHeaderFooterRequest {
      * Path to parent section.
      */
     public sectionPath: string;
+    
+    public constructor(init?: Partial<DeleteHeaderFooterRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -11387,6 +11443,10 @@ export class DeleteHeadersFootersRequest {
      * List of types of headers and footers.
      */
     public headersFootersTypes: string;
+    
+    public constructor(init?: Partial<DeleteHeadersFootersRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -11442,6 +11502,10 @@ export class DeleteOfficeMathObjectRequest {
      * Path to node, which contains collection of OfficeMath objects.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<DeleteOfficeMathObjectRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -11497,6 +11561,10 @@ export class DeleteParagraphRequest {
      * Path to node which contains paragraphs.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<DeleteParagraphRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -11552,6 +11620,10 @@ export class DeleteRunRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+    
+    public constructor(init?: Partial<DeleteRunRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -11607,6 +11679,10 @@ export class DeleteTableRequest {
      * Path to node, which contains tables.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<DeleteTableRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -11662,6 +11738,10 @@ export class DeleteTableCellRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+    
+    public constructor(init?: Partial<DeleteTableCellRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -11717,6 +11797,10 @@ export class DeleteTableRowRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+    
+    public constructor(init?: Partial<DeleteTableRowRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -11757,6 +11841,10 @@ export class DeleteUnprotectDocumentRequest {
      * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
+    
+    public constructor(init?: Partial<DeleteUnprotectDocumentRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -11797,6 +11885,10 @@ export class GetBorderRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+    
+    public constructor(init?: Partial<GetBorderRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -11832,6 +11924,10 @@ export class GetBordersRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+    
+    public constructor(init?: Partial<GetBordersRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -11867,6 +11963,10 @@ export class GetCommentRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+    
+    public constructor(init?: Partial<GetCommentRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -11897,6 +11997,10 @@ export class GetCommentsRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+    
+    public constructor(init?: Partial<GetCommentsRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -11927,6 +12031,10 @@ export class GetDocumentRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+    
+    public constructor(init?: Partial<GetDocumentRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -11962,6 +12070,10 @@ export class GetDocumentBookmarkByNameRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+    
+    public constructor(init?: Partial<GetDocumentBookmarkByNameRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -11992,6 +12104,10 @@ export class GetDocumentBookmarksRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+    
+    public constructor(init?: Partial<GetDocumentBookmarksRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -12032,6 +12148,10 @@ export class GetDocumentDrawingObjectByIndexRequest {
      * Path to node, which contains collection of drawing objects.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<GetDocumentDrawingObjectByIndexRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -12072,6 +12192,10 @@ export class GetDocumentDrawingObjectImageDataRequest {
      * Path to node, which contains collection of drawing objects.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<GetDocumentDrawingObjectImageDataRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -12112,6 +12236,10 @@ export class GetDocumentDrawingObjectOleDataRequest {
      * Path to node, which contains collection of drawing objects.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<GetDocumentDrawingObjectOleDataRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -12147,6 +12275,10 @@ export class GetDocumentDrawingObjectsRequest {
      * Path to node, which contains collection of drawing objects.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<GetDocumentDrawingObjectsRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -12182,6 +12314,10 @@ export class GetDocumentFieldNamesRequest {
      * If true, result includes \"mustache\" field names.
      */
     public useNonMergeFields: boolean;
+    
+    public constructor(init?: Partial<GetDocumentFieldNamesRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -12217,6 +12353,10 @@ export class GetDocumentHyperlinkByIndexRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+    
+    public constructor(init?: Partial<GetDocumentHyperlinkByIndexRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -12247,6 +12387,10 @@ export class GetDocumentHyperlinksRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+    
+    public constructor(init?: Partial<GetDocumentHyperlinksRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -12287,6 +12431,10 @@ export class GetDocumentParagraphRequest {
      * Path to node which contains paragraphs.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<GetDocumentParagraphRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -12327,6 +12475,10 @@ export class GetDocumentParagraphRunRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+    
+    public constructor(init?: Partial<GetDocumentParagraphRunRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -12367,6 +12519,10 @@ export class GetDocumentParagraphRunFontRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+    
+    public constructor(init?: Partial<GetDocumentParagraphRunFontRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -12402,6 +12558,10 @@ export class GetDocumentParagraphRunsRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+    
+    public constructor(init?: Partial<GetDocumentParagraphRunsRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -12437,6 +12597,10 @@ export class GetDocumentParagraphsRequest {
      * Path to node which contains paragraphs.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<GetDocumentParagraphsRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -12467,6 +12631,10 @@ export class GetDocumentPropertiesRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+    
+    public constructor(init?: Partial<GetDocumentPropertiesRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -12502,6 +12670,10 @@ export class GetDocumentPropertyRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+    
+    public constructor(init?: Partial<GetDocumentPropertyRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -12532,6 +12704,10 @@ export class GetDocumentProtectionRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+    
+    public constructor(init?: Partial<GetDocumentProtectionRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -12577,6 +12753,10 @@ export class GetDocumentStatisticsRequest {
      * Support including/excluding shape's text from the WordCount. Default value is \"false\"
      */
     public includeTextInShapes: boolean;
+    
+    public constructor(init?: Partial<GetDocumentStatisticsRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -12607,6 +12787,10 @@ export class GetDocumentTextItemsRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+    
+    public constructor(init?: Partial<GetDocumentTextItemsRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -12652,6 +12836,10 @@ export class GetDocumentWithFormatRequest {
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
+    
+    public constructor(init?: Partial<GetDocumentWithFormatRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -12692,6 +12880,10 @@ export class GetFieldRequest {
      * Path to node, which contains collection of fields.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<GetFieldRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -12727,6 +12919,10 @@ export class GetFieldsRequest {
      * Path to node, which contains collection of fields.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<GetFieldsRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -12767,6 +12963,10 @@ export class GetFootnoteRequest {
      * Path to node, which contains collection of footnotes.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<GetFootnoteRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -12802,6 +13002,10 @@ export class GetFootnotesRequest {
      * Path to node, which contains collection of footnotes.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<GetFootnotesRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -12842,6 +13046,10 @@ export class GetFormFieldRequest {
      * Path to node that contains collection of formfields.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<GetFormFieldRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -12877,6 +13085,10 @@ export class GetFormFieldsRequest {
      * Path to node containing collection of form fields.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<GetFormFieldsRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -12917,6 +13129,10 @@ export class GetHeaderFooterRequest {
      * List of types of headers and footers.
      */
     public filterByType: string;
+    
+    public constructor(init?: Partial<GetHeaderFooterRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -12962,6 +13178,10 @@ export class GetHeaderFooterOfSectionRequest {
      * List of types of headers and footers.
      */
     public filterByType: string;
+    
+    public constructor(init?: Partial<GetHeaderFooterOfSectionRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -13002,6 +13222,10 @@ export class GetHeaderFootersRequest {
      * List of types of headers and footers.
      */
     public filterByType: string;
+    
+    public constructor(init?: Partial<GetHeaderFootersRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -13042,6 +13266,10 @@ export class GetOfficeMathObjectRequest {
      * Path to node, which contains collection of OfficeMath objects.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<GetOfficeMathObjectRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -13077,6 +13305,10 @@ export class GetOfficeMathObjectsRequest {
      * Path to node, which contains collection of OfficeMath objects.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<GetOfficeMathObjectsRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -13112,6 +13344,10 @@ export class GetSectionRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+    
+    public constructor(init?: Partial<GetSectionRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -13147,6 +13383,10 @@ export class GetSectionPageSetupRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+    
+    public constructor(init?: Partial<GetSectionPageSetupRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -13177,6 +13417,10 @@ export class GetSectionsRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+    
+    public constructor(init?: Partial<GetSectionsRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -13217,6 +13461,10 @@ export class GetTableRequest {
      * Path to node, which contains tables.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<GetTableRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -13257,6 +13505,10 @@ export class GetTableCellRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+    
+    public constructor(init?: Partial<GetTableCellRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -13297,6 +13549,10 @@ export class GetTableCellFormatRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+    
+    public constructor(init?: Partial<GetTableCellFormatRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -13337,6 +13593,10 @@ export class GetTablePropertiesRequest {
      * Path to node, which contains tables.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<GetTablePropertiesRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -13377,6 +13637,10 @@ export class GetTableRowRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+    
+    public constructor(init?: Partial<GetTableRowRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -13417,6 +13681,10 @@ export class GetTableRowFormatRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+    
+    public constructor(init?: Partial<GetTableRowFormatRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -13452,6 +13720,10 @@ export class GetTablesRequest {
      * Path to node, which contains tables.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<GetTablesRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -13507,6 +13779,10 @@ export class InsertTableRequest {
      * Path to node, which contains tables.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<InsertTableRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -13562,6 +13838,10 @@ export class InsertTableCellRequest {
      * Table cell parameters/
      */
     public cell: TableCellInsert;
+    
+    public constructor(init?: Partial<InsertTableCellRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -13617,6 +13897,10 @@ export class InsertTableRowRequest {
      * Table row parameters/
      */
     public row: TableRowInsert;
+    
+    public constructor(init?: Partial<InsertTableRowRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -13667,6 +13951,10 @@ export class PostAppendDocumentRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+    
+    public constructor(init?: Partial<PostAppendDocumentRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -13707,6 +13995,10 @@ export class PostChangeDocumentProtectionRequest {
      * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
+    
+    public constructor(init?: Partial<PostChangeDocumentProtectionRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -13762,6 +14054,10 @@ export class PostCommentRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+    
+    public constructor(init?: Partial<PostCommentRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -13802,6 +14098,10 @@ export class PostCompareDocumentRequest {
      * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
+    
+    public constructor(init?: Partial<PostCompareDocumentRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -13862,6 +14162,10 @@ export class PostDocumentExecuteMailMergeRequest {
      * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved with autogenerated name.
      */
     public destFileName: string;
+    
+    public constructor(init?: Partial<PostDocumentExecuteMailMergeRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -13922,6 +14226,10 @@ export class PostDocumentParagraphRunFontRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+    
+    public constructor(init?: Partial<PostDocumentParagraphRunFontRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -13967,6 +14275,10 @@ export class PostDocumentSaveAsRequest {
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
+    
+    public constructor(init?: Partial<PostDocumentSaveAsRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -14032,6 +14344,10 @@ export class PostDrawingObjectRequest {
      * Path to node, which contains collection of drawing objects.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<PostDrawingObjectRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -14087,6 +14403,10 @@ export class PostExecuteTemplateRequest {
      * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved with autogenerated name.
      */
     public destFileName: string;
+    
+    public constructor(init?: Partial<PostExecuteTemplateRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -14147,6 +14467,10 @@ export class PostFieldRequest {
      * Path to node, which contains collection of fields.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<PostFieldRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -14207,6 +14531,10 @@ export class PostFootnoteRequest {
      * Path to node, which contains collection of footnotes.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<PostFootnoteRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -14267,6 +14595,10 @@ export class PostFormFieldRequest {
      * Path to node that contains collection of formfields.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<PostFormFieldRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -14327,6 +14659,10 @@ export class PostInsertDocumentWatermarkImageRequest {
      * The image file server full name. If the name is empty the image is expected in request content.
      */
     public image: string;
+    
+    public constructor(init?: Partial<PostInsertDocumentWatermarkImageRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -14377,6 +14713,10 @@ export class PostInsertDocumentWatermarkTextRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+    
+    public constructor(init?: Partial<PostInsertDocumentWatermarkTextRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -14427,6 +14767,10 @@ export class PostInsertPageNumbersRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+    
+    public constructor(init?: Partial<PostInsertPageNumbersRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -14442,6 +14786,10 @@ export class PostLoadWebDocumentRequest {
      * File storage, which have to be used.
      */
     public storage: string;
+    
+    public constructor(init?: Partial<PostLoadWebDocumentRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -14492,6 +14840,10 @@ export class PostReplaceTextRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+    
+    public constructor(init?: Partial<PostReplaceTextRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -14552,6 +14904,10 @@ export class PostRunRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+    
+    public constructor(init?: Partial<PostRunRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -14612,6 +14968,10 @@ export class PostSplitDocumentRequest {
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
+    
+    public constructor(init?: Partial<PostSplitDocumentRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -14667,6 +15027,10 @@ export class PostUpdateDocumentBookmarkRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+    
+    public constructor(init?: Partial<PostUpdateDocumentBookmarkRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -14702,6 +15066,10 @@ export class PostUpdateDocumentFieldsRequest {
      * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
+    
+    public constructor(init?: Partial<PostUpdateDocumentFieldsRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -14752,6 +15120,10 @@ export class PutCommentRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+    
+    public constructor(init?: Partial<PutCommentRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -14782,6 +15154,10 @@ export class PutConvertDocumentRequest {
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
+    
+    public constructor(init?: Partial<PutConvertDocumentRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -14802,6 +15178,10 @@ export class PutCreateDocumentRequest {
      * The document folder.
      */
     public folder: string;
+    
+    public constructor(init?: Partial<PutCreateDocumentRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -14817,6 +15197,10 @@ export class PutDocumentFieldNamesRequest {
      * Use non merge fields or not.
      */
     public useNonMergeFields: boolean;
+    
+    public constructor(init?: Partial<PutDocumentFieldNamesRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -14952,6 +15336,10 @@ export class PutDocumentSaveAsTiffRequest {
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
+    
+    public constructor(init?: Partial<PutDocumentSaveAsTiffRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -15012,6 +15400,10 @@ export class PutDrawingObjectRequest {
      * Path to node, which contains collection of drawing objects.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<PutDrawingObjectRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -15037,6 +15429,10 @@ export class PutExecuteMailMergeOnlineRequest {
      * Clean up options.
      */
     public cleanup: string;
+    
+    public constructor(init?: Partial<PutExecuteMailMergeOnlineRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -15067,6 +15463,10 @@ export class PutExecuteTemplateOnlineRequest {
      * Merge with regions or not. True by default
      */
     public withRegions: boolean;
+    
+    public constructor(init?: Partial<PutExecuteTemplateOnlineRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -15127,6 +15527,10 @@ export class PutFieldRequest {
      * Field will be inserted before node with id=\"nodeId\".
      */
     public insertBeforeNode: string;
+    
+    public constructor(init?: Partial<PutFieldRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -15182,6 +15586,10 @@ export class PutFootnoteRequest {
      * Path to node, which contains collection of footnotes.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<PutFootnoteRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -15242,6 +15650,10 @@ export class PutFormFieldRequest {
      * Form field will be inserted before node with index.
      */
     public insertBeforeNode: string;
+    
+    public constructor(init?: Partial<PutFormFieldRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -15297,6 +15709,10 @@ export class PutHeaderFooterRequest {
      * Path to parent section.
      */
     public sectionPath: string;
+    
+    public constructor(init?: Partial<PutHeaderFooterRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -15357,6 +15773,10 @@ export class PutParagraphRequest {
      * Paragraph will be inserted before node with index.
      */
     public insertBeforeNode: string;
+    
+    public constructor(init?: Partial<PutParagraphRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -15397,6 +15817,10 @@ export class PutProtectDocumentRequest {
      * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
+    
+    public constructor(init?: Partial<PutProtectDocumentRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -15457,6 +15881,10 @@ export class PutRunRequest {
      * Paragraph will be inserted before node with index.
      */
     public insertBeforeNode: string;
+    
+    public constructor(init?: Partial<PutRunRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -15492,6 +15920,10 @@ export class RejectAllRevisionsRequest {
      * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
+    
+    public constructor(init?: Partial<RejectAllRevisionsRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -15542,6 +15974,10 @@ export class RenderDrawingObjectRequest {
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
+    
+    public constructor(init?: Partial<RenderDrawingObjectRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -15592,6 +16028,10 @@ export class RenderMathObjectRequest {
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
+    
+    public constructor(init?: Partial<RenderMathObjectRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -15637,6 +16077,10 @@ export class RenderPageRequest {
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
+    
+    public constructor(init?: Partial<RenderPageRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -15687,6 +16131,10 @@ export class RenderParagraphRequest {
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
+    
+    public constructor(init?: Partial<RenderParagraphRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -15737,12 +16185,20 @@ export class RenderTableRequest {
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
+    
+    public constructor(init?: Partial<RenderTableRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
  * Request model for ResetCache operation.
  */
 export class ResetCacheRequest {
+    
+    public constructor(init?: Partial<ResetCacheRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -15778,6 +16234,10 @@ export class SearchRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+    
+    public constructor(init?: Partial<SearchRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -15838,6 +16298,10 @@ export class UpdateBorderRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+    
+    public constructor(init?: Partial<UpdateBorderRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -15893,6 +16357,10 @@ export class UpdateSectionPageSetupRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+    
+    public constructor(init?: Partial<UpdateSectionPageSetupRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -15953,6 +16421,10 @@ export class UpdateTableCellFormatRequest {
      * The properties.
      */
     public format: TableCellFormat;
+    
+    public constructor(init?: Partial<UpdateTableCellFormatRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -16013,6 +16485,10 @@ export class UpdateTablePropertiesRequest {
      * Path to node, which contains tables.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<UpdateTablePropertiesRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -16073,4 +16549,8 @@ export class UpdateTableRowFormatRequest {
      * Table row format.
      */
     public format: TableRowFormat;
+    
+    public constructor(init?: Partial<UpdateTableRowFormatRequest>) {        
+        Object.assign(this, init);
+    } 
 }

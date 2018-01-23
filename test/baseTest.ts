@@ -24,6 +24,8 @@
 
 import { WordsApi } from "../src/api";
 
+let storageApi;
+
 /**
  * Initialize WordsApi
  */
@@ -37,12 +39,16 @@ export function initializeWordsApi() {
  * Initialize StorageApi
  */
 export function initializeStorageApi() {
-    const config = require("../servercreds.json");
-    const StorageApi = require("asposestoragecloud");
+    if (!storageApi) {
+        const config = require("../servercreds.json");
+        const StorageApi = require("asposestoragecloud");
 
-    const storageApi = new StorageApi({appSid: config.AppSid, apiKey: config.AppKey, baseURI: "http://api-dev.aspose.cloud/v1.1"});    
+        storageApi = new StorageApi({ appSid: config.AppSid, apiKey: config.AppKey, baseURI: "http://api-dev.aspose.cloud/v1.1" });
+    }
+    
     return storageApi;
 }
 
 export const remoteBaseTestDataFolder = "Temp/SdkTests/node/TestData/";
 export const localBaseTestDataFolder = "./testData/";
+export const localCommonTestDataFolder = "./testData/common/";

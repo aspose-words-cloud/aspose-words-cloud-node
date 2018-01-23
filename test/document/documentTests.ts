@@ -25,8 +25,10 @@
 import { expect } from "chai";
 import "mocha";
 
-import { GetDocumentRequest } from "../../src/model/model";
+import { GetDocumentRequest, PutCreateDocumentRequest } from "../../src/model/model";
 import * as BaseTest from "../baseTest";
+
+const testFolder = "document";
 
 describe("getDocument function", () => {
 
@@ -35,15 +37,15 @@ describe("getDocument function", () => {
     const storageApi = BaseTest.initializeStorageApi();
     const wordsApi = BaseTest.initializeWordsApi();
 
-    const localPath = BaseTest.localBaseTestDataFolder + "Conversion";
-    const remotePath = BaseTest.remoteBaseTestDataFolder + "Conversion";
+    const localPath = BaseTest.localCommonTestDataFolder;
+    const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
     const filename = "test_doc.docx";
 
     return new Promise((resolve) => {
       storageApi.PutCreate(remotePath + "/" + filename, null, null, localPath + "/" + filename, (responseMessage) => {
         expect(responseMessage.status).to.equal("OK");
         resolve();
-      });      
+      });
     })
       .then(() => {
         const request = new GetDocumentRequest();
@@ -57,6 +59,29 @@ describe("getDocument function", () => {
             expect(result.body.code).to.equal(200);
             expect(result.response.statusCode).to.equal(200);
           });
+      });
+  });
+});
+
+describe("putCreateDocument function", () => {
+
+  it("should return response with code 200", () => {
+
+    const wordsApi = BaseTest.initializeWordsApi();
+    
+    const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
+    const filename = "TestPutCreateDocument.doc";
+
+    const request = new PutCreateDocumentRequest();
+    request.fileName = filename;
+    request.folder = remotePath;
+
+    // Act
+    return wordsApi.putCreateDocument(request)
+      .then((result) => {
+        // Assert
+        expect(result.body.code).to.equal(200);
+        expect(result.response.statusCode).to.equal(200);
       });
   });
 });

@@ -26,7 +26,7 @@ import { expect } from "chai";
 import "mocha";
 
 import * as fs from "fs";
-import { PostDocumentSaveAsRequest, PutConvertDocumentRequest, PutDocumentSaveAsTiffRequest, SaveOptionsData, TiffSaveOptionsData, GetDocumentWithFormatRequest } from "../../src/model/model";
+import { GetDocumentWithFormatRequest, PostDocumentSaveAsRequest, PutConvertDocumentRequest, PutDocumentSaveAsTiffRequest, SaveOptionsData, TiffSaveOptionsData } from "../../src/model/model";
 import * as BaseTest from "../baseTest";
 
 const testFolder = "DocumentActions/ConvertDocument";

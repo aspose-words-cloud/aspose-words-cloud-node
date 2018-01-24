@@ -30,194 +30,196 @@ import * as BaseTest from "../baseTest";
 
 const testFolder = "DocumentElements/Comments";
 
-describe("getComment function", () => {
+describe("comments", () => {
+    describe("getComment function", () => {
 
-    it("should return response with code 200", () => {
+        it("should return response with code 200", () => {
 
-        const storageApi = BaseTest.initializeStorageApi();
-        const wordsApi = BaseTest.initializeWordsApi();
+            const storageApi = BaseTest.initializeStorageApi();
+            const wordsApi = BaseTest.initializeWordsApi();
 
-        const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
-        const remoteFileName = "TestGetComment.docx";
-        const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
+            const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
+            const remoteFileName = "TestGetComment.docx";
+            const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
-        return new Promise((resolve) => {
-            storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                expect(responseMessage.status).to.equal("OK");
-                resolve();
-            });
-        })
-            .then(() => {
-                const request = new GetCommentRequest();
-                request.name = remoteFileName;
-                request.folder = remotePath;
-                request.commentIndex = 0;
+            return new Promise((resolve) => {
+                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
+                    expect(responseMessage.status).to.equal("OK");
+                    resolve();
+                });
+            })
+                .then(() => {
+                    const request = new GetCommentRequest();
+                    request.name = remoteFileName;
+                    request.folder = remotePath;
+                    request.commentIndex = 0;
 
-                // Act
-                return wordsApi.getComment(request)
-                    .then((result) => {
-                        // Assert
-                        expect(result.body.code).to.equal(200);
-                        expect(result.response.statusCode).to.equal(200);
-                    });
-            });
+                    // Act
+                    return wordsApi.getComment(request)
+                        .then((result) => {
+                            // Assert
+                            expect(result.body.code).to.equal(200);
+                            expect(result.response.statusCode).to.equal(200);
+                        });
+                });
+        });
     });
-});
 
-describe("getComments function", () => {
+    describe("getComments function", () => {
 
-    it("should return response with code 200", () => {
+        it("should return response with code 200", () => {
 
-        const storageApi = BaseTest.initializeStorageApi();
-        const wordsApi = BaseTest.initializeWordsApi();
+            const storageApi = BaseTest.initializeStorageApi();
+            const wordsApi = BaseTest.initializeWordsApi();
 
-        const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
-        const remoteFileName = "TestGetComments.docx";
-        const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
+            const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
+            const remoteFileName = "TestGetComments.docx";
+            const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
-        return new Promise((resolve) => {
-            storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                expect(responseMessage.status).to.equal("OK");
-                resolve();
-            });
-        })
-            .then(() => {
-                const request = new GetCommentsRequest();
-                request.name = remoteFileName;
-                request.folder = remotePath;
+            return new Promise((resolve) => {
+                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
+                    expect(responseMessage.status).to.equal("OK");
+                    resolve();
+                });
+            })
+                .then(() => {
+                    const request = new GetCommentsRequest();
+                    request.name = remoteFileName;
+                    request.folder = remotePath;
 
-                // Act
-                return wordsApi.getComments(request)
-                    .then((result) => {
-                        // Assert
-                        expect(result.body.code).to.equal(200);
-                        expect(result.response.statusCode).to.equal(200);
-                    });
-            });
+                    // Act
+                    return wordsApi.getComments(request)
+                        .then((result) => {
+                            // Assert
+                            expect(result.body.code).to.equal(200);
+                            expect(result.response.statusCode).to.equal(200);
+                        });
+                });
+        });
     });
-});
 
-describe("putComment function", () => {
+    describe("putComment function", () => {
 
-    it("should return response with code 200", () => {
+        it("should return response with code 200", () => {
 
-        const storageApi = BaseTest.initializeStorageApi();
-        const wordsApi = BaseTest.initializeWordsApi();
+            const storageApi = BaseTest.initializeStorageApi();
+            const wordsApi = BaseTest.initializeWordsApi();
 
-        const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
-        const remoteFileName = "TestPutComment.docx";
-        const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
+            const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
+            const remoteFileName = "TestPutComment.docx";
+            const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
-        return new Promise((resolve) => {
-            storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                expect(responseMessage.status).to.equal("OK");
-                resolve();
-            });
-        })
-            .then(() => {                
-                const request = new PutCommentRequest();
-                request.name = remoteFileName;
-                request.folder = remotePath;
+            return new Promise((resolve) => {
+                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
+                    expect(responseMessage.status).to.equal("OK");
+                    resolve();
+                });
+            })
+                .then(() => {
+                    const request = new PutCommentRequest();
+                    request.name = remoteFileName;
+                    request.folder = remotePath;
 
-                const nodeLink = new NodeLink();
-                nodeLink.nodeId = "0.0.3";
-                const documentPosition = new DocumentPosition();
-                documentPosition.node = nodeLink;
-                documentPosition.offset = 0;
-                request.comment = new Comment();
-                request.comment.rangeStart = documentPosition;
-                request.comment.rangeEnd = documentPosition;
-                request.comment.initial = "IA";
-                request.comment.author = "Imran Anwar";
-                request.comment.text = "A new Comment";
+                    const nodeLink = new NodeLink();
+                    nodeLink.nodeId = "0.0.3";
+                    const documentPosition = new DocumentPosition();
+                    documentPosition.node = nodeLink;
+                    documentPosition.offset = 0;
+                    request.comment = new Comment();
+                    request.comment.rangeStart = documentPosition;
+                    request.comment.rangeEnd = documentPosition;
+                    request.comment.initial = "IA";
+                    request.comment.author = "Imran Anwar";
+                    request.comment.text = "A new Comment";
 
-                // Act
-                return wordsApi.putComment(request)
-                    .then((result) => {
-                        // Assert
-                        expect(result.body.code).to.equal(200);
-                        expect(result.response.statusCode).to.equal(200);
-                    });
-            });
+                    // Act
+                    return wordsApi.putComment(request)
+                        .then((result) => {
+                            // Assert
+                            expect(result.body.code).to.equal(200);
+                            expect(result.response.statusCode).to.equal(200);
+                        });
+                });
+        });
     });
-});
 
-describe("postComment function", () => {
+    describe("postComment function", () => {
 
-    it("should return response with code 200", () => {
+        it("should return response with code 200", () => {
 
-        const storageApi = BaseTest.initializeStorageApi();
-        const wordsApi = BaseTest.initializeWordsApi();
+            const storageApi = BaseTest.initializeStorageApi();
+            const wordsApi = BaseTest.initializeWordsApi();
 
-        const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
-        const remoteFileName = "TestPostComment.docx";
-        const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
+            const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
+            const remoteFileName = "TestPostComment.docx";
+            const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
-        return new Promise((resolve) => {
-            storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                expect(responseMessage.status).to.equal("OK");
-                resolve();
-            });
-        })
-            .then(() => {                
-                const request = new PostCommentRequest();
-                request.name = remoteFileName;
-                request.folder = remotePath;
+            return new Promise((resolve) => {
+                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
+                    expect(responseMessage.status).to.equal("OK");
+                    resolve();
+                });
+            })
+                .then(() => {
+                    const request = new PostCommentRequest();
+                    request.name = remoteFileName;
+                    request.folder = remotePath;
 
-                request.commentIndex = 0;
-                const nodeLink = new NodeLink();
-                nodeLink.nodeId = "0.0.3";
-                const documentPosition = new DocumentPosition();
-                documentPosition.node = nodeLink;
-                documentPosition.offset = 0;
-                request.comment = new Comment();
-                request.comment.rangeStart = documentPosition;
-                request.comment.rangeEnd = documentPosition;
-                request.comment.initial = "IA";
-                request.comment.author = "Imran Anwar";
-                request.comment.text = "A new Comment";
+                    request.commentIndex = 0;
+                    const nodeLink = new NodeLink();
+                    nodeLink.nodeId = "0.0.3";
+                    const documentPosition = new DocumentPosition();
+                    documentPosition.node = nodeLink;
+                    documentPosition.offset = 0;
+                    request.comment = new Comment();
+                    request.comment.rangeStart = documentPosition;
+                    request.comment.rangeEnd = documentPosition;
+                    request.comment.initial = "IA";
+                    request.comment.author = "Imran Anwar";
+                    request.comment.text = "A new Comment";
 
-                // Act
-                return wordsApi.postComment(request)
-                    .then((result) => {
-                        // Assert
-                        expect(result.body.code).to.equal(200);
-                        expect(result.response.statusCode).to.equal(200);
-                    });
-            });
+                    // Act
+                    return wordsApi.postComment(request)
+                        .then((result) => {
+                            // Assert
+                            expect(result.body.code).to.equal(200);
+                            expect(result.response.statusCode).to.equal(200);
+                        });
+                });
+        });
     });
-});
 
-describe("deleteComment function", () => {
+    describe("deleteComment function", () => {
 
-    it("should return response with code 200", () => {
+        it("should return response with code 200", () => {
 
-        const storageApi = BaseTest.initializeStorageApi();
-        const wordsApi = BaseTest.initializeWordsApi();
+            const storageApi = BaseTest.initializeStorageApi();
+            const wordsApi = BaseTest.initializeWordsApi();
 
-        const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
-        const remoteFileName = "TestDeleteComment.docx";
-        const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
+            const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
+            const remoteFileName = "TestDeleteComment.docx";
+            const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
-        return new Promise((resolve) => {
-            storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                expect(responseMessage.status).to.equal("OK");
-                resolve();
-            });
-        })
-            .then(() => {                
-                const request = new DeleteCommentRequest();
-                request.name = remoteFileName;
-                request.folder = remotePath;
-                request.commentIndex = 0;
-                                
-                // Act
-                return wordsApi.deleteComment(request)
-                    .then((result) => {
-                        // Assert
-                        expect(result.body.code).to.equal(200);
-                        expect(result.response.statusCode).to.equal(200);
-                    });
-            });
+            return new Promise((resolve) => {
+                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
+                    expect(responseMessage.status).to.equal("OK");
+                    resolve();
+                });
+            })
+                .then(() => {
+                    const request = new DeleteCommentRequest();
+                    request.name = remoteFileName;
+                    request.folder = remotePath;
+                    request.commentIndex = 0;
+
+                    // Act
+                    return wordsApi.deleteComment(request)
+                        .then((result) => {
+                            // Assert
+                            expect(result.body.code).to.equal(200);
+                            expect(result.response.statusCode).to.equal(200);
+                        });
+                });
+        });
     });
 });

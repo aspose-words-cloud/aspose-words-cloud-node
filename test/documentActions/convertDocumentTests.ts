@@ -31,52 +31,16 @@ import * as BaseTest from "../baseTest";
 
 const testFolder = "DocumentActions/ConvertDocument";
 
-describe("postDocumentSaveAs function", () => {
+describe("convert document", () => {
+    describe("postDocumentSaveAs function", () => {
 
-    it("should return response with code 200", () => {
-
-        const storageApi = BaseTest.initializeStorageApi();
-        const wordsApi = BaseTest.initializeWordsApi();
-
-        const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
-        const remoteFileName = "TestPostDocumentSaveAs.docx";
-        const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
-
-        return new Promise((resolve) => {
-            storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                expect(responseMessage.status).to.equal("OK");
-                resolve();
-            });
-        })
-            .then(() => {
-                const request = new PostDocumentSaveAsRequest({
-                    saveOptionsData: new SaveOptionsData({
-                        saveFormat: "pdf",
-                        fileName: "Out/TestPostDocumentSaveAs.pdf",
-                    }),
-
-                });
-                request.name = remoteFileName;
-                request.folder = remotePath;
-
-                // Act
-                return wordsApi.postDocumentSaveAs(request)
-                    .then((result) => {
-                        // Assert
-                        expect(result.body.code).to.equal(200);
-                        expect(result.response.statusCode).to.equal(200);
-                    });
-            });
-    });
-
-    describe("convert from PDF to doc", () => {
         it("should return response with code 200", () => {
 
             const storageApi = BaseTest.initializeStorageApi();
             const wordsApi = BaseTest.initializeWordsApi();
 
-            const localPath = BaseTest.localBaseTestDataFolder + testFolder + "/45.pdf";
-            const remoteFileName = "TestPostDocumentSaveAsFromPdfToDoc.pdf";
+            const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
+            const remoteFileName = "TestPostDocumentSaveAs.docx";
             const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
             return new Promise((resolve) => {
@@ -88,8 +52,8 @@ describe("postDocumentSaveAs function", () => {
                 .then(() => {
                     const request = new PostDocumentSaveAsRequest({
                         saveOptionsData: new SaveOptionsData({
-                            saveFormat: "docx",
-                            fileName: "Out/TestPostDocumentSavePdfAsDocx.docx",
+                            saveFormat: "pdf",
+                            fileName: "Out/TestPostDocumentSaveAs.pdf",
                         }),
 
                     });
@@ -105,103 +69,108 @@ describe("postDocumentSaveAs function", () => {
                         });
                 });
         });
-    });
-});
 
-describe("putConvertDocument function", () => {
+        describe("convert from PDF to doc", () => {
+            it("should return response with code 200", () => {
 
-    it("should return response with code 200", () => {
+                const storageApi = BaseTest.initializeStorageApi();
+                const wordsApi = BaseTest.initializeWordsApi();
 
-        const wordsApi = BaseTest.initializeWordsApi();
-        const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
+                const localPath = BaseTest.localBaseTestDataFolder + testFolder + "/45.pdf";
+                const remoteFileName = "TestPostDocumentSaveAsFromPdfToDoc.pdf";
+                const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
-        const request = new PutConvertDocumentRequest({
-            format: "pdf",
-            document: fs.readFileSync(localPath),
+                return new Promise((resolve) => {
+                    storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
+                        expect(responseMessage.status).to.equal("OK");
+                        resolve();
+                    });
+                })
+                    .then(() => {
+                        const request = new PostDocumentSaveAsRequest({
+                            saveOptionsData: new SaveOptionsData({
+                                saveFormat: "docx",
+                                fileName: "Out/TestPostDocumentSavePdfAsDocx.docx",
+                            }),
+
+                        });
+                        request.name = remoteFileName;
+                        request.folder = remotePath;
+
+                        // Act
+                        return wordsApi.postDocumentSaveAs(request)
+                            .then((result) => {
+                                // Assert
+                                expect(result.body.code).to.equal(200);
+                                expect(result.response.statusCode).to.equal(200);
+                            });
+                    });
+            });
         });
-
-        // Act
-        return wordsApi.putConvertDocument(request)
-            .then((result) => {
-                // Assert                
-                expect(result.response.statusCode).to.equal(200);
-            });
-
     });
-});
 
-describe("putDocumentSaveAsTiff function", () => {
-    it("should return response with code 200", () => {
+    describe("putConvertDocument function", () => {
 
-        const storageApi = BaseTest.initializeStorageApi();
-        const wordsApi = BaseTest.initializeWordsApi();
+        it("should return response with code 200", () => {
 
-        const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
-        const remoteFileName = "TestPutDocumentSaveAsTiff.docx";
-        const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
+            const wordsApi = BaseTest.initializeWordsApi();
+            const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
 
-        return new Promise((resolve) => {
-            storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                expect(responseMessage.status).to.equal("OK");
-                resolve();
+            const request = new PutConvertDocumentRequest({
+                format: "pdf",
+                document: fs.readFileSync(localPath),
             });
-        })
-            .then(() => {
-                const request = new PutDocumentSaveAsTiffRequest({
-                    saveOptions: new TiffSaveOptionsData({
-                        saveFormat: "tiff",
-                        fileName: "Out/TestPostDocumentSaveAs.tiff",
-                    }),
 
+            // Act
+            return wordsApi.putConvertDocument(request)
+                .then((result) => {
+                    // Assert                
+                    expect(result.response.statusCode).to.equal(200);
                 });
-                request.name = remoteFileName;
-                request.folder = remotePath;
 
-                // Act
-                return wordsApi.putDocumentSaveAsTiff(request)
-                    .then((result) => {
-                        // Assert
-                        expect(result.body.code).to.equal(200);
-                        expect(result.response.statusCode).to.equal(200);
-                    });
-            });
-    });
-});
-
-describe("getDocumentWithFormat function", () => {
-
-    it("should return response with code 200", () => {
-
-        const storageApi = BaseTest.initializeStorageApi();
-        const wordsApi = BaseTest.initializeWordsApi();
-
-        const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
-        const remoteFileName = "TestGetDocumentWithFormat.docx";
-        const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
-
-        return new Promise((resolve) => {
-            storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                expect(responseMessage.status).to.equal("OK");
-                resolve();
-            });
-        })
-            .then(() => {
-                const request = new GetDocumentWithFormatRequest();
-                request.name = remoteFileName;
-                request.folder = remotePath;
-                request.format = "text";
-
-                // Act
-                return wordsApi.getDocumentWithFormat(request)
-                    .then((result) => {
-                        // Assert
-                        expect(result.response.statusCode).to.equal(200);
-                        expect(result.body.byteLength).to.greaterThan(0);
-                    });
-            });
+        });
     });
 
-    describe("when param 'outPath' is setted", () => {
+    describe("putDocumentSaveAsTiff function", () => {
+        it("should return response with code 200", () => {
+
+            const storageApi = BaseTest.initializeStorageApi();
+            const wordsApi = BaseTest.initializeWordsApi();
+
+            const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
+            const remoteFileName = "TestPutDocumentSaveAsTiff.docx";
+            const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
+
+            return new Promise((resolve) => {
+                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
+                    expect(responseMessage.status).to.equal("OK");
+                    resolve();
+                });
+            })
+                .then(() => {
+                    const request = new PutDocumentSaveAsTiffRequest({
+                        saveOptions: new TiffSaveOptionsData({
+                            saveFormat: "tiff",
+                            fileName: "Out/TestPostDocumentSaveAs.tiff",
+                        }),
+
+                    });
+                    request.name = remoteFileName;
+                    request.folder = remotePath;
+
+                    // Act
+                    return wordsApi.putDocumentSaveAsTiff(request)
+                        .then((result) => {
+                            // Assert
+                            expect(result.body.code).to.equal(200);
+                            expect(result.response.statusCode).to.equal(200);
+                        });
+                });
+        });
+    });
+
+    describe("getDocumentWithFormat function", () => {
+
         it("should return response with code 200", () => {
 
             const storageApi = BaseTest.initializeStorageApi();
@@ -222,15 +191,48 @@ describe("getDocumentWithFormat function", () => {
                     request.name = remoteFileName;
                     request.folder = remotePath;
                     request.format = "text";
-                    request.outPath = "Out/TestGetDocumentWithFormat.txt";
 
                     // Act
                     return wordsApi.getDocumentWithFormat(request)
                         .then((result) => {
                             // Assert
                             expect(result.response.statusCode).to.equal(200);
+                            expect(result.body.byteLength).to.greaterThan(0);
                         });
                 });
+        });
+
+        describe("when param 'outPath' is setted", () => {
+            it("should return response with code 200", () => {
+
+                const storageApi = BaseTest.initializeStorageApi();
+                const wordsApi = BaseTest.initializeWordsApi();
+
+                const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
+                const remoteFileName = "TestGetDocumentWithFormat.docx";
+                const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
+
+                return new Promise((resolve) => {
+                    storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
+                        expect(responseMessage.status).to.equal("OK");
+                        resolve();
+                    });
+                })
+                    .then(() => {
+                        const request = new GetDocumentWithFormatRequest();
+                        request.name = remoteFileName;
+                        request.folder = remotePath;
+                        request.format = "text";
+                        request.outPath = "Out/TestGetDocumentWithFormat.txt";
+
+                        // Act
+                        return wordsApi.getDocumentWithFormat(request)
+                            .then((result) => {
+                                // Assert
+                                expect(result.response.statusCode).to.equal(200);
+                            });
+                    });
+            });
         });
     });
 });

@@ -30,68 +30,70 @@ import * as BaseTest from "../baseTest";
 
 const testFolder = "DocumentActions/Revisions";
 
-describe("acceptAllRevisions function", () => {
+describe("document revisions", () => {
+    describe("acceptAllRevisions function", () => {
 
-    it("should return response with code 200", () => {
+        it("should return response with code 200", () => {
 
-        const storageApi = BaseTest.initializeStorageApi();
-        const wordsApi = BaseTest.initializeWordsApi();
+            const storageApi = BaseTest.initializeStorageApi();
+            const wordsApi = BaseTest.initializeWordsApi();
 
-        const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
-        const remoteFileName = "TestAcceptAllRevisions.docx";
-        const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
+            const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
+            const remoteFileName = "TestAcceptAllRevisions.docx";
+            const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
-        return new Promise((resolve) => {
-            storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                expect(responseMessage.status).to.equal("OK");
-                resolve();
-            });
-        })
-            .then(() => {                
-                const request = new AcceptAllRevisionsRequest();                
-                request.name = remoteFileName;
-                request.folder = remotePath;
+            return new Promise((resolve) => {
+                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
+                    expect(responseMessage.status).to.equal("OK");
+                    resolve();
+                });
+            })
+                .then(() => {
+                    const request = new AcceptAllRevisionsRequest();
+                    request.name = remoteFileName;
+                    request.folder = remotePath;
 
-                // Act
-                return wordsApi.acceptAllRevisions(request)
-                    .then((result) => {
-                        // Assert
-                        expect(result.body.code).to.equal(200);
-                        expect(result.response.statusCode).to.equal(200);
-                    });
-            });
+                    // Act
+                    return wordsApi.acceptAllRevisions(request)
+                        .then((result) => {
+                            // Assert
+                            expect(result.body.code).to.equal(200);
+                            expect(result.response.statusCode).to.equal(200);
+                        });
+                });
+        });
     });
-});
 
-describe("rejectAllRevisions function", () => {
+    describe("rejectAllRevisions function", () => {
 
-    it("should return response with code 200", () => {
+        it("should return response with code 200", () => {
 
-        const storageApi = BaseTest.initializeStorageApi();
-        const wordsApi = BaseTest.initializeWordsApi();
+            const storageApi = BaseTest.initializeStorageApi();
+            const wordsApi = BaseTest.initializeWordsApi();
 
-        const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
-        const remoteFileName = "TestRejectAllRevisions.docx";
-        const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
+            const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
+            const remoteFileName = "TestRejectAllRevisions.docx";
+            const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
-        return new Promise((resolve) => {
-            storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                expect(responseMessage.status).to.equal("OK");
-                resolve();
-            });
-        })
-            .then(() => {                
-                const request = new RejectAllRevisionsRequest();                
-                request.name = remoteFileName;
-                request.folder = remotePath;
+            return new Promise((resolve) => {
+                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
+                    expect(responseMessage.status).to.equal("OK");
+                    resolve();
+                });
+            })
+                .then(() => {
+                    const request = new RejectAllRevisionsRequest();
+                    request.name = remoteFileName;
+                    request.folder = remotePath;
 
-                // Act
-                return wordsApi.rejectAllRevisions(request)
-                    .then((result) => {
-                        // Assert
-                        expect(result.body.code).to.equal(200);
-                        expect(result.response.statusCode).to.equal(200);
-                    });
-            });
+                    // Act
+                    return wordsApi.rejectAllRevisions(request)
+                        .then((result) => {
+                            // Assert
+                            expect(result.body.code).to.equal(200);
+                            expect(result.response.statusCode).to.equal(200);
+                        });
+                });
+        });
     });
 });

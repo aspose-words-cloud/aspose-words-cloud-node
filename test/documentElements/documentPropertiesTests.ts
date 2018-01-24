@@ -30,7 +30,7 @@ import * as BaseTest from "../baseTest";
 
 const testFolder = "DocumentElements/DocumentProperties";
 
-describe("documentProperties function", () => {
+describe("documentProperties", () => {
     describe("getDocumentProperties function", () => {
 
         it("should return response with code 200", () => {

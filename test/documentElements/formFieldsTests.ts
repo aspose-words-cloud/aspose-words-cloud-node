@@ -25,20 +25,21 @@
 import { expect } from "chai";
 import "mocha";
 
-import { DeleteFieldRequest, DeleteFieldsRequest, Field, GetFieldRequest, GetFieldsRequest, PageNumber, PostFieldRequest, PostInsertPageNumbersRequest, PostUpdateDocumentFieldsRequest, PutFieldRequest } from "../../src/model/model";
+import { DeleteFormFieldRequest, FormFieldTextInput, GetFormFieldRequest, GetFormFieldsRequest, PostFormFieldRequest, PutFormFieldRequest } from "../../src/model/model";
 import * as BaseTest from "../baseTest";
 
-const testFolder = "DocumentElements/Fields";
+const testFolder = "DocumentElements/FormFields";
 
-describe("fields", () => {
-    describe("getFields function", () => {
+describe("formFields", () => {
+    describe("getFormFields function", () => {
+
         it("should return response with code 200", () => {
 
             const storageApi = BaseTest.initializeStorageApi();
             const wordsApi = BaseTest.initializeWordsApi();
 
-            const localPath = BaseTest.localBaseTestDataFolder + testFolder + "/GetField.docx";
-            const remoteFileName = "TestGetFields.docx";
+            const localPath = BaseTest.localBaseTestDataFolder + testFolder + "/FormFilled.docx";
+            const remoteFileName = "TestGetFormFields.docx";
             const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
             return new Promise((resolve) => {
@@ -48,12 +49,12 @@ describe("fields", () => {
                 });
             })
                 .then(() => {
-                    const request = new GetFieldsRequest();
+                    const request = new GetFormFieldsRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
 
                     // Act
-                    return wordsApi.getFields(request)
+                    return wordsApi.getFormFields(request)
                         .then((result) => {
                             // Assert
                             expect(result.body.code).to.equal(200);
@@ -63,14 +64,14 @@ describe("fields", () => {
         });
     });
 
-    describe("getField function", () => {
+    describe("getFormField function", () => {
         it("should return response with code 200", () => {
 
             const storageApi = BaseTest.initializeStorageApi();
             const wordsApi = BaseTest.initializeWordsApi();
 
-            const localPath = BaseTest.localBaseTestDataFolder + testFolder + "/GetField.docx";
-            const remoteFileName = "TestGetField.docx";
+            const localPath = BaseTest.localBaseTestDataFolder + testFolder + "/FormFilled.docx";
+            const remoteFileName = "TestGetFormField.docx";
             const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
             return new Promise((resolve) => {
@@ -80,13 +81,13 @@ describe("fields", () => {
                 });
             })
                 .then(() => {
-                    const request = new GetFieldRequest();
+                    const request = new GetFormFieldRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
                     request.index = 0;
 
                     // Act
-                    return wordsApi.getField(request)
+                    return wordsApi.getFormField(request)
                         .then((result) => {
                             // Assert
                             expect(result.body.code).to.equal(200);
@@ -94,16 +95,17 @@ describe("fields", () => {
                         });
                 });
         });
-    });
+    });    
 
-    describe("putField function", () => {
+    describe("putFormField function", () => {
+
         it("should return response with code 200", () => {
 
             const storageApi = BaseTest.initializeStorageApi();
             const wordsApi = BaseTest.initializeWordsApi();
 
             const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
-            const remoteFileName = "TestPutField.docx";
+            const remoteFileName = "TestPutFormField.docx";
             const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
             return new Promise((resolve) => {
@@ -113,48 +115,22 @@ describe("fields", () => {
                 });
             })
                 .then(() => {
-                    const request = new PutFieldRequest();
-                    request.name = remoteFileName;
-                    request.folder = remotePath;
-                    request.field = new Field({ fieldCode: "{ NUMPAGES }", nodeId: "0.0.3" });
-
-                    // Act
-                    return wordsApi.putField(request)
-                        .then((result) => {
-                            // Assert
-                            expect(result.body.code).to.equal(200);
-                            expect(result.response.statusCode).to.equal(200);
-                        });
-                });
-        });
-    });
-
-    describe("postField function", () => {
-        it("should return response with code 200", () => {
-
-            const storageApi = BaseTest.initializeStorageApi();
-            const wordsApi = BaseTest.initializeWordsApi();
-
-            const localPath = BaseTest.localBaseTestDataFolder + testFolder + "/GetField.docx";
-            const remoteFileName = "TestPostField.docx";
-            const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
-
-            return new Promise((resolve) => {
-                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                    expect(responseMessage.status).to.equal("OK");
-                    resolve();
-                });
-            })
-                .then(() => {
-                    const request = new PostFieldRequest();
+                    const request = new PutFormFieldRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
                     request.nodePath = "sections/0/paragraphs/0";
-                    request.index = 0;
-                    request.field = new Field({ fieldCode: "{ NUMPAGES }" });
-
+                    request.formField = new FormFieldTextInput
+                    ({
+                        name: "FullName",
+                        enabled: true,
+                        calculateOnExit: true,                        
+                        textInputType: FormFieldTextInput.TextInputTypeEnum.Regular,
+                        textInputDefault: "123",
+                        textInputFormat: "UPPERCASE",
+                    });
+                    
                     // Act
-                    return wordsApi.postField(request)
+                    return wordsApi.putFormField(request)
                         .then((result) => {
                             // Assert
                             expect(result.body.code).to.equal(200);
@@ -164,14 +140,15 @@ describe("fields", () => {
         });
     });
 
-    describe("deleteField function", () => {
+    describe("postFormField function", () => {
+
         it("should return response with code 200", () => {
 
             const storageApi = BaseTest.initializeStorageApi();
             const wordsApi = BaseTest.initializeWordsApi();
 
-            const localPath = BaseTest.localBaseTestDataFolder + testFolder + "/GetField.docx";
-            const remoteFileName = "TestDeleteField.docx";
+            const localPath = BaseTest.localBaseTestDataFolder + testFolder + "/FormFilled.docx";
+            const remoteFileName = "TestPostFormField.docx";
             const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
             return new Promise((resolve) => {
@@ -181,110 +158,57 @@ describe("fields", () => {
                 });
             })
                 .then(() => {
-                    const request = new DeleteFieldRequest();
+                    const request = new PostFormFieldRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
+                    request.nodePath = "sections/0";
+                    request.index = 0;
+                    request.formField = new FormFieldTextInput
+                    ({
+                        name: "FullName",
+                        enabled: true,
+                        calculateOnExit: true,                        
+                        textInputType: FormFieldTextInput.TextInputTypeEnum.Regular,
+                        textInputDefault: "123",
+                        textInputFormat: "UPPERCASE",
+                    });
+
+                    // Act
+                    return wordsApi.postFormField(request)
+                        .then((result) => {
+                            // Assert
+                            expect(result.body.code).to.equal(200);
+                            expect(result.response.statusCode).to.equal(200);
+                        });
+                });
+        });
+    });
+
+    describe("deleteFormField function", () => {
+        it("should return response with code 200", () => {
+
+            const storageApi = BaseTest.initializeStorageApi();
+            const wordsApi = BaseTest.initializeWordsApi();
+
+            const localPath = BaseTest.localBaseTestDataFolder + testFolder + "/FormFilled.docx";
+            const remoteFileName = "TestDeleteFormField.docx";
+            const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
+
+            return new Promise((resolve) => {
+                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
+                    expect(responseMessage.status).to.equal("OK");
+                    resolve();
+                });
+            })
+                .then(() => {
+                    const request = new DeleteFormFieldRequest();
+                    request.name = remoteFileName;
+                    request.folder = remotePath;
+                    request.nodePath = "sections/0";
                     request.index = 0;
 
                     // Act
-                    return wordsApi.deleteField(request)
-                        .then((result) => {
-                            // Assert
-                            expect(result.body.code).to.equal(200);
-                            expect(result.response.statusCode).to.equal(200);
-                        });
-                });
-        });
-    });
-
-    describe("deleteFields function", () => {
-        it("should return response with code 200", () => {
-
-            const storageApi = BaseTest.initializeStorageApi();
-            const wordsApi = BaseTest.initializeWordsApi();
-
-            const localPath = BaseTest.localBaseTestDataFolder + testFolder + "/GetField.docx";
-            const remoteFileName = "TestDeleteField.docx";
-            const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
-
-            return new Promise((resolve) => {
-                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                    expect(responseMessage.status).to.equal("OK");
-                    resolve();
-                });
-            })
-                .then(() => {
-                    const request = new DeleteFieldsRequest();
-                    request.name = remoteFileName;
-                    request.folder = remotePath;                    
-
-                    // Act
-                    return wordsApi.deleteFields(request)
-                        .then((result) => {
-                            // Assert
-                            expect(result.body.code).to.equal(200);
-                            expect(result.response.statusCode).to.equal(200);
-                        });
-                });
-        });
-    });
-
-    describe("postInsertPageNumbers function", () => {
-        it("should return response with code 200", () => {
-
-            const storageApi = BaseTest.initializeStorageApi();
-            const wordsApi = BaseTest.initializeWordsApi();
-
-            const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
-            const remoteFileName = "TestPostInsertPageNumbers.docx";
-            const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
-
-            return new Promise((resolve) => {
-                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                    expect(responseMessage.status).to.equal("OK");
-                    resolve();
-                });
-            })
-                .then(() => {
-                    const request = new PostInsertPageNumbersRequest();
-                    request.name = remoteFileName;
-                    request.folder = remotePath;
-                    request.pageNumber = new PageNumber ({ alignment: "center", format: "{PAGE} of {NUMPAGES}" });
-
-                    // Act
-                    return wordsApi.postInsertPageNumbers(request)
-                        .then((result) => {
-                            // Assert
-                            expect(result.body.code).to.equal(200);
-                            expect(result.response.statusCode).to.equal(200);
-                        });
-                });
-        });
-    });
-
-    describe("postUpdateDocumentFields function", () => {
-        it("should return response with code 200", () => {
-
-            const storageApi = BaseTest.initializeStorageApi();
-            const wordsApi = BaseTest.initializeWordsApi();
-
-            const localPath = BaseTest.localBaseTestDataFolder + testFolder + "/GetField.docx";
-            const remoteFileName = "TestPostUpdateDocumentFields.docx";
-            const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
-
-            return new Promise((resolve) => {
-                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                    expect(responseMessage.status).to.equal("OK");
-                    resolve();
-                });
-            })
-                .then(() => {
-                    const request = new PostUpdateDocumentFieldsRequest();
-                    request.name = remoteFileName;
-                    request.folder = remotePath;                    
-
-                    // Act
-                    return wordsApi.postUpdateDocumentFields(request)
+                    return wordsApi.deleteFormField(request)
                         .then((result) => {
                             // Assert
                             expect(result.body.code).to.equal(200);

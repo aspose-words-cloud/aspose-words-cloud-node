@@ -22,12 +22,15 @@
 * SOFTWARE.
 */
 
+import { expect } from "chai";
 import "mocha";
 import "mocha-sinon";
 import * as sinon from "sinon";
 
 import { GetDocumentRequest } from "../../src/model/model";
-import { initializeWordsApi } from "../baseTest";
+import * as BaseTest from "../baseTest";
+
+const testFolder = "Commont/OAuth";
 
 describe("oauth tests", () => {
 
@@ -35,23 +38,37 @@ describe("oauth tests", () => {
 
         // Ignored because we use local server to test this feature (access token is expired in 1s)
         this.skip();
-        this.timeout(30000);
 
-        const wordsApi = initializeWordsApi();
-        wordsApi.configuration.baseUrl = "http://localhost:8081";
-        // TODO: put document to storage
-        // TODO: move folder name to constants
-        const request = new GetDocumentRequest();
-        request.documentName = "TestGetDocument.docx";
-        request.folder = "Temp/SdkTests/TestData/DocumentActions/Document";
+        const storageApi = BaseTest.initializeStorageApi();
+        const wordsApi = BaseTest.initializeWordsApi();
 
-        await wordsApi.getDocument(request);
+        const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
+        const remoteFileName = "TesOauth.docx";
+        const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
-        wordsApi.configuration.debugMode = true;
-        const log = sinon.spy(console, "log");
-        await wordsApi.getDocument(request).then(() => {
-            log.restore();
-            sinon.assert.calledWith(log, sinon.match("request").and(sinon.match("refresh_token")));
-        });
+        return new Promise((resolve) => {
+            storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
+                expect(responseMessage.status).to.equal("OK");
+                resolve();
+            });
+        })
+            .then(async () => {
+                this.timeout(30000);
+                
+                wordsApi.configuration.baseUrl = "http://localhost:8081";
+                
+                const request = new GetDocumentRequest();
+                request.documentName = remoteFileName;
+                request.folder = remotePath;
+
+                await wordsApi.getDocument(request);
+
+                wordsApi.configuration.debugMode = true;
+                const log = sinon.spy(console, "log");
+                await wordsApi.getDocument(request).then(() => {
+                    log.restore();
+                    sinon.assert.calledWith(log, sinon.match("request").and(sinon.match("refresh_token")));
+                });
+            });
     });
 });

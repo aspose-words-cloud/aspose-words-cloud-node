@@ -7,7 +7,7 @@
     "name": "awdev"
   },
   "scripts": {
-    "test": "mocha -r ts-node/register test/**/*.ts",
+    "test": "mocha -r ts-node/register test/**/*.ts --timeout 10000",
     "lint": "tslint src/{,**/}*.ts test/{,**/}*.ts -t verbose --project ./tsconfig.json"
   },
   "dependencies": {

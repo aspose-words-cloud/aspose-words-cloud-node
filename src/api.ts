@@ -3143,8 +3143,6 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "cleanup", requestObj.cleanup);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "useWholeParagraphAsRegion", requestObj.useWholeParagraphAsRegion);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
         if (requestObj.data !== undefined) {
             formParams.Data = ObjectSerializer.serialize(requestObj.data, "string");
         }
@@ -3156,13 +3154,7 @@ export class WordsApi {
             json: true,
         };
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
+        (requestOptions as any).formData = formParams;        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
         return Promise.resolve({body: result, response});
@@ -3308,8 +3300,6 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "nodePath", requestObj.nodePath);
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
         if (requestObj.drawingObject !== undefined) {
             formParams.DrawingObject = ObjectSerializer.serialize(requestObj.drawingObject, "string");
         }
@@ -3318,8 +3308,6 @@ export class WordsApi {
             formParams.ImageFile = requestObj.imageFile;
         }
 
-        useFormData = true;
-
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
@@ -3327,13 +3315,7 @@ export class WordsApi {
             json: true,
         };
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
+        (requestOptions as any).formData = formParams;        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "DrawingObjectResponse");
         return Promise.resolve({body: result, response});
@@ -3371,8 +3353,6 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "useWholeParagraphAsRegion", requestObj.useWholeParagraphAsRegion);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "withRegions", requestObj.withRegions);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
         if (requestObj.data !== undefined) {
             formParams.Data = ObjectSerializer.serialize(requestObj.data, "string");
         }
@@ -3384,13 +3364,7 @@ export class WordsApi {
             json: true,
         };
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
+        (requestOptions as any).formData = formParams;        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
         return Promise.resolve({body: result, response});
@@ -3574,13 +3548,9 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "rotationAngle", requestObj.rotationAngle);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "image", requestObj.image);
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
         if (requestObj.imageFile !== undefined) {
             formParams.ImageFile = requestObj.imageFile;
         }
-
-        useFormData = true;
 
         const requestOptions: request.Options = {
             method: "POST",
@@ -3589,13 +3559,7 @@ export class WordsApi {
             json: true,
         };
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
+        (requestOptions as any).formData = formParams;        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
         return Promise.resolve({body: result, response});
@@ -4010,13 +3974,9 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", requestObj.fontsLocation);
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
         if (requestObj.document !== undefined) {
             formParams.Document = requestObj.document;
         }
-
-        useFormData = true;
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -4025,13 +3985,7 @@ export class WordsApi {
             encoding: null,
         };
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
+        (requestOptions as any).formData = formParams;        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "Buffer");
         return Promise.resolve({body: result, response});
@@ -4083,13 +4037,9 @@ export class WordsApi {
         }
         
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "useNonMergeFields", requestObj.useNonMergeFields);
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
         if (requestObj.template !== undefined) {
             formParams.Template = requestObj.template;
         }
-
-        useFormData = true;
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -4098,13 +4048,7 @@ export class WordsApi {
             json: true,
         };
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
+        (requestOptions as any).formData = formParams;        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "FieldNamesResponse");
         return Promise.resolve({body: result, response});
@@ -4207,8 +4151,6 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "nodePath", requestObj.nodePath);
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
         if (requestObj.drawingObject !== undefined) {
             formParams.DrawingObject = ObjectSerializer.serialize(requestObj.drawingObject, "string");
         }
@@ -4217,8 +4159,6 @@ export class WordsApi {
             formParams.ImageFile = requestObj.imageFile;
         }
 
-        useFormData = true;
-
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
@@ -4226,13 +4166,7 @@ export class WordsApi {
             json: true,
         };
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
+        (requestOptions as any).formData = formParams;        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "DrawingObjectResponse");
         return Promise.resolve({body: result, response});
@@ -4263,19 +4197,13 @@ export class WordsApi {
         
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "withRegions", requestObj.withRegions);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "cleanup", requestObj.cleanup);
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
         if (requestObj.template !== undefined) {
             formParams.Template = requestObj.template;
         }
 
-        useFormData = true;
-
         if (requestObj.data !== undefined) {
             formParams.Data = requestObj.data;
         }
-
-        useFormData = true;
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -4284,13 +4212,7 @@ export class WordsApi {
             encoding: null,
         };
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
+        (requestOptions as any).formData = formParams;        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "Buffer");
         return Promise.resolve({body: result, response});
@@ -4322,19 +4244,13 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "cleanup", requestObj.cleanup);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "useWholeParagraphAsRegion", requestObj.useWholeParagraphAsRegion);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "withRegions", requestObj.withRegions);
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
         if (requestObj.template !== undefined) {
             formParams.Template = requestObj.template;
         }
 
-        useFormData = true;
-
         if (requestObj.data !== undefined) {
             formParams.Data = requestObj.data;
         }
-
-        useFormData = true;
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -4343,13 +4259,7 @@ export class WordsApi {
             encoding: null,
         };
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
+        (requestOptions as any).formData = formParams;        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "Buffer");
         return Promise.resolve({body: result, response});

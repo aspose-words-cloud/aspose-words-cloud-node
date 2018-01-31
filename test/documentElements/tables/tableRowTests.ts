@@ -25,20 +25,20 @@
 import { expect } from "chai";
 import "mocha";
 
-import { DeleteParagraphRequest, GetDocumentParagraphRequest, GetDocumentParagraphsRequest, ParagraphInsert, PutParagraphRequest, RenderParagraphRequest } from "../../src/model/model";
-import * as BaseTest from "../baseTest";
+import { DeleteTableRowRequest, GetTableRowFormatRequest, GetTableRowRequest, InsertTableRowRequest, TableRowFormat, TableRowInsert, UpdateTableRowFormatRequest } from "../../../src/model/model";
+import * as BaseTest from "../../baseTest";
 
-const testFolder = "DocumentElements/Paragraphs";
+const testFolder = "DocumentElements/Tables";
 
-describe("paragraphs", () => {
-    describe("getParagraphs function", () => {
+describe("tableRow", () => {
+    describe("getTableRow function", () => {
         it("should return response with code 200", () => {
 
             const storageApi = BaseTest.initializeStorageApi();
             const wordsApi = BaseTest.initializeWordsApi();
 
-            const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
-            const remoteFileName = "TestGetParagraphs.docx";
+            const localPath = BaseTest.localBaseTestDataFolder + testFolder + "/TablesGet.docx";
+            const remoteFileName = "TestGetTableRow.docx";
             const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
             return new Promise((resolve) => {
@@ -48,12 +48,14 @@ describe("paragraphs", () => {
                 });
             })
                 .then(() => {
-                    const request = new GetDocumentParagraphsRequest();
+                    const request = new GetTableRowRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
+                    request.index = 0;
+                    request.tablePath = "sections/0/tables/2";
 
                     // Act
-                    return wordsApi.getDocumentParagraphs(request)
+                    return wordsApi.getTableRow(request)
                         .then((result) => {
                             // Assert
                             expect(result.body.code).to.equal(200);
@@ -63,14 +65,14 @@ describe("paragraphs", () => {
         });
     });
 
-    describe("getParagraph function", () => {
+    describe("insertTableRow function", () => {
         it("should return response with code 200", () => {
 
             const storageApi = BaseTest.initializeStorageApi();
             const wordsApi = BaseTest.initializeWordsApi();
 
-            const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
-            const remoteFileName = "TestGetParagraph.docx";
+            const localPath = BaseTest.localBaseTestDataFolder + testFolder + "/TablesGet.docx";
+            const remoteFileName = "TestInsertTableRow.docx";
             const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
             return new Promise((resolve) => {
@@ -80,13 +82,14 @@ describe("paragraphs", () => {
                 });
             })
                 .then(() => {
-                    const request = new GetDocumentParagraphRequest();
+                    const request = new InsertTableRowRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
-                    request.index = 0;
+                    request.tablePath = "sections/0/tables/2";
+                    request.row = new TableRowInsert({ columnsCount: 5 });
 
                     // Act
-                    return wordsApi.getDocumentParagraph(request)
+                    return wordsApi.insertTableRow(request)
                         .then((result) => {
                             // Assert
                             expect(result.body.code).to.equal(200);
@@ -96,14 +99,14 @@ describe("paragraphs", () => {
         });
     });
 
-    describe("putParagraph function", () => {
+    describe("deleteTableRow function", () => {
         it("should return response with code 200", () => {
 
             const storageApi = BaseTest.initializeStorageApi();
             const wordsApi = BaseTest.initializeWordsApi();
 
-            const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
-            const remoteFileName = "TestPutParagraph.docx";
+            const localPath = BaseTest.localBaseTestDataFolder + testFolder + "/TablesGet.docx";
+            const remoteFileName = "TestDeleteTableRow.docx";
             const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
             return new Promise((resolve) => {
@@ -113,47 +116,14 @@ describe("paragraphs", () => {
                 });
             })
                 .then(() => {
-                    const request = new PutParagraphRequest();
+                    const request = new DeleteTableRowRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
-                    request.paragraph =  new ParagraphInsert ({ text: "This is a new paragraph for your document" });
-                    request.nodePath = "sections/0";
-
-                    // Act
-                    return wordsApi.putParagraph(request)
-                        .then((result) => {
-                            // Assert
-                            expect(result.body.code).to.equal(200);
-                            expect(result.response.statusCode).to.equal(200);
-                        });
-                });
-        });
-    });   
-
-    describe("deleteParagraph function", () => {
-        it("should return response with code 200", () => {
-
-            const storageApi = BaseTest.initializeStorageApi();
-            const wordsApi = BaseTest.initializeWordsApi();
-
-            const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
-            const remoteFileName = "TestDeleteParagraph.docx";
-            const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
-
-            return new Promise((resolve) => {
-                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                    expect(responseMessage.status).to.equal("OK");
-                    resolve();
-                });
-            })
-                .then(() => {
-                    const request = new DeleteParagraphRequest();
-                    request.name = remoteFileName;
-                    request.folder = remotePath;
+                    request.tablePath = "sections/0/tables/2";
                     request.index = 0;
 
                     // Act
-                    return wordsApi.deleteParagraph(request)
+                    return wordsApi.deleteTableRow(request)
                         .then((result) => {
                             // Assert
                             expect(result.body.code).to.equal(200);
@@ -163,14 +133,14 @@ describe("paragraphs", () => {
         });
     });
 
-    describe("renderParagraph function", () => {
+    describe("getTableRowFormat function", () => {
         it("should return response with code 200", () => {
 
             const storageApi = BaseTest.initializeStorageApi();
             const wordsApi = BaseTest.initializeWordsApi();
 
-            const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
-            const remoteFileName = "TestRenderParagraph.docx";
+            const localPath = BaseTest.localBaseTestDataFolder + testFolder + "/TablesGet.docx";
+            const remoteFileName = "TestGetTableRowFormat.docx";
             const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
             return new Promise((resolve) => {
@@ -180,18 +150,58 @@ describe("paragraphs", () => {
                 });
             })
                 .then(() => {
-                    const request = new RenderParagraphRequest();
+                    const request = new GetTableRowFormatRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
                     request.index = 0;
-                    request.format = "png";
+                    request.tablePath = "sections/0/tables/2";
 
                     // Act
-                    return wordsApi.renderParagraph(request)
+                    return wordsApi.getTableRowFormat(request)
                         .then((result) => {
                             // Assert
+                            expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
-                            expect(result.body.byteLength).to.greaterThan(0);
+                        });
+                });
+        });
+    });
+
+    describe("updateTableRowFormat function", () => {
+        it("should return response with code 200", () => {
+
+            const storageApi = BaseTest.initializeStorageApi();
+            const wordsApi = BaseTest.initializeWordsApi();
+
+            const localPath = BaseTest.localBaseTestDataFolder + testFolder + "/TablesGet.docx";
+            const remoteFileName = "TestUpdateTableRowFormat.docx";
+            const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
+
+            return new Promise((resolve) => {
+                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
+                    expect(responseMessage.status).to.equal("OK");
+                    resolve();
+                });
+            })
+                .then(() => {
+                    const request = new UpdateTableRowFormatRequest();
+                    request.name = remoteFileName;
+                    request.folder = remotePath;
+                    request.index = 0;
+                    request.tablePath = "sections/0/tables/2";
+                    request.format = new TableRowFormat({
+                        allowBreakAcrossPages: true, 
+                        headingFormat: true, 
+                        height: 10, 
+                        heightRule: TableRowFormat.HeightRuleEnum.Auto,
+                    });
+
+                    // Act
+                    return wordsApi.updateTableRowFormat(request)
+                        .then((result) => {
+                            // Assert
+                            expect(result.body.code).to.equal(200);
+                            expect(result.response.statusCode).to.equal(200);
                         });
                 });
         });

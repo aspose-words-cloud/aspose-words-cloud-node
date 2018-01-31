@@ -25,20 +25,20 @@
 import { expect } from "chai";
 import "mocha";
 
-import { DeleteParagraphRequest, GetDocumentParagraphRequest, GetDocumentParagraphsRequest, ParagraphInsert, PutParagraphRequest, RenderParagraphRequest } from "../../src/model/model";
-import * as BaseTest from "../baseTest";
+import { Border, DeleteBorderRequest, DeleteBordersRequest, GetBorderRequest, GetBordersRequest, UpdateBorderRequest, XmlColor } from "../../../src/model/model";
+import * as BaseTest from "../../baseTest";
 
-const testFolder = "DocumentElements/Paragraphs";
+const testFolder = "DocumentElements/Tables";
 
-describe("paragraphs", () => {
-    describe("getParagraphs function", () => {
+describe("tableBorders", () => {
+    describe("getTableBorders function", () => {
         it("should return response with code 200", () => {
 
             const storageApi = BaseTest.initializeStorageApi();
             const wordsApi = BaseTest.initializeWordsApi();
 
-            const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
-            const remoteFileName = "TestGetParagraphs.docx";
+            const localPath = BaseTest.localBaseTestDataFolder + testFolder + "/TablesGet.docx";
+            const remoteFileName = "TestGetTableBorders.docx";
             const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
             return new Promise((resolve) => {
@@ -48,12 +48,13 @@ describe("paragraphs", () => {
                 });
             })
                 .then(() => {
-                    const request = new GetDocumentParagraphsRequest();
+                    const request = new GetBordersRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
+                    request.nodePath = "tables/1/rows/0/cells/0/";
 
                     // Act
-                    return wordsApi.getDocumentParagraphs(request)
+                    return wordsApi.getBorders(request)
                         .then((result) => {
                             // Assert
                             expect(result.body.code).to.equal(200);
@@ -63,14 +64,14 @@ describe("paragraphs", () => {
         });
     });
 
-    describe("getParagraph function", () => {
+    describe("getTableBorder function", () => {
         it("should return response with code 200", () => {
 
             const storageApi = BaseTest.initializeStorageApi();
             const wordsApi = BaseTest.initializeWordsApi();
 
-            const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
-            const remoteFileName = "TestGetParagraph.docx";
+            const localPath = BaseTest.localBaseTestDataFolder + testFolder + "/TablesGet.docx";
+            const remoteFileName = "TestGetTableBorder.docx";
             const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
             return new Promise((resolve) => {
@@ -80,13 +81,14 @@ describe("paragraphs", () => {
                 });
             })
                 .then(() => {
-                    const request = new GetDocumentParagraphRequest();
+                    const request = new GetBorderRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
+                    request.nodePath = "tables/1/rows/0/cells/0/";
                     request.index = 0;
 
                     // Act
-                    return wordsApi.getDocumentParagraph(request)
+                    return wordsApi.getBorder(request)
                         .then((result) => {
                             // Assert
                             expect(result.body.code).to.equal(200);
@@ -96,14 +98,14 @@ describe("paragraphs", () => {
         });
     });
 
-    describe("putParagraph function", () => {
+    describe("deleteBorders function", () => {
         it("should return response with code 200", () => {
 
             const storageApi = BaseTest.initializeStorageApi();
             const wordsApi = BaseTest.initializeWordsApi();
 
-            const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
-            const remoteFileName = "TestPutParagraph.docx";
+            const localPath = BaseTest.localBaseTestDataFolder + testFolder + "/TablesGet.docx";
+            const remoteFileName = "TestDeleteTableBorders.docx";
             const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
             return new Promise((resolve) => {
@@ -113,47 +115,13 @@ describe("paragraphs", () => {
                 });
             })
                 .then(() => {
-                    const request = new PutParagraphRequest();
+                    const request = new DeleteBordersRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
-                    request.paragraph =  new ParagraphInsert ({ text: "This is a new paragraph for your document" });
-                    request.nodePath = "sections/0";
+                    request.nodePath = "sections/0/tables/2/rows/0";
 
                     // Act
-                    return wordsApi.putParagraph(request)
-                        .then((result) => {
-                            // Assert
-                            expect(result.body.code).to.equal(200);
-                            expect(result.response.statusCode).to.equal(200);
-                        });
-                });
-        });
-    });   
-
-    describe("deleteParagraph function", () => {
-        it("should return response with code 200", () => {
-
-            const storageApi = BaseTest.initializeStorageApi();
-            const wordsApi = BaseTest.initializeWordsApi();
-
-            const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
-            const remoteFileName = "TestDeleteParagraph.docx";
-            const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
-
-            return new Promise((resolve) => {
-                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                    expect(responseMessage.status).to.equal("OK");
-                    resolve();
-                });
-            })
-                .then(() => {
-                    const request = new DeleteParagraphRequest();
-                    request.name = remoteFileName;
-                    request.folder = remotePath;
-                    request.index = 0;
-
-                    // Act
-                    return wordsApi.deleteParagraph(request)
+                    return wordsApi.deleteBorders(request)
                         .then((result) => {
                             // Assert
                             expect(result.body.code).to.equal(200);
@@ -163,14 +131,14 @@ describe("paragraphs", () => {
         });
     });
 
-    describe("renderParagraph function", () => {
+    describe("deleteBorder function", () => {
         it("should return response with code 200", () => {
 
             const storageApi = BaseTest.initializeStorageApi();
             const wordsApi = BaseTest.initializeWordsApi();
 
-            const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
-            const remoteFileName = "TestRenderParagraph.docx";
+            const localPath = BaseTest.localBaseTestDataFolder + testFolder + "/TablesGet.docx";
+            const remoteFileName = "TestDeleteTableBorder.docx";
             const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
             return new Promise((resolve) => {
@@ -180,18 +148,60 @@ describe("paragraphs", () => {
                 });
             })
                 .then(() => {
-                    const request = new RenderParagraphRequest();
+                    const request = new DeleteBorderRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
+                    request.nodePath = "sections/0/tables/2/rows/0";
                     request.index = 0;
-                    request.format = "png";
 
                     // Act
-                    return wordsApi.renderParagraph(request)
+                    return wordsApi.deleteBorder(request)
                         .then((result) => {
                             // Assert
+                            expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
-                            expect(result.body.byteLength).to.greaterThan(0);
+                        });
+                });
+        });
+    });
+
+    describe("updateBorder function", () => {
+        it("should return response with code 200", () => {
+
+            const storageApi = BaseTest.initializeStorageApi();
+            const wordsApi = BaseTest.initializeWordsApi();
+
+            const localPath = BaseTest.localBaseTestDataFolder + testFolder + "/TablesGet.docx";
+            const remoteFileName = "TestUpdateBorder.docx";
+            const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
+
+            return new Promise((resolve) => {
+                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
+                    expect(responseMessage.status).to.equal("OK");
+                    resolve();
+                });
+            })
+                .then(() => {
+                    const request = new UpdateBorderRequest();
+                    request.name = remoteFileName;
+                    request.folder = remotePath;
+                    request.nodePath = "sections/0/tables/2/rows/0";
+                    request.index = 0;
+                    request.borderProperties = new Border({
+                        borderType: Border.BorderTypeEnum.Left,
+                        color: new XmlColor({ alpha: 2 }),
+                        distanceFromText: 6,
+                        lineStyle: Border.LineStyleEnum.DashDotStroker,
+                        lineWidth: 2,
+                        shadow: true,
+                    });
+
+                    // Act
+                    return wordsApi.updateBorder(request)
+                        .then((result) => {
+                            // Assert
+                            expect(result.body.code).to.equal(200);
+                            expect(result.response.statusCode).to.equal(200);
                         });
                 });
         });

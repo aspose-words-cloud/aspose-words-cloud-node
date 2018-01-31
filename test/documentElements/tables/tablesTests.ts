@@ -25,20 +25,20 @@
 import { expect } from "chai";
 import "mocha";
 
-import { DeleteParagraphRequest, GetDocumentParagraphRequest, GetDocumentParagraphsRequest, ParagraphInsert, PutParagraphRequest, RenderParagraphRequest } from "../../src/model/model";
-import * as BaseTest from "../baseTest";
+import { DeleteTableRequest, GetTableRequest, GetTablesRequest, InsertTableRequest, RenderTableRequest, TableInsert } from "../../../src/model/model";
+import * as BaseTest from "../../baseTest";
 
-const testFolder = "DocumentElements/Paragraphs";
+const testFolder = "DocumentElements/Tables";
 
-describe("paragraphs", () => {
-    describe("getParagraphs function", () => {
+describe("tables", () => {
+    describe("getTables function", () => {
         it("should return response with code 200", () => {
 
             const storageApi = BaseTest.initializeStorageApi();
             const wordsApi = BaseTest.initializeWordsApi();
 
-            const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
-            const remoteFileName = "TestGetParagraphs.docx";
+            const localPath = BaseTest.localBaseTestDataFolder + testFolder + "/TablesGet.docx";
+            const remoteFileName = "TestGetTables.docx";
             const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
             return new Promise((resolve) => {
@@ -48,12 +48,12 @@ describe("paragraphs", () => {
                 });
             })
                 .then(() => {
-                    const request = new GetDocumentParagraphsRequest();
+                    const request = new GetTablesRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
 
                     // Act
-                    return wordsApi.getDocumentParagraphs(request)
+                    return wordsApi.getTables(request)
                         .then((result) => {
                             // Assert
                             expect(result.body.code).to.equal(200);
@@ -63,14 +63,14 @@ describe("paragraphs", () => {
         });
     });
 
-    describe("getParagraph function", () => {
+    describe("getTable function", () => {
         it("should return response with code 200", () => {
 
             const storageApi = BaseTest.initializeStorageApi();
             const wordsApi = BaseTest.initializeWordsApi();
 
-            const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
-            const remoteFileName = "TestGetParagraph.docx";
+            const localPath = BaseTest.localBaseTestDataFolder + testFolder + "/TablesGet.docx";
+            const remoteFileName = "TestGetTable.docx";
             const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
             return new Promise((resolve) => {
@@ -80,13 +80,13 @@ describe("paragraphs", () => {
                 });
             })
                 .then(() => {
-                    const request = new GetDocumentParagraphRequest();
+                    const request = new GetTableRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
                     request.index = 0;
 
                     // Act
-                    return wordsApi.getDocumentParagraph(request)
+                    return wordsApi.getTable(request)
                         .then((result) => {
                             // Assert
                             expect(result.body.code).to.equal(200);
@@ -96,14 +96,14 @@ describe("paragraphs", () => {
         });
     });
 
-    describe("putParagraph function", () => {
+    describe("insertTable function", () => {
         it("should return response with code 200", () => {
 
             const storageApi = BaseTest.initializeStorageApi();
             const wordsApi = BaseTest.initializeWordsApi();
 
-            const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
-            const remoteFileName = "TestPutParagraph.docx";
+            const localPath = BaseTest.localBaseTestDataFolder + testFolder + "/TablesGet.docx";
+            const remoteFileName = "TestInsertTable.docx";
             const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
             return new Promise((resolve) => {
@@ -113,14 +113,13 @@ describe("paragraphs", () => {
                 });
             })
                 .then(() => {
-                    const request = new PutParagraphRequest();
+                    const request = new InsertTableRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
-                    request.paragraph =  new ParagraphInsert ({ text: "This is a new paragraph for your document" });
-                    request.nodePath = "sections/0";
+                    request.table = new TableInsert ({ columnsCount: 5, rowsCount: 4 });
 
                     // Act
-                    return wordsApi.putParagraph(request)
+                    return wordsApi.insertTable(request)
                         .then((result) => {
                             // Assert
                             expect(result.body.code).to.equal(200);
@@ -128,16 +127,16 @@ describe("paragraphs", () => {
                         });
                 });
         });
-    });   
-
-    describe("deleteParagraph function", () => {
+    });
+   
+    describe("deleteTable function", () => {
         it("should return response with code 200", () => {
 
             const storageApi = BaseTest.initializeStorageApi();
             const wordsApi = BaseTest.initializeWordsApi();
 
-            const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
-            const remoteFileName = "TestDeleteParagraph.docx";
+            const localPath = BaseTest.localBaseTestDataFolder + testFolder + "/TablesGet.docx";
+            const remoteFileName = "TestDeleteTable.docx";
             const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
             return new Promise((resolve) => {
@@ -147,13 +146,13 @@ describe("paragraphs", () => {
                 });
             })
                 .then(() => {
-                    const request = new DeleteParagraphRequest();
+                    const request = new DeleteTableRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
                     request.index = 0;
 
                     // Act
-                    return wordsApi.deleteParagraph(request)
+                    return wordsApi.deleteTable(request)
                         .then((result) => {
                             // Assert
                             expect(result.body.code).to.equal(200);
@@ -163,14 +162,14 @@ describe("paragraphs", () => {
         });
     });
 
-    describe("renderParagraph function", () => {
+    describe("renderTable function", () => {
         it("should return response with code 200", () => {
 
             const storageApi = BaseTest.initializeStorageApi();
             const wordsApi = BaseTest.initializeWordsApi();
 
-            const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
-            const remoteFileName = "TestRenderParagraph.docx";
+            const localPath = BaseTest.localBaseTestDataFolder + testFolder + "/TablesGet.docx";
+            const remoteFileName = "TestRenderTable.docx";
             const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
             return new Promise((resolve) => {
@@ -180,14 +179,14 @@ describe("paragraphs", () => {
                 });
             })
                 .then(() => {
-                    const request = new RenderParagraphRequest();
+                    const request = new RenderTableRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
                     request.index = 0;
                     request.format = "png";
 
                     // Act
-                    return wordsApi.renderParagraph(request)
+                    return wordsApi.renderTable(request)
                         .then((result) => {
                             // Assert
                             expect(result.response.statusCode).to.equal(200);

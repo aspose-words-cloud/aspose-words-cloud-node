@@ -26,7 +26,7 @@ import { expect } from "chai";
 import * as fs from "fs";
 import "mocha";
 
-import { PostInsertDocumentWatermarkImageRequest, PostInsertDocumentWatermarkTextRequest, WatermarkText, DeleteDocumentWatermarkRequest } from "../../src/model/model";
+import { DeleteDocumentWatermarkRequest, PostInsertDocumentWatermarkImageRequest, PostInsertDocumentWatermarkTextRequest, WatermarkText } from "../../src/model/model";
 import * as BaseTest from "../baseTest";
 
 const testFolder = "DocumentElements/Watermarks";

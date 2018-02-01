@@ -25,26 +25,63 @@
 import { expect } from "chai";
 import "mocha";
 
-import { GetDocumentRequest } from "../../src/model/model";
-import { wordsApiInitializer } from "../baseTest";
+import { GetDocumentRequest, PutCreateDocumentRequest } from "../../src/model/model";
+import * as BaseTest from "../baseTest";
 
-describe("getDocument function",  () => {
+const testFolder = "document";
+
+describe("getDocument function", () => {
 
   it("should return response with code 200", () => {
 
-    const wordsApi = wordsApiInitializer();
+    const storageApi = BaseTest.initializeStorageApi();
+    const wordsApi = BaseTest.initializeWordsApi();
 
-    // TODO: put document to storage
-    // TODO: move folder name to constants
-    const request = new GetDocumentRequest();
-    request.documentName = "TestGetDocument.docx";
-    request.folder = "Temp/SdkTests/TestData/DocumentActions/Document";
+    const localPath = BaseTest.localCommonTestDataFolder;
+    const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
+    const filename = "test_doc.docx";
 
-    return wordsApi.getDocument(request)
+    return new Promise((resolve) => {
+      storageApi.PutCreate(remotePath + "/" + filename, null, null, localPath + "/" + filename, (responseMessage) => {
+        expect(responseMessage.status).to.equal("OK");
+        resolve();
+      });
+    })
+      .then(() => {
+        const request = new GetDocumentRequest();
+        request.documentName = filename;
+        request.folder = remotePath;
 
-    .then((result) => {
-      expect(result.body.code).to.equal(200);
-      expect(result.response.statusCode).to.equal(200);
-     });
+        // Act
+        return wordsApi.getDocument(request)
+          .then((result) => {
+            // Assert
+            expect(result.body.code).to.equal(200);
+            expect(result.response.statusCode).to.equal(200);
+          });
+      });
+  });
+});
+
+describe("putCreateDocument function", () => {
+
+  it("should return response with code 200", () => {
+
+    const wordsApi = BaseTest.initializeWordsApi();
+    
+    const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
+    const filename = "TestPutCreateDocument.doc";
+
+    const request = new PutCreateDocumentRequest();
+    request.fileName = filename;
+    request.folder = remotePath;
+
+    // Act
+    return wordsApi.putCreateDocument(request)
+      .then((result) => {
+        // Assert
+        expect(result.body.code).to.equal(200);
+        expect(result.response.statusCode).to.equal(200);
+      });
   });
 });

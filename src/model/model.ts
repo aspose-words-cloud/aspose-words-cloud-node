@@ -59,6 +59,10 @@ export class AsposeResponse {
      */
     public status: string;
     
+    public constructor(init?: Partial<AsposeResponse>) {
+        
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -98,6 +102,10 @@ export class BookmarkData {
      */
     public text: string;
     
+    public constructor(init?: Partial<BookmarkData>) {
+        
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -137,6 +145,10 @@ export class BookmarksOutlineLevelData {
      */
     public bookmarksOutlineLevel: number;
     
+    public constructor(init?: Partial<BookmarksOutlineLevelData>) {
+        
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -186,6 +198,10 @@ export class CompareData {
      */
     public dateTime: Date;
     
+    public constructor(init?: Partial<CompareData>) {
+        
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -265,6 +281,10 @@ export class Document {
      */
     public documentProperties: DocumentProperties;
     
+    public constructor(init?: Partial<Document>) {
+        
+        Object.assign(this, init);
+    }        
 }
 
 // tslint:disable:quotemark
@@ -333,6 +353,10 @@ export class DocumentEntry {
      */
     public importFormatMode: string;
     
+    public constructor(init?: Partial<DocumentEntry>) {
+        
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -362,6 +386,10 @@ export class DocumentEntryList {
      */
     public documentEntries: Array<DocumentEntry>;
     
+    public constructor(init?: Partial<DocumentEntryList>) {
+        
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -401,6 +429,10 @@ export class DocumentPosition {
      */
     public offset: number;
     
+    public constructor(init?: Partial<DocumentPosition>) {
+        
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -470,6 +502,10 @@ export class DocumentStatData {
      */
     public pageStatData: Array<PageStatData>;
     
+    public constructor(init?: Partial<DocumentStatData>) {
+        
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -519,6 +555,10 @@ export class DownsampleOptionsData {
      */
     public resolutionThreshold: number;
     
+    public constructor(init?: Partial<DownsampleOptionsData>) {
+        
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -558,6 +598,10 @@ export class FootnotesStatData {
      */
     public paragraphCount: number;
     
+    public constructor(init?: Partial<FootnotesStatData>) {
+        
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -637,6 +681,10 @@ export class GraphicsQualityOptionsData {
      */
     public textRenderingHint: GraphicsQualityOptionsData.TextRenderingHintEnum;
     
+    public constructor(init?: Partial<GraphicsQualityOptionsData>) {
+        
+        Object.assign(this, init);
+    }        
 }
 
 // tslint:disable:quotemark
@@ -740,6 +788,10 @@ export class Link {
      */
     public title: string;
     
+    public constructor(init?: Partial<Link>) {
+        
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -769,6 +821,10 @@ export class LinkElement {
      */
     public link: WordsApiLink;
     
+    public constructor(init?: Partial<LinkElement>) {
+        
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -808,6 +864,10 @@ export class LoadWebDocumentData {
      */
     public saveOptions: SaveOptionsData;
     
+    public constructor(init?: Partial<LoadWebDocumentData>) {
+        
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -857,6 +917,10 @@ export class MetafileRenderingOptionsData {
      */
     public useEmfEmbeddedToWmf: boolean;
     
+    public constructor(init?: Partial<MetafileRenderingOptionsData>) {
+        
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -896,6 +960,10 @@ export class ModificationOperationResult {
      */
     public dest: FileLink;
     
+    public constructor(init?: Partial<ModificationOperationResult>) {
+        
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -955,6 +1023,10 @@ export class OutlineOptionsData {
      */
     public headingsOutlineLevels: number;
     
+    public constructor(init?: Partial<OutlineOptionsData>) {
+        
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -1014,6 +1086,10 @@ export class PageNumber {
      */
     public setPageNumberOnFirstPage: boolean;
     
+    public constructor(init?: Partial<PageNumber>) {
+        
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -1073,6 +1149,10 @@ export class PageStatData {
      */
     public footnotesStatData: FootnotesStatData;
     
+    public constructor(init?: Partial<PageStatData>) {
+        
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -1102,6 +1182,10 @@ export class ParagraphInsert {
      */
     public text: string;
     
+    public constructor(init?: Partial<ParagraphInsert>) {
+        
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -1171,6 +1255,10 @@ export class PdfDigitalSignatureDetailsData {
      */
     public signatureDate: Date;
     
+    public constructor(init?: Partial<PdfDigitalSignatureDetailsData>) {
+        
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -1230,6 +1318,10 @@ export class PdfEncryptionDetailsData {
      */
     public userPassword: string;
     
+    public constructor(init?: Partial<PdfEncryptionDetailsData>) {
+        
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -1269,6 +1361,10 @@ export class PreferredWidth {
      */
     public value: number;
     
+    public constructor(init?: Partial<PreferredWidth>) {
+        
+        Object.assign(this, init);
+    }        
 }
 
 // tslint:disable:quotemark
@@ -1308,6 +1404,10 @@ export class ProtectionData {
      */
     public protectionType: string;
     
+    public constructor(init?: Partial<ProtectionData>) {
+        
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -1357,6 +1457,10 @@ export class ProtectionRequest {
      */
     public protectionType: string;
     
+    public constructor(init?: Partial<ProtectionRequest>) {
+        
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -1426,6 +1530,10 @@ export class ReplaceTextRequest {
      */
     public isOldValueRegex: boolean;
     
+    public constructor(init?: Partial<ReplaceTextRequest>) {
+        
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -1525,6 +1633,10 @@ export class SaveOptionsData {
      */
     public updateFields: boolean;
     
+    public constructor(init?: Partial<SaveOptionsData>) {
+        
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -1574,6 +1686,10 @@ export class SaveResult {
      */
     public additionalItems: Array<FileLink>;
     
+    public constructor(init?: Partial<SaveResult>) {
+        
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -1613,6 +1729,10 @@ export class SearchResult {
      */
     public rangeEnd: DocumentPosition;
     
+    public constructor(init?: Partial<SearchResult>) {
+        
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -1662,6 +1782,10 @@ export class SplitDocumentResult {
      */
     public zippedPages: FileLink;
     
+    public constructor(init?: Partial<SplitDocumentResult>) {
+        
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -1691,6 +1815,10 @@ export class StoryChildNodes {
      */
     public childNodes: Array<NodeLink>;
     
+    public constructor(init?: Partial<StoryChildNodes>) {
+        
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -1760,6 +1888,10 @@ export class StringFormatData {
      */
     public trimming: StringFormatData.TrimmingEnum;
     
+    public constructor(init?: Partial<StringFormatData>) {
+        
+        Object.assign(this, init);
+    }        
 }
 
 // tslint:disable:quotemark
@@ -1828,6 +1960,10 @@ export class TableCellInsert {
      */
     public insertAfter: number;
     
+    public constructor(init?: Partial<TableCellInsert>) {
+        
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -1877,6 +2013,10 @@ export class TableInsert {
      */
     public rowsCount: number;
     
+    public constructor(init?: Partial<TableInsert>) {
+        
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -1916,6 +2056,10 @@ export class TableRowInsert {
      */
     public columnsCount: number;
     
+    public constructor(init?: Partial<TableRowInsert>) {
+        
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -1955,6 +2099,10 @@ export class WatermarkText {
      */
     public rotationAngle: number;
     
+    public constructor(init?: Partial<WatermarkText>) {
+        
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -1994,6 +2142,10 @@ export class XmlColor {
      */
     public alpha: number;
     
+    public constructor(init?: Partial<XmlColor>) {
+        
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -2033,6 +2185,10 @@ export class Bookmark extends LinkElement {
      */
     public text: string;
     
+    public constructor(init?: Partial<Bookmark>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -2062,6 +2218,10 @@ export class BookmarkResponse extends AsposeResponse {
      */
     public bookmark: Bookmark;
     
+    public constructor(init?: Partial<BookmarkResponse>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -2091,6 +2251,10 @@ export class Bookmarks extends LinkElement {
      */
     public bookmarkList: Array<Bookmark>;
     
+    public constructor(init?: Partial<Bookmarks>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -2120,6 +2284,10 @@ export class BookmarksResponse extends AsposeResponse {
      */
     public bookmarks: Bookmarks;
     
+    public constructor(init?: Partial<BookmarksResponse>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -2199,6 +2367,10 @@ export class Border extends LinkElement {
      */
     public borderType: Border.BorderTypeEnum;
     
+    public constructor(init?: Partial<Border>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 // tslint:disable:quotemark
@@ -2273,6 +2445,10 @@ export class BorderResponse extends AsposeResponse {
      */
     public border: Border;
     
+    public constructor(init?: Partial<BorderResponse>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -2302,6 +2478,10 @@ export class BordersCollection extends LinkElement {
      */
     public list: Array<Border>;
     
+    public constructor(init?: Partial<BordersCollection>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -2331,6 +2511,10 @@ export class BordersResponse extends AsposeResponse {
      */
     public borders: BordersCollection;
     
+    public constructor(init?: Partial<BordersResponse>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -2351,6 +2535,10 @@ export class CommentLink extends LinkElement {
         return super.getAttributeTypeMap().concat(CommentLink.attributeTypeMap);
     }
 
+    public constructor(init?: Partial<CommentLink>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -2380,6 +2568,10 @@ export class CommentResponse extends AsposeResponse {
      */
     public comment: Comment;
     
+    public constructor(init?: Partial<CommentResponse>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -2409,6 +2601,10 @@ export class CommentsCollection extends LinkElement {
      */
     public commentList: Array<Comment>;
     
+    public constructor(init?: Partial<CommentsCollection>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -2438,6 +2634,10 @@ export class CommentsResponse extends AsposeResponse {
      */
     public comments: CommentsCollection;
     
+    public constructor(init?: Partial<CommentsResponse>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -2477,6 +2677,10 @@ export class DocSaveOptionsData extends SaveOptionsData {
      */
     public saveRoutingSlip: boolean;
     
+    public constructor(init?: Partial<DocSaveOptionsData>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -2506,6 +2710,10 @@ export class DocumentProperties extends LinkElement {
      */
     public list: Array<DocumentProperty>;
     
+    public constructor(init?: Partial<DocumentProperties>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -2535,6 +2743,10 @@ export class DocumentPropertiesResponse extends AsposeResponse {
      */
     public documentProperties: DocumentProperties;
     
+    public constructor(init?: Partial<DocumentPropertiesResponse>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -2584,6 +2796,10 @@ export class DocumentProperty extends LinkElement {
      */
     public builtIn: boolean;
     
+    public constructor(init?: Partial<DocumentProperty>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -2613,6 +2829,10 @@ export class DocumentPropertyResponse extends AsposeResponse {
      */
     public documentProperty: DocumentProperty;
     
+    public constructor(init?: Partial<DocumentPropertyResponse>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -2642,6 +2862,10 @@ export class DocumentResponse extends AsposeResponse {
      */
     public document: Document;
     
+    public constructor(init?: Partial<DocumentResponse>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -2671,6 +2895,10 @@ export class DrawingObjectCollection extends LinkElement {
      */
     public list: Array<LinkElement>;
     
+    public constructor(init?: Partial<DrawingObjectCollection>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -2700,6 +2928,10 @@ export class DrawingObjectResponse extends AsposeResponse {
      */
     public drawingObject: DrawingObject;
     
+    public constructor(init?: Partial<DrawingObjectResponse>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -2729,6 +2961,10 @@ export class DrawingObjectsResponse extends AsposeResponse {
      */
     public drawingObjects: DrawingObjectCollection;
     
+    public constructor(init?: Partial<DrawingObjectsResponse>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -2758,6 +2994,10 @@ export class FieldCollection extends LinkElement {
      */
     public list: Array<Field>;
     
+    public constructor(init?: Partial<FieldCollection>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -2787,6 +3027,10 @@ export class FieldNames extends LinkElement {
      */
     public names: Array<string>;
     
+    public constructor(init?: Partial<FieldNames>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -2816,6 +3060,10 @@ export class FieldNamesResponse extends AsposeResponse {
      */
     public fieldNames: FieldNames;
     
+    public constructor(init?: Partial<FieldNamesResponse>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -2845,6 +3093,10 @@ export class FieldResponse extends AsposeResponse {
      */
     public field: Field;
     
+    public constructor(init?: Partial<FieldResponse>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -2874,6 +3126,10 @@ export class FieldsResponse extends AsposeResponse {
      */
     public fields: FieldCollection;
     
+    public constructor(init?: Partial<FieldsResponse>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -2894,6 +3150,10 @@ export class FileLink extends Link {
         return super.getAttributeTypeMap().concat(FileLink.attributeTypeMap);
     }
 
+    public constructor(init?: Partial<FileLink>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -2973,6 +3233,10 @@ export class FixedPageSaveOptionsData extends SaveOptionsData {
      */
     public pageIndex: number;
     
+    public constructor(init?: Partial<FixedPageSaveOptionsData>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -3392,6 +3656,10 @@ export class Font extends LinkElement {
      */
     public styleIdentifier: Font.StyleIdentifierEnum;
     
+    public constructor(init?: Partial<Font>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 // tslint:disable:quotemark
@@ -3830,6 +4098,10 @@ export class FontResponse extends AsposeResponse {
      */
     public font: Font;
     
+    public constructor(init?: Partial<FontResponse>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -3859,6 +4131,10 @@ export class FootnoteCollection extends LinkElement {
      */
     public list: Array<Footnote>;
     
+    public constructor(init?: Partial<FootnoteCollection>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -3888,6 +4164,10 @@ export class FootnoteResponse extends AsposeResponse {
      */
     public footnote: Footnote;
     
+    public constructor(init?: Partial<FootnoteResponse>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -3917,6 +4197,10 @@ export class FootnotesResponse extends AsposeResponse {
      */
     public footnotes: FootnoteCollection;
     
+    public constructor(init?: Partial<FootnotesResponse>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -3946,6 +4230,10 @@ export class FormFieldCollection extends LinkElement {
      */
     public list: Array<FormField>;
     
+    public constructor(init?: Partial<FormFieldCollection>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -3975,6 +4263,10 @@ export class FormFieldResponse extends AsposeResponse {
      */
     public formField: FormField;
     
+    public constructor(init?: Partial<FormFieldResponse>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -4004,6 +4296,10 @@ export class FormFieldsResponse extends AsposeResponse {
      */
     public formFields: FormFieldCollection;
     
+    public constructor(init?: Partial<FormFieldsResponse>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -4033,6 +4329,10 @@ export class HeaderFooterLink extends LinkElement {
      */
     public type: HeaderFooterLink.TypeEnum;
     
+    public constructor(init?: Partial<HeaderFooterLink>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 // tslint:disable:quotemark
@@ -4075,6 +4375,10 @@ export class HeaderFooterLinkCollection extends LinkElement {
      */
     public list: Array<HeaderFooterLink>;
     
+    public constructor(init?: Partial<HeaderFooterLinkCollection>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -4104,6 +4408,10 @@ export class HeaderFooterResponse extends AsposeResponse {
      */
     public headerFooter: HeaderFooter;
     
+    public constructor(init?: Partial<HeaderFooterResponse>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -4133,6 +4441,10 @@ export class HeaderFootersResponse extends AsposeResponse {
      */
     public headerFooters: HeaderFooterLinkCollection;
     
+    public constructor(init?: Partial<HeaderFootersResponse>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -4522,6 +4834,10 @@ export class HtmlSaveOptionsData extends SaveOptionsData {
      */
     public exportDropDownFormFieldAsText: boolean;
     
+    public constructor(init?: Partial<HtmlSaveOptionsData>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 // tslint:disable:quotemark
@@ -4575,6 +4891,10 @@ export class Hyperlink extends LinkElement {
      */
     public value: string;
     
+    public constructor(init?: Partial<Hyperlink>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -4604,6 +4924,10 @@ export class HyperlinkResponse extends AsposeResponse {
      */
     public hyperlink: Hyperlink;
     
+    public constructor(init?: Partial<HyperlinkResponse>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -4633,6 +4957,10 @@ export class Hyperlinks extends LinkElement {
      */
     public hyperlinkList: Array<Hyperlink>;
     
+    public constructor(init?: Partial<Hyperlinks>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -4662,6 +4990,10 @@ export class HyperlinksResponse extends AsposeResponse {
      */
     public hyperlinks: Hyperlinks;
     
+    public constructor(init?: Partial<HyperlinksResponse>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -4691,6 +5023,10 @@ export class NodeLink extends LinkElement {
      */
     public nodeId: string;
     
+    public constructor(init?: Partial<NodeLink>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -4730,6 +5066,10 @@ export class OdtSaveOptionsData extends SaveOptionsData {
      */
     public isStrictSchema11: boolean;
     
+    public constructor(init?: Partial<OdtSaveOptionsData>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -4759,6 +5099,10 @@ export class OfficeMathObjectResponse extends AsposeResponse {
      */
     public officeMathObject: OfficeMathObject;
     
+    public constructor(init?: Partial<OfficeMathObjectResponse>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -4788,6 +5132,10 @@ export class OfficeMathObjectsCollection extends LinkElement {
      */
     public list: Array<OfficeMathObject>;
     
+    public constructor(init?: Partial<OfficeMathObjectsCollection>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -4817,6 +5165,10 @@ export class OfficeMathObjectsResponse extends AsposeResponse {
      */
     public officeMathObjects: OfficeMathObjectsCollection;
     
+    public constructor(init?: Partial<OfficeMathObjectsResponse>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -4866,6 +5218,10 @@ export class OoxmlSaveOptionsData extends SaveOptionsData {
      */
     public password: string;
     
+    public constructor(init?: Partial<OoxmlSaveOptionsData>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -5175,6 +5531,10 @@ export class PageSetup extends LinkElement {
      */
     public borderAppliesTo: PageSetup.BorderAppliesToEnum;
     
+    public constructor(init?: Partial<PageSetup>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 // tslint:disable:quotemark
@@ -5324,6 +5684,10 @@ export class ParagraphLinkCollection extends LinkElement {
      */
     public paragraphLinkList: Array<ParagraphLink>;
     
+    public constructor(init?: Partial<ParagraphLinkCollection>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -5353,6 +5717,10 @@ export class ParagraphLinkCollectionResponse extends AsposeResponse {
      */
     public paragraphs: ParagraphLinkCollection;
     
+    public constructor(init?: Partial<ParagraphLinkCollectionResponse>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -5382,6 +5750,10 @@ export class ParagraphResponse extends AsposeResponse {
      */
     public paragraph: Paragraph;
     
+    public constructor(init?: Partial<ParagraphResponse>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -5421,6 +5793,10 @@ export class ProtectionDataResponse extends AsposeResponse {
      */
     public documentLink: FileLink;
     
+    public constructor(init?: Partial<ProtectionDataResponse>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -5460,6 +5836,10 @@ export class ProtectionResponse extends AsposeResponse {
      */
     public documentLink: FileLink;
     
+    public constructor(init?: Partial<ProtectionResponse>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -5499,6 +5879,10 @@ export class ReplaceTextResponse extends AsposeResponse {
      */
     public documentLink: FileLink;
     
+    public constructor(init?: Partial<ReplaceTextResponse>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -5528,6 +5912,10 @@ export class RevisionsModificationResponse extends AsposeResponse {
      */
     public result: ModificationOperationResult;
     
+    public constructor(init?: Partial<RevisionsModificationResponse>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -5577,6 +5965,10 @@ export class RtfSaveOptionsData extends SaveOptionsData {
      */
     public exportImagesForOldReaders: boolean;
     
+    public constructor(init?: Partial<RtfSaveOptionsData>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -5606,6 +5998,10 @@ export class RunResponse extends AsposeResponse {
      */
     public run: Run;
     
+    public constructor(init?: Partial<RunResponse>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -5635,6 +6031,10 @@ export class Runs extends LinkElement {
      */
     public list: Array<Run>;
     
+    public constructor(init?: Partial<Runs>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -5664,6 +6064,10 @@ export class RunsResponse extends AsposeResponse {
      */
     public runs: Runs;
     
+    public constructor(init?: Partial<RunsResponse>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -5693,6 +6097,10 @@ export class SaveResponse extends AsposeResponse {
      */
     public saveResult: SaveResult;
     
+    public constructor(init?: Partial<SaveResponse>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -5732,6 +6140,10 @@ export class SearchResponse extends AsposeResponse {
      */
     public searchResults: SearchResultsCollection;
     
+    public constructor(init?: Partial<SearchResponse>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -5761,6 +6173,10 @@ export class SearchResultsCollection extends LinkElement {
      */
     public resultsList: Array<SearchResult>;
     
+    public constructor(init?: Partial<SearchResultsCollection>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -5830,6 +6246,10 @@ export class Section extends LinkElement {
      */
     public childNodes: Array<NodeLink>;
     
+    public constructor(init?: Partial<Section>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -5850,6 +6270,10 @@ export class SectionLink extends LinkElement {
         return super.getAttributeTypeMap().concat(SectionLink.attributeTypeMap);
     }
 
+    public constructor(init?: Partial<SectionLink>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -5879,6 +6303,10 @@ export class SectionLinkCollection extends LinkElement {
      */
     public sectionLinkList: Array<SectionLink>;
     
+    public constructor(init?: Partial<SectionLinkCollection>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -5908,6 +6336,10 @@ export class SectionLinkCollectionResponse extends AsposeResponse {
      */
     public sections: SectionLinkCollection;
     
+    public constructor(init?: Partial<SectionLinkCollectionResponse>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -5937,6 +6369,10 @@ export class SectionPageSetupResponse extends AsposeResponse {
      */
     public pageSetup: PageSetup;
     
+    public constructor(init?: Partial<SectionPageSetupResponse>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -5966,6 +6402,10 @@ export class SectionResponse extends AsposeResponse {
      */
     public section: Section;
     
+    public constructor(init?: Partial<SectionResponse>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -5995,6 +6435,10 @@ export class SplitDocumentResponse extends AsposeResponse {
      */
     public splitResult: SplitDocumentResult;
     
+    public constructor(init?: Partial<SplitDocumentResponse>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -6034,6 +6478,10 @@ export class StatDataResponse extends AsposeResponse {
      */
     public documentLink: FileLink;
     
+    public constructor(init?: Partial<StatDataResponse>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -6046,34 +6494,9 @@ export class TableCellFormat extends LinkElement {
      */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            name: "bottomPadding",
-            baseName: "BottomPadding",
-            type: "number",
-        },        
-        {
-            name: "fitText",
-            baseName: "FitText",
-            type: "boolean",
-        },        
-        {
-            name: "horizontalMerge",
-            baseName: "HorizontalMerge",
-            type: "TableCellFormat.HorizontalMergeEnum",
-        },        
-        {
             name: "leftPadding",
             baseName: "LeftPadding",
             type: "number",
-        },        
-        {
-            name: "orientation",
-            baseName: "Orientation",
-            type: "TableCellFormat.OrientationEnum",
-        },        
-        {
-            name: "preferredWidth",
-            baseName: "PreferredWidth",
-            type: "PreferredWidth",
         },        
         {
             name: "rightPadding",
@@ -6086,9 +6509,24 @@ export class TableCellFormat extends LinkElement {
             type: "number",
         },        
         {
+            name: "bottomPadding",
+            baseName: "BottomPadding",
+            type: "number",
+        },        
+        {
             name: "verticalAlignment",
             baseName: "VerticalAlignment",
             type: "TableCellFormat.VerticalAlignmentEnum",
+        },        
+        {
+            name: "width",
+            baseName: "Width",
+            type: "number",
+        },        
+        {
+            name: "preferredWidth",
+            baseName: "PreferredWidth",
+            type: "PreferredWidth",
         },        
         {
             name: "verticalMerge",
@@ -6096,9 +6534,19 @@ export class TableCellFormat extends LinkElement {
             type: "TableCellFormat.VerticalMergeEnum",
         },        
         {
-            name: "width",
-            baseName: "Width",
-            type: "number",
+            name: "horizontalMerge",
+            baseName: "HorizontalMerge",
+            type: "TableCellFormat.HorizontalMergeEnum",
+        },        
+        {
+            name: "orientation",
+            baseName: "Orientation",
+            type: "TableCellFormat.OrientationEnum",
+        },        
+        {
+            name: "fitText",
+            baseName: "FitText",
+            type: "boolean",
         },        
         {
             name: "wrapText",
@@ -6114,34 +6562,9 @@ export class TableCellFormat extends LinkElement {
     }
 
     /**
-     * Returns or sets the amount of space (in points) to add below the contents of cell.
-     */
-    public bottomPadding: number;
-    
-    /**
-     * If true, fits text in the cell, compressing each paragraph to the width of the cell.
-     */
-    public fitText: boolean;
-    
-    /**
-     * Specifies how the cell is merged horizontally with other cells in the row.
-     */
-    public horizontalMerge: TableCellFormat.HorizontalMergeEnum;
-    
-    /**
      * Returns or sets the amount of space (in points) to add to the left of the contents of cell.
      */
     public leftPadding: number;
-    
-    /**
-     * Returns or sets the orientation of text in a table cell.
-     */
-    public orientation: TableCellFormat.OrientationEnum;
-    
-    /**
-     * Returns or sets the preferred width of the cell.
-     */
-    public preferredWidth: PreferredWidth;
     
     /**
      * Returns or sets the amount of space (in points) to add to the right of the contents of cell.
@@ -6154,14 +6577,14 @@ export class TableCellFormat extends LinkElement {
     public topPadding: number;
     
     /**
+     * Returns or sets the amount of space (in points) to add below the contents of cell.
+     */
+    public bottomPadding: number;
+    
+    /**
      * Returns or sets the vertical alignment of text in the cell.
      */
     public verticalAlignment: TableCellFormat.VerticalAlignmentEnum;
-    
-    /**
-     * Specifies how the cell is merged with other cells vertically.
-     */
-    public verticalMerge: TableCellFormat.VerticalMergeEnum;
     
     /**
      * Gets the width of the cell in points.
@@ -6169,15 +6592,54 @@ export class TableCellFormat extends LinkElement {
     public width: number;
     
     /**
+     * Returns or sets the preferred width of the cell.
+     */
+    public preferredWidth: PreferredWidth;
+    
+    /**
+     * Specifies how the cell is merged with other cells vertically.
+     */
+    public verticalMerge: TableCellFormat.VerticalMergeEnum;
+    
+    /**
+     * Specifies how the cell is merged horizontally with other cells in the row.
+     */
+    public horizontalMerge: TableCellFormat.HorizontalMergeEnum;
+    
+    /**
+     * Returns or sets the orientation of text in a table cell.
+     */
+    public orientation: TableCellFormat.OrientationEnum;
+    
+    /**
+     * If true, fits text in the cell, compressing each paragraph to the width of the cell.
+     */
+    public fitText: boolean;
+    
+    /**
      * If true, wrap text for the cell.
      */
     public wrapText: boolean;
     
+    public constructor(init?: Partial<TableCellFormat>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 // tslint:disable:quotemark
 // tslint:disable-next-line:no-namespace
 export namespace TableCellFormat {
+    export enum VerticalAlignmentEnum {
+        Top = 'Top' as any,
+        Center = 'Center' as any,
+        Bottom = 'Bottom' as any,
+    }
+    export enum VerticalMergeEnum {
+        None = 'None' as any,
+        First = 'First' as any,
+        Previous = 'Previous' as any,
+    }
     export enum HorizontalMergeEnum {
         None = 'None' as any,
         First = 'First' as any,
@@ -6190,16 +6652,6 @@ export namespace TableCellFormat {
         HorizontalRotatedFarEast = 'HorizontalRotatedFarEast' as any,
         VerticalFarEast = 'VerticalFarEast' as any,
         VerticalRotatedFarEast = 'VerticalRotatedFarEast' as any,
-    }
-    export enum VerticalAlignmentEnum {
-        Top = 'Top' as any,
-        Center = 'Center' as any,
-        Bottom = 'Bottom' as any,
-    }
-    export enum VerticalMergeEnum {
-        None = 'None' as any,
-        First = 'First' as any,
-        Previous = 'Previous' as any,
     }
 }
 // tslint:enable:quotemark
@@ -6230,6 +6682,10 @@ export class TableCellFormatResponse extends AsposeResponse {
      */
     public cellFormat: TableCellFormat;
     
+    public constructor(init?: Partial<TableCellFormatResponse>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -6259,6 +6715,10 @@ export class TableCellResponse extends AsposeResponse {
      */
     public cell: TableCell;
     
+    public constructor(init?: Partial<TableCellResponse>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -6288,6 +6748,10 @@ export class TableLinkCollection extends LinkElement {
      */
     public tableLinkList: Array<TableLink>;
     
+    public constructor(init?: Partial<TableLinkCollection>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -6317,6 +6781,10 @@ export class TableLinkCollectionResponse extends AsposeResponse {
      */
     public tables: TableLinkCollection;
     
+    public constructor(init?: Partial<TableLinkCollectionResponse>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -6339,29 +6807,9 @@ export class TableProperties extends LinkElement {
             type: "boolean",
         },        
         {
-            name: "preferredWidth",
-            baseName: "PreferredWidth",
-            type: "PreferredWidth",
-        },        
-        {
             name: "bidi",
             baseName: "Bidi",
             type: "boolean",
-        },        
-        {
-            name: "leftPadding",
-            baseName: "LeftPadding",
-            type: "number",
-        },        
-        {
-            name: "rightPadding",
-            baseName: "RightPadding",
-            type: "number",
-        },        
-        {
-            name: "topPadding",
-            baseName: "TopPadding",
-            type: "number",
         },        
         {
             name: "bottomPadding",
@@ -6379,14 +6827,19 @@ export class TableProperties extends LinkElement {
             type: "number",
         },        
         {
-            name: "styleOptions",
-            baseName: "StyleOptions",
-            type: "TableProperties.StyleOptionsEnum",
+            name: "leftPadding",
+            baseName: "LeftPadding",
+            type: "number",
         },        
         {
-            name: "styleName",
-            baseName: "StyleName",
-            type: "string",
+            name: "preferredWidth",
+            baseName: "PreferredWidth",
+            type: "PreferredWidth",
+        },        
+        {
+            name: "rightPadding",
+            baseName: "RightPadding",
+            type: "number",
         },        
         {
             name: "styleIdentifier",
@@ -6394,9 +6847,24 @@ export class TableProperties extends LinkElement {
             type: "TableProperties.StyleIdentifierEnum",
         },        
         {
+            name: "styleName",
+            baseName: "StyleName",
+            type: "string",
+        },        
+        {
+            name: "styleOptions",
+            baseName: "StyleOptions",
+            type: "TableProperties.StyleOptionsEnum",
+        },        
+        {
             name: "textWrapping",
             baseName: "TextWrapping",
             type: "TableProperties.TextWrappingEnum",
+        },        
+        {
+            name: "topPadding",
+            baseName: "TopPadding",
+            type: "number",
         }    ];
 
     /**
@@ -6417,29 +6885,9 @@ export class TableProperties extends LinkElement {
     public allowAutoFit: boolean;
     
     /**
-     * Gets or sets the table preferred width.  Preferred width can be specified as a percentage, number of points or a special \"auto\" value.
-     */
-    public preferredWidth: PreferredWidth;
-    
-    /**
      * Gets or sets whether this is a right-to-left table.
      */
     public bidi: boolean;
-    
-    /**
-     * Gets or sets the amount of space (in points) to add to the left of the contents of cells.
-     */
-    public leftPadding: number;
-    
-    /**
-     * Gets or sets the amount of space (in points) to add to the right of the contents of cells.
-     */
-    public rightPadding: number;
-    
-    /**
-     * Gets or sets the amount of space (in points) to add above the contents of cells.
-     */
-    public topPadding: number;
     
     /**
      * Gets or sets the amount of space (in points) to add below the contents of cells.
@@ -6457,14 +6905,19 @@ export class TableProperties extends LinkElement {
     public leftIndent: number;
     
     /**
-     * Gets or sets bit flags that specify how a table style is applied to this table.
+     * Gets or sets the amount of space (in points) to add to the left of the contents of cells.
      */
-    public styleOptions: TableProperties.StyleOptionsEnum;
+    public leftPadding: number;
     
     /**
-     * Gets or sets the name of the table style applied to this table.
+     * Gets or sets the table preferred width.  Preferred width can be specified as a percentage, number of points or a special \"auto\" value.
      */
-    public styleName: string;
+    public preferredWidth: PreferredWidth;
+    
+    /**
+     * Gets or sets the amount of space (in points) to add to the right of the contents of cells.
+     */
+    public rightPadding: number;
     
     /**
      * Gets or sets the locale independent style identifier of the table style applied to this table.
@@ -6472,10 +6925,29 @@ export class TableProperties extends LinkElement {
     public styleIdentifier: TableProperties.StyleIdentifierEnum;
     
     /**
+     * Gets or sets the name of the table style applied to this table.
+     */
+    public styleName: string;
+    
+    /**
+     * Gets or sets bit flags that specify how a table style is applied to this table.
+     */
+    public styleOptions: TableProperties.StyleOptionsEnum;
+    
+    /**
      * Get or sets TextWrapping  for table.
      */
     public textWrapping: TableProperties.TextWrappingEnum;
     
+    /**
+     * Gets or sets the amount of space (in points) to add above the contents of cells.
+     */
+    public topPadding: number;
+    
+    public constructor(init?: Partial<TableProperties>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 // tslint:disable:quotemark
@@ -6485,17 +6957,6 @@ export namespace TableProperties {
         Left = 'Left' as any,
         Center = 'Center' as any,
         Right = 'Right' as any,
-    }
-    export enum StyleOptionsEnum {
-        None = 'None' as any,
-        FirstRow = 'FirstRow' as any,
-        LastRow = 'LastRow' as any,
-        FirstColumn = 'FirstColumn' as any,
-        LastColumn = 'LastColumn' as any,
-        RowBands = 'RowBands' as any,
-        Default = 'Default' as any,
-        ColumnBands = 'ColumnBands' as any,
-        Default2003 = 'Default2003' as any,
     }
     export enum StyleIdentifierEnum {
         Normal = 'Normal' as any,
@@ -6872,6 +7333,17 @@ export namespace TableProperties {
         User = 'User' as any,
         Nil = 'Nil' as any,
     }
+    export enum StyleOptionsEnum {
+        None = 'None' as any,
+        FirstRow = 'FirstRow' as any,
+        LastRow = 'LastRow' as any,
+        FirstColumn = 'FirstColumn' as any,
+        LastColumn = 'LastColumn' as any,
+        RowBands = 'RowBands' as any,
+        Default = 'Default' as any,
+        ColumnBands = 'ColumnBands' as any,
+        Default2003 = 'Default2003' as any,
+    }
     export enum TextWrappingEnum {
         Default = 'Default' as any,
         None = 'None' as any,
@@ -6906,6 +7378,10 @@ export class TablePropertiesResponse extends AsposeResponse {
      */
     public properties: TableProperties;
     
+    public constructor(init?: Partial<TablePropertiesResponse>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -6935,6 +7411,10 @@ export class TableResponse extends AsposeResponse {
      */
     public table: Table;
     
+    public constructor(init?: Partial<TableResponse>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -6994,6 +7474,10 @@ export class TableRowFormat extends LinkElement {
      */
     public headingFormat: boolean;
     
+    public constructor(init?: Partial<TableRowFormat>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 // tslint:disable:quotemark
@@ -7033,6 +7517,10 @@ export class TableRowFormatResponse extends AsposeResponse {
      */
     public rowFormat: TableRowFormat;
     
+    public constructor(init?: Partial<TableRowFormatResponse>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -7062,6 +7550,10 @@ export class TableRowResponse extends AsposeResponse {
      */
     public row: TableRow;
     
+    public constructor(init?: Partial<TableRowResponse>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -7091,6 +7583,10 @@ export class TextItem extends LinkElement {
      */
     public text: string;
     
+    public constructor(init?: Partial<TextItem>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -7120,6 +7616,10 @@ export class TextItems extends LinkElement {
      */
     public list: Array<TextItem>;
     
+    public constructor(init?: Partial<TextItems>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -7149,6 +7649,10 @@ export class TextItemsResponse extends AsposeResponse {
      */
     public textItems: TextItems;
     
+    public constructor(init?: Partial<TextItemsResponse>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -7228,6 +7732,10 @@ export class TextSaveOptionsData extends SaveOptionsData {
      */
     public simplifyListLabels: boolean;
     
+    public constructor(init?: Partial<TextSaveOptionsData>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -7257,6 +7765,10 @@ export class WordMLSaveOptionsData extends SaveOptionsData {
      */
     public prettyFormat: boolean;
     
+    public constructor(init?: Partial<WordMLSaveOptionsData>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -7286,6 +7798,10 @@ export class WordsApiErrorResponse extends AsposeResponse {
      */
     public message: string;
     
+    public constructor(init?: Partial<WordsApiErrorResponse>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -7306,6 +7822,10 @@ export class WordsApiLink extends Link {
         return super.getAttributeTypeMap().concat(WordsApiLink.attributeTypeMap);
     }
 
+    public constructor(init?: Partial<WordsApiLink>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -7345,6 +7865,10 @@ export class XamlFlowSaveOptionsData extends SaveOptionsData {
      */
     public imagesFolderAlias: string;
     
+    public constructor(init?: Partial<XamlFlowSaveOptionsData>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -7434,6 +7958,10 @@ export class Comment extends CommentLink {
      */
     public content: StoryChildNodes;
     
+    public constructor(init?: Partial<Comment>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -7454,6 +7982,10 @@ export class DrawingObjectLink extends NodeLink {
         return super.getAttributeTypeMap().concat(DrawingObjectLink.attributeTypeMap);
     }
 
+    public constructor(init?: Partial<DrawingObjectLink>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -7483,6 +8015,10 @@ export class EpubSaveOptionsData extends HtmlSaveOptionsData {
      */
     public epubNavigationMapLevel: number;
     
+    public constructor(init?: Partial<EpubSaveOptionsData>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 // tslint:disable:quotemark
@@ -7517,6 +8053,10 @@ export class FieldLink extends NodeLink {
      */
     public fieldCode: string;
     
+    public constructor(init?: Partial<FieldLink>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -7537,6 +8077,10 @@ export class FootnoteLink extends NodeLink {
         return super.getAttributeTypeMap().concat(FootnoteLink.attributeTypeMap);
     }
 
+    public constructor(init?: Partial<FootnoteLink>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -7646,6 +8190,10 @@ export class FormField extends NodeLink {
      */
     public exitMacro: string;
     
+    public constructor(init?: Partial<FormField>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -7685,6 +8233,10 @@ export class HeaderFooter extends HeaderFooterLink {
      */
     public drawingObjects: LinkElement;
     
+    public constructor(init?: Partial<HeaderFooter>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 // tslint:disable:quotemark
@@ -7829,6 +8381,10 @@ export class HtmlFixedSaveOptionsData extends FixedPageSaveOptionsData {
      */
     public pageMargins: number;
     
+    public constructor(init?: Partial<HtmlFixedSaveOptionsData>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -7978,6 +8534,10 @@ export class ImageSaveOptionsData extends FixedPageSaveOptionsData {
      */
     public useGdiEmfRenderer: boolean;
     
+    public constructor(init?: Partial<ImageSaveOptionsData>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -7998,6 +8558,10 @@ export class MhtmlSaveOptionsData extends HtmlSaveOptionsData {
         return super.getAttributeTypeMap().concat(MhtmlSaveOptionsData.attributeTypeMap);
     }
 
+    public constructor(init?: Partial<MhtmlSaveOptionsData>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 // tslint:disable:quotemark
@@ -8023,6 +8587,10 @@ export class OfficeMathLink extends NodeLink {
         return super.getAttributeTypeMap().concat(OfficeMathLink.attributeTypeMap);
     }
 
+    public constructor(init?: Partial<OfficeMathLink>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -8052,6 +8620,10 @@ export class Paragraph extends NodeLink {
      */
     public childNodes: Array<NodeLink>;
     
+    public constructor(init?: Partial<Paragraph>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -8081,6 +8653,10 @@ export class ParagraphLink extends NodeLink {
      */
     public text: string;
     
+    public constructor(init?: Partial<ParagraphLink>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -8120,6 +8696,10 @@ export class PclSaveOptionsData extends FixedPageSaveOptionsData {
      */
     public rasterizeTransformedElements: boolean;
     
+    public constructor(init?: Partial<PclSaveOptionsData>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -8429,6 +9009,10 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
      */
     public preblendImages: boolean;
     
+    public constructor(init?: Partial<PdfSaveOptionsData>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -8458,6 +9042,10 @@ export class PsSaveOptionsData extends FixedPageSaveOptionsData {
      */
     public useBookFoldPrintingSettings: boolean;
     
+    public constructor(init?: Partial<PsSaveOptionsData>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -8487,6 +9075,10 @@ export class RunLink extends NodeLink {
      */
     public text: string;
     
+    public constructor(init?: Partial<RunLink>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -8566,6 +9158,10 @@ export class SvgSaveOptionsData extends FixedPageSaveOptionsData {
      */
     public textOutputMode: string;
     
+    public constructor(init?: Partial<SvgSaveOptionsData>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -8795,6 +9391,10 @@ export class SwfSaveOptionsData extends FixedPageSaveOptionsData {
      */
     public viewerIncluded: boolean;
     
+    public constructor(init?: Partial<SwfSaveOptionsData>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -8834,6 +9434,10 @@ export class Table extends NodeLink {
      */
     public tableProperties: TableProperties;
     
+    public constructor(init?: Partial<Table>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -8863,6 +9467,10 @@ export class TableCell extends NodeLink {
      */
     public childNodes: Array<NodeLink>;
     
+    public constructor(init?: Partial<TableCell>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -8883,6 +9491,10 @@ export class TableLink extends NodeLink {
         return super.getAttributeTypeMap().concat(TableLink.attributeTypeMap);
     }
 
+    public constructor(init?: Partial<TableLink>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -8922,6 +9534,10 @@ export class TableRow extends NodeLink {
      */
     public rowFormat: TableRowFormat;
     
+    public constructor(init?: Partial<TableRow>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -8961,6 +9577,10 @@ export class XamlFixedSaveOptionsData extends FixedPageSaveOptionsData {
      */
     public resourcesFolderAlias: string;
     
+    public constructor(init?: Partial<XamlFixedSaveOptionsData>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -9020,6 +9640,10 @@ export class XpsSaveOptionsData extends FixedPageSaveOptionsData {
      */
     public useBookFoldPrintingSettings: boolean;
     
+    public constructor(init?: Partial<XpsSaveOptionsData>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -9040,6 +9664,10 @@ export class BmpSaveOptionsData extends ImageSaveOptionsData {
         return super.getAttributeTypeMap().concat(BmpSaveOptionsData.attributeTypeMap);
     }
 
+    public constructor(init?: Partial<BmpSaveOptionsData>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -9159,6 +9787,10 @@ export class DrawingObject extends DrawingObjectLink {
      */
     public wrapType: DrawingObject.WrapTypeEnum;
     
+    public constructor(init?: Partial<DrawingObject>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 // tslint:disable:quotemark
@@ -9215,6 +9847,10 @@ export class EmfSaveOptionsData extends ImageSaveOptionsData {
         return super.getAttributeTypeMap().concat(EmfSaveOptionsData.attributeTypeMap);
     }
 
+    public constructor(init?: Partial<EmfSaveOptionsData>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -9254,6 +9890,10 @@ export class Field extends FieldLink {
      */
     public localeId: string;
     
+    public constructor(init?: Partial<Field>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -9323,6 +9963,10 @@ export class Footnote extends FootnoteLink {
      */
     public content: StoryChildNodes;
     
+    public constructor(init?: Partial<Footnote>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 // tslint:disable:quotemark
@@ -9381,6 +10025,10 @@ export class FormFieldCheckbox extends FormField {
      */
     public checked: boolean;
     
+    public constructor(init?: Partial<FormFieldCheckbox>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -9420,6 +10068,10 @@ export class FormFieldDropDown extends FormField {
      */
     public dropDownItems: Array<string>;
     
+    public constructor(init?: Partial<FormFieldDropDown>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -9479,6 +10131,10 @@ export class FormFieldTextInput extends FormField {
      */
     public maxLength: number;
     
+    public constructor(init?: Partial<FormFieldTextInput>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 // tslint:disable:quotemark
@@ -9512,6 +10168,10 @@ export class GifSaveOptionsData extends ImageSaveOptionsData {
         return super.getAttributeTypeMap().concat(GifSaveOptionsData.attributeTypeMap);
     }
 
+    public constructor(init?: Partial<GifSaveOptionsData>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -9532,6 +10192,10 @@ export class JpegSaveOptionsData extends ImageSaveOptionsData {
         return super.getAttributeTypeMap().concat(JpegSaveOptionsData.attributeTypeMap);
     }
 
+    public constructor(init?: Partial<JpegSaveOptionsData>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -9591,6 +10255,10 @@ export class OfficeMathObject extends OfficeMathLink {
      */
     public mathObjectType: OfficeMathObject.MathObjectTypeEnum;
     
+    public constructor(init?: Partial<OfficeMathObject>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 // tslint:disable:quotemark
@@ -9660,6 +10328,10 @@ export class PngSaveOptionsData extends ImageSaveOptionsData {
         return super.getAttributeTypeMap().concat(PngSaveOptionsData.attributeTypeMap);
     }
 
+    public constructor(init?: Partial<PngSaveOptionsData>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -9680,6 +10352,10 @@ export class Run extends RunLink {
         return super.getAttributeTypeMap().concat(Run.attributeTypeMap);
     }
 
+    public constructor(init?: Partial<Run>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 /**
@@ -9719,6 +10395,10 @@ export class TiffSaveOptionsData extends ImageSaveOptionsData {
      */
     public tiffCompression: string;
     
+    public constructor(init?: Partial<TiffSaveOptionsData>) {
+        super(init);
+        Object.assign(this, init);
+    }        
 }
 
 const enumsMap = {
@@ -9750,13 +10430,13 @@ const enumsMap = {
     "PageSetup.LineNumberRestartModeEnum": PageSetup.LineNumberRestartModeEnum,
     "PageSetup.BorderDistanceFromEnum": PageSetup.BorderDistanceFromEnum,
     "PageSetup.BorderAppliesToEnum": PageSetup.BorderAppliesToEnum,
-    "TableCellFormat.HorizontalMergeEnum": TableCellFormat.HorizontalMergeEnum,
-    "TableCellFormat.OrientationEnum": TableCellFormat.OrientationEnum,
     "TableCellFormat.VerticalAlignmentEnum": TableCellFormat.VerticalAlignmentEnum,
     "TableCellFormat.VerticalMergeEnum": TableCellFormat.VerticalMergeEnum,
+    "TableCellFormat.HorizontalMergeEnum": TableCellFormat.HorizontalMergeEnum,
+    "TableCellFormat.OrientationEnum": TableCellFormat.OrientationEnum,
     "TableProperties.AlignmentEnum": TableProperties.AlignmentEnum,
-    "TableProperties.StyleOptionsEnum": TableProperties.StyleOptionsEnum,
     "TableProperties.StyleIdentifierEnum": TableProperties.StyleIdentifierEnum,
+    "TableProperties.StyleOptionsEnum": TableProperties.StyleOptionsEnum,
     "TableProperties.TextWrappingEnum": TableProperties.TextWrappingEnum,
     "TableRowFormat.HeightRuleEnum": TableRowFormat.HeightRuleEnum,
     "DrawingObject.RelativeHorizontalPositionEnum": DrawingObject.RelativeHorizontalPositionEnum,
@@ -9977,6 +10657,10 @@ export class AcceptAllRevisionsRequest {
      * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
+    
+    public constructor(init?: Partial<AcceptAllRevisionsRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -10032,6 +10716,10 @@ export class CreateOrUpdateDocumentPropertyRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+    
+    public constructor(init?: Partial<CreateOrUpdateDocumentPropertyRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -10087,6 +10775,10 @@ export class DeleteBorderRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+    
+    public constructor(init?: Partial<DeleteBorderRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -10137,6 +10829,10 @@ export class DeleteBordersRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+    
+    public constructor(init?: Partial<DeleteBordersRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -10187,6 +10883,10 @@ export class DeleteCommentRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+    
+    public constructor(init?: Partial<DeleteCommentRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -10232,6 +10932,10 @@ export class DeleteDocumentMacrosRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+    
+    public constructor(init?: Partial<DeleteDocumentMacrosRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -10282,6 +10986,10 @@ export class DeleteDocumentPropertyRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+    
+    public constructor(init?: Partial<DeleteDocumentPropertyRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -10327,6 +11035,10 @@ export class DeleteDocumentWatermarkRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+    
+    public constructor(init?: Partial<DeleteDocumentWatermarkRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -10382,6 +11094,10 @@ export class DeleteDrawingObjectRequest {
      * Path to node, which contains collection of drawing objects.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<DeleteDrawingObjectRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -10437,6 +11153,10 @@ export class DeleteFieldRequest {
      * Path to node, which contains collection of fields.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<DeleteFieldRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -10487,6 +11207,10 @@ export class DeleteFieldsRequest {
      * Path to node, which contains collection of fields.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<DeleteFieldsRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -10542,6 +11266,10 @@ export class DeleteFootnoteRequest {
      * Path to node, which contains collection of footnotes.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<DeleteFootnoteRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -10597,6 +11325,10 @@ export class DeleteFormFieldRequest {
      * Path to node that contains collection of formfields.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<DeleteFormFieldRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -10652,6 +11384,10 @@ export class DeleteHeaderFooterRequest {
      * Path to parent section.
      */
     public sectionPath: string;
+    
+    public constructor(init?: Partial<DeleteHeaderFooterRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -10707,6 +11443,10 @@ export class DeleteHeadersFootersRequest {
      * List of types of headers and footers.
      */
     public headersFootersTypes: string;
+    
+    public constructor(init?: Partial<DeleteHeadersFootersRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -10762,6 +11502,10 @@ export class DeleteOfficeMathObjectRequest {
      * Path to node, which contains collection of OfficeMath objects.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<DeleteOfficeMathObjectRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -10817,6 +11561,10 @@ export class DeleteParagraphRequest {
      * Path to node which contains paragraphs.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<DeleteParagraphRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -10872,6 +11620,10 @@ export class DeleteRunRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+    
+    public constructor(init?: Partial<DeleteRunRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -10927,6 +11679,10 @@ export class DeleteTableRequest {
      * Path to node, which contains tables.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<DeleteTableRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -10982,6 +11738,10 @@ export class DeleteTableCellRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+    
+    public constructor(init?: Partial<DeleteTableCellRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -11037,6 +11797,10 @@ export class DeleteTableRowRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+    
+    public constructor(init?: Partial<DeleteTableRowRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -11077,6 +11841,10 @@ export class DeleteUnprotectDocumentRequest {
      * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
+    
+    public constructor(init?: Partial<DeleteUnprotectDocumentRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -11117,6 +11885,10 @@ export class GetBorderRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+    
+    public constructor(init?: Partial<GetBorderRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -11152,6 +11924,10 @@ export class GetBordersRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+    
+    public constructor(init?: Partial<GetBordersRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -11187,6 +11963,10 @@ export class GetCommentRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+    
+    public constructor(init?: Partial<GetCommentRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -11217,6 +11997,10 @@ export class GetCommentsRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+    
+    public constructor(init?: Partial<GetCommentsRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -11247,6 +12031,10 @@ export class GetDocumentRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+    
+    public constructor(init?: Partial<GetDocumentRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -11282,6 +12070,10 @@ export class GetDocumentBookmarkByNameRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+    
+    public constructor(init?: Partial<GetDocumentBookmarkByNameRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -11312,6 +12104,10 @@ export class GetDocumentBookmarksRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+    
+    public constructor(init?: Partial<GetDocumentBookmarksRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -11352,6 +12148,10 @@ export class GetDocumentDrawingObjectByIndexRequest {
      * Path to node, which contains collection of drawing objects.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<GetDocumentDrawingObjectByIndexRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -11392,6 +12192,10 @@ export class GetDocumentDrawingObjectImageDataRequest {
      * Path to node, which contains collection of drawing objects.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<GetDocumentDrawingObjectImageDataRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -11432,6 +12236,10 @@ export class GetDocumentDrawingObjectOleDataRequest {
      * Path to node, which contains collection of drawing objects.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<GetDocumentDrawingObjectOleDataRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -11467,6 +12275,10 @@ export class GetDocumentDrawingObjectsRequest {
      * Path to node, which contains collection of drawing objects.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<GetDocumentDrawingObjectsRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -11502,6 +12314,10 @@ export class GetDocumentFieldNamesRequest {
      * If true, result includes \"mustache\" field names.
      */
     public useNonMergeFields: boolean;
+    
+    public constructor(init?: Partial<GetDocumentFieldNamesRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -11537,6 +12353,10 @@ export class GetDocumentHyperlinkByIndexRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+    
+    public constructor(init?: Partial<GetDocumentHyperlinkByIndexRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -11567,6 +12387,10 @@ export class GetDocumentHyperlinksRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+    
+    public constructor(init?: Partial<GetDocumentHyperlinksRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -11607,6 +12431,10 @@ export class GetDocumentParagraphRequest {
      * Path to node which contains paragraphs.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<GetDocumentParagraphRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -11647,6 +12475,10 @@ export class GetDocumentParagraphRunRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+    
+    public constructor(init?: Partial<GetDocumentParagraphRunRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -11687,6 +12519,10 @@ export class GetDocumentParagraphRunFontRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+    
+    public constructor(init?: Partial<GetDocumentParagraphRunFontRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -11722,6 +12558,10 @@ export class GetDocumentParagraphRunsRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+    
+    public constructor(init?: Partial<GetDocumentParagraphRunsRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -11757,6 +12597,10 @@ export class GetDocumentParagraphsRequest {
      * Path to node which contains paragraphs.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<GetDocumentParagraphsRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -11787,6 +12631,10 @@ export class GetDocumentPropertiesRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+    
+    public constructor(init?: Partial<GetDocumentPropertiesRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -11822,6 +12670,10 @@ export class GetDocumentPropertyRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+    
+    public constructor(init?: Partial<GetDocumentPropertyRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -11852,6 +12704,10 @@ export class GetDocumentProtectionRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+    
+    public constructor(init?: Partial<GetDocumentProtectionRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -11897,6 +12753,10 @@ export class GetDocumentStatisticsRequest {
      * Support including/excluding shape's text from the WordCount. Default value is \"false\"
      */
     public includeTextInShapes: boolean;
+    
+    public constructor(init?: Partial<GetDocumentStatisticsRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -11927,6 +12787,10 @@ export class GetDocumentTextItemsRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+    
+    public constructor(init?: Partial<GetDocumentTextItemsRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -11972,6 +12836,10 @@ export class GetDocumentWithFormatRequest {
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
+    
+    public constructor(init?: Partial<GetDocumentWithFormatRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -12012,6 +12880,10 @@ export class GetFieldRequest {
      * Path to node, which contains collection of fields.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<GetFieldRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -12047,6 +12919,10 @@ export class GetFieldsRequest {
      * Path to node, which contains collection of fields.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<GetFieldsRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -12087,6 +12963,10 @@ export class GetFootnoteRequest {
      * Path to node, which contains collection of footnotes.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<GetFootnoteRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -12122,6 +13002,10 @@ export class GetFootnotesRequest {
      * Path to node, which contains collection of footnotes.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<GetFootnotesRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -12162,6 +13046,10 @@ export class GetFormFieldRequest {
      * Path to node that contains collection of formfields.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<GetFormFieldRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -12197,6 +13085,10 @@ export class GetFormFieldsRequest {
      * Path to node containing collection of form fields.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<GetFormFieldsRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -12237,6 +13129,10 @@ export class GetHeaderFooterRequest {
      * List of types of headers and footers.
      */
     public filterByType: string;
+    
+    public constructor(init?: Partial<GetHeaderFooterRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -12282,6 +13178,10 @@ export class GetHeaderFooterOfSectionRequest {
      * List of types of headers and footers.
      */
     public filterByType: string;
+    
+    public constructor(init?: Partial<GetHeaderFooterOfSectionRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -12322,6 +13222,10 @@ export class GetHeaderFootersRequest {
      * List of types of headers and footers.
      */
     public filterByType: string;
+    
+    public constructor(init?: Partial<GetHeaderFootersRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -12362,6 +13266,10 @@ export class GetOfficeMathObjectRequest {
      * Path to node, which contains collection of OfficeMath objects.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<GetOfficeMathObjectRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -12397,6 +13305,10 @@ export class GetOfficeMathObjectsRequest {
      * Path to node, which contains collection of OfficeMath objects.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<GetOfficeMathObjectsRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -12432,6 +13344,10 @@ export class GetSectionRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+    
+    public constructor(init?: Partial<GetSectionRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -12467,6 +13383,10 @@ export class GetSectionPageSetupRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+    
+    public constructor(init?: Partial<GetSectionPageSetupRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -12497,6 +13417,10 @@ export class GetSectionsRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+    
+    public constructor(init?: Partial<GetSectionsRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -12537,6 +13461,10 @@ export class GetTableRequest {
      * Path to node, which contains tables.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<GetTableRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -12577,6 +13505,10 @@ export class GetTableCellRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+    
+    public constructor(init?: Partial<GetTableCellRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -12617,6 +13549,10 @@ export class GetTableCellFormatRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+    
+    public constructor(init?: Partial<GetTableCellFormatRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -12657,6 +13593,10 @@ export class GetTablePropertiesRequest {
      * Path to node, which contains tables.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<GetTablePropertiesRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -12697,6 +13637,10 @@ export class GetTableRowRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+    
+    public constructor(init?: Partial<GetTableRowRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -12737,6 +13681,10 @@ export class GetTableRowFormatRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+    
+    public constructor(init?: Partial<GetTableRowFormatRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -12772,6 +13720,10 @@ export class GetTablesRequest {
      * Path to node, which contains tables.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<GetTablesRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -12827,6 +13779,10 @@ export class InsertTableRequest {
      * Path to node, which contains tables.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<InsertTableRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -12882,6 +13838,10 @@ export class InsertTableCellRequest {
      * Table cell parameters/
      */
     public cell: TableCellInsert;
+    
+    public constructor(init?: Partial<InsertTableCellRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -12937,6 +13897,10 @@ export class InsertTableRowRequest {
      * Table row parameters/
      */
     public row: TableRowInsert;
+    
+    public constructor(init?: Partial<InsertTableRowRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -12987,6 +13951,10 @@ export class PostAppendDocumentRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+    
+    public constructor(init?: Partial<PostAppendDocumentRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -13027,6 +13995,10 @@ export class PostChangeDocumentProtectionRequest {
      * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
+    
+    public constructor(init?: Partial<PostChangeDocumentProtectionRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -13082,6 +14054,10 @@ export class PostCommentRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+    
+    public constructor(init?: Partial<PostCommentRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -13122,6 +14098,10 @@ export class PostCompareDocumentRequest {
      * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
+    
+    public constructor(init?: Partial<PostCompareDocumentRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -13182,6 +14162,10 @@ export class PostDocumentExecuteMailMergeRequest {
      * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved with autogenerated name.
      */
     public destFileName: string;
+    
+    public constructor(init?: Partial<PostDocumentExecuteMailMergeRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -13242,6 +14226,10 @@ export class PostDocumentParagraphRunFontRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+    
+    public constructor(init?: Partial<PostDocumentParagraphRunFontRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -13287,6 +14275,10 @@ export class PostDocumentSaveAsRequest {
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
+    
+    public constructor(init?: Partial<PostDocumentSaveAsRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -13352,6 +14344,10 @@ export class PostDrawingObjectRequest {
      * Path to node, which contains collection of drawing objects.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<PostDrawingObjectRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -13407,6 +14403,10 @@ export class PostExecuteTemplateRequest {
      * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved with autogenerated name.
      */
     public destFileName: string;
+    
+    public constructor(init?: Partial<PostExecuteTemplateRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -13467,6 +14467,10 @@ export class PostFieldRequest {
      * Path to node, which contains collection of fields.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<PostFieldRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -13527,6 +14531,10 @@ export class PostFootnoteRequest {
      * Path to node, which contains collection of footnotes.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<PostFootnoteRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -13587,6 +14595,10 @@ export class PostFormFieldRequest {
      * Path to node that contains collection of formfields.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<PostFormFieldRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -13647,6 +14659,10 @@ export class PostInsertDocumentWatermarkImageRequest {
      * The image file server full name. If the name is empty the image is expected in request content.
      */
     public image: string;
+    
+    public constructor(init?: Partial<PostInsertDocumentWatermarkImageRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -13697,6 +14713,10 @@ export class PostInsertDocumentWatermarkTextRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+    
+    public constructor(init?: Partial<PostInsertDocumentWatermarkTextRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -13747,6 +14767,10 @@ export class PostInsertPageNumbersRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+    
+    public constructor(init?: Partial<PostInsertPageNumbersRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -13762,6 +14786,10 @@ export class PostLoadWebDocumentRequest {
      * File storage, which have to be used.
      */
     public storage: string;
+    
+    public constructor(init?: Partial<PostLoadWebDocumentRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -13812,6 +14840,10 @@ export class PostReplaceTextRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+    
+    public constructor(init?: Partial<PostReplaceTextRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -13872,6 +14904,10 @@ export class PostRunRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+    
+    public constructor(init?: Partial<PostRunRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -13932,6 +14968,10 @@ export class PostSplitDocumentRequest {
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
+    
+    public constructor(init?: Partial<PostSplitDocumentRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -13987,6 +15027,10 @@ export class PostUpdateDocumentBookmarkRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+    
+    public constructor(init?: Partial<PostUpdateDocumentBookmarkRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -14022,6 +15066,10 @@ export class PostUpdateDocumentFieldsRequest {
      * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
+    
+    public constructor(init?: Partial<PostUpdateDocumentFieldsRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -14072,6 +15120,10 @@ export class PutCommentRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+    
+    public constructor(init?: Partial<PutCommentRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -14102,6 +15154,10 @@ export class PutConvertDocumentRequest {
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
+    
+    public constructor(init?: Partial<PutConvertDocumentRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -14122,6 +15178,10 @@ export class PutCreateDocumentRequest {
      * The document folder.
      */
     public folder: string;
+    
+    public constructor(init?: Partial<PutCreateDocumentRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -14137,6 +15197,10 @@ export class PutDocumentFieldNamesRequest {
      * Use non merge fields or not.
      */
     public useNonMergeFields: boolean;
+    
+    public constructor(init?: Partial<PutDocumentFieldNamesRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -14272,6 +15336,10 @@ export class PutDocumentSaveAsTiffRequest {
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
+    
+    public constructor(init?: Partial<PutDocumentSaveAsTiffRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -14332,6 +15400,10 @@ export class PutDrawingObjectRequest {
      * Path to node, which contains collection of drawing objects.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<PutDrawingObjectRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -14357,6 +15429,10 @@ export class PutExecuteMailMergeOnlineRequest {
      * Clean up options.
      */
     public cleanup: string;
+    
+    public constructor(init?: Partial<PutExecuteMailMergeOnlineRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -14387,6 +15463,10 @@ export class PutExecuteTemplateOnlineRequest {
      * Merge with regions or not. True by default
      */
     public withRegions: boolean;
+    
+    public constructor(init?: Partial<PutExecuteTemplateOnlineRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -14447,6 +15527,10 @@ export class PutFieldRequest {
      * Field will be inserted before node with id=\"nodeId\".
      */
     public insertBeforeNode: string;
+    
+    public constructor(init?: Partial<PutFieldRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -14502,6 +15586,10 @@ export class PutFootnoteRequest {
      * Path to node, which contains collection of footnotes.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<PutFootnoteRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -14562,6 +15650,10 @@ export class PutFormFieldRequest {
      * Form field will be inserted before node with index.
      */
     public insertBeforeNode: string;
+    
+    public constructor(init?: Partial<PutFormFieldRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -14617,6 +15709,10 @@ export class PutHeaderFooterRequest {
      * Path to parent section.
      */
     public sectionPath: string;
+    
+    public constructor(init?: Partial<PutHeaderFooterRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -14677,6 +15773,10 @@ export class PutParagraphRequest {
      * Paragraph will be inserted before node with index.
      */
     public insertBeforeNode: string;
+    
+    public constructor(init?: Partial<PutParagraphRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -14717,6 +15817,10 @@ export class PutProtectDocumentRequest {
      * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
+    
+    public constructor(init?: Partial<PutProtectDocumentRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -14777,6 +15881,10 @@ export class PutRunRequest {
      * Paragraph will be inserted before node with index.
      */
     public insertBeforeNode: string;
+    
+    public constructor(init?: Partial<PutRunRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -14812,6 +15920,10 @@ export class RejectAllRevisionsRequest {
      * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
+    
+    public constructor(init?: Partial<RejectAllRevisionsRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -14862,6 +15974,10 @@ export class RenderDrawingObjectRequest {
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
+    
+    public constructor(init?: Partial<RenderDrawingObjectRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -14912,6 +16028,10 @@ export class RenderMathObjectRequest {
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
+    
+    public constructor(init?: Partial<RenderMathObjectRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -14957,6 +16077,10 @@ export class RenderPageRequest {
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
+    
+    public constructor(init?: Partial<RenderPageRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -15007,6 +16131,10 @@ export class RenderParagraphRequest {
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
+    
+    public constructor(init?: Partial<RenderParagraphRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -15057,12 +16185,20 @@ export class RenderTableRequest {
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
+    
+    public constructor(init?: Partial<RenderTableRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
  * Request model for ResetCache operation.
  */
 export class ResetCacheRequest {
+    
+    public constructor(init?: Partial<ResetCacheRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -15098,6 +16234,10 @@ export class SearchRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+    
+    public constructor(init?: Partial<SearchRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -15158,6 +16298,10 @@ export class UpdateBorderRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+    
+    public constructor(init?: Partial<UpdateBorderRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -15213,6 +16357,10 @@ export class UpdateSectionPageSetupRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+    
+    public constructor(init?: Partial<UpdateSectionPageSetupRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -15273,6 +16421,10 @@ export class UpdateTableCellFormatRequest {
      * The properties.
      */
     public format: TableCellFormat;
+    
+    public constructor(init?: Partial<UpdateTableCellFormatRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -15333,6 +16485,10 @@ export class UpdateTablePropertiesRequest {
      * Path to node, which contains tables.
      */
     public nodePath: string;
+    
+    public constructor(init?: Partial<UpdateTablePropertiesRequest>) {        
+        Object.assign(this, init);
+    } 
 }
 
 /**
@@ -15393,4 +16549,8 @@ export class UpdateTableRowFormatRequest {
      * Table row format.
      */
     public format: TableRowFormat;
+    
+    public constructor(init?: Partial<UpdateTableRowFormatRequest>) {        
+        Object.assign(this, init);
+    } 
 }

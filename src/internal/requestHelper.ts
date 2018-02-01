@@ -46,6 +46,27 @@ export async function invokeApiMethod(requestOptions: request.Options, confgurat
 }
 
 /**
+ * Add parameter to query
+ * @param url url
+ * @param queryParameters queryParameters
+ * @param parameterName parameterName
+ * @param parameterValue parameterValue
+ */
+export function addQueryParameterToUrl(url, queryParameters, parameterName, parameterValue) {
+    if (parameterValue !== undefined) {
+        if (url.indexOf("{" + parameterName + "}") >= 0) {
+            url = url.replace("{" + parameterName + "}", String(parameterValue));
+        } else {
+            queryParameters[parameterName] = String(parameterValue);
+        }
+    } else {
+        url = url.replace("/{" + parameterName + "}", "");
+    }
+
+    return url;
+}
+
+/**
  * Invoke api method
  * @param requestOptions request parameters
  * @param confguration api configuration
@@ -74,8 +95,7 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
     }
 
     return new Promise<request.RequestResponse>((resolve, reject) => {
-        const r = request(requestOptions, async (error, response) => {
-            // TODO: add server error hadling
+        const r = request(requestOptions, async (error, response) => {            
             if (error) {
                 reject(error);
             } else {
@@ -86,12 +106,12 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
                     reject(new NeedRepeatException());
                 } else {
                     try {
-                        const result =  ObjectSerializer.deserialize(response.body, "WordsApiErrorResponse");
-                        reject({message: result.message, code: response.statusCode});    
+                        const result = ObjectSerializer.deserialize(response.body, "WordsApiErrorResponse");
+                        reject({ message: result.message, code: response.statusCode });
                     } catch (error) {
-                        reject({message: "Error while parse server error: " + error});  
+                        reject({ message: "Error while parse server error: " + error });
                     }
-                    
+
                 }
             }
         });

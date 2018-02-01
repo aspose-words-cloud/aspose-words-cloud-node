@@ -24,11 +24,67 @@
 
 import { WordsApi } from "../src/api";
 
+let storageApi;
+
 /**
  * Initialize WordsApi
  */
-export function wordsApiInitializer() {
+export function initializeWordsApi() {
     const config = require("../servercreds.json");
     const wordsApi = new WordsApi(config.AppSid, config.AppKey, "http://api-dev.aspose.cloud");
     return wordsApi;
 }
+
+/**
+ * Initialize StorageApi
+ */
+export function initializeStorageApi() {
+    if (!storageApi) {
+        const config = require("../servercreds.json");
+        const StorageApi = require("asposestoragecloud");
+
+        storageApi = new StorageApi({ appSid: config.AppSid, apiKey: config.AppKey, baseURI: "http://api-dev.aspose.cloud/v1.1" });
+    }
+
+    return storageApi;
+}
+
+export const remoteBaseTestDataFolder = "Temp/SdkTests/node/TestData/";
+export const remoteBaseTestOutFolder = "Temp/SdkTests/node/TestOut/";
+export const localBaseTestDataFolder = "./testData/";
+export const localCommonTestDataFolder = "./testData/common/";
+
+export const saveFormatTestCases = [
+    "doc",
+    "dot",
+    "docx",
+    "docm",
+    "dotx",
+    "dotm",
+    "flatopc",
+    "fopc",
+    "rtf",
+    "wml",
+    "wordml",
+    "odt",
+    "ott",
+    "txt",
+    "text",
+    "mhtml",
+    "mht",
+    "epub",
+    "pdf",
+    "xps",
+    "swf",
+    "tiff",
+    "tif",
+    "png",
+    "jpeg",
+    "jpg",
+    "gif",
+    "bmp",
+    "svg",
+    "html",
+    "htmlfixed",
+    "pcl",
+];

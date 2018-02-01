@@ -27,7 +27,7 @@ import request = require("request");
 
 import { Configuration } from "./internal/configuration";
 import { ObjectSerializer } from "./internal/objectSerializer";
-import { invokeApiMethod } from "./internal/requestHelper";
+import { addQueryParameterToUrl, invokeApiMethod } from "./internal/requestHelper";
 import * as model from "./model/model";
 
 /**
@@ -54,59 +54,30 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async acceptAllRevisions(requestObj: model.AcceptAllRevisionsRequest): Promise<{response: http.ClientResponse, body: model.RevisionsModificationResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling acceptAllRevisions.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/revisions/acceptAll"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/revisions/acceptAll"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling acceptAllRevisions.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "RevisionsModificationResponse");
@@ -118,16 +89,14 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async createOrUpdateDocumentProperty(requestObj: model.CreateOrUpdateDocumentPropertyRequest): Promise<{response: http.ClientResponse, body: model.DocumentPropertyResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling createOrUpdateDocumentProperty.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/documentProperties/{propertyName}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/documentProperties/{propertyName}"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "propertyName" + "}", String(requestObj.propertyName));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -143,54 +112,21 @@ export class WordsApi {
         if (requestObj.property === null || requestObj.property === undefined) {
             throw new Error('Required parameter "requestObj.property" was null or undefined when calling createOrUpdateDocumentProperty.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        if (requestObj.revisionAuthor !== undefined) {
-            queryParameters.RevisionAuthor = ObjectSerializer.serialize(requestObj.revisionAuthor, "string");
-        }
-
-        if (requestObj.revisionDateTime !== undefined) {
-            queryParameters.RevisionDateTime = ObjectSerializer.serialize(requestObj.revisionDateTime, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.property, "DocumentProperty"),
+            body: ObjectSerializer.serialize(requestObj.property, requestObj.property.constructor.name),
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "DocumentPropertyResponse");
@@ -202,17 +138,15 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async deleteBorder(requestObj: model.DeleteBorderRequest): Promise<{response: http.ClientResponse, body: model.BorderResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteBorder.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/borders/{index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/borders/{index}"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "nodePath" + "}", String(requestObj.nodePath))
             .replace("{" + "index" + "}", String(requestObj.index));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -228,53 +162,20 @@ export class WordsApi {
         if (requestObj.index === null || requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was null or undefined when calling deleteBorder.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        if (requestObj.revisionAuthor !== undefined) {
-            queryParameters.RevisionAuthor = ObjectSerializer.serialize(requestObj.revisionAuthor, "string");
-        }
-
-        if (requestObj.revisionDateTime !== undefined) {
-            queryParameters.RevisionDateTime = ObjectSerializer.serialize(requestObj.revisionDateTime, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "BorderResponse");
@@ -286,16 +187,14 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async deleteBorders(requestObj: model.DeleteBordersRequest): Promise<{response: http.ClientResponse, body: model.BordersResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteBorders.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/borders"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/borders"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "nodePath" + "}", String(requestObj.nodePath));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -306,53 +205,20 @@ export class WordsApi {
         if (requestObj.nodePath === null || requestObj.nodePath === undefined) {
             throw new Error('Required parameter "requestObj.nodePath" was null or undefined when calling deleteBorders.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        if (requestObj.revisionAuthor !== undefined) {
-            queryParameters.RevisionAuthor = ObjectSerializer.serialize(requestObj.revisionAuthor, "string");
-        }
-
-        if (requestObj.revisionDateTime !== undefined) {
-            queryParameters.RevisionDateTime = ObjectSerializer.serialize(requestObj.revisionDateTime, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "BordersResponse");
@@ -364,16 +230,14 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async deleteComment(requestObj: model.DeleteCommentRequest): Promise<{response: http.ClientResponse, body: model.AsposeResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteComment.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/comments/{commentIndex}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/comments/{commentIndex}"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "commentIndex" + "}", String(requestObj.commentIndex));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -384,53 +248,20 @@ export class WordsApi {
         if (requestObj.commentIndex === null || requestObj.commentIndex === undefined) {
             throw new Error('Required parameter "requestObj.commentIndex" was null or undefined when calling deleteComment.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        if (requestObj.revisionAuthor !== undefined) {
-            queryParameters.RevisionAuthor = ObjectSerializer.serialize(requestObj.revisionAuthor, "string");
-        }
-
-        if (requestObj.revisionDateTime !== undefined) {
-            queryParameters.RevisionDateTime = ObjectSerializer.serialize(requestObj.revisionDateTime, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
@@ -442,67 +273,32 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async deleteDocumentMacros(requestObj: model.DeleteDocumentMacrosRequest): Promise<{response: http.ClientResponse, body: model.AsposeResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteDocumentMacros.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/macros"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/macros"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling deleteDocumentMacros.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        if (requestObj.revisionAuthor !== undefined) {
-            queryParameters.RevisionAuthor = ObjectSerializer.serialize(requestObj.revisionAuthor, "string");
-        }
-
-        if (requestObj.revisionDateTime !== undefined) {
-            queryParameters.RevisionDateTime = ObjectSerializer.serialize(requestObj.revisionDateTime, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
@@ -514,16 +310,14 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async deleteDocumentProperty(requestObj: model.DeleteDocumentPropertyRequest): Promise<{response: http.ClientResponse, body: model.AsposeResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteDocumentProperty.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/documentProperties/{propertyName}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/documentProperties/{propertyName}"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "propertyName" + "}", String(requestObj.propertyName));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -534,53 +328,20 @@ export class WordsApi {
         if (requestObj.propertyName === null || requestObj.propertyName === undefined) {
             throw new Error('Required parameter "requestObj.propertyName" was null or undefined when calling deleteDocumentProperty.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        if (requestObj.revisionAuthor !== undefined) {
-            queryParameters.RevisionAuthor = ObjectSerializer.serialize(requestObj.revisionAuthor, "string");
-        }
-
-        if (requestObj.revisionDateTime !== undefined) {
-            queryParameters.RevisionDateTime = ObjectSerializer.serialize(requestObj.revisionDateTime, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
@@ -592,67 +353,32 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async deleteDocumentWatermark(requestObj: model.DeleteDocumentWatermarkRequest): Promise<{response: http.ClientResponse, body: model.DocumentResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteDocumentWatermark.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/watermark"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/watermark"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling deleteDocumentWatermark.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        if (requestObj.revisionAuthor !== undefined) {
-            queryParameters.RevisionAuthor = ObjectSerializer.serialize(requestObj.revisionAuthor, "string");
-        }
-
-        if (requestObj.revisionDateTime !== undefined) {
-            queryParameters.RevisionDateTime = ObjectSerializer.serialize(requestObj.revisionDateTime, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
@@ -664,16 +390,14 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async deleteDrawingObject(requestObj: model.DeleteDrawingObjectRequest): Promise<{response: http.ClientResponse, body: model.AsposeResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteDrawingObject.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects/{index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects/{index}"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "index" + "}", String(requestObj.index));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -684,57 +408,21 @@ export class WordsApi {
         if (requestObj.index === null || requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was null or undefined when calling deleteDrawingObject.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        if (requestObj.revisionAuthor !== undefined) {
-            queryParameters.RevisionAuthor = ObjectSerializer.serialize(requestObj.revisionAuthor, "string");
-        }
-
-        if (requestObj.revisionDateTime !== undefined) {
-            queryParameters.RevisionDateTime = ObjectSerializer.serialize(requestObj.revisionDateTime, "string");
-        }
-
-        if (requestObj.nodePath !== undefined) {
-            queryParameters.NodePath = ObjectSerializer.serialize(requestObj.nodePath, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "nodePath", requestObj.nodePath);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
@@ -746,16 +434,14 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async deleteField(requestObj: model.DeleteFieldRequest): Promise<{response: http.ClientResponse, body: model.AsposeResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteField.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/fields/{index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/fields/{index}"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "index" + "}", String(requestObj.index));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -766,57 +452,21 @@ export class WordsApi {
         if (requestObj.index === null || requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was null or undefined when calling deleteField.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        if (requestObj.revisionAuthor !== undefined) {
-            queryParameters.RevisionAuthor = ObjectSerializer.serialize(requestObj.revisionAuthor, "string");
-        }
-
-        if (requestObj.revisionDateTime !== undefined) {
-            queryParameters.RevisionDateTime = ObjectSerializer.serialize(requestObj.revisionDateTime, "string");
-        }
-
-        if (requestObj.nodePath !== undefined) {
-            queryParameters.NodePath = ObjectSerializer.serialize(requestObj.nodePath, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "nodePath", requestObj.nodePath);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
@@ -828,71 +478,33 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async deleteFields(requestObj: model.DeleteFieldsRequest): Promise<{response: http.ClientResponse, body: model.AsposeResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteFields.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/fields"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/fields"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling deleteFields.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        if (requestObj.revisionAuthor !== undefined) {
-            queryParameters.RevisionAuthor = ObjectSerializer.serialize(requestObj.revisionAuthor, "string");
-        }
-
-        if (requestObj.revisionDateTime !== undefined) {
-            queryParameters.RevisionDateTime = ObjectSerializer.serialize(requestObj.revisionDateTime, "string");
-        }
-
-        if (requestObj.nodePath !== undefined) {
-            queryParameters.NodePath = ObjectSerializer.serialize(requestObj.nodePath, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "nodePath", requestObj.nodePath);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
@@ -904,16 +516,14 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async deleteFootnote(requestObj: model.DeleteFootnoteRequest): Promise<{response: http.ClientResponse, body: model.AsposeResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteFootnote.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/footnotes/{index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/footnotes/{index}"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "index" + "}", String(requestObj.index));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -924,57 +534,21 @@ export class WordsApi {
         if (requestObj.index === null || requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was null or undefined when calling deleteFootnote.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        if (requestObj.revisionAuthor !== undefined) {
-            queryParameters.RevisionAuthor = ObjectSerializer.serialize(requestObj.revisionAuthor, "string");
-        }
-
-        if (requestObj.revisionDateTime !== undefined) {
-            queryParameters.RevisionDateTime = ObjectSerializer.serialize(requestObj.revisionDateTime, "string");
-        }
-
-        if (requestObj.nodePath !== undefined) {
-            queryParameters.NodePath = ObjectSerializer.serialize(requestObj.nodePath, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "nodePath", requestObj.nodePath);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
@@ -986,16 +560,14 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async deleteFormField(requestObj: model.DeleteFormFieldRequest): Promise<{response: http.ClientResponse, body: model.AsposeResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteFormField.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/formfields/{index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/formfields/{index}"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "index" + "}", String(requestObj.index));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -1006,57 +578,21 @@ export class WordsApi {
         if (requestObj.index === null || requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was null or undefined when calling deleteFormField.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        if (requestObj.revisionAuthor !== undefined) {
-            queryParameters.RevisionAuthor = ObjectSerializer.serialize(requestObj.revisionAuthor, "string");
-        }
-
-        if (requestObj.revisionDateTime !== undefined) {
-            queryParameters.RevisionDateTime = ObjectSerializer.serialize(requestObj.revisionDateTime, "string");
-        }
-
-        if (requestObj.nodePath !== undefined) {
-            queryParameters.NodePath = ObjectSerializer.serialize(requestObj.nodePath, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "nodePath", requestObj.nodePath);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
@@ -1068,16 +604,14 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async deleteHeaderFooter(requestObj: model.DeleteHeaderFooterRequest): Promise<{response: http.ClientResponse, body: model.AsposeResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteHeaderFooter.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{sectionPath}/headersfooters/{index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{sectionPath}/headersfooters/{index}"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "index" + "}", String(requestObj.index));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -1088,57 +622,21 @@ export class WordsApi {
         if (requestObj.index === null || requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was null or undefined when calling deleteHeaderFooter.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        if (requestObj.revisionAuthor !== undefined) {
-            queryParameters.RevisionAuthor = ObjectSerializer.serialize(requestObj.revisionAuthor, "string");
-        }
-
-        if (requestObj.revisionDateTime !== undefined) {
-            queryParameters.RevisionDateTime = ObjectSerializer.serialize(requestObj.revisionDateTime, "string");
-        }
-
-        if (requestObj.sectionPath !== undefined) {
-            queryParameters.SectionPath = ObjectSerializer.serialize(requestObj.sectionPath, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "sectionPath", requestObj.sectionPath);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
@@ -1150,75 +648,34 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async deleteHeadersFooters(requestObj: model.DeleteHeadersFootersRequest): Promise<{response: http.ClientResponse, body: model.AsposeResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteHeadersFooters.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{sectionPath}/headersfooters"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{sectionPath}/headersfooters"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling deleteHeadersFooters.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        if (requestObj.revisionAuthor !== undefined) {
-            queryParameters.RevisionAuthor = ObjectSerializer.serialize(requestObj.revisionAuthor, "string");
-        }
-
-        if (requestObj.revisionDateTime !== undefined) {
-            queryParameters.RevisionDateTime = ObjectSerializer.serialize(requestObj.revisionDateTime, "string");
-        }
-
-        if (requestObj.sectionPath !== undefined) {
-            queryParameters.SectionPath = ObjectSerializer.serialize(requestObj.sectionPath, "string");
-        }
-
-        if (requestObj.headersFootersTypes !== undefined) {
-            queryParameters.HeadersFootersTypes = ObjectSerializer.serialize(requestObj.headersFootersTypes, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "sectionPath", requestObj.sectionPath);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "headersFootersTypes", requestObj.headersFootersTypes);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
@@ -1230,16 +687,14 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async deleteOfficeMathObject(requestObj: model.DeleteOfficeMathObjectRequest): Promise<{response: http.ClientResponse, body: model.AsposeResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteOfficeMathObject.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/OfficeMathObjects/{index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/OfficeMathObjects/{index}"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "index" + "}", String(requestObj.index));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -1250,57 +705,21 @@ export class WordsApi {
         if (requestObj.index === null || requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was null or undefined when calling deleteOfficeMathObject.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        if (requestObj.revisionAuthor !== undefined) {
-            queryParameters.RevisionAuthor = ObjectSerializer.serialize(requestObj.revisionAuthor, "string");
-        }
-
-        if (requestObj.revisionDateTime !== undefined) {
-            queryParameters.RevisionDateTime = ObjectSerializer.serialize(requestObj.revisionDateTime, "string");
-        }
-
-        if (requestObj.nodePath !== undefined) {
-            queryParameters.NodePath = ObjectSerializer.serialize(requestObj.nodePath, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "nodePath", requestObj.nodePath);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
@@ -1312,16 +731,14 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async deleteParagraph(requestObj: model.DeleteParagraphRequest): Promise<{response: http.ClientResponse, body: model.AsposeResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteParagraph.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "index" + "}", String(requestObj.index));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -1332,57 +749,21 @@ export class WordsApi {
         if (requestObj.index === null || requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was null or undefined when calling deleteParagraph.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        if (requestObj.revisionAuthor !== undefined) {
-            queryParameters.RevisionAuthor = ObjectSerializer.serialize(requestObj.revisionAuthor, "string");
-        }
-
-        if (requestObj.revisionDateTime !== undefined) {
-            queryParameters.RevisionDateTime = ObjectSerializer.serialize(requestObj.revisionDateTime, "string");
-        }
-
-        if (requestObj.nodePath !== undefined) {
-            queryParameters.NodePath = ObjectSerializer.serialize(requestObj.nodePath, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "nodePath", requestObj.nodePath);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
@@ -1394,17 +775,15 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async deleteRun(requestObj: model.DeleteRunRequest): Promise<{response: http.ClientResponse, body: model.AsposeResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteRun.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{paragraphPath}/runs/{index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{paragraphPath}/runs/{index}"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "paragraphPath" + "}", String(requestObj.paragraphPath))
             .replace("{" + "index" + "}", String(requestObj.index));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -1420,53 +799,20 @@ export class WordsApi {
         if (requestObj.index === null || requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was null or undefined when calling deleteRun.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        if (requestObj.revisionAuthor !== undefined) {
-            queryParameters.RevisionAuthor = ObjectSerializer.serialize(requestObj.revisionAuthor, "string");
-        }
-
-        if (requestObj.revisionDateTime !== undefined) {
-            queryParameters.RevisionDateTime = ObjectSerializer.serialize(requestObj.revisionDateTime, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
@@ -1478,16 +824,14 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async deleteTable(requestObj: model.DeleteTableRequest): Promise<{response: http.ClientResponse, body: model.AsposeResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteTable.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/tables/{index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/tables/{index}"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "index" + "}", String(requestObj.index));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -1498,57 +842,21 @@ export class WordsApi {
         if (requestObj.index === null || requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was null or undefined when calling deleteTable.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        if (requestObj.revisionAuthor !== undefined) {
-            queryParameters.RevisionAuthor = ObjectSerializer.serialize(requestObj.revisionAuthor, "string");
-        }
-
-        if (requestObj.revisionDateTime !== undefined) {
-            queryParameters.RevisionDateTime = ObjectSerializer.serialize(requestObj.revisionDateTime, "string");
-        }
-
-        if (requestObj.nodePath !== undefined) {
-            queryParameters.NodePath = ObjectSerializer.serialize(requestObj.nodePath, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "nodePath", requestObj.nodePath);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
@@ -1560,17 +868,15 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async deleteTableCell(requestObj: model.DeleteTableCellRequest): Promise<{response: http.ClientResponse, body: model.AsposeResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteTableCell.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{tableRowPath}/cells/{index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{tableRowPath}/cells/{index}"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "tableRowPath" + "}", String(requestObj.tableRowPath))
             .replace("{" + "index" + "}", String(requestObj.index));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -1586,53 +892,20 @@ export class WordsApi {
         if (requestObj.index === null || requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was null or undefined when calling deleteTableCell.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        if (requestObj.revisionAuthor !== undefined) {
-            queryParameters.RevisionAuthor = ObjectSerializer.serialize(requestObj.revisionAuthor, "string");
-        }
-
-        if (requestObj.revisionDateTime !== undefined) {
-            queryParameters.RevisionDateTime = ObjectSerializer.serialize(requestObj.revisionDateTime, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
@@ -1644,17 +917,15 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async deleteTableRow(requestObj: model.DeleteTableRowRequest): Promise<{response: http.ClientResponse, body: model.AsposeResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteTableRow.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{tablePath}/rows/{index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{tablePath}/rows/{index}"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "tablePath" + "}", String(requestObj.tablePath))
             .replace("{" + "index" + "}", String(requestObj.index));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -1670,53 +941,20 @@ export class WordsApi {
         if (requestObj.index === null || requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was null or undefined when calling deleteTableRow.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        if (requestObj.revisionAuthor !== undefined) {
-            queryParameters.RevisionAuthor = ObjectSerializer.serialize(requestObj.revisionAuthor, "string");
-        }
-
-        if (requestObj.revisionDateTime !== undefined) {
-            queryParameters.RevisionDateTime = ObjectSerializer.serialize(requestObj.revisionDateTime, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
@@ -1728,15 +966,13 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async deleteUnprotectDocument(requestObj: model.DeleteUnprotectDocumentRequest): Promise<{response: http.ClientResponse, body: model.ProtectionDataResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteUnprotectDocument.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/protection"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/protection"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -1747,46 +983,19 @@ export class WordsApi {
         if (requestObj.protectionRequest === null || requestObj.protectionRequest === undefined) {
             throw new Error('Required parameter "requestObj.protectionRequest" was null or undefined when calling deleteUnprotectDocument.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.protectionRequest, "ProtectionRequest"),
+            body: ObjectSerializer.serialize(requestObj.protectionRequest, requestObj.protectionRequest.constructor.name),
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "ProtectionDataResponse");
@@ -1798,17 +1007,15 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async getBorder(requestObj: model.GetBorderRequest): Promise<{response: http.ClientResponse, body: model.BorderResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getBorder.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/borders/{index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/borders/{index}"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "nodePath" + "}", String(requestObj.nodePath))
             .replace("{" + "index" + "}", String(requestObj.index));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -1824,41 +1031,17 @@ export class WordsApi {
         if (requestObj.index === null || requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was null or undefined when calling getBorder.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "BorderResponse");
@@ -1870,16 +1053,14 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async getBorders(requestObj: model.GetBordersRequest): Promise<{response: http.ClientResponse, body: model.BordersResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getBorders.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/borders"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/borders"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "nodePath" + "}", String(requestObj.nodePath));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -1890,41 +1071,17 @@ export class WordsApi {
         if (requestObj.nodePath === null || requestObj.nodePath === undefined) {
             throw new Error('Required parameter "requestObj.nodePath" was null or undefined when calling getBorders.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "BordersResponse");
@@ -1936,16 +1093,14 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async getComment(requestObj: model.GetCommentRequest): Promise<{response: http.ClientResponse, body: model.CommentResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getComment.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/comments/{commentIndex}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/comments/{commentIndex}"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "commentIndex" + "}", String(requestObj.commentIndex));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -1956,41 +1111,17 @@ export class WordsApi {
         if (requestObj.commentIndex === null || requestObj.commentIndex === undefined) {
             throw new Error('Required parameter "requestObj.commentIndex" was null or undefined when calling getComment.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "CommentResponse");
@@ -2002,55 +1133,29 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async getComments(requestObj: model.GetCommentsRequest): Promise<{response: http.ClientResponse, body: model.CommentsResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getComments.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/comments"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/comments"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling getComments.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "CommentsResponse");
@@ -2062,55 +1167,29 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async getDocument(requestObj: model.GetDocumentRequest): Promise<{response: http.ClientResponse, body: model.DocumentResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocument.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{documentName}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{documentName}"
             .replace("{" + "documentName" + "}", String(requestObj.documentName));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.documentName' is not null or undefined
         if (requestObj.documentName === null || requestObj.documentName === undefined) {
             throw new Error('Required parameter "requestObj.documentName" was null or undefined when calling getDocument.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
@@ -2122,16 +1201,14 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async getDocumentBookmarkByName(requestObj: model.GetDocumentBookmarkByNameRequest): Promise<{response: http.ClientResponse, body: model.BookmarkResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentBookmarkByName.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/bookmarks/{bookmarkName}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/bookmarks/{bookmarkName}"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "bookmarkName" + "}", String(requestObj.bookmarkName));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -2142,41 +1219,17 @@ export class WordsApi {
         if (requestObj.bookmarkName === null || requestObj.bookmarkName === undefined) {
             throw new Error('Required parameter "requestObj.bookmarkName" was null or undefined when calling getDocumentBookmarkByName.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "BookmarkResponse");
@@ -2188,55 +1241,29 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async getDocumentBookmarks(requestObj: model.GetDocumentBookmarksRequest): Promise<{response: http.ClientResponse, body: model.BookmarksResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentBookmarks.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/bookmarks"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/bookmarks"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling getDocumentBookmarks.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "BookmarksResponse");
@@ -2248,16 +1275,14 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async getDocumentDrawingObjectByIndex(requestObj: model.GetDocumentDrawingObjectByIndexRequest): Promise<{response: http.ClientResponse, body: model.DrawingObjectResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentDrawingObjectByIndex.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects/{index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects/{index}"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "index" + "}", String(requestObj.index));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -2268,45 +1293,18 @@ export class WordsApi {
         if (requestObj.index === null || requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was null or undefined when calling getDocumentDrawingObjectByIndex.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.nodePath !== undefined) {
-            queryParameters.NodePath = ObjectSerializer.serialize(requestObj.nodePath, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "nodePath", requestObj.nodePath);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "DrawingObjectResponse");
@@ -2318,16 +1316,14 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async getDocumentDrawingObjectImageData(requestObj: model.GetDocumentDrawingObjectImageDataRequest): Promise<{response: http.ClientResponse, body: Buffer}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentDrawingObjectImageData.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects/{index}/imageData"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects/{index}/imageData"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "index" + "}", String(requestObj.index));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -2338,45 +1334,18 @@ export class WordsApi {
         if (requestObj.index === null || requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was null or undefined when calling getDocumentDrawingObjectImageData.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.nodePath !== undefined) {
-            queryParameters.NodePath = ObjectSerializer.serialize(requestObj.nodePath, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "nodePath", requestObj.nodePath);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             encoding: null,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "Buffer");
@@ -2388,16 +1357,14 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async getDocumentDrawingObjectOleData(requestObj: model.GetDocumentDrawingObjectOleDataRequest): Promise<{response: http.ClientResponse, body: Buffer}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentDrawingObjectOleData.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects/{index}/oleData"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects/{index}/oleData"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "index" + "}", String(requestObj.index));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -2408,45 +1375,18 @@ export class WordsApi {
         if (requestObj.index === null || requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was null or undefined when calling getDocumentDrawingObjectOleData.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.nodePath !== undefined) {
-            queryParameters.NodePath = ObjectSerializer.serialize(requestObj.nodePath, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "nodePath", requestObj.nodePath);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             encoding: null,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "Buffer");
@@ -2458,59 +1398,30 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async getDocumentDrawingObjects(requestObj: model.GetDocumentDrawingObjectsRequest): Promise<{response: http.ClientResponse, body: model.DrawingObjectsResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentDrawingObjects.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling getDocumentDrawingObjects.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.nodePath !== undefined) {
-            queryParameters.NodePath = ObjectSerializer.serialize(requestObj.nodePath, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "nodePath", requestObj.nodePath);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "DrawingObjectsResponse");
@@ -2522,59 +1433,30 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async getDocumentFieldNames(requestObj: model.GetDocumentFieldNamesRequest): Promise<{response: http.ClientResponse, body: model.FieldNamesResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentFieldNames.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/mailMergeFieldNames"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/mailMergeFieldNames"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling getDocumentFieldNames.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.useNonMergeFields !== undefined) {
-            queryParameters.UseNonMergeFields = ObjectSerializer.serialize(requestObj.useNonMergeFields, "boolean");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "useNonMergeFields", requestObj.useNonMergeFields);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "FieldNamesResponse");
@@ -2586,16 +1468,14 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async getDocumentHyperlinkByIndex(requestObj: model.GetDocumentHyperlinkByIndexRequest): Promise<{response: http.ClientResponse, body: model.HyperlinkResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentHyperlinkByIndex.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/hyperlinks/{hyperlinkIndex}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/hyperlinks/{hyperlinkIndex}"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "hyperlinkIndex" + "}", String(requestObj.hyperlinkIndex));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -2606,41 +1486,17 @@ export class WordsApi {
         if (requestObj.hyperlinkIndex === null || requestObj.hyperlinkIndex === undefined) {
             throw new Error('Required parameter "requestObj.hyperlinkIndex" was null or undefined when calling getDocumentHyperlinkByIndex.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "HyperlinkResponse");
@@ -2652,55 +1508,29 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async getDocumentHyperlinks(requestObj: model.GetDocumentHyperlinksRequest): Promise<{response: http.ClientResponse, body: model.HyperlinksResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentHyperlinks.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/hyperlinks"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/hyperlinks"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling getDocumentHyperlinks.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "HyperlinksResponse");
@@ -2712,16 +1542,14 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async getDocumentParagraph(requestObj: model.GetDocumentParagraphRequest): Promise<{response: http.ClientResponse, body: model.ParagraphResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentParagraph.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "index" + "}", String(requestObj.index));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -2732,45 +1560,18 @@ export class WordsApi {
         if (requestObj.index === null || requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was null or undefined when calling getDocumentParagraph.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.nodePath !== undefined) {
-            queryParameters.NodePath = ObjectSerializer.serialize(requestObj.nodePath, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "nodePath", requestObj.nodePath);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "ParagraphResponse");
@@ -2782,17 +1583,15 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async getDocumentParagraphRun(requestObj: model.GetDocumentParagraphRunRequest): Promise<{response: http.ClientResponse, body: model.RunResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentParagraphRun.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{paragraphPath}/runs/{index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{paragraphPath}/runs/{index}"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "paragraphPath" + "}", String(requestObj.paragraphPath))
             .replace("{" + "index" + "}", String(requestObj.index));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -2808,41 +1607,17 @@ export class WordsApi {
         if (requestObj.index === null || requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was null or undefined when calling getDocumentParagraphRun.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "RunResponse");
@@ -2854,17 +1629,15 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async getDocumentParagraphRunFont(requestObj: model.GetDocumentParagraphRunFontRequest): Promise<{response: http.ClientResponse, body: model.FontResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentParagraphRunFont.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{paragraphPath}/runs/{index}/font"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{paragraphPath}/runs/{index}/font"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "paragraphPath" + "}", String(requestObj.paragraphPath))
             .replace("{" + "index" + "}", String(requestObj.index));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -2880,41 +1653,17 @@ export class WordsApi {
         if (requestObj.index === null || requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was null or undefined when calling getDocumentParagraphRunFont.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "FontResponse");
@@ -2926,16 +1675,14 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async getDocumentParagraphRuns(requestObj: model.GetDocumentParagraphRunsRequest): Promise<{response: http.ClientResponse, body: model.RunsResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentParagraphRuns.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{paragraphPath}/runs"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{paragraphPath}/runs"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "paragraphPath" + "}", String(requestObj.paragraphPath));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -2946,41 +1693,17 @@ export class WordsApi {
         if (requestObj.paragraphPath === null || requestObj.paragraphPath === undefined) {
             throw new Error('Required parameter "requestObj.paragraphPath" was null or undefined when calling getDocumentParagraphRuns.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "RunsResponse");
@@ -2992,59 +1715,30 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async getDocumentParagraphs(requestObj: model.GetDocumentParagraphsRequest): Promise<{response: http.ClientResponse, body: model.ParagraphLinkCollectionResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentParagraphs.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling getDocumentParagraphs.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.nodePath !== undefined) {
-            queryParameters.NodePath = ObjectSerializer.serialize(requestObj.nodePath, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "nodePath", requestObj.nodePath);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "ParagraphLinkCollectionResponse");
@@ -3056,55 +1750,29 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async getDocumentProperties(requestObj: model.GetDocumentPropertiesRequest): Promise<{response: http.ClientResponse, body: model.DocumentPropertiesResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentProperties.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/documentProperties"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/documentProperties"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling getDocumentProperties.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "DocumentPropertiesResponse");
@@ -3116,16 +1784,14 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async getDocumentProperty(requestObj: model.GetDocumentPropertyRequest): Promise<{response: http.ClientResponse, body: model.DocumentPropertyResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentProperty.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/documentProperties/{propertyName}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/documentProperties/{propertyName}"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "propertyName" + "}", String(requestObj.propertyName));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -3136,41 +1802,17 @@ export class WordsApi {
         if (requestObj.propertyName === null || requestObj.propertyName === undefined) {
             throw new Error('Required parameter "requestObj.propertyName" was null or undefined when calling getDocumentProperty.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "DocumentPropertyResponse");
@@ -3182,55 +1824,29 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async getDocumentProtection(requestObj: model.GetDocumentProtectionRequest): Promise<{response: http.ClientResponse, body: model.ProtectionDataResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentProtection.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/protection"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/protection"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling getDocumentProtection.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "ProtectionDataResponse");
@@ -3242,67 +1858,32 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async getDocumentStatistics(requestObj: model.GetDocumentStatisticsRequest): Promise<{response: http.ClientResponse, body: model.StatDataResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentStatistics.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/statistics"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/statistics"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling getDocumentStatistics.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.includeComments !== undefined) {
-            queryParameters.IncludeComments = ObjectSerializer.serialize(requestObj.includeComments, "boolean");
-        }
-
-        if (requestObj.includeFootnotes !== undefined) {
-            queryParameters.IncludeFootnotes = ObjectSerializer.serialize(requestObj.includeFootnotes, "boolean");
-        }
-
-        if (requestObj.includeTextInShapes !== undefined) {
-            queryParameters.IncludeTextInShapes = ObjectSerializer.serialize(requestObj.includeTextInShapes, "boolean");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeComments", requestObj.includeComments);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeFootnotes", requestObj.includeFootnotes);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeTextInShapes", requestObj.includeTextInShapes);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "StatDataResponse");
@@ -3314,55 +1895,29 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async getDocumentTextItems(requestObj: model.GetDocumentTextItemsRequest): Promise<{response: http.ClientResponse, body: model.TextItemsResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentTextItems.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/textItems"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/textItems"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling getDocumentTextItems.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "TextItemsResponse");
@@ -3374,15 +1929,13 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async getDocumentWithFormat(requestObj: model.GetDocumentWithFormatRequest): Promise<{response: http.ClientResponse, body: Buffer}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentWithFormat.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -3393,53 +1946,20 @@ export class WordsApi {
         if (requestObj.format === null || requestObj.format === undefined) {
             throw new Error('Required parameter "requestObj.format" was null or undefined when calling getDocumentWithFormat.');
         }
-
-        if (requestObj.format !== undefined) {
-            queryParameters.Format = ObjectSerializer.serialize(requestObj.format, "string");
-        }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.outPath !== undefined) {
-            queryParameters.OutPath = ObjectSerializer.serialize(requestObj.outPath, "string");
-        }
-
-        if (requestObj.fontsLocation !== undefined) {
-            queryParameters.FontsLocation = ObjectSerializer.serialize(requestObj.fontsLocation, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", requestObj.fontsLocation);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             encoding: null,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "Buffer");
@@ -3451,16 +1971,14 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async getField(requestObj: model.GetFieldRequest): Promise<{response: http.ClientResponse, body: model.FieldResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getField.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/fields/{index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/fields/{index}"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "index" + "}", String(requestObj.index));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -3471,45 +1989,18 @@ export class WordsApi {
         if (requestObj.index === null || requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was null or undefined when calling getField.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.nodePath !== undefined) {
-            queryParameters.NodePath = ObjectSerializer.serialize(requestObj.nodePath, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "nodePath", requestObj.nodePath);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "FieldResponse");
@@ -3521,59 +2012,30 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async getFields(requestObj: model.GetFieldsRequest): Promise<{response: http.ClientResponse, body: model.FieldsResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getFields.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/fields"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/fields"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling getFields.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.nodePath !== undefined) {
-            queryParameters.NodePath = ObjectSerializer.serialize(requestObj.nodePath, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "nodePath", requestObj.nodePath);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "FieldsResponse");
@@ -3585,16 +2047,14 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async getFootnote(requestObj: model.GetFootnoteRequest): Promise<{response: http.ClientResponse, body: model.FootnoteResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getFootnote.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/footnotes/{index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/footnotes/{index}"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "index" + "}", String(requestObj.index));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -3605,45 +2065,18 @@ export class WordsApi {
         if (requestObj.index === null || requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was null or undefined when calling getFootnote.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.nodePath !== undefined) {
-            queryParameters.NodePath = ObjectSerializer.serialize(requestObj.nodePath, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "nodePath", requestObj.nodePath);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "FootnoteResponse");
@@ -3655,59 +2088,30 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async getFootnotes(requestObj: model.GetFootnotesRequest): Promise<{response: http.ClientResponse, body: model.FootnotesResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getFootnotes.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/footnotes"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/footnotes"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling getFootnotes.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.nodePath !== undefined) {
-            queryParameters.NodePath = ObjectSerializer.serialize(requestObj.nodePath, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "nodePath", requestObj.nodePath);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "FootnotesResponse");
@@ -3719,16 +2123,14 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async getFormField(requestObj: model.GetFormFieldRequest): Promise<{response: http.ClientResponse, body: model.FormFieldResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getFormField.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/formfields/{index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/formfields/{index}"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "index" + "}", String(requestObj.index));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -3739,45 +2141,18 @@ export class WordsApi {
         if (requestObj.index === null || requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was null or undefined when calling getFormField.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.nodePath !== undefined) {
-            queryParameters.NodePath = ObjectSerializer.serialize(requestObj.nodePath, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "nodePath", requestObj.nodePath);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "FormFieldResponse");
@@ -3789,59 +2164,30 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async getFormFields(requestObj: model.GetFormFieldsRequest): Promise<{response: http.ClientResponse, body: model.FormFieldsResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getFormFields.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/formfields"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/formfields"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling getFormFields.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.nodePath !== undefined) {
-            queryParameters.NodePath = ObjectSerializer.serialize(requestObj.nodePath, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "nodePath", requestObj.nodePath);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "FormFieldsResponse");
@@ -3853,16 +2199,14 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async getHeaderFooter(requestObj: model.GetHeaderFooterRequest): Promise<{response: http.ClientResponse, body: model.HeaderFooterResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getHeaderFooter.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/headersfooters/{headerFooterIndex}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/headersfooters/{headerFooterIndex}"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "headerFooterIndex" + "}", String(requestObj.headerFooterIndex));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -3873,45 +2217,18 @@ export class WordsApi {
         if (requestObj.headerFooterIndex === null || requestObj.headerFooterIndex === undefined) {
             throw new Error('Required parameter "requestObj.headerFooterIndex" was null or undefined when calling getHeaderFooter.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.filterByType !== undefined) {
-            queryParameters.FilterByType = ObjectSerializer.serialize(requestObj.filterByType, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", requestObj.filterByType);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "HeaderFooterResponse");
@@ -3923,17 +2240,15 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async getHeaderFooterOfSection(requestObj: model.GetHeaderFooterOfSectionRequest): Promise<{response: http.ClientResponse, body: model.HeaderFooterResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getHeaderFooterOfSection.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/sections/{sectionIndex}/headersfooters/{headerFooterIndex}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/sections/{sectionIndex}/headersfooters/{headerFooterIndex}"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "headerFooterIndex" + "}", String(requestObj.headerFooterIndex))
             .replace("{" + "sectionIndex" + "}", String(requestObj.sectionIndex));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -3949,45 +2264,18 @@ export class WordsApi {
         if (requestObj.sectionIndex === null || requestObj.sectionIndex === undefined) {
             throw new Error('Required parameter "requestObj.sectionIndex" was null or undefined when calling getHeaderFooterOfSection.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.filterByType !== undefined) {
-            queryParameters.FilterByType = ObjectSerializer.serialize(requestObj.filterByType, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", requestObj.filterByType);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "HeaderFooterResponse");
@@ -3999,63 +2287,31 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async getHeaderFooters(requestObj: model.GetHeaderFootersRequest): Promise<{response: http.ClientResponse, body: model.HeaderFootersResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getHeaderFooters.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{sectionPath}/headersfooters"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{sectionPath}/headersfooters"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling getHeaderFooters.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.sectionPath !== undefined) {
-            queryParameters.SectionPath = ObjectSerializer.serialize(requestObj.sectionPath, "string");
-        }
-
-        if (requestObj.filterByType !== undefined) {
-            queryParameters.FilterByType = ObjectSerializer.serialize(requestObj.filterByType, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "sectionPath", requestObj.sectionPath);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", requestObj.filterByType);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "HeaderFootersResponse");
@@ -4067,16 +2323,14 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async getOfficeMathObject(requestObj: model.GetOfficeMathObjectRequest): Promise<{response: http.ClientResponse, body: model.OfficeMathObjectResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getOfficeMathObject.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/OfficeMathObjects/{index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/OfficeMathObjects/{index}"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "index" + "}", String(requestObj.index));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -4087,45 +2341,18 @@ export class WordsApi {
         if (requestObj.index === null || requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was null or undefined when calling getOfficeMathObject.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.nodePath !== undefined) {
-            queryParameters.NodePath = ObjectSerializer.serialize(requestObj.nodePath, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "nodePath", requestObj.nodePath);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "OfficeMathObjectResponse");
@@ -4137,59 +2364,30 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async getOfficeMathObjects(requestObj: model.GetOfficeMathObjectsRequest): Promise<{response: http.ClientResponse, body: model.OfficeMathObjectsResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getOfficeMathObjects.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/OfficeMathObjects"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/OfficeMathObjects"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling getOfficeMathObjects.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.nodePath !== undefined) {
-            queryParameters.NodePath = ObjectSerializer.serialize(requestObj.nodePath, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "nodePath", requestObj.nodePath);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "OfficeMathObjectsResponse");
@@ -4201,16 +2399,14 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async getSection(requestObj: model.GetSectionRequest): Promise<{response: http.ClientResponse, body: model.SectionResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getSection.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/sections/{sectionIndex}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/sections/{sectionIndex}"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "sectionIndex" + "}", String(requestObj.sectionIndex));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -4221,41 +2417,17 @@ export class WordsApi {
         if (requestObj.sectionIndex === null || requestObj.sectionIndex === undefined) {
             throw new Error('Required parameter "requestObj.sectionIndex" was null or undefined when calling getSection.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "SectionResponse");
@@ -4267,16 +2439,14 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async getSectionPageSetup(requestObj: model.GetSectionPageSetupRequest): Promise<{response: http.ClientResponse, body: model.SectionPageSetupResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getSectionPageSetup.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/sections/{sectionIndex}/pageSetup"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/sections/{sectionIndex}/pageSetup"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "sectionIndex" + "}", String(requestObj.sectionIndex));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -4287,41 +2457,17 @@ export class WordsApi {
         if (requestObj.sectionIndex === null || requestObj.sectionIndex === undefined) {
             throw new Error('Required parameter "requestObj.sectionIndex" was null or undefined when calling getSectionPageSetup.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "SectionPageSetupResponse");
@@ -4333,55 +2479,29 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async getSections(requestObj: model.GetSectionsRequest): Promise<{response: http.ClientResponse, body: model.SectionLinkCollectionResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getSections.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/sections"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/sections"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling getSections.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "SectionLinkCollectionResponse");
@@ -4393,16 +2513,14 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async getTable(requestObj: model.GetTableRequest): Promise<{response: http.ClientResponse, body: model.TableResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getTable.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/tables/{index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/tables/{index}"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "index" + "}", String(requestObj.index));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -4413,45 +2531,18 @@ export class WordsApi {
         if (requestObj.index === null || requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was null or undefined when calling getTable.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.nodePath !== undefined) {
-            queryParameters.NodePath = ObjectSerializer.serialize(requestObj.nodePath, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "nodePath", requestObj.nodePath);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "TableResponse");
@@ -4463,17 +2554,15 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async getTableCell(requestObj: model.GetTableCellRequest): Promise<{response: http.ClientResponse, body: model.TableCellResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getTableCell.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{tableRowPath}/cells/{index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{tableRowPath}/cells/{index}"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "tableRowPath" + "}", String(requestObj.tableRowPath))
             .replace("{" + "index" + "}", String(requestObj.index));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -4489,41 +2578,17 @@ export class WordsApi {
         if (requestObj.index === null || requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was null or undefined when calling getTableCell.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "TableCellResponse");
@@ -4535,17 +2600,15 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async getTableCellFormat(requestObj: model.GetTableCellFormatRequest): Promise<{response: http.ClientResponse, body: model.TableCellFormatResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getTableCellFormat.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{tableRowPath}/cells/{index}/cellformat"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{tableRowPath}/cells/{index}/cellformat"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "tableRowPath" + "}", String(requestObj.tableRowPath))
             .replace("{" + "index" + "}", String(requestObj.index));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -4561,41 +2624,17 @@ export class WordsApi {
         if (requestObj.index === null || requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was null or undefined when calling getTableCellFormat.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "TableCellFormatResponse");
@@ -4607,16 +2646,14 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async getTableProperties(requestObj: model.GetTablePropertiesRequest): Promise<{response: http.ClientResponse, body: model.TablePropertiesResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getTableProperties.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/tables/{index}/properties"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/tables/{index}/properties"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "index" + "}", String(requestObj.index));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -4627,45 +2664,18 @@ export class WordsApi {
         if (requestObj.index === null || requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was null or undefined when calling getTableProperties.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.nodePath !== undefined) {
-            queryParameters.NodePath = ObjectSerializer.serialize(requestObj.nodePath, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "nodePath", requestObj.nodePath);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "TablePropertiesResponse");
@@ -4677,17 +2687,15 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async getTableRow(requestObj: model.GetTableRowRequest): Promise<{response: http.ClientResponse, body: model.TableRowResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getTableRow.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{tablePath}/rows/{index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{tablePath}/rows/{index}"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "tablePath" + "}", String(requestObj.tablePath))
             .replace("{" + "index" + "}", String(requestObj.index));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -4703,41 +2711,17 @@ export class WordsApi {
         if (requestObj.index === null || requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was null or undefined when calling getTableRow.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "TableRowResponse");
@@ -4749,17 +2733,15 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async getTableRowFormat(requestObj: model.GetTableRowFormatRequest): Promise<{response: http.ClientResponse, body: model.TableRowFormatResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getTableRowFormat.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{tablePath}/rows/{index}/rowformat"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{tablePath}/rows/{index}/rowformat"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "tablePath" + "}", String(requestObj.tablePath))
             .replace("{" + "index" + "}", String(requestObj.index));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -4775,41 +2757,17 @@ export class WordsApi {
         if (requestObj.index === null || requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was null or undefined when calling getTableRowFormat.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "TableRowFormatResponse");
@@ -4821,59 +2779,30 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async getTables(requestObj: model.GetTablesRequest): Promise<{response: http.ClientResponse, body: model.TableLinkCollectionResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getTables.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/tables"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/tables"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling getTables.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.nodePath !== undefined) {
-            queryParameters.NodePath = ObjectSerializer.serialize(requestObj.nodePath, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "nodePath", requestObj.nodePath);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "TableLinkCollectionResponse");
@@ -4885,72 +2814,34 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async insertTable(requestObj: model.InsertTableRequest): Promise<{response: http.ClientResponse, body: model.TableResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling insertTable.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/tables"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/tables"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling insertTable.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        if (requestObj.revisionAuthor !== undefined) {
-            queryParameters.RevisionAuthor = ObjectSerializer.serialize(requestObj.revisionAuthor, "string");
-        }
-
-        if (requestObj.revisionDateTime !== undefined) {
-            queryParameters.RevisionDateTime = ObjectSerializer.serialize(requestObj.revisionDateTime, "string");
-        }
-
-        if (requestObj.nodePath !== undefined) {
-            queryParameters.NodePath = ObjectSerializer.serialize(requestObj.nodePath, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "nodePath", requestObj.nodePath);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.table, "TableInsert"),
+            body: ObjectSerializer.serialize(requestObj.table, requestObj.table.constructor.name),
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "TableResponse");
@@ -4962,16 +2853,14 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async insertTableCell(requestObj: model.InsertTableCellRequest): Promise<{response: http.ClientResponse, body: model.TableCellResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling insertTableCell.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{tableRowPath}/cells"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{tableRowPath}/cells"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "tableRowPath" + "}", String(requestObj.tableRowPath));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -4982,54 +2871,21 @@ export class WordsApi {
         if (requestObj.tableRowPath === null || requestObj.tableRowPath === undefined) {
             throw new Error('Required parameter "requestObj.tableRowPath" was null or undefined when calling insertTableCell.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        if (requestObj.revisionAuthor !== undefined) {
-            queryParameters.RevisionAuthor = ObjectSerializer.serialize(requestObj.revisionAuthor, "string");
-        }
-
-        if (requestObj.revisionDateTime !== undefined) {
-            queryParameters.RevisionDateTime = ObjectSerializer.serialize(requestObj.revisionDateTime, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.cell, "TableCellInsert"),
+            body: ObjectSerializer.serialize(requestObj.cell, requestObj.cell.constructor.name),
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "TableCellResponse");
@@ -5041,16 +2897,14 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async insertTableRow(requestObj: model.InsertTableRowRequest): Promise<{response: http.ClientResponse, body: model.TableRowResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling insertTableRow.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{tablePath}/rows"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{tablePath}/rows"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "tablePath" + "}", String(requestObj.tablePath));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -5061,54 +2915,21 @@ export class WordsApi {
         if (requestObj.tablePath === null || requestObj.tablePath === undefined) {
             throw new Error('Required parameter "requestObj.tablePath" was null or undefined when calling insertTableRow.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        if (requestObj.revisionAuthor !== undefined) {
-            queryParameters.RevisionAuthor = ObjectSerializer.serialize(requestObj.revisionAuthor, "string");
-        }
-
-        if (requestObj.revisionDateTime !== undefined) {
-            queryParameters.RevisionDateTime = ObjectSerializer.serialize(requestObj.revisionDateTime, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.row, "TableRowInsert"),
+            body: ObjectSerializer.serialize(requestObj.row, requestObj.row.constructor.name),
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "TableRowResponse");
@@ -5120,15 +2941,13 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async postAppendDocument(requestObj: model.PostAppendDocumentRequest): Promise<{response: http.ClientResponse, body: model.DocumentResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postAppendDocument.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/appendDocument"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/appendDocument"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -5139,54 +2958,21 @@ export class WordsApi {
         if (requestObj.documentList === null || requestObj.documentList === undefined) {
             throw new Error('Required parameter "requestObj.documentList" was null or undefined when calling postAppendDocument.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        if (requestObj.revisionAuthor !== undefined) {
-            queryParameters.RevisionAuthor = ObjectSerializer.serialize(requestObj.revisionAuthor, "string");
-        }
-
-        if (requestObj.revisionDateTime !== undefined) {
-            queryParameters.RevisionDateTime = ObjectSerializer.serialize(requestObj.revisionDateTime, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.documentList, "DocumentEntryList"),
+            body: ObjectSerializer.serialize(requestObj.documentList, requestObj.documentList.constructor.name),
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
@@ -5198,15 +2984,13 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async postChangeDocumentProtection(requestObj: model.PostChangeDocumentProtectionRequest): Promise<{response: http.ClientResponse, body: model.ProtectionDataResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postChangeDocumentProtection.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/protection"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/protection"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -5217,46 +3001,19 @@ export class WordsApi {
         if (requestObj.protectionRequest === null || requestObj.protectionRequest === undefined) {
             throw new Error('Required parameter "requestObj.protectionRequest" was null or undefined when calling postChangeDocumentProtection.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.protectionRequest, "ProtectionRequest"),
+            body: ObjectSerializer.serialize(requestObj.protectionRequest, requestObj.protectionRequest.constructor.name),
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "ProtectionDataResponse");
@@ -5268,16 +3025,14 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async postComment(requestObj: model.PostCommentRequest): Promise<{response: http.ClientResponse, body: model.CommentResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postComment.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/comments/{commentIndex}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/comments/{commentIndex}"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "commentIndex" + "}", String(requestObj.commentIndex));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -5293,54 +3048,21 @@ export class WordsApi {
         if (requestObj.comment === null || requestObj.comment === undefined) {
             throw new Error('Required parameter "requestObj.comment" was null or undefined when calling postComment.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        if (requestObj.revisionAuthor !== undefined) {
-            queryParameters.RevisionAuthor = ObjectSerializer.serialize(requestObj.revisionAuthor, "string");
-        }
-
-        if (requestObj.revisionDateTime !== undefined) {
-            queryParameters.RevisionDateTime = ObjectSerializer.serialize(requestObj.revisionDateTime, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.comment, "Comment"),
+            body: ObjectSerializer.serialize(requestObj.comment, requestObj.comment.constructor.name),
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "CommentResponse");
@@ -5352,15 +3074,13 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async postCompareDocument(requestObj: model.PostCompareDocumentRequest): Promise<{response: http.ClientResponse, body: model.DocumentResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postCompareDocument.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/compareDocument"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/compareDocument"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -5371,46 +3091,19 @@ export class WordsApi {
         if (requestObj.compareData === null || requestObj.compareData === undefined) {
             throw new Error('Required parameter "requestObj.compareData" was null or undefined when calling postCompareDocument.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.compareData, "CompareData"),
+            body: ObjectSerializer.serialize(requestObj.compareData, requestObj.compareData.constructor.name),
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
@@ -5422,14 +3115,13 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async postDocumentExecuteMailMerge(requestObj: model.PostDocumentExecuteMailMergeRequest): Promise<{response: http.ClientResponse, body: model.DocumentResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postDocumentExecuteMailMerge.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/executeMailMerge"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/executeMailMerge"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
-        const headerParams: any = {};
         const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
@@ -5441,46 +3133,16 @@ export class WordsApi {
         if (requestObj.withRegions === null || requestObj.withRegions === undefined) {
             throw new Error('Required parameter "requestObj.withRegions" was null or undefined when calling postDocumentExecuteMailMerge.');
         }
-
-        if (requestObj.withRegions !== undefined) {
-            queryParameters.WithRegions = ObjectSerializer.serialize(requestObj.withRegions, "boolean");
-        }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.mailMergeDataFile !== undefined) {
-            queryParameters.MailMergeDataFile = ObjectSerializer.serialize(requestObj.mailMergeDataFile, "string");
-        }
-
-        if (requestObj.cleanup !== undefined) {
-            queryParameters.Cleanup = ObjectSerializer.serialize(requestObj.cleanup, "string");
-        }
-
-        if (requestObj.useWholeParagraphAsRegion !== undefined) {
-            queryParameters.UseWholeParagraphAsRegion = ObjectSerializer.serialize(requestObj.useWholeParagraphAsRegion, "boolean");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "withRegions", requestObj.withRegions);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "mailMergeDataFile", requestObj.mailMergeDataFile);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "cleanup", requestObj.cleanup);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "useWholeParagraphAsRegion", requestObj.useWholeParagraphAsRegion);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
         if (requestObj.data !== undefined) {
             formParams.Data = ObjectSerializer.serialize(requestObj.data, "string");
         }
@@ -5488,19 +3150,11 @@ export class WordsApi {
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
-
+        (requestOptions as any).formData = formParams;        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
         return Promise.resolve({body: result, response});
@@ -5511,17 +3165,15 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async postDocumentParagraphRunFont(requestObj: model.PostDocumentParagraphRunFontRequest): Promise<{response: http.ClientResponse, body: model.FontResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postDocumentParagraphRunFont.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{paragraphPath}/runs/{index}/font"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{paragraphPath}/runs/{index}/font"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "paragraphPath" + "}", String(requestObj.paragraphPath))
             .replace("{" + "index" + "}", String(requestObj.index));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -5542,54 +3194,21 @@ export class WordsApi {
         if (requestObj.index === null || requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was null or undefined when calling postDocumentParagraphRunFont.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        if (requestObj.revisionAuthor !== undefined) {
-            queryParameters.RevisionAuthor = ObjectSerializer.serialize(requestObj.revisionAuthor, "string");
-        }
-
-        if (requestObj.revisionDateTime !== undefined) {
-            queryParameters.RevisionDateTime = ObjectSerializer.serialize(requestObj.revisionDateTime, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.fontDto, "Font"),
+            body: ObjectSerializer.serialize(requestObj.fontDto, requestObj.fontDto.constructor.name),
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "FontResponse");
@@ -5601,15 +3220,13 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async postDocumentSaveAs(requestObj: model.PostDocumentSaveAsRequest): Promise<{response: http.ClientResponse, body: model.SaveResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postDocumentSaveAs.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/saveAs"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/saveAs"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -5620,50 +3237,20 @@ export class WordsApi {
         if (requestObj.saveOptionsData === null || requestObj.saveOptionsData === undefined) {
             throw new Error('Required parameter "requestObj.saveOptionsData" was null or undefined when calling postDocumentSaveAs.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        if (requestObj.fontsLocation !== undefined) {
-            queryParameters.FontsLocation = ObjectSerializer.serialize(requestObj.fontsLocation, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", requestObj.fontsLocation);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.saveOptionsData, "SaveOptionsData"),
+            body: ObjectSerializer.serialize(requestObj.saveOptionsData, requestObj.saveOptionsData.constructor.name),
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "SaveResponse");
@@ -5675,15 +3262,14 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async postDrawingObject(requestObj: model.PostDrawingObjectRequest): Promise<{response: http.ClientResponse, body: model.DrawingObjectResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postDrawingObject.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects/{index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects/{index}"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "index" + "}", String(requestObj.index));
         const queryParameters: any = {};
-        const headerParams: any = {};
         const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
@@ -5705,42 +3291,15 @@ export class WordsApi {
         if (requestObj.index === null || requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was null or undefined when calling postDrawingObject.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        if (requestObj.revisionAuthor !== undefined) {
-            queryParameters.RevisionAuthor = ObjectSerializer.serialize(requestObj.revisionAuthor, "string");
-        }
-
-        if (requestObj.revisionDateTime !== undefined) {
-            queryParameters.RevisionDateTime = ObjectSerializer.serialize(requestObj.revisionDateTime, "string");
-        }
-
-        if (requestObj.nodePath !== undefined) {
-            queryParameters.NodePath = ObjectSerializer.serialize(requestObj.nodePath, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "nodePath", requestObj.nodePath);
         if (requestObj.drawingObject !== undefined) {
             formParams.DrawingObject = ObjectSerializer.serialize(requestObj.drawingObject, "string");
         }
@@ -5748,24 +3307,15 @@ export class WordsApi {
         if (requestObj.imageFile !== undefined) {
             formParams.ImageFile = requestObj.imageFile;
         }
-        useFormData = true;
 
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
-
+        (requestOptions as any).formData = formParams;        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "DrawingObjectResponse");
         return Promise.resolve({body: result, response});
@@ -5776,14 +3326,13 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async postExecuteTemplate(requestObj: model.PostExecuteTemplateRequest): Promise<{response: http.ClientResponse, body: model.DocumentResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postExecuteTemplate.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/executeTemplate"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/executeTemplate"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
-        const headerParams: any = {};
         const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
@@ -5795,42 +3344,15 @@ export class WordsApi {
         if (requestObj.data === null || requestObj.data === undefined) {
             throw new Error('Required parameter "requestObj.data" was null or undefined when calling postExecuteTemplate.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.cleanup !== undefined) {
-            queryParameters.Cleanup = ObjectSerializer.serialize(requestObj.cleanup, "string");
-        }
-
-        if (requestObj.useWholeParagraphAsRegion !== undefined) {
-            queryParameters.UseWholeParagraphAsRegion = ObjectSerializer.serialize(requestObj.useWholeParagraphAsRegion, "boolean");
-        }
-
-        if (requestObj.withRegions !== undefined) {
-            queryParameters.WithRegions = ObjectSerializer.serialize(requestObj.withRegions, "boolean");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "cleanup", requestObj.cleanup);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "useWholeParagraphAsRegion", requestObj.useWholeParagraphAsRegion);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "withRegions", requestObj.withRegions);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
         if (requestObj.data !== undefined) {
             formParams.Data = ObjectSerializer.serialize(requestObj.data, "string");
         }
@@ -5838,19 +3360,11 @@ export class WordsApi {
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
-
+        (requestOptions as any).formData = formParams;        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
         return Promise.resolve({body: result, response});
@@ -5861,16 +3375,14 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async postField(requestObj: model.PostFieldRequest): Promise<{response: http.ClientResponse, body: model.FieldResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postField.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/fields/{index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/fields/{index}"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "index" + "}", String(requestObj.index));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -5886,58 +3398,22 @@ export class WordsApi {
         if (requestObj.index === null || requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was null or undefined when calling postField.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        if (requestObj.revisionAuthor !== undefined) {
-            queryParameters.RevisionAuthor = ObjectSerializer.serialize(requestObj.revisionAuthor, "string");
-        }
-
-        if (requestObj.revisionDateTime !== undefined) {
-            queryParameters.RevisionDateTime = ObjectSerializer.serialize(requestObj.revisionDateTime, "string");
-        }
-
-        if (requestObj.nodePath !== undefined) {
-            queryParameters.NodePath = ObjectSerializer.serialize(requestObj.nodePath, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "nodePath", requestObj.nodePath);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.field, "Field"),
+            body: ObjectSerializer.serialize(requestObj.field, requestObj.field.constructor.name),
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "FieldResponse");
@@ -5949,16 +3425,14 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async postFootnote(requestObj: model.PostFootnoteRequest): Promise<{response: http.ClientResponse, body: model.FootnoteResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postFootnote.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/footnotes/{index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/footnotes/{index}"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "index" + "}", String(requestObj.index));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -5974,58 +3448,22 @@ export class WordsApi {
         if (requestObj.index === null || requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was null or undefined when calling postFootnote.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        if (requestObj.revisionAuthor !== undefined) {
-            queryParameters.RevisionAuthor = ObjectSerializer.serialize(requestObj.revisionAuthor, "string");
-        }
-
-        if (requestObj.revisionDateTime !== undefined) {
-            queryParameters.RevisionDateTime = ObjectSerializer.serialize(requestObj.revisionDateTime, "string");
-        }
-
-        if (requestObj.nodePath !== undefined) {
-            queryParameters.NodePath = ObjectSerializer.serialize(requestObj.nodePath, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "nodePath", requestObj.nodePath);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.footnoteDto, "Footnote"),
+            body: ObjectSerializer.serialize(requestObj.footnoteDto, requestObj.footnoteDto.constructor.name),
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "FootnoteResponse");
@@ -6037,16 +3475,14 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async postFormField(requestObj: model.PostFormFieldRequest): Promise<{response: http.ClientResponse, body: model.FormFieldResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postFormField.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/formfields/{index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/formfields/{index}"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "index" + "}", String(requestObj.index));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -6062,58 +3498,22 @@ export class WordsApi {
         if (requestObj.index === null || requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was null or undefined when calling postFormField.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        if (requestObj.revisionAuthor !== undefined) {
-            queryParameters.RevisionAuthor = ObjectSerializer.serialize(requestObj.revisionAuthor, "string");
-        }
-
-        if (requestObj.revisionDateTime !== undefined) {
-            queryParameters.RevisionDateTime = ObjectSerializer.serialize(requestObj.revisionDateTime, "string");
-        }
-
-        if (requestObj.nodePath !== undefined) {
-            queryParameters.NodePath = ObjectSerializer.serialize(requestObj.nodePath, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "nodePath", requestObj.nodePath);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.formField, "FormField"),
+            body: ObjectSerializer.serialize(requestObj.formField, requestObj.formField.constructor.name),
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "FormFieldResponse");
@@ -6125,81 +3525,41 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async postInsertDocumentWatermarkImage(requestObj: model.PostInsertDocumentWatermarkImageRequest): Promise<{response: http.ClientResponse, body: model.DocumentResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postInsertDocumentWatermarkImage.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/watermark/insertImage"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/watermark/insertImage"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
-        const headerParams: any = {};
         const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling postInsertDocumentWatermarkImage.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        if (requestObj.revisionAuthor !== undefined) {
-            queryParameters.RevisionAuthor = ObjectSerializer.serialize(requestObj.revisionAuthor, "string");
-        }
-
-        if (requestObj.revisionDateTime !== undefined) {
-            queryParameters.RevisionDateTime = ObjectSerializer.serialize(requestObj.revisionDateTime, "string");
-        }
-
-        if (requestObj.rotationAngle !== undefined) {
-            queryParameters.RotationAngle = ObjectSerializer.serialize(requestObj.rotationAngle, "number");
-        }
-
-        if (requestObj.image !== undefined) {
-            queryParameters.Image = ObjectSerializer.serialize(requestObj.image, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "rotationAngle", requestObj.rotationAngle);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "image", requestObj.image);
         if (requestObj.imageFile !== undefined) {
             formParams.ImageFile = requestObj.imageFile;
         }
-        useFormData = true;
 
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
-
+        (requestOptions as any).formData = formParams;        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
         return Promise.resolve({body: result, response});
@@ -6210,15 +3570,13 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async postInsertDocumentWatermarkText(requestObj: model.PostInsertDocumentWatermarkTextRequest): Promise<{response: http.ClientResponse, body: model.DocumentResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postInsertDocumentWatermarkText.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/watermark/insertText"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/watermark/insertText"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -6229,54 +3587,21 @@ export class WordsApi {
         if (requestObj.watermarkText === null || requestObj.watermarkText === undefined) {
             throw new Error('Required parameter "requestObj.watermarkText" was null or undefined when calling postInsertDocumentWatermarkText.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        if (requestObj.revisionAuthor !== undefined) {
-            queryParameters.RevisionAuthor = ObjectSerializer.serialize(requestObj.revisionAuthor, "string");
-        }
-
-        if (requestObj.revisionDateTime !== undefined) {
-            queryParameters.RevisionDateTime = ObjectSerializer.serialize(requestObj.revisionDateTime, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.watermarkText, "WatermarkText"),
+            body: ObjectSerializer.serialize(requestObj.watermarkText, requestObj.watermarkText.constructor.name),
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
@@ -6288,15 +3613,13 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async postInsertPageNumbers(requestObj: model.PostInsertPageNumbersRequest): Promise<{response: http.ClientResponse, body: model.DocumentResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postInsertPageNumbers.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/insertPageNumbers"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/insertPageNumbers"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -6307,54 +3630,21 @@ export class WordsApi {
         if (requestObj.pageNumber === null || requestObj.pageNumber === undefined) {
             throw new Error('Required parameter "requestObj.pageNumber" was null or undefined when calling postInsertPageNumbers.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        if (requestObj.revisionAuthor !== undefined) {
-            queryParameters.RevisionAuthor = ObjectSerializer.serialize(requestObj.revisionAuthor, "string");
-        }
-
-        if (requestObj.revisionDateTime !== undefined) {
-            queryParameters.RevisionDateTime = ObjectSerializer.serialize(requestObj.revisionDateTime, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.pageNumber, "PageNumber"),
+            body: ObjectSerializer.serialize(requestObj.pageNumber, requestObj.pageNumber.constructor.name),
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
@@ -6366,43 +3656,26 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async postLoadWebDocument(requestObj: model.PostLoadWebDocumentRequest): Promise<{response: http.ClientResponse, body: model.SaveResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postLoadWebDocument.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/loadWebDocument";
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/loadWebDocument";
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.data' is not null or undefined
         if (requestObj.data === null || requestObj.data === undefined) {
             throw new Error('Required parameter "requestObj.data" was null or undefined when calling postLoadWebDocument.');
         }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.data, "LoadWebDocumentData"),
+            body: ObjectSerializer.serialize(requestObj.data, requestObj.data.constructor.name),
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "SaveResponse");
@@ -6414,15 +3687,13 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async postReplaceText(requestObj: model.PostReplaceTextRequest): Promise<{response: http.ClientResponse, body: model.ReplaceTextResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postReplaceText.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/replaceText"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/replaceText"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -6433,54 +3704,21 @@ export class WordsApi {
         if (requestObj.replaceText === null || requestObj.replaceText === undefined) {
             throw new Error('Required parameter "requestObj.replaceText" was null or undefined when calling postReplaceText.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        if (requestObj.revisionAuthor !== undefined) {
-            queryParameters.RevisionAuthor = ObjectSerializer.serialize(requestObj.revisionAuthor, "string");
-        }
-
-        if (requestObj.revisionDateTime !== undefined) {
-            queryParameters.RevisionDateTime = ObjectSerializer.serialize(requestObj.revisionDateTime, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.replaceText, "ReplaceTextRequest"),
+            body: ObjectSerializer.serialize(requestObj.replaceText, requestObj.replaceText.constructor.name),
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "ReplaceTextResponse");
@@ -6492,17 +3730,15 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async postRun(requestObj: model.PostRunRequest): Promise<{response: http.ClientResponse, body: model.RunResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postRun.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{paragraphPath}/runs/{index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{paragraphPath}/runs/{index}"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "paragraphPath" + "}", String(requestObj.paragraphPath))
             .replace("{" + "index" + "}", String(requestObj.index));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -6523,54 +3759,21 @@ export class WordsApi {
         if (requestObj.index === null || requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was null or undefined when calling postRun.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        if (requestObj.revisionAuthor !== undefined) {
-            queryParameters.RevisionAuthor = ObjectSerializer.serialize(requestObj.revisionAuthor, "string");
-        }
-
-        if (requestObj.revisionDateTime !== undefined) {
-            queryParameters.RevisionDateTime = ObjectSerializer.serialize(requestObj.revisionDateTime, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.run, "Run"),
+            body: ObjectSerializer.serialize(requestObj.run, requestObj.run.constructor.name),
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "RunResponse");
@@ -6582,79 +3785,35 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async postSplitDocument(requestObj: model.PostSplitDocumentRequest): Promise<{response: http.ClientResponse, body: model.SplitDocumentResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postSplitDocument.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/split"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/split"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling postSplitDocument.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        if (requestObj.format !== undefined) {
-            queryParameters.Format = ObjectSerializer.serialize(requestObj.format, "string");
-        }
-
-        if (requestObj.from !== undefined) {
-            queryParameters.From = ObjectSerializer.serialize(requestObj.from, "number");
-        }
-
-        if (requestObj.to !== undefined) {
-            queryParameters.To = ObjectSerializer.serialize(requestObj.to, "number");
-        }
-
-        if (requestObj.zipOutput !== undefined) {
-            queryParameters.ZipOutput = ObjectSerializer.serialize(requestObj.zipOutput, "boolean");
-        }
-
-        if (requestObj.fontsLocation !== undefined) {
-            queryParameters.FontsLocation = ObjectSerializer.serialize(requestObj.fontsLocation, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "from", requestObj.from);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "to", requestObj.to);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "zipOutput", requestObj.zipOutput);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", requestObj.fontsLocation);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "SplitDocumentResponse");
@@ -6666,16 +3825,14 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async postUpdateDocumentBookmark(requestObj: model.PostUpdateDocumentBookmarkRequest): Promise<{response: http.ClientResponse, body: model.BookmarkResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postUpdateDocumentBookmark.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/bookmarks/{bookmarkName}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/bookmarks/{bookmarkName}"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "bookmarkName" + "}", String(requestObj.bookmarkName));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -6691,54 +3848,21 @@ export class WordsApi {
         if (requestObj.bookmarkName === null || requestObj.bookmarkName === undefined) {
             throw new Error('Required parameter "requestObj.bookmarkName" was null or undefined when calling postUpdateDocumentBookmark.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        if (requestObj.revisionAuthor !== undefined) {
-            queryParameters.RevisionAuthor = ObjectSerializer.serialize(requestObj.revisionAuthor, "string");
-        }
-
-        if (requestObj.revisionDateTime !== undefined) {
-            queryParameters.RevisionDateTime = ObjectSerializer.serialize(requestObj.revisionDateTime, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.bookmarkData, "BookmarkData"),
+            body: ObjectSerializer.serialize(requestObj.bookmarkData, requestObj.bookmarkData.constructor.name),
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "BookmarkResponse");
@@ -6750,59 +3874,30 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async postUpdateDocumentFields(requestObj: model.PostUpdateDocumentFieldsRequest): Promise<{response: http.ClientResponse, body: model.DocumentResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postUpdateDocumentFields.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/updateFields"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/updateFields"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling postUpdateDocumentFields.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
@@ -6814,15 +3909,13 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async putComment(requestObj: model.PutCommentRequest): Promise<{response: http.ClientResponse, body: model.CommentResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putComment.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/comments"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/comments"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -6833,54 +3926,21 @@ export class WordsApi {
         if (requestObj.comment === null || requestObj.comment === undefined) {
             throw new Error('Required parameter "requestObj.comment" was null or undefined when calling putComment.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        if (requestObj.revisionAuthor !== undefined) {
-            queryParameters.RevisionAuthor = ObjectSerializer.serialize(requestObj.revisionAuthor, "string");
-        }
-
-        if (requestObj.revisionDateTime !== undefined) {
-            queryParameters.RevisionDateTime = ObjectSerializer.serialize(requestObj.revisionDateTime, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.comment, "Comment"),
+            body: ObjectSerializer.serialize(requestObj.comment, requestObj.comment.constructor.name),
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "CommentResponse");
@@ -6892,13 +3952,12 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async putConvertDocument(requestObj: model.PutConvertDocumentRequest): Promise<{response: http.ClientResponse, body: Buffer}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putConvertDocument.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/convert";
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/convert";
         const queryParameters: any = {};
-        const headerParams: any = {};
         const formParams: any = {};
 
         // verify required parameter 'requestObj.document' is not null or undefined
@@ -6910,47 +3969,23 @@ export class WordsApi {
         if (requestObj.format === null || requestObj.format === undefined) {
             throw new Error('Required parameter "requestObj.format" was null or undefined when calling putConvertDocument.');
         }
-
-        if (requestObj.format !== undefined) {
-            queryParameters.Format = ObjectSerializer.serialize(requestObj.format, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.outPath !== undefined) {
-            queryParameters.OutPath = ObjectSerializer.serialize(requestObj.outPath, "string");
-        }
-
-        if (requestObj.fontsLocation !== undefined) {
-            queryParameters.FontsLocation = ObjectSerializer.serialize(requestObj.fontsLocation, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", requestObj.fontsLocation);
         if (requestObj.document !== undefined) {
             formParams.Document = requestObj.document;
         }
-        useFormData = true;
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             encoding: null,
         };
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
-
+        (requestOptions as any).formData = formParams;        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "Buffer");
         return Promise.resolve({body: result, response});
@@ -6961,45 +3996,22 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async putCreateDocument(requestObj: model.PutCreateDocumentRequest): Promise<{response: http.ClientResponse, body: model.DocumentResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putCreateDocument.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/create";
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/create";
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.fileName !== undefined) {
-            queryParameters.FileName = ObjectSerializer.serialize(requestObj.fileName, "string");
-        }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fileName", requestObj.fileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
@@ -7011,48 +4023,32 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async putDocumentFieldNames(requestObj: model.PutDocumentFieldNamesRequest): Promise<{response: http.ClientResponse, body: model.FieldNamesResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putDocumentFieldNames.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/mailMergeFieldNames";
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/mailMergeFieldNames";
         const queryParameters: any = {};
-        const headerParams: any = {};
         const formParams: any = {};
 
         // verify required parameter 'requestObj.template' is not null or undefined
         if (requestObj.template === null || requestObj.template === undefined) {
             throw new Error('Required parameter "requestObj.template" was null or undefined when calling putDocumentFieldNames.');
         }
-
-        if (requestObj.useNonMergeFields !== undefined) {
-            queryParameters.UseNonMergeFields = ObjectSerializer.serialize(requestObj.useNonMergeFields, "boolean");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "useNonMergeFields", requestObj.useNonMergeFields);
         if (requestObj.template !== undefined) {
             formParams.Template = requestObj.template;
         }
-        useFormData = true;
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
-
+        (requestOptions as any).formData = formParams;        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "FieldNamesResponse");
         return Promise.resolve({body: result, response});
@@ -7063,15 +4059,13 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async putDocumentSaveAsTiff(requestObj: model.PutDocumentSaveAsTiffRequest): Promise<{response: http.ClientResponse, body: model.SaveResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putDocumentSaveAsTiff.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/saveAs/tiff"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/saveAs/tiff"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -7082,122 +4076,38 @@ export class WordsApi {
         if (requestObj.saveOptions === null || requestObj.saveOptions === undefined) {
             throw new Error('Required parameter "requestObj.saveOptions" was null or undefined when calling putDocumentSaveAsTiff.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        if (requestObj.resultFile !== undefined) {
-            queryParameters.ResultFile = ObjectSerializer.serialize(requestObj.resultFile, "string");
-        }
-
-        if (requestObj.useAntiAliasing !== undefined) {
-            queryParameters.UseAntiAliasing = ObjectSerializer.serialize(requestObj.useAntiAliasing, "boolean");
-        }
-
-        if (requestObj.useHighQualityRendering !== undefined) {
-            queryParameters.UseHighQualityRendering = ObjectSerializer.serialize(requestObj.useHighQualityRendering, "boolean");
-        }
-
-        if (requestObj.imageBrightness !== undefined) {
-            queryParameters.ImageBrightness = ObjectSerializer.serialize(requestObj.imageBrightness, "number");
-        }
-
-        if (requestObj.imageColorMode !== undefined) {
-            queryParameters.ImageColorMode = ObjectSerializer.serialize(requestObj.imageColorMode, "string");
-        }
-
-        if (requestObj.imageContrast !== undefined) {
-            queryParameters.ImageContrast = ObjectSerializer.serialize(requestObj.imageContrast, "number");
-        }
-
-        if (requestObj.numeralFormat !== undefined) {
-            queryParameters.NumeralFormat = ObjectSerializer.serialize(requestObj.numeralFormat, "string");
-        }
-
-        if (requestObj.pageCount !== undefined) {
-            queryParameters.PageCount = ObjectSerializer.serialize(requestObj.pageCount, "number");
-        }
-
-        if (requestObj.pageIndex !== undefined) {
-            queryParameters.PageIndex = ObjectSerializer.serialize(requestObj.pageIndex, "number");
-        }
-
-        if (requestObj.paperColor !== undefined) {
-            queryParameters.PaperColor = ObjectSerializer.serialize(requestObj.paperColor, "string");
-        }
-
-        if (requestObj.pixelFormat !== undefined) {
-            queryParameters.PixelFormat = ObjectSerializer.serialize(requestObj.pixelFormat, "string");
-        }
-
-        if (requestObj.resolution !== undefined) {
-            queryParameters.Resolution = ObjectSerializer.serialize(requestObj.resolution, "number");
-        }
-
-        if (requestObj.scale !== undefined) {
-            queryParameters.Scale = ObjectSerializer.serialize(requestObj.scale, "number");
-        }
-
-        if (requestObj.tiffCompression !== undefined) {
-            queryParameters.TiffCompression = ObjectSerializer.serialize(requestObj.tiffCompression, "string");
-        }
-
-        if (requestObj.dmlRenderingMode !== undefined) {
-            queryParameters.DmlRenderingMode = ObjectSerializer.serialize(requestObj.dmlRenderingMode, "string");
-        }
-
-        if (requestObj.dmlEffectsRenderingMode !== undefined) {
-            queryParameters.DmlEffectsRenderingMode = ObjectSerializer.serialize(requestObj.dmlEffectsRenderingMode, "string");
-        }
-
-        if (requestObj.tiffBinarizationMethod !== undefined) {
-            queryParameters.TiffBinarizationMethod = ObjectSerializer.serialize(requestObj.tiffBinarizationMethod, "string");
-        }
-
-        if (requestObj.zipOutput !== undefined) {
-            queryParameters.ZipOutput = ObjectSerializer.serialize(requestObj.zipOutput, "boolean");
-        }
-
-        if (requestObj.fontsLocation !== undefined) {
-            queryParameters.FontsLocation = ObjectSerializer.serialize(requestObj.fontsLocation, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "resultFile", requestObj.resultFile);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "useAntiAliasing", requestObj.useAntiAliasing);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "useHighQualityRendering", requestObj.useHighQualityRendering);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "imageBrightness", requestObj.imageBrightness);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "imageColorMode", requestObj.imageColorMode);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "imageContrast", requestObj.imageContrast);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "numeralFormat", requestObj.numeralFormat);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "pageCount", requestObj.pageCount);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "pageIndex", requestObj.pageIndex);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "paperColor", requestObj.paperColor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "pixelFormat", requestObj.pixelFormat);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "resolution", requestObj.resolution);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "scale", requestObj.scale);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "tiffCompression", requestObj.tiffCompression);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "dmlRenderingMode", requestObj.dmlRenderingMode);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "dmlEffectsRenderingMode", requestObj.dmlEffectsRenderingMode);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "tiffBinarizationMethod", requestObj.tiffBinarizationMethod);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "zipOutput", requestObj.zipOutput);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", requestObj.fontsLocation);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.saveOptions, "TiffSaveOptionsData"),
+            body: ObjectSerializer.serialize(requestObj.saveOptions, requestObj.saveOptions.constructor.name),
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "SaveResponse");
@@ -7209,14 +4119,13 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async putDrawingObject(requestObj: model.PutDrawingObjectRequest): Promise<{response: http.ClientResponse, body: model.DrawingObjectResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putDrawingObject.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
-        const headerParams: any = {};
         const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
@@ -7233,42 +4142,15 @@ export class WordsApi {
         if (requestObj.imageFile === null || requestObj.imageFile === undefined) {
             throw new Error('Required parameter "requestObj.imageFile" was null or undefined when calling putDrawingObject.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        if (requestObj.revisionAuthor !== undefined) {
-            queryParameters.RevisionAuthor = ObjectSerializer.serialize(requestObj.revisionAuthor, "string");
-        }
-
-        if (requestObj.revisionDateTime !== undefined) {
-            queryParameters.RevisionDateTime = ObjectSerializer.serialize(requestObj.revisionDateTime, "string");
-        }
-
-        if (requestObj.nodePath !== undefined) {
-            queryParameters.NodePath = ObjectSerializer.serialize(requestObj.nodePath, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "nodePath", requestObj.nodePath);
         if (requestObj.drawingObject !== undefined) {
             formParams.DrawingObject = ObjectSerializer.serialize(requestObj.drawingObject, "string");
         }
@@ -7276,24 +4158,15 @@ export class WordsApi {
         if (requestObj.imageFile !== undefined) {
             formParams.ImageFile = requestObj.imageFile;
         }
-        useFormData = true;
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
-
+        (requestOptions as any).formData = formParams;        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "DrawingObjectResponse");
         return Promise.resolve({body: result, response});
@@ -7304,13 +4177,12 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async putExecuteMailMergeOnline(requestObj: model.PutExecuteMailMergeOnlineRequest): Promise<{response: http.ClientResponse, body: Buffer}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putExecuteMailMergeOnline.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/executeMailMerge";
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/executeMailMerge";
         const queryParameters: any = {};
-        const headerParams: any = {};
         const formParams: any = {};
 
         // verify required parameter 'requestObj.template' is not null or undefined
@@ -7322,44 +4194,25 @@ export class WordsApi {
         if (requestObj.data === null || requestObj.data === undefined) {
             throw new Error('Required parameter "requestObj.data" was null or undefined when calling putExecuteMailMergeOnline.');
         }
-
-        if (requestObj.withRegions !== undefined) {
-            queryParameters.WithRegions = ObjectSerializer.serialize(requestObj.withRegions, "boolean");
-        }
-
-        if (requestObj.cleanup !== undefined) {
-            queryParameters.Cleanup = ObjectSerializer.serialize(requestObj.cleanup, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "withRegions", requestObj.withRegions);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "cleanup", requestObj.cleanup);
         if (requestObj.template !== undefined) {
             formParams.Template = requestObj.template;
         }
-        useFormData = true;
 
         if (requestObj.data !== undefined) {
             formParams.Data = requestObj.data;
         }
-        useFormData = true;
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             encoding: null,
         };
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
-
+        (requestOptions as any).formData = formParams;        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "Buffer");
         return Promise.resolve({body: result, response});
@@ -7370,13 +4223,12 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async putExecuteTemplateOnline(requestObj: model.PutExecuteTemplateOnlineRequest): Promise<{response: http.ClientResponse, body: Buffer}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putExecuteTemplateOnline.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/executeTemplate";
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/executeTemplate";
         const queryParameters: any = {};
-        const headerParams: any = {};
         const formParams: any = {};
 
         // verify required parameter 'requestObj.template' is not null or undefined
@@ -7388,48 +4240,26 @@ export class WordsApi {
         if (requestObj.data === null || requestObj.data === undefined) {
             throw new Error('Required parameter "requestObj.data" was null or undefined when calling putExecuteTemplateOnline.');
         }
-
-        if (requestObj.cleanup !== undefined) {
-            queryParameters.Cleanup = ObjectSerializer.serialize(requestObj.cleanup, "string");
-        }
-
-        if (requestObj.useWholeParagraphAsRegion !== undefined) {
-            queryParameters.UseWholeParagraphAsRegion = ObjectSerializer.serialize(requestObj.useWholeParagraphAsRegion, "boolean");
-        }
-
-        if (requestObj.withRegions !== undefined) {
-            queryParameters.WithRegions = ObjectSerializer.serialize(requestObj.withRegions, "boolean");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "cleanup", requestObj.cleanup);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "useWholeParagraphAsRegion", requestObj.useWholeParagraphAsRegion);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "withRegions", requestObj.withRegions);
         if (requestObj.template !== undefined) {
             formParams.Template = requestObj.template;
         }
-        useFormData = true;
 
         if (requestObj.data !== undefined) {
             formParams.Data = requestObj.data;
         }
-        useFormData = true;
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             encoding: null,
         };
 
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
-
+        (requestOptions as any).formData = formParams;        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "Buffer");
         return Promise.resolve({body: result, response});
@@ -7440,15 +4270,13 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async putField(requestObj: model.PutFieldRequest): Promise<{response: http.ClientResponse, body: model.FieldResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putField.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/fields"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/fields"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -7459,62 +4287,23 @@ export class WordsApi {
         if (requestObj.field === null || requestObj.field === undefined) {
             throw new Error('Required parameter "requestObj.field" was null or undefined when calling putField.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        if (requestObj.revisionAuthor !== undefined) {
-            queryParameters.RevisionAuthor = ObjectSerializer.serialize(requestObj.revisionAuthor, "string");
-        }
-
-        if (requestObj.revisionDateTime !== undefined) {
-            queryParameters.RevisionDateTime = ObjectSerializer.serialize(requestObj.revisionDateTime, "string");
-        }
-
-        if (requestObj.nodePath !== undefined) {
-            queryParameters.NodePath = ObjectSerializer.serialize(requestObj.nodePath, "string");
-        }
-
-        if (requestObj.insertBeforeNode !== undefined) {
-            queryParameters.InsertBeforeNode = ObjectSerializer.serialize(requestObj.insertBeforeNode, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "nodePath", requestObj.nodePath);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", requestObj.insertBeforeNode);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.field, "Field"),
+            body: ObjectSerializer.serialize(requestObj.field, requestObj.field.constructor.name),
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "FieldResponse");
@@ -7526,15 +4315,13 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async putFootnote(requestObj: model.PutFootnoteRequest): Promise<{response: http.ClientResponse, body: model.FootnoteResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putFootnote.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/footnotes"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/footnotes"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -7545,58 +4332,22 @@ export class WordsApi {
         if (requestObj.footnoteDto === null || requestObj.footnoteDto === undefined) {
             throw new Error('Required parameter "requestObj.footnoteDto" was null or undefined when calling putFootnote.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        if (requestObj.revisionAuthor !== undefined) {
-            queryParameters.RevisionAuthor = ObjectSerializer.serialize(requestObj.revisionAuthor, "string");
-        }
-
-        if (requestObj.revisionDateTime !== undefined) {
-            queryParameters.RevisionDateTime = ObjectSerializer.serialize(requestObj.revisionDateTime, "string");
-        }
-
-        if (requestObj.nodePath !== undefined) {
-            queryParameters.NodePath = ObjectSerializer.serialize(requestObj.nodePath, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "nodePath", requestObj.nodePath);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.footnoteDto, "Footnote"),
+            body: ObjectSerializer.serialize(requestObj.footnoteDto, requestObj.footnoteDto.constructor.name),
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "FootnoteResponse");
@@ -7608,15 +4359,13 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async putFormField(requestObj: model.PutFormFieldRequest): Promise<{response: http.ClientResponse, body: model.FormFieldResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putFormField.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/formfields"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/formfields"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -7627,62 +4376,23 @@ export class WordsApi {
         if (requestObj.formField === null || requestObj.formField === undefined) {
             throw new Error('Required parameter "requestObj.formField" was null or undefined when calling putFormField.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        if (requestObj.revisionAuthor !== undefined) {
-            queryParameters.RevisionAuthor = ObjectSerializer.serialize(requestObj.revisionAuthor, "string");
-        }
-
-        if (requestObj.revisionDateTime !== undefined) {
-            queryParameters.RevisionDateTime = ObjectSerializer.serialize(requestObj.revisionDateTime, "string");
-        }
-
-        if (requestObj.nodePath !== undefined) {
-            queryParameters.NodePath = ObjectSerializer.serialize(requestObj.nodePath, "string");
-        }
-
-        if (requestObj.insertBeforeNode !== undefined) {
-            queryParameters.InsertBeforeNode = ObjectSerializer.serialize(requestObj.insertBeforeNode, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "nodePath", requestObj.nodePath);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", requestObj.insertBeforeNode);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.formField, "FormField"),
+            body: ObjectSerializer.serialize(requestObj.formField, requestObj.formField.constructor.name),
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "FormFieldResponse");
@@ -7694,15 +4404,13 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async putHeaderFooter(requestObj: model.PutHeaderFooterRequest): Promise<{response: http.ClientResponse, body: model.HeaderFooterResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putHeaderFooter.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{sectionPath}/headersfooters"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{sectionPath}/headersfooters"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -7713,58 +4421,22 @@ export class WordsApi {
         if (requestObj.headerFooterType === null || requestObj.headerFooterType === undefined) {
             throw new Error('Required parameter "requestObj.headerFooterType" was null or undefined when calling putHeaderFooter.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        if (requestObj.revisionAuthor !== undefined) {
-            queryParameters.RevisionAuthor = ObjectSerializer.serialize(requestObj.revisionAuthor, "string");
-        }
-
-        if (requestObj.revisionDateTime !== undefined) {
-            queryParameters.RevisionDateTime = ObjectSerializer.serialize(requestObj.revisionDateTime, "string");
-        }
-
-        if (requestObj.sectionPath !== undefined) {
-            queryParameters.SectionPath = ObjectSerializer.serialize(requestObj.sectionPath, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "sectionPath", requestObj.sectionPath);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.headerFooterType, "string"),
+            body: ObjectSerializer.serialize(requestObj.headerFooterType, requestObj.headerFooterType.constructor.name),
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "HeaderFooterResponse");
@@ -7776,15 +4448,13 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async putParagraph(requestObj: model.PutParagraphRequest): Promise<{response: http.ClientResponse, body: model.ParagraphResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putParagraph.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -7795,62 +4465,23 @@ export class WordsApi {
         if (requestObj.paragraph === null || requestObj.paragraph === undefined) {
             throw new Error('Required parameter "requestObj.paragraph" was null or undefined when calling putParagraph.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        if (requestObj.revisionAuthor !== undefined) {
-            queryParameters.RevisionAuthor = ObjectSerializer.serialize(requestObj.revisionAuthor, "string");
-        }
-
-        if (requestObj.revisionDateTime !== undefined) {
-            queryParameters.RevisionDateTime = ObjectSerializer.serialize(requestObj.revisionDateTime, "string");
-        }
-
-        if (requestObj.nodePath !== undefined) {
-            queryParameters.NodePath = ObjectSerializer.serialize(requestObj.nodePath, "string");
-        }
-
-        if (requestObj.insertBeforeNode !== undefined) {
-            queryParameters.InsertBeforeNode = ObjectSerializer.serialize(requestObj.insertBeforeNode, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "nodePath", requestObj.nodePath);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", requestObj.insertBeforeNode);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.paragraph, "ParagraphInsert"),
+            body: ObjectSerializer.serialize(requestObj.paragraph, requestObj.paragraph.constructor.name),
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "ParagraphResponse");
@@ -7862,15 +4493,13 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async putProtectDocument(requestObj: model.PutProtectDocumentRequest): Promise<{response: http.ClientResponse, body: model.ProtectionDataResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putProtectDocument.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/protection"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/protection"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -7881,46 +4510,19 @@ export class WordsApi {
         if (requestObj.protectionRequest === null || requestObj.protectionRequest === undefined) {
             throw new Error('Required parameter "requestObj.protectionRequest" was null or undefined when calling putProtectDocument.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.protectionRequest, "ProtectionRequest"),
+            body: ObjectSerializer.serialize(requestObj.protectionRequest, requestObj.protectionRequest.constructor.name),
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "ProtectionDataResponse");
@@ -7932,16 +4534,14 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async putRun(requestObj: model.PutRunRequest): Promise<{response: http.ClientResponse, body: model.RunResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putRun.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{paragraphPath}/runs"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{paragraphPath}/runs"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "paragraphPath" + "}", String(requestObj.paragraphPath));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -7957,58 +4557,22 @@ export class WordsApi {
         if (requestObj.run === null || requestObj.run === undefined) {
             throw new Error('Required parameter "requestObj.run" was null or undefined when calling putRun.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        if (requestObj.revisionAuthor !== undefined) {
-            queryParameters.RevisionAuthor = ObjectSerializer.serialize(requestObj.revisionAuthor, "string");
-        }
-
-        if (requestObj.revisionDateTime !== undefined) {
-            queryParameters.RevisionDateTime = ObjectSerializer.serialize(requestObj.revisionDateTime, "string");
-        }
-
-        if (requestObj.insertBeforeNode !== undefined) {
-            queryParameters.InsertBeforeNode = ObjectSerializer.serialize(requestObj.insertBeforeNode, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", requestObj.insertBeforeNode);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.run, "Run"),
+            body: ObjectSerializer.serialize(requestObj.run, requestObj.run.constructor.name),
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "RunResponse");
@@ -8020,59 +4584,30 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async rejectAllRevisions(requestObj: model.RejectAllRevisionsRequest): Promise<{response: http.ClientResponse, body: model.RevisionsModificationResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling rejectAllRevisions.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/revisions/rejectAll"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/revisions/rejectAll"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling rejectAllRevisions.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "RevisionsModificationResponse");
@@ -8084,16 +4619,14 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async renderDrawingObject(requestObj: model.RenderDrawingObjectRequest): Promise<{response: http.ClientResponse, body: Buffer}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling renderDrawingObject.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects/{index}/render"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects/{index}/render"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "index" + "}", String(requestObj.index));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -8109,53 +4642,20 @@ export class WordsApi {
         if (requestObj.index === null || requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was null or undefined when calling renderDrawingObject.');
         }
-
-        if (requestObj.format !== undefined) {
-            queryParameters.Format = ObjectSerializer.serialize(requestObj.format, "string");
-        }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.nodePath !== undefined) {
-            queryParameters.NodePath = ObjectSerializer.serialize(requestObj.nodePath, "string");
-        }
-
-        if (requestObj.fontsLocation !== undefined) {
-            queryParameters.FontsLocation = ObjectSerializer.serialize(requestObj.fontsLocation, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "nodePath", requestObj.nodePath);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", requestObj.fontsLocation);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             encoding: null,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "Buffer");
@@ -8167,16 +4667,14 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async renderMathObject(requestObj: model.RenderMathObjectRequest): Promise<{response: http.ClientResponse, body: Buffer}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling renderMathObject.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/OfficeMathObjects/{index}/render"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/OfficeMathObjects/{index}/render"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "index" + "}", String(requestObj.index));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -8192,53 +4690,20 @@ export class WordsApi {
         if (requestObj.index === null || requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was null or undefined when calling renderMathObject.');
         }
-
-        if (requestObj.format !== undefined) {
-            queryParameters.Format = ObjectSerializer.serialize(requestObj.format, "string");
-        }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.nodePath !== undefined) {
-            queryParameters.NodePath = ObjectSerializer.serialize(requestObj.nodePath, "string");
-        }
-
-        if (requestObj.fontsLocation !== undefined) {
-            queryParameters.FontsLocation = ObjectSerializer.serialize(requestObj.fontsLocation, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "nodePath", requestObj.nodePath);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", requestObj.fontsLocation);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             encoding: null,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "Buffer");
@@ -8250,16 +4715,14 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async renderPage(requestObj: model.RenderPageRequest): Promise<{response: http.ClientResponse, body: Buffer}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling renderPage.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/pages/{pageIndex}/render"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/pages/{pageIndex}/render"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "pageIndex" + "}", String(requestObj.pageIndex));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -8275,49 +4738,19 @@ export class WordsApi {
         if (requestObj.format === null || requestObj.format === undefined) {
             throw new Error('Required parameter "requestObj.format" was null or undefined when calling renderPage.');
         }
-
-        if (requestObj.format !== undefined) {
-            queryParameters.Format = ObjectSerializer.serialize(requestObj.format, "string");
-        }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.fontsLocation !== undefined) {
-            queryParameters.FontsLocation = ObjectSerializer.serialize(requestObj.fontsLocation, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", requestObj.fontsLocation);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             encoding: null,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "Buffer");
@@ -8329,16 +4762,14 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async renderParagraph(requestObj: model.RenderParagraphRequest): Promise<{response: http.ClientResponse, body: Buffer}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling renderParagraph.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}/render"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}/render"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "index" + "}", String(requestObj.index));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -8354,53 +4785,20 @@ export class WordsApi {
         if (requestObj.index === null || requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was null or undefined when calling renderParagraph.');
         }
-
-        if (requestObj.format !== undefined) {
-            queryParameters.Format = ObjectSerializer.serialize(requestObj.format, "string");
-        }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.nodePath !== undefined) {
-            queryParameters.NodePath = ObjectSerializer.serialize(requestObj.nodePath, "string");
-        }
-
-        if (requestObj.fontsLocation !== undefined) {
-            queryParameters.FontsLocation = ObjectSerializer.serialize(requestObj.fontsLocation, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "nodePath", requestObj.nodePath);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", requestObj.fontsLocation);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             encoding: null,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "Buffer");
@@ -8412,16 +4810,14 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async renderTable(requestObj: model.RenderTableRequest): Promise<{response: http.ClientResponse, body: Buffer}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling renderTable.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/tables/{index}/render"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/tables/{index}/render"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "index" + "}", String(requestObj.index));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -8437,53 +4833,20 @@ export class WordsApi {
         if (requestObj.index === null || requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was null or undefined when calling renderTable.');
         }
-
-        if (requestObj.format !== undefined) {
-            queryParameters.Format = ObjectSerializer.serialize(requestObj.format, "string");
-        }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.nodePath !== undefined) {
-            queryParameters.NodePath = ObjectSerializer.serialize(requestObj.nodePath, "string");
-        }
-
-        if (requestObj.fontsLocation !== undefined) {
-            queryParameters.FontsLocation = ObjectSerializer.serialize(requestObj.fontsLocation, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "nodePath", requestObj.nodePath);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", requestObj.fontsLocation);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             encoding: null,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "Buffer");
@@ -8495,33 +4858,19 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async resetCache(requestObj: model.ResetCacheRequest): Promise<{response: http.ClientResponse, body: model.AsposeResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling resetCache.');
         }
 
         const localVarPath = this.configuration.getApiBaseUrl() + "/words/fonts/cache";
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
@@ -8533,15 +4882,13 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async search(requestObj: model.SearchRequest): Promise<{response: http.ClientResponse, body: model.SearchResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling search.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/search"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/search"
             .replace("{" + "name" + "}", String(requestObj.name));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -8552,45 +4899,18 @@ export class WordsApi {
         if (requestObj.pattern === null || requestObj.pattern === undefined) {
             throw new Error('Required parameter "requestObj.pattern" was null or undefined when calling search.');
         }
-
-        if (requestObj.pattern !== undefined) {
-            queryParameters.Pattern = ObjectSerializer.serialize(requestObj.pattern, "string");
-        }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "pattern", requestObj.pattern);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "SearchResponse");
@@ -8602,17 +4922,15 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async updateBorder(requestObj: model.UpdateBorderRequest): Promise<{response: http.ClientResponse, body: model.BorderResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling updateBorder.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/borders/{index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/borders/{index}"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "nodePath" + "}", String(requestObj.nodePath))
             .replace("{" + "index" + "}", String(requestObj.index));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -8633,54 +4951,21 @@ export class WordsApi {
         if (requestObj.index === null || requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was null or undefined when calling updateBorder.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        if (requestObj.revisionAuthor !== undefined) {
-            queryParameters.RevisionAuthor = ObjectSerializer.serialize(requestObj.revisionAuthor, "string");
-        }
-
-        if (requestObj.revisionDateTime !== undefined) {
-            queryParameters.RevisionDateTime = ObjectSerializer.serialize(requestObj.revisionDateTime, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.borderProperties, "Border"),
+            body: ObjectSerializer.serialize(requestObj.borderProperties, requestObj.borderProperties.constructor.name),
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "BorderResponse");
@@ -8692,16 +4977,14 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async updateSectionPageSetup(requestObj: model.UpdateSectionPageSetupRequest): Promise<{response: http.ClientResponse, body: model.SectionPageSetupResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling updateSectionPageSetup.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/sections/{sectionIndex}/pageSetup"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/sections/{sectionIndex}/pageSetup"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "sectionIndex" + "}", String(requestObj.sectionIndex));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -8717,54 +5000,21 @@ export class WordsApi {
         if (requestObj.pageSetup === null || requestObj.pageSetup === undefined) {
             throw new Error('Required parameter "requestObj.pageSetup" was null or undefined when calling updateSectionPageSetup.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        if (requestObj.revisionAuthor !== undefined) {
-            queryParameters.RevisionAuthor = ObjectSerializer.serialize(requestObj.revisionAuthor, "string");
-        }
-
-        if (requestObj.revisionDateTime !== undefined) {
-            queryParameters.RevisionDateTime = ObjectSerializer.serialize(requestObj.revisionDateTime, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.pageSetup, "PageSetup"),
+            body: ObjectSerializer.serialize(requestObj.pageSetup, requestObj.pageSetup.constructor.name),
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "SectionPageSetupResponse");
@@ -8776,17 +5026,15 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async updateTableCellFormat(requestObj: model.UpdateTableCellFormatRequest): Promise<{response: http.ClientResponse, body: model.TableCellFormatResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling updateTableCellFormat.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{tableRowPath}/cells/{index}/cellformat"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{tableRowPath}/cells/{index}/cellformat"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "tableRowPath" + "}", String(requestObj.tableRowPath))
             .replace("{" + "index" + "}", String(requestObj.index));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -8802,54 +5050,21 @@ export class WordsApi {
         if (requestObj.index === null || requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was null or undefined when calling updateTableCellFormat.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        if (requestObj.revisionAuthor !== undefined) {
-            queryParameters.RevisionAuthor = ObjectSerializer.serialize(requestObj.revisionAuthor, "string");
-        }
-
-        if (requestObj.revisionDateTime !== undefined) {
-            queryParameters.RevisionDateTime = ObjectSerializer.serialize(requestObj.revisionDateTime, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.format, "TableCellFormat"),
+            body: ObjectSerializer.serialize(requestObj.format, requestObj.format.constructor.name),
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "TableCellFormatResponse");
@@ -8861,16 +5076,14 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async updateTableProperties(requestObj: model.UpdateTablePropertiesRequest): Promise<{response: http.ClientResponse, body: model.TablePropertiesResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling updateTableProperties.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/tables/{index}/properties"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/tables/{index}/properties"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "index" + "}", String(requestObj.index));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -8881,58 +5094,22 @@ export class WordsApi {
         if (requestObj.index === null || requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was null or undefined when calling updateTableProperties.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        if (requestObj.revisionAuthor !== undefined) {
-            queryParameters.RevisionAuthor = ObjectSerializer.serialize(requestObj.revisionAuthor, "string");
-        }
-
-        if (requestObj.revisionDateTime !== undefined) {
-            queryParameters.RevisionDateTime = ObjectSerializer.serialize(requestObj.revisionDateTime, "string");
-        }
-
-        if (requestObj.nodePath !== undefined) {
-            queryParameters.NodePath = ObjectSerializer.serialize(requestObj.nodePath, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "nodePath", requestObj.nodePath);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.properties, "TableProperties"),
+            body: ObjectSerializer.serialize(requestObj.properties, requestObj.properties.constructor.name),
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "TablePropertiesResponse");
@@ -8944,17 +5121,15 @@ export class WordsApi {
      * @param requestObj contains request parameters
      */
     public async updateTableRowFormat(requestObj: model.UpdateTableRowFormatRequest): Promise<{response: http.ClientResponse, body: model.TableRowFormatResponse}> {
-        if (requestObj === null || requestObj === undefined){
+        if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling updateTableRowFormat.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{tablePath}/rows/{index}/rowformat"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{tablePath}/rows/{index}/rowformat"
             .replace("{" + "name" + "}", String(requestObj.name))
             .replace("{" + "tablePath" + "}", String(requestObj.tablePath))
             .replace("{" + "index" + "}", String(requestObj.index));
         const queryParameters: any = {};
-        const headerParams: any = {};
-        const formParams: any = {};
 
         // verify required parameter 'requestObj.name' is not null or undefined
         if (requestObj.name === null || requestObj.name === undefined) {
@@ -8970,54 +5145,21 @@ export class WordsApi {
         if (requestObj.index === null || requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was null or undefined when calling updateTableRowFormat.');
         }
-
-        if (requestObj.folder !== undefined) {
-            queryParameters.Folder = ObjectSerializer.serialize(requestObj.folder, "string");
-        }
-
-        if (requestObj.storage !== undefined) {
-            queryParameters.Storage = ObjectSerializer.serialize(requestObj.storage, "string");
-        }
-
-        if (requestObj.loadEncoding !== undefined) {
-            queryParameters.LoadEncoding = ObjectSerializer.serialize(requestObj.loadEncoding, "string");
-        }
-
-        if (requestObj.password !== undefined) {
-            queryParameters.Password = ObjectSerializer.serialize(requestObj.password, "string");
-        }
-
-        if (requestObj.destFileName !== undefined) {
-            queryParameters.DestFileName = ObjectSerializer.serialize(requestObj.destFileName, "string");
-        }
-
-        if (requestObj.revisionAuthor !== undefined) {
-            queryParameters.RevisionAuthor = ObjectSerializer.serialize(requestObj.revisionAuthor, "string");
-        }
-
-        if (requestObj.revisionDateTime !== undefined) {
-            queryParameters.RevisionDateTime = ObjectSerializer.serialize(requestObj.revisionDateTime, "string");
-        }
-
-        // tslint:disable-next-line:prefer-const
-        let useFormData = false;
-
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
-            headers: headerParams,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.format, "TableRowFormat"),
+            body: ObjectSerializer.serialize(requestObj.format, requestObj.format.constructor.name),
         };
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (requestOptions as any).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "TableRowFormatResponse");

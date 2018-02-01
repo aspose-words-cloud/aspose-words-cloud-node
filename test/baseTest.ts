@@ -45,7 +45,7 @@ export function initializeStorageApi() {
 
         storageApi = new StorageApi({ appSid: config.AppSid, apiKey: config.AppKey, baseURI: "http://api-dev.aspose.cloud/v1.1" });
     }
-    
+
     return storageApi;
 }
 
@@ -53,3 +53,38 @@ export const remoteBaseTestDataFolder = "Temp/SdkTests/node/TestData/";
 export const remoteBaseTestOutFolder = "Temp/SdkTests/node/TestOut/";
 export const localBaseTestDataFolder = "./testData/";
 export const localCommonTestDataFolder = "./testData/common/";
+
+export const saveFormatTestCases = [
+    "doc",
+    "dot",
+    "docx",
+    "docm",
+    "dotx",
+    "dotm",
+    "flatopc",
+    "fopc",
+    "rtf",
+    "wml",
+    "wordml",
+    "odt",
+    "ott",
+    "txt",
+    "text",
+    "mhtml",
+    "mht",
+    "epub",
+    "pdf",
+    "xps",
+    "swf",
+    "tiff",
+    "tif",
+    "png",
+    "jpeg",
+    "jpg",
+    "gif",
+    "bmp",
+    "svg",
+    "html",
+    "htmlfixed",
+    "pcl",
+];

@@ -25,7 +25,7 @@
 import { expect } from "chai";
 import "mocha";
 
-import { DeleteHeaderFooterRequest, DeleteHeadersFootersRequest, GetHeaderFooterRequest, GetHeaderFootersRequest, PutHeaderFooterRequest } from "../../src/model/model";
+import { DeleteHeaderFooterRequest, DeleteHeadersFootersRequest, GetHeaderFooterRequest, GetHeaderFootersRequest, PutHeaderFooterRequest, GetHeaderFooterOfSectionRequest } from "../../src/model/model";
 import * as BaseTest from "../baseTest";
 
 const testFolder = "DocumentElements/HeaderFooters";
@@ -96,6 +96,40 @@ describe("headersFooters", () => {
         });
     });
 
+    describe("getHeaderFooter function", () => {
+        it("should return response with code 200", () => {
+
+            const storageApi = BaseTest.initializeStorageApi();
+            const wordsApi = BaseTest.initializeWordsApi();
+
+            const localPath = BaseTest.localBaseTestDataFolder + testFolder + "/HeadersFooters.doc";
+            const remoteFileName = "TestGetHeadersFooters.docx";
+            const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
+
+            return new Promise((resolve) => {
+                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
+                    expect(responseMessage.status).to.equal("OK");
+                    resolve();
+                });
+            })
+                .then(() => {
+                    const request = new GetHeaderFooterOfSectionRequest();
+                    request.name = remoteFileName;
+                    request.folder = remotePath;
+                    request.headerFooterIndex = 0;
+                    request.sectionIndex = 0;
+                    
+                    // Act
+                    return wordsApi.getHeaderFooterOfSection(request)
+                        .then((result) => {
+                            // Assert
+                            expect(result.body.code).to.equal(200);
+                            expect(result.response.statusCode).to.equal(200);
+                        });
+                });
+        });
+    });
+
     describe("putHeaderFooter function", () => {
         it("should return response with code 200", () => {
 
@@ -128,7 +162,7 @@ describe("headersFooters", () => {
                 });
         });
     });
-    
+
     describe("deleteHeaderFooter function", () => {
         it("should return response with code 200", () => {
 
@@ -181,7 +215,7 @@ describe("headersFooters", () => {
                 .then(() => {
                     const request = new DeleteHeadersFootersRequest();
                     request.name = remoteFileName;
-                    request.folder = remotePath;                    
+                    request.folder = remotePath;
 
                     // Act
                     return wordsApi.deleteHeadersFooters(request)

@@ -1,0 +1,10 @@
+.vscode/
+src/
+node_modules/
+test/
+dist/test/
+testData/
+servercreds.json
+tsconfig.json
+tslint.json
+.*

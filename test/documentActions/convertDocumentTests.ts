@@ -53,6 +53,10 @@ describe("convert document", () => {
         });
 
         describe("postDocumentSaveAs function", () => {
+            /**
+             * Test runner
+             * @param value destination fromat
+             */
             function runner(value) {
                 const request = new PostDocumentSaveAsRequest({
                     saveOptionsData: new SaveOptionsData({
@@ -81,6 +85,10 @@ describe("convert document", () => {
         });
 
         describe("putConvertDocument function", () => {
+            /**
+             * Test runner
+             * @param value destination fromat
+             */
             function runner(value) {
                 const request = new PutConvertDocumentRequest({
                     format: value,
@@ -128,11 +136,15 @@ describe("convert document", () => {
         });
 
         describe("getDocumentWithFormat function", () => {
+            /**
+             * Test runner
+             * @param value destination fromat
+             */
             function runner(value) {
                 const request = new GetDocumentWithFormatRequest();
                 request.name = remoteFileName;
                 request.folder = remotePath;
-                request.format = "text";
+                request.format = value;
 
                 // Act
                 return wordsApi.getDocumentWithFormat(request)

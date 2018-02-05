@@ -1,11 +1,15 @@
 {
-  "name": "aspose.words.cloud.sdk.node-js",
-  "version": "0.0.0",
-  "description": "Aspose.Words.Cloud.SDK.NodeJs",
-  "main": "app.js",
+  "name": "asposewordscloud",
+  "version": "18.2.0",
+  "description": "Aspose.Words Cloud SDK for Node.js",  
+  "homepage": "http://www.aspose.com/cloud/word-api.aspx",
   "author": {
-    "name": "awdev"
-  },
+    "name": "Ivanov Evgeny"    
+  },  
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "main": "dist/src/api.js",
+  "types": "dist/src/api.d.ts",
   "scripts": {
     "test": "mocha -r ts-node/register test/**/*.ts --timeout 10000",
     "lint": "tslint src/{,**/}*.ts test/{,**/}*.ts -t verbose --project ./tsconfig.json"

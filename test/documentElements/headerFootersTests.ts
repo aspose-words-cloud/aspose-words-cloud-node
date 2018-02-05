@@ -25,7 +25,7 @@
 import { expect } from "chai";
 import "mocha";
 
-import { DeleteHeaderFooterRequest, DeleteHeadersFootersRequest, GetHeaderFooterRequest, GetHeaderFootersRequest, PutHeaderFooterRequest, GetHeaderFooterOfSectionRequest } from "../../src/model/model";
+import { DeleteHeaderFooterRequest, DeleteHeadersFootersRequest, GetHeaderFooterOfSectionRequest, GetHeaderFooterRequest, GetHeaderFootersRequest, PutHeaderFooterRequest } from "../../src/model/model";
 import * as BaseTest from "../baseTest";
 
 const testFolder = "DocumentElements/HeaderFooters";

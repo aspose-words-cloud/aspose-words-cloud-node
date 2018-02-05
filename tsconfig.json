@@ -11,7 +11,7 @@
         "sourceMap": true,
         "noLib": false,
         "declaration": true,
-        "lib": ["dom", "es6", "es5", "dom.iterable", "scripthost"],
+        "lib": ["es5", "es6", "scripthost"],
         "outDir": "dist"
     },
     "include": [

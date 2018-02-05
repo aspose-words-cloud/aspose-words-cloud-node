@@ -1,0 +1,7 @@
+.vscode/
+src/
+node_modules/
+test/
+testData/
+servercreds.json
+.*

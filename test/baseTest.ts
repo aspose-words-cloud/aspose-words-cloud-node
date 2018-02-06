@@ -22,7 +22,7 @@
 * SOFTWARE.
 */
 
-import { WordsApi } from "../src/api";
+import { WordsApi } from "asposewordscloud";
 
 let storageApi;
 
@@ -31,7 +31,7 @@ let storageApi;
  */
 export function initializeWordsApi() {
     const config = require("../servercreds.json");
-    const wordsApi = new WordsApi(config.AppSid, config.AppKey, "http://api-dev.aspose.cloud");
+    const wordsApi = new WordsApi(config.AppSid, config.AppKey, "http://api-dev.aspose.cloud");    
     return wordsApi;
 }
 

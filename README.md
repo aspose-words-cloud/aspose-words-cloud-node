@@ -1,5 +1,5 @@
-# Aspose.Words Cloud SDK for NodeJs [![npm](https://img.shields.io/npm/v/npm.svg)](https://www.npmjs.com/package/asposewordscloud)
-This repository contains Aspose.Words Cloud SDK for nodejs source code. This SDK allows you to work with Aspose.Words Cloud REST APIs in your nodejs applications quickly and easily, with zero initial cost.
+# Aspose.Words Cloud SDK for Node.Js [![npm](https://img.shields.io/npm/v/npm.svg)](https://www.npmjs.com/package/asposewordscloud)
+This repository contains Aspose.Words Cloud SDK for Node.js source code. This SDK allows you to work with Aspose.Words Cloud REST APIs in your nodejs applications quickly and easily, with zero initial cost.
 
 # Key Features
 * Conversion between various document-related formats (20+ formats supported), including PDF<->Word conversion
@@ -21,7 +21,7 @@ To use Aspose Words for Cloud SDK you need to register an account with [Aspose C
 
 ### Installation
 
-#### Install Aspose.Words-Cloud via NuGet
+#### Install Aspose.Words-Cloud via NPM
 
 From the command line:
 
@@ -56,7 +56,7 @@ wordsApi.postDocumentSaveAs(request).then((result) => {
 
 Every method returns a chainable promise.
 
-[Tests](Aspose.Words.Cloud.Sdk.Tests) contain various examples of using the SDK.
+[Tests](test) contain various examples of using the SDK.
 
 
 ## Comparison with Old generation SDK

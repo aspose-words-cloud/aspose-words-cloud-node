@@ -2,9 +2,9 @@
   "name": "asposewordscloud",
   "version": "18.2.0",
   "description": "Aspose.Words Cloud SDK for Node.js",  
-  "homepage": "http://www.aspose.com/cloud/word-api.aspx",
+  "homepage": "https://products.aspose.cloud/words/cloud",
   "author": {
-    "name": "Ivanov Evgeny"    
+    "name": "Evgeny Ivanov"    
   },  
   "license": "MIT",
   "readmeFilename": "README.md",

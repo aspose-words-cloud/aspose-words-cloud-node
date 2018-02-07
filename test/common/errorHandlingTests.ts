@@ -24,8 +24,8 @@
 
 import "mocha";
 
+import { GetDocumentRequest } from "asposewordscloud";
 import { expect } from "chai";
-import { GetDocumentRequest } from "../../src/model/model";
 import { initializeWordsApi } from "../baseTest";
 
 describe("errorHandling tests", () => {

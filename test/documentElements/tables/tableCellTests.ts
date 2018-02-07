@@ -25,7 +25,7 @@
 import { expect } from "chai";
 import "mocha";
 
-import { DeleteTableCellRequest, GetTableCellFormatRequest, GetTableCellRequest, InsertTableCellRequest, TableCellFormat, TableCellInsert, UpdateTableCellFormatRequest } from "../../../src/model/model";
+import { DeleteTableCellRequest, GetTableCellFormatRequest, GetTableCellRequest, InsertTableCellRequest, TableCellFormat, TableCellInsert, UpdateTableCellFormatRequest } from "asposewordscloud";
 import * as BaseTest from "../../baseTest";
 
 const testFolder = "DocumentElements/Tables";

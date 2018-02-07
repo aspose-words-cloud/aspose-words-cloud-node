@@ -25,7 +25,7 @@
 import { expect } from "chai";
 import "mocha";
 
-import { GetSectionPageSetupRequest, GetSectionRequest, GetSectionsRequest, PageSetup, UpdateSectionPageSetupRequest } from "../../src/model/model";
+import { GetSectionPageSetupRequest, GetSectionRequest, GetSectionsRequest, PageSetup, UpdateSectionPageSetupRequest } from "asposewordscloud";
 import * as BaseTest from "../baseTest";
 
 const testFolder = "DocumentElements/Sections";

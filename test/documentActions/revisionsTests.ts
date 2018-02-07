@@ -25,7 +25,7 @@
 import { expect } from "chai";
 import "mocha";
 
-import { AcceptAllRevisionsRequest, RejectAllRevisionsRequest } from "../../src/model/model";
+import { AcceptAllRevisionsRequest, RejectAllRevisionsRequest } from "asposewordscloud";
 import * as BaseTest from "../baseTest";
 
 const testFolder = "DocumentActions/Revisions";

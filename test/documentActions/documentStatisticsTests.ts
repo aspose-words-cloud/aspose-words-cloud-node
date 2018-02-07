@@ -25,7 +25,7 @@
 import { expect } from "chai";
 import "mocha";
 
-import { GetDocumentStatisticsRequest } from "../../src/model/model";
+import { GetDocumentStatisticsRequest } from "asposewordscloud";
 import * as BaseTest from "../baseTest";
 
 const testFolder = "DocumentActions/Statistics";

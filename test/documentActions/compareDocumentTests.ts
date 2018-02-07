@@ -25,7 +25,7 @@
 import { expect } from "chai";
 import "mocha";
 
-import { CompareData, PostCompareDocumentRequest } from "../../src/model/model";
+import { CompareData, PostCompareDocumentRequest } from "asposewordscloud";
 import * as BaseTest from "../baseTest";
 
 const testFolder = "DocumentActions/CompareDocument";

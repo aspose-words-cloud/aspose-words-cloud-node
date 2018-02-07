@@ -25,7 +25,7 @@
 import { expect } from "chai";
 import "mocha";
 
-import { GetDocumentTextItemsRequest, PostReplaceTextRequest, ReplaceTextRequest, SearchRequest } from "../../src/model/model";
+import { GetDocumentTextItemsRequest, PostReplaceTextRequest, ReplaceTextRequest, SearchRequest } from "asposewordscloud";
 import * as BaseTest from "../baseTest";
 
 const testFolder = "DocumentElements/Text";

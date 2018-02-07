@@ -25,7 +25,7 @@
 import { expect } from "chai";
 import "mocha";
 
-import { DeleteRunRequest, Font, GetDocumentParagraphRunFontRequest, GetDocumentParagraphRunRequest, GetDocumentParagraphRunsRequest, PostDocumentParagraphRunFontRequest, PostRunRequest, PutRunRequest, Run } from "../../src/model/model";
+import { DeleteRunRequest, Font, GetDocumentParagraphRunFontRequest, GetDocumentParagraphRunRequest, GetDocumentParagraphRunsRequest, PostDocumentParagraphRunFontRequest, PostRunRequest, PutRunRequest, Run } from "asposewordscloud";
 import * as BaseTest from "../baseTest";
 
 const testFolder = "DocumentElements/Runs";

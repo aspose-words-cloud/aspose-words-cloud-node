@@ -25,7 +25,7 @@
 import { expect } from "chai";
 import "mocha";
 
-import { RenderPageRequest } from "../../src/model/model";
+import { RenderPageRequest } from "asposewordscloud";
 import * as BaseTest from "../baseTest";
 
 const testFolder = "DocumentElements/Pages";

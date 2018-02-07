@@ -22,10 +22,10 @@
 * SOFTWARE.
 */
 
+import { GetDocumentFieldNamesRequest, PutDocumentFieldNamesRequest } from "asposewordscloud";
 import { expect } from "chai";
 import * as fs from "fs";
 import "mocha";
-import { GetDocumentFieldNamesRequest, PutDocumentFieldNamesRequest } from "../../../src/model/model";
 import * as BaseTest from "../../baseTest";
 
 const testFolder = "DocumentActions/MailMerge";

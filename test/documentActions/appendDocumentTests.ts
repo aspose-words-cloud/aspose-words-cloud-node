@@ -25,7 +25,7 @@
 import { expect } from "chai";
 import "mocha";
 
-import { DocumentEntry, DocumentEntryList, PostAppendDocumentRequest } from "../../src/model/model";
+import { DocumentEntry, DocumentEntryList, PostAppendDocumentRequest } from "asposewordscloud";
 import * as BaseTest from "../baseTest";
 
 const testFolder = "DocumentActions/AppendDocument";

@@ -25,7 +25,7 @@
 import { expect } from "chai";
 import "mocha";
 
-import { GetTablePropertiesRequest, TableProperties, UpdateTablePropertiesRequest } from "../../../src/model/model";
+import { GetTablePropertiesRequest, TableProperties, UpdateTablePropertiesRequest } from "asposewordscloud";
 import * as BaseTest from "../../baseTest";
 
 const testFolder = "DocumentElements/Tables";

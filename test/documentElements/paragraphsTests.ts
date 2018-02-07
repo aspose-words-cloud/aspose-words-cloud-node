@@ -25,7 +25,7 @@
 import { expect } from "chai";
 import "mocha";
 
-import { DeleteParagraphRequest, GetDocumentParagraphRequest, GetDocumentParagraphsRequest, ParagraphInsert, PutParagraphRequest, RenderParagraphRequest } from "../../src/model/model";
+import { DeleteParagraphRequest, GetDocumentParagraphRequest, GetDocumentParagraphsRequest, ParagraphInsert, PutParagraphRequest, RenderParagraphRequest } from "asposewordscloud";
 import * as BaseTest from "../baseTest";
 
 const testFolder = "DocumentElements/Paragraphs";

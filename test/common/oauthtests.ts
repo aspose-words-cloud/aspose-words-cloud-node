@@ -27,7 +27,7 @@ import "mocha";
 import "mocha-sinon";
 import * as sinon from "sinon";
 
-import { GetDocumentRequest } from "../../src/model/model";
+import { GetDocumentRequest } from "asposewordscloud";
 import * as BaseTest from "../baseTest";
 
 const testFolder = "Commont/OAuth";

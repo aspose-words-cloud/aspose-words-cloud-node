@@ -25,7 +25,7 @@
 import { expect } from "chai";
 import "mocha";
 
-import { DeleteFootnoteRequest, Footnote, GetFootnoteRequest, GetFootnotesRequest, PostFootnoteRequest, PutFootnoteRequest } from "../../src/model/model";
+import { DeleteFootnoteRequest, Footnote, GetFootnoteRequest, GetFootnotesRequest, PostFootnoteRequest, PutFootnoteRequest } from "asposewordscloud";
 import * as BaseTest from "../baseTest";
 
 const testFolder = "DocumentElements/Footnotes";

@@ -25,7 +25,7 @@
 import { expect } from "chai";
 import "mocha";
 
-import { BookmarkData, GetDocumentBookmarkByNameRequest, GetDocumentBookmarksRequest, PostUpdateDocumentBookmarkRequest } from "../../src/model/model";
+import { BookmarkData, GetDocumentBookmarkByNameRequest, GetDocumentBookmarksRequest, PostUpdateDocumentBookmarkRequest } from "asposewordscloud";
 import * as BaseTest from "../baseTest";
 
 const testFolder = "DocumentElements/Bookmarks";

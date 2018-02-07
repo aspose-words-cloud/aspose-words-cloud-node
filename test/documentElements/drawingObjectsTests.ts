@@ -26,7 +26,7 @@ import { expect } from "chai";
 import * as fs from "fs";
 import "mocha";
 
-import { DeleteDrawingObjectRequest, GetDocumentDrawingObjectByIndexRequest, GetDocumentDrawingObjectImageDataRequest, GetDocumentDrawingObjectOleDataRequest, GetDocumentDrawingObjectsRequest, PostDrawingObjectRequest, PutDrawingObjectRequest, RenderDrawingObjectRequest } from "../../src/model/model";
+import { DeleteDrawingObjectRequest, GetDocumentDrawingObjectByIndexRequest, GetDocumentDrawingObjectImageDataRequest, GetDocumentDrawingObjectOleDataRequest, GetDocumentDrawingObjectsRequest, PostDrawingObjectRequest, PutDrawingObjectRequest, RenderDrawingObjectRequest } from "asposewordscloud";
 import * as BaseTest from "../baseTest";
 
 const testFolder = "DocumentElements/DrawingObjects";

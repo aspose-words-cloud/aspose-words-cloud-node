@@ -25,7 +25,7 @@
 import { expect } from "chai";
 import "mocha";
 
-import { PostSplitDocumentRequest } from "../../src/model/model";
+import { PostSplitDocumentRequest } from "asposewordscloud";
 import * as BaseTest from "../baseTest";
 
 const testFolder = "DocumentActions/SplitDocument";

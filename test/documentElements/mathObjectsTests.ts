@@ -25,7 +25,7 @@
 import { expect } from "chai";
 import "mocha";
 
-import { DeleteOfficeMathObjectRequest, GetOfficeMathObjectRequest, GetOfficeMathObjectsRequest, RenderMathObjectRequest } from "../../src/model/model";
+import { DeleteOfficeMathObjectRequest, GetOfficeMathObjectRequest, GetOfficeMathObjectsRequest, RenderMathObjectRequest } from "asposewordscloud";
 import * as BaseTest from "../baseTest";
 
 const testFolder = "DocumentElements/MathObjects";

@@ -25,7 +25,7 @@
 import { expect } from "chai";
 import "mocha";
 
-import { CreateOrUpdateDocumentPropertyRequest, DeleteDocumentPropertyRequest, DocumentProperty, GetDocumentPropertiesRequest, GetDocumentPropertyRequest } from "../../src/model/model";
+import { CreateOrUpdateDocumentPropertyRequest, DeleteDocumentPropertyRequest, DocumentProperty, GetDocumentPropertiesRequest, GetDocumentPropertyRequest } from "asposewordscloud";
 import * as BaseTest from "../baseTest";
 
 const testFolder = "DocumentElements/DocumentProperties";

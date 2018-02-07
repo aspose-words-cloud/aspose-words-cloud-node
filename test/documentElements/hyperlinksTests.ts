@@ -25,7 +25,7 @@
 import { expect } from "chai";
 import "mocha";
 
-import { GetDocumentHyperlinkByIndexRequest, GetDocumentHyperlinksRequest } from "../../src/model/model";
+import { GetDocumentHyperlinkByIndexRequest, GetDocumentHyperlinksRequest } from "asposewordscloud";
 import * as BaseTest from "../baseTest";
 
 const testFolder = "DocumentElements/Hyperlinks";

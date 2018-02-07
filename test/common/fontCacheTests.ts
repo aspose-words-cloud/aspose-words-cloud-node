@@ -22,9 +22,9 @@
 * SOFTWARE.
 */
 
+import { ResetCacheRequest } from "asposewordscloud";
 import { expect } from "chai";
 import "mocha";
-import { ResetCacheRequest } from "../../src/model/model";
 import * as BaseTest from "../baseTest";
 
 describe("fontCache", () => {

@@ -25,7 +25,7 @@
 import { expect } from "chai";
 import "mocha";
 
-import { GetDocumentRequest, PutCreateDocumentRequest } from "../../src/model/model";
+import { GetDocumentRequest, PutCreateDocumentRequest } from "asposewordscloud";
 import * as BaseTest from "../baseTest";
 
 const testFolder = "document";

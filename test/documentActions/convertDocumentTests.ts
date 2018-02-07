@@ -26,8 +26,8 @@ import { expect } from "chai";
 import "mocha";
 import * as testWithTestCases from "mocha-cases";
 
+import { GetDocumentWithFormatRequest, PostDocumentSaveAsRequest, PutConvertDocumentRequest, PutDocumentSaveAsTiffRequest, SaveOptionsData, TiffSaveOptionsData } from "asposewordscloud";
 import * as fs from "fs";
-import { GetDocumentWithFormatRequest, PostDocumentSaveAsRequest, PutConvertDocumentRequest, PutDocumentSaveAsTiffRequest, SaveOptionsData, TiffSaveOptionsData } from "../../src/model/model";
 import * as BaseTest from "../baseTest";
 
 const testFolder = "DocumentActions/ConvertDocument";

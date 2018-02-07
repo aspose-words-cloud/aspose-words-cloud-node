@@ -25,7 +25,7 @@
 import { expect } from "chai";
 import "mocha";
 
-import { Comment, DeleteCommentRequest, DocumentPosition, GetCommentRequest, GetCommentsRequest, NodeLink, PostCommentRequest, PutCommentRequest } from "../../src/model/model";
+import { Comment, DeleteCommentRequest, DocumentPosition, GetCommentRequest, GetCommentsRequest, NodeLink, PostCommentRequest, PutCommentRequest } from "asposewordscloud";
 import * as BaseTest from "../baseTest";
 
 const testFolder = "DocumentElements/Comments";

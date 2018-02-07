@@ -25,7 +25,7 @@
 import { expect } from "chai";
 import "mocha";
 
-import { DeleteUnprotectDocumentRequest, GetDocumentProtectionRequest, PostChangeDocumentProtectionRequest, ProtectionRequest, PutProtectDocumentRequest } from "../../src/model/model";
+import { DeleteUnprotectDocumentRequest, GetDocumentProtectionRequest, PostChangeDocumentProtectionRequest, ProtectionRequest, PutProtectDocumentRequest } from "asposewordscloud";
 import * as BaseTest from "../baseTest";
 
 const testFolder = "DocumentActions/DocumentProtection";

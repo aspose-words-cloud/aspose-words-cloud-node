@@ -25,7 +25,7 @@
 import { expect } from "chai";
 import "mocha";
 
-import { Border, DeleteBorderRequest, DeleteBordersRequest, GetBorderRequest, GetBordersRequest, UpdateBorderRequest, XmlColor } from "../../../src/model/model";
+import { Border, DeleteBorderRequest, DeleteBordersRequest, GetBorderRequest, GetBordersRequest, UpdateBorderRequest, XmlColor } from "asposewordscloud";
 import * as BaseTest from "../../baseTest";
 
 const testFolder = "DocumentElements/Tables";

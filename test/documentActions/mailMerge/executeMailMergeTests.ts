@@ -22,10 +22,10 @@
 * SOFTWARE.
 */
 
+import { PostDocumentExecuteMailMergeRequest, PutExecuteMailMergeOnlineRequest } from "asposewordscloud";
 import { expect } from "chai";
 import * as fs from "fs";
 import "mocha";
-import { PostDocumentExecuteMailMergeRequest, PutExecuteMailMergeOnlineRequest } from "../../../src/model/model";
 import * as BaseTest from "../../baseTest";
 
 const testFolder = "DocumentActions/MailMerge";

@@ -25,7 +25,7 @@
 import { expect } from "chai";
 import "mocha";
 
-import { LoadWebDocumentData, PostLoadWebDocumentRequest, SaveOptionsData } from "../../src/model/model";
+import { LoadWebDocumentData, PostLoadWebDocumentRequest, SaveOptionsData } from "asposewordscloud";
 import * as BaseTest from "../baseTest";
 
 describe("postLoadWebDocument function", () => {

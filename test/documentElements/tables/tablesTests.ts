@@ -25,7 +25,7 @@
 import { expect } from "chai";
 import "mocha";
 
-import { DeleteTableRequest, GetTableRequest, GetTablesRequest, InsertTableRequest, RenderTableRequest, TableInsert } from "../../../src/model/model";
+import { DeleteTableRequest, GetTableRequest, GetTablesRequest, InsertTableRequest, RenderTableRequest, TableInsert } from "asposewordscloud";
 import * as BaseTest from "../../baseTest";
 
 const testFolder = "DocumentElements/Tables";

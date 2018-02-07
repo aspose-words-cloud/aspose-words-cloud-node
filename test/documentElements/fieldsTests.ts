@@ -25,7 +25,7 @@
 import { expect } from "chai";
 import "mocha";
 
-import { DeleteFieldRequest, DeleteFieldsRequest, Field, GetFieldRequest, GetFieldsRequest, PageNumber, PostFieldRequest, PostInsertPageNumbersRequest, PostUpdateDocumentFieldsRequest, PutFieldRequest } from "../../src/model/model";
+import { DeleteFieldRequest, DeleteFieldsRequest, Field, GetFieldRequest, GetFieldsRequest, PageNumber, PostFieldRequest, PostInsertPageNumbersRequest, PostUpdateDocumentFieldsRequest, PutFieldRequest } from "asposewordscloud";
 import * as BaseTest from "../baseTest";
 
 const testFolder = "DocumentElements/Fields";

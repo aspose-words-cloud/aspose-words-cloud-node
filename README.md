@@ -30,7 +30,7 @@ From the command line:
 
 ### Sample usage
 
-The examples below show how your application have to initiate and convert "doc" file to "pdf" using Aspose.Words-Cloud library:
+The examples below show how your application have to initiate and convert "doc" file to "pdf" using asposewordscloud library:
 ``` js
 const { WordsApi, PostDocumentSaveAsRequest, SaveOptionsData } = require("asposewordscloud");
 

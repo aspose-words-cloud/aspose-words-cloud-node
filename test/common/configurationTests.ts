@@ -33,7 +33,37 @@ import * as BaseTest from "../baseTest";
 const testFolder = "Commont/Configuration";
 
 describe("configuration tests", () => {
-    it("should write request to console if debugMode is setted to true", () => {
+    it("should write request to console if debugMode is setted to true in contructor", () => {
+
+        const storageApi = BaseTest.initializeStorageApi();
+        const wordsApi = BaseTest.initializeWordsApi(true);
+
+        const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
+        const remoteFileName = "TesConfiguration.docx";
+        const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
+
+        return new Promise((resolve) => {
+            storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
+                expect(responseMessage.status).to.equal("OK");
+                resolve();
+            });
+        })
+            .then(() => {
+                const request = new GetDocumentRequest();
+                request.documentName = remoteFileName;
+                request.folder = remotePath;                
+                const log = sinon.spy(console, "log");
+                return wordsApi.getDocument(request)
+                    .then(() => {
+                        log.restore();
+                        sinon.assert.calledWith(log,
+                            sinon.match('"uri": "http://api-dev.aspose.cloud/v1.1/words/TesConfiguration.docx?folder=Temp%2FSdkTests%2Fnode%2FTestData%2FCommont%2FConfiguration"')
+                                .and(sinon.match('"method": "GET"')));
+                    });
+            });
+    });
+
+    it("should write request to console if debugMode is setted to true in runtime", () => {
 
         const storageApi = BaseTest.initializeStorageApi();
         const wordsApi = BaseTest.initializeWordsApi();

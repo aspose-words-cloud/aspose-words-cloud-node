@@ -6,5 +6,6 @@ dist/test/
 testData/
 servercreds.json
 tsconfig.json
+tsconfigPack.json
 tslint.json
 .*

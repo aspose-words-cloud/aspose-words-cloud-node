@@ -30,6 +30,8 @@ import { ObjectSerializer } from "./internal/objectSerializer";
 import { addQueryParameterToUrl, invokeApiMethod } from "./internal/requestHelper";
 import * as model from "./model/model";
 
+export * from "./model/model";
+
 /**
  * Library for communicating with the Aspose.Words Cloud API
  */

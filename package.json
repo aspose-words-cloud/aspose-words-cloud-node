@@ -7,11 +7,12 @@
     "name": "Evgeny Ivanov"    
   },  
   "license": "MIT",
+  "engines": { "node" : ">=4.8" },
   "readmeFilename": "README.md",
   "main": "dist/api.js",
   "types": "dist/api.d.ts",
   "scripts": {
-    "test": "mocha -r ts-node/register test/**/*.ts --timeout 10000",
+    "test": "mocha -r ts-node/register test/**/*.ts --timeout 15000",
     "lint": "tslint src/{,**/}*.ts test/{,**/}*.ts -t verbose --project ./tsconfig.json"
   },
   "dependencies": {

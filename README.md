@@ -1,4 +1,4 @@
-# Aspose.Words Cloud SDK for Node.js [![npm](https://img.shields.io/npm/v/npm.svg)](https://www.npmjs.com/package/asposewordscloud)
+# Aspose.Words Cloud SDK for Node.js [![npm](https://badge.fury.io/js/asposewordscloud.svg)](https://www.npmjs.com/package/asposewordscloud)
 This repository contains Aspose.Words Cloud SDK for Node.js source code. This SDK allows you to work with Aspose.Words Cloud REST APIs in your nodejs applications quickly and easily, with zero initial cost.
 
 # Key Features

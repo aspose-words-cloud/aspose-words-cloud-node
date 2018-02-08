@@ -3,6 +3,7 @@ src/
 node_modules/
 test/
 dist/test/
+scripts/
 testData/
 servercreds.json
 tsconfig.json

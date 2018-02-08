@@ -118,3 +118,4 @@ SDKs/servercreds.json
 /dist/*
 /servercreds.json
 servercreds.json
+/ts-node-*

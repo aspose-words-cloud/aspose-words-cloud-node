@@ -24,7 +24,7 @@
 
 import { IAuthentication, OAuth  } from "../internal/auth";
 
-const defaultBasePath = "http://api.aspose.cloud";
+const defaultBasePath = "https://api.aspose.cloud";
 
 /**
  * Words API configuration

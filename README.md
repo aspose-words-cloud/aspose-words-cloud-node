@@ -58,12 +58,13 @@ wordsApi.postDocumentSaveAs(request).then((result) => {
 
 Every method returns a chainable promise.
 
-[Tests](test) contain various examples of using the SDK. You have to create servercreds.json file in project root to run them.
-servercreds.json has the following structure
+[Tests](test) contain various examples of using the SDK. You have to create "testConfig.json" file in project root to run them.
+"testConfig.json" has the following structure
 ``` json
 {
     "AppSid": "Youre AppSid here",
-    "AppKey": "Youre AppKey here"
+    "AppKey": "Youre AppKey here",
+    "BaseUrl": "http://api.aspose.cloud"
 }
 ```
 

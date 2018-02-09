@@ -30,8 +30,8 @@ let storageApi;
  * Initialize WordsApi
  */
 export function initializeWordsApi(debugMode?: boolean) {
-    const config = require("../servercreds.json");
-    const wordsApi = new WordsApi(config.AppSid, config.AppKey, "https://api-dev.aspose.cloud", debugMode);
+    const config = require("../testConfig.json");
+    const wordsApi = new WordsApi(config.AppSid, config.AppKey, config.BaseUrl, debugMode);
     return wordsApi;
 }
 
@@ -40,10 +40,10 @@ export function initializeWordsApi(debugMode?: boolean) {
  */
 export function initializeStorageApi() {
     if (!storageApi) {
-        const config = require("../servercreds.json");
+        const config = require("../testConfig.json");
         const StorageApi = require("asposestoragecloud");
 
-        storageApi = new StorageApi({ appSid: config.AppSid, apiKey: config.AppKey, baseURI: "http://api-dev.aspose.cloud/v1.1" });
+        storageApi = new StorageApi({ appSid: config.AppSid, apiKey: config.AppKey, baseURI: config.BaseUrl + "/v1.1" });
     }
 
     return storageApi;

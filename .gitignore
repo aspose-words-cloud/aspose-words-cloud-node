@@ -115,7 +115,8 @@ SDKs/PHP/.idea/*
 SDKs/PHP/vendor/*
 SDKs/PHP/testReports/*
 SDKs/servercreds.json
+*/testConfig.json
 /dist/*
 /servercreds.json
-servercreds.json
+testConfig.json
 /ts-node-*

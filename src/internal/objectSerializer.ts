@@ -118,7 +118,7 @@ export class ObjectSerializer {
             for (const index in attributeTypes) {
                 if (attributeTypes.hasOwnProperty(index)) {
                     const attributeType = attributeTypes[index];
-                    if (data[attributeType.baseName]) {
+                    if (data.hasOwnProperty(attributeType.baseName)) {
                         instance[attributeType.name] = ObjectSerializer.deserialize(data[attributeType.baseName], attributeType.type);
                     }
                 }

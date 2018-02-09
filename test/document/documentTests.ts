@@ -52,12 +52,16 @@ describe("getDocument function", () => {
         request.documentName = filename;
         request.folder = remotePath;
 
+        wordsApi.configuration.debugMode = true;
         // Act
         return wordsApi.getDocument(request)
           .then((result) => {
             // Assert
             expect(result.body.code).to.equal(200);
             expect(result.response.statusCode).to.equal(200);
+            
+            // Check document is not signed
+            expect(result.body.document.isSigned).to.equal(false);
           });
       });
   });

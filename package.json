@@ -1,6 +1,6 @@
 {
   "name": "asposewordscloud",
-  "version": "18.2.0",
+  "version": "18.2.1",
   "description": "Aspose.Words Cloud SDK for Node.js",  
   "homepage": "https://products.aspose.cloud/words/cloud",
   "author": {
@@ -21,7 +21,7 @@
   "main": "dist/api.js",
   "types": "dist/api.d.ts",
   "scripts": {
-    "test": "mocha -r ts-node/register test/**/*.ts --timeout 15000",
+    "test": "mocha -r ts-node/register test/**/*.ts --timeout 25000",
     "lint": "tslint src/{,**/}*.ts test/{,**/}*.ts -t verbose --project ./tsconfig.json"
   },
   "dependencies": {

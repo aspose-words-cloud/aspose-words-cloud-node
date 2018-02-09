@@ -58,7 +58,14 @@ wordsApi.postDocumentSaveAs(request).then((result) => {
 
 Every method returns a chainable promise.
 
-[Tests](test) contain various examples of using the SDK.
+[Tests](test) contain various examples of using the SDK. You have to create servercreds.json file in project root to run them.
+servercreds.json has the following structure
+``` json
+{
+    "AppSid": "Youre AppSid here",
+    "AppKey": "Youre AppKey here"
+}
+```
 
 # Release notes
 ## 18.2

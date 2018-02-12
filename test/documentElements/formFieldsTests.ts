@@ -59,6 +59,8 @@ describe("formFields", () => {
                             // Assert
                             expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.formFields).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -92,6 +94,8 @@ describe("formFields", () => {
                             // Assert
                             expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.formField).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -135,6 +139,8 @@ describe("formFields", () => {
                             // Assert
                             expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.formField).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -179,6 +185,8 @@ describe("formFields", () => {
                             // Assert
                             expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.formField).to.exist.and.not.equal(null);
                         });
                 });
         });

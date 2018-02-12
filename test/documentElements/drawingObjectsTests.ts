@@ -59,6 +59,8 @@ describe("drawingObjects", () => {
                             // Assert
                             expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.drawingObjects).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -92,6 +94,8 @@ describe("drawingObjects", () => {
                             // Assert
                             expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.drawingObject).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -227,6 +231,8 @@ describe("drawingObjects", () => {
                             // Assert
                             expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.drawingObject).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -264,6 +270,8 @@ describe("drawingObjects", () => {
                             // Assert
                             expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.drawingObject).to.exist.and.not.equal(null);
                         });
                 });
         });

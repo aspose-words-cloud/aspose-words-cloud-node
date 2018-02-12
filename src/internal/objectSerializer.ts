@@ -88,7 +88,7 @@ export class ObjectSerializer {
     public static deserialize(data: any, type: string) {
         // polymorphism may change the actual type.
         type = ObjectSerializer.findCorrectType(data, type);
-        if (data === undefined) {
+        if (data === undefined || data === null) {
             return data;
         } else if (primitives.indexOf(type.toLowerCase()) !== -1) {
             return data;

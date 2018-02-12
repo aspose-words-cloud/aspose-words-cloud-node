@@ -58,6 +58,8 @@ describe("text", () => {
                             // Assert
                             expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.textItems).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -91,6 +93,8 @@ describe("text", () => {
                             // Assert
                             expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.matches).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -124,6 +128,8 @@ describe("text", () => {
                             // Assert
                             expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.searchResults).to.exist.and.not.equal(null);
                         });
                 });
         });

@@ -58,6 +58,8 @@ describe("bookmarks", () => {
                             // Assert
                             expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.bookmarks).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -91,6 +93,8 @@ describe("bookmarks", () => {
                             // Assert
                             expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.bookmark).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -127,6 +131,8 @@ describe("bookmarks", () => {
                             // Assert
                             expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.bookmark).to.exist.and.not.equal(null);
                         });
                 });
         });

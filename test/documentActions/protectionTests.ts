@@ -59,6 +59,8 @@ describe("document protection", () => {
                             // Assert
                             expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.protectionData).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -92,6 +94,8 @@ describe("document protection", () => {
                             // Assert
                             expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.protectionData).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -126,6 +130,8 @@ describe("document protection", () => {
                             // Assert
                             expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.protectionData).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -160,6 +166,8 @@ describe("document protection", () => {
                             // Assert
                             expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.protectionData).to.exist.and.not.equal(null);
                         });
                 });
         });

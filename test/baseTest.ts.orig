@@ -29,9 +29,15 @@ let storageApi;
 /**
  * Initialize WordsApi
  */
+<<<<<<< HEAD
+export function initializeWordsApi() {
+    const config = require("../servercreds.json");
+    const wordsApi = new WordsApi(config.AppSid, config.AppKey, "http://api-dev.aspose.cloud");    
+=======
 export function initializeWordsApi(debugMode?: boolean) {
     const config = require("../testConfig.json");
     const wordsApi = new WordsApi(config.AppSid, config.AppKey, config.BaseUrl, debugMode);
+>>>>>>> master
     return wordsApi;
 }
 

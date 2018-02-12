@@ -51,13 +51,16 @@ describe("getDocument function", () => {
         const request = new GetDocumentRequest();
         request.documentName = filename;
         request.folder = remotePath;
-
+        
         // Act
         return wordsApi.getDocument(request)
           .then((result) => {
             // Assert
             expect(result.body.code).to.equal(200);
             expect(result.response.statusCode).to.equal(200);
+            
+            // Check document is not signed
+            expect(result.body.document.isSigned).to.equal(false);
           });
       });
   });
@@ -82,6 +85,8 @@ describe("putCreateDocument function", () => {
         // Assert
         expect(result.body.code).to.equal(200);
         expect(result.response.statusCode).to.equal(200);
+
+        expect(result.body.document.fileName).to.equal(filename);
       });
   });
 });

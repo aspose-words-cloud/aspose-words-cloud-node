@@ -1,22 +1,34 @@
 {
   "name": "asposewordscloudTest",
-  "version": "18.2.0",
+  "version": "18.2.1",
   "description": "Aspose.Words Cloud SDK for Node.js",
-  "homepage": "http://www.aspose.com/cloud/word-api.aspx",
+  "homepage": "https://products.aspose.cloud/words/cloud",
   "author": {
-    "name": "Ivanov Evgeny"
+    "name": "Evgeny Ivanov"
   },
   "license": "MIT",
+  "engines": {
+    "node": ">=4.8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aspose-words-cloud/aspose-words-cloud-node.git"
+  },
+  "keywords": [
+    "Aspose",
+    "Cloud",
+    "Words"
+  ],
   "readmeFilename": "README.md",
-  "main": "dist/src/api.js",
-  "types": "dist/src/api.d.ts",
+  "main": "dist/api.js",
+  "types": "dist/api.d.ts",
   "scripts": {
-    "test": "mocha -r ts-node/register test/**/*.ts --timeout 10000",
+    "test": "mocha -r ts-node/register test/**/*.ts --timeout 25000",
     "lint": "tslint src/{,**/}*.ts test/{,**/}*.ts -t verbose --project ./tsconfig.json"
   },
   "dependencies": {
     "@types/request": "^2.0.9",
-    "asposewordscloud": "file:asposewordscloud-18.2.0.tgz",
+    "asposewordscloud": "^18.2.0",
     "request": "^2.83.0",
     "request-debug": "^0.2.0"
   },

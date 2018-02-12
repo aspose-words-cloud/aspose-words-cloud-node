@@ -3,8 +3,9 @@ src/
 node_modules/
 test/
 dist/test/
+scripts/
 testData/
-servercreds.json
+testConfig.json
 tsconfig.json
 tsconfigPack.json
 tslint.json

@@ -64,6 +64,8 @@ describe("watermarks", () => {
                                 // Assert
                                 expect(result.body.code).to.equal(200);
                                 expect(result.response.statusCode).to.equal(200);
+
+                                expect(result.body.document).to.exist.and.not.equal(null);
                             });
                     });
             });
@@ -101,6 +103,8 @@ describe("watermarks", () => {
                                 // Assert
                                 expect(result.body.code).to.equal(200);
                                 expect(result.response.statusCode).to.equal(200);
+
+                                expect(result.body.document).to.exist.and.not.equal(null);
                             });
                     });
             });
@@ -135,6 +139,8 @@ describe("watermarks", () => {
                             // Assert
                             expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.document).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -167,6 +173,8 @@ describe("watermarks", () => {
                             // Assert
                             expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.document).to.exist.and.not.equal(null);
                         });
                 });
         });

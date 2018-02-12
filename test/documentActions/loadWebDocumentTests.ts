@@ -57,6 +57,8 @@ describe("postLoadWebDocument function", () => {
                 // Assert
                 expect(result.body.code).to.equal(200);
                 expect(result.response.statusCode).to.equal(200);
+
+                expect(result.body.saveResult).to.exist.and.not.equal(null);
             });
 
     });

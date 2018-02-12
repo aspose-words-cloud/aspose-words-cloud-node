@@ -58,6 +58,8 @@ describe("mailMerge fields", () => {
                             // Assert
                             expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.fieldNames.names.length).to.equal(0);
                         });
                 });
         });
@@ -80,6 +82,9 @@ describe("mailMerge fields", () => {
                 .then((result) => {
                     // Assert                
                     expect(result.response.statusCode).to.equal(200);
+                    expect(result.response.statusCode).to.equal(200);
+
+                    expect(result.body.fieldNames.names.length).to.equal(15);
                 });
 
         });

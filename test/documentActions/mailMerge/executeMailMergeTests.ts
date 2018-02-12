@@ -42,12 +42,13 @@ describe("executeMailMerge", () => {
                 data: fs.readFileSync(dataLocalPath),
                 template: fs.readFileSync(templateLocalPath),
             });
-
+            
             // Act
             return wordsApi.putExecuteMailMergeOnline(request)
                 .then((result) => {
                     // Assert                
                     expect(result.response.statusCode).to.equal(200);
+                    expect(result.body.byteLength).to.greaterThan(0);
                 });
 
         });
@@ -77,13 +78,15 @@ describe("executeMailMerge", () => {
                         request.folder = remotePath;
                         request.data = fs.readFileSync(dataLocalPath, "utf8");
                         request.withRegions = false;
-
+                        
                         // Act
                         return wordsApi.postDocumentExecuteMailMerge(request)
                             .then((result) => {
                                 // Assert
                                 expect(result.body.code).to.equal(200);
                                 expect(result.response.statusCode).to.equal(200);
+                                
+                                expect(result.body.document.isEncrypted).to.equal(false);
                             });
                     });
             });
@@ -119,6 +122,8 @@ describe("executeMailMerge", () => {
                                 // Assert
                                 expect(result.body.code).to.equal(200);
                                 expect(result.response.statusCode).to.equal(200);
+
+                                expect(result.body.document.isEncrypted).to.equal(false);
                             });
                     });
             });

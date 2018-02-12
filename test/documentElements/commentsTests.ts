@@ -60,6 +60,8 @@ describe("comments", () => {
                             // Assert
                             expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.comment).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -93,6 +95,8 @@ describe("comments", () => {
                             // Assert
                             expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.comments).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -138,6 +142,8 @@ describe("comments", () => {
                             // Assert
                             expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.comment).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -184,6 +190,8 @@ describe("comments", () => {
                             // Assert
                             expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.comment).to.exist.and.not.equal(null);
                         });
                 });
         });

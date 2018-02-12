@@ -62,6 +62,8 @@ describe("postSplitDocument function", () => {
                         // Assert
                         expect(result.body.code).to.equal(200);
                         expect(result.response.statusCode).to.equal(200);
+
+                        expect(result.body.splitResult).to.exist.and.not.equal(null);
                     });
             });
     });

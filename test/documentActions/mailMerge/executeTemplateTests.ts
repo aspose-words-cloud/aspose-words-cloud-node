@@ -48,6 +48,7 @@ describe("executeTemplate", () => {
                 .then((result) => {
                     // Assert                
                     expect(result.response.statusCode).to.equal(200);
+                    expect(result.body.byteLength).to.greaterThan(0);
                 });
 
         });
@@ -84,6 +85,8 @@ describe("executeTemplate", () => {
                                 // Assert
                                 expect(result.body.code).to.equal(200);
                                 expect(result.response.statusCode).to.equal(200);
+
+                                expect(result.body.document.isEncrypted).to.equal(false);
                             });
                     });
             });
@@ -119,6 +122,8 @@ describe("executeTemplate", () => {
                                 // Assert
                                 expect(result.body.code).to.equal(200);
                                 expect(result.response.statusCode).to.equal(200);
+
+                                expect(result.body.document.isEncrypted).to.equal(false);
                             });
                     });
             });
@@ -154,6 +159,8 @@ describe("executeTemplate", () => {
                                 // Assert
                                 expect(result.body.code).to.equal(200);
                                 expect(result.response.statusCode).to.equal(200);
+
+                                expect(result.body.document.isEncrypted).to.equal(false);
                             });
                     });
             });

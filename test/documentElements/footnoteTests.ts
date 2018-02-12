@@ -58,6 +58,8 @@ describe("footnotes", () => {
                             // Assert
                             expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.footnotes).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -91,6 +93,8 @@ describe("footnotes", () => {
                             // Assert
                             expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.footnote).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -127,6 +131,8 @@ describe("footnotes", () => {
                             // Assert
                             expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.footnote).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -161,6 +167,8 @@ describe("footnotes", () => {
                             // Assert
                             expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.footnote).to.exist.and.not.equal(null);
                         });
                 });
         });

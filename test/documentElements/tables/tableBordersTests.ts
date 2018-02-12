@@ -59,6 +59,8 @@ describe("tableBorders", () => {
                             // Assert
                             expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.borders).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -93,6 +95,8 @@ describe("tableBorders", () => {
                             // Assert
                             expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.border).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -126,6 +130,8 @@ describe("tableBorders", () => {
                             // Assert
                             expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.borders).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -160,6 +166,8 @@ describe("tableBorders", () => {
                             // Assert
                             expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.border).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -202,6 +210,8 @@ describe("tableBorders", () => {
                             // Assert
                             expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.border).to.exist.and.not.equal(null);
                         });
                 });
         });

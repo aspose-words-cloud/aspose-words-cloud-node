@@ -74,6 +74,8 @@ describe("convert document", () => {
                         // Assert
                         expect(result.body.code).to.equal(200);
                         expect(result.response.statusCode).to.equal(200);
+
+                        expect(result.body.saveResult).to.exist.and.not.equal(null);
                     });
             }
 
@@ -130,6 +132,8 @@ describe("convert document", () => {
                         // Assert
                         expect(result.body.code).to.equal(200);
                         expect(result.response.statusCode).to.equal(200);
+
+                        expect(result.body.saveResult).to.exist.and.not.equal(null);
                     });
 
             });
@@ -174,6 +178,7 @@ describe("convert document", () => {
                         .then((result) => {
                             // Assert
                             expect(result.response.statusCode).to.equal(200);
+                            expect(result.response.statusCode).to.equal(200);
                         });
                 });
 
@@ -211,6 +216,8 @@ describe("convert document", () => {
                             // Assert
                             expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.saveResult).to.exist.and.not.equal(null);
                         });
                 });
         });

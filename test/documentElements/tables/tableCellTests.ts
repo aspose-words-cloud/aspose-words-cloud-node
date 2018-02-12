@@ -60,6 +60,8 @@ describe("tableCell", () => {
                             // Assert
                             expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.cell).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -94,6 +96,8 @@ describe("tableCell", () => {
                             // Assert
                             expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.cell).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -162,6 +166,8 @@ describe("tableCell", () => {
                             // Assert
                             expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.cellFormat).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -202,6 +208,8 @@ describe("tableCell", () => {
                             // Assert
                             expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.cellFormat).to.exist.and.not.equal(null);
                         });
                 });
         });

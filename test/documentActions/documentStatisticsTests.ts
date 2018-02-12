@@ -58,6 +58,8 @@ describe("getDocumentStatistics function", () => {
                         // Assert
                         expect(result.body.code).to.equal(200);
                         expect(result.response.statusCode).to.equal(200);
+
+                        expect(result.body.statData.pageCount).to.equal(3);
                     });
             });
     });

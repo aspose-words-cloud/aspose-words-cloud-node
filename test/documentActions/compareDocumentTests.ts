@@ -70,6 +70,8 @@ describe("compareDocument function", () => {
                         // Assert
                         expect(result.body.code).to.equal(200);
                         expect(result.response.statusCode).to.equal(200);
+
+                        expect(result.body.document.links.length).to.greaterThan(10);
                     });
             });
     });

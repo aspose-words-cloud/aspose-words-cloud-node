@@ -58,6 +58,8 @@ describe("tables", () => {
                             // Assert
                             expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.tables).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -91,6 +93,8 @@ describe("tables", () => {
                             // Assert
                             expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.table).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -124,6 +128,8 @@ describe("tables", () => {
                             // Assert
                             expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.table).to.exist.and.not.equal(null);
                         });
                 });
         });

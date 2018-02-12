@@ -58,6 +58,8 @@ describe("headersFooters", () => {
                             // Assert
                             expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.headerFooters).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -91,6 +93,8 @@ describe("headersFooters", () => {
                             // Assert
                             expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.headerFooter).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -125,6 +129,8 @@ describe("headersFooters", () => {
                             // Assert
                             expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.headerFooter).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -158,6 +164,8 @@ describe("headersFooters", () => {
                             // Assert
                             expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.headerFooter).to.exist.and.not.equal(null);
                         });
                 });
         });

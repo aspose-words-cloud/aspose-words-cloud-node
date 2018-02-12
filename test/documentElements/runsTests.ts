@@ -59,6 +59,8 @@ describe("runs", () => {
                             // Assert
                             expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.runs).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -93,6 +95,8 @@ describe("runs", () => {
                             // Assert
                             expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.run).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -127,6 +131,8 @@ describe("runs", () => {
                             // Assert
                             expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.run).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -162,6 +168,8 @@ describe("runs", () => {
                             // Assert
                             expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.run).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -230,6 +238,8 @@ describe("runs", () => {
                             // Assert
                             expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.font).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -265,6 +275,8 @@ describe("runs", () => {
                             // Assert
                             expect(result.body.code).to.equal(200);
                             expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.font).to.exist.and.not.equal(null);
                         });
                 });
         });

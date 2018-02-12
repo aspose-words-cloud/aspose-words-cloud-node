@@ -51,8 +51,7 @@ describe("getDocument function", () => {
         const request = new GetDocumentRequest();
         request.documentName = filename;
         request.folder = remotePath;
-
-        wordsApi.configuration.debugMode = true;
+        
         // Act
         return wordsApi.getDocument(request)
           .then((result) => {
@@ -86,6 +85,8 @@ describe("putCreateDocument function", () => {
         // Assert
         expect(result.body.code).to.equal(200);
         expect(result.response.statusCode).to.equal(200);
+
+        expect(result.body.document.fileName).to.equal(filename);
       });
   });
 });

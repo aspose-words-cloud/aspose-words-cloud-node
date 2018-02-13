@@ -43,8 +43,8 @@
         },
         {
             "label": "runCucumber",
-            "type": "npm",
-            "script": "cucumber" ,
+            "type": "gulp",
+            "task": "cucumber",
             "problemMatcher": [],
             "group": "test"
         },

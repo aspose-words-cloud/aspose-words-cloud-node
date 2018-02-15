@@ -35,6 +35,7 @@ gulp.task('copyTestConfig', function () {
 
 gulp.task('cucumber', ["build", "copyTestConfig"], function () {
     return gulp.src('./bdd/features/**/*.feature').pipe(cucumber({
-        'steps': './dist/bdd/steps/**/*.js'
+        'steps': './dist/bdd/steps/**/*.js',
+        'support': './dist/bdd/support/**/*.js',
     }));
 });

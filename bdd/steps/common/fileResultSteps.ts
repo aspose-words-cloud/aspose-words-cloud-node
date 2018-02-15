@@ -22,18 +22,27 @@
 * SOFTWARE.
 */
 
+import { Buffer } from "buffer";
 import { expect } from "chai";
-import { Given } from "cucumber";
-import * as BaseTest from "../../../test/baseTest";
+import { Then } from "cucumber";
 
-Given(/^I have uploaded document with name (.*) and subfolder is (.*) to storage$/, function(documentName, folder, callback) {
-    const storageApi = BaseTest.initializeStorageApi();
+Then(/^document is returned as an attachment$/, function() {
+    expect(this.response.body).to.is.instanceof(Buffer);
+    expect(this.response.body.byteLength).to.greaterThan(0);
+});
 
-    const remotePath = BaseTest.remoteBaseTestDataFolder + folder;
-    const localPath = BaseTest.localBaseTestDataFolder + folder + "/" + documentName;
+Then(/^attachment's format is (.*)$/, function(format) {
+    expect(this.response.body).to.is.instanceof(Buffer);
 
-    storageApi.PutCreate(remotePath + "/" + documentName, null, null, localPath, (responseMessage) => {
-        expect(responseMessage.status).to.equal("OK");
-        callback();
-    });    
+    const buffer = this.response.body as Buffer;
+    if (format !== "pdf") {
+        expect(buffer.byteLength).to.greaterThan(0);
+        return;
+    }
+    
+    const strBuffer = buffer.toString("utf-8");
+    const actualArray = [strBuffer[0], strBuffer[1], strBuffer[2], strBuffer[3]];
+    const exptectedArray = ["%", "P", "D", "F" ];
+
+    expect(actualArray).to.have.members(exptectedArray);
 });

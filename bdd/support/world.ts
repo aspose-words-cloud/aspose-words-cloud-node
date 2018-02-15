@@ -22,18 +22,10 @@
 * SOFTWARE.
 */
 
-import { expect } from "chai";
-import { Given } from "cucumber";
-import * as BaseTest from "../../../test/baseTest";
+export class World {
+    public request: any;
 
-Given(/^I have uploaded document with name (.*) and subfolder is (.*) to storage$/, function(documentName, folder, callback) {
-    const storageApi = BaseTest.initializeStorageApi();
-
-    const remotePath = BaseTest.remoteBaseTestDataFolder + folder;
-    const localPath = BaseTest.localBaseTestDataFolder + folder + "/" + documentName;
-
-    storageApi.PutCreate(remotePath + "/" + documentName, null, null, localPath, (responseMessage) => {
-        expect(responseMessage.status).to.equal("OK");
-        callback();
-    });    
-});
+    constructor() {
+        this.request = {};       
+    }
+}

@@ -24,10 +24,16 @@ gulp.task('build', ["clean"], function () {
             this.once("finish", () => process.exit(1));
         });
 
-    return tsResult.pipe(gulp.dest('dist'));
+    return tsResult.pipe(gulp.dest(buildConfig.targetPath));
 });
 
-gulp.task('cucumber', ["build"], function () {
+gulp.task('copyTestConfig', function () {
+    return gulp
+            .src('testConfig.json')
+            .pipe(gulp.dest(buildConfig.targetPath));
+});
+
+gulp.task('cucumber', ["build", "copyTestConfig"], function () {
     return gulp.src('./bdd/features/**/*.feature').pipe(cucumber({
         'steps': './dist/bdd/steps/**/*.js'
     }));

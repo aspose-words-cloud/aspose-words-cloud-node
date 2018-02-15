@@ -25,7 +25,8 @@
   "scripts": {
     "test": "mocha -r ts-node/register test/**/*.ts --timeout 25000",
     "lint": "tslint src/{,**/}*.ts test/{,**/}*.ts -t verbose --project ./tsconfig.json",
-    "cucumber": "cucumber-js ./bdd/features -r ./dist/bdd/steps"
+    "cucumber": "cucumber-js ./bdd/features -r ./dist/bdd/steps",
+    "gulp": "gulp"
   },
   "dependencies": {
     "@types/request": "^2.0.9",

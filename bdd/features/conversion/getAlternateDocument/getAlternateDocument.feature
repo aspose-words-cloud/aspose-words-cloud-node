@@ -4,7 +4,7 @@ Feature: Stored document conversion with return result in response
 
 @ConversionOfStoredDoc
 Scenario Outline: Conversion of stored document
-	Given I have uploaded document with name <DocName> and subfoler is Conversion to storage
+	Given I have uploaded document with name <DocName> and subfolder is DocumentActions/ConvertDocument to storage
 	And I have specified format <DestFormat> document to be converted
 	And I have specified document name <DocName> in URL
 	When I execute conversion from storage (GET document with format)

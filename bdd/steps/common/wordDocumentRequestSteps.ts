@@ -27,9 +27,12 @@ import * as BaseTest from "../../../test/baseTest";
 
 Given(/^I have specified document (.*) with folder (.*) in URL$/, function(documentName, folder) {
     this.request.name = documentName;
-    this.request.folder =  BaseTest.remoteBaseTestDataFolder + folder;
+    this.request.folder = BaseTest.remoteBaseFolder + folder;
+    if (this.request.folder.endsWith("/")) {
+        this.request.folder = this.request.folder.slice(0, -1);
+    }
 });
 
-Given(/^I have specified encoding (.*)$/, function(encoding) {    
+Given(/^I have specified encoding (.*)$/, function(encoding) {
     this.request.LoadEncoding = encoding;
 });

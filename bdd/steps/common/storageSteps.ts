@@ -29,19 +29,19 @@ import * as BaseTest from "../../../test/baseTest";
 Given(/^I have uploaded document with name (.*) and subfolder is (.*) to storage$/, function(documentName, folder, callback) {
     const storageApi = BaseTest.initializeStorageApi();
 
-    const remotePath = BaseTest.remoteBaseTestDataFolder + folder;
-    const localPath = BaseTest.localBaseTestDataFolder + folder + "/" + documentName;
+    const remotePath = BaseTest.remoteBaseFolder + folder;
+    const localPath = BaseTest.localBaseTestDataFolder + folder + documentName;
 
-    storageApi.PutCreate(remotePath + "/" + documentName, null, null, localPath, (responseMessage) => {
+    storageApi.PutCreate(remotePath + documentName, null, null, localPath, (responseMessage) => {
         expect(responseMessage.status).to.equal("OK");
         callback();
     });    
 });
 
-Given(/^There is no file (.*) on storage in output folder$/, function(documentName, callback) {
+Given(/^There is no file (.*) on storage in (.*) folder$/, function(documentName, folder, callback) {
     const storageApi = BaseTest.initializeStorageApi();
 
-    const remotePath = BaseTest.remoteBaseTestOutFolder + documentName;
+    const remotePath = BaseTest.remoteBaseFolder + folder + documentName;
     
     storageApi.DeleteFile(remotePath, null, null, (responseMessage) => {
         expect(responseMessage.status).to.equal("OK");
@@ -49,10 +49,10 @@ Given(/^There is no file (.*) on storage in output folder$/, function(documentNa
     });    
 });
 
-Then(/^document (.*) is existed on storage in output folder$/, function(documentName, callback) {
+Then(/^document (.*) is existed on storage in (.*) folder$/, function(documentName, folder, callback) {
     const storageApi = BaseTest.initializeStorageApi();
 
-    const remotePath = BaseTest.remoteBaseTestOutFolder + documentName;
+    const remotePath = BaseTest.remoteBaseFolder + folder + documentName;
     
     storageApi.GetIsExist(remotePath, null, null, (responseMessage) => {
         expect(responseMessage.status).to.equal("OK");        

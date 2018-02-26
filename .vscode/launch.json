@@ -32,7 +32,8 @@
                 "${file}",
                 "-r",
                 "${workspaceRoot}/dist/bdd",
-                "--no-timeouts"           
+                "--no-timeouts",
+                "--fail-fast"           
             ],
             "cwd": "${workspaceRoot}",
             "outputCapture": "std"

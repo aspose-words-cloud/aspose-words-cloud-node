@@ -41,8 +41,11 @@ Given(/^I have uploaded document with name (.*) and subfolder is (.*) to storage
 Given(/^There is no file (.*) on storage in (.*) folder$/, function(documentName, folder, callback) {
     const storageApi = BaseTest.initializeStorageApi();
 
-    const remotePath = BaseTest.remoteBaseFolder + folder + documentName;
-    
+    let remotePath = BaseTest.remoteBaseFolder + folder + documentName;
+    if (folder === "output") {
+        remotePath = BaseTest.remoteBaseTestOutFolder + documentName;
+    }
+
     storageApi.DeleteFile(remotePath, null, null, (responseMessage) => {
         expect(responseMessage.status).to.equal("OK");
         callback();
@@ -52,8 +55,12 @@ Given(/^There is no file (.*) on storage in (.*) folder$/, function(documentName
 Then(/^document (.*) is existed on storage in (.*) folder$/, function(documentName, folder, callback) {
     const storageApi = BaseTest.initializeStorageApi();
 
-    const remotePath = BaseTest.remoteBaseFolder + folder + documentName;
+    let remotePath = BaseTest.remoteBaseFolder + folder + documentName;
     
+    if (folder === "output") {
+        remotePath = BaseTest.remoteBaseTestOutFolder + documentName;
+    }
+
     storageApi.GetIsExist(remotePath, null, null, (responseMessage) => {
         expect(responseMessage.status).to.equal("OK");        
         expect(responseMessage.body.FileExist.IsExist).to.equal(true);

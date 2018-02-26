@@ -10,12 +10,17 @@
             "request": "launch",
             "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
             "stopOnEntry": false,
-
-            "args": ["-r","${workspaceRoot}/node_modules/ts-node/register","${file}", "--no-timeouts"],
-
+            "args": [
+                "-r",
+                "${workspaceRoot}/node_modules/ts-node/register",
+                "${file}",
+                "--no-timeouts"
+            ],
             "cwd": "${workspaceRoot}",
             "runtimeExecutable": null,
-            "env": { "NODE_ENV": "testing"}
+            "env": {
+                "NODE_ENV": "testing"
+            }
         },
         {
             "name": "Run cucmber",
@@ -23,7 +28,12 @@
             "request": "launch",
             "program": "${workspaceRoot}/node_modules/cucumber/bin/cucumber-js",
             "stopOnEntry": false,
-            "args": ["${file}", "-r","${workspaceRoot}/dist/bdd/steps"],            
+            "args": [
+                "${file}",
+                "-r",
+                "${workspaceRoot}/dist/bdd",
+                "--no-timeouts"           
+            ],
             "cwd": "${workspaceRoot}",
             "outputCapture": "std"
         }

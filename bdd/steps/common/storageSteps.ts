@@ -38,6 +38,17 @@ Given(/^I have uploaded document with name (.*) and subfolder is (.*) to storage
     });    
 });
 
+Given(/^There is no file (.*) on storage in output folder$/, function(documentName, callback) {
+    const storageApi = BaseTest.initializeStorageApi();
+
+    const remotePath = BaseTest.remoteBaseTestOutFolder + documentName;
+    
+    storageApi.DeleteFile(remotePath, null, null, (responseMessage) => {
+        expect(responseMessage.status).to.equal("OK");
+        callback();
+    });    
+});
+
 Then(/^document (.*) is existed on storage in output folder$/, function(documentName, callback) {
     const storageApi = BaseTest.initializeStorageApi();
 

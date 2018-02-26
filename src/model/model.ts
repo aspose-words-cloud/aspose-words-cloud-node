@@ -5233,128 +5233,8 @@ export class PageSetup extends LinkElement {
      */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            name: "bidi",
-            baseName: "Bidi",
-            type: "boolean",
-        },        
-        {
-            name: "borderAlwaysInFront",
-            baseName: "BorderAlwaysInFront",
-            type: "boolean",
-        },        
-        {
-            name: "borderAppliesTo",
-            baseName: "BorderAppliesTo",
-            type: "PageSetup.BorderAppliesToEnum",
-        },        
-        {
-            name: "borderDistanceFrom",
-            baseName: "BorderDistanceFrom",
-            type: "PageSetup.BorderDistanceFromEnum",
-        },        
-        {
-            name: "bottomMargin",
-            baseName: "BottomMargin",
-            type: "number",
-        },        
-        {
             name: "differentFirstPageHeaderFooter",
             baseName: "DifferentFirstPageHeaderFooter",
-            type: "boolean",
-        },        
-        {
-            name: "firstPageTray",
-            baseName: "FirstPageTray",
-            type: "number",
-        },        
-        {
-            name: "footerDistance",
-            baseName: "FooterDistance",
-            type: "number",
-        },        
-        {
-            name: "gutter",
-            baseName: "Gutter",
-            type: "number",
-        },        
-        {
-            name: "headerDistance",
-            baseName: "HeaderDistance",
-            type: "number",
-        },        
-        {
-            name: "leftMargin",
-            baseName: "LeftMargin",
-            type: "number",
-        },        
-        {
-            name: "lineNumberCountBy",
-            baseName: "LineNumberCountBy",
-            type: "number",
-        },        
-        {
-            name: "lineNumberDistanceFromText",
-            baseName: "LineNumberDistanceFromText",
-            type: "number",
-        },        
-        {
-            name: "lineNumberRestartMode",
-            baseName: "LineNumberRestartMode",
-            type: "PageSetup.LineNumberRestartModeEnum",
-        },        
-        {
-            name: "lineStartingNumber",
-            baseName: "LineStartingNumber",
-            type: "number",
-        },        
-        {
-            name: "orientation",
-            baseName: "Orientation",
-            type: "PageSetup.OrientationEnum",
-        },        
-        {
-            name: "otherPagesTray",
-            baseName: "OtherPagesTray",
-            type: "number",
-        },        
-        {
-            name: "pageHeight",
-            baseName: "PageHeight",
-            type: "number",
-        },        
-        {
-            name: "pageNumberStyle",
-            baseName: "PageNumberStyle",
-            type: "PageSetup.PageNumberStyleEnum",
-        },        
-        {
-            name: "pageStartingNumber",
-            baseName: "PageStartingNumber",
-            type: "number",
-        },        
-        {
-            name: "pageWidth",
-            baseName: "PageWidth",
-            type: "number",
-        },        
-        {
-            name: "paperSize",
-            baseName: "PaperSize",
-            type: "PageSetup.PaperSizeEnum",
-        },        
-        {
-            name: "restartPageNumbering",
-            baseName: "RestartPageNumbering",
-            type: "boolean",
-        },        
-        {
-            name: "rightMargin",
-            baseName: "RightMargin",
-            type: "number",
-        },        
-        {
-            name: "rtlGutter",
-            baseName: "RtlGutter",
             type: "boolean",
         },        
         {
@@ -5368,14 +5248,134 @@ export class PageSetup extends LinkElement {
             type: "boolean",
         },        
         {
+            name: "verticalAlignment",
+            baseName: "VerticalAlignment",
+            type: "PageSetup.VerticalAlignmentEnum",
+        },        
+        {
+            name: "bidi",
+            baseName: "Bidi",
+            type: "boolean",
+        },        
+        {
+            name: "pageWidth",
+            baseName: "PageWidth",
+            type: "number",
+        },        
+        {
+            name: "pageHeight",
+            baseName: "PageHeight",
+            type: "number",
+        },        
+        {
+            name: "paperSize",
+            baseName: "PaperSize",
+            type: "PageSetup.PaperSizeEnum",
+        },        
+        {
+            name: "orientation",
+            baseName: "Orientation",
+            type: "PageSetup.OrientationEnum",
+        },        
+        {
+            name: "leftMargin",
+            baseName: "LeftMargin",
+            type: "number",
+        },        
+        {
+            name: "rightMargin",
+            baseName: "RightMargin",
+            type: "number",
+        },        
+        {
             name: "topMargin",
             baseName: "TopMargin",
             type: "number",
         },        
         {
-            name: "verticalAlignment",
-            baseName: "VerticalAlignment",
-            type: "PageSetup.VerticalAlignmentEnum",
+            name: "bottomMargin",
+            baseName: "BottomMargin",
+            type: "number",
+        },        
+        {
+            name: "headerDistance",
+            baseName: "HeaderDistance",
+            type: "number",
+        },        
+        {
+            name: "footerDistance",
+            baseName: "FooterDistance",
+            type: "number",
+        },        
+        {
+            name: "gutter",
+            baseName: "Gutter",
+            type: "number",
+        },        
+        {
+            name: "firstPageTray",
+            baseName: "FirstPageTray",
+            type: "number",
+        },        
+        {
+            name: "otherPagesTray",
+            baseName: "OtherPagesTray",
+            type: "number",
+        },        
+        {
+            name: "pageNumberStyle",
+            baseName: "PageNumberStyle",
+            type: "PageSetup.PageNumberStyleEnum",
+        },        
+        {
+            name: "restartPageNumbering",
+            baseName: "RestartPageNumbering",
+            type: "boolean",
+        },        
+        {
+            name: "pageStartingNumber",
+            baseName: "PageStartingNumber",
+            type: "number",
+        },        
+        {
+            name: "lineNumberRestartMode",
+            baseName: "LineNumberRestartMode",
+            type: "PageSetup.LineNumberRestartModeEnum",
+        },        
+        {
+            name: "lineNumberCountBy",
+            baseName: "LineNumberCountBy",
+            type: "number",
+        },        
+        {
+            name: "lineNumberDistanceFromText",
+            baseName: "LineNumberDistanceFromText",
+            type: "number",
+        },        
+        {
+            name: "lineStartingNumber",
+            baseName: "LineStartingNumber",
+            type: "number",
+        },        
+        {
+            name: "rtlGutter",
+            baseName: "RtlGutter",
+            type: "boolean",
+        },        
+        {
+            name: "borderAlwaysInFront",
+            baseName: "BorderAlwaysInFront",
+            type: "boolean",
+        },        
+        {
+            name: "borderDistanceFrom",
+            baseName: "BorderDistanceFrom",
+            type: "PageSetup.BorderDistanceFromEnum",
+        },        
+        {
+            name: "borderAppliesTo",
+            baseName: "BorderAppliesTo",
+            type: "PageSetup.BorderAppliesToEnum",
         }    ];
 
     /**
@@ -5386,129 +5386,9 @@ export class PageSetup extends LinkElement {
     }
 
     /**
-     * Specifies that this section contains bidirectional (complex scripts) text.             
-     */
-    public bidi: boolean;
-    
-    /**
-     * Specifies where the page border is positioned relative to intersecting texts and objects.             
-     */
-    public borderAlwaysInFront: boolean;
-    
-    /**
-     * Specifies which pages the page border is printed on.             
-     */
-    public borderAppliesTo: PageSetup.BorderAppliesToEnum;
-    
-    /**
-     * Gets or sets a value that indicates whether the specified page border is measured from the edge of the page or from the text it surrounds.             
-     */
-    public borderDistanceFrom: PageSetup.BorderDistanceFromEnum;
-    
-    /**
-     * Returns or sets the distance (in points) between the bottom edge of the page and the bottom boundary of the body text.             
-     */
-    public bottomMargin: number;
-    
-    /**
      * True if a different header or footer is used on the first page.             
      */
     public differentFirstPageHeaderFooter: boolean;
-    
-    /**
-     * Gets or sets the paper tray (bin) to use for the first page of a section. The value is implementation (printer) specific.             
-     */
-    public firstPageTray: number;
-    
-    /**
-     * Returns or sets the distance (in points) between the footer and the bottom of the page.             
-     */
-    public footerDistance: number;
-    
-    /**
-     * Gets or sets the amount of extra space added to the margin for document binding.             
-     */
-    public gutter: number;
-    
-    /**
-     * Returns or sets the distance (in points) between the header and the top of the page.             
-     */
-    public headerDistance: number;
-    
-    /**
-     * Returns or sets the distance (in points) between the left edge of the page and the left boundary of the body text.             
-     */
-    public leftMargin: number;
-    
-    /**
-     * Returns or sets the numeric increment for line numbers.             
-     */
-    public lineNumberCountBy: number;
-    
-    /**
-     * Gets or sets distance between the right edge of line numbers and the left edge of the document.             
-     */
-    public lineNumberDistanceFromText: number;
-    
-    /**
-     * Gets or sets the way line numbering runs  that is, whether it starts over at the beginning of a new page or section or runs continuously.             
-     */
-    public lineNumberRestartMode: PageSetup.LineNumberRestartModeEnum;
-    
-    /**
-     * Gets or sets the starting line number.             
-     */
-    public lineStartingNumber: number;
-    
-    /**
-     * Returns or sets the orientation of the page.             
-     */
-    public orientation: PageSetup.OrientationEnum;
-    
-    /**
-     * Gets or sets the paper tray (bin) to be used for all but the first page of a section. The value is implementation (printer) specific.             
-     */
-    public otherPagesTray: number;
-    
-    /**
-     * Returns or sets the height of the page in points.             
-     */
-    public pageHeight: number;
-    
-    /**
-     * Gets or sets the page number format.             
-     */
-    public pageNumberStyle: PageSetup.PageNumberStyleEnum;
-    
-    /**
-     * Gets or sets the starting page number of the section.             
-     */
-    public pageStartingNumber: number;
-    
-    /**
-     * Returns or sets the width of the page in points.             
-     */
-    public pageWidth: number;
-    
-    /**
-     * Returns or sets the paper size.             
-     */
-    public paperSize: PageSetup.PaperSizeEnum;
-    
-    /**
-     * True if page numbering restarts at the beginning of the section.             
-     */
-    public restartPageNumbering: boolean;
-    
-    /**
-     * Returns or sets the distance (in points) between the right edge of the page and the right boundary of the body text.             
-     */
-    public rightMargin: number;
-    
-    /**
-     * Gets or sets whether Microsoft Word uses gutters for the section based on a right-to-left language or a left-to-right language.             
-     */
-    public rtlGutter: boolean;
     
     /**
      * Returns or sets the type of section break for the specified object.             
@@ -5521,14 +5401,134 @@ export class PageSetup extends LinkElement {
     public suppressEndnotes: boolean;
     
     /**
+     * Returns or sets the vertical alignment of text on each page in a document or section.             
+     */
+    public verticalAlignment: PageSetup.VerticalAlignmentEnum;
+    
+    /**
+     * Specifies that this section contains bidirectional (complex scripts) text.             
+     */
+    public bidi: boolean;
+    
+    /**
+     * Returns or sets the width of the page in points.             
+     */
+    public pageWidth: number;
+    
+    /**
+     * Returns or sets the height of the page in points.             
+     */
+    public pageHeight: number;
+    
+    /**
+     * Returns or sets the paper size.             
+     */
+    public paperSize: PageSetup.PaperSizeEnum;
+    
+    /**
+     * Returns or sets the orientation of the page.             
+     */
+    public orientation: PageSetup.OrientationEnum;
+    
+    /**
+     * Returns or sets the distance (in points) between the left edge of the page and the left boundary of the body text.             
+     */
+    public leftMargin: number;
+    
+    /**
+     * Returns or sets the distance (in points) between the right edge of the page and the right boundary of the body text.             
+     */
+    public rightMargin: number;
+    
+    /**
      * Returns or sets the distance (in points) between the top edge of the page and the top boundary of the body text.             
      */
     public topMargin: number;
     
     /**
-     * Returns or sets the vertical alignment of text on each page in a document or section.             
+     * Returns or sets the distance (in points) between the bottom edge of the page and the bottom boundary of the body text.             
      */
-    public verticalAlignment: PageSetup.VerticalAlignmentEnum;
+    public bottomMargin: number;
+    
+    /**
+     * Returns or sets the distance (in points) between the header and the top of the page.             
+     */
+    public headerDistance: number;
+    
+    /**
+     * Returns or sets the distance (in points) between the footer and the bottom of the page.             
+     */
+    public footerDistance: number;
+    
+    /**
+     * Gets or sets the amount of extra space added to the margin for document binding.             
+     */
+    public gutter: number;
+    
+    /**
+     * Gets or sets the paper tray (bin) to use for the first page of a section. The value is implementation (printer) specific.             
+     */
+    public firstPageTray: number;
+    
+    /**
+     * Gets or sets the paper tray (bin) to be used for all but the first page of a section. The value is implementation (printer) specific.             
+     */
+    public otherPagesTray: number;
+    
+    /**
+     * Gets or sets the page number format.             
+     */
+    public pageNumberStyle: PageSetup.PageNumberStyleEnum;
+    
+    /**
+     * True if page numbering restarts at the beginning of the section.             
+     */
+    public restartPageNumbering: boolean;
+    
+    /**
+     * Gets or sets the starting page number of the section.             
+     */
+    public pageStartingNumber: number;
+    
+    /**
+     * Gets or sets the way line numbering runs  that is, whether it starts over at the beginning of a new page or section or runs continuously.             
+     */
+    public lineNumberRestartMode: PageSetup.LineNumberRestartModeEnum;
+    
+    /**
+     * Returns or sets the numeric increment for line numbers.             
+     */
+    public lineNumberCountBy: number;
+    
+    /**
+     * Gets or sets distance between the right edge of line numbers and the left edge of the document.             
+     */
+    public lineNumberDistanceFromText: number;
+    
+    /**
+     * Gets or sets the starting line number.             
+     */
+    public lineStartingNumber: number;
+    
+    /**
+     * Gets or sets whether Microsoft Word uses gutters for the section based on a right-to-left language or a left-to-right language.             
+     */
+    public rtlGutter: boolean;
+    
+    /**
+     * Specifies where the page border is positioned relative to intersecting texts and objects.             
+     */
+    public borderAlwaysInFront: boolean;
+    
+    /**
+     * Gets or sets a value that indicates whether the specified page border is measured from the edge of the page or from the text it surrounds.             
+     */
+    public borderDistanceFrom: PageSetup.BorderDistanceFromEnum;
+    
+    /**
+     * Specifies which pages the page border is printed on.             
+     */
+    public borderAppliesTo: PageSetup.BorderAppliesToEnum;
     
     public constructor(init?: Partial<PageSetup>) {
         super(init);
@@ -5539,19 +5539,37 @@ export class PageSetup extends LinkElement {
 // tslint:disable:quotemark
 // tslint:disable-next-line:no-namespace
 export namespace PageSetup {
-    export enum BorderAppliesToEnum {
-        AllPages = 'AllPages' as any,
-        FirstPage = 'FirstPage' as any,
-        OtherPages = 'OtherPages' as any,
-    }
-    export enum BorderDistanceFromEnum {
-        Text = 'Text' as any,
-        PageEdge = 'PageEdge' as any,
-    }
-    export enum LineNumberRestartModeEnum {
-        RestartPage = 'RestartPage' as any,
-        RestartSection = 'RestartSection' as any,
+    export enum SectionStartEnum {
         Continuous = 'Continuous' as any,
+        NewColumn = 'NewColumn' as any,
+        NewPage = 'NewPage' as any,
+        EvenPage = 'EvenPage' as any,
+        OddPage = 'OddPage' as any,
+    }
+    export enum VerticalAlignmentEnum {
+        Top = 'Top' as any,
+        Center = 'Center' as any,
+        Justify = 'Justify' as any,
+        Bottom = 'Bottom' as any,
+    }
+    export enum PaperSizeEnum {
+        A3 = 'A3' as any,
+        A4 = 'A4' as any,
+        A5 = 'A5' as any,
+        B4 = 'B4' as any,
+        B5 = 'B5' as any,
+        Executive = 'Executive' as any,
+        Folio = 'Folio' as any,
+        Ledger = 'Ledger' as any,
+        Legal = 'Legal' as any,
+        Letter = 'Letter' as any,
+        EnvelopeDL = 'EnvelopeDL' as any,
+        Quarto = 'Quarto' as any,
+        Statement = 'Statement' as any,
+        Tabloid = 'Tabloid' as any,
+        Paper10x14 = 'Paper10x14' as any,
+        Paper11x17 = 'Paper11x17' as any,
+        Custom = 'Custom' as any,
     }
     export enum OrientationEnum {
         Portrait = 'Portrait' as any,
@@ -5622,37 +5640,19 @@ export namespace PageSetup {
         None = 'None' as any,
         Custom = 'Custom' as any,
     }
-    export enum PaperSizeEnum {
-        A3 = 'A3' as any,
-        A4 = 'A4' as any,
-        A5 = 'A5' as any,
-        B4 = 'B4' as any,
-        B5 = 'B5' as any,
-        Executive = 'Executive' as any,
-        Folio = 'Folio' as any,
-        Ledger = 'Ledger' as any,
-        Legal = 'Legal' as any,
-        Letter = 'Letter' as any,
-        EnvelopeDL = 'EnvelopeDL' as any,
-        Quarto = 'Quarto' as any,
-        Statement = 'Statement' as any,
-        Tabloid = 'Tabloid' as any,
-        Paper10x14 = 'Paper10x14' as any,
-        Paper11x17 = 'Paper11x17' as any,
-        Custom = 'Custom' as any,
-    }
-    export enum SectionStartEnum {
+    export enum LineNumberRestartModeEnum {
+        RestartPage = 'RestartPage' as any,
+        RestartSection = 'RestartSection' as any,
         Continuous = 'Continuous' as any,
-        NewColumn = 'NewColumn' as any,
-        NewPage = 'NewPage' as any,
-        EvenPage = 'EvenPage' as any,
-        OddPage = 'OddPage' as any,
     }
-    export enum VerticalAlignmentEnum {
-        Top = 'Top' as any,
-        Center = 'Center' as any,
-        Justify = 'Justify' as any,
-        Bottom = 'Bottom' as any,
+    export enum BorderDistanceFromEnum {
+        Text = 'Text' as any,
+        PageEdge = 'PageEdge' as any,
+    }
+    export enum BorderAppliesToEnum {
+        AllPages = 'AllPages' as any,
+        FirstPage = 'FirstPage' as any,
+        OtherPages = 'OtherPages' as any,
     }
 }
 // tslint:enable:quotemark
@@ -6806,29 +6806,9 @@ export class TableProperties extends LinkElement {
             type: "boolean",
         },        
         {
-            name: "preferredWidth",
-            baseName: "PreferredWidth",
-            type: "PreferredWidth",
-        },        
-        {
             name: "bidi",
             baseName: "Bidi",
             type: "boolean",
-        },        
-        {
-            name: "leftPadding",
-            baseName: "LeftPadding",
-            type: "number",
-        },        
-        {
-            name: "rightPadding",
-            baseName: "RightPadding",
-            type: "number",
-        },        
-        {
-            name: "topPadding",
-            baseName: "TopPadding",
-            type: "number",
         },        
         {
             name: "bottomPadding",
@@ -6846,14 +6826,19 @@ export class TableProperties extends LinkElement {
             type: "number",
         },        
         {
-            name: "styleOptions",
-            baseName: "StyleOptions",
-            type: "TableProperties.StyleOptionsEnum",
+            name: "leftPadding",
+            baseName: "LeftPadding",
+            type: "number",
         },        
         {
-            name: "styleName",
-            baseName: "StyleName",
-            type: "string",
+            name: "preferredWidth",
+            baseName: "PreferredWidth",
+            type: "PreferredWidth",
+        },        
+        {
+            name: "rightPadding",
+            baseName: "RightPadding",
+            type: "number",
         },        
         {
             name: "styleIdentifier",
@@ -6861,9 +6846,24 @@ export class TableProperties extends LinkElement {
             type: "TableProperties.StyleIdentifierEnum",
         },        
         {
+            name: "styleName",
+            baseName: "StyleName",
+            type: "string",
+        },        
+        {
+            name: "styleOptions",
+            baseName: "StyleOptions",
+            type: "TableProperties.StyleOptionsEnum",
+        },        
+        {
             name: "textWrapping",
             baseName: "TextWrapping",
             type: "TableProperties.TextWrappingEnum",
+        },        
+        {
+            name: "topPadding",
+            baseName: "TopPadding",
+            type: "number",
         }    ];
 
     /**
@@ -6884,29 +6884,9 @@ export class TableProperties extends LinkElement {
     public allowAutoFit: boolean;
     
     /**
-     * Gets or sets the table preferred width.  Preferred width can be specified as a percentage, number of points or a special \"auto\" value.
-     */
-    public preferredWidth: PreferredWidth;
-    
-    /**
      * Gets or sets whether this is a right-to-left table.
      */
     public bidi: boolean;
-    
-    /**
-     * Gets or sets the amount of space (in points) to add to the left of the contents of cells.
-     */
-    public leftPadding: number;
-    
-    /**
-     * Gets or sets the amount of space (in points) to add to the right of the contents of cells.
-     */
-    public rightPadding: number;
-    
-    /**
-     * Gets or sets the amount of space (in points) to add above the contents of cells.
-     */
-    public topPadding: number;
     
     /**
      * Gets or sets the amount of space (in points) to add below the contents of cells.
@@ -6924,14 +6904,19 @@ export class TableProperties extends LinkElement {
     public leftIndent: number;
     
     /**
-     * Gets or sets bit flags that specify how a table style is applied to this table.
+     * Gets or sets the amount of space (in points) to add to the left of the contents of cells.
      */
-    public styleOptions: TableProperties.StyleOptionsEnum;
+    public leftPadding: number;
     
     /**
-     * Gets or sets the name of the table style applied to this table.
+     * Gets or sets the table preferred width.  Preferred width can be specified as a percentage, number of points or a special \"auto\" value.
      */
-    public styleName: string;
+    public preferredWidth: PreferredWidth;
+    
+    /**
+     * Gets or sets the amount of space (in points) to add to the right of the contents of cells.
+     */
+    public rightPadding: number;
     
     /**
      * Gets or sets the locale independent style identifier of the table style applied to this table.
@@ -6939,9 +6924,24 @@ export class TableProperties extends LinkElement {
     public styleIdentifier: TableProperties.StyleIdentifierEnum;
     
     /**
+     * Gets or sets the name of the table style applied to this table.
+     */
+    public styleName: string;
+    
+    /**
+     * Gets or sets bit flags that specify how a table style is applied to this table.
+     */
+    public styleOptions: TableProperties.StyleOptionsEnum;
+    
+    /**
      * Get or sets TextWrapping  for table.
      */
     public textWrapping: TableProperties.TextWrappingEnum;
+    
+    /**
+     * Gets or sets the amount of space (in points) to add above the contents of cells.
+     */
+    public topPadding: number;
     
     public constructor(init?: Partial<TableProperties>) {
         super(init);
@@ -6956,17 +6956,6 @@ export namespace TableProperties {
         Left = 'Left' as any,
         Center = 'Center' as any,
         Right = 'Right' as any,
-    }
-    export enum StyleOptionsEnum {
-        None = 'None' as any,
-        FirstRow = 'FirstRow' as any,
-        LastRow = 'LastRow' as any,
-        FirstColumn = 'FirstColumn' as any,
-        LastColumn = 'LastColumn' as any,
-        RowBands = 'RowBands' as any,
-        Default = 'Default' as any,
-        ColumnBands = 'ColumnBands' as any,
-        Default2003 = 'Default2003' as any,
     }
     export enum StyleIdentifierEnum {
         Normal = 'Normal' as any,
@@ -7342,6 +7331,17 @@ export namespace TableProperties {
         ListTable7ColorfulAccent6 = 'ListTable7ColorfulAccent6' as any,
         User = 'User' as any,
         Nil = 'Nil' as any,
+    }
+    export enum StyleOptionsEnum {
+        None = 'None' as any,
+        FirstRow = 'FirstRow' as any,
+        LastRow = 'LastRow' as any,
+        FirstColumn = 'FirstColumn' as any,
+        LastColumn = 'LastColumn' as any,
+        RowBands = 'RowBands' as any,
+        Default = 'Default' as any,
+        ColumnBands = 'ColumnBands' as any,
+        Default2003 = 'Default2003' as any,
     }
     export enum TextWrappingEnum {
         Default = 'Default' as any,
@@ -10188,21 +10188,21 @@ const enumsMap = {
     "HeaderFooterLink.TypeEnum": HeaderFooterLink.TypeEnum,
     "HtmlSaveOptionsData.HtmlVersionEnum": HtmlSaveOptionsData.HtmlVersionEnum,
     "HtmlSaveOptionsData.OfficeMathOutputModeEnum": HtmlSaveOptionsData.OfficeMathOutputModeEnum,
-    "PageSetup.BorderAppliesToEnum": PageSetup.BorderAppliesToEnum,
-    "PageSetup.BorderDistanceFromEnum": PageSetup.BorderDistanceFromEnum,
-    "PageSetup.LineNumberRestartModeEnum": PageSetup.LineNumberRestartModeEnum,
-    "PageSetup.OrientationEnum": PageSetup.OrientationEnum,
-    "PageSetup.PageNumberStyleEnum": PageSetup.PageNumberStyleEnum,
-    "PageSetup.PaperSizeEnum": PageSetup.PaperSizeEnum,
     "PageSetup.SectionStartEnum": PageSetup.SectionStartEnum,
     "PageSetup.VerticalAlignmentEnum": PageSetup.VerticalAlignmentEnum,
+    "PageSetup.PaperSizeEnum": PageSetup.PaperSizeEnum,
+    "PageSetup.OrientationEnum": PageSetup.OrientationEnum,
+    "PageSetup.PageNumberStyleEnum": PageSetup.PageNumberStyleEnum,
+    "PageSetup.LineNumberRestartModeEnum": PageSetup.LineNumberRestartModeEnum,
+    "PageSetup.BorderDistanceFromEnum": PageSetup.BorderDistanceFromEnum,
+    "PageSetup.BorderAppliesToEnum": PageSetup.BorderAppliesToEnum,
     "TableCellFormat.HorizontalMergeEnum": TableCellFormat.HorizontalMergeEnum,
     "TableCellFormat.OrientationEnum": TableCellFormat.OrientationEnum,
     "TableCellFormat.VerticalAlignmentEnum": TableCellFormat.VerticalAlignmentEnum,
     "TableCellFormat.VerticalMergeEnum": TableCellFormat.VerticalMergeEnum,
     "TableProperties.AlignmentEnum": TableProperties.AlignmentEnum,
-    "TableProperties.StyleOptionsEnum": TableProperties.StyleOptionsEnum,
     "TableProperties.StyleIdentifierEnum": TableProperties.StyleIdentifierEnum,
+    "TableProperties.StyleOptionsEnum": TableProperties.StyleOptionsEnum,
     "TableProperties.TextWrappingEnum": TableProperties.TextWrappingEnum,
     "TableRowFormat.HeightRuleEnum": TableRowFormat.HeightRuleEnum,
     "DrawingObject.RelativeHorizontalPositionEnum": DrawingObject.RelativeHorizontalPositionEnum,

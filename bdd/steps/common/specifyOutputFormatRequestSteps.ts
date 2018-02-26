@@ -23,11 +23,12 @@
 */
 
 import { Given } from "cucumber";
+import * as BaseTest from "../../../test/baseTest";
 
 Given(/^I have specified format (.*) document to be converted$/, function(format) {    
     this.request.format = format;
 });
 
 Given(/^I have specified output path (.*)$/, function(outPath) {    
-    this.request.outPath = outPath;
+    this.request.outPath = BaseTest.remoteBaseTestOutFolder + outPath;
 });

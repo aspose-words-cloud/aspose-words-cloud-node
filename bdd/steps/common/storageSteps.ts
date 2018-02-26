@@ -23,7 +23,7 @@
 */
 
 import { expect } from "chai";
-import { Given } from "cucumber";
+import { Given, Then } from "cucumber";
 import * as BaseTest from "../../../test/baseTest";
 
 Given(/^I have uploaded document with name (.*) and subfolder is (.*) to storage$/, function(documentName, folder, callback) {
@@ -34,6 +34,18 @@ Given(/^I have uploaded document with name (.*) and subfolder is (.*) to storage
 
     storageApi.PutCreate(remotePath + "/" + documentName, null, null, localPath, (responseMessage) => {
         expect(responseMessage.status).to.equal("OK");
+        callback();
+    });    
+});
+
+Then(/^document (.*) is existed on storage in output folder$/, function(documentName, callback) {
+    const storageApi = BaseTest.initializeStorageApi();
+
+    const remotePath = BaseTest.remoteBaseTestOutFolder + documentName;
+    
+    storageApi.GetIsExist(remotePath, null, null, (responseMessage) => {
+        expect(responseMessage.status).to.equal("OK");        
+        expect(responseMessage.body.FileExist.IsExist).to.equal(true);
         callback();
     });    
 });

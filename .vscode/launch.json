@@ -16,6 +16,16 @@
             "cwd": "${workspaceRoot}",
             "runtimeExecutable": null,
             "env": { "NODE_ENV": "testing"}
+        },
+        {
+            "name": "Run cucmber",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceRoot}/node_modules/cucumber/bin/cucumber-js",
+            "stopOnEntry": false,
+            "args": ["${file}", "-r","${workspaceRoot}/dist/bdd/steps"],            
+            "cwd": "${workspaceRoot}",
+            "outputCapture": "std"
         }
     ]
 }

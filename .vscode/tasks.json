@@ -40,6 +40,13 @@
                 "base": "$tslint5",
                 "fileLocation": "relative"
             }
-        }
+        },
+        {
+            "label": "runCucumber",
+            "type": "gulp",
+            "task": "cucumber",
+            "problemMatcher": [],
+            "group": "test"
+        },
     ]
 }

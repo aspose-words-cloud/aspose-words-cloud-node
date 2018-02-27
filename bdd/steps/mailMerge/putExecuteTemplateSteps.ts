@@ -22,21 +22,22 @@
 * SOFTWARE.
 */
 
-import { Given } from "cucumber";
+import { Given, When } from "cucumber";
+import * as fs from "fs";
 import * as BaseTest from "../../../test/baseTest";
 
-Given(/^I have specified document (.*) with folder (.*) in URL$/, function(documentName, folder) {
-    this.request.name = documentName;
-    this.request.folder = BaseTest.remoteBaseFolder + folder;
-    if (this.request.folder.endsWith("/")) {
-        this.request.folder = this.request.folder.slice(0, -1);
-    }
+const testFolder = "DocumentActions/MailMerge/";
+
+Given(/^I have specified a template file (.*) in request$/, function(templateName) {
+    this.request.template = fs.readFileSync(BaseTest.localBaseTestDataFolder + testFolder + templateName);
 });
 
-Given(/^I have specified encoding (.*)$/, function(encoding) {
-    this.request.loadEncoding = encoding;
-});
-
-Given(/^I have specified a destFileName (.*)$/, function(destFileName) {
-    this.request.destFileName = destFileName;
+When(/^I execute template online$/, function() {
+    const wordsApi = BaseTest.initializeWordsApi();
+    const request = this.request;
+        
+    return wordsApi.putExecuteTemplateOnline(request)
+        .then((result) => {                        
+            this.response = result;            
+        });
 });

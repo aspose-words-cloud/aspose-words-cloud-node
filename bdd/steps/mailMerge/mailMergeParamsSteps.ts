@@ -23,20 +23,15 @@
 */
 
 import { Given } from "cucumber";
-import * as BaseTest from "../../../test/baseTest";
 
-Given(/^I have specified document (.*) with folder (.*) in URL$/, function(documentName, folder) {
-    this.request.name = documentName;
-    this.request.folder = BaseTest.remoteBaseFolder + folder;
-    if (this.request.folder.endsWith("/")) {
-        this.request.folder = this.request.folder.slice(0, -1);
-    }
+Given(/^I have specified withRegions (.*)$/, function(withRegions) {
+    this.request.withRegions = withRegions;
 });
 
-Given(/^I have specified encoding (.*)$/, function(encoding) {
-    this.request.loadEncoding = encoding;
+Given(/^I have specified useWholeParagraphAsRegion (.*)$/, function(useWholeParagraphAsRegion) {
+    this.request.useWholeParagraphAsRegion = useWholeParagraphAsRegion;
 });
 
-Given(/^I have specified a destFileName (.*)$/, function(destFileName) {
-    this.request.destFileName = destFileName;
+Given(/^I have specified a cleanup option (.*)$/, function(cleanup) {
+    this.request.cleanup = cleanup;
 });

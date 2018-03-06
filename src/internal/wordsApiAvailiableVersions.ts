@@ -22,16 +22,27 @@
 * SOFTWARE.
 */
 
-import { Given } from "cucumber";
+/**
+ * The availiable api versions.
+ */
+export enum WordsApiAvailiableVersions {
+    /** 
+     * Current API version
+     */
+    v1 = "v1" as any,
 
-Given(/^I have specified withRegions (.*)$/, function(withRegions) {
-    this.request.withRegions = withRegions;
-});
+    /** 
+     * @deprecated Don't use it, added for backward campability
+     */
+    v11 = "v1.1" as any,
 
-Given(/^I have specified useWholeParagraphAsRegion (.*)$/, function(useWholeParagraphAsRegion) {
-    this.request.useWholeParagraphAsRegion = useWholeParagraphAsRegion;
-});
+    /** 
+     * Stable version
+     */
+    v2 = "v2" as any,
 
-Given(/^I have specified a cleanup option (.*)$/, function(cleanup) {
-    this.request.cleanup = cleanup;
-});
+    /**
+     * Frozen version
+     */
+    v3 = "v3" as any,
+}

@@ -6806,29 +6806,9 @@ export class TableProperties extends LinkElement {
             type: "boolean",
         },        
         {
-            name: "preferredWidth",
-            baseName: "PreferredWidth",
-            type: "PreferredWidth",
-        },        
-        {
             name: "bidi",
             baseName: "Bidi",
             type: "boolean",
-        },        
-        {
-            name: "leftPadding",
-            baseName: "LeftPadding",
-            type: "number",
-        },        
-        {
-            name: "rightPadding",
-            baseName: "RightPadding",
-            type: "number",
-        },        
-        {
-            name: "topPadding",
-            baseName: "TopPadding",
-            type: "number",
         },        
         {
             name: "bottomPadding",
@@ -6846,14 +6826,19 @@ export class TableProperties extends LinkElement {
             type: "number",
         },        
         {
-            name: "styleOptions",
-            baseName: "StyleOptions",
-            type: "TableProperties.StyleOptionsEnum",
+            name: "leftPadding",
+            baseName: "LeftPadding",
+            type: "number",
         },        
         {
-            name: "styleName",
-            baseName: "StyleName",
-            type: "string",
+            name: "preferredWidth",
+            baseName: "PreferredWidth",
+            type: "PreferredWidth",
+        },        
+        {
+            name: "rightPadding",
+            baseName: "RightPadding",
+            type: "number",
         },        
         {
             name: "styleIdentifier",
@@ -6861,9 +6846,24 @@ export class TableProperties extends LinkElement {
             type: "TableProperties.StyleIdentifierEnum",
         },        
         {
+            name: "styleName",
+            baseName: "StyleName",
+            type: "string",
+        },        
+        {
+            name: "styleOptions",
+            baseName: "StyleOptions",
+            type: "TableProperties.StyleOptionsEnum",
+        },        
+        {
             name: "textWrapping",
             baseName: "TextWrapping",
             type: "TableProperties.TextWrappingEnum",
+        },        
+        {
+            name: "topPadding",
+            baseName: "TopPadding",
+            type: "number",
         }    ];
 
     /**
@@ -6884,29 +6884,9 @@ export class TableProperties extends LinkElement {
     public allowAutoFit: boolean;
     
     /**
-     * Gets or sets the table preferred width.  Preferred width can be specified as a percentage, number of points or a special \"auto\" value.
-     */
-    public preferredWidth: PreferredWidth;
-    
-    /**
      * Gets or sets whether this is a right-to-left table.
      */
     public bidi: boolean;
-    
-    /**
-     * Gets or sets the amount of space (in points) to add to the left of the contents of cells.
-     */
-    public leftPadding: number;
-    
-    /**
-     * Gets or sets the amount of space (in points) to add to the right of the contents of cells.
-     */
-    public rightPadding: number;
-    
-    /**
-     * Gets or sets the amount of space (in points) to add above the contents of cells.
-     */
-    public topPadding: number;
     
     /**
      * Gets or sets the amount of space (in points) to add below the contents of cells.
@@ -6924,14 +6904,19 @@ export class TableProperties extends LinkElement {
     public leftIndent: number;
     
     /**
-     * Gets or sets bit flags that specify how a table style is applied to this table.
+     * Gets or sets the amount of space (in points) to add to the left of the contents of cells.
      */
-    public styleOptions: TableProperties.StyleOptionsEnum;
+    public leftPadding: number;
     
     /**
-     * Gets or sets the name of the table style applied to this table.
+     * Gets or sets the table preferred width.  Preferred width can be specified as a percentage, number of points or a special \"auto\" value.
      */
-    public styleName: string;
+    public preferredWidth: PreferredWidth;
+    
+    /**
+     * Gets or sets the amount of space (in points) to add to the right of the contents of cells.
+     */
+    public rightPadding: number;
     
     /**
      * Gets or sets the locale independent style identifier of the table style applied to this table.
@@ -6939,9 +6924,24 @@ export class TableProperties extends LinkElement {
     public styleIdentifier: TableProperties.StyleIdentifierEnum;
     
     /**
+     * Gets or sets the name of the table style applied to this table.
+     */
+    public styleName: string;
+    
+    /**
+     * Gets or sets bit flags that specify how a table style is applied to this table.
+     */
+    public styleOptions: TableProperties.StyleOptionsEnum;
+    
+    /**
      * Get or sets TextWrapping  for table.
      */
     public textWrapping: TableProperties.TextWrappingEnum;
+    
+    /**
+     * Gets or sets the amount of space (in points) to add above the contents of cells.
+     */
+    public topPadding: number;
     
     public constructor(init?: Partial<TableProperties>) {
         super(init);
@@ -6956,17 +6956,6 @@ export namespace TableProperties {
         Left = 'Left' as any,
         Center = 'Center' as any,
         Right = 'Right' as any,
-    }
-    export enum StyleOptionsEnum {
-        None = 'None' as any,
-        FirstRow = 'FirstRow' as any,
-        LastRow = 'LastRow' as any,
-        FirstColumn = 'FirstColumn' as any,
-        LastColumn = 'LastColumn' as any,
-        RowBands = 'RowBands' as any,
-        Default = 'Default' as any,
-        ColumnBands = 'ColumnBands' as any,
-        Default2003 = 'Default2003' as any,
     }
     export enum StyleIdentifierEnum {
         Normal = 'Normal' as any,
@@ -7342,6 +7331,17 @@ export namespace TableProperties {
         ListTable7ColorfulAccent6 = 'ListTable7ColorfulAccent6' as any,
         User = 'User' as any,
         Nil = 'Nil' as any,
+    }
+    export enum StyleOptionsEnum {
+        None = 'None' as any,
+        FirstRow = 'FirstRow' as any,
+        LastRow = 'LastRow' as any,
+        FirstColumn = 'FirstColumn' as any,
+        LastColumn = 'LastColumn' as any,
+        RowBands = 'RowBands' as any,
+        Default = 'Default' as any,
+        ColumnBands = 'ColumnBands' as any,
+        Default2003 = 'Default2003' as any,
     }
     export enum TextWrappingEnum {
         Default = 'Default' as any,
@@ -10201,8 +10201,8 @@ const enumsMap = {
     "TableCellFormat.HorizontalMergeEnum": TableCellFormat.HorizontalMergeEnum,
     "TableCellFormat.OrientationEnum": TableCellFormat.OrientationEnum,
     "TableProperties.AlignmentEnum": TableProperties.AlignmentEnum,
-    "TableProperties.StyleOptionsEnum": TableProperties.StyleOptionsEnum,
     "TableProperties.StyleIdentifierEnum": TableProperties.StyleIdentifierEnum,
+    "TableProperties.StyleOptionsEnum": TableProperties.StyleOptionsEnum,
     "TableProperties.TextWrappingEnum": TableProperties.TextWrappingEnum,
     "TableRowFormat.HeightRuleEnum": TableRowFormat.HeightRuleEnum,
     "DrawingObject.RelativeHorizontalPositionEnum": DrawingObject.RelativeHorizontalPositionEnum,

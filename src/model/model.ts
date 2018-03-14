@@ -1308,7 +1308,7 @@ export class PdfEncryptionDetailsData {
     public ownerPassword: string;
     
     /**
-     * Specifies the operations that are allowed to a user on an encrypted PDF document
+     * Specifies the operations that are allowed to a user on an encrypted PDF document // TODO (andrey.ushakov) : think use this form or list of permissions
      */
     public permissions: string;
     
@@ -1810,7 +1810,7 @@ export class StoryChildNodes {
     }
 
     /**
-     * Child nodes.        
+     * Child nodes.         // TODO: add table as child node
      */
     public childNodes: Array<NodeLink>;
     
@@ -2786,7 +2786,7 @@ export class DocumentProperty extends LinkElement {
     public name: string;
     
     /**
-     * String value of the document property. 
+     * string value of the document property. 
      */
     public value: string;
     

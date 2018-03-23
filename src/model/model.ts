@@ -2299,9 +2299,14 @@ export class Border extends LinkElement {
      */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            name: "borderType",
-            baseName: "BorderType",
-            type: "Border.BorderTypeEnum",
+            name: "lineStyle",
+            baseName: "LineStyle",
+            type: "Border.LineStyleEnum",
+        },        
+        {
+            name: "lineWidth",
+            baseName: "LineWidth",
+            type: "number",
         },        
         {
             name: "color",
@@ -2314,19 +2319,14 @@ export class Border extends LinkElement {
             type: "number",
         },        
         {
-            name: "lineStyle",
-            baseName: "LineStyle",
-            type: "Border.LineStyleEnum",
-        },        
-        {
-            name: "lineWidth",
-            baseName: "LineWidth",
-            type: "number",
-        },        
-        {
             name: "shadow",
             baseName: "Shadow",
             type: "boolean",
+        },        
+        {
+            name: "borderType",
+            baseName: "BorderType",
+            type: "Border.BorderTypeEnum",
         }    ];
 
     /**
@@ -2337,9 +2337,14 @@ export class Border extends LinkElement {
     }
 
     /**
-     * Gets or sets the border type.             
+     * Gets or sets the border style.
      */
-    public borderType: Border.BorderTypeEnum;
+    public lineStyle: Border.LineStyleEnum;
+    
+    /**
+     * Gets or sets the border width in points.
+     */
+    public lineWidth: number;
     
     /**
      * Gets or sets the border color.             
@@ -2352,19 +2357,14 @@ export class Border extends LinkElement {
     public distanceFromText: number;
     
     /**
-     * Gets or sets the border style.
-     */
-    public lineStyle: Border.LineStyleEnum;
-    
-    /**
-     * Gets or sets the border width in points.
-     */
-    public lineWidth: number;
-    
-    /**
      * Gets or sets a value indicating whether the border has a shadow.
      */
     public shadow: boolean;
+    
+    /**
+     * Gets or sets the border type.             
+     */
+    public borderType: Border.BorderTypeEnum;
     
     public constructor(init?: Partial<Border>) {
         super(init);
@@ -2375,17 +2375,6 @@ export class Border extends LinkElement {
 // tslint:disable:quotemark
 // tslint:disable-next-line:no-namespace
 export namespace Border {
-    export enum BorderTypeEnum {
-        Bottom = 'Bottom' as any,
-        Left = 'Left' as any,
-        Right = 'Right' as any,
-        Top = 'Top' as any,
-        Horizontal = 'Horizontal' as any,
-        Vertical = 'Vertical' as any,
-        DiagonalDown = 'DiagonalDown' as any,
-        DiagonalUp = 'DiagonalUp' as any,
-        None = 'None' as any,
-    }
     export enum LineStyleEnum {
         None = 'None' as any,
         Single = 'Single' as any,
@@ -2414,6 +2403,17 @@ export namespace Border {
         Engrave3D = 'Engrave3D' as any,
         Outset = 'Outset' as any,
         Inset = 'Inset' as any,
+    }
+    export enum BorderTypeEnum {
+        Bottom = 'Bottom' as any,
+        Left = 'Left' as any,
+        Right = 'Right' as any,
+        Top = 'Top' as any,
+        Horizontal = 'Horizontal' as any,
+        Vertical = 'Vertical' as any,
+        DiagonalDown = 'DiagonalDown' as any,
+        DiagonalUp = 'DiagonalUp' as any,
+        None = 'None' as any,
     }
 }
 // tslint:enable:quotemark
@@ -3248,96 +3248,6 @@ export class Font extends LinkElement {
      */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            name: "allCaps",
-            baseName: "AllCaps",
-            type: "boolean",
-        },        
-        {
-            name: "bidi",
-            baseName: "Bidi",
-            type: "boolean",
-        },        
-        {
-            name: "bold",
-            baseName: "Bold",
-            type: "boolean",
-        },        
-        {
-            name: "boldBi",
-            baseName: "BoldBi",
-            type: "boolean",
-        },        
-        {
-            name: "border",
-            baseName: "Border",
-            type: "Border",
-        },        
-        {
-            name: "color",
-            baseName: "Color",
-            type: "XmlColor",
-        },        
-        {
-            name: "complexScript",
-            baseName: "ComplexScript",
-            type: "boolean",
-        },        
-        {
-            name: "doubleStrikeThrough",
-            baseName: "DoubleStrikeThrough",
-            type: "boolean",
-        },        
-        {
-            name: "emboss",
-            baseName: "Emboss",
-            type: "boolean",
-        },        
-        {
-            name: "engrave",
-            baseName: "Engrave",
-            type: "boolean",
-        },        
-        {
-            name: "hidden",
-            baseName: "Hidden",
-            type: "boolean",
-        },        
-        {
-            name: "highlightColor",
-            baseName: "HighlightColor",
-            type: "XmlColor",
-        },        
-        {
-            name: "italic",
-            baseName: "Italic",
-            type: "boolean",
-        },        
-        {
-            name: "italicBi",
-            baseName: "ItalicBi",
-            type: "boolean",
-        },        
-        {
-            name: "kerning",
-            baseName: "Kerning",
-            type: "number",
-        },        
-        {
-            name: "localeId",
-            baseName: "LocaleId",
-            type: "number",
-        },        
-        {
-            name: "localeIdBi",
-            baseName: "LocaleIdBi",
-            type: "number",
-        },        
-        {
-            name: "localeIdFarEast",
-            baseName: "LocaleIdFarEast",
-            type: "number",
-        },        
-        {
             name: "name",
             baseName: "Name",
             type: "string",
@@ -3363,31 +3273,6 @@ export class Font extends LinkElement {
             type: "string",
         },        
         {
-            name: "noProofing",
-            baseName: "NoProofing",
-            type: "boolean",
-        },        
-        {
-            name: "outline",
-            baseName: "Outline",
-            type: "boolean",
-        },        
-        {
-            name: "position",
-            baseName: "Position",
-            type: "number",
-        },        
-        {
-            name: "scaling",
-            baseName: "Scaling",
-            type: "number",
-        },        
-        {
-            name: "shadow",
-            baseName: "Shadow",
-            type: "boolean",
-        },        
-        {
             name: "size",
             baseName: "Size",
             type: "number",
@@ -3398,14 +3283,29 @@ export class Font extends LinkElement {
             type: "number",
         },        
         {
-            name: "smallCaps",
-            baseName: "SmallCaps",
+            name: "bold",
+            baseName: "Bold",
             type: "boolean",
         },        
         {
-            name: "spacing",
-            baseName: "Spacing",
-            type: "number",
+            name: "boldBi",
+            baseName: "BoldBi",
+            type: "boolean",
+        },        
+        {
+            name: "italic",
+            baseName: "Italic",
+            type: "boolean",
+        },        
+        {
+            name: "italicBi",
+            baseName: "ItalicBi",
+            type: "boolean",
+        },        
+        {
+            name: "color",
+            baseName: "Color",
+            type: "XmlColor",
         },        
         {
             name: "strikeThrough",
@@ -3413,18 +3313,28 @@ export class Font extends LinkElement {
             type: "boolean",
         },        
         {
-            name: "styleIdentifier",
-            baseName: "StyleIdentifier",
-            type: "Font.StyleIdentifierEnum",
+            name: "doubleStrikeThrough",
+            baseName: "DoubleStrikeThrough",
+            type: "boolean",
         },        
         {
-            name: "styleName",
-            baseName: "StyleName",
-            type: "string",
+            name: "shadow",
+            baseName: "Shadow",
+            type: "boolean",
         },        
         {
-            name: "subscript",
-            baseName: "Subscript",
+            name: "outline",
+            baseName: "Outline",
+            type: "boolean",
+        },        
+        {
+            name: "emboss",
+            baseName: "Emboss",
+            type: "boolean",
+        },        
+        {
+            name: "engrave",
+            baseName: "Engrave",
             type: "boolean",
         },        
         {
@@ -3433,9 +3343,24 @@ export class Font extends LinkElement {
             type: "boolean",
         },        
         {
-            name: "textEffect",
-            baseName: "TextEffect",
-            type: "Font.TextEffectEnum",
+            name: "subscript",
+            baseName: "Subscript",
+            type: "boolean",
+        },        
+        {
+            name: "smallCaps",
+            baseName: "SmallCaps",
+            type: "boolean",
+        },        
+        {
+            name: "allCaps",
+            baseName: "AllCaps",
+            type: "boolean",
+        },        
+        {
+            name: "hidden",
+            baseName: "Hidden",
+            type: "boolean",
         },        
         {
             name: "underline",
@@ -3446,6 +3371,81 @@ export class Font extends LinkElement {
             name: "underlineColor",
             baseName: "UnderlineColor",
             type: "XmlColor",
+        },        
+        {
+            name: "scaling",
+            baseName: "Scaling",
+            type: "number",
+        },        
+        {
+            name: "spacing",
+            baseName: "Spacing",
+            type: "number",
+        },        
+        {
+            name: "position",
+            baseName: "Position",
+            type: "number",
+        },        
+        {
+            name: "kerning",
+            baseName: "Kerning",
+            type: "number",
+        },        
+        {
+            name: "highlightColor",
+            baseName: "HighlightColor",
+            type: "XmlColor",
+        },        
+        {
+            name: "textEffect",
+            baseName: "TextEffect",
+            type: "Font.TextEffectEnum",
+        },        
+        {
+            name: "bidi",
+            baseName: "Bidi",
+            type: "boolean",
+        },        
+        {
+            name: "complexScript",
+            baseName: "ComplexScript",
+            type: "boolean",
+        },        
+        {
+            name: "noProofing",
+            baseName: "NoProofing",
+            type: "boolean",
+        },        
+        {
+            name: "localeId",
+            baseName: "LocaleId",
+            type: "number",
+        },        
+        {
+            name: "localeIdBi",
+            baseName: "LocaleIdBi",
+            type: "number",
+        },        
+        {
+            name: "localeIdFarEast",
+            baseName: "LocaleIdFarEast",
+            type: "number",
+        },        
+        {
+            name: "border",
+            baseName: "Border",
+            type: "Border",
+        },        
+        {
+            name: "styleName",
+            baseName: "StyleName",
+            type: "string",
+        },        
+        {
+            name: "styleIdentifier",
+            baseName: "StyleIdentifier",
+            type: "Font.StyleIdentifierEnum",
         }    ];
 
     /**
@@ -3455,96 +3455,6 @@ export class Font extends LinkElement {
         return super.getAttributeTypeMap().concat(Font.attributeTypeMap);
     }
 
-    /**
-     * True if the font is formatted as all capital letters.             
-     */
-    public allCaps: boolean;
-    
-    /**
-     * Specifies whether the contents of this run shall have right-to-left characteristics.             
-     */
-    public bidi: boolean;
-    
-    /**
-     * True if the font is formatted as bold.             
-     */
-    public bold: boolean;
-    
-    /**
-     * True if the right-to-left text is formatted as bold.             
-     */
-    public boldBi: boolean;
-    
-    /**
-     * Border object that specifies border for the font.
-     */
-    public border: Border;
-    
-    /**
-     * Gets or sets the color of the font.             
-     */
-    public color: XmlColor;
-    
-    /**
-     * Specifies whether the contents of this run shall be treated as complex script text regardless of their Unicode character values when determining the formatting for this run.             
-     */
-    public complexScript: boolean;
-    
-    /**
-     * True if the font is formatted as double strikethrough text.             
-     */
-    public doubleStrikeThrough: boolean;
-    
-    /**
-     * True if the font is formatted as embossed.             
-     */
-    public emboss: boolean;
-    
-    /**
-     * True if the font is formatted as engraved.             
-     */
-    public engrave: boolean;
-    
-    /**
-     * True if the font is formatted as hidden text.             
-     */
-    public hidden: boolean;
-    
-    /**
-     * Gets or sets the highlight (marker) color.             
-     */
-    public highlightColor: XmlColor;
-    
-    /**
-     * True if the font is formatted as italic.             
-     */
-    public italic: boolean;
-    
-    /**
-     * True if the right-to-left text is formatted as italic.             
-     */
-    public italicBi: boolean;
-    
-    /**
-     * Gets or sets the font size at which kerning starts.             
-     */
-    public kerning: number;
-    
-    /**
-     * Gets or sets the locale identifier (language) of the formatted characters.             
-     */
-    public localeId: number;
-    
-    /**
-     * Gets or sets the locale identifier (language) of the formatted right-to-left characters.             
-     */
-    public localeIdBi: number;
-    
-    /**
-     * Gets or sets the locale identifier (language) of the formatted Asian characters.             
-     */
-    public localeIdFarEast: number;
-    
     /**
      * Gets or sets the name of the font             
      */
@@ -3571,31 +3481,6 @@ export class Font extends LinkElement {
     public nameOther: string;
     
     /**
-     * True when the formatted characters are not to be spell checked.
-     */
-    public noProofing: boolean;
-    
-    /**
-     * True if the font is formatted as outline.             
-     */
-    public outline: boolean;
-    
-    /**
-     * Gets or sets the position of text (in points) relative to the base line. A positive number raises the text, and a negative number lowers it.             
-     */
-    public position: number;
-    
-    /**
-     * Gets or sets character width scaling in percent.             
-     */
-    public scaling: number;
-    
-    /**
-     * True if the font is formatted as shadowed.             
-     */
-    public shadow: boolean;
-    
-    /**
      * Gets or sets the font size in points.             
      */
     public size: number;
@@ -3606,14 +3491,29 @@ export class Font extends LinkElement {
     public sizeBi: number;
     
     /**
-     * True if the font is formatted as small capital letters.             
+     * True if the font is formatted as bold.             
      */
-    public smallCaps: boolean;
+    public bold: boolean;
     
     /**
-     * Returns or sets the spacing (in points) between characters.             
+     * True if the right-to-left text is formatted as bold.             
      */
-    public spacing: number;
+    public boldBi: boolean;
+    
+    /**
+     * True if the font is formatted as italic.             
+     */
+    public italic: boolean;
+    
+    /**
+     * True if the right-to-left text is formatted as italic.             
+     */
+    public italicBi: boolean;
+    
+    /**
+     * Gets or sets the color of the font.             
+     */
+    public color: XmlColor;
     
     /**
      * True if the font is formatted as strikethrough text.             
@@ -3621,19 +3521,29 @@ export class Font extends LinkElement {
     public strikeThrough: boolean;
     
     /**
-     * Gets or sets the locale independent style identifier of the character style applied to this formatting.
+     * True if the font is formatted as double strikethrough text.             
      */
-    public styleIdentifier: Font.StyleIdentifierEnum;
+    public doubleStrikeThrough: boolean;
     
     /**
-     * Gets or sets the name of the character style applied to this formatting.             
+     * True if the font is formatted as shadowed.             
      */
-    public styleName: string;
+    public shadow: boolean;
     
     /**
-     * True if the font is formatted as subscript.             
+     * True if the font is formatted as outline.             
      */
-    public subscript: boolean;
+    public outline: boolean;
+    
+    /**
+     * True if the font is formatted as embossed.             
+     */
+    public emboss: boolean;
+    
+    /**
+     * True if the font is formatted as engraved.             
+     */
+    public engrave: boolean;
     
     /**
      * True if the font is formatted as superscript.             
@@ -3641,9 +3551,24 @@ export class Font extends LinkElement {
     public superscript: boolean;
     
     /**
-     * Gets or sets the font animation effect.
+     * True if the font is formatted as subscript.             
      */
-    public textEffect: Font.TextEffectEnum;
+    public subscript: boolean;
+    
+    /**
+     * True if the font is formatted as small capital letters.             
+     */
+    public smallCaps: boolean;
+    
+    /**
+     * True if the font is formatted as all capital letters.             
+     */
+    public allCaps: boolean;
+    
+    /**
+     * True if the font is formatted as hidden text.             
+     */
+    public hidden: boolean;
     
     /**
      * Gets or sets the type of underline applied to the font.
@@ -3655,6 +3580,81 @@ export class Font extends LinkElement {
      */
     public underlineColor: XmlColor;
     
+    /**
+     * Gets or sets character width scaling in percent.             
+     */
+    public scaling: number;
+    
+    /**
+     * Returns or sets the spacing (in points) between characters.             
+     */
+    public spacing: number;
+    
+    /**
+     * Gets or sets the position of text (in points) relative to the base line. A positive number raises the text, and a negative number lowers it.             
+     */
+    public position: number;
+    
+    /**
+     * Gets or sets the font size at which kerning starts.             
+     */
+    public kerning: number;
+    
+    /**
+     * Gets or sets the highlight (marker) color.             
+     */
+    public highlightColor: XmlColor;
+    
+    /**
+     * Gets or sets the font animation effect.
+     */
+    public textEffect: Font.TextEffectEnum;
+    
+    /**
+     * Specifies whether the contents of this run shall have right-to-left characteristics.             
+     */
+    public bidi: boolean;
+    
+    /**
+     * Specifies whether the contents of this run shall be treated as complex script text regardless of their Unicode character values when determining the formatting for this run.             
+     */
+    public complexScript: boolean;
+    
+    /**
+     * True when the formatted characters are not to be spell checked.
+     */
+    public noProofing: boolean;
+    
+    /**
+     * Gets or sets the locale identifier (language) of the formatted characters.             
+     */
+    public localeId: number;
+    
+    /**
+     * Gets or sets the locale identifier (language) of the formatted right-to-left characters.             
+     */
+    public localeIdBi: number;
+    
+    /**
+     * Gets or sets the locale identifier (language) of the formatted Asian characters.             
+     */
+    public localeIdFarEast: number;
+    
+    /**
+     * Border object that specifies border for the font.
+     */
+    public border: Border;
+    
+    /**
+     * Gets or sets the name of the character style applied to this formatting.             
+     */
+    public styleName: string;
+    
+    /**
+     * Gets or sets the locale independent style identifier of the character style applied to this formatting.
+     */
+    public styleIdentifier: Font.StyleIdentifierEnum;
+    
     public constructor(init?: Partial<Font>) {
         super(init);
         Object.assign(this, init);
@@ -3664,6 +3664,35 @@ export class Font extends LinkElement {
 // tslint:disable:quotemark
 // tslint:disable-next-line:no-namespace
 export namespace Font {
+    export enum UnderlineEnum {
+        None = 'None' as any,
+        Single = 'Single' as any,
+        Words = 'Words' as any,
+        Double = 'Double' as any,
+        Dotted = 'Dotted' as any,
+        Thick = 'Thick' as any,
+        Dash = 'Dash' as any,
+        DotDash = 'DotDash' as any,
+        DotDotDash = 'DotDotDash' as any,
+        Wavy = 'Wavy' as any,
+        DottedHeavy = 'DottedHeavy' as any,
+        DashHeavy = 'DashHeavy' as any,
+        DotDashHeavy = 'DotDashHeavy' as any,
+        DotDotDashHeavy = 'DotDotDashHeavy' as any,
+        WavyHeavy = 'WavyHeavy' as any,
+        DashLong = 'DashLong' as any,
+        WavyDouble = 'WavyDouble' as any,
+        DashLongHeavy = 'DashLongHeavy' as any,
+    }
+    export enum TextEffectEnum {
+        None = 'None' as any,
+        LasVegasLights = 'LasVegasLights' as any,
+        BlinkingBackground = 'BlinkingBackground' as any,
+        SparkleText = 'SparkleText' as any,
+        MarchingBlackAnts = 'MarchingBlackAnts' as any,
+        MarchingRedAnts = 'MarchingRedAnts' as any,
+        Shimmer = 'Shimmer' as any,
+    }
     export enum StyleIdentifierEnum {
         Normal = 'Normal' as any,
         Heading1 = 'Heading1' as any,
@@ -4038,35 +4067,6 @@ export namespace Font {
         ListTable7ColorfulAccent6 = 'ListTable7ColorfulAccent6' as any,
         User = 'User' as any,
         Nil = 'Nil' as any,
-    }
-    export enum TextEffectEnum {
-        None = 'None' as any,
-        LasVegasLights = 'LasVegasLights' as any,
-        BlinkingBackground = 'BlinkingBackground' as any,
-        SparkleText = 'SparkleText' as any,
-        MarchingBlackAnts = 'MarchingBlackAnts' as any,
-        MarchingRedAnts = 'MarchingRedAnts' as any,
-        Shimmer = 'Shimmer' as any,
-    }
-    export enum UnderlineEnum {
-        None = 'None' as any,
-        Single = 'Single' as any,
-        Words = 'Words' as any,
-        Double = 'Double' as any,
-        Dotted = 'Dotted' as any,
-        Thick = 'Thick' as any,
-        Dash = 'Dash' as any,
-        DotDash = 'DotDash' as any,
-        DotDotDash = 'DotDotDash' as any,
-        Wavy = 'Wavy' as any,
-        DottedHeavy = 'DottedHeavy' as any,
-        DashHeavy = 'DashHeavy' as any,
-        DotDashHeavy = 'DotDashHeavy' as any,
-        DotDotDashHeavy = 'DotDotDashHeavy' as any,
-        WavyHeavy = 'WavyHeavy' as any,
-        DashLong = 'DashLong' as any,
-        WavyDouble = 'WavyDouble' as any,
-        DashLongHeavy = 'DashLongHeavy' as any,
     }
 }
 // tslint:enable:quotemark
@@ -4719,7 +4719,7 @@ export class HtmlSaveOptionsData extends SaveOptionsData {
     public exportListLabels: string;
     
     /**
-     * Specifies whether to convert metafiles into raster images when exporting
+     * Specifies whether to convert metafiles into raster images when exporting.  Deprecated - use the MetafileFormat property instead
      */
     public exportMetafileAsRaster: boolean;
     
@@ -9684,11 +9684,6 @@ export class FormFieldCheckbox extends FormField {
      */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            name: "checked",
-            baseName: "Checked",
-            type: "boolean",
-        },        
-        {
             name: "isCheckBoxExactSize",
             baseName: "IsCheckBoxExactSize",
             type: "boolean",
@@ -9697,6 +9692,11 @@ export class FormFieldCheckbox extends FormField {
             name: "checkBoxSize",
             baseName: "CheckBoxSize",
             type: "number",
+        },        
+        {
+            name: "checked",
+            baseName: "Checked",
+            type: "boolean",
         }    ];
 
     /**
@@ -9707,11 +9707,6 @@ export class FormFieldCheckbox extends FormField {
     }
 
     /**
-     * Gets or sets the checked status of the check box form field.
-     */
-    public checked: boolean;
-    
-    /**
      * Gets or sets the boolean value that indicates whether the size of the textbox is automatic or specified explicitly.
      */
     public isCheckBoxExactSize: boolean;
@@ -9720,6 +9715,11 @@ export class FormFieldCheckbox extends FormField {
      * Gets or sets the size of the checkbox in points. Has effect only when  is true.
      */
     public checkBoxSize: number;
+    
+    /**
+     * Gets or sets the checked status of the check box form field.
+     */
+    public checked: boolean;
     
     public constructor(init?: Partial<FormFieldCheckbox>) {
         super(init);
@@ -9737,14 +9737,14 @@ export class FormFieldDropDown extends FormField {
      */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            name: "dropDownItems",
-            baseName: "DropDownItems",
-            type: "Array<string>",
-        },        
-        {
             name: "dropDownSelectedIndex",
             baseName: "DropDownSelectedIndex",
             type: "number",
+        },        
+        {
+            name: "dropDownItems",
+            baseName: "DropDownItems",
+            type: "Array<string>",
         }    ];
 
     /**
@@ -9755,14 +9755,14 @@ export class FormFieldDropDown extends FormField {
     }
 
     /**
-     * Provides access to the items of a dropdown form field.
-     */
-    public dropDownItems: Array<string>;
-    
-    /**
      * Gets or sets the index specifying the currently selected item in a dropdown form field.
      */
     public dropDownSelectedIndex: number;
+    
+    /**
+     * Provides access to the items of a dropdown form field.
+     */
+    public dropDownItems: Array<string>;
     
     public constructor(init?: Partial<FormFieldDropDown>) {
         super(init);
@@ -10110,11 +10110,11 @@ const enumsMap = {
     "StringFormatData.HotkeyPrefixEnum": StringFormatData.HotkeyPrefixEnum,
     "StringFormatData.LineAlignmentEnum": StringFormatData.LineAlignmentEnum,
     "StringFormatData.TrimmingEnum": StringFormatData.TrimmingEnum,
-    "Border.BorderTypeEnum": Border.BorderTypeEnum,
     "Border.LineStyleEnum": Border.LineStyleEnum,
-    "Font.StyleIdentifierEnum": Font.StyleIdentifierEnum,
-    "Font.TextEffectEnum": Font.TextEffectEnum,
+    "Border.BorderTypeEnum": Border.BorderTypeEnum,
     "Font.UnderlineEnum": Font.UnderlineEnum,
+    "Font.TextEffectEnum": Font.TextEffectEnum,
+    "Font.StyleIdentifierEnum": Font.StyleIdentifierEnum,
     "HeaderFooterLink.TypeEnum": HeaderFooterLink.TypeEnum,
     "HtmlSaveOptionsData.HtmlVersionEnum": HtmlSaveOptionsData.HtmlVersionEnum,
     "HtmlSaveOptionsData.OfficeMathOutputModeEnum": HtmlSaveOptionsData.OfficeMathOutputModeEnum,

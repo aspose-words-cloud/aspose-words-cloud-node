@@ -23,15 +23,16 @@
 */
 
 import { WordsApi } from "asposewordscloud";
+import { WordsApiAvailiableVersions } from "../src/internal/wordsApiAvailiableVersions";
 
 let storageApi;
 
 /**
  * Initialize WordsApi
  */
-export function initializeWordsApi(debugMode?: boolean) {
+export function initializeWordsApi(debugMode?: boolean, version?: WordsApiAvailiableVersions) {
     const config = require("../testConfig.json");
-    const wordsApi = new WordsApi(config.AppSid, config.AppKey, config.BaseUrl, debugMode);
+    const wordsApi = new WordsApi(config.AppSid, config.AppKey, config.BaseUrl, debugMode, version);
     return wordsApi;
 }
 
@@ -49,6 +50,7 @@ export function initializeStorageApi() {
     return storageApi;
 }
 
+export const remoteBaseFolder = "Temp/SdkTests/node/";
 export const remoteBaseTestDataFolder = "Temp/SdkTests/node/TestData/";
 export const remoteBaseTestOutFolder = "Temp/SdkTests/node/TestOut/";
 export const localBaseTestDataFolder = "./testData/";

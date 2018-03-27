@@ -1,6 +1,6 @@
 {
   "name": "asposewordscloudTest",
-  "version": "18.2.2",
+  "version": "18.3.0",
   "description": "Aspose.Words Cloud SDK for Node.js",
   "homepage": "https://products.aspose.cloud/words/cloud",
   "author": {
@@ -24,7 +24,9 @@
   "types": "dist/api.d.ts",
   "scripts": {
     "test": "mocha -r ts-node/register test/**/*.ts --timeout 25000",
-    "lint": "tslint src/{,**/}*.ts test/{,**/}*.ts -t verbose --project ./tsconfig.json"
+    "lint": "tslint src/{,**/}*.ts test/{,**/}*.ts -t verbose --project ./tsconfig.json",
+    "cucumber": "cucumber-js ./bdd/features -r ./dist/bdd/steps",
+    "gulp": "gulp"
   },
   "dependencies": {
     "@types/request": "^2.0.9",
@@ -37,6 +39,12 @@
     "@types/mocha": "^2.2.44",
     "asposestoragecloud": "^1.0.4",
     "chai": "^4.1.2",
+    "cucumber": "^4.0.0",
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-cucumber": "0.0.23",
+    "gulp-typescript": "^4.0.1",
+    "gulp-util": "^3.0.8",
     "mocha": "^4.0.1",
     "mocha-cases": "^0.2.1",
     "mocha-sinon": "^2.0.0",

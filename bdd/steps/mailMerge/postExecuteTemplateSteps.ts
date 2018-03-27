@@ -22,7 +22,7 @@
 * SOFTWARE.
 */
 
-import { GetDocumentDrawingObjectsRequest } from "asposestoragecloud";
+import { GetDocumentDrawingObjectsRequest } from "asposewordscloud";
 import { expect } from "chai";
 import { Given, Then, When } from "cucumber";
 import * as fs from "fs";

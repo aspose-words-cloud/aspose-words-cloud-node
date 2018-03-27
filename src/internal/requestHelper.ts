@@ -1,7 +1,7 @@
 /*
 * MIT License
 
-* Copyright (c) 2017 Aspose Pty Ltd
+* Copyright (c) 2018 Aspose Pty Ltd
 
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -87,7 +87,7 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
     }
 
     requestOptions.headers["x-aspose-client"] = "nodejs sdk";
-    requestOptions.headers["x-aspose-client-version"] = "18.2";
+    requestOptions.headers["x-aspose-client-version"] = "18.3";
 
     const auth = confguration.authentication;
     if (!notApplyAuthToRequest) {
@@ -95,7 +95,7 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
     }
 
     return new Promise<request.RequestResponse>((resolve, reject) => {
-        const r = request(requestOptions, async (error, response) => {            
+        const r = request(requestOptions, async (error, response) => {
             if (error) {
                 reject(error);
             } else {
@@ -106,7 +106,12 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
                     reject(new NeedRepeatException());
                 } else {
                     try {
-                        const result = ObjectSerializer.deserialize(response.body, "WordsApiErrorResponse");
+                        let bodyContent = response.body;
+                        if (bodyContent instanceof Buffer) {
+                            bodyContent = JSON.parse(bodyContent.toString("utf8"));
+                        }
+
+                        const result = ObjectSerializer.deserialize(bodyContent, "WordsApiErrorResponse");
                         reject({ message: result.message, code: response.statusCode });
                     } catch (error) {
                         reject({ message: "Error while parse server error: " + error });

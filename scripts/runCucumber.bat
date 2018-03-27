@@ -1,0 +1,1 @@
+docker run --env -v %cd%:/node -w="/node" --rm node npm run gulp cucumber

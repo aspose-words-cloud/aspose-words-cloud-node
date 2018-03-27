@@ -1,12 +1,5 @@
-.vscode/
-src/
-node_modules/
-test/
-dist/test/
-scripts/
-testData/
-testConfig.json
-tsconfig.json
-tsconfigPack.json
-tslint.json
-.*
+**/*
+!dist/**/*
+!package.json
+!LICENSE
+!README.md

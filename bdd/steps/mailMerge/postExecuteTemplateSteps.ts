@@ -22,10 +22,10 @@
 * SOFTWARE.
 */
 
+import { GetDocumentDrawingObjectsRequest } from "asposestoragecloud";
 import { expect } from "chai";
 import { Given, Then, When } from "cucumber";
 import * as fs from "fs";
-import { GetDocumentDrawingObjectsRequest } from "../../../src/api";
 import * as BaseTest from "../../../test/baseTest";
 
 const testFolder = "DocumentActions/MailMerge/";

@@ -22,9 +22,9 @@
 * SOFTWARE.
 */
 
+import { GetDocumentTextItemsRequest } from "asposewordscloud";
 import { expect } from "chai";
 import { Before, Given, Then, When } from "cucumber";
-import { GetDocumentTextItemsRequest } from "../../../src/api";
 import * as BaseTest from "../../../test/baseTest";
 
 Before({ tags: "@saveAs" }, function() {

@@ -28,6 +28,7 @@ import "mocha-sinon";
 import * as sinon from "sinon";
 
 import { GetDocumentRequest } from "asposewordscloud";
+import { WordsApiAvailiableVersions } from "asposewordscloud/dist/internal/wordsApiAvailiableVersions";
 import * as BaseTest from "../baseTest";
 
 const testFolder = "Commont/Configuration";

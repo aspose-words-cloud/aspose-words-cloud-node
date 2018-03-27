@@ -23,7 +23,7 @@
 */
 
 import { WordsApi } from "asposewordscloud";
-import { WordsApiAvailiableVersions } from "../src/internal/wordsApiAvailiableVersions";
+import { WordsApiAvailiableVersions } from "asposewordscloud";
 
 let storageApi;
 

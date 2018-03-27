@@ -32,6 +32,7 @@ import { WordsApiAvailiableVersions } from "./internal/wordsApiAvailiableVersion
 import * as model from "./model/model";
 
 export * from "./model/model";
+export * from "./internal/wordsApiAvailiableVersions";
 
 /**
  * Library for communicating with the Aspose.Words Cloud API

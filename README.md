@@ -69,7 +69,8 @@ Every method returns a chainable promise.
 ```
 
 # Release notes
-##18.3
+
+## 18.3
 + Added support of differrent api version (v1 is used by default)
 + Swf format was removed
 + Some obsolete properties were removed from the PdfSaveOptionsData (see https://docs.aspose.cloud/display/wordscloud/Aspose.Words+for+Cloud+18.3+Release+Notes)

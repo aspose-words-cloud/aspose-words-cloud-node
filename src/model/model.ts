@@ -6493,34 +6493,9 @@ export class TableCellFormat extends LinkElement {
      */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            name: "bottomPadding",
-            baseName: "BottomPadding",
-            type: "number",
-        },        
-        {
-            name: "fitText",
-            baseName: "FitText",
-            type: "boolean",
-        },        
-        {
-            name: "horizontalMerge",
-            baseName: "HorizontalMerge",
-            type: "TableCellFormat.HorizontalMergeEnum",
-        },        
-        {
             name: "leftPadding",
             baseName: "LeftPadding",
             type: "number",
-        },        
-        {
-            name: "orientation",
-            baseName: "Orientation",
-            type: "TableCellFormat.OrientationEnum",
-        },        
-        {
-            name: "preferredWidth",
-            baseName: "PreferredWidth",
-            type: "PreferredWidth",
         },        
         {
             name: "rightPadding",
@@ -6533,9 +6508,24 @@ export class TableCellFormat extends LinkElement {
             type: "number",
         },        
         {
+            name: "bottomPadding",
+            baseName: "BottomPadding",
+            type: "number",
+        },        
+        {
             name: "verticalAlignment",
             baseName: "VerticalAlignment",
             type: "TableCellFormat.VerticalAlignmentEnum",
+        },        
+        {
+            name: "width",
+            baseName: "Width",
+            type: "number",
+        },        
+        {
+            name: "preferredWidth",
+            baseName: "PreferredWidth",
+            type: "PreferredWidth",
         },        
         {
             name: "verticalMerge",
@@ -6543,9 +6533,19 @@ export class TableCellFormat extends LinkElement {
             type: "TableCellFormat.VerticalMergeEnum",
         },        
         {
-            name: "width",
-            baseName: "Width",
-            type: "number",
+            name: "horizontalMerge",
+            baseName: "HorizontalMerge",
+            type: "TableCellFormat.HorizontalMergeEnum",
+        },        
+        {
+            name: "orientation",
+            baseName: "Orientation",
+            type: "TableCellFormat.OrientationEnum",
+        },        
+        {
+            name: "fitText",
+            baseName: "FitText",
+            type: "boolean",
         },        
         {
             name: "wrapText",
@@ -6561,34 +6561,9 @@ export class TableCellFormat extends LinkElement {
     }
 
     /**
-     * Returns or sets the amount of space (in points) to add below the contents of cell.
-     */
-    public bottomPadding: number;
-    
-    /**
-     * If true, fits text in the cell, compressing each paragraph to the width of the cell.
-     */
-    public fitText: boolean;
-    
-    /**
-     * Specifies how the cell is merged horizontally with other cells in the row.
-     */
-    public horizontalMerge: TableCellFormat.HorizontalMergeEnum;
-    
-    /**
      * Returns or sets the amount of space (in points) to add to the left of the contents of cell.
      */
     public leftPadding: number;
-    
-    /**
-     * Returns or sets the orientation of text in a table cell.
-     */
-    public orientation: TableCellFormat.OrientationEnum;
-    
-    /**
-     * Returns or sets the preferred width of the cell.
-     */
-    public preferredWidth: PreferredWidth;
     
     /**
      * Returns or sets the amount of space (in points) to add to the right of the contents of cell.
@@ -6601,9 +6576,24 @@ export class TableCellFormat extends LinkElement {
     public topPadding: number;
     
     /**
+     * Returns or sets the amount of space (in points) to add below the contents of cell.
+     */
+    public bottomPadding: number;
+    
+    /**
      * Returns or sets the vertical alignment of text in the cell.
      */
     public verticalAlignment: TableCellFormat.VerticalAlignmentEnum;
+    
+    /**
+     * Gets the width of the cell in points.
+     */
+    public width: number;
+    
+    /**
+     * Returns or sets the preferred width of the cell.
+     */
+    public preferredWidth: PreferredWidth;
     
     /**
      * Specifies how the cell is merged with other cells vertically.
@@ -6611,9 +6601,19 @@ export class TableCellFormat extends LinkElement {
     public verticalMerge: TableCellFormat.VerticalMergeEnum;
     
     /**
-     * Gets the width of the cell in points.
+     * Specifies how the cell is merged horizontally with other cells in the row.
      */
-    public width: number;
+    public horizontalMerge: TableCellFormat.HorizontalMergeEnum;
+    
+    /**
+     * Returns or sets the orientation of text in a table cell.
+     */
+    public orientation: TableCellFormat.OrientationEnum;
+    
+    /**
+     * If true, fits text in the cell, compressing each paragraph to the width of the cell.
+     */
+    public fitText: boolean;
     
     /**
      * If true, wrap text for the cell.
@@ -6629,6 +6629,16 @@ export class TableCellFormat extends LinkElement {
 // tslint:disable:quotemark
 // tslint:disable-next-line:no-namespace
 export namespace TableCellFormat {
+    export enum VerticalAlignmentEnum {
+        Top = 'Top' as any,
+        Center = 'Center' as any,
+        Bottom = 'Bottom' as any,
+    }
+    export enum VerticalMergeEnum {
+        None = 'None' as any,
+        First = 'First' as any,
+        Previous = 'Previous' as any,
+    }
     export enum HorizontalMergeEnum {
         None = 'None' as any,
         First = 'First' as any,
@@ -6641,16 +6651,6 @@ export namespace TableCellFormat {
         HorizontalRotatedFarEast = 'HorizontalRotatedFarEast' as any,
         VerticalFarEast = 'VerticalFarEast' as any,
         VerticalRotatedFarEast = 'VerticalRotatedFarEast' as any,
-    }
-    export enum VerticalAlignmentEnum {
-        Top = 'Top' as any,
-        Center = 'Center' as any,
-        Bottom = 'Bottom' as any,
-    }
-    export enum VerticalMergeEnum {
-        None = 'None' as any,
-        First = 'First' as any,
-        Previous = 'Previous' as any,
     }
 }
 // tslint:enable:quotemark
@@ -9684,11 +9684,6 @@ export class FormFieldCheckbox extends FormField {
      */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            name: "checked",
-            baseName: "Checked",
-            type: "boolean",
-        },        
-        {
             name: "isCheckBoxExactSize",
             baseName: "IsCheckBoxExactSize",
             type: "boolean",
@@ -9697,6 +9692,11 @@ export class FormFieldCheckbox extends FormField {
             name: "checkBoxSize",
             baseName: "CheckBoxSize",
             type: "number",
+        },        
+        {
+            name: "checked",
+            baseName: "Checked",
+            type: "boolean",
         }    ];
 
     /**
@@ -9707,11 +9707,6 @@ export class FormFieldCheckbox extends FormField {
     }
 
     /**
-     * Gets or sets the checked status of the check box form field.
-     */
-    public checked: boolean;
-    
-    /**
      * Gets or sets the boolean value that indicates whether the size of the textbox is automatic or specified explicitly.
      */
     public isCheckBoxExactSize: boolean;
@@ -9720,6 +9715,11 @@ export class FormFieldCheckbox extends FormField {
      * Gets or sets the size of the checkbox in points. Has effect only when  is true.
      */
     public checkBoxSize: number;
+    
+    /**
+     * Gets or sets the checked status of the check box form field.
+     */
+    public checked: boolean;
     
     public constructor(init?: Partial<FormFieldCheckbox>) {
         super(init);
@@ -9737,14 +9737,14 @@ export class FormFieldDropDown extends FormField {
      */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            name: "dropDownItems",
-            baseName: "DropDownItems",
-            type: "Array<string>",
-        },        
-        {
             name: "dropDownSelectedIndex",
             baseName: "DropDownSelectedIndex",
             type: "number",
+        },        
+        {
+            name: "dropDownItems",
+            baseName: "DropDownItems",
+            type: "Array<string>",
         }    ];
 
     /**
@@ -9755,14 +9755,14 @@ export class FormFieldDropDown extends FormField {
     }
 
     /**
-     * Provides access to the items of a dropdown form field.
-     */
-    public dropDownItems: Array<string>;
-    
-    /**
      * Gets or sets the index specifying the currently selected item in a dropdown form field.
      */
     public dropDownSelectedIndex: number;
+    
+    /**
+     * Provides access to the items of a dropdown form field.
+     */
+    public dropDownItems: Array<string>;
     
     public constructor(init?: Partial<FormFieldDropDown>) {
         super(init);
@@ -10126,10 +10126,10 @@ const enumsMap = {
     "PageSetup.PaperSizeEnum": PageSetup.PaperSizeEnum,
     "PageSetup.SectionStartEnum": PageSetup.SectionStartEnum,
     "PageSetup.VerticalAlignmentEnum": PageSetup.VerticalAlignmentEnum,
-    "TableCellFormat.HorizontalMergeEnum": TableCellFormat.HorizontalMergeEnum,
-    "TableCellFormat.OrientationEnum": TableCellFormat.OrientationEnum,
     "TableCellFormat.VerticalAlignmentEnum": TableCellFormat.VerticalAlignmentEnum,
     "TableCellFormat.VerticalMergeEnum": TableCellFormat.VerticalMergeEnum,
+    "TableCellFormat.HorizontalMergeEnum": TableCellFormat.HorizontalMergeEnum,
+    "TableCellFormat.OrientationEnum": TableCellFormat.OrientationEnum,
     "TableProperties.AlignmentEnum": TableProperties.AlignmentEnum,
     "TableProperties.StyleOptionsEnum": TableProperties.StyleOptionsEnum,
     "TableProperties.StyleIdentifierEnum": TableProperties.StyleIdentifierEnum,

@@ -120,3 +120,4 @@ SDKs/servercreds.json
 /servercreds.json
 testConfig.json
 /ts-node-*
+/test_report.xml

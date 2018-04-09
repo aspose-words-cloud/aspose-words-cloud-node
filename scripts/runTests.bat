@@ -1,1 +1,1 @@
-docker run --rm asposenodewindows npm.cmd test
+docker run --rm asposenodewindows npm.cmd test-jenkins

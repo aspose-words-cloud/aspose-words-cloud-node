@@ -1,1 +1,1 @@
-docker run -v %cd%:/node -w="/node" --rm node:4 npm test
+docker run -v %cd%:c:\node -w="c:\node" --rm stefanscherer/node-windows npm.cmd test

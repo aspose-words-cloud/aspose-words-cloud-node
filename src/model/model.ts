@@ -2299,14 +2299,9 @@ export class Border extends LinkElement {
      */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            name: "lineStyle",
-            baseName: "LineStyle",
-            type: "Border.LineStyleEnum",
-        },        
-        {
-            name: "lineWidth",
-            baseName: "LineWidth",
-            type: "number",
+            name: "borderType",
+            baseName: "BorderType",
+            type: "Border.BorderTypeEnum",
         },        
         {
             name: "color",
@@ -2319,14 +2314,19 @@ export class Border extends LinkElement {
             type: "number",
         },        
         {
+            name: "lineStyle",
+            baseName: "LineStyle",
+            type: "Border.LineStyleEnum",
+        },        
+        {
+            name: "lineWidth",
+            baseName: "LineWidth",
+            type: "number",
+        },        
+        {
             name: "shadow",
             baseName: "Shadow",
             type: "boolean",
-        },        
-        {
-            name: "borderType",
-            baseName: "BorderType",
-            type: "Border.BorderTypeEnum",
         }    ];
 
     /**
@@ -2337,14 +2337,9 @@ export class Border extends LinkElement {
     }
 
     /**
-     * Gets or sets the border style.
+     * Gets or sets the border type.             
      */
-    public lineStyle: Border.LineStyleEnum;
-    
-    /**
-     * Gets or sets the border width in points.
-     */
-    public lineWidth: number;
+    public borderType: Border.BorderTypeEnum;
     
     /**
      * Gets or sets the border color.             
@@ -2357,14 +2352,19 @@ export class Border extends LinkElement {
     public distanceFromText: number;
     
     /**
+     * Gets or sets the border style.
+     */
+    public lineStyle: Border.LineStyleEnum;
+    
+    /**
+     * Gets or sets the border width in points.
+     */
+    public lineWidth: number;
+    
+    /**
      * Gets or sets a value indicating whether the border has a shadow.
      */
     public shadow: boolean;
-    
-    /**
-     * Gets or sets the border type.             
-     */
-    public borderType: Border.BorderTypeEnum;
     
     public constructor(init?: Partial<Border>) {
         super(init);
@@ -2375,6 +2375,17 @@ export class Border extends LinkElement {
 // tslint:disable:quotemark
 // tslint:disable-next-line:no-namespace
 export namespace Border {
+    export enum BorderTypeEnum {
+        Bottom = 'Bottom' as any,
+        Left = 'Left' as any,
+        Right = 'Right' as any,
+        Top = 'Top' as any,
+        Horizontal = 'Horizontal' as any,
+        Vertical = 'Vertical' as any,
+        DiagonalDown = 'DiagonalDown' as any,
+        DiagonalUp = 'DiagonalUp' as any,
+        None = 'None' as any,
+    }
     export enum LineStyleEnum {
         None = 'None' as any,
         Single = 'Single' as any,
@@ -2403,17 +2414,6 @@ export namespace Border {
         Engrave3D = 'Engrave3D' as any,
         Outset = 'Outset' as any,
         Inset = 'Inset' as any,
-    }
-    export enum BorderTypeEnum {
-        Bottom = 'Bottom' as any,
-        Left = 'Left' as any,
-        Right = 'Right' as any,
-        Top = 'Top' as any,
-        Horizontal = 'Horizontal' as any,
-        Vertical = 'Vertical' as any,
-        DiagonalDown = 'DiagonalDown' as any,
-        DiagonalUp = 'DiagonalUp' as any,
-        None = 'None' as any,
     }
 }
 // tslint:enable:quotemark
@@ -3248,6 +3248,96 @@ export class Font extends LinkElement {
      */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
+            name: "allCaps",
+            baseName: "AllCaps",
+            type: "boolean",
+        },        
+        {
+            name: "bidi",
+            baseName: "Bidi",
+            type: "boolean",
+        },        
+        {
+            name: "bold",
+            baseName: "Bold",
+            type: "boolean",
+        },        
+        {
+            name: "boldBi",
+            baseName: "BoldBi",
+            type: "boolean",
+        },        
+        {
+            name: "border",
+            baseName: "Border",
+            type: "Border",
+        },        
+        {
+            name: "color",
+            baseName: "Color",
+            type: "XmlColor",
+        },        
+        {
+            name: "complexScript",
+            baseName: "ComplexScript",
+            type: "boolean",
+        },        
+        {
+            name: "doubleStrikeThrough",
+            baseName: "DoubleStrikeThrough",
+            type: "boolean",
+        },        
+        {
+            name: "emboss",
+            baseName: "Emboss",
+            type: "boolean",
+        },        
+        {
+            name: "engrave",
+            baseName: "Engrave",
+            type: "boolean",
+        },        
+        {
+            name: "hidden",
+            baseName: "Hidden",
+            type: "boolean",
+        },        
+        {
+            name: "highlightColor",
+            baseName: "HighlightColor",
+            type: "XmlColor",
+        },        
+        {
+            name: "italic",
+            baseName: "Italic",
+            type: "boolean",
+        },        
+        {
+            name: "italicBi",
+            baseName: "ItalicBi",
+            type: "boolean",
+        },        
+        {
+            name: "kerning",
+            baseName: "Kerning",
+            type: "number",
+        },        
+        {
+            name: "localeId",
+            baseName: "LocaleId",
+            type: "number",
+        },        
+        {
+            name: "localeIdBi",
+            baseName: "LocaleIdBi",
+            type: "number",
+        },        
+        {
+            name: "localeIdFarEast",
+            baseName: "LocaleIdFarEast",
+            type: "number",
+        },        
+        {
             name: "name",
             baseName: "Name",
             type: "string",
@@ -3273,6 +3363,31 @@ export class Font extends LinkElement {
             type: "string",
         },        
         {
+            name: "noProofing",
+            baseName: "NoProofing",
+            type: "boolean",
+        },        
+        {
+            name: "outline",
+            baseName: "Outline",
+            type: "boolean",
+        },        
+        {
+            name: "position",
+            baseName: "Position",
+            type: "number",
+        },        
+        {
+            name: "scaling",
+            baseName: "Scaling",
+            type: "number",
+        },        
+        {
+            name: "shadow",
+            baseName: "Shadow",
+            type: "boolean",
+        },        
+        {
             name: "size",
             baseName: "Size",
             type: "number",
@@ -3283,29 +3398,14 @@ export class Font extends LinkElement {
             type: "number",
         },        
         {
-            name: "bold",
-            baseName: "Bold",
+            name: "smallCaps",
+            baseName: "SmallCaps",
             type: "boolean",
         },        
         {
-            name: "boldBi",
-            baseName: "BoldBi",
-            type: "boolean",
-        },        
-        {
-            name: "italic",
-            baseName: "Italic",
-            type: "boolean",
-        },        
-        {
-            name: "italicBi",
-            baseName: "ItalicBi",
-            type: "boolean",
-        },        
-        {
-            name: "color",
-            baseName: "Color",
-            type: "XmlColor",
+            name: "spacing",
+            baseName: "Spacing",
+            type: "number",
         },        
         {
             name: "strikeThrough",
@@ -3313,28 +3413,18 @@ export class Font extends LinkElement {
             type: "boolean",
         },        
         {
-            name: "doubleStrikeThrough",
-            baseName: "DoubleStrikeThrough",
-            type: "boolean",
+            name: "styleIdentifier",
+            baseName: "StyleIdentifier",
+            type: "Font.StyleIdentifierEnum",
         },        
         {
-            name: "shadow",
-            baseName: "Shadow",
-            type: "boolean",
+            name: "styleName",
+            baseName: "StyleName",
+            type: "string",
         },        
         {
-            name: "outline",
-            baseName: "Outline",
-            type: "boolean",
-        },        
-        {
-            name: "emboss",
-            baseName: "Emboss",
-            type: "boolean",
-        },        
-        {
-            name: "engrave",
-            baseName: "Engrave",
+            name: "subscript",
+            baseName: "Subscript",
             type: "boolean",
         },        
         {
@@ -3343,24 +3433,9 @@ export class Font extends LinkElement {
             type: "boolean",
         },        
         {
-            name: "subscript",
-            baseName: "Subscript",
-            type: "boolean",
-        },        
-        {
-            name: "smallCaps",
-            baseName: "SmallCaps",
-            type: "boolean",
-        },        
-        {
-            name: "allCaps",
-            baseName: "AllCaps",
-            type: "boolean",
-        },        
-        {
-            name: "hidden",
-            baseName: "Hidden",
-            type: "boolean",
+            name: "textEffect",
+            baseName: "TextEffect",
+            type: "Font.TextEffectEnum",
         },        
         {
             name: "underline",
@@ -3371,81 +3446,6 @@ export class Font extends LinkElement {
             name: "underlineColor",
             baseName: "UnderlineColor",
             type: "XmlColor",
-        },        
-        {
-            name: "scaling",
-            baseName: "Scaling",
-            type: "number",
-        },        
-        {
-            name: "spacing",
-            baseName: "Spacing",
-            type: "number",
-        },        
-        {
-            name: "position",
-            baseName: "Position",
-            type: "number",
-        },        
-        {
-            name: "kerning",
-            baseName: "Kerning",
-            type: "number",
-        },        
-        {
-            name: "highlightColor",
-            baseName: "HighlightColor",
-            type: "XmlColor",
-        },        
-        {
-            name: "textEffect",
-            baseName: "TextEffect",
-            type: "Font.TextEffectEnum",
-        },        
-        {
-            name: "bidi",
-            baseName: "Bidi",
-            type: "boolean",
-        },        
-        {
-            name: "complexScript",
-            baseName: "ComplexScript",
-            type: "boolean",
-        },        
-        {
-            name: "noProofing",
-            baseName: "NoProofing",
-            type: "boolean",
-        },        
-        {
-            name: "localeId",
-            baseName: "LocaleId",
-            type: "number",
-        },        
-        {
-            name: "localeIdBi",
-            baseName: "LocaleIdBi",
-            type: "number",
-        },        
-        {
-            name: "localeIdFarEast",
-            baseName: "LocaleIdFarEast",
-            type: "number",
-        },        
-        {
-            name: "border",
-            baseName: "Border",
-            type: "Border",
-        },        
-        {
-            name: "styleName",
-            baseName: "StyleName",
-            type: "string",
-        },        
-        {
-            name: "styleIdentifier",
-            baseName: "StyleIdentifier",
-            type: "Font.StyleIdentifierEnum",
         }    ];
 
     /**
@@ -3455,6 +3455,96 @@ export class Font extends LinkElement {
         return super.getAttributeTypeMap().concat(Font.attributeTypeMap);
     }
 
+    /**
+     * True if the font is formatted as all capital letters.             
+     */
+    public allCaps: boolean;
+    
+    /**
+     * Specifies whether the contents of this run shall have right-to-left characteristics.             
+     */
+    public bidi: boolean;
+    
+    /**
+     * True if the font is formatted as bold.             
+     */
+    public bold: boolean;
+    
+    /**
+     * True if the right-to-left text is formatted as bold.             
+     */
+    public boldBi: boolean;
+    
+    /**
+     * Border object that specifies border for the font.
+     */
+    public border: Border;
+    
+    /**
+     * Gets or sets the color of the font.             
+     */
+    public color: XmlColor;
+    
+    /**
+     * Specifies whether the contents of this run shall be treated as complex script text regardless of their Unicode character values when determining the formatting for this run.             
+     */
+    public complexScript: boolean;
+    
+    /**
+     * True if the font is formatted as double strikethrough text.             
+     */
+    public doubleStrikeThrough: boolean;
+    
+    /**
+     * True if the font is formatted as embossed.             
+     */
+    public emboss: boolean;
+    
+    /**
+     * True if the font is formatted as engraved.             
+     */
+    public engrave: boolean;
+    
+    /**
+     * True if the font is formatted as hidden text.             
+     */
+    public hidden: boolean;
+    
+    /**
+     * Gets or sets the highlight (marker) color.             
+     */
+    public highlightColor: XmlColor;
+    
+    /**
+     * True if the font is formatted as italic.             
+     */
+    public italic: boolean;
+    
+    /**
+     * True if the right-to-left text is formatted as italic.             
+     */
+    public italicBi: boolean;
+    
+    /**
+     * Gets or sets the font size at which kerning starts.             
+     */
+    public kerning: number;
+    
+    /**
+     * Gets or sets the locale identifier (language) of the formatted characters.             
+     */
+    public localeId: number;
+    
+    /**
+     * Gets or sets the locale identifier (language) of the formatted right-to-left characters.             
+     */
+    public localeIdBi: number;
+    
+    /**
+     * Gets or sets the locale identifier (language) of the formatted Asian characters.             
+     */
+    public localeIdFarEast: number;
+    
     /**
      * Gets or sets the name of the font             
      */
@@ -3481,6 +3571,31 @@ export class Font extends LinkElement {
     public nameOther: string;
     
     /**
+     * True when the formatted characters are not to be spell checked.
+     */
+    public noProofing: boolean;
+    
+    /**
+     * True if the font is formatted as outline.             
+     */
+    public outline: boolean;
+    
+    /**
+     * Gets or sets the position of text (in points) relative to the base line. A positive number raises the text, and a negative number lowers it.             
+     */
+    public position: number;
+    
+    /**
+     * Gets or sets character width scaling in percent.             
+     */
+    public scaling: number;
+    
+    /**
+     * True if the font is formatted as shadowed.             
+     */
+    public shadow: boolean;
+    
+    /**
      * Gets or sets the font size in points.             
      */
     public size: number;
@@ -3491,29 +3606,14 @@ export class Font extends LinkElement {
     public sizeBi: number;
     
     /**
-     * True if the font is formatted as bold.             
+     * True if the font is formatted as small capital letters.             
      */
-    public bold: boolean;
+    public smallCaps: boolean;
     
     /**
-     * True if the right-to-left text is formatted as bold.             
+     * Returns or sets the spacing (in points) between characters.             
      */
-    public boldBi: boolean;
-    
-    /**
-     * True if the font is formatted as italic.             
-     */
-    public italic: boolean;
-    
-    /**
-     * True if the right-to-left text is formatted as italic.             
-     */
-    public italicBi: boolean;
-    
-    /**
-     * Gets or sets the color of the font.             
-     */
-    public color: XmlColor;
+    public spacing: number;
     
     /**
      * True if the font is formatted as strikethrough text.             
@@ -3521,34 +3621,14 @@ export class Font extends LinkElement {
     public strikeThrough: boolean;
     
     /**
-     * True if the font is formatted as double strikethrough text.             
+     * Gets or sets the locale independent style identifier of the character style applied to this formatting.
      */
-    public doubleStrikeThrough: boolean;
+    public styleIdentifier: Font.StyleIdentifierEnum;
     
     /**
-     * True if the font is formatted as shadowed.             
+     * Gets or sets the name of the character style applied to this formatting.             
      */
-    public shadow: boolean;
-    
-    /**
-     * True if the font is formatted as outline.             
-     */
-    public outline: boolean;
-    
-    /**
-     * True if the font is formatted as embossed.             
-     */
-    public emboss: boolean;
-    
-    /**
-     * True if the font is formatted as engraved.             
-     */
-    public engrave: boolean;
-    
-    /**
-     * True if the font is formatted as superscript.             
-     */
-    public superscript: boolean;
+    public styleName: string;
     
     /**
      * True if the font is formatted as subscript.             
@@ -3556,19 +3636,14 @@ export class Font extends LinkElement {
     public subscript: boolean;
     
     /**
-     * True if the font is formatted as small capital letters.             
+     * True if the font is formatted as superscript.             
      */
-    public smallCaps: boolean;
+    public superscript: boolean;
     
     /**
-     * True if the font is formatted as all capital letters.             
+     * Gets or sets the font animation effect.
      */
-    public allCaps: boolean;
-    
-    /**
-     * True if the font is formatted as hidden text.             
-     */
-    public hidden: boolean;
+    public textEffect: Font.TextEffectEnum;
     
     /**
      * Gets or sets the type of underline applied to the font.
@@ -3580,81 +3655,6 @@ export class Font extends LinkElement {
      */
     public underlineColor: XmlColor;
     
-    /**
-     * Gets or sets character width scaling in percent.             
-     */
-    public scaling: number;
-    
-    /**
-     * Returns or sets the spacing (in points) between characters.             
-     */
-    public spacing: number;
-    
-    /**
-     * Gets or sets the position of text (in points) relative to the base line. A positive number raises the text, and a negative number lowers it.             
-     */
-    public position: number;
-    
-    /**
-     * Gets or sets the font size at which kerning starts.             
-     */
-    public kerning: number;
-    
-    /**
-     * Gets or sets the highlight (marker) color.             
-     */
-    public highlightColor: XmlColor;
-    
-    /**
-     * Gets or sets the font animation effect.
-     */
-    public textEffect: Font.TextEffectEnum;
-    
-    /**
-     * Specifies whether the contents of this run shall have right-to-left characteristics.             
-     */
-    public bidi: boolean;
-    
-    /**
-     * Specifies whether the contents of this run shall be treated as complex script text regardless of their Unicode character values when determining the formatting for this run.             
-     */
-    public complexScript: boolean;
-    
-    /**
-     * True when the formatted characters are not to be spell checked.
-     */
-    public noProofing: boolean;
-    
-    /**
-     * Gets or sets the locale identifier (language) of the formatted characters.             
-     */
-    public localeId: number;
-    
-    /**
-     * Gets or sets the locale identifier (language) of the formatted right-to-left characters.             
-     */
-    public localeIdBi: number;
-    
-    /**
-     * Gets or sets the locale identifier (language) of the formatted Asian characters.             
-     */
-    public localeIdFarEast: number;
-    
-    /**
-     * Border object that specifies border for the font.
-     */
-    public border: Border;
-    
-    /**
-     * Gets or sets the name of the character style applied to this formatting.             
-     */
-    public styleName: string;
-    
-    /**
-     * Gets or sets the locale independent style identifier of the character style applied to this formatting.
-     */
-    public styleIdentifier: Font.StyleIdentifierEnum;
-    
     public constructor(init?: Partial<Font>) {
         super(init);
         Object.assign(this, init);
@@ -3664,35 +3664,6 @@ export class Font extends LinkElement {
 // tslint:disable:quotemark
 // tslint:disable-next-line:no-namespace
 export namespace Font {
-    export enum UnderlineEnum {
-        None = 'None' as any,
-        Single = 'Single' as any,
-        Words = 'Words' as any,
-        Double = 'Double' as any,
-        Dotted = 'Dotted' as any,
-        Thick = 'Thick' as any,
-        Dash = 'Dash' as any,
-        DotDash = 'DotDash' as any,
-        DotDotDash = 'DotDotDash' as any,
-        Wavy = 'Wavy' as any,
-        DottedHeavy = 'DottedHeavy' as any,
-        DashHeavy = 'DashHeavy' as any,
-        DotDashHeavy = 'DotDashHeavy' as any,
-        DotDotDashHeavy = 'DotDotDashHeavy' as any,
-        WavyHeavy = 'WavyHeavy' as any,
-        DashLong = 'DashLong' as any,
-        WavyDouble = 'WavyDouble' as any,
-        DashLongHeavy = 'DashLongHeavy' as any,
-    }
-    export enum TextEffectEnum {
-        None = 'None' as any,
-        LasVegasLights = 'LasVegasLights' as any,
-        BlinkingBackground = 'BlinkingBackground' as any,
-        SparkleText = 'SparkleText' as any,
-        MarchingBlackAnts = 'MarchingBlackAnts' as any,
-        MarchingRedAnts = 'MarchingRedAnts' as any,
-        Shimmer = 'Shimmer' as any,
-    }
     export enum StyleIdentifierEnum {
         Normal = 'Normal' as any,
         Heading1 = 'Heading1' as any,
@@ -4067,6 +4038,35 @@ export namespace Font {
         ListTable7ColorfulAccent6 = 'ListTable7ColorfulAccent6' as any,
         User = 'User' as any,
         Nil = 'Nil' as any,
+    }
+    export enum TextEffectEnum {
+        None = 'None' as any,
+        LasVegasLights = 'LasVegasLights' as any,
+        BlinkingBackground = 'BlinkingBackground' as any,
+        SparkleText = 'SparkleText' as any,
+        MarchingBlackAnts = 'MarchingBlackAnts' as any,
+        MarchingRedAnts = 'MarchingRedAnts' as any,
+        Shimmer = 'Shimmer' as any,
+    }
+    export enum UnderlineEnum {
+        None = 'None' as any,
+        Single = 'Single' as any,
+        Words = 'Words' as any,
+        Double = 'Double' as any,
+        Dotted = 'Dotted' as any,
+        Thick = 'Thick' as any,
+        Dash = 'Dash' as any,
+        DotDash = 'DotDash' as any,
+        DotDotDash = 'DotDotDash' as any,
+        Wavy = 'Wavy' as any,
+        DottedHeavy = 'DottedHeavy' as any,
+        DashHeavy = 'DashHeavy' as any,
+        DotDashHeavy = 'DotDashHeavy' as any,
+        DotDotDashHeavy = 'DotDotDashHeavy' as any,
+        WavyHeavy = 'WavyHeavy' as any,
+        DashLong = 'DashLong' as any,
+        WavyDouble = 'WavyDouble' as any,
+        DashLongHeavy = 'DashLongHeavy' as any,
     }
 }
 // tslint:enable:quotemark
@@ -6806,9 +6806,29 @@ export class TableProperties extends LinkElement {
             type: "boolean",
         },        
         {
+            name: "preferredWidth",
+            baseName: "PreferredWidth",
+            type: "PreferredWidth",
+        },        
+        {
             name: "bidi",
             baseName: "Bidi",
             type: "boolean",
+        },        
+        {
+            name: "leftPadding",
+            baseName: "LeftPadding",
+            type: "number",
+        },        
+        {
+            name: "rightPadding",
+            baseName: "RightPadding",
+            type: "number",
+        },        
+        {
+            name: "topPadding",
+            baseName: "TopPadding",
+            type: "number",
         },        
         {
             name: "bottomPadding",
@@ -6826,24 +6846,9 @@ export class TableProperties extends LinkElement {
             type: "number",
         },        
         {
-            name: "leftPadding",
-            baseName: "LeftPadding",
-            type: "number",
-        },        
-        {
-            name: "preferredWidth",
-            baseName: "PreferredWidth",
-            type: "PreferredWidth",
-        },        
-        {
-            name: "rightPadding",
-            baseName: "RightPadding",
-            type: "number",
-        },        
-        {
-            name: "styleIdentifier",
-            baseName: "StyleIdentifier",
-            type: "TableProperties.StyleIdentifierEnum",
+            name: "styleOptions",
+            baseName: "StyleOptions",
+            type: "TableProperties.StyleOptionsEnum",
         },        
         {
             name: "styleName",
@@ -6851,19 +6856,14 @@ export class TableProperties extends LinkElement {
             type: "string",
         },        
         {
-            name: "styleOptions",
-            baseName: "StyleOptions",
-            type: "TableProperties.StyleOptionsEnum",
+            name: "styleIdentifier",
+            baseName: "StyleIdentifier",
+            type: "TableProperties.StyleIdentifierEnum",
         },        
         {
             name: "textWrapping",
             baseName: "TextWrapping",
             type: "TableProperties.TextWrappingEnum",
-        },        
-        {
-            name: "topPadding",
-            baseName: "TopPadding",
-            type: "number",
         }    ];
 
     /**
@@ -6884,9 +6884,29 @@ export class TableProperties extends LinkElement {
     public allowAutoFit: boolean;
     
     /**
+     * Gets or sets the table preferred width.  Preferred width can be specified as a percentage, number of points or a special \"auto\" value.
+     */
+    public preferredWidth: PreferredWidth;
+    
+    /**
      * Gets or sets whether this is a right-to-left table.
      */
     public bidi: boolean;
+    
+    /**
+     * Gets or sets the amount of space (in points) to add to the left of the contents of cells.
+     */
+    public leftPadding: number;
+    
+    /**
+     * Gets or sets the amount of space (in points) to add to the right of the contents of cells.
+     */
+    public rightPadding: number;
+    
+    /**
+     * Gets or sets the amount of space (in points) to add above the contents of cells.
+     */
+    public topPadding: number;
     
     /**
      * Gets or sets the amount of space (in points) to add below the contents of cells.
@@ -6904,24 +6924,9 @@ export class TableProperties extends LinkElement {
     public leftIndent: number;
     
     /**
-     * Gets or sets the amount of space (in points) to add to the left of the contents of cells.
+     * Gets or sets bit flags that specify how a table style is applied to this table.
      */
-    public leftPadding: number;
-    
-    /**
-     * Gets or sets the table preferred width.  Preferred width can be specified as a percentage, number of points or a special \"auto\" value.
-     */
-    public preferredWidth: PreferredWidth;
-    
-    /**
-     * Gets or sets the amount of space (in points) to add to the right of the contents of cells.
-     */
-    public rightPadding: number;
-    
-    /**
-     * Gets or sets the locale independent style identifier of the table style applied to this table.
-     */
-    public styleIdentifier: TableProperties.StyleIdentifierEnum;
+    public styleOptions: TableProperties.StyleOptionsEnum;
     
     /**
      * Gets or sets the name of the table style applied to this table.
@@ -6929,19 +6934,14 @@ export class TableProperties extends LinkElement {
     public styleName: string;
     
     /**
-     * Gets or sets bit flags that specify how a table style is applied to this table.
+     * Gets or sets the locale independent style identifier of the table style applied to this table.
      */
-    public styleOptions: TableProperties.StyleOptionsEnum;
+    public styleIdentifier: TableProperties.StyleIdentifierEnum;
     
     /**
      * Get or sets TextWrapping  for table.
      */
     public textWrapping: TableProperties.TextWrappingEnum;
-    
-    /**
-     * Gets or sets the amount of space (in points) to add above the contents of cells.
-     */
-    public topPadding: number;
     
     public constructor(init?: Partial<TableProperties>) {
         super(init);
@@ -6956,6 +6956,17 @@ export namespace TableProperties {
         Left = 'Left' as any,
         Center = 'Center' as any,
         Right = 'Right' as any,
+    }
+    export enum StyleOptionsEnum {
+        None = 'None' as any,
+        FirstRow = 'FirstRow' as any,
+        LastRow = 'LastRow' as any,
+        FirstColumn = 'FirstColumn' as any,
+        LastColumn = 'LastColumn' as any,
+        RowBands = 'RowBands' as any,
+        Default = 'Default' as any,
+        ColumnBands = 'ColumnBands' as any,
+        Default2003 = 'Default2003' as any,
     }
     export enum StyleIdentifierEnum {
         Normal = 'Normal' as any,
@@ -7331,17 +7342,6 @@ export namespace TableProperties {
         ListTable7ColorfulAccent6 = 'ListTable7ColorfulAccent6' as any,
         User = 'User' as any,
         Nil = 'Nil' as any,
-    }
-    export enum StyleOptionsEnum {
-        None = 'None' as any,
-        FirstRow = 'FirstRow' as any,
-        LastRow = 'LastRow' as any,
-        FirstColumn = 'FirstColumn' as any,
-        LastColumn = 'LastColumn' as any,
-        RowBands = 'RowBands' as any,
-        Default = 'Default' as any,
-        ColumnBands = 'ColumnBands' as any,
-        Default2003 = 'Default2003' as any,
     }
     export enum TextWrappingEnum {
         Default = 'Default' as any,
@@ -9684,6 +9684,11 @@ export class FormFieldCheckbox extends FormField {
      */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
+            name: "checked",
+            baseName: "Checked",
+            type: "boolean",
+        },        
+        {
             name: "isCheckBoxExactSize",
             baseName: "IsCheckBoxExactSize",
             type: "boolean",
@@ -9692,11 +9697,6 @@ export class FormFieldCheckbox extends FormField {
             name: "checkBoxSize",
             baseName: "CheckBoxSize",
             type: "number",
-        },        
-        {
-            name: "checked",
-            baseName: "Checked",
-            type: "boolean",
         }    ];
 
     /**
@@ -9707,6 +9707,11 @@ export class FormFieldCheckbox extends FormField {
     }
 
     /**
+     * Gets or sets the checked status of the check box form field.
+     */
+    public checked: boolean;
+    
+    /**
      * Gets or sets the boolean value that indicates whether the size of the textbox is automatic or specified explicitly.
      */
     public isCheckBoxExactSize: boolean;
@@ -9715,11 +9720,6 @@ export class FormFieldCheckbox extends FormField {
      * Gets or sets the size of the checkbox in points. Has effect only when  is true.
      */
     public checkBoxSize: number;
-    
-    /**
-     * Gets or sets the checked status of the check box form field.
-     */
-    public checked: boolean;
     
     public constructor(init?: Partial<FormFieldCheckbox>) {
         super(init);
@@ -9737,14 +9737,14 @@ export class FormFieldDropDown extends FormField {
      */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            name: "dropDownSelectedIndex",
-            baseName: "DropDownSelectedIndex",
-            type: "number",
-        },        
-        {
             name: "dropDownItems",
             baseName: "DropDownItems",
             type: "Array<string>",
+        },        
+        {
+            name: "dropDownSelectedIndex",
+            baseName: "DropDownSelectedIndex",
+            type: "number",
         }    ];
 
     /**
@@ -9755,14 +9755,14 @@ export class FormFieldDropDown extends FormField {
     }
 
     /**
-     * Gets or sets the index specifying the currently selected item in a dropdown form field.
-     */
-    public dropDownSelectedIndex: number;
-    
-    /**
      * Provides access to the items of a dropdown form field.
      */
     public dropDownItems: Array<string>;
+    
+    /**
+     * Gets or sets the index specifying the currently selected item in a dropdown form field.
+     */
+    public dropDownSelectedIndex: number;
     
     public constructor(init?: Partial<FormFieldDropDown>) {
         super(init);
@@ -10110,11 +10110,11 @@ const enumsMap = {
     "StringFormatData.HotkeyPrefixEnum": StringFormatData.HotkeyPrefixEnum,
     "StringFormatData.LineAlignmentEnum": StringFormatData.LineAlignmentEnum,
     "StringFormatData.TrimmingEnum": StringFormatData.TrimmingEnum,
-    "Border.LineStyleEnum": Border.LineStyleEnum,
     "Border.BorderTypeEnum": Border.BorderTypeEnum,
-    "Font.UnderlineEnum": Font.UnderlineEnum,
-    "Font.TextEffectEnum": Font.TextEffectEnum,
+    "Border.LineStyleEnum": Border.LineStyleEnum,
     "Font.StyleIdentifierEnum": Font.StyleIdentifierEnum,
+    "Font.TextEffectEnum": Font.TextEffectEnum,
+    "Font.UnderlineEnum": Font.UnderlineEnum,
     "HeaderFooterLink.TypeEnum": HeaderFooterLink.TypeEnum,
     "HtmlSaveOptionsData.HtmlVersionEnum": HtmlSaveOptionsData.HtmlVersionEnum,
     "HtmlSaveOptionsData.OfficeMathOutputModeEnum": HtmlSaveOptionsData.OfficeMathOutputModeEnum,
@@ -10131,8 +10131,8 @@ const enumsMap = {
     "TableCellFormat.HorizontalMergeEnum": TableCellFormat.HorizontalMergeEnum,
     "TableCellFormat.OrientationEnum": TableCellFormat.OrientationEnum,
     "TableProperties.AlignmentEnum": TableProperties.AlignmentEnum,
-    "TableProperties.StyleIdentifierEnum": TableProperties.StyleIdentifierEnum,
     "TableProperties.StyleOptionsEnum": TableProperties.StyleOptionsEnum,
+    "TableProperties.StyleIdentifierEnum": TableProperties.StyleIdentifierEnum,
     "TableProperties.TextWrappingEnum": TableProperties.TextWrappingEnum,
     "TableRowFormat.HeightRuleEnum": TableRowFormat.HeightRuleEnum,
     "DrawingObject.RelativeHorizontalPositionEnum": DrawingObject.RelativeHorizontalPositionEnum,
@@ -10329,14 +10329,14 @@ export class AcceptAllRevisionsRequest {
     public name: string;
 
     /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -10349,9 +10349,9 @@ export class AcceptAllRevisionsRequest {
     public password: string;
 
     /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     * File storage, which have to be used.
      */
-    public destFileName: string;
+    public storage: string;
     
     public constructor(init?: Partial<AcceptAllRevisionsRequest>) {        
         Object.assign(this, init);
@@ -10368,24 +10368,24 @@ export class CreateOrUpdateDocumentPropertyRequest {
     public name: string;
 
     /**
-     * The property name.
-     */
-    public propertyName: string;
-
-    /**
      * The property with new value.
      */
     public property: DocumentProperty;
 
     /**
+     * The property name.
+     */
+    public propertyName: string;
+
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -10398,11 +10398,6 @@ export class CreateOrUpdateDocumentPropertyRequest {
     public password: string;
 
     /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
      * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
      */
     public revisionAuthor: string;
@@ -10411,6 +10406,11 @@ export class CreateOrUpdateDocumentPropertyRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<CreateOrUpdateDocumentPropertyRequest>) {        
         Object.assign(this, init);
@@ -10422,6 +10422,11 @@ export class CreateOrUpdateDocumentPropertyRequest {
  */
 export class DeleteBorderRequest {
     /**
+     * Object's index
+     */
+    public index: number;
+
+    /**
      * The document name.
      */
     public name: string;
@@ -10432,19 +10437,14 @@ export class DeleteBorderRequest {
     public nodePath: string;
 
     /**
-     * Object's index
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
-    public index: number;
+    public destFileName: string;
 
     /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -10457,11 +10457,6 @@ export class DeleteBorderRequest {
     public password: string;
 
     /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
      * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
      */
     public revisionAuthor: string;
@@ -10470,6 +10465,11 @@ export class DeleteBorderRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<DeleteBorderRequest>) {        
         Object.assign(this, init);
@@ -10491,14 +10491,14 @@ export class DeleteBordersRequest {
     public nodePath: string;
 
     /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -10511,11 +10511,6 @@ export class DeleteBordersRequest {
     public password: string;
 
     /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
      * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
      */
     public revisionAuthor: string;
@@ -10524,6 +10519,11 @@ export class DeleteBordersRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<DeleteBordersRequest>) {        
         Object.assign(this, init);
@@ -10535,24 +10535,24 @@ export class DeleteBordersRequest {
  */
 export class DeleteCommentRequest {
     /**
-     * The file name.
-     */
-    public name: string;
-
-    /**
      * Comment index
      */
     public commentIndex: number;
 
     /**
+     * The file name.
+     */
+    public name: string;
+
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -10565,11 +10565,6 @@ export class DeleteCommentRequest {
     public password: string;
 
     /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
      * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
      */
     public revisionAuthor: string;
@@ -10578,6 +10573,11 @@ export class DeleteCommentRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<DeleteCommentRequest>) {        
         Object.assign(this, init);
@@ -10594,14 +10594,14 @@ export class DeleteDocumentMacrosRequest {
     public name: string;
 
     /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -10614,11 +10614,6 @@ export class DeleteDocumentMacrosRequest {
     public password: string;
 
     /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
      * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
      */
     public revisionAuthor: string;
@@ -10627,6 +10622,11 @@ export class DeleteDocumentMacrosRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<DeleteDocumentMacrosRequest>) {        
         Object.assign(this, init);
@@ -10648,14 +10648,14 @@ export class DeleteDocumentPropertyRequest {
     public propertyName: string;
 
     /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -10668,11 +10668,6 @@ export class DeleteDocumentPropertyRequest {
     public password: string;
 
     /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
      * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
      */
     public revisionAuthor: string;
@@ -10681,6 +10676,11 @@ export class DeleteDocumentPropertyRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<DeleteDocumentPropertyRequest>) {        
         Object.assign(this, init);
@@ -10697,14 +10697,14 @@ export class DeleteDocumentWatermarkRequest {
     public name: string;
 
     /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -10717,11 +10717,6 @@ export class DeleteDocumentWatermarkRequest {
     public password: string;
 
     /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
      * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
      */
     public revisionAuthor: string;
@@ -10730,6 +10725,11 @@ export class DeleteDocumentWatermarkRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<DeleteDocumentWatermarkRequest>) {        
         Object.assign(this, init);
@@ -10741,14 +10741,19 @@ export class DeleteDocumentWatermarkRequest {
  */
 export class DeleteDrawingObjectRequest {
     /**
+     * Object's index
+     */
+    public index: number;
+
+    /**
      * The file name.
      */
     public name: string;
 
     /**
-     * Object's index
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
-    public index: number;
+    public destFileName: string;
 
     /**
      * Original document folder.
@@ -10756,24 +10761,19 @@ export class DeleteDrawingObjectRequest {
     public folder: string;
 
     /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
-
-    /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
      */
     public loadEncoding: string;
 
     /**
+     * Path to node, which contains collection of drawing objects.
+     */
+    public nodePath: string;
+
+    /**
      * Password for opening an encrypted document.
      */
     public password: string;
-
-    /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
 
     /**
      * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
@@ -10786,9 +10786,9 @@ export class DeleteDrawingObjectRequest {
     public revisionDateTime: string;
 
     /**
-     * Path to node, which contains collection of drawing objects.
+     * File storage, which have to be used.
      */
-    public nodePath: string;
+    public storage: string;
     
     public constructor(init?: Partial<DeleteDrawingObjectRequest>) {        
         Object.assign(this, init);
@@ -10800,14 +10800,19 @@ export class DeleteDrawingObjectRequest {
  */
 export class DeleteFieldRequest {
     /**
+     * Object's index
+     */
+    public index: number;
+
+    /**
      * The file name.
      */
     public name: string;
 
     /**
-     * Object's index
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
-    public index: number;
+    public destFileName: string;
 
     /**
      * Original document folder.
@@ -10815,24 +10820,19 @@ export class DeleteFieldRequest {
     public folder: string;
 
     /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
-
-    /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
      */
     public loadEncoding: string;
 
     /**
+     * Path to node, which contains collection of fields.
+     */
+    public nodePath: string;
+
+    /**
      * Password for opening an encrypted document.
      */
     public password: string;
-
-    /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
 
     /**
      * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
@@ -10845,9 +10845,9 @@ export class DeleteFieldRequest {
     public revisionDateTime: string;
 
     /**
-     * Path to node, which contains collection of fields.
+     * File storage, which have to be used.
      */
-    public nodePath: string;
+    public storage: string;
     
     public constructor(init?: Partial<DeleteFieldRequest>) {        
         Object.assign(this, init);
@@ -10864,14 +10864,14 @@ export class DeleteFieldsRequest {
     public name: string;
 
     /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -10879,14 +10879,14 @@ export class DeleteFieldsRequest {
     public loadEncoding: string;
 
     /**
+     * Path to node, which contains collection of fields.
+     */
+    public nodePath: string;
+
+    /**
      * Password for opening an encrypted document.
      */
     public password: string;
-
-    /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
 
     /**
      * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
@@ -10899,9 +10899,9 @@ export class DeleteFieldsRequest {
     public revisionDateTime: string;
 
     /**
-     * Path to node, which contains collection of fields.
+     * File storage, which have to be used.
      */
-    public nodePath: string;
+    public storage: string;
     
     public constructor(init?: Partial<DeleteFieldsRequest>) {        
         Object.assign(this, init);
@@ -10913,14 +10913,19 @@ export class DeleteFieldsRequest {
  */
 export class DeleteFootnoteRequest {
     /**
+     * Object's index
+     */
+    public index: number;
+
+    /**
      * The file name.
      */
     public name: string;
 
     /**
-     * Object's index
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
-    public index: number;
+    public destFileName: string;
 
     /**
      * Original document folder.
@@ -10928,24 +10933,19 @@ export class DeleteFootnoteRequest {
     public folder: string;
 
     /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
-
-    /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
      */
     public loadEncoding: string;
 
     /**
+     * Path to node, which contains collection of footnotes.
+     */
+    public nodePath: string;
+
+    /**
      * Password for opening an encrypted document.
      */
     public password: string;
-
-    /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
 
     /**
      * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
@@ -10958,9 +10958,9 @@ export class DeleteFootnoteRequest {
     public revisionDateTime: string;
 
     /**
-     * Path to node, which contains collection of footnotes.
+     * File storage, which have to be used.
      */
-    public nodePath: string;
+    public storage: string;
     
     public constructor(init?: Partial<DeleteFootnoteRequest>) {        
         Object.assign(this, init);
@@ -10972,14 +10972,19 @@ export class DeleteFootnoteRequest {
  */
 export class DeleteFormFieldRequest {
     /**
+     * Object's index
+     */
+    public index: number;
+
+    /**
      * The document name.
      */
     public name: string;
 
     /**
-     * Object's index
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
-    public index: number;
+    public destFileName: string;
 
     /**
      * Original document folder.
@@ -10987,24 +10992,19 @@ export class DeleteFormFieldRequest {
     public folder: string;
 
     /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
-
-    /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
      */
     public loadEncoding: string;
 
     /**
+     * Path to node that contains collection of formfields.
+     */
+    public nodePath: string;
+
+    /**
      * Password for opening an encrypted document.
      */
     public password: string;
-
-    /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
 
     /**
      * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
@@ -11017,9 +11017,9 @@ export class DeleteFormFieldRequest {
     public revisionDateTime: string;
 
     /**
-     * Path to node that contains collection of formfields.
+     * File storage, which have to be used.
      */
-    public nodePath: string;
+    public storage: string;
     
     public constructor(init?: Partial<DeleteFormFieldRequest>) {        
         Object.assign(this, init);
@@ -11031,24 +11031,24 @@ export class DeleteFormFieldRequest {
  */
 export class DeleteHeaderFooterRequest {
     /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
      * Object's index
      */
     public index: number;
 
     /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -11059,11 +11059,6 @@ export class DeleteHeaderFooterRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-    /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
 
     /**
      * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
@@ -11079,6 +11074,11 @@ export class DeleteHeaderFooterRequest {
      * Path to parent section.
      */
     public sectionPath: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<DeleteHeaderFooterRequest>) {        
         Object.assign(this, init);
@@ -11095,14 +11095,19 @@ export class DeleteHeadersFootersRequest {
     public name: string;
 
     /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
      * Original document folder.
      */
     public folder: string;
 
     /**
-     * File storage, which have to be used.
+     * List of types of headers and footers.
      */
-    public storage: string;
+    public headersFootersTypes: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -11113,11 +11118,6 @@ export class DeleteHeadersFootersRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-    /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
 
     /**
      * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
@@ -11135,9 +11135,9 @@ export class DeleteHeadersFootersRequest {
     public sectionPath: string;
 
     /**
-     * List of types of headers and footers.
+     * File storage, which have to be used.
      */
-    public headersFootersTypes: string;
+    public storage: string;
     
     public constructor(init?: Partial<DeleteHeadersFootersRequest>) {        
         Object.assign(this, init);
@@ -11149,14 +11149,19 @@ export class DeleteHeadersFootersRequest {
  */
 export class DeleteOfficeMathObjectRequest {
     /**
+     * Object's index
+     */
+    public index: number;
+
+    /**
      * The file name.
      */
     public name: string;
 
     /**
-     * Object's index
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
-    public index: number;
+    public destFileName: string;
 
     /**
      * Original document folder.
@@ -11164,24 +11169,19 @@ export class DeleteOfficeMathObjectRequest {
     public folder: string;
 
     /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
-
-    /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
      */
     public loadEncoding: string;
 
     /**
+     * Path to node, which contains collection of OfficeMath objects.
+     */
+    public nodePath: string;
+
+    /**
      * Password for opening an encrypted document.
      */
     public password: string;
-
-    /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
 
     /**
      * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
@@ -11194,9 +11194,9 @@ export class DeleteOfficeMathObjectRequest {
     public revisionDateTime: string;
 
     /**
-     * Path to node, which contains collection of OfficeMath objects.
+     * File storage, which have to be used.
      */
-    public nodePath: string;
+    public storage: string;
     
     public constructor(init?: Partial<DeleteOfficeMathObjectRequest>) {        
         Object.assign(this, init);
@@ -11208,14 +11208,19 @@ export class DeleteOfficeMathObjectRequest {
  */
 export class DeleteParagraphRequest {
     /**
+     * Object's index
+     */
+    public index: number;
+
+    /**
      * The file name.
      */
     public name: string;
 
     /**
-     * Object's index
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
-    public index: number;
+    public destFileName: string;
 
     /**
      * Original document folder.
@@ -11223,24 +11228,19 @@ export class DeleteParagraphRequest {
     public folder: string;
 
     /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
-
-    /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
      */
     public loadEncoding: string;
 
     /**
+     * Path to node which contains paragraphs.
+     */
+    public nodePath: string;
+
+    /**
      * Password for opening an encrypted document.
      */
     public password: string;
-
-    /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
 
     /**
      * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
@@ -11253,9 +11253,9 @@ export class DeleteParagraphRequest {
     public revisionDateTime: string;
 
     /**
-     * Path to node which contains paragraphs.
+     * File storage, which have to be used.
      */
-    public nodePath: string;
+    public storage: string;
     
     public constructor(init?: Partial<DeleteParagraphRequest>) {        
         Object.assign(this, init);
@@ -11267,6 +11267,11 @@ export class DeleteParagraphRequest {
  */
 export class DeleteRunRequest {
     /**
+     * Object's index
+     */
+    public index: number;
+
+    /**
      * The file name.
      */
     public name: string;
@@ -11277,19 +11282,14 @@ export class DeleteRunRequest {
     public paragraphPath: string;
 
     /**
-     * Object's index
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
-    public index: number;
+    public destFileName: string;
 
     /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -11302,11 +11302,6 @@ export class DeleteRunRequest {
     public password: string;
 
     /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
      * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
      */
     public revisionAuthor: string;
@@ -11315,6 +11310,11 @@ export class DeleteRunRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<DeleteRunRequest>) {        
         Object.assign(this, init);
@@ -11326,14 +11326,19 @@ export class DeleteRunRequest {
  */
 export class DeleteTableRequest {
     /**
+     * Object's index
+     */
+    public index: number;
+
+    /**
      * The document name.
      */
     public name: string;
 
     /**
-     * Object's index
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
-    public index: number;
+    public destFileName: string;
 
     /**
      * Original document folder.
@@ -11341,24 +11346,19 @@ export class DeleteTableRequest {
     public folder: string;
 
     /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
-
-    /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
      */
     public loadEncoding: string;
 
     /**
+     * Path to node, which contains tables.
+     */
+    public nodePath: string;
+
+    /**
      * Password for opening an encrypted document.
      */
     public password: string;
-
-    /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
 
     /**
      * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
@@ -11371,9 +11371,9 @@ export class DeleteTableRequest {
     public revisionDateTime: string;
 
     /**
-     * Path to node, which contains tables.
+     * File storage, which have to be used.
      */
-    public nodePath: string;
+    public storage: string;
     
     public constructor(init?: Partial<DeleteTableRequest>) {        
         Object.assign(this, init);
@@ -11385,6 +11385,11 @@ export class DeleteTableRequest {
  */
 export class DeleteTableCellRequest {
     /**
+     * Object's index
+     */
+    public index: number;
+
+    /**
      * The document name.
      */
     public name: string;
@@ -11395,19 +11400,14 @@ export class DeleteTableCellRequest {
     public tableRowPath: string;
 
     /**
-     * Object's index
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
-    public index: number;
+    public destFileName: string;
 
     /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -11420,11 +11420,6 @@ export class DeleteTableCellRequest {
     public password: string;
 
     /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
      * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
      */
     public revisionAuthor: string;
@@ -11433,6 +11428,11 @@ export class DeleteTableCellRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<DeleteTableCellRequest>) {        
         Object.assign(this, init);
@@ -11444,6 +11444,11 @@ export class DeleteTableCellRequest {
  */
 export class DeleteTableRowRequest {
     /**
+     * Object's index
+     */
+    public index: number;
+
+    /**
      * The document name.
      */
     public name: string;
@@ -11454,19 +11459,14 @@ export class DeleteTableRowRequest {
     public tablePath: string;
 
     /**
-     * Object's index
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
-    public index: number;
+    public destFileName: string;
 
     /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -11479,11 +11479,6 @@ export class DeleteTableRowRequest {
     public password: string;
 
     /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
      * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
      */
     public revisionAuthor: string;
@@ -11492,6 +11487,11 @@ export class DeleteTableRowRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<DeleteTableRowRequest>) {        
         Object.assign(this, init);
@@ -11513,14 +11513,14 @@ export class DeleteUnprotectDocumentRequest {
     public protectionRequest: ProtectionRequest;
 
     /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -11533,9 +11533,9 @@ export class DeleteUnprotectDocumentRequest {
     public password: string;
 
     /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     * File storage, which have to be used.
      */
-    public destFileName: string;
+    public storage: string;
     
     public constructor(init?: Partial<DeleteUnprotectDocumentRequest>) {        
         Object.assign(this, init);
@@ -11547,6 +11547,11 @@ export class DeleteUnprotectDocumentRequest {
  */
 export class GetBorderRequest {
     /**
+     * Object's index
+     */
+    public index: number;
+
+    /**
      * The document name.
      */
     public name: string;
@@ -11557,19 +11562,9 @@ export class GetBorderRequest {
     public nodePath: string;
 
     /**
-     * Object's index
-     */
-    public index: number;
-
-    /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -11580,6 +11575,11 @@ export class GetBorderRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<GetBorderRequest>) {        
         Object.assign(this, init);
@@ -11606,11 +11606,6 @@ export class GetBordersRequest {
     public folder: string;
 
     /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
-
-    /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
      */
     public loadEncoding: string;
@@ -11619,6 +11614,11 @@ export class GetBordersRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<GetBordersRequest>) {        
         Object.assign(this, init);
@@ -11630,24 +11630,19 @@ export class GetBordersRequest {
  */
 export class GetCommentRequest {
     /**
-     * The file name.
-     */
-    public name: string;
-
-    /**
      * Comment index
      */
     public commentIndex: number;
 
     /**
+     * The file name.
+     */
+    public name: string;
+
+    /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -11658,6 +11653,11 @@ export class GetCommentRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<GetCommentRequest>) {        
         Object.assign(this, init);
@@ -11679,11 +11679,6 @@ export class GetCommentsRequest {
     public folder: string;
 
     /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
-
-    /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
      */
     public loadEncoding: string;
@@ -11692,6 +11687,11 @@ export class GetCommentsRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<GetCommentsRequest>) {        
         Object.assign(this, init);
@@ -11713,11 +11713,6 @@ export class GetDocumentRequest {
     public folder: string;
 
     /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
-
-    /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
      */
     public loadEncoding: string;
@@ -11726,6 +11721,11 @@ export class GetDocumentRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<GetDocumentRequest>) {        
         Object.assign(this, init);
@@ -11737,24 +11737,19 @@ export class GetDocumentRequest {
  */
 export class GetDocumentBookmarkByNameRequest {
     /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
      * The bookmark name.
      */
     public bookmarkName: string;
 
     /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -11765,6 +11760,11 @@ export class GetDocumentBookmarkByNameRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<GetDocumentBookmarkByNameRequest>) {        
         Object.assign(this, init);
@@ -11786,11 +11786,6 @@ export class GetDocumentBookmarksRequest {
     public folder: string;
 
     /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
-
-    /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
      */
     public loadEncoding: string;
@@ -11799,6 +11794,11 @@ export class GetDocumentBookmarksRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<GetDocumentBookmarksRequest>) {        
         Object.assign(this, init);
@@ -11810,14 +11810,14 @@ export class GetDocumentBookmarksRequest {
  */
 export class GetDocumentDrawingObjectByIndexRequest {
     /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
      * Object's index
      */
     public index: number;
+
+    /**
+     * The document name.
+     */
+    public name: string;
 
     /**
      * Original document folder.
@@ -11825,14 +11825,14 @@ export class GetDocumentDrawingObjectByIndexRequest {
     public folder: string;
 
     /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
-
-    /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
      */
     public loadEncoding: string;
+
+    /**
+     * Path to node, which contains collection of drawing objects.
+     */
+    public nodePath: string;
 
     /**
      * Password for opening an encrypted document.
@@ -11840,9 +11840,9 @@ export class GetDocumentDrawingObjectByIndexRequest {
     public password: string;
 
     /**
-     * Path to node, which contains collection of drawing objects.
+     * File storage, which have to be used.
      */
-    public nodePath: string;
+    public storage: string;
     
     public constructor(init?: Partial<GetDocumentDrawingObjectByIndexRequest>) {        
         Object.assign(this, init);
@@ -11854,14 +11854,14 @@ export class GetDocumentDrawingObjectByIndexRequest {
  */
 export class GetDocumentDrawingObjectImageDataRequest {
     /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
      * Object's index
      */
     public index: number;
+
+    /**
+     * The document name.
+     */
+    public name: string;
 
     /**
      * Original document folder.
@@ -11869,14 +11869,14 @@ export class GetDocumentDrawingObjectImageDataRequest {
     public folder: string;
 
     /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
-
-    /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
      */
     public loadEncoding: string;
+
+    /**
+     * Path to node, which contains collection of drawing objects.
+     */
+    public nodePath: string;
 
     /**
      * Password for opening an encrypted document.
@@ -11884,9 +11884,9 @@ export class GetDocumentDrawingObjectImageDataRequest {
     public password: string;
 
     /**
-     * Path to node, which contains collection of drawing objects.
+     * File storage, which have to be used.
      */
-    public nodePath: string;
+    public storage: string;
     
     public constructor(init?: Partial<GetDocumentDrawingObjectImageDataRequest>) {        
         Object.assign(this, init);
@@ -11898,14 +11898,14 @@ export class GetDocumentDrawingObjectImageDataRequest {
  */
 export class GetDocumentDrawingObjectOleDataRequest {
     /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
      * Object's index
      */
     public index: number;
+
+    /**
+     * The document name.
+     */
+    public name: string;
 
     /**
      * Original document folder.
@@ -11913,14 +11913,14 @@ export class GetDocumentDrawingObjectOleDataRequest {
     public folder: string;
 
     /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
-
-    /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
      */
     public loadEncoding: string;
+
+    /**
+     * Path to node, which contains collection of drawing objects.
+     */
+    public nodePath: string;
 
     /**
      * Password for opening an encrypted document.
@@ -11928,9 +11928,9 @@ export class GetDocumentDrawingObjectOleDataRequest {
     public password: string;
 
     /**
-     * Path to node, which contains collection of drawing objects.
+     * File storage, which have to be used.
      */
-    public nodePath: string;
+    public storage: string;
     
     public constructor(init?: Partial<GetDocumentDrawingObjectOleDataRequest>) {        
         Object.assign(this, init);
@@ -11952,14 +11952,14 @@ export class GetDocumentDrawingObjectsRequest {
     public folder: string;
 
     /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
-
-    /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
      */
     public loadEncoding: string;
+
+    /**
+     * Path to node, which contains collection of drawing objects.
+     */
+    public nodePath: string;
 
     /**
      * Password for opening an encrypted document.
@@ -11967,9 +11967,9 @@ export class GetDocumentDrawingObjectsRequest {
     public password: string;
 
     /**
-     * Path to node, which contains collection of drawing objects.
+     * File storage, which have to be used.
      */
-    public nodePath: string;
+    public storage: string;
     
     public constructor(init?: Partial<GetDocumentDrawingObjectsRequest>) {        
         Object.assign(this, init);
@@ -11991,11 +11991,6 @@ export class GetDocumentFieldNamesRequest {
     public folder: string;
 
     /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
-
-    /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
      */
     public loadEncoding: string;
@@ -12004,6 +11999,11 @@ export class GetDocumentFieldNamesRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
 
     /**
      * If true, result includes \"mustache\" field names.
@@ -12020,24 +12020,19 @@ export class GetDocumentFieldNamesRequest {
  */
 export class GetDocumentHyperlinkByIndexRequest {
     /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
      * The hyperlink index.
      */
     public hyperlinkIndex: number;
 
     /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -12048,6 +12043,11 @@ export class GetDocumentHyperlinkByIndexRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<GetDocumentHyperlinkByIndexRequest>) {        
         Object.assign(this, init);
@@ -12069,11 +12069,6 @@ export class GetDocumentHyperlinksRequest {
     public folder: string;
 
     /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
-
-    /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
      */
     public loadEncoding: string;
@@ -12082,6 +12077,11 @@ export class GetDocumentHyperlinksRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<GetDocumentHyperlinksRequest>) {        
         Object.assign(this, init);
@@ -12093,14 +12093,14 @@ export class GetDocumentHyperlinksRequest {
  */
 export class GetDocumentParagraphRequest {
     /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
      * Object's index
      */
     public index: number;
+
+    /**
+     * The document name.
+     */
+    public name: string;
 
     /**
      * Original document folder.
@@ -12108,14 +12108,14 @@ export class GetDocumentParagraphRequest {
     public folder: string;
 
     /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
-
-    /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
      */
     public loadEncoding: string;
+
+    /**
+     * Path to node which contains paragraphs.
+     */
+    public nodePath: string;
 
     /**
      * Password for opening an encrypted document.
@@ -12123,9 +12123,9 @@ export class GetDocumentParagraphRequest {
     public password: string;
 
     /**
-     * Path to node which contains paragraphs.
+     * File storage, which have to be used.
      */
-    public nodePath: string;
+    public storage: string;
     
     public constructor(init?: Partial<GetDocumentParagraphRequest>) {        
         Object.assign(this, init);
@@ -12137,6 +12137,11 @@ export class GetDocumentParagraphRequest {
  */
 export class GetDocumentParagraphRunRequest {
     /**
+     * Object's index
+     */
+    public index: number;
+
+    /**
      * The document name.
      */
     public name: string;
@@ -12147,19 +12152,9 @@ export class GetDocumentParagraphRunRequest {
     public paragraphPath: string;
 
     /**
-     * Object's index
-     */
-    public index: number;
-
-    /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -12170,6 +12165,11 @@ export class GetDocumentParagraphRunRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<GetDocumentParagraphRunRequest>) {        
         Object.assign(this, init);
@@ -12181,6 +12181,11 @@ export class GetDocumentParagraphRunRequest {
  */
 export class GetDocumentParagraphRunFontRequest {
     /**
+     * Object's index
+     */
+    public index: number;
+
+    /**
      * The document name.
      */
     public name: string;
@@ -12191,19 +12196,9 @@ export class GetDocumentParagraphRunFontRequest {
     public paragraphPath: string;
 
     /**
-     * Object's index
-     */
-    public index: number;
-
-    /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -12214,6 +12209,11 @@ export class GetDocumentParagraphRunFontRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<GetDocumentParagraphRunFontRequest>) {        
         Object.assign(this, init);
@@ -12240,11 +12240,6 @@ export class GetDocumentParagraphRunsRequest {
     public folder: string;
 
     /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
-
-    /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
      */
     public loadEncoding: string;
@@ -12253,6 +12248,11 @@ export class GetDocumentParagraphRunsRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<GetDocumentParagraphRunsRequest>) {        
         Object.assign(this, init);
@@ -12274,14 +12274,14 @@ export class GetDocumentParagraphsRequest {
     public folder: string;
 
     /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
-
-    /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
      */
     public loadEncoding: string;
+
+    /**
+     * Path to node which contains paragraphs.
+     */
+    public nodePath: string;
 
     /**
      * Password for opening an encrypted document.
@@ -12289,9 +12289,9 @@ export class GetDocumentParagraphsRequest {
     public password: string;
 
     /**
-     * Path to node which contains paragraphs.
+     * File storage, which have to be used.
      */
-    public nodePath: string;
+    public storage: string;
     
     public constructor(init?: Partial<GetDocumentParagraphsRequest>) {        
         Object.assign(this, init);
@@ -12313,11 +12313,6 @@ export class GetDocumentPropertiesRequest {
     public folder: string;
 
     /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
-
-    /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
      */
     public loadEncoding: string;
@@ -12326,6 +12321,11 @@ export class GetDocumentPropertiesRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<GetDocumentPropertiesRequest>) {        
         Object.assign(this, init);
@@ -12352,11 +12352,6 @@ export class GetDocumentPropertyRequest {
     public folder: string;
 
     /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
-
-    /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
      */
     public loadEncoding: string;
@@ -12365,6 +12360,11 @@ export class GetDocumentPropertyRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<GetDocumentPropertyRequest>) {        
         Object.assign(this, init);
@@ -12386,11 +12386,6 @@ export class GetDocumentProtectionRequest {
     public folder: string;
 
     /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
-
-    /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
      */
     public loadEncoding: string;
@@ -12399,6 +12394,11 @@ export class GetDocumentProtectionRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<GetDocumentProtectionRequest>) {        
         Object.assign(this, init);
@@ -12420,21 +12420,6 @@ export class GetDocumentStatisticsRequest {
     public folder: string;
 
     /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    /**
      * Support including/excluding comments from the WordCount. Default value is \"true\".
      */
     public includeComments: boolean;
@@ -12448,6 +12433,21 @@ export class GetDocumentStatisticsRequest {
      * Support including/excluding shape's text from the WordCount. Default value is \"false\"
      */
     public includeTextInShapes: boolean;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<GetDocumentStatisticsRequest>) {        
         Object.assign(this, init);
@@ -12469,11 +12469,6 @@ export class GetDocumentTextItemsRequest {
     public folder: string;
 
     /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
-
-    /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
      */
     public loadEncoding: string;
@@ -12482,6 +12477,11 @@ export class GetDocumentTextItemsRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<GetDocumentTextItemsRequest>) {        
         Object.assign(this, init);
@@ -12493,14 +12493,14 @@ export class GetDocumentTextItemsRequest {
  */
 export class GetDocumentWithFormatRequest {
     /**
-     * The file name.
-     */
-    public name: string;
-
-    /**
      * The destination format.
      */
     public format: string;
+
+    /**
+     * The file name.
+     */
+    public name: string;
 
     /**
      * Original document folder.
@@ -12508,9 +12508,9 @@ export class GetDocumentWithFormatRequest {
     public folder: string;
 
     /**
-     * File storage, which have to be used.
+     * Folder in filestorage with custom fonts.
      */
-    public storage: string;
+    public fontsLocation: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -12518,19 +12518,19 @@ export class GetDocumentWithFormatRequest {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    /**
      * Path to save result
      */
     public outPath: string;
 
     /**
-     * Folder in filestorage with custom fonts.
+     * Password for opening an encrypted document.
      */
-    public fontsLocation: string;
+    public password: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<GetDocumentWithFormatRequest>) {        
         Object.assign(this, init);
@@ -12542,14 +12542,14 @@ export class GetDocumentWithFormatRequest {
  */
 export class GetFieldRequest {
     /**
-     * The file name.
-     */
-    public name: string;
-
-    /**
      * Object's index
      */
     public index: number;
+
+    /**
+     * The file name.
+     */
+    public name: string;
 
     /**
      * Original document folder.
@@ -12557,14 +12557,14 @@ export class GetFieldRequest {
     public folder: string;
 
     /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
-
-    /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
      */
     public loadEncoding: string;
+
+    /**
+     * Path to node, which contains collection of fields.
+     */
+    public nodePath: string;
 
     /**
      * Password for opening an encrypted document.
@@ -12572,9 +12572,9 @@ export class GetFieldRequest {
     public password: string;
 
     /**
-     * Path to node, which contains collection of fields.
+     * File storage, which have to be used.
      */
-    public nodePath: string;
+    public storage: string;
     
     public constructor(init?: Partial<GetFieldRequest>) {        
         Object.assign(this, init);
@@ -12596,14 +12596,14 @@ export class GetFieldsRequest {
     public folder: string;
 
     /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
-
-    /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
      */
     public loadEncoding: string;
+
+    /**
+     * Path to node, which contains collection of fields.
+     */
+    public nodePath: string;
 
     /**
      * Password for opening an encrypted document.
@@ -12611,9 +12611,9 @@ export class GetFieldsRequest {
     public password: string;
 
     /**
-     * Path to node, which contains collection of fields.
+     * File storage, which have to be used.
      */
-    public nodePath: string;
+    public storage: string;
     
     public constructor(init?: Partial<GetFieldsRequest>) {        
         Object.assign(this, init);
@@ -12625,14 +12625,14 @@ export class GetFieldsRequest {
  */
 export class GetFootnoteRequest {
     /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
      * Object's index
      */
     public index: number;
+
+    /**
+     * The document name.
+     */
+    public name: string;
 
     /**
      * Original document folder.
@@ -12640,14 +12640,14 @@ export class GetFootnoteRequest {
     public folder: string;
 
     /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
-
-    /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
      */
     public loadEncoding: string;
+
+    /**
+     * Path to node, which contains collection of footnotes.
+     */
+    public nodePath: string;
 
     /**
      * Password for opening an encrypted document.
@@ -12655,9 +12655,9 @@ export class GetFootnoteRequest {
     public password: string;
 
     /**
-     * Path to node, which contains collection of footnotes.
+     * File storage, which have to be used.
      */
-    public nodePath: string;
+    public storage: string;
     
     public constructor(init?: Partial<GetFootnoteRequest>) {        
         Object.assign(this, init);
@@ -12679,14 +12679,14 @@ export class GetFootnotesRequest {
     public folder: string;
 
     /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
-
-    /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
      */
     public loadEncoding: string;
+
+    /**
+     * Path to node, which contains collection of footnotes.
+     */
+    public nodePath: string;
 
     /**
      * Password for opening an encrypted document.
@@ -12694,9 +12694,9 @@ export class GetFootnotesRequest {
     public password: string;
 
     /**
-     * Path to node, which contains collection of footnotes.
+     * File storage, which have to be used.
      */
-    public nodePath: string;
+    public storage: string;
     
     public constructor(init?: Partial<GetFootnotesRequest>) {        
         Object.assign(this, init);
@@ -12708,14 +12708,14 @@ export class GetFootnotesRequest {
  */
 export class GetFormFieldRequest {
     /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
      * Object's index
      */
     public index: number;
+
+    /**
+     * The document name.
+     */
+    public name: string;
 
     /**
      * Original document folder.
@@ -12723,14 +12723,14 @@ export class GetFormFieldRequest {
     public folder: string;
 
     /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
-
-    /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
      */
     public loadEncoding: string;
+
+    /**
+     * Path to node that contains collection of formfields.
+     */
+    public nodePath: string;
 
     /**
      * Password for opening an encrypted document.
@@ -12738,9 +12738,9 @@ export class GetFormFieldRequest {
     public password: string;
 
     /**
-     * Path to node that contains collection of formfields.
+     * File storage, which have to be used.
      */
-    public nodePath: string;
+    public storage: string;
     
     public constructor(init?: Partial<GetFormFieldRequest>) {        
         Object.assign(this, init);
@@ -12762,14 +12762,14 @@ export class GetFormFieldsRequest {
     public folder: string;
 
     /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
-
-    /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
      */
     public loadEncoding: string;
+
+    /**
+     * Path to node containing collection of form fields.
+     */
+    public nodePath: string;
 
     /**
      * Password for opening an encrypted document.
@@ -12777,9 +12777,9 @@ export class GetFormFieldsRequest {
     public password: string;
 
     /**
-     * Path to node containing collection of form fields.
+     * File storage, which have to be used.
      */
-    public nodePath: string;
+    public storage: string;
     
     public constructor(init?: Partial<GetFormFieldsRequest>) {        
         Object.assign(this, init);
@@ -12791,24 +12791,24 @@ export class GetFormFieldsRequest {
  */
 export class GetHeaderFooterRequest {
     /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
      * Header/footer index.
      */
     public headerFooterIndex: number;
 
     /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * List of types of headers and footers.
+     */
+    public filterByType: string;
+
+    /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -12821,9 +12821,9 @@ export class GetHeaderFooterRequest {
     public password: string;
 
     /**
-     * List of types of headers and footers.
+     * File storage, which have to be used.
      */
-    public filterByType: string;
+    public storage: string;
     
     public constructor(init?: Partial<GetHeaderFooterRequest>) {        
         Object.assign(this, init);
@@ -12835,14 +12835,14 @@ export class GetHeaderFooterRequest {
  */
 export class GetHeaderFooterOfSectionRequest {
     /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
      * Header/footer index.
      */
     public headerFooterIndex: number;
+
+    /**
+     * The document name.
+     */
+    public name: string;
 
     /**
      * Section index.
@@ -12850,14 +12850,14 @@ export class GetHeaderFooterOfSectionRequest {
     public sectionIndex: number;
 
     /**
+     * List of types of headers and footers.
+     */
+    public filterByType: string;
+
+    /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -12870,9 +12870,9 @@ export class GetHeaderFooterOfSectionRequest {
     public password: string;
 
     /**
-     * List of types of headers and footers.
+     * File storage, which have to be used.
      */
-    public filterByType: string;
+    public storage: string;
     
     public constructor(init?: Partial<GetHeaderFooterOfSectionRequest>) {        
         Object.assign(this, init);
@@ -12889,14 +12889,14 @@ export class GetHeaderFootersRequest {
     public name: string;
 
     /**
+     * List of types of headers and footers.
+     */
+    public filterByType: string;
+
+    /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -12914,9 +12914,9 @@ export class GetHeaderFootersRequest {
     public sectionPath: string;
 
     /**
-     * List of types of headers and footers.
+     * File storage, which have to be used.
      */
-    public filterByType: string;
+    public storage: string;
     
     public constructor(init?: Partial<GetHeaderFootersRequest>) {        
         Object.assign(this, init);
@@ -12928,14 +12928,14 @@ export class GetHeaderFootersRequest {
  */
 export class GetOfficeMathObjectRequest {
     /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
      * Object's index
      */
     public index: number;
+
+    /**
+     * The document name.
+     */
+    public name: string;
 
     /**
      * Original document folder.
@@ -12943,14 +12943,14 @@ export class GetOfficeMathObjectRequest {
     public folder: string;
 
     /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
-
-    /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
      */
     public loadEncoding: string;
+
+    /**
+     * Path to node, which contains collection of OfficeMath objects.
+     */
+    public nodePath: string;
 
     /**
      * Password for opening an encrypted document.
@@ -12958,9 +12958,9 @@ export class GetOfficeMathObjectRequest {
     public password: string;
 
     /**
-     * Path to node, which contains collection of OfficeMath objects.
+     * File storage, which have to be used.
      */
-    public nodePath: string;
+    public storage: string;
     
     public constructor(init?: Partial<GetOfficeMathObjectRequest>) {        
         Object.assign(this, init);
@@ -12982,14 +12982,14 @@ export class GetOfficeMathObjectsRequest {
     public folder: string;
 
     /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
-
-    /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
      */
     public loadEncoding: string;
+
+    /**
+     * Path to node, which contains collection of OfficeMath objects.
+     */
+    public nodePath: string;
 
     /**
      * Password for opening an encrypted document.
@@ -12997,9 +12997,9 @@ export class GetOfficeMathObjectsRequest {
     public password: string;
 
     /**
-     * Path to node, which contains collection of OfficeMath objects.
+     * File storage, which have to be used.
      */
-    public nodePath: string;
+    public storage: string;
     
     public constructor(init?: Partial<GetOfficeMathObjectsRequest>) {        
         Object.assign(this, init);
@@ -13026,11 +13026,6 @@ export class GetSectionRequest {
     public folder: string;
 
     /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
-
-    /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
      */
     public loadEncoding: string;
@@ -13039,6 +13034,11 @@ export class GetSectionRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<GetSectionRequest>) {        
         Object.assign(this, init);
@@ -13065,11 +13065,6 @@ export class GetSectionPageSetupRequest {
     public folder: string;
 
     /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
-
-    /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
      */
     public loadEncoding: string;
@@ -13078,6 +13073,11 @@ export class GetSectionPageSetupRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<GetSectionPageSetupRequest>) {        
         Object.assign(this, init);
@@ -13099,11 +13099,6 @@ export class GetSectionsRequest {
     public folder: string;
 
     /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
-
-    /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
      */
     public loadEncoding: string;
@@ -13112,6 +13107,11 @@ export class GetSectionsRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<GetSectionsRequest>) {        
         Object.assign(this, init);
@@ -13123,14 +13123,14 @@ export class GetSectionsRequest {
  */
 export class GetTableRequest {
     /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
      * Object's index
      */
     public index: number;
+
+    /**
+     * The document name.
+     */
+    public name: string;
 
     /**
      * Original document folder.
@@ -13138,14 +13138,14 @@ export class GetTableRequest {
     public folder: string;
 
     /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
-
-    /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
      */
     public loadEncoding: string;
+
+    /**
+     * Path to node, which contains tables.
+     */
+    public nodePath: string;
 
     /**
      * Password for opening an encrypted document.
@@ -13153,9 +13153,9 @@ export class GetTableRequest {
     public password: string;
 
     /**
-     * Path to node, which contains tables.
+     * File storage, which have to be used.
      */
-    public nodePath: string;
+    public storage: string;
     
     public constructor(init?: Partial<GetTableRequest>) {        
         Object.assign(this, init);
@@ -13167,6 +13167,11 @@ export class GetTableRequest {
  */
 export class GetTableCellRequest {
     /**
+     * Object's index
+     */
+    public index: number;
+
+    /**
      * The document name.
      */
     public name: string;
@@ -13177,19 +13182,9 @@ export class GetTableCellRequest {
     public tableRowPath: string;
 
     /**
-     * Object's index
-     */
-    public index: number;
-
-    /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -13200,6 +13195,11 @@ export class GetTableCellRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<GetTableCellRequest>) {        
         Object.assign(this, init);
@@ -13211,6 +13211,11 @@ export class GetTableCellRequest {
  */
 export class GetTableCellFormatRequest {
     /**
+     * Object's index
+     */
+    public index: number;
+
+    /**
      * The document name.
      */
     public name: string;
@@ -13221,19 +13226,9 @@ export class GetTableCellFormatRequest {
     public tableRowPath: string;
 
     /**
-     * Object's index
-     */
-    public index: number;
-
-    /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -13244,6 +13239,11 @@ export class GetTableCellFormatRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<GetTableCellFormatRequest>) {        
         Object.assign(this, init);
@@ -13255,14 +13255,14 @@ export class GetTableCellFormatRequest {
  */
 export class GetTablePropertiesRequest {
     /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
      * Object's index
      */
     public index: number;
+
+    /**
+     * The document name.
+     */
+    public name: string;
 
     /**
      * Original document folder.
@@ -13270,14 +13270,14 @@ export class GetTablePropertiesRequest {
     public folder: string;
 
     /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
-
-    /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
      */
     public loadEncoding: string;
+
+    /**
+     * Path to node, which contains tables.
+     */
+    public nodePath: string;
 
     /**
      * Password for opening an encrypted document.
@@ -13285,9 +13285,9 @@ export class GetTablePropertiesRequest {
     public password: string;
 
     /**
-     * Path to node, which contains tables.
+     * File storage, which have to be used.
      */
-    public nodePath: string;
+    public storage: string;
     
     public constructor(init?: Partial<GetTablePropertiesRequest>) {        
         Object.assign(this, init);
@@ -13299,6 +13299,11 @@ export class GetTablePropertiesRequest {
  */
 export class GetTableRowRequest {
     /**
+     * Object's index
+     */
+    public index: number;
+
+    /**
      * The document name.
      */
     public name: string;
@@ -13309,19 +13314,9 @@ export class GetTableRowRequest {
     public tablePath: string;
 
     /**
-     * Object's index
-     */
-    public index: number;
-
-    /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -13332,6 +13327,11 @@ export class GetTableRowRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<GetTableRowRequest>) {        
         Object.assign(this, init);
@@ -13343,6 +13343,11 @@ export class GetTableRowRequest {
  */
 export class GetTableRowFormatRequest {
     /**
+     * Object's index
+     */
+    public index: number;
+
+    /**
      * The document name.
      */
     public name: string;
@@ -13353,19 +13358,9 @@ export class GetTableRowFormatRequest {
     public tablePath: string;
 
     /**
-     * Object's index
-     */
-    public index: number;
-
-    /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -13376,6 +13371,11 @@ export class GetTableRowFormatRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<GetTableRowFormatRequest>) {        
         Object.assign(this, init);
@@ -13397,14 +13397,14 @@ export class GetTablesRequest {
     public folder: string;
 
     /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
-
-    /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
      */
     public loadEncoding: string;
+
+    /**
+     * Path to node, which contains tables.
+     */
+    public nodePath: string;
 
     /**
      * Password for opening an encrypted document.
@@ -13412,9 +13412,9 @@ export class GetTablesRequest {
     public password: string;
 
     /**
-     * Path to node, which contains tables.
+     * File storage, which have to be used.
      */
-    public nodePath: string;
+    public storage: string;
     
     public constructor(init?: Partial<GetTablesRequest>) {        
         Object.assign(this, init);
@@ -13431,14 +13431,14 @@ export class InsertTableRequest {
     public name: string;
 
     /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -13446,14 +13446,14 @@ export class InsertTableRequest {
     public loadEncoding: string;
 
     /**
+     * Path to node, which contains tables.
+     */
+    public nodePath: string;
+
+    /**
      * Password for opening an encrypted document.
      */
     public password: string;
-
-    /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
 
     /**
      * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
@@ -13466,14 +13466,14 @@ export class InsertTableRequest {
     public revisionDateTime: string;
 
     /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
+
+    /**
      * Table parameters/
      */
     public table: TableInsert;
-
-    /**
-     * Path to node, which contains tables.
-     */
-    public nodePath: string;
     
     public constructor(init?: Partial<InsertTableRequest>) {        
         Object.assign(this, init);
@@ -13495,14 +13495,19 @@ export class InsertTableCellRequest {
     public tableRowPath: string;
 
     /**
+     * Table cell parameters/
+     */
+    public cell: TableCellInsert;
+
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -13515,11 +13520,6 @@ export class InsertTableCellRequest {
     public password: string;
 
     /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
      * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
      */
     public revisionAuthor: string;
@@ -13530,9 +13530,9 @@ export class InsertTableCellRequest {
     public revisionDateTime: string;
 
     /**
-     * Table cell parameters/
+     * File storage, which have to be used.
      */
-    public cell: TableCellInsert;
+    public storage: string;
     
     public constructor(init?: Partial<InsertTableCellRequest>) {        
         Object.assign(this, init);
@@ -13554,14 +13554,14 @@ export class InsertTableRowRequest {
     public tablePath: string;
 
     /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -13572,11 +13572,6 @@ export class InsertTableRowRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-    /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
 
     /**
      * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
@@ -13592,6 +13587,11 @@ export class InsertTableRowRequest {
      * Table row parameters/
      */
     public row: TableRowInsert;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<InsertTableRowRequest>) {        
         Object.assign(this, init);
@@ -13603,24 +13603,24 @@ export class InsertTableRowRequest {
  */
 export class PostAppendDocumentRequest {
     /**
-     * Original document name.
-     */
-    public name: string;
-
-    /**
      * with a list of documents to append.            
      */
     public documentList: DocumentEntryList;
 
     /**
+     * Original document name.
+     */
+    public name: string;
+
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -13633,11 +13633,6 @@ export class PostAppendDocumentRequest {
     public password: string;
 
     /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
      * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
      */
     public revisionAuthor: string;
@@ -13646,6 +13641,11 @@ export class PostAppendDocumentRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<PostAppendDocumentRequest>) {        
         Object.assign(this, init);
@@ -13667,14 +13667,14 @@ export class PostChangeDocumentProtectionRequest {
     public protectionRequest: ProtectionRequest;
 
     /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -13687,9 +13687,9 @@ export class PostChangeDocumentProtectionRequest {
     public password: string;
 
     /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     * File storage, which have to be used.
      */
-    public destFileName: string;
+    public storage: string;
     
     public constructor(init?: Partial<PostChangeDocumentProtectionRequest>) {        
         Object.assign(this, init);
@@ -13701,9 +13701,9 @@ export class PostChangeDocumentProtectionRequest {
  */
 export class PostCommentRequest {
     /**
-     * The document name.
+     * Comment data.
      */
-    public name: string;
+    public comment: Comment;
 
     /**
      * Comment index
@@ -13711,19 +13711,19 @@ export class PostCommentRequest {
     public commentIndex: number;
 
     /**
-     * Comment data.
+     * The document name.
      */
-    public comment: Comment;
+    public name: string;
+
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
 
     /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -13736,11 +13736,6 @@ export class PostCommentRequest {
     public password: string;
 
     /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
      * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
      */
     public revisionAuthor: string;
@@ -13749,6 +13744,11 @@ export class PostCommentRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<PostCommentRequest>) {        
         Object.assign(this, init);
@@ -13760,24 +13760,24 @@ export class PostCommentRequest {
  */
 export class PostCompareDocumentRequest {
     /**
-     * Original document name.
-     */
-    public name: string;
-
-    /**
      * with a document to compare.            
      */
     public compareData: CompareData;
 
     /**
+     * Original document name.
+     */
+    public name: string;
+
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -13790,9 +13790,9 @@ export class PostCompareDocumentRequest {
     public password: string;
 
     /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     * File storage, which have to be used.
      */
-    public destFileName: string;
+    public storage: string;
     
     public constructor(init?: Partial<PostCompareDocumentRequest>) {        
         Object.assign(this, init);
@@ -13814,9 +13814,19 @@ export class PostDocumentExecuteMailMergeRequest {
     public withRegions: boolean;
 
     /**
+     * Clean up options.
+     */
+    public cleanup: string;
+
+    /**
      * Mail merge data
      */
     public data: string;
+
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved with autogenerated name.
+     */
+    public destFileName: string;
 
     /**
      * Original document folder.
@@ -13824,19 +13834,9 @@ export class PostDocumentExecuteMailMergeRequest {
     public folder: string;
 
     /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
-
-    /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
      */
     public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
 
     /**
      * Mail merge data.
@@ -13844,19 +13844,19 @@ export class PostDocumentExecuteMailMergeRequest {
     public mailMergeDataFile: string;
 
     /**
-     * Clean up options.
+     * Password for opening an encrypted document.
      */
-    public cleanup: string;
+    public password: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
 
     /**
      * Gets or sets a value indicating whether paragraph with TableStart or              TableEnd field should be fully included into mail merge region or particular range between TableStart and TableEnd fields.              The default value is true.
      */
     public useWholeParagraphAsRegion: boolean;
-
-    /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved with autogenerated name.
-     */
-    public destFileName: string;
     
     public constructor(init?: Partial<PostDocumentExecuteMailMergeRequest>) {        
         Object.assign(this, init);
@@ -13868,19 +13868,9 @@ export class PostDocumentExecuteMailMergeRequest {
  */
 export class PostDocumentParagraphRunFontRequest {
     /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
      * Font dto object
      */
     public fontDto: Font;
-
-    /**
-     * Path to parent paragraph.
-     */
-    public paragraphPath: string;
 
     /**
      * Object's index
@@ -13888,14 +13878,24 @@ export class PostDocumentParagraphRunFontRequest {
     public index: number;
 
     /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * Path to parent paragraph.
+     */
+    public paragraphPath: string;
+
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -13908,11 +13908,6 @@ export class PostDocumentParagraphRunFontRequest {
     public password: string;
 
     /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
      * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
      */
     public revisionAuthor: string;
@@ -13921,6 +13916,11 @@ export class PostDocumentParagraphRunFontRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<PostDocumentParagraphRunFontRequest>) {        
         Object.assign(this, init);
@@ -13942,14 +13942,19 @@ export class PostDocumentSaveAsRequest {
     public saveOptionsData: SaveOptionsData;
 
     /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
      * Original document folder.
      */
     public folder: string;
 
     /**
-     * File storage, which have to be used.
+     * Folder in filestorage with custom fonts.
      */
-    public storage: string;
+    public fontsLocation: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -13962,14 +13967,9 @@ export class PostDocumentSaveAsRequest {
     public password: string;
 
     /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     * File storage, which have to be used.
      */
-    public destFileName: string;
-
-    /**
-     * Folder in filestorage with custom fonts.
-     */
-    public fontsLocation: string;
+    public storage: string;
     
     public constructor(init?: Partial<PostDocumentSaveAsRequest>) {        
         Object.assign(this, init);
@@ -13980,11 +13980,6 @@ export class PostDocumentSaveAsRequest {
  * Request model for PostDrawingObject operation.
  */
 export class PostDrawingObjectRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
     /**
      * Drawing object parameters
      */
@@ -14001,14 +13996,19 @@ export class PostDrawingObjectRequest {
     public index: number;
 
     /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -14016,14 +14016,14 @@ export class PostDrawingObjectRequest {
     public loadEncoding: string;
 
     /**
+     * Path to node, which contains collection of drawing objects.
+     */
+    public nodePath: string;
+
+    /**
      * Password for opening an encrypted document.
      */
     public password: string;
-
-    /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
 
     /**
      * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
@@ -14036,9 +14036,9 @@ export class PostDrawingObjectRequest {
     public revisionDateTime: string;
 
     /**
-     * Path to node, which contains collection of drawing objects.
+     * File storage, which have to be used.
      */
-    public nodePath: string;
+    public storage: string;
     
     public constructor(init?: Partial<PostDrawingObjectRequest>) {        
         Object.assign(this, init);
@@ -14050,24 +14050,29 @@ export class PostDrawingObjectRequest {
  */
 export class PostExecuteTemplateRequest {
     /**
-     * The template document name.
-     */
-    public name: string;
-
-    /**
      * Mail merge data
      */
     public data: string;
 
     /**
+     * The template document name.
+     */
+    public name: string;
+
+    /**
+     * Clean up options.
+     */
+    public cleanup: string;
+
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved with autogenerated name.
+     */
+    public destFileName: string;
+
+    /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -14080,9 +14085,9 @@ export class PostExecuteTemplateRequest {
     public password: string;
 
     /**
-     * Clean up options.
+     * File storage, which have to be used.
      */
-    public cleanup: string;
+    public storage: string;
 
     /**
      * Gets or sets a value indicating whether paragraph with TableStart or  TableEnd field should be fully included into mail merge region or particular range between TableStart and TableEnd fields.   The default value is true.
@@ -14093,11 +14098,6 @@ export class PostExecuteTemplateRequest {
      * Merge with regions or not. True by default
      */
     public withRegions: boolean;
-
-    /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved with autogenerated name.
-     */
-    public destFileName: string;
     
     public constructor(init?: Partial<PostExecuteTemplateRequest>) {        
         Object.assign(this, init);
@@ -14109,11 +14109,6 @@ export class PostExecuteTemplateRequest {
  */
 export class PostFieldRequest {
     /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
      * Field data.
      */
     public field: Field;
@@ -14124,14 +14119,19 @@ export class PostFieldRequest {
     public index: number;
 
     /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -14139,14 +14139,14 @@ export class PostFieldRequest {
     public loadEncoding: string;
 
     /**
+     * Path to node, which contains collection of fields.
+     */
+    public nodePath: string;
+
+    /**
      * Password for opening an encrypted document.
      */
     public password: string;
-
-    /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
 
     /**
      * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
@@ -14159,9 +14159,9 @@ export class PostFieldRequest {
     public revisionDateTime: string;
 
     /**
-     * Path to node, which contains collection of fields.
+     * File storage, which have to be used.
      */
-    public nodePath: string;
+    public storage: string;
     
     public constructor(init?: Partial<PostFieldRequest>) {        
         Object.assign(this, init);
@@ -14173,11 +14173,6 @@ export class PostFieldRequest {
  */
 export class PostFootnoteRequest {
     /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
      * Footnote data.
      */
     public footnoteDto: Footnote;
@@ -14188,14 +14183,19 @@ export class PostFootnoteRequest {
     public index: number;
 
     /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -14203,14 +14203,14 @@ export class PostFootnoteRequest {
     public loadEncoding: string;
 
     /**
+     * Path to node, which contains collection of footnotes.
+     */
+    public nodePath: string;
+
+    /**
      * Password for opening an encrypted document.
      */
     public password: string;
-
-    /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
 
     /**
      * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
@@ -14223,9 +14223,9 @@ export class PostFootnoteRequest {
     public revisionDateTime: string;
 
     /**
-     * Path to node, which contains collection of footnotes.
+     * File storage, which have to be used.
      */
-    public nodePath: string;
+    public storage: string;
     
     public constructor(init?: Partial<PostFootnoteRequest>) {        
         Object.assign(this, init);
@@ -14237,11 +14237,6 @@ export class PostFootnoteRequest {
  */
 export class PostFormFieldRequest {
     /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
      * From field data.
      */
     public formField: FormField;
@@ -14252,14 +14247,19 @@ export class PostFormFieldRequest {
     public index: number;
 
     /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -14267,14 +14267,14 @@ export class PostFormFieldRequest {
     public loadEncoding: string;
 
     /**
+     * Path to node that contains collection of formfields.
+     */
+    public nodePath: string;
+
+    /**
      * Password for opening an encrypted document.
      */
     public password: string;
-
-    /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
 
     /**
      * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
@@ -14287,9 +14287,9 @@ export class PostFormFieldRequest {
     public revisionDateTime: string;
 
     /**
-     * Path to node that contains collection of formfields.
+     * File storage, which have to be used.
      */
-    public nodePath: string;
+    public storage: string;
     
     public constructor(init?: Partial<PostFormFieldRequest>) {        
         Object.assign(this, init);
@@ -14306,9 +14306,9 @@ export class PostInsertDocumentWatermarkImageRequest {
     public name: string;
 
     /**
-     * File with image
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
-    public imageFile: Buffer;
+    public destFileName: string;
 
     /**
      * Original document folder.
@@ -14316,9 +14316,14 @@ export class PostInsertDocumentWatermarkImageRequest {
     public folder: string;
 
     /**
-     * File storage, which have to be used.
+     * The image file server full name. If the name is empty the image is expected in request content.
      */
-    public storage: string;
+    public image: string;
+
+    /**
+     * File with image
+     */
+    public imageFile: Buffer;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -14329,11 +14334,6 @@ export class PostInsertDocumentWatermarkImageRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-    /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
 
     /**
      * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
@@ -14351,9 +14351,9 @@ export class PostInsertDocumentWatermarkImageRequest {
     public rotationAngle: number;
 
     /**
-     * The image file server full name. If the name is empty the image is expected in request content.
+     * File storage, which have to be used.
      */
-    public image: string;
+    public storage: string;
     
     public constructor(init?: Partial<PostInsertDocumentWatermarkImageRequest>) {        
         Object.assign(this, init);
@@ -14375,14 +14375,14 @@ export class PostInsertDocumentWatermarkTextRequest {
     public watermarkText: WatermarkText;
 
     /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -14395,11 +14395,6 @@ export class PostInsertDocumentWatermarkTextRequest {
     public password: string;
 
     /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
      * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
      */
     public revisionAuthor: string;
@@ -14408,6 +14403,11 @@ export class PostInsertDocumentWatermarkTextRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<PostInsertDocumentWatermarkTextRequest>) {        
         Object.assign(this, init);
@@ -14429,14 +14429,14 @@ export class PostInsertPageNumbersRequest {
     public pageNumber: PageNumber;
 
     /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -14449,11 +14449,6 @@ export class PostInsertPageNumbersRequest {
     public password: string;
 
     /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
      * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
      */
     public revisionAuthor: string;
@@ -14462,6 +14457,11 @@ export class PostInsertPageNumbersRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<PostInsertPageNumbersRequest>) {        
         Object.assign(this, init);
@@ -14502,14 +14502,14 @@ export class PostReplaceTextRequest {
     public replaceText: ReplaceTextRequest;
 
     /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -14522,11 +14522,6 @@ export class PostReplaceTextRequest {
     public password: string;
 
     /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
      * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
      */
     public revisionAuthor: string;
@@ -14535,6 +14530,11 @@ export class PostReplaceTextRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<PostReplaceTextRequest>) {        
         Object.assign(this, init);
@@ -14546,14 +14546,14 @@ export class PostReplaceTextRequest {
  */
 export class PostRunRequest {
     /**
+     * Object's index
+     */
+    public index: number;
+
+    /**
      * The document name.
      */
     public name: string;
-
-    /**
-     * Run data.
-     */
-    public run: Run;
 
     /**
      * Path to parent paragraph.
@@ -14561,19 +14561,19 @@ export class PostRunRequest {
     public paragraphPath: string;
 
     /**
-     * Object's index
+     * Run data.
      */
-    public index: number;
+    public run: Run;
+
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
 
     /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -14586,11 +14586,6 @@ export class PostRunRequest {
     public password: string;
 
     /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
      * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
      */
     public revisionAuthor: string;
@@ -14599,6 +14594,11 @@ export class PostRunRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<PostRunRequest>) {        
         Object.assign(this, init);
@@ -14615,29 +14615,19 @@ export class PostSplitDocumentRequest {
     public name: string;
 
     /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
      * Original document folder.
      */
     public folder: string;
 
     /**
-     * File storage, which have to be used.
+     * Folder in filestorage with custom fonts.
      */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
+    public fontsLocation: string;
 
     /**
      * Format to split.
@@ -14650,6 +14640,21 @@ export class PostSplitDocumentRequest {
     public from: number;
 
     /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
+
+    /**
      * End page.
      */
     public to: number;
@@ -14658,11 +14663,6 @@ export class PostSplitDocumentRequest {
      * ZipOutput or not.
      */
     public zipOutput: boolean;
-
-    /**
-     * Folder in filestorage with custom fonts.
-     */
-    public fontsLocation: string;
     
     public constructor(init?: Partial<PostSplitDocumentRequest>) {        
         Object.assign(this, init);
@@ -14674,11 +14674,6 @@ export class PostSplitDocumentRequest {
  */
 export class PostUpdateDocumentBookmarkRequest {
     /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
      * with new bookmark data.            
      */
     public bookmarkData: BookmarkData;
@@ -14689,14 +14684,19 @@ export class PostUpdateDocumentBookmarkRequest {
     public bookmarkName: string;
 
     /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -14709,11 +14709,6 @@ export class PostUpdateDocumentBookmarkRequest {
     public password: string;
 
     /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
      * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
      */
     public revisionAuthor: string;
@@ -14722,6 +14717,11 @@ export class PostUpdateDocumentBookmarkRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<PostUpdateDocumentBookmarkRequest>) {        
         Object.assign(this, init);
@@ -14738,14 +14738,14 @@ export class PostUpdateDocumentFieldsRequest {
     public name: string;
 
     /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -14758,9 +14758,9 @@ export class PostUpdateDocumentFieldsRequest {
     public password: string;
 
     /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     * File storage, which have to be used.
      */
-    public destFileName: string;
+    public storage: string;
     
     public constructor(init?: Partial<PostUpdateDocumentFieldsRequest>) {        
         Object.assign(this, init);
@@ -14772,24 +14772,24 @@ export class PostUpdateDocumentFieldsRequest {
  */
 export class PutCommentRequest {
     /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
      * Comment data.
      */
     public comment: Comment;
 
     /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -14802,11 +14802,6 @@ export class PutCommentRequest {
     public password: string;
 
     /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
      * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
      */
     public revisionAuthor: string;
@@ -14815,6 +14810,11 @@ export class PutCommentRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<PutCommentRequest>) {        
         Object.assign(this, init);
@@ -14836,9 +14836,9 @@ export class PutConvertDocumentRequest {
     public format: string;
 
     /**
-     * File storage, which have to be used.
+     * Folder in filestorage with custom fonts.
      */
-    public storage: string;
+    public fontsLocation: string;
 
     /**
      * Path for saving operation result to the local storage.
@@ -14846,9 +14846,9 @@ export class PutConvertDocumentRequest {
     public outPath: string;
 
     /**
-     * Folder in filestorage with custom fonts.
+     * File storage, which have to be used.
      */
-    public fontsLocation: string;
+    public storage: string;
     
     public constructor(init?: Partial<PutConvertDocumentRequest>) {        
         Object.assign(this, init);
@@ -14860,11 +14860,6 @@ export class PutConvertDocumentRequest {
  */
 export class PutCreateDocumentRequest {
     /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
-
-    /**
      * The file name.
      */
     public fileName: string;
@@ -14873,6 +14868,11 @@ export class PutCreateDocumentRequest {
      * The document folder.
      */
     public folder: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<PutCreateDocumentRequest>) {        
         Object.assign(this, init);
@@ -14913,44 +14913,29 @@ export class PutDocumentSaveAsTiffRequest {
     public saveOptions: TiffSaveOptionsData;
 
     /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    /**
      * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
 
     /**
-     * The resulting file name.
+     * Optional, default is Simplified.
      */
-    public resultFile: string;
+    public dmlEffectsRenderingMode: string;
 
     /**
-     * Use antialiasing flag.
+     * Optional, default is Fallback.
      */
-    public useAntiAliasing: boolean;
+    public dmlRenderingMode: string;
 
     /**
-     * Use high quality flag.
+     * Original document folder.
      */
-    public useHighQualityRendering: boolean;
+    public folder: string;
+
+    /**
+     * Folder in filestorage with custom fonts.
+     */
+    public fontsLocation: string;
 
     /**
      * Brightness for the generated images.
@@ -14966,6 +14951,11 @@ export class PutDocumentSaveAsTiffRequest {
      * The contrast for the generated images.
      */
     public imageContrast: number;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
 
     /**
      * The images numeral format.
@@ -14988,6 +14978,11 @@ export class PutDocumentSaveAsTiffRequest {
     public paperColor: string;
 
     /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
      * The pixel format of generated images.
      */
     public pixelFormat: string;
@@ -14998,24 +14993,19 @@ export class PutDocumentSaveAsTiffRequest {
     public resolution: number;
 
     /**
+     * The resulting file name.
+     */
+    public resultFile: string;
+
+    /**
      * Zoom factor for generated images.
      */
     public scale: number;
 
     /**
-     * The compression tipe.
+     * File storage, which have to be used.
      */
-    public tiffCompression: string;
-
-    /**
-     * Optional, default is Fallback.
-     */
-    public dmlRenderingMode: string;
-
-    /**
-     * Optional, default is Simplified.
-     */
-    public dmlEffectsRenderingMode: string;
+    public storage: string;
 
     /**
      * Optional, Tiff binarization method, possible values are: FloydSteinbergDithering, Threshold.
@@ -15023,14 +15013,24 @@ export class PutDocumentSaveAsTiffRequest {
     public tiffBinarizationMethod: string;
 
     /**
+     * The compression tipe.
+     */
+    public tiffCompression: string;
+
+    /**
+     * Use antialiasing flag.
+     */
+    public useAntiAliasing: boolean;
+
+    /**
+     * Use high quality flag.
+     */
+    public useHighQualityRendering: boolean;
+
+    /**
      * Optional. A value determining zip output or not.
      */
     public zipOutput: boolean;
-
-    /**
-     * Folder in filestorage with custom fonts.
-     */
-    public fontsLocation: string;
     
     public constructor(init?: Partial<PutDocumentSaveAsTiffRequest>) {        
         Object.assign(this, init);
@@ -15042,11 +15042,6 @@ export class PutDocumentSaveAsTiffRequest {
  */
 export class PutDrawingObjectRequest {
     /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
      * Drawing object parameters
      */
     public drawingObject: string;
@@ -15057,14 +15052,19 @@ export class PutDrawingObjectRequest {
     public imageFile: Buffer;
 
     /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -15072,14 +15072,14 @@ export class PutDrawingObjectRequest {
     public loadEncoding: string;
 
     /**
+     * Path to node, which contains collection of drawing objects.
+     */
+    public nodePath: string;
+
+    /**
      * Password for opening an encrypted document.
      */
     public password: string;
-
-    /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
 
     /**
      * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
@@ -15092,9 +15092,9 @@ export class PutDrawingObjectRequest {
     public revisionDateTime: string;
 
     /**
-     * Path to node, which contains collection of drawing objects.
+     * File storage, which have to be used.
      */
-    public nodePath: string;
+    public storage: string;
     
     public constructor(init?: Partial<PutDrawingObjectRequest>) {        
         Object.assign(this, init);
@@ -15106,24 +15106,24 @@ export class PutDrawingObjectRequest {
  */
 export class PutExecuteMailMergeOnlineRequest {
     /**
-     * File with template
-     */
-    public template: Buffer;
-
-    /**
      * File with mailmerge data
      */
     public data: Buffer;
 
     /**
-     * With regions flag.
+     * File with template
      */
-    public withRegions: boolean;
+    public template: Buffer;
 
     /**
      * Clean up options.
      */
     public cleanup: string;
+
+    /**
+     * With regions flag.
+     */
+    public withRegions: boolean;
     
     public constructor(init?: Partial<PutExecuteMailMergeOnlineRequest>) {        
         Object.assign(this, init);
@@ -15135,14 +15135,14 @@ export class PutExecuteMailMergeOnlineRequest {
  */
 export class PutExecuteTemplateOnlineRequest {
     /**
-     * File with template
-     */
-    public template: Buffer;
-
-    /**
      * File with mailmerge data
      */
     public data: Buffer;
+
+    /**
+     * File with template
+     */
+    public template: Buffer;
 
     /**
      * Clean up options.
@@ -15169,14 +15169,19 @@ export class PutExecuteTemplateOnlineRequest {
  */
 export class PutFieldRequest {
     /**
+     * Field data.
+     */
+    public field: Field;
+
+    /**
      * The document name.
      */
     public name: string;
 
     /**
-     * Field data.
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
-    public field: Field;
+    public destFileName: string;
 
     /**
      * Original document folder.
@@ -15184,9 +15189,9 @@ export class PutFieldRequest {
     public folder: string;
 
     /**
-     * File storage, which have to be used.
+     * Field will be inserted before node with id=\"nodeId\".
      */
-    public storage: string;
+    public insertBeforeNode: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -15194,14 +15199,14 @@ export class PutFieldRequest {
     public loadEncoding: string;
 
     /**
+     * Path to node, which contains collection of fields.
+     */
+    public nodePath: string;
+
+    /**
      * Password for opening an encrypted document.
      */
     public password: string;
-
-    /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
 
     /**
      * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
@@ -15214,14 +15219,9 @@ export class PutFieldRequest {
     public revisionDateTime: string;
 
     /**
-     * Path to node, which contains collection of fields.
+     * File storage, which have to be used.
      */
-    public nodePath: string;
-
-    /**
-     * Field will be inserted before node with id=\"nodeId\".
-     */
-    public insertBeforeNode: string;
+    public storage: string;
     
     public constructor(init?: Partial<PutFieldRequest>) {        
         Object.assign(this, init);
@@ -15233,14 +15233,19 @@ export class PutFieldRequest {
  */
 export class PutFootnoteRequest {
     /**
+     * Footnote data.
+     */
+    public footnoteDto: Footnote;
+
+    /**
      * The document name.
      */
     public name: string;
 
     /**
-     * Footnote data.
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
-    public footnoteDto: Footnote;
+    public destFileName: string;
 
     /**
      * Original document folder.
@@ -15248,24 +15253,19 @@ export class PutFootnoteRequest {
     public folder: string;
 
     /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
-
-    /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
      */
     public loadEncoding: string;
 
     /**
+     * Path to node, which contains collection of footnotes.
+     */
+    public nodePath: string;
+
+    /**
      * Password for opening an encrypted document.
      */
     public password: string;
-
-    /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
 
     /**
      * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
@@ -15278,9 +15278,9 @@ export class PutFootnoteRequest {
     public revisionDateTime: string;
 
     /**
-     * Path to node, which contains collection of footnotes.
+     * File storage, which have to be used.
      */
-    public nodePath: string;
+    public storage: string;
     
     public constructor(init?: Partial<PutFootnoteRequest>) {        
         Object.assign(this, init);
@@ -15292,14 +15292,19 @@ export class PutFootnoteRequest {
  */
 export class PutFormFieldRequest {
     /**
+     * From field data.
+     */
+    public formField: FormField;
+
+    /**
      * The document name.
      */
     public name: string;
 
     /**
-     * From field data.
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
-    public formField: FormField;
+    public destFileName: string;
 
     /**
      * Original document folder.
@@ -15307,9 +15312,9 @@ export class PutFormFieldRequest {
     public folder: string;
 
     /**
-     * File storage, which have to be used.
+     * Form field will be inserted before node with index.
      */
-    public storage: string;
+    public insertBeforeNode: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -15317,14 +15322,14 @@ export class PutFormFieldRequest {
     public loadEncoding: string;
 
     /**
+     * Path to node that contains collection of formfields.
+     */
+    public nodePath: string;
+
+    /**
      * Password for opening an encrypted document.
      */
     public password: string;
-
-    /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
 
     /**
      * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
@@ -15337,14 +15342,9 @@ export class PutFormFieldRequest {
     public revisionDateTime: string;
 
     /**
-     * Path to node that contains collection of formfields.
+     * File storage, which have to be used.
      */
-    public nodePath: string;
-
-    /**
-     * Form field will be inserted before node with index.
-     */
-    public insertBeforeNode: string;
+    public storage: string;
     
     public constructor(init?: Partial<PutFormFieldRequest>) {        
         Object.assign(this, init);
@@ -15356,24 +15356,24 @@ export class PutFormFieldRequest {
  */
 export class PutHeaderFooterRequest {
     /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
      * Type of header/footer.
      */
     public headerFooterType: string;
 
     /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -15384,11 +15384,6 @@ export class PutHeaderFooterRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-    /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
 
     /**
      * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
@@ -15404,6 +15399,11 @@ export class PutHeaderFooterRequest {
      * Path to parent section.
      */
     public sectionPath: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<PutHeaderFooterRequest>) {        
         Object.assign(this, init);
@@ -15425,14 +15425,19 @@ export class PutParagraphRequest {
     public paragraph: ParagraphInsert;
 
     /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
      * Original document folder.
      */
     public folder: string;
 
     /**
-     * File storage, which have to be used.
+     * Paragraph will be inserted before node with index.
      */
-    public storage: string;
+    public insertBeforeNode: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -15440,14 +15445,14 @@ export class PutParagraphRequest {
     public loadEncoding: string;
 
     /**
+     * Path to node which contains paragraphs.
+     */
+    public nodePath: string;
+
+    /**
      * Password for opening an encrypted document.
      */
     public password: string;
-
-    /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
 
     /**
      * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
@@ -15460,14 +15465,9 @@ export class PutParagraphRequest {
     public revisionDateTime: string;
 
     /**
-     * Path to node which contains paragraphs.
+     * File storage, which have to be used.
      */
-    public nodePath: string;
-
-    /**
-     * Paragraph will be inserted before node with index.
-     */
-    public insertBeforeNode: string;
+    public storage: string;
     
     public constructor(init?: Partial<PutParagraphRequest>) {        
         Object.assign(this, init);
@@ -15489,14 +15489,14 @@ export class PutProtectDocumentRequest {
     public protectionRequest: ProtectionRequest;
 
     /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -15509,9 +15509,9 @@ export class PutProtectDocumentRequest {
     public password: string;
 
     /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     * File storage, which have to be used.
      */
-    public destFileName: string;
+    public storage: string;
     
     public constructor(init?: Partial<PutProtectDocumentRequest>) {        
         Object.assign(this, init);
@@ -15538,14 +15538,19 @@ export class PutRunRequest {
     public run: Run;
 
     /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
      * Original document folder.
      */
     public folder: string;
 
     /**
-     * File storage, which have to be used.
+     * Paragraph will be inserted before node with index.
      */
-    public storage: string;
+    public insertBeforeNode: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -15558,11 +15563,6 @@ export class PutRunRequest {
     public password: string;
 
     /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
      * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
      */
     public revisionAuthor: string;
@@ -15573,9 +15573,9 @@ export class PutRunRequest {
     public revisionDateTime: string;
 
     /**
-     * Paragraph will be inserted before node with index.
+     * File storage, which have to be used.
      */
-    public insertBeforeNode: string;
+    public storage: string;
     
     public constructor(init?: Partial<PutRunRequest>) {        
         Object.assign(this, init);
@@ -15592,14 +15592,14 @@ export class RejectAllRevisionsRequest {
     public name: string;
 
     /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -15612,9 +15612,9 @@ export class RejectAllRevisionsRequest {
     public password: string;
 
     /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     * File storage, which have to be used.
      */
-    public destFileName: string;
+    public storage: string;
     
     public constructor(init?: Partial<RejectAllRevisionsRequest>) {        
         Object.assign(this, init);
@@ -15626,11 +15626,6 @@ export class RejectAllRevisionsRequest {
  */
 export class RenderDrawingObjectRequest {
     /**
-     * The file name.
-     */
-    public name: string;
-
-    /**
      * The destination format.
      */
     public format: string;
@@ -15641,14 +15636,19 @@ export class RenderDrawingObjectRequest {
     public index: number;
 
     /**
+     * The file name.
+     */
+    public name: string;
+
+    /**
      * Original document folder.
      */
     public folder: string;
 
     /**
-     * File storage, which have to be used.
+     * Folder in filestorage with custom fonts.
      */
-    public storage: string;
+    public fontsLocation: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -15656,19 +15656,19 @@ export class RenderDrawingObjectRequest {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    /**
      * Path to node, which contains drawing objects.
      */
     public nodePath: string;
 
     /**
-     * Folder in filestorage with custom fonts.
+     * Password for opening an encrypted document.
      */
-    public fontsLocation: string;
+    public password: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<RenderDrawingObjectRequest>) {        
         Object.assign(this, init);
@@ -15680,11 +15680,6 @@ export class RenderDrawingObjectRequest {
  */
 export class RenderMathObjectRequest {
     /**
-     * The file name.
-     */
-    public name: string;
-
-    /**
      * The destination format.
      */
     public format: string;
@@ -15695,14 +15690,19 @@ export class RenderMathObjectRequest {
     public index: number;
 
     /**
+     * The file name.
+     */
+    public name: string;
+
+    /**
      * Original document folder.
      */
     public folder: string;
 
     /**
-     * File storage, which have to be used.
+     * Folder in filestorage with custom fonts.
      */
-    public storage: string;
+    public fontsLocation: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -15710,19 +15710,19 @@ export class RenderMathObjectRequest {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    /**
      * Path to node, which contains office math objects.
      */
     public nodePath: string;
 
     /**
-     * Folder in filestorage with custom fonts.
+     * Password for opening an encrypted document.
      */
-    public fontsLocation: string;
+    public password: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<RenderMathObjectRequest>) {        
         Object.assign(this, init);
@@ -15734,6 +15734,11 @@ export class RenderMathObjectRequest {
  */
 export class RenderPageRequest {
     /**
+     * The destination format.
+     */
+    public format: string;
+
+    /**
      * The file name.
      */
     public name: string;
@@ -15744,19 +15749,14 @@ export class RenderPageRequest {
     public pageIndex: number;
 
     /**
-     * The destination format.
-     */
-    public format: string;
-
-    /**
      * Original document folder.
      */
     public folder: string;
 
     /**
-     * File storage, which have to be used.
+     * Folder in filestorage with custom fonts.
      */
-    public storage: string;
+    public fontsLocation: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -15769,9 +15769,9 @@ export class RenderPageRequest {
     public password: string;
 
     /**
-     * Folder in filestorage with custom fonts.
+     * File storage, which have to be used.
      */
-    public fontsLocation: string;
+    public storage: string;
     
     public constructor(init?: Partial<RenderPageRequest>) {        
         Object.assign(this, init);
@@ -15783,11 +15783,6 @@ export class RenderPageRequest {
  */
 export class RenderParagraphRequest {
     /**
-     * The file name.
-     */
-    public name: string;
-
-    /**
      * The destination format.
      */
     public format: string;
@@ -15798,14 +15793,19 @@ export class RenderParagraphRequest {
     public index: number;
 
     /**
+     * The file name.
+     */
+    public name: string;
+
+    /**
      * Original document folder.
      */
     public folder: string;
 
     /**
-     * File storage, which have to be used.
+     * Folder in filestorage with custom fonts.
      */
-    public storage: string;
+    public fontsLocation: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -15813,19 +15813,19 @@ export class RenderParagraphRequest {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    /**
      * Path to node, which contains paragraphs.
      */
     public nodePath: string;
 
     /**
-     * Folder in filestorage with custom fonts.
+     * Password for opening an encrypted document.
      */
-    public fontsLocation: string;
+    public password: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<RenderParagraphRequest>) {        
         Object.assign(this, init);
@@ -15837,11 +15837,6 @@ export class RenderParagraphRequest {
  */
 export class RenderTableRequest {
     /**
-     * The file name.
-     */
-    public name: string;
-
-    /**
      * The destination format.
      */
     public format: string;
@@ -15852,14 +15847,19 @@ export class RenderTableRequest {
     public index: number;
 
     /**
+     * The file name.
+     */
+    public name: string;
+
+    /**
      * Original document folder.
      */
     public folder: string;
 
     /**
-     * File storage, which have to be used.
+     * Folder in filestorage with custom fonts.
      */
-    public storage: string;
+    public fontsLocation: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -15867,19 +15867,19 @@ export class RenderTableRequest {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    /**
      * Path to node, which contains tables.
      */
     public nodePath: string;
 
     /**
-     * Folder in filestorage with custom fonts.
+     * Password for opening an encrypted document.
      */
-    public fontsLocation: string;
+    public password: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<RenderTableRequest>) {        
         Object.assign(this, init);
@@ -15916,11 +15916,6 @@ export class SearchRequest {
     public folder: string;
 
     /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
-
-    /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
      */
     public loadEncoding: string;
@@ -15929,6 +15924,11 @@ export class SearchRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<SearchRequest>) {        
         Object.assign(this, init);
@@ -15940,19 +15940,9 @@ export class SearchRequest {
  */
 export class UpdateBorderRequest {
     /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
      * Border properties
      */
     public borderProperties: Border;
-
-    /**
-     * Path to node with border(node should be cell or row).
-     */
-    public nodePath: string;
 
     /**
      * Object's index
@@ -15960,14 +15950,24 @@ export class UpdateBorderRequest {
     public index: number;
 
     /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * Path to node with border(node should be cell or row).
+     */
+    public nodePath: string;
+
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -15980,11 +15980,6 @@ export class UpdateBorderRequest {
     public password: string;
 
     /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
      * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
      */
     public revisionAuthor: string;
@@ -15993,6 +15988,11 @@ export class UpdateBorderRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<UpdateBorderRequest>) {        
         Object.assign(this, init);
@@ -16009,24 +16009,24 @@ export class UpdateSectionPageSetupRequest {
     public name: string;
 
     /**
-     * Section index
-     */
-    public sectionIndex: number;
-
-    /**
      * Page setup properties dto
      */
     public pageSetup: PageSetup;
 
     /**
+     * Section index
+     */
+    public sectionIndex: number;
+
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
      * Original document folder.
      */
     public folder: string;
-
-    /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -16039,11 +16039,6 @@ export class UpdateSectionPageSetupRequest {
     public password: string;
 
     /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
      * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
      */
     public revisionAuthor: string;
@@ -16052,6 +16047,11 @@ export class UpdateSectionPageSetupRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
     
     public constructor(init?: Partial<UpdateSectionPageSetupRequest>) {        
         Object.assign(this, init);
@@ -16063,6 +16063,11 @@ export class UpdateSectionPageSetupRequest {
  */
 export class UpdateTableCellFormatRequest {
     /**
+     * Object's index
+     */
+    public index: number;
+
+    /**
      * The document name.
      */
     public name: string;
@@ -16073,9 +16078,9 @@ export class UpdateTableCellFormatRequest {
     public tableRowPath: string;
 
     /**
-     * Object's index
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
-    public index: number;
+    public destFileName: string;
 
     /**
      * Original document folder.
@@ -16083,9 +16088,9 @@ export class UpdateTableCellFormatRequest {
     public folder: string;
 
     /**
-     * File storage, which have to be used.
+     * The properties.
      */
-    public storage: string;
+    public format: TableCellFormat;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -16098,11 +16103,6 @@ export class UpdateTableCellFormatRequest {
     public password: string;
 
     /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
      * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
      */
     public revisionAuthor: string;
@@ -16113,9 +16113,9 @@ export class UpdateTableCellFormatRequest {
     public revisionDateTime: string;
 
     /**
-     * The properties.
+     * File storage, which have to be used.
      */
-    public format: TableCellFormat;
+    public storage: string;
     
     public constructor(init?: Partial<UpdateTableCellFormatRequest>) {        
         Object.assign(this, init);
@@ -16127,14 +16127,19 @@ export class UpdateTableCellFormatRequest {
  */
 export class UpdateTablePropertiesRequest {
     /**
+     * Object's index
+     */
+    public index: number;
+
+    /**
      * The document name.
      */
     public name: string;
 
     /**
-     * Object's index
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
-    public index: number;
+    public destFileName: string;
 
     /**
      * Original document folder.
@@ -16142,14 +16147,14 @@ export class UpdateTablePropertiesRequest {
     public folder: string;
 
     /**
-     * File storage, which have to be used.
-     */
-    public storage: string;
-
-    /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
      */
     public loadEncoding: string;
+
+    /**
+     * Path to node, which contains tables.
+     */
+    public nodePath: string;
 
     /**
      * Password for opening an encrypted document.
@@ -16157,9 +16162,9 @@ export class UpdateTablePropertiesRequest {
     public password: string;
 
     /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     * The properties.
      */
-    public destFileName: string;
+    public properties: TableProperties;
 
     /**
      * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
@@ -16172,14 +16177,9 @@ export class UpdateTablePropertiesRequest {
     public revisionDateTime: string;
 
     /**
-     * The properties.
+     * File storage, which have to be used.
      */
-    public properties: TableProperties;
-
-    /**
-     * Path to node, which contains tables.
-     */
-    public nodePath: string;
+    public storage: string;
     
     public constructor(init?: Partial<UpdateTablePropertiesRequest>) {        
         Object.assign(this, init);
@@ -16191,6 +16191,11 @@ export class UpdateTablePropertiesRequest {
  */
 export class UpdateTableRowFormatRequest {
     /**
+     * Object's index
+     */
+    public index: number;
+
+    /**
      * The document name.
      */
     public name: string;
@@ -16201,9 +16206,9 @@ export class UpdateTableRowFormatRequest {
     public tablePath: string;
 
     /**
-     * Object's index
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
-    public index: number;
+    public destFileName: string;
 
     /**
      * Original document folder.
@@ -16211,9 +16216,9 @@ export class UpdateTableRowFormatRequest {
     public folder: string;
 
     /**
-     * File storage, which have to be used.
+     * Table row format.
      */
-    public storage: string;
+    public format: TableRowFormat;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -16226,11 +16231,6 @@ export class UpdateTableRowFormatRequest {
     public password: string;
 
     /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
      * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
      */
     public revisionAuthor: string;
@@ -16241,9 +16241,9 @@ export class UpdateTableRowFormatRequest {
     public revisionDateTime: string;
 
     /**
-     * Table row format.
+     * File storage, which have to be used.
      */
-    public format: TableRowFormat;
+    public storage: string;
     
     public constructor(init?: Partial<UpdateTableRowFormatRequest>) {        
         Object.assign(this, init);

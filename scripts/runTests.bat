@@ -1,1 +1,2 @@
-docker run --rm asposenodewindows npm.cmd test-jenkins
+:: npm.cmd install ||  goto :error
+npm.cmd run test-jenkins

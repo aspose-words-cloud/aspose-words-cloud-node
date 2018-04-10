@@ -1,2 +1,2 @@
-:: npm.cmd install ||  goto :error
-npm.cmd run test-jenkins
+call npm.cmd install
+call npm.cmd run test-jenkins

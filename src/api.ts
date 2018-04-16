@@ -3133,13 +3133,7 @@ export class WordsApi {
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling postDocumentExecuteMailMerge.');
         }
-
-        // verify required parameter 'requestObj.withRegions' is not null or undefined
-        if (requestObj.withRegions === null || requestObj.withRegions === undefined) {
-            throw new Error('Required parameter "requestObj.withRegions" was null or undefined when calling postDocumentExecuteMailMerge.');
-        }
         
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "withRegions", requestObj.withRegions);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "cleanup", requestObj.cleanup);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -3148,6 +3142,7 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "useWholeParagraphAsRegion", requestObj.useWholeParagraphAsRegion);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "withRegions", requestObj.withRegions);
         if (requestObj.data !== undefined) {
             formParams.Data = ObjectSerializer.serialize(requestObj.data, "string");
         }

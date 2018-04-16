@@ -13809,11 +13809,6 @@ export class PostDocumentExecuteMailMergeRequest {
     public name: string;
 
     /**
-     * With regions flag.
-     */
-    public withRegions: boolean;
-
-    /**
      * Clean up options.
      */
     public cleanup: string;
@@ -13857,6 +13852,11 @@ export class PostDocumentExecuteMailMergeRequest {
      * Gets or sets a value indicating whether paragraph with TableStart or              TableEnd field should be fully included into mail merge region or particular range between TableStart and TableEnd fields.              The default value is true.
      */
     public useWholeParagraphAsRegion: boolean;
+
+    /**
+     * With regions flag.
+     */
+    public withRegions: boolean;
     
     public constructor(init?: Partial<PostDocumentExecuteMailMergeRequest>) {        
         Object.assign(this, init);

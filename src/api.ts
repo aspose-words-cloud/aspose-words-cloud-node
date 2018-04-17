@@ -90,6 +90,36 @@ export class WordsApi {
     }
 
     /**
+     * Classify raw text.
+     * @param requestObj contains request parameters
+     */
+    public async classify(requestObj: model.ClassifyRequest): Promise<{response: http.ClientResponse, body: model.ClassificationResponse}> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling classify.');
+        }
+
+        const localVarPath = this.configuration.getApiBaseUrl() + "/words/classify";
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.request' is not null or undefined
+        if (requestObj.request === null || requestObj.request === undefined) {
+            throw new Error('Required parameter "requestObj.request" was null or undefined when calling classify.');
+        }
+        
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+            body: ObjectSerializer.serialize(requestObj.request, requestObj.request.constructor.name === "Object" ? "ClassificationRequest" : requestObj.request.constructor.name),
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result =  ObjectSerializer.deserialize(response.body, "ClassificationResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+    /**
      * Add new or update existing document property.
      * @param requestObj contains request parameters
      */

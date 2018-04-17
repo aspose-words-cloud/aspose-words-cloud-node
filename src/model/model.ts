@@ -152,6 +152,92 @@ export class BookmarksOutlineLevelData {
 }
 
 /**
+ * This request should be send to REST api: PUT http://api.aspose.com/v1.1/words/classify
+ */
+export class ClassificationRequest {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            name: "text",
+            baseName: "Text",
+            type: "string",
+        },        
+        {
+            name: "bestClassesCount",
+            baseName: "BestClassesCount",
+            type: "number",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return ClassificationRequest.attributeTypeMap;
+    }
+
+    /**
+     * Text for classification.
+     */
+    public text: string;
+    
+    /**
+     * Number of best classes.
+     */
+    public bestClassesCount: number;
+    
+    public constructor(init?: Partial<ClassificationRequest>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
+/**
+ * Represents a single classification result.
+ */
+export class ClassificationResult {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            name: "className",
+            baseName: "ClassName",
+            type: "string",
+        },        
+        {
+            name: "classProbability",
+            baseName: "ClassProbability",
+            type: "number",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return ClassificationResult.attributeTypeMap;
+    }
+
+    /**
+     * Gets or sets the name of the class.
+     */
+    public className: string;
+    
+    /**
+     * Gets or sets the probability of class.
+     */
+    public classProbability: number;
+    
+    public constructor(init?: Partial<ClassificationResult>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
+/**
  * Container class for compare documents
  */
 export class CompareData {
@@ -2511,6 +2597,59 @@ export class BordersResponse extends AsposeResponse {
     public borders: BordersCollection;
     
     public constructor(init?: Partial<BordersResponse>) {
+        super(init);
+        Object.assign(this, init);
+    }        
+}
+
+/**
+ * This response should be returned by the service when handling: PUT http://api.aspose.com/v1.1/words/classify
+ */
+export class ClassificationResponse extends AsposeResponse {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            name: "bestClassName",
+            baseName: "BestClassName",
+            type: "string",
+        },        
+        {
+            name: "bestClassProbability",
+            baseName: "BestClassProbability",
+            type: "number",
+        },        
+        {
+            name: "bestResults",
+            baseName: "BestResults",
+            type: "Array<ClassificationResult>",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return super.getAttributeTypeMap().concat(ClassificationResponse.attributeTypeMap);
+    }
+
+    /**
+     * Best class name.        
+     */
+    public bestClassName: string;
+    
+    /**
+     * Best class probability.
+     */
+    public bestClassProbability: number;
+    
+    /**
+     * Array of best classes results.
+     */
+    public bestResults: Array<ClassificationResult>;
+    
+    public constructor(init?: Partial<ClassificationResponse>) {
         super(init);
         Object.assign(this, init);
     }        
@@ -10149,6 +10288,8 @@ const typeMap = {
             AsposeResponse,
             BookmarkData,
             BookmarksOutlineLevelData,
+            ClassificationRequest,
+            ClassificationResult,
             CompareData,
             Document,
             DocumentEntry,
@@ -10192,6 +10333,7 @@ const typeMap = {
             BorderResponse,
             BordersCollection,
             BordersResponse,
+            ClassificationResponse,
             CommentLink,
             CommentResponse,
             CommentsCollection,
@@ -10354,6 +10496,20 @@ export class AcceptAllRevisionsRequest {
     public destFileName: string;
     
     public constructor(init?: Partial<AcceptAllRevisionsRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for Classify operation.
+ */
+export class ClassifyRequest {
+    /**
+     * with request.            
+     */
+    public request: ClassificationRequest;
+    
+    public constructor(init?: Partial<ClassifyRequest>) {        
         Object.assign(this, init);
     } 
 }

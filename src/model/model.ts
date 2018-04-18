@@ -14997,6 +14997,11 @@ export class PutConvertDocumentRequest {
     public storage: string;
 
     /**
+     * This file name will be used when resulting document has dynamic field for document file name {filename}. If it is not setted, \"sourceFilename\" will be used instead. 
+     */
+    public documentFileName: string;
+
+    /**
      * Path for saving operation result to the local storage.
      */
     public outPath: string;
@@ -15280,6 +15285,11 @@ export class PutExecuteMailMergeOnlineRequest {
      * Clean up options.
      */
     public cleanup: string;
+
+    /**
+     * This file name will be used when resulting document has dynamic field for document file name {filename}. If it is not setted, \"template\" will be used instead. 
+     */
+    public documentFileName: string;
     
     public constructor(init?: Partial<PutExecuteMailMergeOnlineRequest>) {        
         Object.assign(this, init);
@@ -15314,6 +15324,11 @@ export class PutExecuteTemplateOnlineRequest {
      * Merge with regions or not. True by default
      */
     public withRegions: boolean;
+
+    /**
+     * This file name will be used when resulting document has dynamic field for document file name {filename}.  If it is not setted, \"template\" will be used instead.  Note: if withRegions == true executeTemplate updates fields only inside regions
+     */
+    public documentFileName: string;
     
     public constructor(init?: Partial<PutExecuteTemplateOnlineRequest>) {        
         Object.assign(this, init);

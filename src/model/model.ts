@@ -14997,14 +14997,14 @@ export class PutConvertDocumentRequest {
     public storage: string;
 
     /**
-     * This file name will be used when resulting document has dynamic field for document file name {filename}. If it is not setted, \"sourceFilename\" will be used instead. 
-     */
-    public documentFileName: string;
-
-    /**
      * Path for saving operation result to the local storage.
      */
     public outPath: string;
+
+    /**
+     * This file name will be used when resulting document has dynamic field for document file name {filename}. If it is not setted, \"sourceFilename\" will be used instead. 
+     */
+    public documentFileName: string;
 
     /**
      * Folder in filestorage with custom fonts.

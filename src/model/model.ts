@@ -154,7 +154,7 @@ export class BookmarksOutlineLevelData {
 /**
  * This request should be send to REST api: PUT http://api.aspose.com/v1.1/words/classify
  */
-export class ClassificationRequest {
+export class ClassificationRequestParameters {
 
     /**
      * Attribute type map
@@ -175,7 +175,7 @@ export class ClassificationRequest {
      * Returns attribute type map
      */
     public static getAttributeTypeMap() {
-        return ClassificationRequest.attributeTypeMap;
+        return ClassificationRequestParameters.attributeTypeMap;
     }
 
     /**
@@ -188,7 +188,7 @@ export class ClassificationRequest {
      */
     public bestClassesCount: number;
     
-    public constructor(init?: Partial<ClassificationRequest>) {
+    public constructor(init?: Partial<ClassificationRequestParameters>) {
         
         Object.assign(this, init);
     }        
@@ -10288,7 +10288,7 @@ const typeMap = {
             AsposeResponse,
             BookmarkData,
             BookmarksOutlineLevelData,
-            ClassificationRequest,
+            ClassificationRequestParameters,
             ClassificationResult,
             CompareData,
             Document,
@@ -10505,9 +10505,9 @@ export class AcceptAllRevisionsRequest {
  */
 export class ClassifyRequest {
     /**
-     * with request.            
+     * Classification request parameters.
      */
-    public request: ClassificationRequest;
+    public request: ClassificationRequestParameters;
     
     public constructor(init?: Partial<ClassifyRequest>) {        
         Object.assign(this, init);

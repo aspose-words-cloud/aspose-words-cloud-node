@@ -111,7 +111,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.request, requestObj.request.constructor.name === "Object" ? "ClassificationRequest" : requestObj.request.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.request, requestObj.request.constructor.name === "Object" ? "ClassificationRequestParameters" : requestObj.request.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);

@@ -10507,7 +10507,7 @@ export class ClassifyRequest {
     /**
      * Classification request parameters.
      */
-    public request: ClassificationRequestParameters;
+    public parameters: ClassificationRequestParameters;
     
     public constructor(init?: Partial<ClassifyRequest>) {        
         Object.assign(this, init);

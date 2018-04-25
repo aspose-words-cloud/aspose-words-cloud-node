@@ -37,7 +37,7 @@ describe("Text classification", () => {
             requestParams.text = "Try text classification";
             requestParams.bestClassesCount = 3;
             const request = new ClassifyRequest();
-            request.request = requestParams;
+            request.parameters = requestParams;
 
             wordsApi.classify(request)
                 .then((result) => {

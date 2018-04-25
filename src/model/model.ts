@@ -10515,6 +10515,45 @@ export class ClassifyRequest {
 }
 
 /**
+ * Request model for ClassifyDocument operation.
+ */
+export class ClassifyDocumentRequest {
+    /**
+     * The document name.
+     */
+    public documentName: string;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Count of the best classes to return.
+     */
+    public bestClassesCount: string;
+    
+    public constructor(init?: Partial<ClassifyDocumentRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
  * Request model for CreateOrUpdateDocumentProperty operation.
  */
 export class CreateOrUpdateDocumentPropertyRequest {

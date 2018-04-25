@@ -33,16 +33,16 @@ describe("Text classification", () => {
 
     describe("classify raw text", () => {
         it("should return response with code 200", () => {
-            const request = new ClassificationRequestParameters();
-            request.text = "Try text classification";
-            request.bestClassesCount = 3;
-            const wrapper = new ClassifyRequest();
-            wrapper.request = request;
+            const requestParams = new ClassificationRequestParameters();
+            requestParams.text = "Try text classification";
+            requestParams.bestClassesCount = 3;
+            const request = new ClassifyRequest();
+            request.request = requestParams;
 
-            wordsApi.classify(wrapper)
+            wordsApi.classify(request)
                 .then((result) => {
                     // Assert
-                    console.log(result);
+                    
                     expect(result.body.code).to.equal(200);
                     expect(result.response.statusCode).to.equal(200);
                 });

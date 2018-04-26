@@ -152,6 +152,92 @@ export class BookmarksOutlineLevelData {
 }
 
 /**
+ * This request should be send to REST api: PUT http://api.aspose.com/v1.1/words/classify
+ */
+export class ClassificationRequestParameters {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            name: "text",
+            baseName: "Text",
+            type: "string",
+        },        
+        {
+            name: "bestClassesCount",
+            baseName: "BestClassesCount",
+            type: "number",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return ClassificationRequestParameters.attributeTypeMap;
+    }
+
+    /**
+     * Text for classification.
+     */
+    public text: string;
+    
+    /**
+     * Number of best classes.
+     */
+    public bestClassesCount: number;
+    
+    public constructor(init?: Partial<ClassificationRequestParameters>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
+/**
+ * Represents a single classification result.
+ */
+export class ClassificationResult {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            name: "className",
+            baseName: "ClassName",
+            type: "string",
+        },        
+        {
+            name: "classProbability",
+            baseName: "ClassProbability",
+            type: "number",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return ClassificationResult.attributeTypeMap;
+    }
+
+    /**
+     * Gets or sets the name of the class.
+     */
+    public className: string;
+    
+    /**
+     * Gets or sets the probability of class.
+     */
+    public classProbability: number;
+    
+    public constructor(init?: Partial<ClassificationResult>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
+/**
  * Container class for compare documents
  */
 export class CompareData {
@@ -2191,7 +2277,7 @@ export class Bookmark extends LinkElement {
 }
 
 /**
- * This resonse should be returned by the service when handling:  GET bookmarks/{bookmarkName}.
+ * This response should be returned by the service when handling:  GET bookmarks/{bookmarkName}.
  */
 export class BookmarkResponse extends AsposeResponse {
 
@@ -2257,7 +2343,7 @@ export class Bookmarks extends LinkElement {
 }
 
 /**
- * This resonse should be returned by the service when handling:  GET bookmarks.
+ * This response should be returned by the service when handling:  GET bookmarks.
  */
 export class BookmarksResponse extends AsposeResponse {
 
@@ -2299,14 +2385,9 @@ export class Border extends LinkElement {
      */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            name: "lineStyle",
-            baseName: "LineStyle",
-            type: "Border.LineStyleEnum",
-        },        
-        {
-            name: "lineWidth",
-            baseName: "LineWidth",
-            type: "number",
+            name: "borderType",
+            baseName: "BorderType",
+            type: "Border.BorderTypeEnum",
         },        
         {
             name: "color",
@@ -2319,14 +2400,19 @@ export class Border extends LinkElement {
             type: "number",
         },        
         {
+            name: "lineStyle",
+            baseName: "LineStyle",
+            type: "Border.LineStyleEnum",
+        },        
+        {
+            name: "lineWidth",
+            baseName: "LineWidth",
+            type: "number",
+        },        
+        {
             name: "shadow",
             baseName: "Shadow",
             type: "boolean",
-        },        
-        {
-            name: "borderType",
-            baseName: "BorderType",
-            type: "Border.BorderTypeEnum",
         }    ];
 
     /**
@@ -2337,14 +2423,9 @@ export class Border extends LinkElement {
     }
 
     /**
-     * Gets or sets the border style.
+     * Gets or sets the border type.             
      */
-    public lineStyle: Border.LineStyleEnum;
-    
-    /**
-     * Gets or sets the border width in points.
-     */
-    public lineWidth: number;
+    public borderType: Border.BorderTypeEnum;
     
     /**
      * Gets or sets the border color.             
@@ -2357,14 +2438,19 @@ export class Border extends LinkElement {
     public distanceFromText: number;
     
     /**
+     * Gets or sets the border style.
+     */
+    public lineStyle: Border.LineStyleEnum;
+    
+    /**
+     * Gets or sets the border width in points.
+     */
+    public lineWidth: number;
+    
+    /**
      * Gets or sets a value indicating whether the border has a shadow.
      */
     public shadow: boolean;
-    
-    /**
-     * Gets or sets the border type.             
-     */
-    public borderType: Border.BorderTypeEnum;
     
     public constructor(init?: Partial<Border>) {
         super(init);
@@ -2375,6 +2461,17 @@ export class Border extends LinkElement {
 // tslint:disable:quotemark
 // tslint:disable-next-line:no-namespace
 export namespace Border {
+    export enum BorderTypeEnum {
+        Bottom = 'Bottom' as any,
+        Left = 'Left' as any,
+        Right = 'Right' as any,
+        Top = 'Top' as any,
+        Horizontal = 'Horizontal' as any,
+        Vertical = 'Vertical' as any,
+        DiagonalDown = 'DiagonalDown' as any,
+        DiagonalUp = 'DiagonalUp' as any,
+        None = 'None' as any,
+    }
     export enum LineStyleEnum {
         None = 'None' as any,
         Single = 'Single' as any,
@@ -2404,21 +2501,10 @@ export namespace Border {
         Outset = 'Outset' as any,
         Inset = 'Inset' as any,
     }
-    export enum BorderTypeEnum {
-        Bottom = 'Bottom' as any,
-        Left = 'Left' as any,
-        Right = 'Right' as any,
-        Top = 'Top' as any,
-        Horizontal = 'Horizontal' as any,
-        Vertical = 'Vertical' as any,
-        DiagonalDown = 'DiagonalDown' as any,
-        DiagonalUp = 'DiagonalUp' as any,
-        None = 'None' as any,
-    }
 }
 // tslint:enable:quotemark
 /**
- * This resonse should be returned by the service when handling: GET {nodeWithBorders}/borders.
+ * This response should be returned by the service when handling: GET {nodeWithBorders}/borders.
  */
 export class BorderResponse extends AsposeResponse {
 
@@ -2484,7 +2570,7 @@ export class BordersCollection extends LinkElement {
 }
 
 /**
- * This resonse should be returned by the service when handling: GET {nodeWithBorders}/borders.
+ * This response should be returned by the service when handling: GET {nodeWithBorders}/borders.
  */
 export class BordersResponse extends AsposeResponse {
 
@@ -2517,6 +2603,59 @@ export class BordersResponse extends AsposeResponse {
 }
 
 /**
+ * This response should be returned by the service when handling: PUT http://api.aspose.com/v1.1/words/classify
+ */
+export class ClassificationResponse extends AsposeResponse {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            name: "bestClassName",
+            baseName: "BestClassName",
+            type: "string",
+        },        
+        {
+            name: "bestClassProbability",
+            baseName: "BestClassProbability",
+            type: "number",
+        },        
+        {
+            name: "bestResults",
+            baseName: "BestResults",
+            type: "Array<ClassificationResult>",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return super.getAttributeTypeMap().concat(ClassificationResponse.attributeTypeMap);
+    }
+
+    /**
+     * Best class name.        
+     */
+    public bestClassName: string;
+    
+    /**
+     * Best class probability.
+     */
+    public bestClassProbability: number;
+    
+    /**
+     * Array of best classes results.
+     */
+    public bestResults: Array<ClassificationResult>;
+    
+    public constructor(init?: Partial<ClassificationResponse>) {
+        super(init);
+        Object.assign(this, init);
+    }        
+}
+
+/**
  * Comment link.
  */
 export class CommentLink extends LinkElement {
@@ -2541,7 +2680,7 @@ export class CommentLink extends LinkElement {
 }
 
 /**
- * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/comments/0 
+ * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/comments/0 
  */
 export class CommentResponse extends AsposeResponse {
 
@@ -2607,7 +2746,7 @@ export class CommentsCollection extends LinkElement {
 }
 
 /**
- * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/comments 
+ * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/comments 
  */
 export class CommentsResponse extends AsposeResponse {
 
@@ -2716,7 +2855,7 @@ export class DocumentProperties extends LinkElement {
 }
 
 /**
- * This resonse should be returned by the service when handling:  GET /documentProperties.
+ * This response should be returned by the service when handling:  GET /documentProperties.
  */
 export class DocumentPropertiesResponse extends AsposeResponse {
 
@@ -2758,6 +2897,11 @@ export class DocumentProperty extends LinkElement {
      */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
+            name: "builtIn",
+            baseName: "BuiltIn",
+            type: "boolean",
+        },        
+        {
             name: "name",
             baseName: "Name",
             type: "string",
@@ -2766,11 +2910,6 @@ export class DocumentProperty extends LinkElement {
             name: "value",
             baseName: "Value",
             type: "string",
-        },        
-        {
-            name: "builtIn",
-            baseName: "BuiltIn",
-            type: "boolean",
         }    ];
 
     /**
@@ -2781,6 +2920,11 @@ export class DocumentProperty extends LinkElement {
     }
 
     /**
+     * Flag indicates whether the property is built-in or not. If true the property is built-in, if false the property is custom.
+     */
+    public builtIn: boolean;
+    
+    /**
      * Name of the document property.
      */
     public name: string;
@@ -2790,11 +2934,6 @@ export class DocumentProperty extends LinkElement {
      */
     public value: string;
     
-    /**
-     * Flag indicates whether the property is built-in or not. If true the property is built-in, if false the property is custom.
-     */
-    public builtIn: boolean;
-    
     public constructor(init?: Partial<DocumentProperty>) {
         super(init);
         Object.assign(this, init);
@@ -2802,7 +2941,7 @@ export class DocumentProperty extends LinkElement {
 }
 
 /**
- * This resonse should be returned by the service when handling:  GET documentProperties/{propertyName}.
+ * This response should be returned by the service when handling:  GET documentProperties/{propertyName}.
  */
 export class DocumentPropertyResponse extends AsposeResponse {
 
@@ -2934,7 +3073,7 @@ export class DrawingObjectResponse extends AsposeResponse {
 }
 
 /**
- * This resonse should be returned by the service when handling:  GET /drawingObjects.
+ * This response should be returned by the service when handling:  GET /drawingObjects.
  */
 export class DrawingObjectsResponse extends AsposeResponse {
 
@@ -3033,7 +3172,7 @@ export class FieldNames extends LinkElement {
 }
 
 /**
- * This resonse should be returned by the service when handling:  GET /{name}/mailMergeFieldNames.
+ * This response should be returned by the service when handling:  GET /{name}/mailMergeFieldNames.
  */
 export class FieldNamesResponse extends AsposeResponse {
 
@@ -3066,7 +3205,7 @@ export class FieldNamesResponse extends AsposeResponse {
 }
 
 /**
- * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/paragraphs/{0}/fields/{1} 
+ * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/paragraphs/{0}/fields/{1} 
  */
 export class FieldResponse extends AsposeResponse {
 
@@ -3099,7 +3238,7 @@ export class FieldResponse extends AsposeResponse {
 }
 
 /**
- * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/{nodePath}/fields
+ * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/{nodePath}/fields
  */
 export class FieldsResponse extends AsposeResponse {
 
@@ -3248,6 +3387,96 @@ export class Font extends LinkElement {
      */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
+            name: "allCaps",
+            baseName: "AllCaps",
+            type: "boolean",
+        },        
+        {
+            name: "bidi",
+            baseName: "Bidi",
+            type: "boolean",
+        },        
+        {
+            name: "bold",
+            baseName: "Bold",
+            type: "boolean",
+        },        
+        {
+            name: "boldBi",
+            baseName: "BoldBi",
+            type: "boolean",
+        },        
+        {
+            name: "border",
+            baseName: "Border",
+            type: "Border",
+        },        
+        {
+            name: "color",
+            baseName: "Color",
+            type: "XmlColor",
+        },        
+        {
+            name: "complexScript",
+            baseName: "ComplexScript",
+            type: "boolean",
+        },        
+        {
+            name: "doubleStrikeThrough",
+            baseName: "DoubleStrikeThrough",
+            type: "boolean",
+        },        
+        {
+            name: "emboss",
+            baseName: "Emboss",
+            type: "boolean",
+        },        
+        {
+            name: "engrave",
+            baseName: "Engrave",
+            type: "boolean",
+        },        
+        {
+            name: "hidden",
+            baseName: "Hidden",
+            type: "boolean",
+        },        
+        {
+            name: "highlightColor",
+            baseName: "HighlightColor",
+            type: "XmlColor",
+        },        
+        {
+            name: "italic",
+            baseName: "Italic",
+            type: "boolean",
+        },        
+        {
+            name: "italicBi",
+            baseName: "ItalicBi",
+            type: "boolean",
+        },        
+        {
+            name: "kerning",
+            baseName: "Kerning",
+            type: "number",
+        },        
+        {
+            name: "localeId",
+            baseName: "LocaleId",
+            type: "number",
+        },        
+        {
+            name: "localeIdBi",
+            baseName: "LocaleIdBi",
+            type: "number",
+        },        
+        {
+            name: "localeIdFarEast",
+            baseName: "LocaleIdFarEast",
+            type: "number",
+        },        
+        {
             name: "name",
             baseName: "Name",
             type: "string",
@@ -3273,6 +3502,31 @@ export class Font extends LinkElement {
             type: "string",
         },        
         {
+            name: "noProofing",
+            baseName: "NoProofing",
+            type: "boolean",
+        },        
+        {
+            name: "outline",
+            baseName: "Outline",
+            type: "boolean",
+        },        
+        {
+            name: "position",
+            baseName: "Position",
+            type: "number",
+        },        
+        {
+            name: "scaling",
+            baseName: "Scaling",
+            type: "number",
+        },        
+        {
+            name: "shadow",
+            baseName: "Shadow",
+            type: "boolean",
+        },        
+        {
             name: "size",
             baseName: "Size",
             type: "number",
@@ -3283,29 +3537,14 @@ export class Font extends LinkElement {
             type: "number",
         },        
         {
-            name: "bold",
-            baseName: "Bold",
+            name: "smallCaps",
+            baseName: "SmallCaps",
             type: "boolean",
         },        
         {
-            name: "boldBi",
-            baseName: "BoldBi",
-            type: "boolean",
-        },        
-        {
-            name: "italic",
-            baseName: "Italic",
-            type: "boolean",
-        },        
-        {
-            name: "italicBi",
-            baseName: "ItalicBi",
-            type: "boolean",
-        },        
-        {
-            name: "color",
-            baseName: "Color",
-            type: "XmlColor",
+            name: "spacing",
+            baseName: "Spacing",
+            type: "number",
         },        
         {
             name: "strikeThrough",
@@ -3313,28 +3552,18 @@ export class Font extends LinkElement {
             type: "boolean",
         },        
         {
-            name: "doubleStrikeThrough",
-            baseName: "DoubleStrikeThrough",
-            type: "boolean",
+            name: "styleIdentifier",
+            baseName: "StyleIdentifier",
+            type: "Font.StyleIdentifierEnum",
         },        
         {
-            name: "shadow",
-            baseName: "Shadow",
-            type: "boolean",
+            name: "styleName",
+            baseName: "StyleName",
+            type: "string",
         },        
         {
-            name: "outline",
-            baseName: "Outline",
-            type: "boolean",
-        },        
-        {
-            name: "emboss",
-            baseName: "Emboss",
-            type: "boolean",
-        },        
-        {
-            name: "engrave",
-            baseName: "Engrave",
+            name: "subscript",
+            baseName: "Subscript",
             type: "boolean",
         },        
         {
@@ -3343,24 +3572,9 @@ export class Font extends LinkElement {
             type: "boolean",
         },        
         {
-            name: "subscript",
-            baseName: "Subscript",
-            type: "boolean",
-        },        
-        {
-            name: "smallCaps",
-            baseName: "SmallCaps",
-            type: "boolean",
-        },        
-        {
-            name: "allCaps",
-            baseName: "AllCaps",
-            type: "boolean",
-        },        
-        {
-            name: "hidden",
-            baseName: "Hidden",
-            type: "boolean",
+            name: "textEffect",
+            baseName: "TextEffect",
+            type: "Font.TextEffectEnum",
         },        
         {
             name: "underline",
@@ -3371,81 +3585,6 @@ export class Font extends LinkElement {
             name: "underlineColor",
             baseName: "UnderlineColor",
             type: "XmlColor",
-        },        
-        {
-            name: "scaling",
-            baseName: "Scaling",
-            type: "number",
-        },        
-        {
-            name: "spacing",
-            baseName: "Spacing",
-            type: "number",
-        },        
-        {
-            name: "position",
-            baseName: "Position",
-            type: "number",
-        },        
-        {
-            name: "kerning",
-            baseName: "Kerning",
-            type: "number",
-        },        
-        {
-            name: "highlightColor",
-            baseName: "HighlightColor",
-            type: "XmlColor",
-        },        
-        {
-            name: "textEffect",
-            baseName: "TextEffect",
-            type: "Font.TextEffectEnum",
-        },        
-        {
-            name: "bidi",
-            baseName: "Bidi",
-            type: "boolean",
-        },        
-        {
-            name: "complexScript",
-            baseName: "ComplexScript",
-            type: "boolean",
-        },        
-        {
-            name: "noProofing",
-            baseName: "NoProofing",
-            type: "boolean",
-        },        
-        {
-            name: "localeId",
-            baseName: "LocaleId",
-            type: "number",
-        },        
-        {
-            name: "localeIdBi",
-            baseName: "LocaleIdBi",
-            type: "number",
-        },        
-        {
-            name: "localeIdFarEast",
-            baseName: "LocaleIdFarEast",
-            type: "number",
-        },        
-        {
-            name: "border",
-            baseName: "Border",
-            type: "Border",
-        },        
-        {
-            name: "styleName",
-            baseName: "StyleName",
-            type: "string",
-        },        
-        {
-            name: "styleIdentifier",
-            baseName: "StyleIdentifier",
-            type: "Font.StyleIdentifierEnum",
         }    ];
 
     /**
@@ -3455,6 +3594,96 @@ export class Font extends LinkElement {
         return super.getAttributeTypeMap().concat(Font.attributeTypeMap);
     }
 
+    /**
+     * True if the font is formatted as all capital letters.             
+     */
+    public allCaps: boolean;
+    
+    /**
+     * Specifies whether the contents of this run shall have right-to-left characteristics.             
+     */
+    public bidi: boolean;
+    
+    /**
+     * True if the font is formatted as bold.             
+     */
+    public bold: boolean;
+    
+    /**
+     * True if the right-to-left text is formatted as bold.             
+     */
+    public boldBi: boolean;
+    
+    /**
+     * Border object that specifies border for the font.
+     */
+    public border: Border;
+    
+    /**
+     * Gets or sets the color of the font.             
+     */
+    public color: XmlColor;
+    
+    /**
+     * Specifies whether the contents of this run shall be treated as complex script text regardless of their Unicode character values when determining the formatting for this run.             
+     */
+    public complexScript: boolean;
+    
+    /**
+     * True if the font is formatted as double strikethrough text.             
+     */
+    public doubleStrikeThrough: boolean;
+    
+    /**
+     * True if the font is formatted as embossed.             
+     */
+    public emboss: boolean;
+    
+    /**
+     * True if the font is formatted as engraved.             
+     */
+    public engrave: boolean;
+    
+    /**
+     * True if the font is formatted as hidden text.             
+     */
+    public hidden: boolean;
+    
+    /**
+     * Gets or sets the highlight (marker) color.             
+     */
+    public highlightColor: XmlColor;
+    
+    /**
+     * True if the font is formatted as italic.             
+     */
+    public italic: boolean;
+    
+    /**
+     * True if the right-to-left text is formatted as italic.             
+     */
+    public italicBi: boolean;
+    
+    /**
+     * Gets or sets the font size at which kerning starts.             
+     */
+    public kerning: number;
+    
+    /**
+     * Gets or sets the locale identifier (language) of the formatted characters.             
+     */
+    public localeId: number;
+    
+    /**
+     * Gets or sets the locale identifier (language) of the formatted right-to-left characters.             
+     */
+    public localeIdBi: number;
+    
+    /**
+     * Gets or sets the locale identifier (language) of the formatted Asian characters.             
+     */
+    public localeIdFarEast: number;
+    
     /**
      * Gets or sets the name of the font             
      */
@@ -3481,6 +3710,31 @@ export class Font extends LinkElement {
     public nameOther: string;
     
     /**
+     * True when the formatted characters are not to be spell checked.
+     */
+    public noProofing: boolean;
+    
+    /**
+     * True if the font is formatted as outline.             
+     */
+    public outline: boolean;
+    
+    /**
+     * Gets or sets the position of text (in points) relative to the base line. A positive number raises the text, and a negative number lowers it.             
+     */
+    public position: number;
+    
+    /**
+     * Gets or sets character width scaling in percent.             
+     */
+    public scaling: number;
+    
+    /**
+     * True if the font is formatted as shadowed.             
+     */
+    public shadow: boolean;
+    
+    /**
      * Gets or sets the font size in points.             
      */
     public size: number;
@@ -3491,29 +3745,14 @@ export class Font extends LinkElement {
     public sizeBi: number;
     
     /**
-     * True if the font is formatted as bold.             
+     * True if the font is formatted as small capital letters.             
      */
-    public bold: boolean;
+    public smallCaps: boolean;
     
     /**
-     * True if the right-to-left text is formatted as bold.             
+     * Returns or sets the spacing (in points) between characters.             
      */
-    public boldBi: boolean;
-    
-    /**
-     * True if the font is formatted as italic.             
-     */
-    public italic: boolean;
-    
-    /**
-     * True if the right-to-left text is formatted as italic.             
-     */
-    public italicBi: boolean;
-    
-    /**
-     * Gets or sets the color of the font.             
-     */
-    public color: XmlColor;
+    public spacing: number;
     
     /**
      * True if the font is formatted as strikethrough text.             
@@ -3521,34 +3760,14 @@ export class Font extends LinkElement {
     public strikeThrough: boolean;
     
     /**
-     * True if the font is formatted as double strikethrough text.             
+     * Gets or sets the locale independent style identifier of the character style applied to this formatting.
      */
-    public doubleStrikeThrough: boolean;
+    public styleIdentifier: Font.StyleIdentifierEnum;
     
     /**
-     * True if the font is formatted as shadowed.             
+     * Gets or sets the name of the character style applied to this formatting.             
      */
-    public shadow: boolean;
-    
-    /**
-     * True if the font is formatted as outline.             
-     */
-    public outline: boolean;
-    
-    /**
-     * True if the font is formatted as embossed.             
-     */
-    public emboss: boolean;
-    
-    /**
-     * True if the font is formatted as engraved.             
-     */
-    public engrave: boolean;
-    
-    /**
-     * True if the font is formatted as superscript.             
-     */
-    public superscript: boolean;
+    public styleName: string;
     
     /**
      * True if the font is formatted as subscript.             
@@ -3556,19 +3775,14 @@ export class Font extends LinkElement {
     public subscript: boolean;
     
     /**
-     * True if the font is formatted as small capital letters.             
+     * True if the font is formatted as superscript.             
      */
-    public smallCaps: boolean;
+    public superscript: boolean;
     
     /**
-     * True if the font is formatted as all capital letters.             
+     * Gets or sets the font animation effect.
      */
-    public allCaps: boolean;
-    
-    /**
-     * True if the font is formatted as hidden text.             
-     */
-    public hidden: boolean;
+    public textEffect: Font.TextEffectEnum;
     
     /**
      * Gets or sets the type of underline applied to the font.
@@ -3580,81 +3794,6 @@ export class Font extends LinkElement {
      */
     public underlineColor: XmlColor;
     
-    /**
-     * Gets or sets character width scaling in percent.             
-     */
-    public scaling: number;
-    
-    /**
-     * Returns or sets the spacing (in points) between characters.             
-     */
-    public spacing: number;
-    
-    /**
-     * Gets or sets the position of text (in points) relative to the base line. A positive number raises the text, and a negative number lowers it.             
-     */
-    public position: number;
-    
-    /**
-     * Gets or sets the font size at which kerning starts.             
-     */
-    public kerning: number;
-    
-    /**
-     * Gets or sets the highlight (marker) color.             
-     */
-    public highlightColor: XmlColor;
-    
-    /**
-     * Gets or sets the font animation effect.
-     */
-    public textEffect: Font.TextEffectEnum;
-    
-    /**
-     * Specifies whether the contents of this run shall have right-to-left characteristics.             
-     */
-    public bidi: boolean;
-    
-    /**
-     * Specifies whether the contents of this run shall be treated as complex script text regardless of their Unicode character values when determining the formatting for this run.             
-     */
-    public complexScript: boolean;
-    
-    /**
-     * True when the formatted characters are not to be spell checked.
-     */
-    public noProofing: boolean;
-    
-    /**
-     * Gets or sets the locale identifier (language) of the formatted characters.             
-     */
-    public localeId: number;
-    
-    /**
-     * Gets or sets the locale identifier (language) of the formatted right-to-left characters.             
-     */
-    public localeIdBi: number;
-    
-    /**
-     * Gets or sets the locale identifier (language) of the formatted Asian characters.             
-     */
-    public localeIdFarEast: number;
-    
-    /**
-     * Border object that specifies border for the font.
-     */
-    public border: Border;
-    
-    /**
-     * Gets or sets the name of the character style applied to this formatting.             
-     */
-    public styleName: string;
-    
-    /**
-     * Gets or sets the locale independent style identifier of the character style applied to this formatting.
-     */
-    public styleIdentifier: Font.StyleIdentifierEnum;
-    
     public constructor(init?: Partial<Font>) {
         super(init);
         Object.assign(this, init);
@@ -3664,35 +3803,6 @@ export class Font extends LinkElement {
 // tslint:disable:quotemark
 // tslint:disable-next-line:no-namespace
 export namespace Font {
-    export enum UnderlineEnum {
-        None = 'None' as any,
-        Single = 'Single' as any,
-        Words = 'Words' as any,
-        Double = 'Double' as any,
-        Dotted = 'Dotted' as any,
-        Thick = 'Thick' as any,
-        Dash = 'Dash' as any,
-        DotDash = 'DotDash' as any,
-        DotDotDash = 'DotDotDash' as any,
-        Wavy = 'Wavy' as any,
-        DottedHeavy = 'DottedHeavy' as any,
-        DashHeavy = 'DashHeavy' as any,
-        DotDashHeavy = 'DotDashHeavy' as any,
-        DotDotDashHeavy = 'DotDotDashHeavy' as any,
-        WavyHeavy = 'WavyHeavy' as any,
-        DashLong = 'DashLong' as any,
-        WavyDouble = 'WavyDouble' as any,
-        DashLongHeavy = 'DashLongHeavy' as any,
-    }
-    export enum TextEffectEnum {
-        None = 'None' as any,
-        LasVegasLights = 'LasVegasLights' as any,
-        BlinkingBackground = 'BlinkingBackground' as any,
-        SparkleText = 'SparkleText' as any,
-        MarchingBlackAnts = 'MarchingBlackAnts' as any,
-        MarchingRedAnts = 'MarchingRedAnts' as any,
-        Shimmer = 'Shimmer' as any,
-    }
     export enum StyleIdentifierEnum {
         Normal = 'Normal' as any,
         Heading1 = 'Heading1' as any,
@@ -4068,10 +4178,39 @@ export namespace Font {
         User = 'User' as any,
         Nil = 'Nil' as any,
     }
+    export enum TextEffectEnum {
+        None = 'None' as any,
+        LasVegasLights = 'LasVegasLights' as any,
+        BlinkingBackground = 'BlinkingBackground' as any,
+        SparkleText = 'SparkleText' as any,
+        MarchingBlackAnts = 'MarchingBlackAnts' as any,
+        MarchingRedAnts = 'MarchingRedAnts' as any,
+        Shimmer = 'Shimmer' as any,
+    }
+    export enum UnderlineEnum {
+        None = 'None' as any,
+        Single = 'Single' as any,
+        Words = 'Words' as any,
+        Double = 'Double' as any,
+        Dotted = 'Dotted' as any,
+        Thick = 'Thick' as any,
+        Dash = 'Dash' as any,
+        DotDash = 'DotDash' as any,
+        DotDotDash = 'DotDotDash' as any,
+        Wavy = 'Wavy' as any,
+        DottedHeavy = 'DottedHeavy' as any,
+        DashHeavy = 'DashHeavy' as any,
+        DotDashHeavy = 'DotDashHeavy' as any,
+        DotDotDashHeavy = 'DotDotDashHeavy' as any,
+        WavyHeavy = 'WavyHeavy' as any,
+        DashLong = 'DashLong' as any,
+        WavyDouble = 'WavyDouble' as any,
+        DashLongHeavy = 'DashLongHeavy' as any,
+    }
 }
 // tslint:enable:quotemark
 /**
- * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/paragraphs/{0}/runs/{1}/font 
+ * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/paragraphs/{0}/runs/{1}/font 
  */
 export class FontResponse extends AsposeResponse {
 
@@ -4137,7 +4276,7 @@ export class FootnoteCollection extends LinkElement {
 }
 
 /**
- * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/footnote/0 
+ * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/footnote/0 
  */
 export class FootnoteResponse extends AsposeResponse {
 
@@ -4170,7 +4309,7 @@ export class FootnoteResponse extends AsposeResponse {
 }
 
 /**
- * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/footnotes 
+ * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/footnotes 
  */
 export class FootnotesResponse extends AsposeResponse {
 
@@ -4236,7 +4375,7 @@ export class FormFieldCollection extends LinkElement {
 }
 
 /**
- * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/paragraphs/{0}/formfields/{1} 
+ * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/paragraphs/{0}/formfields/{1} 
  */
 export class FormFieldResponse extends AsposeResponse {
 
@@ -4269,7 +4408,7 @@ export class FormFieldResponse extends AsposeResponse {
 }
 
 /**
- * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/{nodePath}/formfields
+ * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/{nodePath}/formfields
  */
 export class FormFieldsResponse extends AsposeResponse {
 
@@ -4381,7 +4520,7 @@ export class HeaderFooterLinkCollection extends LinkElement {
 }
 
 /**
- * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/headersfooters/{0} 
+ * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/headersfooters/{0} 
  */
 export class HeaderFooterResponse extends AsposeResponse {
 
@@ -4414,7 +4553,7 @@ export class HeaderFooterResponse extends AsposeResponse {
 }
 
 /**
- * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/headersfooters 
+ * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/headersfooters 
  */
 export class HeaderFootersResponse extends AsposeResponse {
 
@@ -4456,11 +4595,6 @@ export class HtmlSaveOptionsData extends SaveOptionsData {
      */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            name: "prettyFormat",
-            baseName: "PrettyFormat",
-            type: "boolean",
-        },        
-        {
             name: "allowNegativeIndent",
             baseName: "AllowNegativeIndent",
             type: "boolean",
@@ -4496,13 +4630,18 @@ export class HtmlSaveOptionsData extends SaveOptionsData {
             type: "boolean",
         },        
         {
-            name: "exportFontsAsBase64",
-            baseName: "ExportFontsAsBase64",
+            name: "exportDropDownFormFieldAsText",
+            baseName: "ExportDropDownFormFieldAsText",
             type: "boolean",
         },        
         {
             name: "exportFontResources",
             baseName: "ExportFontResources",
+            type: "boolean",
+        },        
+        {
+            name: "exportFontsAsBase64",
+            baseName: "ExportFontsAsBase64",
             type: "boolean",
         },        
         {
@@ -4576,6 +4715,11 @@ export class HtmlSaveOptionsData extends SaveOptionsData {
             type: "boolean",
         },        
         {
+            name: "fontResourcesSubsettingSizeThreshold",
+            baseName: "FontResourcesSubsettingSizeThreshold",
+            type: "number",
+        },        
+        {
             name: "fontsFolder",
             baseName: "FontsFolder",
             type: "string",
@@ -4586,14 +4730,14 @@ export class HtmlSaveOptionsData extends SaveOptionsData {
             type: "string",
         },        
         {
-            name: "fontResourcesSubsettingSizeThreshold",
-            baseName: "FontResourcesSubsettingSizeThreshold",
-            type: "number",
-        },        
-        {
             name: "htmlVersion",
             baseName: "HtmlVersion",
             type: "HtmlSaveOptionsData.HtmlVersionEnum",
+        },        
+        {
+            name: "imageResolution",
+            baseName: "ImageResolution",
+            type: "number",
         },        
         {
             name: "imagesFolder",
@@ -4606,14 +4750,14 @@ export class HtmlSaveOptionsData extends SaveOptionsData {
             type: "string",
         },        
         {
-            name: "imageResolution",
-            baseName: "ImageResolution",
-            type: "number",
-        },        
-        {
             name: "officeMathOutputMode",
             baseName: "OfficeMathOutputMode",
             type: "HtmlSaveOptionsData.OfficeMathOutputModeEnum",
+        },        
+        {
+            name: "prettyFormat",
+            baseName: "PrettyFormat",
+            type: "boolean",
         },        
         {
             name: "resourceFolder",
@@ -4634,11 +4778,6 @@ export class HtmlSaveOptionsData extends SaveOptionsData {
             name: "tableWidthOutputMode",
             baseName: "TableWidthOutputMode",
             type: "string",
-        },        
-        {
-            name: "exportDropDownFormFieldAsText",
-            baseName: "ExportDropDownFormFieldAsText",
-            type: "boolean",
         }    ];
 
     /**
@@ -4648,11 +4787,6 @@ export class HtmlSaveOptionsData extends SaveOptionsData {
         return super.getAttributeTypeMap().concat(HtmlSaveOptionsData.attributeTypeMap);
     }
 
-    /**
-     * Specifies whether or not use pretty formats output
-     */
-    public prettyFormat: boolean;
-    
     /**
      * Specifies whether negative left and right indents of paragraphs are allowed (not normalized)
      */
@@ -4689,14 +4823,19 @@ export class HtmlSaveOptionsData extends SaveOptionsData {
     public exportDocumentProperties: boolean;
     
     /**
-     * Specifies whether fonts resources should be embedded to HTML in Base64 encoding.  Default is false.
+     * Controls how drop-down form fields are saved to HTML. Default value is false.
      */
-    public exportFontsAsBase64: boolean;
+    public exportDropDownFormFieldAsText: boolean;
     
     /**
      * Specifies whether font resources should be exported
      */
     public exportFontResources: boolean;
+    
+    /**
+     * Specifies whether fonts resources should be embedded to HTML in Base64 encoding.  Default is false.
+     */
+    public exportFontsAsBase64: boolean;
     
     /**
      * Specifies how headers and footers are output
@@ -4769,6 +4908,11 @@ export class HtmlSaveOptionsData extends SaveOptionsData {
     public exportXhtmlTransitional: boolean;
     
     /**
+     * Controls which font resources need subsetting when saving
+     */
+    public fontResourcesSubsettingSizeThreshold: number;
+    
+    /**
      * Specifies the physical folder where fonts are saved when exporting a document
      */
     public fontsFolder: string;
@@ -4779,14 +4923,14 @@ export class HtmlSaveOptionsData extends SaveOptionsData {
     public fontsFolderAlias: string;
     
     /**
-     * Controls which font resources need subsetting when saving
-     */
-    public fontResourcesSubsettingSizeThreshold: number;
-    
-    /**
      * Specifies version of HTML standard that should be used when saving the document to HTML or MHTML.   Default value is Aspose.Words.Saving.HtmlVersion.Xhtml.
      */
     public htmlVersion: HtmlSaveOptionsData.HtmlVersionEnum;
+    
+    /**
+     * Specifies the output resolution for images when exporting
+     */
+    public imageResolution: number;
     
     /**
      * Specifies the physical folder where images are saved when exporting a document
@@ -4799,14 +4943,14 @@ export class HtmlSaveOptionsData extends SaveOptionsData {
     public imagesFolderAlias: string;
     
     /**
-     * Specifies the output resolution for images when exporting
-     */
-    public imageResolution: number;
-    
-    /**
      * Controls how OfficeMath objects are exported to HTML, MHTML or EPUB.  Default value is HtmlOfficeMathOutputMode.Image.
      */
     public officeMathOutputMode: HtmlSaveOptionsData.OfficeMathOutputModeEnum;
+    
+    /**
+     * Specifies whether or not use pretty formats output
+     */
+    public prettyFormat: boolean;
     
     /**
      * Specifies a physical folder where all resources like images, fonts, and external CSS are saved when a document is exported to HTML. Default is an empty string.
@@ -4827,11 +4971,6 @@ export class HtmlSaveOptionsData extends SaveOptionsData {
      * Controls how table, row and cell widths are exported
      */
     public tableWidthOutputMode: string;
-    
-    /**
-     * Controls how drop-down form fields are saved to HTML. Default value is false.
-     */
-    public exportDropDownFormFieldAsText: boolean;
     
     public constructor(init?: Partial<HtmlSaveOptionsData>) {
         super(init);
@@ -4897,7 +5036,7 @@ export class Hyperlink extends LinkElement {
 }
 
 /**
- * This resonse should be returned by the service when handling:  GET /{name}/hyperlinks/{hyperlinkIndex} .
+ * This response should be returned by the service when handling:  GET /{name}/hyperlinks/{hyperlinkIndex} .
  */
 export class HyperlinkResponse extends AsposeResponse {
 
@@ -4963,7 +5102,7 @@ export class Hyperlinks extends LinkElement {
 }
 
 /**
- * This resonse should be returned by the service when handling:  GET /{name}/hyperlinks .
+ * This response should be returned by the service when handling:  GET /{name}/hyperlinks .
  */
 export class HyperlinksResponse extends AsposeResponse {
 
@@ -5038,13 +5177,13 @@ export class OdtSaveOptionsData extends SaveOptionsData {
      */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            name: "prettyFormat",
-            baseName: "PrettyFormat",
+            name: "isStrictSchema11",
+            baseName: "IsStrictSchema11",
             type: "boolean",
         },        
         {
-            name: "isStrictSchema11",
-            baseName: "IsStrictSchema11",
+            name: "prettyFormat",
+            baseName: "PrettyFormat",
             type: "boolean",
         }    ];
 
@@ -5056,14 +5195,14 @@ export class OdtSaveOptionsData extends SaveOptionsData {
     }
 
     /**
-     * Specifies whether or not use pretty formats output
-     */
-    public prettyFormat: boolean;
-    
-    /**
      * Specifies whether export should correspond to ODT specification 1.1 strictly
      */
     public isStrictSchema11: boolean;
+    
+    /**
+     * Specifies whether or not use pretty formats output
+     */
+    public prettyFormat: boolean;
     
     public constructor(init?: Partial<OdtSaveOptionsData>) {
         super(init);
@@ -5072,7 +5211,7 @@ export class OdtSaveOptionsData extends SaveOptionsData {
 }
 
 /**
- * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/officeMathObjects/0 
+ * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/officeMathObjects/0 
  */
 export class OfficeMathObjectResponse extends AsposeResponse {
 
@@ -5180,11 +5319,6 @@ export class OoxmlSaveOptionsData extends SaveOptionsData {
      */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            name: "prettyFormat",
-            baseName: "PrettyFormat",
-            type: "boolean",
-        },        
-        {
             name: "compliance",
             baseName: "Compliance",
             type: "string",
@@ -5193,6 +5327,11 @@ export class OoxmlSaveOptionsData extends SaveOptionsData {
             name: "password",
             baseName: "Password",
             type: "string",
+        },        
+        {
+            name: "prettyFormat",
+            baseName: "PrettyFormat",
+            type: "boolean",
         }    ];
 
     /**
@@ -5203,11 +5342,6 @@ export class OoxmlSaveOptionsData extends SaveOptionsData {
     }
 
     /**
-     * Specifies whether or not use pretty formats output
-     */
-    public prettyFormat: boolean;
-    
-    /**
      * Specifies the OOXML version for the output document
      */
     public compliance: string;
@@ -5216,6 +5350,11 @@ export class OoxmlSaveOptionsData extends SaveOptionsData {
      * Specifies a password to encrypt document using ECMA376 Standard encryption algorithm
      */
     public password: string;
+    
+    /**
+     * Specifies whether or not use pretty formats output
+     */
+    public prettyFormat: boolean;
     
     public constructor(init?: Partial<OoxmlSaveOptionsData>) {
         super(init);
@@ -5233,64 +5372,24 @@ export class PageSetup extends LinkElement {
      */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            name: "differentFirstPageHeaderFooter",
-            baseName: "DifferentFirstPageHeaderFooter",
-            type: "boolean",
-        },        
-        {
-            name: "sectionStart",
-            baseName: "SectionStart",
-            type: "PageSetup.SectionStartEnum",
-        },        
-        {
-            name: "suppressEndnotes",
-            baseName: "SuppressEndnotes",
-            type: "boolean",
-        },        
-        {
-            name: "verticalAlignment",
-            baseName: "VerticalAlignment",
-            type: "PageSetup.VerticalAlignmentEnum",
-        },        
-        {
             name: "bidi",
             baseName: "Bidi",
             type: "boolean",
         },        
         {
-            name: "pageWidth",
-            baseName: "PageWidth",
-            type: "number",
+            name: "borderAlwaysInFront",
+            baseName: "BorderAlwaysInFront",
+            type: "boolean",
         },        
         {
-            name: "pageHeight",
-            baseName: "PageHeight",
-            type: "number",
+            name: "borderAppliesTo",
+            baseName: "BorderAppliesTo",
+            type: "PageSetup.BorderAppliesToEnum",
         },        
         {
-            name: "paperSize",
-            baseName: "PaperSize",
-            type: "PageSetup.PaperSizeEnum",
-        },        
-        {
-            name: "orientation",
-            baseName: "Orientation",
-            type: "PageSetup.OrientationEnum",
-        },        
-        {
-            name: "leftMargin",
-            baseName: "LeftMargin",
-            type: "number",
-        },        
-        {
-            name: "rightMargin",
-            baseName: "RightMargin",
-            type: "number",
-        },        
-        {
-            name: "topMargin",
-            baseName: "TopMargin",
-            type: "number",
+            name: "borderDistanceFrom",
+            baseName: "BorderDistanceFrom",
+            type: "PageSetup.BorderDistanceFromEnum",
         },        
         {
             name: "bottomMargin",
@@ -5298,8 +5397,13 @@ export class PageSetup extends LinkElement {
             type: "number",
         },        
         {
-            name: "headerDistance",
-            baseName: "HeaderDistance",
+            name: "differentFirstPageHeaderFooter",
+            baseName: "DifferentFirstPageHeaderFooter",
+            type: "boolean",
+        },        
+        {
+            name: "firstPageTray",
+            baseName: "FirstPageTray",
             type: "number",
         },        
         {
@@ -5313,34 +5417,14 @@ export class PageSetup extends LinkElement {
             type: "number",
         },        
         {
-            name: "firstPageTray",
-            baseName: "FirstPageTray",
+            name: "headerDistance",
+            baseName: "HeaderDistance",
             type: "number",
         },        
         {
-            name: "otherPagesTray",
-            baseName: "OtherPagesTray",
+            name: "leftMargin",
+            baseName: "LeftMargin",
             type: "number",
-        },        
-        {
-            name: "pageNumberStyle",
-            baseName: "PageNumberStyle",
-            type: "PageSetup.PageNumberStyleEnum",
-        },        
-        {
-            name: "restartPageNumbering",
-            baseName: "RestartPageNumbering",
-            type: "boolean",
-        },        
-        {
-            name: "pageStartingNumber",
-            baseName: "PageStartingNumber",
-            type: "number",
-        },        
-        {
-            name: "lineNumberRestartMode",
-            baseName: "LineNumberRestartMode",
-            type: "PageSetup.LineNumberRestartModeEnum",
         },        
         {
             name: "lineNumberCountBy",
@@ -5353,8 +5437,58 @@ export class PageSetup extends LinkElement {
             type: "number",
         },        
         {
+            name: "lineNumberRestartMode",
+            baseName: "LineNumberRestartMode",
+            type: "PageSetup.LineNumberRestartModeEnum",
+        },        
+        {
             name: "lineStartingNumber",
             baseName: "LineStartingNumber",
+            type: "number",
+        },        
+        {
+            name: "orientation",
+            baseName: "Orientation",
+            type: "PageSetup.OrientationEnum",
+        },        
+        {
+            name: "otherPagesTray",
+            baseName: "OtherPagesTray",
+            type: "number",
+        },        
+        {
+            name: "pageHeight",
+            baseName: "PageHeight",
+            type: "number",
+        },        
+        {
+            name: "pageNumberStyle",
+            baseName: "PageNumberStyle",
+            type: "PageSetup.PageNumberStyleEnum",
+        },        
+        {
+            name: "pageStartingNumber",
+            baseName: "PageStartingNumber",
+            type: "number",
+        },        
+        {
+            name: "pageWidth",
+            baseName: "PageWidth",
+            type: "number",
+        },        
+        {
+            name: "paperSize",
+            baseName: "PaperSize",
+            type: "PageSetup.PaperSizeEnum",
+        },        
+        {
+            name: "restartPageNumbering",
+            baseName: "RestartPageNumbering",
+            type: "boolean",
+        },        
+        {
+            name: "rightMargin",
+            baseName: "RightMargin",
             type: "number",
         },        
         {
@@ -5363,19 +5497,24 @@ export class PageSetup extends LinkElement {
             type: "boolean",
         },        
         {
-            name: "borderAlwaysInFront",
-            baseName: "BorderAlwaysInFront",
+            name: "sectionStart",
+            baseName: "SectionStart",
+            type: "PageSetup.SectionStartEnum",
+        },        
+        {
+            name: "suppressEndnotes",
+            baseName: "SuppressEndnotes",
             type: "boolean",
         },        
         {
-            name: "borderDistanceFrom",
-            baseName: "BorderDistanceFrom",
-            type: "PageSetup.BorderDistanceFromEnum",
+            name: "topMargin",
+            baseName: "TopMargin",
+            type: "number",
         },        
         {
-            name: "borderAppliesTo",
-            baseName: "BorderAppliesTo",
-            type: "PageSetup.BorderAppliesToEnum",
+            name: "verticalAlignment",
+            baseName: "VerticalAlignment",
+            type: "PageSetup.VerticalAlignmentEnum",
         }    ];
 
     /**
@@ -5386,64 +5525,24 @@ export class PageSetup extends LinkElement {
     }
 
     /**
-     * True if a different header or footer is used on the first page.             
-     */
-    public differentFirstPageHeaderFooter: boolean;
-    
-    /**
-     * Returns or sets the type of section break for the specified object.             
-     */
-    public sectionStart: PageSetup.SectionStartEnum;
-    
-    /**
-     * True if endnotes are printed at the end of the next section that doesn't suppress endnotes.                 Suppressed endnotes are printed before the endnotes in that section.             
-     */
-    public suppressEndnotes: boolean;
-    
-    /**
-     * Returns or sets the vertical alignment of text on each page in a document or section.             
-     */
-    public verticalAlignment: PageSetup.VerticalAlignmentEnum;
-    
-    /**
      * Specifies that this section contains bidirectional (complex scripts) text.             
      */
     public bidi: boolean;
     
     /**
-     * Returns or sets the width of the page in points.             
+     * Specifies where the page border is positioned relative to intersecting texts and objects.             
      */
-    public pageWidth: number;
+    public borderAlwaysInFront: boolean;
     
     /**
-     * Returns or sets the height of the page in points.             
+     * Specifies which pages the page border is printed on.             
      */
-    public pageHeight: number;
+    public borderAppliesTo: PageSetup.BorderAppliesToEnum;
     
     /**
-     * Returns or sets the paper size.             
+     * Gets or sets a value that indicates whether the specified page border is measured from the edge of the page or from the text it surrounds.             
      */
-    public paperSize: PageSetup.PaperSizeEnum;
-    
-    /**
-     * Returns or sets the orientation of the page.             
-     */
-    public orientation: PageSetup.OrientationEnum;
-    
-    /**
-     * Returns or sets the distance (in points) between the left edge of the page and the left boundary of the body text.             
-     */
-    public leftMargin: number;
-    
-    /**
-     * Returns or sets the distance (in points) between the right edge of the page and the right boundary of the body text.             
-     */
-    public rightMargin: number;
-    
-    /**
-     * Returns or sets the distance (in points) between the top edge of the page and the top boundary of the body text.             
-     */
-    public topMargin: number;
+    public borderDistanceFrom: PageSetup.BorderDistanceFromEnum;
     
     /**
      * Returns or sets the distance (in points) between the bottom edge of the page and the bottom boundary of the body text.             
@@ -5451,9 +5550,14 @@ export class PageSetup extends LinkElement {
     public bottomMargin: number;
     
     /**
-     * Returns or sets the distance (in points) between the header and the top of the page.             
+     * True if a different header or footer is used on the first page.             
      */
-    public headerDistance: number;
+    public differentFirstPageHeaderFooter: boolean;
+    
+    /**
+     * Gets or sets the paper tray (bin) to use for the first page of a section. The value is implementation (printer) specific.             
+     */
+    public firstPageTray: number;
     
     /**
      * Returns or sets the distance (in points) between the footer and the bottom of the page.             
@@ -5466,34 +5570,14 @@ export class PageSetup extends LinkElement {
     public gutter: number;
     
     /**
-     * Gets or sets the paper tray (bin) to use for the first page of a section. The value is implementation (printer) specific.             
+     * Returns or sets the distance (in points) between the header and the top of the page.             
      */
-    public firstPageTray: number;
+    public headerDistance: number;
     
     /**
-     * Gets or sets the paper tray (bin) to be used for all but the first page of a section. The value is implementation (printer) specific.             
+     * Returns or sets the distance (in points) between the left edge of the page and the left boundary of the body text.             
      */
-    public otherPagesTray: number;
-    
-    /**
-     * Gets or sets the page number format.             
-     */
-    public pageNumberStyle: PageSetup.PageNumberStyleEnum;
-    
-    /**
-     * True if page numbering restarts at the beginning of the section.             
-     */
-    public restartPageNumbering: boolean;
-    
-    /**
-     * Gets or sets the starting page number of the section.             
-     */
-    public pageStartingNumber: number;
-    
-    /**
-     * Gets or sets the way line numbering runs  that is, whether it starts over at the beginning of a new page or section or runs continuously.             
-     */
-    public lineNumberRestartMode: PageSetup.LineNumberRestartModeEnum;
+    public leftMargin: number;
     
     /**
      * Returns or sets the numeric increment for line numbers.             
@@ -5506,9 +5590,59 @@ export class PageSetup extends LinkElement {
     public lineNumberDistanceFromText: number;
     
     /**
+     * Gets or sets the way line numbering runs  that is, whether it starts over at the beginning of a new page or section or runs continuously.             
+     */
+    public lineNumberRestartMode: PageSetup.LineNumberRestartModeEnum;
+    
+    /**
      * Gets or sets the starting line number.             
      */
     public lineStartingNumber: number;
+    
+    /**
+     * Returns or sets the orientation of the page.             
+     */
+    public orientation: PageSetup.OrientationEnum;
+    
+    /**
+     * Gets or sets the paper tray (bin) to be used for all but the first page of a section. The value is implementation (printer) specific.             
+     */
+    public otherPagesTray: number;
+    
+    /**
+     * Returns or sets the height of the page in points.             
+     */
+    public pageHeight: number;
+    
+    /**
+     * Gets or sets the page number format.             
+     */
+    public pageNumberStyle: PageSetup.PageNumberStyleEnum;
+    
+    /**
+     * Gets or sets the starting page number of the section.             
+     */
+    public pageStartingNumber: number;
+    
+    /**
+     * Returns or sets the width of the page in points.             
+     */
+    public pageWidth: number;
+    
+    /**
+     * Returns or sets the paper size.             
+     */
+    public paperSize: PageSetup.PaperSizeEnum;
+    
+    /**
+     * True if page numbering restarts at the beginning of the section.             
+     */
+    public restartPageNumbering: boolean;
+    
+    /**
+     * Returns or sets the distance (in points) between the right edge of the page and the right boundary of the body text.             
+     */
+    public rightMargin: number;
     
     /**
      * Gets or sets whether Microsoft Word uses gutters for the section based on a right-to-left language or a left-to-right language.             
@@ -5516,19 +5650,24 @@ export class PageSetup extends LinkElement {
     public rtlGutter: boolean;
     
     /**
-     * Specifies where the page border is positioned relative to intersecting texts and objects.             
+     * Returns or sets the type of section break for the specified object.             
      */
-    public borderAlwaysInFront: boolean;
+    public sectionStart: PageSetup.SectionStartEnum;
     
     /**
-     * Gets or sets a value that indicates whether the specified page border is measured from the edge of the page or from the text it surrounds.             
+     * True if endnotes are printed at the end of the next section that doesn't suppress endnotes.                 Suppressed endnotes are printed before the endnotes in that section.             
      */
-    public borderDistanceFrom: PageSetup.BorderDistanceFromEnum;
+    public suppressEndnotes: boolean;
     
     /**
-     * Specifies which pages the page border is printed on.             
+     * Returns or sets the distance (in points) between the top edge of the page and the top boundary of the body text.             
      */
-    public borderAppliesTo: PageSetup.BorderAppliesToEnum;
+    public topMargin: number;
+    
+    /**
+     * Returns or sets the vertical alignment of text on each page in a document or section.             
+     */
+    public verticalAlignment: PageSetup.VerticalAlignmentEnum;
     
     public constructor(init?: Partial<PageSetup>) {
         super(init);
@@ -5539,37 +5678,19 @@ export class PageSetup extends LinkElement {
 // tslint:disable:quotemark
 // tslint:disable-next-line:no-namespace
 export namespace PageSetup {
-    export enum SectionStartEnum {
+    export enum BorderAppliesToEnum {
+        AllPages = 'AllPages' as any,
+        FirstPage = 'FirstPage' as any,
+        OtherPages = 'OtherPages' as any,
+    }
+    export enum BorderDistanceFromEnum {
+        Text = 'Text' as any,
+        PageEdge = 'PageEdge' as any,
+    }
+    export enum LineNumberRestartModeEnum {
+        RestartPage = 'RestartPage' as any,
+        RestartSection = 'RestartSection' as any,
         Continuous = 'Continuous' as any,
-        NewColumn = 'NewColumn' as any,
-        NewPage = 'NewPage' as any,
-        EvenPage = 'EvenPage' as any,
-        OddPage = 'OddPage' as any,
-    }
-    export enum VerticalAlignmentEnum {
-        Top = 'Top' as any,
-        Center = 'Center' as any,
-        Justify = 'Justify' as any,
-        Bottom = 'Bottom' as any,
-    }
-    export enum PaperSizeEnum {
-        A3 = 'A3' as any,
-        A4 = 'A4' as any,
-        A5 = 'A5' as any,
-        B4 = 'B4' as any,
-        B5 = 'B5' as any,
-        Executive = 'Executive' as any,
-        Folio = 'Folio' as any,
-        Ledger = 'Ledger' as any,
-        Legal = 'Legal' as any,
-        Letter = 'Letter' as any,
-        EnvelopeDL = 'EnvelopeDL' as any,
-        Quarto = 'Quarto' as any,
-        Statement = 'Statement' as any,
-        Tabloid = 'Tabloid' as any,
-        Paper10x14 = 'Paper10x14' as any,
-        Paper11x17 = 'Paper11x17' as any,
-        Custom = 'Custom' as any,
     }
     export enum OrientationEnum {
         Portrait = 'Portrait' as any,
@@ -5640,19 +5761,37 @@ export namespace PageSetup {
         None = 'None' as any,
         Custom = 'Custom' as any,
     }
-    export enum LineNumberRestartModeEnum {
-        RestartPage = 'RestartPage' as any,
-        RestartSection = 'RestartSection' as any,
+    export enum PaperSizeEnum {
+        A3 = 'A3' as any,
+        A4 = 'A4' as any,
+        A5 = 'A5' as any,
+        B4 = 'B4' as any,
+        B5 = 'B5' as any,
+        Executive = 'Executive' as any,
+        Folio = 'Folio' as any,
+        Ledger = 'Ledger' as any,
+        Legal = 'Legal' as any,
+        Letter = 'Letter' as any,
+        EnvelopeDL = 'EnvelopeDL' as any,
+        Quarto = 'Quarto' as any,
+        Statement = 'Statement' as any,
+        Tabloid = 'Tabloid' as any,
+        Paper10x14 = 'Paper10x14' as any,
+        Paper11x17 = 'Paper11x17' as any,
+        Custom = 'Custom' as any,
+    }
+    export enum SectionStartEnum {
         Continuous = 'Continuous' as any,
+        NewColumn = 'NewColumn' as any,
+        NewPage = 'NewPage' as any,
+        EvenPage = 'EvenPage' as any,
+        OddPage = 'OddPage' as any,
     }
-    export enum BorderDistanceFromEnum {
-        Text = 'Text' as any,
-        PageEdge = 'PageEdge' as any,
-    }
-    export enum BorderAppliesToEnum {
-        AllPages = 'AllPages' as any,
-        FirstPage = 'FirstPage' as any,
-        OtherPages = 'OtherPages' as any,
+    export enum VerticalAlignmentEnum {
+        Top = 'Top' as any,
+        Center = 'Center' as any,
+        Justify = 'Justify' as any,
+        Bottom = 'Bottom' as any,
     }
 }
 // tslint:enable:quotemark
@@ -5690,7 +5829,7 @@ export class ParagraphLinkCollection extends LinkElement {
 }
 
 /**
- * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/paragraphs 
+ * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/paragraphs 
  */
 export class ParagraphLinkCollectionResponse extends AsposeResponse {
 
@@ -5723,7 +5862,7 @@ export class ParagraphLinkCollectionResponse extends AsposeResponse {
 }
 
 /**
- * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/paragraphs/{0} 
+ * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/paragraphs/{0} 
  */
 export class ParagraphResponse extends AsposeResponse {
 
@@ -5765,14 +5904,14 @@ export class ProtectionDataResponse extends AsposeResponse {
      */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            name: "protectionData",
-            baseName: "ProtectionData",
-            type: "ProtectionData",
-        },        
-        {
             name: "documentLink",
             baseName: "DocumentLink",
             type: "FileLink",
+        },        
+        {
+            name: "protectionData",
+            baseName: "ProtectionData",
+            type: "ProtectionData",
         }    ];
 
     /**
@@ -5783,14 +5922,14 @@ export class ProtectionDataResponse extends AsposeResponse {
     }
 
     /**
-     * Protection's data of the document
-     */
-    public protectionData: ProtectionData;
-    
-    /**
      * Link to the document
      */
     public documentLink: FileLink;
+    
+    /**
+     * Protection's data of the document
+     */
+    public protectionData: ProtectionData;
     
     public constructor(init?: Partial<ProtectionDataResponse>) {
         super(init);
@@ -5808,14 +5947,14 @@ export class ProtectionResponse extends AsposeResponse {
      */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            name: "protectionResult",
-            baseName: "ProtectionResult",
-            type: "boolean",
-        },        
-        {
             name: "documentLink",
             baseName: "DocumentLink",
             type: "FileLink",
+        },        
+        {
+            name: "protectionResult",
+            baseName: "ProtectionResult",
+            type: "boolean",
         }    ];
 
     /**
@@ -5826,14 +5965,14 @@ export class ProtectionResponse extends AsposeResponse {
     }
 
     /**
-     * Result of the changing of protection
-     */
-    public protectionResult: boolean;
-    
-    /**
      * Link to the document
      */
     public documentLink: FileLink;
+    
+    /**
+     * Result of the changing of protection
+     */
+    public protectionResult: boolean;
     
     public constructor(init?: Partial<ProtectionResponse>) {
         super(init);
@@ -5851,14 +5990,14 @@ export class ReplaceTextResponse extends AsposeResponse {
      */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            name: "matches",
-            baseName: "Matches",
-            type: "number",
-        },        
-        {
             name: "documentLink",
             baseName: "DocumentLink",
             type: "FileLink",
+        },        
+        {
+            name: "matches",
+            baseName: "Matches",
+            type: "number",
         }    ];
 
     /**
@@ -5869,14 +6008,14 @@ export class ReplaceTextResponse extends AsposeResponse {
     }
 
     /**
-     * Number of occurrences of the captured text in the document.
-     */
-    public matches: number;
-    
-    /**
      * Link to the document.
      */
     public documentLink: FileLink;
+    
+    /**
+     * Number of occurrences of the captured text in the document.
+     */
+    public matches: number;
     
     public constructor(init?: Partial<ReplaceTextResponse>) {
         super(init);
@@ -5927,11 +6066,6 @@ export class RtfSaveOptionsData extends SaveOptionsData {
      */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            name: "prettyFormat",
-            baseName: "PrettyFormat",
-            type: "boolean",
-        },        
-        {
             name: "exportCompactSize",
             baseName: "ExportCompactSize",
             type: "boolean",
@@ -5939,6 +6073,11 @@ export class RtfSaveOptionsData extends SaveOptionsData {
         {
             name: "exportImagesForOldReaders",
             baseName: "ExportImagesForOldReaders",
+            type: "boolean",
+        },        
+        {
+            name: "prettyFormat",
+            baseName: "PrettyFormat",
             type: "boolean",
         }    ];
 
@@ -5950,11 +6089,6 @@ export class RtfSaveOptionsData extends SaveOptionsData {
     }
 
     /**
-     * Specifies whether or not use pretty formats output
-     */
-    public prettyFormat: boolean;
-    
-    /**
      * Allows to make output RTF documents smaller in size, but if they contain RTL (right-to-left) text, it will not be displayed correctly
      */
     public exportCompactSize: boolean;
@@ -5964,6 +6098,11 @@ export class RtfSaveOptionsData extends SaveOptionsData {
      */
     public exportImagesForOldReaders: boolean;
     
+    /**
+     * Specifies whether or not use pretty formats output
+     */
+    public prettyFormat: boolean;
+    
     public constructor(init?: Partial<RtfSaveOptionsData>) {
         super(init);
         Object.assign(this, init);
@@ -5971,7 +6110,7 @@ export class RtfSaveOptionsData extends SaveOptionsData {
 }
 
 /**
- * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/paragraphs/{0}/runs/{1} 
+ * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/paragraphs/{0}/runs/{1} 
  */
 export class RunResponse extends AsposeResponse {
 
@@ -6037,7 +6176,7 @@ export class Runs extends LinkElement {
 }
 
 /**
- * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/{paragraphPath}/runs
+ * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/{paragraphPath}/runs
  */
 export class RunsResponse extends AsposeResponse {
 
@@ -6103,7 +6242,7 @@ export class SaveResponse extends AsposeResponse {
 }
 
 /**
- * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/search 
+ * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/search 
  */
 export class SearchResponse extends AsposeResponse {
 
@@ -6188,8 +6327,13 @@ export class Section extends LinkElement {
      */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            name: "paragraphs",
-            baseName: "Paragraphs",
+            name: "childNodes",
+            baseName: "ChildNodes",
+            type: "Array<NodeLink>",
+        },        
+        {
+            name: "headerFooters",
+            baseName: "HeaderFooters",
             type: "LinkElement",
         },        
         {
@@ -6198,19 +6342,14 @@ export class Section extends LinkElement {
             type: "LinkElement",
         },        
         {
-            name: "headerFooters",
-            baseName: "HeaderFooters",
+            name: "paragraphs",
+            baseName: "Paragraphs",
             type: "LinkElement",
         },        
         {
             name: "tables",
             baseName: "Tables",
             type: "LinkElement",
-        },        
-        {
-            name: "childNodes",
-            baseName: "ChildNodes",
-            type: "Array<NodeLink>",
         }    ];
 
     /**
@@ -6221,14 +6360,9 @@ export class Section extends LinkElement {
     }
 
     /**
-     * Link to Paragraphs resource
+     * Child nodes.
      */
-    public paragraphs: LinkElement;
-    
-    /**
-     * Link to PageSetup resource
-     */
-    public pageSetup: LinkElement;
+    public childNodes: Array<NodeLink>;
     
     /**
      * Link to HeaderFooters resource
@@ -6236,14 +6370,19 @@ export class Section extends LinkElement {
     public headerFooters: LinkElement;
     
     /**
+     * Link to PageSetup resource
+     */
+    public pageSetup: LinkElement;
+    
+    /**
+     * Link to Paragraphs resource
+     */
+    public paragraphs: LinkElement;
+    
+    /**
      * Link to Tables resource
      */
     public tables: LinkElement;
-    
-    /**
-     * Child nodes.
-     */
-    public childNodes: Array<NodeLink>;
     
     public constructor(init?: Partial<Section>) {
         super(init);
@@ -6309,7 +6448,7 @@ export class SectionLinkCollection extends LinkElement {
 }
 
 /**
- * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/sections 
+ * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/sections 
  */
 export class SectionLinkCollectionResponse extends AsposeResponse {
 
@@ -6342,7 +6481,7 @@ export class SectionLinkCollectionResponse extends AsposeResponse {
 }
 
 /**
- * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/sections/{0}/PageSetup 
+ * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/sections/{0}/PageSetup 
  */
 export class SectionPageSetupResponse extends AsposeResponse {
 
@@ -6375,7 +6514,7 @@ export class SectionPageSetupResponse extends AsposeResponse {
 }
 
 /**
- * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/sections/{0} 
+ * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/sections/{0} 
  */
 export class SectionResponse extends AsposeResponse {
 
@@ -6408,7 +6547,7 @@ export class SectionResponse extends AsposeResponse {
 }
 
 /**
- * This resonse should be returned by the service when handling:  POST /{name}/split .
+ * This response should be returned by the service when handling:  POST /{name}/split .
  */
 export class SplitDocumentResponse extends AsposeResponse {
 
@@ -6450,14 +6589,14 @@ export class StatDataResponse extends AsposeResponse {
      */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            name: "statData",
-            baseName: "StatData",
-            type: "DocumentStatData",
-        },        
-        {
             name: "documentLink",
             baseName: "DocumentLink",
             type: "FileLink",
+        },        
+        {
+            name: "statData",
+            baseName: "StatData",
+            type: "DocumentStatData",
         }    ];
 
     /**
@@ -6468,14 +6607,14 @@ export class StatDataResponse extends AsposeResponse {
     }
 
     /**
-     * Statistical data of the document
-     */
-    public statData: DocumentStatData;
-    
-    /**
      * Link to the document
      */
     public documentLink: FileLink;
+    
+    /**
+     * Statistical data of the document
+     */
+    public statData: DocumentStatData;
     
     public constructor(init?: Partial<StatDataResponse>) {
         super(init);
@@ -6493,9 +6632,34 @@ export class TableCellFormat extends LinkElement {
      */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
+            name: "bottomPadding",
+            baseName: "BottomPadding",
+            type: "number",
+        },        
+        {
+            name: "fitText",
+            baseName: "FitText",
+            type: "boolean",
+        },        
+        {
+            name: "horizontalMerge",
+            baseName: "HorizontalMerge",
+            type: "TableCellFormat.HorizontalMergeEnum",
+        },        
+        {
             name: "leftPadding",
             baseName: "LeftPadding",
             type: "number",
+        },        
+        {
+            name: "orientation",
+            baseName: "Orientation",
+            type: "TableCellFormat.OrientationEnum",
+        },        
+        {
+            name: "preferredWidth",
+            baseName: "PreferredWidth",
+            type: "PreferredWidth",
         },        
         {
             name: "rightPadding",
@@ -6508,24 +6672,9 @@ export class TableCellFormat extends LinkElement {
             type: "number",
         },        
         {
-            name: "bottomPadding",
-            baseName: "BottomPadding",
-            type: "number",
-        },        
-        {
             name: "verticalAlignment",
             baseName: "VerticalAlignment",
             type: "TableCellFormat.VerticalAlignmentEnum",
-        },        
-        {
-            name: "width",
-            baseName: "Width",
-            type: "number",
-        },        
-        {
-            name: "preferredWidth",
-            baseName: "PreferredWidth",
-            type: "PreferredWidth",
         },        
         {
             name: "verticalMerge",
@@ -6533,19 +6682,9 @@ export class TableCellFormat extends LinkElement {
             type: "TableCellFormat.VerticalMergeEnum",
         },        
         {
-            name: "horizontalMerge",
-            baseName: "HorizontalMerge",
-            type: "TableCellFormat.HorizontalMergeEnum",
-        },        
-        {
-            name: "orientation",
-            baseName: "Orientation",
-            type: "TableCellFormat.OrientationEnum",
-        },        
-        {
-            name: "fitText",
-            baseName: "FitText",
-            type: "boolean",
+            name: "width",
+            baseName: "Width",
+            type: "number",
         },        
         {
             name: "wrapText",
@@ -6561,9 +6700,34 @@ export class TableCellFormat extends LinkElement {
     }
 
     /**
+     * Returns or sets the amount of space (in points) to add below the contents of cell.
+     */
+    public bottomPadding: number;
+    
+    /**
+     * If true, fits text in the cell, compressing each paragraph to the width of the cell.
+     */
+    public fitText: boolean;
+    
+    /**
+     * Specifies how the cell is merged horizontally with other cells in the row.
+     */
+    public horizontalMerge: TableCellFormat.HorizontalMergeEnum;
+    
+    /**
      * Returns or sets the amount of space (in points) to add to the left of the contents of cell.
      */
     public leftPadding: number;
+    
+    /**
+     * Returns or sets the orientation of text in a table cell.
+     */
+    public orientation: TableCellFormat.OrientationEnum;
+    
+    /**
+     * Returns or sets the preferred width of the cell.
+     */
+    public preferredWidth: PreferredWidth;
     
     /**
      * Returns or sets the amount of space (in points) to add to the right of the contents of cell.
@@ -6576,24 +6740,9 @@ export class TableCellFormat extends LinkElement {
     public topPadding: number;
     
     /**
-     * Returns or sets the amount of space (in points) to add below the contents of cell.
-     */
-    public bottomPadding: number;
-    
-    /**
      * Returns or sets the vertical alignment of text in the cell.
      */
     public verticalAlignment: TableCellFormat.VerticalAlignmentEnum;
-    
-    /**
-     * Gets the width of the cell in points.
-     */
-    public width: number;
-    
-    /**
-     * Returns or sets the preferred width of the cell.
-     */
-    public preferredWidth: PreferredWidth;
     
     /**
      * Specifies how the cell is merged with other cells vertically.
@@ -6601,19 +6750,9 @@ export class TableCellFormat extends LinkElement {
     public verticalMerge: TableCellFormat.VerticalMergeEnum;
     
     /**
-     * Specifies how the cell is merged horizontally with other cells in the row.
+     * Gets the width of the cell in points.
      */
-    public horizontalMerge: TableCellFormat.HorizontalMergeEnum;
-    
-    /**
-     * Returns or sets the orientation of text in a table cell.
-     */
-    public orientation: TableCellFormat.OrientationEnum;
-    
-    /**
-     * If true, fits text in the cell, compressing each paragraph to the width of the cell.
-     */
-    public fitText: boolean;
+    public width: number;
     
     /**
      * If true, wrap text for the cell.
@@ -6629,16 +6768,6 @@ export class TableCellFormat extends LinkElement {
 // tslint:disable:quotemark
 // tslint:disable-next-line:no-namespace
 export namespace TableCellFormat {
-    export enum VerticalAlignmentEnum {
-        Top = 'Top' as any,
-        Center = 'Center' as any,
-        Bottom = 'Bottom' as any,
-    }
-    export enum VerticalMergeEnum {
-        None = 'None' as any,
-        First = 'First' as any,
-        Previous = 'Previous' as any,
-    }
     export enum HorizontalMergeEnum {
         None = 'None' as any,
         First = 'First' as any,
@@ -6652,10 +6781,20 @@ export namespace TableCellFormat {
         VerticalFarEast = 'VerticalFarEast' as any,
         VerticalRotatedFarEast = 'VerticalRotatedFarEast' as any,
     }
+    export enum VerticalAlignmentEnum {
+        Top = 'Top' as any,
+        Center = 'Center' as any,
+        Bottom = 'Bottom' as any,
+    }
+    export enum VerticalMergeEnum {
+        None = 'None' as any,
+        First = 'First' as any,
+        Previous = 'Previous' as any,
+    }
 }
 // tslint:enable:quotemark
 /**
- * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/tables/{0}/rows/{1}/cells/{2}/cellformat
+ * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/tables/{0}/rows/{1}/cells/{2}/cellformat
  */
 export class TableCellFormatResponse extends AsposeResponse {
 
@@ -6688,7 +6827,7 @@ export class TableCellFormatResponse extends AsposeResponse {
 }
 
 /**
- * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/tables/{0}
+ * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/tables/{0}
  */
 export class TableCellResponse extends AsposeResponse {
 
@@ -6754,7 +6893,7 @@ export class TableLinkCollection extends LinkElement {
 }
 
 /**
- * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/tables.
+ * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/tables.
  */
 export class TableLinkCollectionResponse extends AsposeResponse {
 
@@ -7351,7 +7490,7 @@ export namespace TableProperties {
 }
 // tslint:enable:quotemark
 /**
- * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/tables/{0}/properties
+ * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/tables/{0}/properties
  */
 export class TablePropertiesResponse extends AsposeResponse {
 
@@ -7384,7 +7523,7 @@ export class TablePropertiesResponse extends AsposeResponse {
 }
 
 /**
- * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/tables/{0}
+ * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/tables/{0}
  */
 export class TableResponse extends AsposeResponse {
 
@@ -7426,16 +7565,6 @@ export class TableRowFormat extends LinkElement {
      */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            name: "height",
-            baseName: "Height",
-            type: "number",
-        },        
-        {
-            name: "heightRule",
-            baseName: "HeightRule",
-            type: "TableRowFormat.HeightRuleEnum",
-        },        
-        {
             name: "allowBreakAcrossPages",
             baseName: "AllowBreakAcrossPages",
             type: "boolean",
@@ -7444,6 +7573,16 @@ export class TableRowFormat extends LinkElement {
             name: "headingFormat",
             baseName: "HeadingFormat",
             type: "boolean",
+        },        
+        {
+            name: "height",
+            baseName: "Height",
+            type: "number",
+        },        
+        {
+            name: "heightRule",
+            baseName: "HeightRule",
+            type: "TableRowFormat.HeightRuleEnum",
         }    ];
 
     /**
@@ -7454,16 +7593,6 @@ export class TableRowFormat extends LinkElement {
     }
 
     /**
-     * Gets or sets the height of the table row in points.
-     */
-    public height: number;
-    
-    /**
-     * Gets or sets the rule for determining the height of the table row.
-     */
-    public heightRule: TableRowFormat.HeightRuleEnum;
-    
-    /**
      * True if the text in a table row is allowed to split across a page break.
      */
     public allowBreakAcrossPages: boolean;
@@ -7472,6 +7601,16 @@ export class TableRowFormat extends LinkElement {
      * True if the row is repeated as a table heading on every page when the table spans more than one page.
      */
     public headingFormat: boolean;
+    
+    /**
+     * Gets or sets the height of the table row in points.
+     */
+    public height: number;
+    
+    /**
+     * Gets or sets the rule for determining the height of the table row.
+     */
+    public heightRule: TableRowFormat.HeightRuleEnum;
     
     public constructor(init?: Partial<TableRowFormat>) {
         super(init);
@@ -7490,7 +7629,7 @@ export namespace TableRowFormat {
 }
 // tslint:enable:quotemark
 /**
- * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/tables/{0}/rows/{1}/rowformat
+ * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/tables/{0}/rows/{1}/rowformat
  */
 export class TableRowFormatResponse extends AsposeResponse {
 
@@ -7523,7 +7662,7 @@ export class TableRowFormatResponse extends AsposeResponse {
 }
 
 /**
- * This resonse should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/tables/{0}
+ * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/tables/{0}
  */
 export class TableRowResponse extends AsposeResponse {
 
@@ -7622,7 +7761,7 @@ export class TextItems extends LinkElement {
 }
 
 /**
- * This resonse should be returned by the service when handling:  GET /{name}/textItems .
+ * This response should be returned by the service when handling:  GET /{name}/textItems .
  */
 export class TextItemsResponse extends AsposeResponse {
 
@@ -7880,24 +8019,14 @@ export class Comment extends CommentLink {
      */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            name: "rangeStart",
-            baseName: "RangeStart",
-            type: "DocumentPosition",
-        },        
-        {
-            name: "rangeEnd",
-            baseName: "RangeEnd",
-            type: "DocumentPosition",
-        },        
-        {
             name: "author",
             baseName: "Author",
             type: "string",
         },        
         {
-            name: "initial",
-            baseName: "Initial",
-            type: "string",
+            name: "content",
+            baseName: "Content",
+            type: "StoryChildNodes",
         },        
         {
             name: "dateTime",
@@ -7905,14 +8034,24 @@ export class Comment extends CommentLink {
             type: "Date",
         },        
         {
-            name: "text",
-            baseName: "Text",
+            name: "initial",
+            baseName: "Initial",
             type: "string",
         },        
         {
-            name: "content",
-            baseName: "Content",
-            type: "StoryChildNodes",
+            name: "rangeEnd",
+            baseName: "RangeEnd",
+            type: "DocumentPosition",
+        },        
+        {
+            name: "rangeStart",
+            baseName: "RangeStart",
+            type: "DocumentPosition",
+        },        
+        {
+            name: "text",
+            baseName: "Text",
+            type: "string",
         }    ];
 
     /**
@@ -7923,24 +8062,14 @@ export class Comment extends CommentLink {
     }
 
     /**
-     * Link to comment range start node.
-     */
-    public rangeStart: DocumentPosition;
-    
-    /**
-     * Link to comment range end node.
-     */
-    public rangeEnd: DocumentPosition;
-    
-    /**
      * Returns or sets the author name for a comment.
      */
     public author: string;
     
     /**
-     * Returns or sets the initials of the user associated with a specific comment.
+     * Content of comment
      */
-    public initial: string;
+    public content: StoryChildNodes;
     
     /**
      * Gets the date and time that the comment was made.
@@ -7948,14 +8077,24 @@ export class Comment extends CommentLink {
     public dateTime: Date;
     
     /**
+     * Returns or sets the initials of the user associated with a specific comment.
+     */
+    public initial: string;
+    
+    /**
+     * Link to comment range end node.
+     */
+    public rangeEnd: DocumentPosition;
+    
+    /**
+     * Link to comment range start node.
+     */
+    public rangeStart: DocumentPosition;
+    
+    /**
      * This is a convenience property that allows to easily get or set text of the comment.
      */
     public text: string;
-    
-    /**
-     * Content of comment
-     */
-    public content: StoryChildNodes;
     
     public constructor(init?: Partial<Comment>) {
         super(init);
@@ -8092,38 +8231,13 @@ export class FormField extends NodeLink {
      */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            name: "name",
-            baseName: "Name",
-            type: "string",
+            name: "calculateOnExit",
+            baseName: "CalculateOnExit",
+            type: "boolean",
         },        
         {
             name: "enabled",
             baseName: "Enabled",
-            type: "boolean",
-        },        
-        {
-            name: "statusText",
-            baseName: "StatusText",
-            type: "string",
-        },        
-        {
-            name: "ownStatus",
-            baseName: "OwnStatus",
-            type: "boolean",
-        },        
-        {
-            name: "helpText",
-            baseName: "HelpText",
-            type: "string",
-        },        
-        {
-            name: "ownHelp",
-            baseName: "OwnHelp",
-            type: "boolean",
-        },        
-        {
-            name: "calculateOnExit",
-            baseName: "CalculateOnExit",
             type: "boolean",
         },        
         {
@@ -8135,6 +8249,31 @@ export class FormField extends NodeLink {
             name: "exitMacro",
             baseName: "ExitMacro",
             type: "string",
+        },        
+        {
+            name: "helpText",
+            baseName: "HelpText",
+            type: "string",
+        },        
+        {
+            name: "name",
+            baseName: "Name",
+            type: "string",
+        },        
+        {
+            name: "ownHelp",
+            baseName: "OwnHelp",
+            type: "boolean",
+        },        
+        {
+            name: "ownStatus",
+            baseName: "OwnStatus",
+            type: "boolean",
+        },        
+        {
+            name: "statusText",
+            baseName: "StatusText",
+            type: "string",
         }    ];
 
     /**
@@ -8145,39 +8284,14 @@ export class FormField extends NodeLink {
     }
 
     /**
-     * Gets or sets the form field name.
+     * True if references to the specified form field are automatically updated whenever the field is exited.
      */
-    public name: string;
+    public calculateOnExit: boolean;
     
     /**
      * True if a form field is enabled.
      */
     public enabled: boolean;
-    
-    /**
-     * Returns or sets the text that's displayed in the status bar when a form field has the focus.
-     */
-    public statusText: string;
-    
-    /**
-     * Specifies the source of the text that's displayed in the status bar when a form field has the focus.
-     */
-    public ownStatus: boolean;
-    
-    /**
-     * Returns or sets the text that's displayed in a message box when the form field has the focus and the user presses F1.
-     */
-    public helpText: string;
-    
-    /**
-     * Specifies the source of the text that's displayed in a message box when a form field has the focus and the user presses F1.
-     */
-    public ownHelp: boolean;
-    
-    /**
-     * True if references to the specified form field are automatically updated whenever the field is exited.
-     */
-    public calculateOnExit: boolean;
     
     /**
      * Returns or sets an entry macro name for the form field.
@@ -8188,6 +8302,31 @@ export class FormField extends NodeLink {
      * Returns or sets an exit macro name for the form field.
      */
     public exitMacro: string;
+    
+    /**
+     * Returns or sets the text that's displayed in a message box when the form field has the focus and the user presses F1.
+     */
+    public helpText: string;
+    
+    /**
+     * Gets or sets the form field name.
+     */
+    public name: string;
+    
+    /**
+     * Specifies the source of the text that's displayed in a message box when a form field has the focus and the user presses F1.
+     */
+    public ownHelp: boolean;
+    
+    /**
+     * Specifies the source of the text that's displayed in the status bar when a form field has the focus.
+     */
+    public ownStatus: boolean;
+    
+    /**
+     * Returns or sets the text that's displayed in the status bar when a form field has the focus.
+     */
+    public statusText: string;
     
     public constructor(init?: Partial<FormField>) {
         super(init);
@@ -8205,13 +8344,13 @@ export class HeaderFooter extends HeaderFooterLink {
      */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            name: "paragraphs",
-            baseName: "Paragraphs",
+            name: "drawingObjects",
+            baseName: "DrawingObjects",
             type: "LinkElement",
         },        
         {
-            name: "drawingObjects",
-            baseName: "DrawingObjects",
+            name: "paragraphs",
+            baseName: "Paragraphs",
             type: "LinkElement",
         }    ];
 
@@ -8223,14 +8362,14 @@ export class HeaderFooter extends HeaderFooterLink {
     }
 
     /**
-     * Link to Paragraphs resource
-     */
-    public paragraphs: LinkElement;
-    
-    /**
      * Link to DrawingObjects resource
      */
     public drawingObjects: LinkElement;
+    
+    /**
+     * Link to Paragraphs resource
+     */
+    public paragraphs: LinkElement;
     
     public constructor(init?: Partial<HeaderFooter>) {
         super(init);
@@ -8258,6 +8397,11 @@ export class HtmlFixedSaveOptionsData extends FixedPageSaveOptionsData {
             type: "string",
         },        
         {
+            name: "encoding",
+            baseName: "Encoding",
+            type: "string",
+        },        
+        {
             name: "exportEmbeddedCss",
             baseName: "ExportEmbeddedCss",
             type: "boolean",
@@ -8278,14 +8422,19 @@ export class HtmlFixedSaveOptionsData extends FixedPageSaveOptionsData {
             type: "boolean",
         },        
         {
-            name: "encoding",
-            baseName: "Encoding",
-            type: "string",
-        },        
-        {
             name: "fontFormat",
             baseName: "FontFormat",
             type: "string",
+        },        
+        {
+            name: "pageHorizontalAlignment",
+            baseName: "PageHorizontalAlignment",
+            type: "string",
+        },        
+        {
+            name: "pageMargins",
+            baseName: "PageMargins",
+            type: "number",
         },        
         {
             name: "resourcesFolder",
@@ -8301,16 +8450,6 @@ export class HtmlFixedSaveOptionsData extends FixedPageSaveOptionsData {
             name: "showPageBorder",
             baseName: "ShowPageBorder",
             type: "boolean",
-        },        
-        {
-            name: "pageHorizontalAlignment",
-            baseName: "PageHorizontalAlignment",
-            type: "string",
-        },        
-        {
-            name: "pageMargins",
-            baseName: "PageMargins",
-            type: "number",
         }    ];
 
     /**
@@ -8324,6 +8463,11 @@ export class HtmlFixedSaveOptionsData extends FixedPageSaveOptionsData {
      * Specifies prefix which is added to all class names in style.css file. Default value is \"aw\".
      */
     public cssClassNamesPrefix: string;
+    
+    /**
+     * Encoding.
+     */
+    public encoding: string;
     
     /**
      * Specifies whether the CSS (Cascading Style Sheet) should be embedded into Html document.
@@ -8346,14 +8490,19 @@ export class HtmlFixedSaveOptionsData extends FixedPageSaveOptionsData {
     public exportFormFields: boolean;
     
     /**
-     * Encoding.
-     */
-    public encoding: string;
-    
-    /**
      * Specifies export format of fonts
      */
     public fontFormat: string;
+    
+    /**
+     * Specifies the horizontal alignment of pages in an HTML document. Default value is HtmlFixedHorizontalPageAlignment.Center.
+     */
+    public pageHorizontalAlignment: string;
+    
+    /**
+     * Specifies the margins around pages in an HTML document. The margins value is measured in points and should be equal to or greater than 0. Default value is 10 points.
+     */
+    public pageMargins: number;
     
     /**
      * Specifies the physical folder where resources are saved when exporting a document
@@ -8369,16 +8518,6 @@ export class HtmlFixedSaveOptionsData extends FixedPageSaveOptionsData {
      * Specifies whether border around pages should be shown.
      */
     public showPageBorder: boolean;
-    
-    /**
-     * Specifies the horizontal alignment of pages in an HTML document. Default value is HtmlFixedHorizontalPageAlignment.Center.
-     */
-    public pageHorizontalAlignment: string;
-    
-    /**
-     * Specifies the margins around pages in an HTML document. The margins value is measured in points and should be equal to or greater than 0. Default value is 10 points.
-     */
-    public pageMargins: number;
     
     public constructor(init?: Partial<HtmlFixedSaveOptionsData>) {
         super(init);
@@ -8396,6 +8535,16 @@ export class ImageSaveOptionsData extends FixedPageSaveOptionsData {
      */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
+            name: "graphicsQualityOptions",
+            baseName: "GraphicsQualityOptions",
+            type: "GraphicsQualityOptionsData",
+        },        
+        {
+            name: "horizontalResolution",
+            baseName: "HorizontalResolution",
+            type: "number",
+        },        
+        {
             name: "imageBrightness",
             baseName: "ImageBrightness",
             type: "number",
@@ -8411,18 +8560,13 @@ export class ImageSaveOptionsData extends FixedPageSaveOptionsData {
             type: "number",
         },        
         {
-            name: "graphicsQualityOptions",
-            baseName: "GraphicsQualityOptions",
-            type: "GraphicsQualityOptionsData",
+            name: "paperColor",
+            baseName: "PaperColor",
+            type: "string",
         },        
         {
             name: "pixelFormat",
             baseName: "PixelFormat",
-            type: "string",
-        },        
-        {
-            name: "paperColor",
-            baseName: "PaperColor",
             type: "string",
         },        
         {
@@ -8431,24 +8575,9 @@ export class ImageSaveOptionsData extends FixedPageSaveOptionsData {
             type: "number",
         },        
         {
-            name: "horizontalResolution",
-            baseName: "HorizontalResolution",
-            type: "number",
-        },        
-        {
-            name: "verticalResolution",
-            baseName: "VerticalResolution",
-            type: "number",
-        },        
-        {
             name: "scale",
             baseName: "Scale",
             type: "number",
-        },        
-        {
-            name: "useHighQualityRendering",
-            baseName: "UseHighQualityRendering",
-            type: "boolean",
         },        
         {
             name: "useAntiAliasing",
@@ -8459,6 +8588,16 @@ export class ImageSaveOptionsData extends FixedPageSaveOptionsData {
             name: "useGdiEmfRenderer",
             baseName: "UseGdiEmfRenderer",
             type: "boolean",
+        },        
+        {
+            name: "useHighQualityRendering",
+            baseName: "UseHighQualityRendering",
+            type: "boolean",
+        },        
+        {
+            name: "verticalResolution",
+            baseName: "VerticalResolution",
+            type: "number",
         }    ];
 
     /**
@@ -8468,6 +8607,16 @@ export class ImageSaveOptionsData extends FixedPageSaveOptionsData {
         return super.getAttributeTypeMap().concat(ImageSaveOptionsData.attributeTypeMap);
     }
 
+    /**
+     * Allows to specify additional System.Drawing.Graphics quality options.
+     */
+    public graphicsQualityOptions: GraphicsQualityOptionsData;
+    
+    /**
+     * Gets or sets the horizontal resolution for the generated images, in dots per inch.  This property has effect only when saving to raster image formats. The default value is 96.
+     */
+    public horizontalResolution: number;
+    
     /**
      * Brightness of image
      */
@@ -8484,9 +8633,9 @@ export class ImageSaveOptionsData extends FixedPageSaveOptionsData {
     public imageContrast: number;
     
     /**
-     * Allows to specify additional System.Drawing.Graphics quality options.
+     * Background (paper) color of image
      */
-    public graphicsQualityOptions: GraphicsQualityOptionsData;
+    public paperColor: string;
     
     /**
      * Pixel format of image
@@ -8494,34 +8643,14 @@ export class ImageSaveOptionsData extends FixedPageSaveOptionsData {
     public pixelFormat: string;
     
     /**
-     * Background (paper) color of image
-     */
-    public paperColor: string;
-    
-    /**
      * Sets both horizontal and vertical resolution for the generated images, in dots per inch.  This property has effect only when saving to raster image formats. The default value is 96.
      */
     public resolution: number;
     
     /**
-     * Gets or sets the horizontal resolution for the generated images, in dots per inch.  This property has effect only when saving to raster image formats. The default value is 96.
-     */
-    public horizontalResolution: number;
-    
-    /**
-     * Gets or sets the vertical resolution for the generated images, in dots per inch.  This property has effect only when saving to raster image formats. The default value is 96.
-     */
-    public verticalResolution: number;
-    
-    /**
      * Zoom factor of image
      */
     public scale: number;
-    
-    /**
-     * Determine whether or not to use high quality (i.e. slow) rendering algorithms
-     */
-    public useHighQualityRendering: boolean;
     
     /**
      * Determine whether or not to use anti-aliasing for rendering
@@ -8532,6 +8661,16 @@ export class ImageSaveOptionsData extends FixedPageSaveOptionsData {
      * Gets or sets a value determining whether to use GDI+ or Aspose.Words metafile renderer when saving to EMF.
      */
     public useGdiEmfRenderer: boolean;
+    
+    /**
+     * Determine whether or not to use high quality (i.e. slow) rendering algorithms
+     */
+    public useHighQualityRendering: boolean;
+    
+    /**
+     * Gets or sets the vertical resolution for the generated images, in dots per inch.  This property has effect only when saving to raster image formats. The default value is 96.
+     */
+    public verticalResolution: number;
     
     public constructor(init?: Partial<ImageSaveOptionsData>) {
         super(init);
@@ -8711,13 +8850,18 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
      */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
+            name: "compliance",
+            baseName: "Compliance",
+            type: "string",
+        },        
+        {
             name: "createNoteHyperlinks",
             baseName: "CreateNoteHyperlinks",
             type: "boolean",
         },        
         {
-            name: "compliance",
-            baseName: "Compliance",
+            name: "customPropertiesExport",
+            baseName: "CustomPropertiesExport",
             type: "string",
         },        
         {
@@ -8756,6 +8900,11 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
             type: "string",
         },        
         {
+            name: "imageColorSpaceExportMode",
+            baseName: "ImageColorSpaceExportMode",
+            type: "string",
+        },        
+        {
             name: "imageCompression",
             baseName: "ImageCompression",
             type: "string",
@@ -8776,9 +8925,9 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
             type: "string",
         },        
         {
-            name: "imageColorSpaceExportMode",
-            baseName: "ImageColorSpaceExportMode",
-            type: "string",
+            name: "preblendImages",
+            baseName: "PreblendImages",
+            type: "boolean",
         },        
         {
             name: "preserveFormFields",
@@ -8791,13 +8940,13 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
             type: "string",
         },        
         {
-            name: "useCoreFonts",
-            baseName: "UseCoreFonts",
+            name: "useBookFoldPrintingSettings",
+            baseName: "UseBookFoldPrintingSettings",
             type: "boolean",
         },        
         {
-            name: "useBookFoldPrintingSettings",
-            baseName: "UseBookFoldPrintingSettings",
+            name: "useCoreFonts",
+            baseName: "UseCoreFonts",
             type: "boolean",
         },        
         {
@@ -8809,16 +8958,6 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
             name: "zoomFactor",
             baseName: "ZoomFactor",
             type: "number",
-        },        
-        {
-            name: "customPropertiesExport",
-            baseName: "CustomPropertiesExport",
-            type: "string",
-        },        
-        {
-            name: "preblendImages",
-            baseName: "PreblendImages",
-            type: "boolean",
         }    ];
 
     /**
@@ -8829,14 +8968,19 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
     }
 
     /**
+     * Specifies the PDF standards compliance level for output documents
+     */
+    public compliance: string;
+    
+    /**
      * Specifies whether to convert footnote/endnote references in main text story into active hyperlinks. When clicked the hyperlink will lead to the corresponding footnote/endnote. Default is false.
      */
     public createNoteHyperlinks: boolean;
     
     /**
-     * Specifies the PDF standards compliance level for output documents
+     * Gets or sets a value determining the way  are exported to PDF file. Default value is .
      */
-    public compliance: string;
+    public customPropertiesExport: string;
     
     /**
      * Specifies the details for signing the output PDF document
@@ -8874,6 +9018,11 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
     public fontEmbeddingMode: string;
     
     /**
+     * Specifies how the color space will be selected for the images in PDF document.
+     */
+    public imageColorSpaceExportMode: string;
+    
+    /**
      * Specifies compression type to be used for all images in the document
      */
     public imageCompression: string;
@@ -8894,9 +9043,9 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
     public pageMode: string;
     
     /**
-     * Specifies how the color space will be selected for the images in PDF document.
+     * Gets or sets a value determining whether or not to preblend transparent images with black background color.
      */
-    public imageColorSpaceExportMode: string;
+    public preblendImages: boolean;
     
     /**
      * Specifies whether to preserve Microsoft Word form fields as form fields in PDF or convert them to text
@@ -8909,14 +9058,14 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
     public textCompression: string;
     
     /**
-     * Determines whether or not to substitute TrueType fonts Arial, Times New Roman, Courier New and Symbol with core PDF Type 1 fonts
-     */
-    public useCoreFonts: boolean;
-    
-    /**
      * Determines whether the document should be saved using a booklet printing layout
      */
     public useBookFoldPrintingSettings: boolean;
+    
+    /**
+     * Determines whether or not to substitute TrueType fonts Arial, Times New Roman, Courier New and Symbol with core PDF Type 1 fonts
+     */
+    public useCoreFonts: boolean;
     
     /**
      * Determines what type of zoom should be applied when a document is opened with a PDF viewer
@@ -8927,16 +9076,6 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
      * Determines zoom factor (in percentages) for a document
      */
     public zoomFactor: number;
-    
-    /**
-     * Gets or sets a value determining the way  are exported to PDF file. Default value is .
-     */
-    public customPropertiesExport: string;
-    
-    /**
-     * Gets or sets a value determining whether or not to preblend transparent images with black background color.
-     */
-    public preblendImages: boolean;
     
     public constructor(init?: Partial<PdfSaveOptionsData>) {
         super(init);
@@ -9103,14 +9242,14 @@ export class Table extends NodeLink {
      */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            name: "tableRowList",
-            baseName: "TableRowList",
-            type: "Array<TableRow>",
-        },        
-        {
             name: "tableProperties",
             baseName: "TableProperties",
             type: "TableProperties",
+        },        
+        {
+            name: "tableRowList",
+            baseName: "TableRowList",
+            type: "Array<TableRow>",
         }    ];
 
     /**
@@ -9121,14 +9260,14 @@ export class Table extends NodeLink {
     }
 
     /**
-     * Collection of table's rows.
-     */
-    public tableRowList: Array<TableRow>;
-    
-    /**
      * Table properties.
      */
     public tableProperties: TableProperties;
+    
+    /**
+     * Collection of table's rows.
+     */
+    public tableRowList: Array<TableRow>;
     
     public constructor(init?: Partial<Table>) {
         super(init);
@@ -9203,14 +9342,14 @@ export class TableRow extends NodeLink {
      */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            name: "tableCellList",
-            baseName: "TableCellList",
-            type: "Array<TableCell>",
-        },        
-        {
             name: "rowFormat",
             baseName: "RowFormat",
             type: "TableRowFormat",
+        },        
+        {
+            name: "tableCellList",
+            baseName: "TableCellList",
+            type: "Array<TableCell>",
         }    ];
 
     /**
@@ -9221,14 +9360,14 @@ export class TableRow extends NodeLink {
     }
 
     /**
-     * Collection of table's rows.
-     */
-    public tableCellList: Array<TableCell>;
-    
-    /**
      * Provides access to the formatting properties of the row.
      */
     public rowFormat: TableRowFormat;
+    
+    /**
+     * Collection of table's rows.
+     */
+    public tableCellList: Array<TableCell>;
     
     public constructor(init?: Partial<TableRow>) {
         super(init);
@@ -9376,18 +9515,18 @@ export class DrawingObject extends DrawingObjectLink {
      */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            name: "renderLinks",
-            baseName: "RenderLinks",
-            type: "Array<WordsApiLink>",
-        },        
-        {
-            name: "width",
-            baseName: "Width",
+            name: "height",
+            baseName: "Height",
             type: "number",
         },        
         {
-            name: "height",
-            baseName: "Height",
+            name: "imageDataLink",
+            baseName: "ImageDataLink",
+            type: "WordsApiLink",
+        },        
+        {
+            name: "left",
+            baseName: "Left",
             type: "number",
         },        
         {
@@ -9396,19 +9535,9 @@ export class DrawingObject extends DrawingObjectLink {
             type: "WordsApiLink",
         },        
         {
-            name: "imageDataLink",
-            baseName: "ImageDataLink",
-            type: "WordsApiLink",
-        },        
-        {
             name: "relativeHorizontalPosition",
             baseName: "RelativeHorizontalPosition",
             type: "DrawingObject.RelativeHorizontalPositionEnum",
-        },        
-        {
-            name: "left",
-            baseName: "Left",
-            type: "number",
         },        
         {
             name: "relativeVerticalPosition",
@@ -9416,8 +9545,18 @@ export class DrawingObject extends DrawingObjectLink {
             type: "DrawingObject.RelativeVerticalPositionEnum",
         },        
         {
+            name: "renderLinks",
+            baseName: "RenderLinks",
+            type: "Array<WordsApiLink>",
+        },        
+        {
             name: "top",
             baseName: "Top",
+            type: "number",
+        },        
+        {
+            name: "width",
+            baseName: "Width",
             type: "number",
         },        
         {
@@ -9434,24 +9573,9 @@ export class DrawingObject extends DrawingObjectLink {
     }
 
     /**
-     * A list of links that originate from this .
-     */
-    public renderLinks: Array<WordsApiLink>;
-    
-    /**
-     * Width of the drawing objects in points.
-     */
-    public width: number;
-    
-    /**
      * Height of the drawing object in points.
      */
     public height: number;
-    
-    /**
-     * Link to ole object. Can be null if shape does not have ole data.
-     */
-    public oleDataLink: WordsApiLink;
     
     /**
      * Link to image data. Can be null if shape does not have an image.
@@ -9459,14 +9583,19 @@ export class DrawingObject extends DrawingObjectLink {
     public imageDataLink: WordsApiLink;
     
     /**
-     * Specifies where the distance to the image is measured from.             
-     */
-    public relativeHorizontalPosition: DrawingObject.RelativeHorizontalPositionEnum;
-    
-    /**
      * Distance in points from the origin to the left side of the image.             
      */
     public left: number;
+    
+    /**
+     * Link to ole object. Can be null if shape does not have ole data.
+     */
+    public oleDataLink: WordsApiLink;
+    
+    /**
+     * Specifies where the distance to the image is measured from.             
+     */
+    public relativeHorizontalPosition: DrawingObject.RelativeHorizontalPositionEnum;
     
     /**
      * Specifies where the distance to the image measured from.
@@ -9474,9 +9603,19 @@ export class DrawingObject extends DrawingObjectLink {
     public relativeVerticalPosition: DrawingObject.RelativeVerticalPositionEnum;
     
     /**
+     * A list of links that originate from this .
+     */
+    public renderLinks: Array<WordsApiLink>;
+    
+    /**
      * Distance in points from the origin to the top side of the image.
      */
     public top: number;
+    
+    /**
+     * Width of the drawing objects in points.
+     */
+    public width: number;
     
     /**
      * Specifies how to wrap text around the image.
@@ -9559,13 +9698,13 @@ export class Field extends FieldLink {
      */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            name: "result",
-            baseName: "Result",
+            name: "localeId",
+            baseName: "LocaleId",
             type: "string",
         },        
         {
-            name: "localeId",
-            baseName: "LocaleId",
+            name: "result",
+            baseName: "Result",
             type: "string",
         }    ];
 
@@ -9577,14 +9716,14 @@ export class Field extends FieldLink {
     }
 
     /**
-     * Field result
-     */
-    public result: string;
-    
-    /**
      * Gets or sets LCID of the field.
      */
     public localeId: string;
+    
+    /**
+     * Field result
+     */
+    public result: string;
     
     public constructor(init?: Partial<Field>) {
         super(init);
@@ -9602,14 +9741,19 @@ export class Footnote extends FootnoteLink {
      */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            name: "position",
-            baseName: "Position",
-            type: "DocumentPosition",
+            name: "content",
+            baseName: "Content",
+            type: "StoryChildNodes",
         },        
         {
             name: "footnoteType",
             baseName: "FootnoteType",
             type: "Footnote.FootnoteTypeEnum",
+        },        
+        {
+            name: "position",
+            baseName: "Position",
+            type: "DocumentPosition",
         },        
         {
             name: "referenceMark",
@@ -9620,11 +9764,6 @@ export class Footnote extends FootnoteLink {
             name: "text",
             baseName: "Text",
             type: "string",
-        },        
-        {
-            name: "content",
-            baseName: "Content",
-            type: "StoryChildNodes",
         }    ];
 
     /**
@@ -9635,14 +9774,19 @@ export class Footnote extends FootnoteLink {
     }
 
     /**
-     * Link to comment range start node.
+     * Content of footnote.
      */
-    public position: DocumentPosition;
+    public content: StoryChildNodes;
     
     /**
      * Returns a value that specifies whether this is a footnote or endnote.
      */
     public footnoteType: Footnote.FootnoteTypeEnum;
+    
+    /**
+     * Link to comment range start node.
+     */
+    public position: DocumentPosition;
     
     /**
      * Gets/sets custom reference mark to be used for this footnote. Default value is , meaning auto-numbered footnotes are used.
@@ -9653,11 +9797,6 @@ export class Footnote extends FootnoteLink {
      * This is a convenience property that allows to easily get or set text of the footnote.
      */
     public text: string;
-    
-    /**
-     * Content of footnote.
-     */
-    public content: StoryChildNodes;
     
     public constructor(init?: Partial<Footnote>) {
         super(init);
@@ -9684,11 +9823,6 @@ export class FormFieldCheckbox extends FormField {
      */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            name: "isCheckBoxExactSize",
-            baseName: "IsCheckBoxExactSize",
-            type: "boolean",
-        },        
-        {
             name: "checkBoxSize",
             baseName: "CheckBoxSize",
             type: "number",
@@ -9696,6 +9830,11 @@ export class FormFieldCheckbox extends FormField {
         {
             name: "checked",
             baseName: "Checked",
+            type: "boolean",
+        },        
+        {
+            name: "isCheckBoxExactSize",
+            baseName: "IsCheckBoxExactSize",
             type: "boolean",
         }    ];
 
@@ -9707,11 +9846,6 @@ export class FormFieldCheckbox extends FormField {
     }
 
     /**
-     * Gets or sets the boolean value that indicates whether the size of the textbox is automatic or specified explicitly.
-     */
-    public isCheckBoxExactSize: boolean;
-    
-    /**
      * Gets or sets the size of the checkbox in points. Has effect only when  is true.
      */
     public checkBoxSize: number;
@@ -9720,6 +9854,11 @@ export class FormFieldCheckbox extends FormField {
      * Gets or sets the checked status of the check box form field.
      */
     public checked: boolean;
+    
+    /**
+     * Gets or sets the boolean value that indicates whether the size of the textbox is automatic or specified explicitly.
+     */
+    public isCheckBoxExactSize: boolean;
     
     public constructor(init?: Partial<FormFieldCheckbox>) {
         super(init);
@@ -9737,14 +9876,14 @@ export class FormFieldDropDown extends FormField {
      */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            name: "dropDownSelectedIndex",
-            baseName: "DropDownSelectedIndex",
-            type: "number",
-        },        
-        {
             name: "dropDownItems",
             baseName: "DropDownItems",
             type: "Array<string>",
+        },        
+        {
+            name: "dropDownSelectedIndex",
+            baseName: "DropDownSelectedIndex",
+            type: "number",
         }    ];
 
     /**
@@ -9755,14 +9894,14 @@ export class FormFieldDropDown extends FormField {
     }
 
     /**
-     * Gets or sets the index specifying the currently selected item in a dropdown form field.
-     */
-    public dropDownSelectedIndex: number;
-    
-    /**
      * Provides access to the items of a dropdown form field.
      */
     public dropDownItems: Array<string>;
+    
+    /**
+     * Gets or sets the index specifying the currently selected item in a dropdown form field.
+     */
+    public dropDownSelectedIndex: number;
     
     public constructor(init?: Partial<FormFieldDropDown>) {
         super(init);
@@ -9780,6 +9919,16 @@ export class FormFieldTextInput extends FormField {
      */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
+            name: "maxLength",
+            baseName: "MaxLength",
+            type: "number",
+        },        
+        {
+            name: "textInputDefault",
+            baseName: "TextInputDefault",
+            type: "string",
+        },        
+        {
             name: "textInputFormat",
             baseName: "TextInputFormat",
             type: "string",
@@ -9788,16 +9937,6 @@ export class FormFieldTextInput extends FormField {
             name: "textInputType",
             baseName: "TextInputType",
             type: "FormFieldTextInput.TextInputTypeEnum",
-        },        
-        {
-            name: "textInputDefault",
-            baseName: "TextInputDefault",
-            type: "string",
-        },        
-        {
-            name: "maxLength",
-            baseName: "MaxLength",
-            type: "number",
         }    ];
 
     /**
@@ -9808,6 +9947,16 @@ export class FormFieldTextInput extends FormField {
     }
 
     /**
+     * Maximum length for the text field. Zero when the length is not limited.
+     */
+    public maxLength: number;
+    
+    /**
+     * Gets or sets the default string or a calculation expression of a text form field. 
+     */
+    public textInputDefault: string;
+    
+    /**
      * Returns or sets the text formatting for a text form field.
      */
     public textInputFormat: string;
@@ -9816,16 +9965,6 @@ export class FormFieldTextInput extends FormField {
      * Gets or sets the type of a text form field.
      */
     public textInputType: FormFieldTextInput.TextInputTypeEnum;
-    
-    /**
-     * Gets or sets the default string or a calculation expression of a text form field. 
-     */
-    public textInputDefault: string;
-    
-    /**
-     * Maximum length for the text field. Zero when the length is not limited.
-     */
-    public maxLength: number;
     
     public constructor(init?: Partial<FormFieldTextInput>) {
         super(init);
@@ -10110,26 +10249,26 @@ const enumsMap = {
     "StringFormatData.HotkeyPrefixEnum": StringFormatData.HotkeyPrefixEnum,
     "StringFormatData.LineAlignmentEnum": StringFormatData.LineAlignmentEnum,
     "StringFormatData.TrimmingEnum": StringFormatData.TrimmingEnum,
-    "Border.LineStyleEnum": Border.LineStyleEnum,
     "Border.BorderTypeEnum": Border.BorderTypeEnum,
-    "Font.UnderlineEnum": Font.UnderlineEnum,
-    "Font.TextEffectEnum": Font.TextEffectEnum,
+    "Border.LineStyleEnum": Border.LineStyleEnum,
     "Font.StyleIdentifierEnum": Font.StyleIdentifierEnum,
+    "Font.TextEffectEnum": Font.TextEffectEnum,
+    "Font.UnderlineEnum": Font.UnderlineEnum,
     "HeaderFooterLink.TypeEnum": HeaderFooterLink.TypeEnum,
     "HtmlSaveOptionsData.HtmlVersionEnum": HtmlSaveOptionsData.HtmlVersionEnum,
     "HtmlSaveOptionsData.OfficeMathOutputModeEnum": HtmlSaveOptionsData.OfficeMathOutputModeEnum,
-    "PageSetup.SectionStartEnum": PageSetup.SectionStartEnum,
-    "PageSetup.VerticalAlignmentEnum": PageSetup.VerticalAlignmentEnum,
-    "PageSetup.PaperSizeEnum": PageSetup.PaperSizeEnum,
+    "PageSetup.BorderAppliesToEnum": PageSetup.BorderAppliesToEnum,
+    "PageSetup.BorderDistanceFromEnum": PageSetup.BorderDistanceFromEnum,
+    "PageSetup.LineNumberRestartModeEnum": PageSetup.LineNumberRestartModeEnum,
     "PageSetup.OrientationEnum": PageSetup.OrientationEnum,
     "PageSetup.PageNumberStyleEnum": PageSetup.PageNumberStyleEnum,
-    "PageSetup.LineNumberRestartModeEnum": PageSetup.LineNumberRestartModeEnum,
-    "PageSetup.BorderDistanceFromEnum": PageSetup.BorderDistanceFromEnum,
-    "PageSetup.BorderAppliesToEnum": PageSetup.BorderAppliesToEnum,
-    "TableCellFormat.VerticalAlignmentEnum": TableCellFormat.VerticalAlignmentEnum,
-    "TableCellFormat.VerticalMergeEnum": TableCellFormat.VerticalMergeEnum,
+    "PageSetup.PaperSizeEnum": PageSetup.PaperSizeEnum,
+    "PageSetup.SectionStartEnum": PageSetup.SectionStartEnum,
+    "PageSetup.VerticalAlignmentEnum": PageSetup.VerticalAlignmentEnum,
     "TableCellFormat.HorizontalMergeEnum": TableCellFormat.HorizontalMergeEnum,
     "TableCellFormat.OrientationEnum": TableCellFormat.OrientationEnum,
+    "TableCellFormat.VerticalAlignmentEnum": TableCellFormat.VerticalAlignmentEnum,
+    "TableCellFormat.VerticalMergeEnum": TableCellFormat.VerticalMergeEnum,
     "TableProperties.AlignmentEnum": TableProperties.AlignmentEnum,
     "TableProperties.StyleIdentifierEnum": TableProperties.StyleIdentifierEnum,
     "TableProperties.StyleOptionsEnum": TableProperties.StyleOptionsEnum,
@@ -10149,6 +10288,8 @@ const typeMap = {
             AsposeResponse,
             BookmarkData,
             BookmarksOutlineLevelData,
+            ClassificationRequestParameters,
+            ClassificationResult,
             CompareData,
             Document,
             DocumentEntry,
@@ -10192,6 +10333,7 @@ const typeMap = {
             BorderResponse,
             BordersCollection,
             BordersResponse,
+            ClassificationResponse,
             CommentLink,
             CommentResponse,
             CommentsCollection,
@@ -10354,6 +10496,59 @@ export class AcceptAllRevisionsRequest {
     public destFileName: string;
     
     public constructor(init?: Partial<AcceptAllRevisionsRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for Classify operation.
+ */
+export class ClassifyRequest {
+    /**
+     * Classification request parameters.
+     */
+    public parameters: ClassificationRequestParameters;
+    
+    public constructor(init?: Partial<ClassifyRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for ClassifyDocument operation.
+ */
+export class ClassifyDocumentRequest {
+    /**
+     * The document name.
+     */
+    public documentName: string;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * File storage, which have to be used.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Count of the best classes to return.
+     */
+    public bestClassesCount: string;
+    
+    public constructor(init?: Partial<ClassifyDocumentRequest>) {        
         Object.assign(this, init);
     } 
 }
@@ -13809,11 +14004,6 @@ export class PostDocumentExecuteMailMergeRequest {
     public name: string;
 
     /**
-     * With regions flag.
-     */
-    public withRegions: boolean;
-
-    /**
      * Mail merge data
      */
     public data: string;
@@ -13837,6 +14027,11 @@ export class PostDocumentExecuteMailMergeRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+
+    /**
+     * With regions flag.
+     */
+    public withRegions: boolean;
 
     /**
      * Mail merge data.
@@ -14846,6 +15041,11 @@ export class PutConvertDocumentRequest {
     public outPath: string;
 
     /**
+     * This file name will be used when resulting document has dynamic field for document file name {filename}. If it is not setted, \"sourceFilename\" will be used instead. 
+     */
+    public documentFileName: string;
+
+    /**
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
@@ -15124,6 +15324,11 @@ export class PutExecuteMailMergeOnlineRequest {
      * Clean up options.
      */
     public cleanup: string;
+
+    /**
+     * This file name will be used when resulting document has dynamic field for document file name {filename}. If it is not setted, \"template\" will be used instead. 
+     */
+    public documentFileName: string;
     
     public constructor(init?: Partial<PutExecuteMailMergeOnlineRequest>) {        
         Object.assign(this, init);
@@ -15158,6 +15363,11 @@ export class PutExecuteTemplateOnlineRequest {
      * Merge with regions or not. True by default
      */
     public withRegions: boolean;
+
+    /**
+     * This file name will be used when resulting document has dynamic field for document file name {filename}.  If it is not setted, \"template\" will be used instead.  Note: if withRegions == true executeTemplate updates fields only inside regions
+     */
+    public documentFileName: string;
     
     public constructor(init?: Partial<PutExecuteTemplateOnlineRequest>) {        
         Object.assign(this, init);

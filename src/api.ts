@@ -90,6 +90,71 @@ export class WordsApi {
     }
 
     /**
+     * Classify raw text.
+     * @param requestObj contains request parameters
+     */
+    public async classify(requestObj: model.ClassifyRequest): Promise<{response: http.ClientResponse, body: model.ClassificationResponse}> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling classify.');
+        }
+
+        const localVarPath = this.configuration.getApiBaseUrl() + "/words/classify";
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.parameters' is not null or undefined
+        if (requestObj.parameters === null || requestObj.parameters === undefined) {
+            throw new Error('Required parameter "requestObj.parameters" was null or undefined when calling classify.');
+        }
+        
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+            body: ObjectSerializer.serialize(requestObj.parameters, requestObj.parameters.constructor.name === "Object" ? "ClassificationRequestParameters" : requestObj.parameters.constructor.name),
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result =  ObjectSerializer.deserialize(response.body, "ClassificationResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+    /**
+     * Classify document.
+     * @param requestObj contains request parameters
+     */
+    public async classifyDocument(requestObj: model.ClassifyDocumentRequest): Promise<{response: http.ClientResponse, body: model.ClassificationResponse}> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling classifyDocument.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{documentName}/classify"
+            .replace("{" + "documentName" + "}", String(requestObj.documentName));
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.documentName' is not null or undefined
+        if (requestObj.documentName === null || requestObj.documentName === undefined) {
+            throw new Error('Required parameter "requestObj.documentName" was null or undefined when calling classifyDocument.');
+        }
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "bestClassesCount", requestObj.bestClassesCount);
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result =  ObjectSerializer.deserialize(response.body, "ClassificationResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+    /**
      * Add new or update existing document property.
      * @param requestObj contains request parameters
      */
@@ -3133,17 +3198,12 @@ export class WordsApi {
         if (requestObj.name === null || requestObj.name === undefined) {
             throw new Error('Required parameter "requestObj.name" was null or undefined when calling postDocumentExecuteMailMerge.');
         }
-
-        // verify required parameter 'requestObj.withRegions' is not null or undefined
-        if (requestObj.withRegions === null || requestObj.withRegions === undefined) {
-            throw new Error('Required parameter "requestObj.withRegions" was null or undefined when calling postDocumentExecuteMailMerge.');
-        }
         
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "withRegions", requestObj.withRegions);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "withRegions", requestObj.withRegions);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "mailMergeDataFile", requestObj.mailMergeDataFile);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "cleanup", requestObj.cleanup);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "useWholeParagraphAsRegion", requestObj.useWholeParagraphAsRegion);
@@ -3978,6 +4038,7 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "documentFileName", requestObj.documentFileName);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", requestObj.fontsLocation);
         if (requestObj.document !== undefined) {
             formParams.Document = requestObj.document;
@@ -4202,6 +4263,7 @@ export class WordsApi {
         
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "withRegions", requestObj.withRegions);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "cleanup", requestObj.cleanup);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "documentFileName", requestObj.documentFileName);
         if (requestObj.template !== undefined) {
             formParams.Template = requestObj.template;
         }
@@ -4249,6 +4311,7 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "cleanup", requestObj.cleanup);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "useWholeParagraphAsRegion", requestObj.useWholeParagraphAsRegion);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "withRegions", requestObj.withRegions);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "documentFileName", requestObj.documentFileName);
         if (requestObj.template !== undefined) {
             formParams.Template = requestObj.template;
         }

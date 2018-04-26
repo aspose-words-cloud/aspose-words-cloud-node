@@ -25,7 +25,7 @@
 import { expect } from "chai";
 import "mocha";
 
-import { ClassifyDocumentRequest, ClassificationRequestParameters, ClassifyRequest } from "../../src/model/model";
+import { ClassificationRequestParameters, ClassifyDocumentRequest, ClassifyRequest } from "../../src/model/model";
 import * as BaseTest from "../baseTest";
 
 const testFolder = "Common";

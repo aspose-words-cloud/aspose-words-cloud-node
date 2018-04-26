@@ -25,13 +25,16 @@
 import { expect } from "chai";
 import "mocha";
 
-import { ClassificationRequestParameters, ClassifyRequest } from "../../src/model/model";
+import { ClassificationRequestParameters, ClassifyDocumentRequest, ClassifyRequest } from "../../src/model/model";
 import * as BaseTest from "../baseTest";
 
+const testFolder = "Common";
+
 describe("Text classification", () => {
-    const wordsApi = BaseTest.initializeWordsApi();
 
     describe("classify raw text", () => {
+        const wordsApi = BaseTest.initializeWordsApi();
+
         it("should return response with code 200", () => {
             const requestParams = new ClassificationRequestParameters();
             requestParams.text = "Try text classification";
@@ -39,13 +42,43 @@ describe("Text classification", () => {
             const request = new ClassifyRequest();
             request.parameters = requestParams;
 
-            wordsApi.classify(request)
+            return wordsApi.classify(request)
                 .then((result) => {
                     // Assert
                     
                     expect(result.body.code).to.equal(200);
                     expect(result.response.statusCode).to.equal(200);
                 });
+        });
+    });
+
+    describe("classify document", () => {
+        const wordsApi = BaseTest.initializeWordsApi();
+        const storageApi = BaseTest.initializeStorageApi();
+        const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
+        const remoteFileName = "SourceDocument.docx";
+        const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
+
+        before(() => {
+            return new Promise((resolve) => {
+                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
+                    expect(responseMessage.status).to.equal("OK");
+                    resolve();
+                });
+            });
+        });
+
+        it("should return response with code 200", () => {
+            const request = new ClassifyDocumentRequest();
+            request.documentName = remoteFileName;
+            request.folder = remotePath;
+
+            return wordsApi.classifyDocument(request)
+              .then((result) => {
+                  // Assert
+                  expect(result.body.code).to.equal(200);
+                  expect(result.response.statusCode).to.equal(200);
+              });
         });
     });
 });

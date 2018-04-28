@@ -35,36 +35,10 @@ gulp.task('copyTestConfig', function () {
 });
 
 gulp.task('cucumber', ["build", "copyTestConfig"], function () {
-    var reportDir = './reports/bdd';
-    
+        
     return gulp.src('./bdd/features/**/*.feature').pipe(cucumber({
         'steps': './dist/bdd/steps/**/*.js',
         'support': './dist/bdd/support/**/*.js',
         'format': 'json:./reports/bdd_results.json',        
     }));
 });
-
-gulp.task('cucumber:report', ['cucumber'], function() {
-    gulp.src('reports/bdd_results.json')
-        .pipe(cucumberXmlReport({strict: true}))
-        .pipe(gulp.dest('reports'));
-});
- 
-function cucumberXmlReport(opts) {
-    var gutil = require('gulp-util'),
-        through = require('through2'),
-        cucumberJunit = require('cucumber-junit');
-    
-    return through.obj(function (file, enc, cb) {
-        // If tests are executed against multiple browsers/devices
-        var suffix = file.path.match(/\/cucumber-?(.*)\.json/);
-        if (suffix) {
-            opts.prefix = suffix[1] + ';';
-        }
-        
-        var xml = cucumberJunit(file.contents, opts);
-        file.contents = new Buffer(xml);
-        file.path = gutil.replaceExtension(file.path, '.xml');
-        cb(null, file);
-    });
-}

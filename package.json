@@ -41,7 +41,6 @@
     "chai": "^4.1.2",
     "cross-env": "^5.1.4",
     "cucumber": "^4.0.0",
-    "cucumber-junit": "^1.7.1",
     "del": "^3.0.0",
     "gulp": "^3.9.1",
     "gulp-cucumber": "0.0.23",

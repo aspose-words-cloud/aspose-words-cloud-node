@@ -29,7 +29,7 @@ node('billing-qa-ubuntu-16.04.4') {
         }
             
         stage('bdd-tests'){
-            sh "npm run gulp cucumber:report"
+            sh "npm run gulp cucumber"
         }
     }
     
@@ -40,6 +40,7 @@ node('billing-qa-ubuntu-16.04.4') {
         }
 
         junit 'reports/**.xml'
+        cucumber 'reports/**.json'
         cleanWs()
     }
 }

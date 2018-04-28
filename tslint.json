@@ -32,7 +32,8 @@
         "max-classes-per-file": false,
         "array-type": false,
         "file-header": true,
-        "only-arrow-functions": false
+        "only-arrow-functions": false,
+        "object-literal-sort-keys": false
     },
     "rulesDirectory": []
 }

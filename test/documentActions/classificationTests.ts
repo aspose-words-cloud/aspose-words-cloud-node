@@ -36,11 +36,9 @@ describe("Text classification", () => {
         const wordsApi = BaseTest.initializeWordsApi();
 
         it("should return response with code 200", () => {
-            const requestParams = new ClassificationRequestParameters();
-            requestParams.text = "Try text classification";
-            requestParams.bestClassesCount = 3;
             const request = new ClassifyRequest();
-            request.parameters = requestParams;
+            request.text = "Try text classification";
+            request.bestClassesCount = "3";
 
             return wordsApi.classify(request)
                 .then((result) => {

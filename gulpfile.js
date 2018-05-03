@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var ts = require('gulp-typescript');
 var cucumber = require('gulp-cucumber');
 var del = require('del');
+var fs = require('fs');
 
 var buildConfig = {
     targetPath: 'dist',
@@ -34,8 +35,10 @@ gulp.task('copyTestConfig', function () {
 });
 
 gulp.task('cucumber', ["build", "copyTestConfig"], function () {
+        
     return gulp.src('./bdd/features/**/*.feature').pipe(cucumber({
         'steps': './dist/bdd/steps/**/*.js',
         'support': './dist/bdd/support/**/*.js',
+        'format': 'json:./reports/bdd_results.json',        
     }));
 });

@@ -98,20 +98,21 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling classify.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/classify";
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/classify";
         const queryParameters: any = {};
 
-        // verify required parameter 'requestObj.parameters' is not null or undefined
-        if (requestObj.parameters === null || requestObj.parameters === undefined) {
-            throw new Error('Required parameter "requestObj.parameters" was null or undefined when calling classify.');
+        // verify required parameter 'requestObj.text' is not null or undefined
+        if (requestObj.text === null || requestObj.text === undefined) {
+            throw new Error('Required parameter "requestObj.text" was null or undefined when calling classify.');
         }
         
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "bestClassesCount", requestObj.bestClassesCount);
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.parameters, requestObj.parameters.constructor.name === "Object" ? "ClassificationRequestParameters" : requestObj.parameters.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.text, requestObj.text.constructor.name === "Object" ? "string" : requestObj.text.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);

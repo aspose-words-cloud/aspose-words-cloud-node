@@ -4622,11 +4622,6 @@ export class HtmlSaveOptionsData extends SaveOptionsData {
             type: "string",
         },        
         {
-            name: "exportMetafileAsRaster",
-            baseName: "ExportMetafileAsRaster",
-            type: "boolean",
-        },        
-        {
             name: "exportOriginalUrlForLinkedImages",
             baseName: "ExportOriginalUrlForLinkedImages",
             type: "boolean",
@@ -4813,11 +4808,6 @@ export class HtmlSaveOptionsData extends SaveOptionsData {
      * Controls how list labels are output
      */
     public exportListLabels: string;
-    
-    /**
-     * Specifies whether to convert metafiles into raster images when exporting.  Deprecated - use the MetafileFormat property instead
-     */
-    public exportMetafileAsRaster: boolean;
     
     /**
      * Specifies whether original URL should be used as the URL of the linked images. Default value is false.

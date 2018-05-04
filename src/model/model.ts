@@ -4702,6 +4702,11 @@ export class HtmlSaveOptionsData extends SaveOptionsData {
             type: "string",
         },        
         {
+            name: "metafileFormat",
+            baseName: "MetafileFormat",
+            type: "HtmlSaveOptionsData.MetafileFormatEnum",
+        },        
+        {
             name: "officeMathOutputMode",
             baseName: "OfficeMathOutputMode",
             type: "HtmlSaveOptionsData.OfficeMathOutputModeEnum",
@@ -4890,6 +4895,11 @@ export class HtmlSaveOptionsData extends SaveOptionsData {
     public imagesFolderAlias: string;
     
     /**
+     * Specifies in what format metafiles are saved when exporting to HTML, MHTML, or EPUB.  Default value is Aspose.Words.Saving.HtmlMetafileFormat.Png, meaning that metafiles are rendered to raster PNG images.  Metafiles are not natively displayed by HTML browsers. By default, Aspose.Words converts WMF and EMF images into PNG files when exporting to HTML.Other options are to convert metafiles to SVG images or to export them as is without conversion. Some image transforms, in particular image cropping, will not be applied to metafile images if they are exported to HTML without conversion.
+     */
+    public metafileFormat: HtmlSaveOptionsData.MetafileFormatEnum;
+    
+    /**
      * Controls how OfficeMath objects are exported to HTML, MHTML or EPUB.  Default value is HtmlOfficeMathOutputMode.Image.
      */
     public officeMathOutputMode: HtmlSaveOptionsData.OfficeMathOutputModeEnum;
@@ -4931,6 +4941,11 @@ export namespace HtmlSaveOptionsData {
     export enum HtmlVersionEnum {
         Xhtml = 'Xhtml' as any,
         Html5 = 'Html5' as any,
+    }
+    export enum MetafileFormatEnum {
+        Png = 'Png' as any,
+        Svg = 'Svg' as any,
+        EmfOrWmf = 'EmfOrWmf' as any,
     }
     export enum OfficeMathOutputModeEnum {
         Image = 'Image' as any,
@@ -10203,6 +10218,7 @@ const enumsMap = {
     "Font.UnderlineEnum": Font.UnderlineEnum,
     "HeaderFooterLink.TypeEnum": HeaderFooterLink.TypeEnum,
     "HtmlSaveOptionsData.HtmlVersionEnum": HtmlSaveOptionsData.HtmlVersionEnum,
+    "HtmlSaveOptionsData.MetafileFormatEnum": HtmlSaveOptionsData.MetafileFormatEnum,
     "HtmlSaveOptionsData.OfficeMathOutputModeEnum": HtmlSaveOptionsData.OfficeMathOutputModeEnum,
     "PageSetup.BorderAppliesToEnum": PageSetup.BorderAppliesToEnum,
     "PageSetup.BorderDistanceFromEnum": PageSetup.BorderDistanceFromEnum,

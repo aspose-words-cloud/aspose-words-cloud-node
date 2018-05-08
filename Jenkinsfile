@@ -48,10 +48,7 @@ def runtests(dockerImageVersion)
     }
 }
 
-node('billing-qa-ubuntu-16.04.4') {
-        
-        runtests("latest")
-        runtests("6")
-    )    
-   
+node('billing-qa-ubuntu-16.04.4') {        
+    runtests("latest")
+    runtests("6")       
 }

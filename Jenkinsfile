@@ -49,10 +49,9 @@ def runtests(dockerImageVersion)
 }
 
 node('billing-qa-ubuntu-16.04.4') {
-    
-    parallel ( failFast: false,
-        NodeLatest: { runtests("latest") },
-        Node6:   { runtests("6") },
+        
+        runtests("latest")
+        runtests("6")
     )    
    
 }

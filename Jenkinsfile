@@ -47,7 +47,7 @@ def runtests(dockerImageVersion)
         }
     }
 }
-properties([pipelineTriggers([[$class: 'GitHubPushTrigger'], pollSCM('H/15 * * * *')])])
+
 node('billing-qa-ubuntu-16.04.4') {
     
     parallel ( failFast: false,

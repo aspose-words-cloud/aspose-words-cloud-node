@@ -69,6 +69,12 @@ Every method returns a chainable promise.
 ```
 
 # Release notes
+
+## 18.3
++ Added support of differrent api version (v1 is used by default)
++ Swf format was removed
++ Some obsolete properties were removed from the PdfSaveOptionsData (see https://docs.aspose.cloud/display/wordscloud/Aspose.Words+for+Cloud+18.3+Release+Notes)
+
 ## 18.2
 New SDK has the following advantages over the [previous version](https://github.com/aspose-words/Aspose.Words-for-Cloud):
 + SDK is fully in sync with the API, all missing methods are added

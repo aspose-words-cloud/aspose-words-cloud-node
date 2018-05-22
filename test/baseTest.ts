@@ -53,8 +53,8 @@ export function initializeStorageApi() {
 export const remoteBaseFolder = "Temp/SdkTests/node/";
 export const remoteBaseTestDataFolder = "Temp/SdkTests/node/TestData/";
 export const remoteBaseTestOutFolder = "Temp/SdkTests/node/TestOut/";
-export const localBaseTestDataFolder = "./testData/";
-export const localCommonTestDataFolder = "./testData/common/";
+export const localBaseTestDataFolder = "./TestData/";
+export const localCommonTestDataFolder = "./TestData/Common/";
 
 export const saveFormatTestCases = [
     "doc",

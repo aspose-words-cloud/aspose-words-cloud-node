@@ -1,6 +1,7 @@
 parameters {
         string(name: 'branch', defaultValue: 'master', description: 'branch to test')		
 		string(name: 'testServerUrl', defaultValue: 'https://auckland-words-cloud-staging.dynabic.com', description: 'server url')		
+		string(name: 'gulpBuildTask', defaultValue: 'build')		
 }
 
 def runtests(dockerImageVersion)
@@ -26,7 +27,8 @@ def runtests(dockerImageVersion)
                     'HOME=.',
                     ]) {
                         sh "npm install"
-                        sh "npm run gulp build"
+												
+                        sh "npm run gulp $gulpBuildTask"
                         sh "npm run lint"
                     }
                 }

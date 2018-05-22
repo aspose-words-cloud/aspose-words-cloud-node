@@ -28,6 +28,17 @@ gulp.task('build', ["clean"], function () {
     return tsResult.pipe(gulp.dest(buildConfig.targetPath));
 });
 
+gulp.task('buildRelease', ["clean"], function () {
+    var tsProject = ts.createProject('tsconfigPack.json');
+    var tsResult = tsProject.src()
+        .pipe(tsProject())
+        .once("error", function () {
+            this.once("finish", () => process.exit(1));
+        });
+
+    return tsResult.pipe(gulp.dest(buildConfig.targetPath));
+});
+
 gulp.task('copyTestConfig', function () {
     return gulp
             .src('testConfig.json')

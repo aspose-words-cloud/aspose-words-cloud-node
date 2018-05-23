@@ -15,8 +15,7 @@
         "outDir": "dist",
         "rootDir": "./"
     },
-    "include": [
-        "src/**/*",
+    "include": [        
         "test/**/*",
         "bdd/**/*.ts"
     ]    

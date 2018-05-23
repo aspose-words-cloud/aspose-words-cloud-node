@@ -58,7 +58,7 @@ describe("configuration tests", () => {
                     .then(() => {
                         log.restore();
                         sinon.assert.calledWith(log,
-                            sinon.match('"uri": "https://auckland-words-cloud-staging.dynabic.com/v1/words/TesConfiguration.docx?folder=Temp%2FSdkTests%2Fnode%2FTestData%2FCommont%2FConfiguration"')
+                            sinon.match('"uri": "https://api.aspose.cloud/v1/words/TesConfiguration.docx?folder=Temp%2FSdkTests%2Fnode%2FTestData%2FCommont%2FConfiguration"')
                                 .and(sinon.match('"method": "GET"')));
                     });
             });
@@ -91,7 +91,7 @@ describe("configuration tests", () => {
                     .then(() => {
                         log.restore();
                         sinon.assert.calledWith(log,
-                            sinon.match('"uri": "https://auckland-words-cloud-staging.dynabic.com/v1/words/TesConfiguration.docx?folder=Temp%2FSdkTests%2Fnode%2FTestData%2FCommont%2FConfiguration"')
+                            sinon.match('"uri": "https://api.aspose.cloud/v1/words/TesConfiguration.docx?folder=Temp%2FSdkTests%2Fnode%2FTestData%2FCommont%2FConfiguration"')
                                 .and(sinon.match('"method": "GET"')));
                     });
             });
@@ -151,7 +151,7 @@ describe("configuration tests", () => {
                     .then(() => {
                         log.restore();
                         sinon.assert.calledWith(log,
-                            sinon.match('"uri": "https://auckland-words-cloud-staging.dynabic.com/v2/words/TesConfiguration.docx?folder=Temp%2FSdkTests%2Fnode%2FTestData%2FCommont%2FConfiguration"')
+                            sinon.match('"uri": "https://api.aspose.cloud/v2/words/TesConfiguration.docx?folder=Temp%2FSdkTests%2Fnode%2FTestData%2FCommont%2FConfiguration"')
                                 .and(sinon.match('"method": "GET"')));
                     });
             });

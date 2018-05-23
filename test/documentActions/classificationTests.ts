@@ -25,7 +25,7 @@
 import { expect } from "chai";
 import "mocha";
 
-import { ClassifyDocumentRequest, ClassifyRequest } from "../../src/model/model";
+import { ClassifyDocumentRequest, ClassifyRequest } from "asposewordscloud";
 import * as BaseTest from "../baseTest";
 
 const testFolder = "Common";

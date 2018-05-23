@@ -39,7 +39,7 @@ describe("errorHandling tests", () => {
         return wordsApi.getDocument(request)            
             .catch((error) => {               
                 expect(error.code).to.equal(400);
-                expect(error.message).to.equal("Error while loading file \'noFileWithThisName.docx\' from storage: AmazonS3 exception: Error \'The specified key does not exist.\', Bucket \'afc-testdata\', FilePath \'6/Words/noFileWithThisName.docx\'");               
+                expect(error.message).to.equal("Error while loading file \'noFileWithThisName.docx\' from storage: AmazonS3 exception: Error \'The specified key does not exist.\', Bucket \'afc-filestorage\', FilePath \'6/Words/noFileWithThisName.docx\'");               
             });
     });    
 });

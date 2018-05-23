@@ -29,7 +29,9 @@ def runtests(dockerImageVersion)
                         sh "npm install"
 												
                         sh "npm run gulp $gulpBuildTask"
-                        sh "npm run lint"
+                        if (params.branch == 'master'){
+                            sh "npm run lint"
+                        }
                     }
                 }
             

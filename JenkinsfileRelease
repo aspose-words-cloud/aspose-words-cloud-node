@@ -1,82 +1,142 @@
-node('billing-qa-ubuntu-16.04.4') {     
-    
-        try {
-            stage('checkout'){
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '9d6c4dfa-042c-4ed1-81c7-9175179dddda', url: 'https://github.com/aspose-words-cloud/aspose-words-cloud-node.git/']]])
-                withCredentials([usernamePassword(credentialsId: '6839cbe8-39fa-40c0-86ce-90706f0bae5d', passwordVariable: 'AppKey', usernameVariable: 'AppSid')]) {
-                    sh 'echo "{\\"AppSid\\": \\"$AppSid\\",\\"AppKey\\": \\"$AppKey\\", \\"BaseUrl\\": \\"https://auckland-words-cloud-staging.dynabic.com\\"}" > testConfig.json'
-                }
-				
-				sh "git config user.email \"jenkins.aspose@gmail.com\""
-				sh "git config user.name \"jenkins\""
-            }
-            
-            docker.image('node:latest').inside{
-                stage('build package'){
-                    withEnv([
-                    /* Override the npm cache directory to avoid: EACCES: permission denied, mkdir '/.npm' */
-                    'npm_config_cache=npm-cache',
-                    /* set home to our current directory because other bower
-                     * nonsense breaks with HOME=/, e.g.:
-                     * EACCES: permission denied, mkdir '/.config'
-                     */
-                    'HOME=.',
-                    ]) {
-                        sh "npm install"
-                        sh "npm run gulp buildRelease"
-                        packageName = sh(returnStdout: true, script: 'npm pack').trim()
-                        
-                    }
-					
-					stash name: "newPackage", includes: "${packageName}"					
-                }
-			}
-			
-			stage('Merge master to testPackage'){			
-				sh "git checkout --merge testPackage"
-				sh "git reset --hard origin/testPackage"
-				sh "git merge --no-ff --allow-unrelated-histories origin/master"
-				sh "git diff --name-status"
-				sh 'git commit -am "Merged master branch to testPackage" || exit 0'
-				
-				withCredentials([usernamePassword(credentialsId: '9d6c4dfa-042c-4ed1-81c7-9175179dddda', passwordVariable: 'gitPass', usernameVariable: 'gitUsername')]) {
-					sh "git push https://WordsCloud:$gitPass@github.com/aspose-words-cloud/aspose-words-cloud-node testPackage"
-				}
-			}
+node('billing-qa-ubuntu-16.04.4') {         
+    try {
+       stage('checkout'){
+           checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '9d6c4dfa-042c-4ed1-81c7-9175179dddda', url: 'https://github.com/aspose-words-cloud/aspose-words-cloud-node.git/']]])
+           withCredentials([usernamePassword(credentialsId: '6839cbe8-39fa-40c0-86ce-90706f0bae5d', passwordVariable: 'AppKey', usernameVariable: 'AppSid')]) {
+               sh 'echo "{\\"AppSid\\": \\"$AppSid\\",\\"AppKey\\": \\"$AppKey\\", \\"BaseUrl\\": \\"https://auckland-words-cloud-staging.dynabic.com\\"}" > testConfig.json'
+           }
 		
-			stage('add reference to new package'){
-				unstash 'newPackage'	
-				docker.image('node:latest').inside{
-					 withEnv([
-                    /* Override the npm cache directory to avoid: EACCES: permission denied, mkdir '/.npm' */
-                    'npm_config_cache=npm-cache',
-                    /* set home to our current directory because other bower
-                     * nonsense breaks with HOME=/, e.g.:
-                     * EACCES: permission denied, mkdir '/.config'
-                     */
-                    'HOME=.',
-                    ]) {
-						sh "npm uninstall asposewordscloud"
-						sh "npm install ${packageName}"
-					}
-				}
-				
-				sh "git diff --name-status"
-				sh 'git commit -am "new version of package added to repository" || exit 0'
-				withCredentials([usernamePassword(credentialsId: '9d6c4dfa-042c-4ed1-81c7-9175179dddda', passwordVariable: 'gitPass', usernameVariable: 'gitUsername')]) {
-					sh "git push https://WordsCloud:$gitPass@github.com/aspose-words-cloud/aspose-words-cloud-node testPackage"
-				}
-			}
+		sh "git config user.email \"jenkins.aspose@gmail.com\""
+		sh "git config user.name \"jenkins\""
+       }
+       
+       docker.image('node:latest').inside{
+           stage('build package'){
+               withEnv([
+               /* Override the npm cache directory to avoid: EACCES: permission denied, mkdir '/.npm' */
+               'npm_config_cache=npm-cache',
+               /* set home to our current directory because other bower
+                * nonsense breaks with HOME=/, e.g.:
+                * EACCES: permission denied, mkdir '/.config'
+                */
+               'HOME=.',
+               ]) {
+                   sh "npm install"
+                   sh "npm run gulp buildRelease"
+                   packageName = sh(returnStdout: true, script: 'npm pack').trim()
+                   
+               }
 			
-			stage('test package'){
-					build job: 'words-sdk-nodejs', 
-				    parameters: [
-						string(name: 'branch', value: 'testPackage'), 
-						string(name: 'testServerUrl', value: 'https://api.aspose.cloud')						
-					]
-			}                            
-                  
-        } finally {                       
-            deleteDir()
-        }
+			stash name: "newPackage", includes: "${packageName}"					
+           }
+		}
+	
+	    stage('Merge master to testPackage'){			
+	    	sh "git checkout --merge testPackage"
+	    	sh "git reset --hard origin/testPackage"
+	    	sh "git merge --no-ff --allow-unrelated-histories origin/master"
+	    	sh "git diff --name-status"
+	    	sh 'git commit -am "Merged master branch to testPackage" || exit 0'
+	    	
+	    	withCredentials([usernamePassword(credentialsId: '9d6c4dfa-042c-4ed1-81c7-9175179dddda', passwordVariable: 'gitPass', usernameVariable: 'gitUsername')]) {
+	    		sh "git push https://WordsCloud:$gitPass@github.com/aspose-words-cloud/aspose-words-cloud-node testPackage"
+	    	}
+	    }
+	
+	    stage('add reference to new package'){
+	    	unstash 'newPackage'	
+	    	docker.image('node:latest').inside{
+	    		 withEnv([
+                   /* Override the npm cache directory to avoid: EACCES: permission denied, mkdir '/.npm' */
+                   'npm_config_cache=npm-cache',
+                   /* set home to our current directory because other bower
+                    * nonsense breaks with HOME=/, e.g.:
+                    * EACCES: permission denied, mkdir '/.config'
+                    */
+                   'HOME=.',
+                   ]) {
+	    			sh "npm uninstall asposewordscloud"
+	    			sh "npm install ${packageName}"
+	    		}
+	    	}
+	    	
+	    	sh "git diff --name-status"
+	    	sh 'git commit -am "new version of package added to repository" || exit 0'
+	    	withCredentials([usernamePassword(credentialsId: '9d6c4dfa-042c-4ed1-81c7-9175179dddda', passwordVariable: 'gitPass', usernameVariable: 'gitUsername')]) {
+	    		sh "git push https://WordsCloud:$gitPass@github.com/aspose-words-cloud/aspose-words-cloud-node testPackage"
+	    	}
+	    }
+		    			                
+    } finally {                       
+        deleteDir()
+    }
 }
+
+stage('test package'){
+	build job: 'words-sdk-nodejs', 
+	   parameters: [
+		string(name: 'branch', value: 'testPackage'), 
+		string(name: 'testServerUrl', value: 'https://api.aspose.cloud')						
+	   ]
+}   
+
+stage('wait for publish confirmation'){
+	timeout(time:1, unit:'DAYS') {
+		input message:'Publish packet?'
+	}
+}
+
+node('billing-qa-ubuntu-16.04.4') {         
+    try {
+        stage('checkout again'){
+           checkout([$class: 'GitSCM', branches: [[name: '*/testPackage']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '9d6c4dfa-042c-4ed1-81c7-9175179dddda', url: 'https://github.com/aspose-words-cloud/aspose-words-cloud-node.git/']]])
+           withCredentials([usernamePassword(credentialsId: '6839cbe8-39fa-40c0-86ce-90706f0bae5d', passwordVariable: 'AppKey', usernameVariable: 'AppSid')]) {
+               sh 'echo "{\\"AppSid\\": \\"$AppSid\\",\\"AppKey\\": \\"$AppKey\\", \\"BaseUrl\\": \\"https://auckland-words-cloud-staging.dynabic.com\\"}" > testConfig.json'
+           }
+		
+			sh "git config user.email \"jenkins.aspose@gmail.com\""
+			sh "git config user.name \"jenkins\""
+			sh "git checkout testPackage"
+	    	sh "git reset --hard origin/testPackage"
+        }
+		
+	    stage('publish package'){
+			docker.image('node:latest').inside{
+			}				
+		}
+		
+		stage('change reference to published package'){
+			docker.image('node:latest').inside{           
+				withEnv([
+				/* Override the npm cache directory to avoid: EACCES: permission denied, mkdir '/.npm' */
+				'npm_config_cache=npm-cache',
+					/* set home to our current directory because other bower
+					* nonsense breaks with HOME=/, e.g.:
+					* EACCES: permission denied, mkdir '/.config'
+					*/
+				'HOME=.',
+				]) {
+                    sh "npm uninstall asposewordscloud"
+					sh "npm install asposewordscloud"              
+                }				
+            }
+
+			sh "git diff --name-status"
+	    	sh 'git commit -am "reference changed to published package" || exit 0'
+	    	withCredentials([usernamePassword(credentialsId: '9d6c4dfa-042c-4ed1-81c7-9175179dddda', passwordVariable: 'gitPass', usernameVariable: 'gitUsername')]) {
+	    		sh "git push https://WordsCloud:$gitPass@github.com/aspose-words-cloud/aspose-words-cloud-node testPackage"
+	    	}			
+		}
+		
+    } finally {                       
+        deleteDir()
+    }
+}
+
+stage('test published package'){
+	build job: 'words-sdk-nodejs', 
+	   parameters: [
+		string(name: 'branch', value: 'testPackage'), 
+		string(name: 'testServerUrl', value: 'https://api.aspose.cloud')						
+	   ]
+}   

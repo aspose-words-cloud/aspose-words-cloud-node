@@ -72,8 +72,7 @@ node('billing-qa-ubuntu-16.04.4') {
 					build job: 'words-sdk-nodejs', 
 				    parameters: [
 						string(name: 'branch', value: 'testPackage'), 
-						string(name: 'testServerUrl', value: 'https://api.aspose.cloud'),
-						string(name: 'gulpBuildTask', value: 'buildRelease'),
+						string(name: 'testServerUrl', value: 'https://api.aspose.cloud')						
 					]
 			}                            
                   

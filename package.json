@@ -1,6 +1,6 @@
 {
   "name": "asposewordscloudTest",
-  "version": "18.3.0",
+  "version": "18.5.0",
   "description": "Aspose.Words Cloud SDK for Node.js",
   "homepage": "https://products.aspose.cloud/words/cloud",
   "author": {
@@ -32,7 +32,7 @@
   "dependencies": {
     "@types/request": "^2.47.0",
     "asposewordscloud": "^18.3.0",
-    "request": "^2.85.0",
+    "request": "^2.87.0",    
     "request-debug": "^0.2.0"
   },
   "devDependencies": {

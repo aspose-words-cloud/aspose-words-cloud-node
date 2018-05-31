@@ -69,6 +69,9 @@ Every method returns a chainable promise.
 ```
 
 # Release notes
+## 18.5
++ Added support of new "Classification" api
++ Added "documentFileName" parameter for PUT methods
 
 ## 18.3
 + Added support of differrent api version (v1 is used by default)

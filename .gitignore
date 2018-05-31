@@ -122,4 +122,5 @@ testConfig.json
 /ts-node-*
 reports/*
 .v8flags*
+/.npmrc
 npm-cache/*

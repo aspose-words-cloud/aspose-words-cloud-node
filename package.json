@@ -31,8 +31,8 @@
   },
   "dependencies": {
     "@types/request": "^2.47.0",
-    "asposewordscloud": "^18.3.0",
-    "request": "^2.87.0",    
+    "asposewordscloud": "file:asposewordscloud-18.5.0.tgz",
+    "request": "^2.87.0",
     "request-debug": "^0.2.0"
   },
   "devDependencies": {

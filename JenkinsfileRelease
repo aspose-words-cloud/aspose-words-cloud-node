@@ -35,7 +35,7 @@ node('billing-qa-ubuntu-16.04.4') {
 	    	sh "git checkout --merge testPackage"
 	    	sh "git reset --hard origin/testPackage"
 	    	sh "git merge --no-ff --allow-unrelated-histories origin/master"
-	    	sh "git diff --name-status"
+	    	sh "git diff --name-status"			
 	    	sh 'git commit -am "Merged master branch to testPackage" || exit 0'
 	    	
 	    	withCredentials([usernamePassword(credentialsId: '9d6c4dfa-042c-4ed1-81c7-9175179dddda', passwordVariable: 'gitPass', usernameVariable: 'gitUsername')]) {
@@ -61,6 +61,8 @@ node('billing-qa-ubuntu-16.04.4') {
 	    	}
 	    	
 	    	sh "git diff --name-status"
+			sh "git ls-files --others --exclude-standard"
+			sh "git add -A"
 	    	sh 'git commit -am "new version of package added to repository" || exit 0'
 	    	withCredentials([usernamePassword(credentialsId: '9d6c4dfa-042c-4ed1-81c7-9175179dddda', passwordVariable: 'gitPass', usernameVariable: 'gitUsername')]) {
 	    		sh "git push https://WordsCloud:$gitPass@github.com/aspose-words-cloud/aspose-words-cloud-node testPackage"

@@ -102,6 +102,10 @@ node('billing-qa-ubuntu-16.04.4') {
 		
 	    stage('publish package'){
 			docker.image('node:latest').inside{
+				withCredentials([usernamePassword(credentialsId: '19f0eab9-c600-4746-a4bd-724efd2102c8', passwordVariable: 'npmPass', usernameVariable: 'npmLogin')]) {
+					sh "npm login --user $npmLogin --password $npmPass"
+					sh "npm publish"
+				}
 			}				
 		}
 		

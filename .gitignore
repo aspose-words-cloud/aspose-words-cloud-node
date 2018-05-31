@@ -121,3 +121,4 @@ SDKs/servercreds.json
 testConfig.json
 /ts-node-*
 reports/*
+/.npmrc

@@ -91,10 +91,7 @@ stage('wait for publish confirmation'){
 node('billing-qa-ubuntu-16.04.4') {         
     try {
         stage('checkout again'){
-           checkout([$class: 'GitSCM', branches: [[name: '*/testPackage']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '9d6c4dfa-042c-4ed1-81c7-9175179dddda', url: 'https://github.com/aspose-words-cloud/aspose-words-cloud-node.git/']]])
-           withCredentials([usernamePassword(credentialsId: '6839cbe8-39fa-40c0-86ce-90706f0bae5d', passwordVariable: 'AppKey', usernameVariable: 'AppSid')]) {
-               sh 'echo "{\\"AppSid\\": \\"$AppSid\\",\\"AppKey\\": \\"$AppKey\\", \\"BaseUrl\\": \\"https://auckland-words-cloud-staging.dynabic.com\\"}" > testConfig.json'
-           }
+           checkout([$class: 'GitSCM', branches: [[name: '*/testPackage']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '9d6c4dfa-042c-4ed1-81c7-9175179dddda', url: 'https://github.com/aspose-words-cloud/aspose-words-cloud-node.git/']]])          
 					
 			sh "git checkout testPackage"
 	    	sh "git reset --hard origin/testPackage"
@@ -112,7 +109,7 @@ node('billing-qa-ubuntu-16.04.4') {
 				'HOME=.',
 				]) {
 				withCredentials([usernamePassword(credentialsId: '19f0eab9-c600-4746-a4bd-724efd2102c8', passwordVariable: 'npmPass', usernameVariable: 'npmLogin')]) {
-					sh "npm login --user $npmLogin --password $npmPass"
+					sh "echo //registry.npmjs.org/:_authToken=${npmPass} > .npmrc"
 					sh "npm publish"
 				}
 				}

@@ -1618,6 +1618,11 @@ export class SaveOptionsData {
             type: "boolean",
         },        
         {
+            name: "updateLastSavedTimeProperty",
+            baseName: "UpdateLastSavedTimeProperty",
+            type: "boolean",
+        },        
+        {
             name: "updateSdtContent",
             baseName: "UpdateSdtContent",
             type: "boolean",
@@ -1664,6 +1669,11 @@ export class SaveOptionsData {
      * Controls zip output or not. Default value is false.
      */
     public zipOutput: boolean;
+    
+    /**
+     * Gets or sets a value determining whether the Aspose.Words.Properties.BuiltInDocumentProperties.LastSavedTime property is updated before saving.
+     */
+    public updateLastSavedTimeProperty: boolean;
     
     /**
      * Gets or sets value determining whether content of  is updated before saving.
@@ -5144,6 +5154,11 @@ export class OdtSaveOptionsData extends SaveOptionsData {
             type: "boolean",
         },        
         {
+            name: "measureUnit",
+            baseName: "MeasureUnit",
+            type: "OdtSaveOptionsData.MeasureUnitEnum",
+        },        
+        {
             name: "prettyFormat",
             baseName: "PrettyFormat",
             type: "boolean",
@@ -5162,6 +5177,11 @@ export class OdtSaveOptionsData extends SaveOptionsData {
     public isStrictSchema11: boolean;
     
     /**
+     * Allows to specify units of measure to apply to document content. The default value is Aspose.Words.Saving.OdtSaveMeasureUnit.Centimeters  Open Office uses centimeters when specifying lengths, widths and other measurable formatting and content properties in documents whereas MS Office uses inches.
+     */
+    public measureUnit: OdtSaveOptionsData.MeasureUnitEnum;
+    
+    /**
      * Specifies whether or not use pretty formats output
      */
     public prettyFormat: boolean;
@@ -5172,6 +5192,15 @@ export class OdtSaveOptionsData extends SaveOptionsData {
     }        
 }
 
+// tslint:disable:quotemark
+// tslint:disable-next-line:no-namespace
+export namespace OdtSaveOptionsData {
+    export enum MeasureUnitEnum {
+        Centimeters = 'Centimeters' as any,
+        Inches = 'Inches' as any,
+    }
+}
+// tslint:enable:quotemark
 /**
  * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/officeMathObjects/0 
  */
@@ -10220,6 +10249,7 @@ const enumsMap = {
     "HtmlSaveOptionsData.HtmlVersionEnum": HtmlSaveOptionsData.HtmlVersionEnum,
     "HtmlSaveOptionsData.MetafileFormatEnum": HtmlSaveOptionsData.MetafileFormatEnum,
     "HtmlSaveOptionsData.OfficeMathOutputModeEnum": HtmlSaveOptionsData.OfficeMathOutputModeEnum,
+    "OdtSaveOptionsData.MeasureUnitEnum": OdtSaveOptionsData.MeasureUnitEnum,
     "PageSetup.BorderAppliesToEnum": PageSetup.BorderAppliesToEnum,
     "PageSetup.BorderDistanceFromEnum": PageSetup.BorderDistanceFromEnum,
     "PageSetup.LineNumberRestartModeEnum": PageSetup.LineNumberRestartModeEnum,

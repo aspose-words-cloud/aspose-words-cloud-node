@@ -69,6 +69,11 @@ Every method returns a chainable promise.
 ```
 
 # Release notes
+## 18.6
++ Added property SaveOptions.UpdateLastSavedTime
++ Added property OdtSaveOptions.MeasureUnit
++ Added property HtmlSaveOptions.CssClassNamePrefix    
+
 ## 18.5
 + Added support of new "Classification" api
 + Added "documentFileName" parameter for PUT methods

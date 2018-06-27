@@ -110,7 +110,7 @@ node('billing-qa-ubuntu-16.04.4') {
 				]) {
 				withCredentials([usernamePassword(credentialsId: '19f0eab9-c600-4746-a4bd-724efd2102c8', passwordVariable: 'npmPass', usernameVariable: 'npmLogin')]) {
 					sh "echo //registry.npmjs.org/:_authToken=${npmPass} > .npmrc"
-					sh "npm publish"
+					sh "npm publish ${packageName}"
 				}
 				}
 			}				

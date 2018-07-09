@@ -604,6 +604,69 @@ export class DownsampleOptionsData {
 }
 
 /**
+ * Font info
+ */
+export class FontInfo {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            name: "fontFamilyName",
+            baseName: "FontFamilyName",
+            type: "string",
+        },        
+        {
+            name: "fullFontName",
+            baseName: "FullFontName",
+            type: "string",
+        },        
+        {
+            name: "version",
+            baseName: "Version",
+            type: "string",
+        },        
+        {
+            name: "filePath",
+            baseName: "FilePath",
+            type: "string",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return FontInfo.attributeTypeMap;
+    }
+
+    /**
+     * Family name of the font.
+     */
+    public fontFamilyName: string;
+    
+    /**
+     * Full name of the font.
+     */
+    public fullFontName: string;
+    
+    /**
+     * Version string of the font.
+     */
+    public version: string;
+    
+    /**
+     * Path to the font file if any.
+     */
+    public filePath: string;
+    
+    public constructor(init?: Partial<FontInfo>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
+/**
  * Container for the footnotes statistical data
  */
 export class FootnotesStatData {
@@ -2196,6 +2259,59 @@ export class XmlColor {
     
     public constructor(init?: Partial<XmlColor>) {
         
+        Object.assign(this, init);
+    }        
+}
+
+/**
+ * The list of fonts, available for document processing
+ */
+export class AvailableFontsResponse extends AsposeResponse {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            name: "additionalFonts",
+            baseName: "AdditionalFonts",
+            type: "Array<FontInfo>",
+        },        
+        {
+            name: "customFonts",
+            baseName: "CustomFonts",
+            type: "Array<FontInfo>",
+        },        
+        {
+            name: "systemFonts",
+            baseName: "SystemFonts",
+            type: "Array<FontInfo>",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return super.getAttributeTypeMap().concat(AvailableFontsResponse.attributeTypeMap);
+    }
+
+    /**
+     * The list of addititional fonts, provided by aspose team
+     */
+    public additionalFonts: Array<FontInfo>;
+    
+    /**
+     * Custom user fonts (from user file storage). To use them, you should specify \"fontsLocation\" parameter in any request
+     */
+    public customFonts: Array<FontInfo>;
+    
+    /**
+     * The list of system fonts, availiable on the server
+     */
+    public systemFonts: Array<FontInfo>;
+    
+    public constructor(init?: Partial<AvailableFontsResponse>) {
+        super(init);
         Object.assign(this, init);
     }        
 }
@@ -10299,6 +10415,7 @@ const typeMap = {
             DocumentPosition,
             DocumentStatData,
             DownsampleOptionsData,
+            FontInfo,
             FootnotesStatData,
             GraphicsQualityOptionsData,
             Link,
@@ -10327,6 +10444,7 @@ const typeMap = {
             TableRowInsert,
             WatermarkText,
             XmlColor,
+            AvailableFontsResponse,
             Bookmark,
             BookmarkResponse,
             Bookmarks,
@@ -11740,6 +11858,20 @@ export class DeleteUnprotectDocumentRequest {
     public destFileName: string;
     
     public constructor(init?: Partial<DeleteUnprotectDocumentRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for GetAvailableFonts operation.
+ */
+export class GetAvailableFontsRequest {
+    /**
+     * Folder in filestorage with custom fonts.
+     */
+    public fontsLocation: string;
+    
+    public constructor(init?: Partial<GetAvailableFontsRequest>) {        
         Object.assign(this, init);
     } 
 }

@@ -1074,6 +1074,31 @@ export class WordsApi {
     }
 
     /**
+     * Gets the list of fonts, available for document processing
+     * @param requestObj contains request parameters
+     */
+    public async getAvailableFonts(requestObj: model.GetAvailableFontsRequest): Promise<{response: http.ClientResponse, body: model.AvailableFontsResponse}> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getAvailableFonts.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/fonts/available";
+        const queryParameters: any = {};
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", requestObj.fontsLocation);
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result =  ObjectSerializer.deserialize(response.body, "AvailableFontsResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+    /**
      * Return a border. 'nodePath' should refer to node with cell or row
      * @param requestObj contains request parameters
      */

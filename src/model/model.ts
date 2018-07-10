@@ -1091,6 +1091,11 @@ export class OutlineOptionsData {
             type: "number",
         },        
         {
+            name: "createMissingOutlineLevels",
+            baseName: "CreateMissingOutlineLevels",
+            type: "boolean",
+        },        
+        {
             name: "expandedOutlineLevels",
             baseName: "ExpandedOutlineLevels",
             type: "number",
@@ -1117,6 +1122,11 @@ export class OutlineOptionsData {
      * Specifies the default level in the document outline at which to display Word bookmarks
      */
     public defaultBookmarksOutlineLevel: number;
+    
+    /**
+     * Gets or sets a value determining whether or not to create missing outline levels     when the document is exported.     Default value for this property is false.
+     */
+    public createMissingOutlineLevels: boolean;
     
     /**
      * Specifies how many levels in the document outline to show expanded when the file is viewed

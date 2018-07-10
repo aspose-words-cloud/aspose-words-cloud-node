@@ -9007,6 +9007,11 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
             type: "PdfEncryptionDetailsData",
         },        
         {
+            name: "escapeUri",
+            baseName: "EscapeUri",
+            type: "boolean",
+        },        
+        {
             name: "exportDocumentStructure",
             baseName: "ExportDocumentStructure",
             type: "boolean",
@@ -9123,6 +9128,11 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
      * Specifies the details for encrypting the output PDF document
      */
     public encryptionDetails: PdfEncryptionDetailsData;
+    
+    /**
+     * A flag specifying whether URI should be escaped before writing.             
+     */
+    public escapeUri: boolean;
     
     /**
      * Determines whether or not to export document structure

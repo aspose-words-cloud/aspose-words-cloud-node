@@ -990,6 +990,11 @@ export class MetafileRenderingOptionsData {
             type: "string",
         },        
         {
+            name: "emulateRasterOperations",
+            baseName: "EmulateRasterOperations",
+            type: "boolean",
+        },        
+        {
             name: "renderingMode",
             baseName: "RenderingMode",
             type: "string",
@@ -1011,6 +1016,11 @@ export class MetafileRenderingOptionsData {
      * Determines how EMF+ Dual metafiles should be rendered
      */
     public emfPlusDualRenderingMode: string;
+    
+    /**
+     * Gets or sets a value determining whether or not the raster operations should be emulated.             
+     */
+    public emulateRasterOperations: boolean;
     
     /**
      * Determines how metafile images should be rendered

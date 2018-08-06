@@ -10702,6 +10702,11 @@ export class ClassifyDocumentRequest {
      * Count of the best classes to return.
      */
     public bestClassesCount: string;
+
+    /**
+     * Taxonomy to use for classification return.
+     */
+    public taxonomy: string;
     
     public constructor(init?: Partial<ClassifyDocumentRequest>) {        
         Object.assign(this, init);

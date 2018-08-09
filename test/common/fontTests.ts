@@ -22,12 +22,13 @@
 * SOFTWARE.
 */
 
-import { ResetCacheRequest } from "asposewordscloud";
 import { expect } from "chai";
 import "mocha";
+import { GetAvailableFontsRequest } from "../../src/model/model";
+import { ResetCacheRequest } from "../../src/model/model";
 import * as BaseTest from "../baseTest";
 
-describe("fontCache", () => {
+describe("fonts", () => {
     describe("resetCache function", () => {
         it("should return response with code 200", () => {            
             const wordsApi = BaseTest.initializeWordsApi();
@@ -35,6 +36,22 @@ describe("fontCache", () => {
 
             // Act
             return wordsApi.resetCache(request)
+                .then((result) => {
+                    // Assert
+                    expect(result.body.code).to.equal(200);
+                    expect(result.response.statusCode).to.equal(200);
+                });
+
+        });
+    });
+
+    describe("getAvailableFonts function", () => {
+        it("should return response with code 200", () => {            
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new GetAvailableFontsRequest();
+
+            // Act
+            return wordsApi.getAvailableFonts(request)
                 .then((result) => {
                     // Assert
                     expect(result.body.code).to.equal(200);

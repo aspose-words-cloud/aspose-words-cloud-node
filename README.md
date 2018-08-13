@@ -69,6 +69,11 @@ Every method returns a chainable promise.
 ```
 
 # Release notes
+## 18.7
++ Added new resource "availableFonts"
++ Added "EscapeUri" option to PdfSaveOptions
++ Added "OutlineOptions.CreateMissingOutlineLevels" option
++ Added "MetafileRenderingOptions.EmulateRasterOperations" option
 ## 18.6
 + Added property SaveOptions.UpdateLastSavedTime
 + Added property OdtSaveOptions.MeasureUnit

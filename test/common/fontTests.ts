@@ -24,8 +24,8 @@
 
 import { expect } from "chai";
 import "mocha";
-import { GetAvailableFontsRequest } from "../../src/model/model";
-import { ResetCacheRequest } from "../../src/model/model";
+import { GetAvailableFontsRequest } from "asposewordscloud";
+import { ResetCacheRequest } from "asposewordscloud";
 import * as BaseTest from "../baseTest";
 
 describe("fonts", () => {

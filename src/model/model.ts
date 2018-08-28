@@ -604,6 +604,69 @@ export class DownsampleOptionsData {
 }
 
 /**
+ * Font info
+ */
+export class FontInfo {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            name: "fontFamilyName",
+            baseName: "FontFamilyName",
+            type: "string",
+        },        
+        {
+            name: "fullFontName",
+            baseName: "FullFontName",
+            type: "string",
+        },        
+        {
+            name: "version",
+            baseName: "Version",
+            type: "string",
+        },        
+        {
+            name: "filePath",
+            baseName: "FilePath",
+            type: "string",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return FontInfo.attributeTypeMap;
+    }
+
+    /**
+     * Family name of the font.
+     */
+    public fontFamilyName: string;
+    
+    /**
+     * Full name of the font.
+     */
+    public fullFontName: string;
+    
+    /**
+     * Version string of the font.
+     */
+    public version: string;
+    
+    /**
+     * Path to the font file if any.
+     */
+    public filePath: string;
+    
+    public constructor(init?: Partial<FontInfo>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
+/**
  * Container for the footnotes statistical data
  */
 export class FootnotesStatData {
@@ -927,6 +990,11 @@ export class MetafileRenderingOptionsData {
             type: "string",
         },        
         {
+            name: "emulateRasterOperations",
+            baseName: "EmulateRasterOperations",
+            type: "boolean",
+        },        
+        {
             name: "renderingMode",
             baseName: "RenderingMode",
             type: "string",
@@ -948,6 +1016,11 @@ export class MetafileRenderingOptionsData {
      * Determines how EMF+ Dual metafiles should be rendered
      */
     public emfPlusDualRenderingMode: string;
+    
+    /**
+     * Gets or sets a value determining whether or not the raster operations should be emulated.             
+     */
+    public emulateRasterOperations: boolean;
     
     /**
      * Determines how metafile images should be rendered
@@ -1028,6 +1101,11 @@ export class OutlineOptionsData {
             type: "number",
         },        
         {
+            name: "createMissingOutlineLevels",
+            baseName: "CreateMissingOutlineLevels",
+            type: "boolean",
+        },        
+        {
             name: "expandedOutlineLevels",
             baseName: "ExpandedOutlineLevels",
             type: "number",
@@ -1054,6 +1132,11 @@ export class OutlineOptionsData {
      * Specifies the default level in the document outline at which to display Word bookmarks
      */
     public defaultBookmarksOutlineLevel: number;
+    
+    /**
+     * Gets or sets a value determining whether or not to create missing outline levels     when the document is exported.     Default value for this property is false.
+     */
+    public createMissingOutlineLevels: boolean;
     
     /**
      * Specifies how many levels in the document outline to show expanded when the file is viewed
@@ -2196,6 +2279,59 @@ export class XmlColor {
     
     public constructor(init?: Partial<XmlColor>) {
         
+        Object.assign(this, init);
+    }        
+}
+
+/**
+ * The list of fonts, available for document processing
+ */
+export class AvailableFontsResponse extends AsposeResponse {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            name: "additionalFonts",
+            baseName: "AdditionalFonts",
+            type: "Array<FontInfo>",
+        },        
+        {
+            name: "customFonts",
+            baseName: "CustomFonts",
+            type: "Array<FontInfo>",
+        },        
+        {
+            name: "systemFonts",
+            baseName: "SystemFonts",
+            type: "Array<FontInfo>",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return super.getAttributeTypeMap().concat(AvailableFontsResponse.attributeTypeMap);
+    }
+
+    /**
+     * The list of addititional fonts, provided by aspose team
+     */
+    public additionalFonts: Array<FontInfo>;
+    
+    /**
+     * Custom user fonts (from user file storage). To use them, you should specify \"fontsLocation\" parameter in any request
+     */
+    public customFonts: Array<FontInfo>;
+    
+    /**
+     * The list of system fonts, availiable on the server
+     */
+    public systemFonts: Array<FontInfo>;
+    
+    public constructor(init?: Partial<AvailableFontsResponse>) {
+        super(init);
         Object.assign(this, init);
     }        
 }
@@ -8891,6 +9027,11 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
             type: "PdfEncryptionDetailsData",
         },        
         {
+            name: "escapeUri",
+            baseName: "EscapeUri",
+            type: "boolean",
+        },        
+        {
             name: "exportDocumentStructure",
             baseName: "ExportDocumentStructure",
             type: "boolean",
@@ -9007,6 +9148,11 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
      * Specifies the details for encrypting the output PDF document
      */
     public encryptionDetails: PdfEncryptionDetailsData;
+    
+    /**
+     * A flag specifying whether URI should be escaped before writing.             
+     */
+    public escapeUri: boolean;
     
     /**
      * Determines whether or not to export document structure
@@ -10299,6 +10445,7 @@ const typeMap = {
             DocumentPosition,
             DocumentStatData,
             DownsampleOptionsData,
+            FontInfo,
             FootnotesStatData,
             GraphicsQualityOptionsData,
             Link,
@@ -10327,6 +10474,7 @@ const typeMap = {
             TableRowInsert,
             WatermarkText,
             XmlColor,
+            AvailableFontsResponse,
             Bookmark,
             BookmarkResponse,
             Bookmarks,
@@ -10554,6 +10702,11 @@ export class ClassifyDocumentRequest {
      * Count of the best classes to return.
      */
     public bestClassesCount: string;
+
+    /**
+     * Taxonomy to use for classification return.
+     */
+    public taxonomy: string;
     
     public constructor(init?: Partial<ClassifyDocumentRequest>) {        
         Object.assign(this, init);
@@ -11740,6 +11893,20 @@ export class DeleteUnprotectDocumentRequest {
     public destFileName: string;
     
     public constructor(init?: Partial<DeleteUnprotectDocumentRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for GetAvailableFonts operation.
+ */
+export class GetAvailableFontsRequest {
+    /**
+     * Folder in filestorage with custom fonts.
+     */
+    public fontsLocation: string;
+    
+    public constructor(init?: Partial<GetAvailableFontsRequest>) {        
         Object.assign(this, init);
     } 
 }

@@ -5892,7 +5892,6 @@ export namespace PageSetup {
         ThaiCardinalText = 'ThaiCardinalText' as any,
         VietCardinalText = 'VietCardinalText' as any,
         NumberInDash = 'NumberInDash' as any,
-        NumInDash = 'NumInDash' as any,
         LowercaseRussian = 'LowercaseRussian' as any,
         UppercaseRussian = 'UppercaseRussian' as any,
         None = 'None' as any,

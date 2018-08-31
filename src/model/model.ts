@@ -1106,6 +1106,11 @@ export class OutlineOptionsData {
             type: "boolean",
         },        
         {
+            name: "createOutlinesForHeadingsInTables",
+            baseName: "CreateOutlinesForHeadingsInTables",
+            type: "boolean",
+        },        
+        {
             name: "expandedOutlineLevels",
             baseName: "ExpandedOutlineLevels",
             type: "number",
@@ -1137,6 +1142,11 @@ export class OutlineOptionsData {
      * Gets or sets a value determining whether or not to create missing outline levels     when the document is exported.     Default value for this property is false.
      */
     public createMissingOutlineLevels: boolean;
+    
+    /**
+     * Specifies whether or not to create outlines for headings (paragraphs formatted     with the Heading styles) inside tables.
+     */
+    public createOutlinesForHeadingsInTables: boolean;
     
     /**
      * Specifies how many levels in the document outline to show expanded when the file is viewed
@@ -9041,6 +9051,11 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
             type: "string",
         },        
         {
+            name: "headerFooterBookmarksExportMode",
+            baseName: "HeaderFooterBookmarksExportMode",
+            type: "PdfSaveOptionsData.HeaderFooterBookmarksExportModeEnum",
+        },        
+        {
             name: "imageColorSpaceExportMode",
             baseName: "ImageColorSpaceExportMode",
             type: "string",
@@ -9164,6 +9179,11 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
     public fontEmbeddingMode: string;
     
     /**
+     * Determines how bookmarks in headers/footers are exported. The default value is Aspose.Words.Saving.HeaderFooterBookmarksExportMode.All.
+     */
+    public headerFooterBookmarksExportMode: PdfSaveOptionsData.HeaderFooterBookmarksExportModeEnum;
+    
+    /**
      * Specifies how the color space will be selected for the images in PDF document.
      */
     public imageColorSpaceExportMode: string;
@@ -9229,6 +9249,16 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
     }        
 }
 
+// tslint:disable:quotemark
+// tslint:disable-next-line:no-namespace
+export namespace PdfSaveOptionsData {
+    export enum HeaderFooterBookmarksExportModeEnum {
+        None = 'None' as any,
+        First = 'First' as any,
+        All = 'All' as any,
+    }
+}
+// tslint:enable:quotemark
 /**
  * container class for ps save options
  */
@@ -10422,6 +10452,7 @@ const enumsMap = {
     "TableProperties.StyleOptionsEnum": TableProperties.StyleOptionsEnum,
     "TableProperties.TextWrappingEnum": TableProperties.TextWrappingEnum,
     "TableRowFormat.HeightRuleEnum": TableRowFormat.HeightRuleEnum,
+    "PdfSaveOptionsData.HeaderFooterBookmarksExportModeEnum": PdfSaveOptionsData.HeaderFooterBookmarksExportModeEnum,
     "DrawingObject.RelativeHorizontalPositionEnum": DrawingObject.RelativeHorizontalPositionEnum,
     "DrawingObject.RelativeVerticalPositionEnum": DrawingObject.RelativeVerticalPositionEnum,
     "DrawingObject.WrapTypeEnum": DrawingObject.WrapTypeEnum,

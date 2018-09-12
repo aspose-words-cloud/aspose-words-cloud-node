@@ -22,9 +22,6 @@
 * SOFTWARE.
 */
 
-/**
- * Base class for all responses.
- */
 export class AsposeResponse {
 
     /**
@@ -49,14 +46,8 @@ export class AsposeResponse {
         return AsposeResponse.attributeTypeMap;
     }
 
-    /**
-     * Response status code.
-     */
     public code: number;
     
-    /**
-     * Response status.
-     */
     public status: string;
     
     public constructor(init?: Partial<AsposeResponse>) {
@@ -65,9 +56,6 @@ export class AsposeResponse {
     }        
 }
 
-/**
- * DTO for bookmark updating.
- */
 export class BookmarkData {
 
     /**
@@ -92,14 +80,8 @@ export class BookmarkData {
         return BookmarkData.attributeTypeMap;
     }
 
-    /**
-     * Gets or sets the name of the bookmark.
-     */
     public name: string;
     
-    /**
-     * Gets or sets the text enclosed in the bookmark.
-     */
     public text: string;
     
     public constructor(init?: Partial<BookmarkData>) {
@@ -108,52 +90,6 @@ export class BookmarkData {
     }        
 }
 
-/**
- * container class for individual bookmarks outline level
- */
-export class BookmarksOutlineLevelData {
-
-    /**
-     * Attribute type map
-     */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            name: "name",
-            baseName: "Name",
-            type: "string",
-        },        
-        {
-            name: "bookmarksOutlineLevel",
-            baseName: "BookmarksOutlineLevel",
-            type: "number",
-        }    ];
-
-    /**
-     * Returns attribute type map
-     */
-    public static getAttributeTypeMap() {
-        return BookmarksOutlineLevelData.attributeTypeMap;
-    }
-
-    /**
-     * Specify the bookmark's name
-     */
-    public name: string;
-    
-    /**
-     * Specify the bookmark's level
-     */
-    public bookmarksOutlineLevel: number;
-    
-    public constructor(init?: Partial<BookmarksOutlineLevelData>) {
-        
-        Object.assign(this, init);
-    }        
-}
-
-/**
- * Represents a single classification result.
- */
 export class ClassificationResult {
 
     /**
@@ -178,14 +114,8 @@ export class ClassificationResult {
         return ClassificationResult.attributeTypeMap;
     }
 
-    /**
-     * Gets or sets the name of the class.
-     */
     public className: string;
     
-    /**
-     * Gets or sets the probability of class.
-     */
     public classProbability: number;
     
     public constructor(init?: Partial<ClassificationResult>) {
@@ -194,9 +124,6 @@ export class ClassificationResult {
     }        
 }
 
-/**
- * Container class for compare documents
- */
 export class CompareData {
 
     /**
@@ -226,19 +153,10 @@ export class CompareData {
         return CompareData.attributeTypeMap;
     }
 
-    /**
-     * Path to document to compare at the server.
-     */
     public comparingWithDocument: string;
     
-    /**
-     * Initials of the author to use for revisions.
-     */
     public author: string;
     
-    /**
-     * The date and time to use for revisions.             
-     */
     public dateTime: Date;
     
     public constructor(init?: Partial<CompareData>) {
@@ -247,9 +165,6 @@ export class CompareData {
     }        
 }
 
-/**
- * Represents Words document DTO.
- */
 export class Document {
 
     /**
@@ -294,34 +209,16 @@ export class Document {
         return Document.attributeTypeMap;
     }
 
-    /**
-     * A list of links that originate from this document.
-     */
     public links: Array<Link>;
     
-    /**
-     * Gets the name of the file.
-     */
     public fileName: string;
     
-    /**
-     * Gets the original format of the document.
-     */
     public sourceFormat: Document.SourceFormatEnum;
     
-    /**
-     * Returns true if the document is encrypted and requires a password to open. 
-     */
     public isEncrypted: boolean;
     
-    /**
-     * Returns true if the document contains a digital signature. This property merely informs that a  digital signature is present on a document, but it does not specify whether the signature is valid or not. 
-     */
     public isSigned: boolean;
     
-    /**
-     * Returns document properties.
-     */
     public documentProperties: DocumentProperties;
     
     public constructor(init?: Partial<Document>) {
@@ -358,9 +255,6 @@ export namespace Document {
     }
 }
 // tslint:enable:quotemark
-/**
- * Represents a document which will be appended to the original resource document.
- */
 export class DocumentEntry {
 
     /**
@@ -385,14 +279,8 @@ export class DocumentEntry {
         return DocumentEntry.attributeTypeMap;
     }
 
-    /**
-     * Path to document to append at the server.
-     */
     public href: string;
     
-    /**
-     * Defines which formatting will be used: appended or destination document.Can be KeepSourceFormatting or UseDestinationStyles.
-     */
     public importFormatMode: string;
     
     public constructor(init?: Partial<DocumentEntry>) {
@@ -401,9 +289,6 @@ export class DocumentEntry {
     }        
 }
 
-/**
- * Represents a list of documents which will be appended to the original resource document.
- */
 export class DocumentEntryList {
 
     /**
@@ -423,9 +308,6 @@ export class DocumentEntryList {
         return DocumentEntryList.attributeTypeMap;
     }
 
-    /**
-     * List of documents.
-     */
     public documentEntries: Array<DocumentEntry>;
     
     public constructor(init?: Partial<DocumentEntryList>) {
@@ -434,9 +316,6 @@ export class DocumentEntryList {
     }        
 }
 
-/**
- * Represents a position in the document tree.
- */
 export class DocumentPosition {
 
     /**
@@ -461,14 +340,8 @@ export class DocumentPosition {
         return DocumentPosition.attributeTypeMap;
     }
 
-    /**
-     * Link to  node.
-     */
     public node: NodeLink;
     
-    /**
-     * Offset into the node.
-     */
     public offset: number;
     
     public constructor(init?: Partial<DocumentPosition>) {
@@ -477,9 +350,6 @@ export class DocumentPosition {
     }        
 }
 
-/**
- * Container for the document's statistical data
- */
 export class DocumentStatData {
 
     /**
@@ -519,29 +389,14 @@ export class DocumentStatData {
         return DocumentStatData.attributeTypeMap;
     }
 
-    /**
-     * Total count of words in the document
-     */
     public wordCount: number;
     
-    /**
-     * Total count of paragraphs in the document
-     */
     public paragraphCount: number;
     
-    /**
-     * Total count of pages in the document
-     */
     public pageCount: number;
     
-    /**
-     * Detailed statistics of footnotes
-     */
     public footnotesStatData: FootnotesStatData;
     
-    /**
-     * Detailed statistics of all pages
-     */
     public pageStatData: Array<PageStatData>;
     
     public constructor(init?: Partial<DocumentStatData>) {
@@ -550,62 +405,6 @@ export class DocumentStatData {
     }        
 }
 
-/**
- * Container class for Downsample options
- */
-export class DownsampleOptionsData {
-
-    /**
-     * Attribute type map
-     */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            name: "downsampleImages",
-            baseName: "DownsampleImages",
-            type: "boolean",
-        },        
-        {
-            name: "resolution",
-            baseName: "Resolution",
-            type: "number",
-        },        
-        {
-            name: "resolutionThreshold",
-            baseName: "ResolutionThreshold",
-            type: "number",
-        }    ];
-
-    /**
-     * Returns attribute type map
-     */
-    public static getAttributeTypeMap() {
-        return DownsampleOptionsData.attributeTypeMap;
-    }
-
-    /**
-     * Specifies whether images should be downsampled.
-     */
-    public downsampleImages: boolean;
-    
-    /**
-     * Specifies the resolution in pixels per inch which the images should be downsampled to.
-     */
-    public resolution: number;
-    
-    /**
-     * Specifies the threshold resolution in pixels per inch. If resolution of an image in the document is less than threshold value,  the downsampling algorithm will not be applied. A value of 0 means the threshold check is not used and all images that can be reduced in size are downsampled.
-     */
-    public resolutionThreshold: number;
-    
-    public constructor(init?: Partial<DownsampleOptionsData>) {
-        
-        Object.assign(this, init);
-    }        
-}
-
-/**
- * Font info
- */
 export class FontInfo {
 
     /**
@@ -640,24 +439,12 @@ export class FontInfo {
         return FontInfo.attributeTypeMap;
     }
 
-    /**
-     * Family name of the font.
-     */
     public fontFamilyName: string;
     
-    /**
-     * Full name of the font.
-     */
     public fullFontName: string;
     
-    /**
-     * Version string of the font.
-     */
     public version: string;
     
-    /**
-     * Path to the font file if any.
-     */
     public filePath: string;
     
     public constructor(init?: Partial<FontInfo>) {
@@ -666,9 +453,6 @@ export class FontInfo {
     }        
 }
 
-/**
- * Container for the footnotes statistical data
- */
 export class FootnotesStatData {
 
     /**
@@ -693,14 +477,8 @@ export class FootnotesStatData {
         return FootnotesStatData.attributeTypeMap;
     }
 
-    /**
-     * Total count of words in footnotes
-     */
     public wordCount: number;
     
-    /**
-     * Total count of paragraphs in footnotes
-     */
     public paragraphCount: number;
     
     public constructor(init?: Partial<FootnotesStatData>) {
@@ -709,9 +487,6 @@ export class FootnotesStatData {
     }        
 }
 
-/**
- * Allows to specify additional System.Drawing.Graphics quality options.
- */
 export class GraphicsQualityOptionsData {
 
     /**
@@ -756,34 +531,16 @@ export class GraphicsQualityOptionsData {
         return GraphicsQualityOptionsData.attributeTypeMap;
     }
 
-    /**
-     * Gets or sets a value that specifies how composited images are drawn to this Graphics.
-     */
     public compositingMode: GraphicsQualityOptionsData.CompositingModeEnum;
     
-    /**
-     * Gets or sets the rendering quality of composited images drawn to this Graphics.
-     */
     public compositingQuality: GraphicsQualityOptionsData.CompositingQualityEnum;
     
-    /**
-     * Gets or sets the interpolation mode associated with this Graphics.
-     */
     public interpolationMode: GraphicsQualityOptionsData.InterpolationModeEnum;
     
-    /**
-     * Gets or sets the rendering quality for this Graphics.
-     */
     public smoothingMode: GraphicsQualityOptionsData.SmoothingModeEnum;
     
-    /**
-     * Gets or sets text layout information (such as alignment, orientation and tab stops) display manipulations (such as ellipsis insertion and national digit substitution) and OpenType features.
-     */
     public stringFormat: StringFormatData;
     
-    /**
-     * Gets or sets the rendering mode for text associated with this Graphics.
-     */
     public textRenderingHint: GraphicsQualityOptionsData.TextRenderingHintEnum;
     
     public constructor(init?: Partial<GraphicsQualityOptionsData>) {
@@ -836,9 +593,6 @@ export namespace GraphicsQualityOptionsData {
     }
 }
 // tslint:enable:quotemark
-/**
- * Provides information for the object link. This is supposed to be an atom:link, therefore it should have all attributes specified here http://tools.ietf.org/html/rfc4287#section-4.2.7
- */
 export class Link {
 
     /**
@@ -873,24 +627,12 @@ export class Link {
         return Link.attributeTypeMap;
     }
 
-    /**
-     * The \"href\" attribute contains the link's IRI. atom:link elements MUST have an href attribute, whose value MUST be a IRI reference
-     */
     public href: string;
     
-    /**
-     * atom:link elements MAY have a \"rel\" attribute that indicates the link relation type.  If the \"rel\" attribute is not present, the link element MUST be interpreted as if the link relation type is \"alternate\".
-     */
     public rel: string;
     
-    /**
-     * On the link element, the \"type\" attribute's value is an advisory media type: it is a hint about the type of the representation that is expected to be returned when the value of the href attribute is dereferenced.  Note that the type attribute does not override the actual media type returned with the representation.
-     */
     public type: string;
     
-    /**
-     * The \"title\" attribute conveys human-readable information about the link.  The content of the \"title\" attribute is Language-Sensitive.
-     */
     public title: string;
     
     public constructor(init?: Partial<Link>) {
@@ -899,9 +641,6 @@ export class Link {
     }        
 }
 
-/**
- * Reference to document.
- */
 export class LinkElement {
 
     /**
@@ -921,9 +660,6 @@ export class LinkElement {
         return LinkElement.attributeTypeMap;
     }
 
-    /**
-     * Link to the document.
-     */
     public link: WordsApiLink;
     
     public constructor(init?: Partial<LinkElement>) {
@@ -932,9 +668,6 @@ export class LinkElement {
     }        
 }
 
-/**
- * Contains data for load web document
- */
 export class LoadWebDocumentData {
 
     /**
@@ -959,14 +692,8 @@ export class LoadWebDocumentData {
         return LoadWebDocumentData.attributeTypeMap;
     }
 
-    /**
-     * Web document url
-     */
     public loadingDocumentUrl: string;
     
-    /**
-     * Save options
-     */
     public saveOptions: SaveOptionsData;
     
     public constructor(init?: Partial<LoadWebDocumentData>) {
@@ -975,9 +702,6 @@ export class LoadWebDocumentData {
     }        
 }
 
-/**
- * container class for options of metafile rendering
- */
 export class MetafileRenderingOptionsData {
 
     /**
@@ -1012,24 +736,12 @@ export class MetafileRenderingOptionsData {
         return MetafileRenderingOptionsData.attributeTypeMap;
     }
 
-    /**
-     * Determines how EMF+ Dual metafiles should be rendered
-     */
     public emfPlusDualRenderingMode: string;
     
-    /**
-     * Gets or sets a value determining whether or not the raster operations should be emulated.             
-     */
     public emulateRasterOperations: boolean;
     
-    /**
-     * Determines how metafile images should be rendered
-     */
     public renderingMode: string;
     
-    /**
-     * Determines how WMF metafiles with embedded EMF metafiles should be rendered
-     */
     public useEmfEmbeddedToWmf: boolean;
     
     public constructor(init?: Partial<MetafileRenderingOptionsData>) {
@@ -1038,9 +750,6 @@ export class MetafileRenderingOptionsData {
     }        
 }
 
-/**
- * result of the operation which modifies the original document and saves the result
- */
 export class ModificationOperationResult {
 
     /**
@@ -1065,14 +774,8 @@ export class ModificationOperationResult {
         return ModificationOperationResult.attributeTypeMap;
     }
 
-    /**
-     * Link to the source document (source for the modification operation)
-     */
     public source: FileLink;
     
-    /**
-     * Link to the dest document (result of the modification operation)
-     */
     public dest: FileLink;
     
     public constructor(init?: Partial<ModificationOperationResult>) {
@@ -1081,92 +784,6 @@ export class ModificationOperationResult {
     }        
 }
 
-/**
- * container class for outline options
- */
-export class OutlineOptionsData {
-
-    /**
-     * Attribute type map
-     */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            name: "bookmarksOutlineLevels",
-            baseName: "BookmarksOutlineLevels",
-            type: "Array<BookmarksOutlineLevelData>",
-        },        
-        {
-            name: "defaultBookmarksOutlineLevel",
-            baseName: "DefaultBookmarksOutlineLevel",
-            type: "number",
-        },        
-        {
-            name: "createMissingOutlineLevels",
-            baseName: "CreateMissingOutlineLevels",
-            type: "boolean",
-        },        
-        {
-            name: "createOutlinesForHeadingsInTables",
-            baseName: "CreateOutlinesForHeadingsInTables",
-            type: "boolean",
-        },        
-        {
-            name: "expandedOutlineLevels",
-            baseName: "ExpandedOutlineLevels",
-            type: "number",
-        },        
-        {
-            name: "headingsOutlineLevels",
-            baseName: "HeadingsOutlineLevels",
-            type: "number",
-        }    ];
-
-    /**
-     * Returns attribute type map
-     */
-    public static getAttributeTypeMap() {
-        return OutlineOptionsData.attributeTypeMap;
-    }
-
-    /**
-     * Allows to specify individual bookmarks outline level
-     */
-    public bookmarksOutlineLevels: Array<BookmarksOutlineLevelData>;
-    
-    /**
-     * Specifies the default level in the document outline at which to display Word bookmarks
-     */
-    public defaultBookmarksOutlineLevel: number;
-    
-    /**
-     * Gets or sets a value determining whether or not to create missing outline levels     when the document is exported.     Default value for this property is false.
-     */
-    public createMissingOutlineLevels: boolean;
-    
-    /**
-     * Specifies whether or not to create outlines for headings (paragraphs formatted     with the Heading styles) inside tables.
-     */
-    public createOutlinesForHeadingsInTables: boolean;
-    
-    /**
-     * Specifies how many levels in the document outline to show expanded when the file is viewed
-     */
-    public expandedOutlineLevels: number;
-    
-    /**
-     * Specifies how many levels of headings (paragraphs formatted with the Heading styles) to include in the document outline
-     */
-    public headingsOutlineLevels: number;
-    
-    public constructor(init?: Partial<OutlineOptionsData>) {
-        
-        Object.assign(this, init);
-    }        
-}
-
-/**
- * Class is used for insert page number request building.
- */
 export class PageNumber {
 
     /**
@@ -1201,24 +818,12 @@ export class PageNumber {
         return PageNumber.attributeTypeMap;
     }
 
-    /**
-     * Page number format, e.g. \"{PAGE} of {NUMPAGES}\".
-     */
     public format: string;
     
-    /**
-     * Text alignment, possible values are left, right, center or justify.
-     */
     public alignment: string;
     
-    /**
-     * If true the page number is added at the top of the page, else at the bottom.
-     */
     public isTop: boolean;
     
-    /**
-     * If true the page number is added on first page too.
-     */
     public setPageNumberOnFirstPage: boolean;
     
     public constructor(init?: Partial<PageNumber>) {
@@ -1227,9 +832,6 @@ export class PageNumber {
     }        
 }
 
-/**
- * Container for the page's statistical data
- */
 export class PageStatData {
 
     /**
@@ -1264,24 +866,12 @@ export class PageStatData {
         return PageStatData.attributeTypeMap;
     }
 
-    /**
-     * Page number
-     */
     public pageNumber: number;
     
-    /**
-     * Total count of words in the page
-     */
     public wordCount: number;
     
-    /**
-     * Total count of paragraphs in the page
-     */
     public paragraphCount: number;
     
-    /**
-     * Detailed statistics of footnotes
-     */
     public footnotesStatData: FootnotesStatData;
     
     public constructor(init?: Partial<PageStatData>) {
@@ -1290,9 +880,6 @@ export class PageStatData {
     }        
 }
 
-/**
- * Paragraph element
- */
 export class ParagraphInsert {
 
     /**
@@ -1312,9 +899,6 @@ export class ParagraphInsert {
         return ParagraphInsert.attributeTypeMap;
     }
 
-    /**
-     * Paragraph's text
-     */
     public text: string;
     
     public constructor(init?: Partial<ParagraphInsert>) {
@@ -1323,145 +907,6 @@ export class ParagraphInsert {
     }        
 }
 
-/**
- * container class for details of digital signature
- */
-export class PdfDigitalSignatureDetailsData {
-
-    /**
-     * Attribute type map
-     */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            name: "certificateFilename",
-            baseName: "CertificateFilename",
-            type: "string",
-        },        
-        {
-            name: "hashAlgorithm",
-            baseName: "HashAlgorithm",
-            type: "string",
-        },        
-        {
-            name: "location",
-            baseName: "Location",
-            type: "string",
-        },        
-        {
-            name: "reason",
-            baseName: "Reason",
-            type: "string",
-        },        
-        {
-            name: "signatureDate",
-            baseName: "SignatureDate",
-            type: "Date",
-        }    ];
-
-    /**
-     * Returns attribute type map
-     */
-    public static getAttributeTypeMap() {
-        return PdfDigitalSignatureDetailsData.attributeTypeMap;
-    }
-
-    /**
-     * certificate's filename using for signing
-     */
-    public certificateFilename: string;
-    
-    /**
-     * hash algorithm
-     */
-    public hashAlgorithm: string;
-    
-    /**
-     * location of the signing
-     */
-    public location: string;
-    
-    /**
-     * reason for the signing
-     */
-    public reason: string;
-    
-    /**
-     * date of the signing
-     */
-    public signatureDate: Date;
-    
-    public constructor(init?: Partial<PdfDigitalSignatureDetailsData>) {
-        
-        Object.assign(this, init);
-    }        
-}
-
-/**
- * container class for details of encryption
- */
-export class PdfEncryptionDetailsData {
-
-    /**
-     * Attribute type map
-     */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            name: "encryptionAlgorithm",
-            baseName: "EncryptionAlgorithm",
-            type: "string",
-        },        
-        {
-            name: "ownerPassword",
-            baseName: "OwnerPassword",
-            type: "string",
-        },        
-        {
-            name: "permissions",
-            baseName: "Permissions",
-            type: "string",
-        },        
-        {
-            name: "userPassword",
-            baseName: "UserPassword",
-            type: "string",
-        }    ];
-
-    /**
-     * Returns attribute type map
-     */
-    public static getAttributeTypeMap() {
-        return PdfEncryptionDetailsData.attributeTypeMap;
-    }
-
-    /**
-     * Specifies the encryption algorithm to use
-     */
-    public encryptionAlgorithm: string;
-    
-    /**
-     * Specifies the owner password for the encrypted PDF document
-     */
-    public ownerPassword: string;
-    
-    /**
-     * Specifies the operations that are allowed to a user on an encrypted PDF document        
-     */
-    public permissions: string;
-    
-    /**
-     * Specifies the user password required for opening the encrypted PDF document
-     */
-    public userPassword: string;
-    
-    public constructor(init?: Partial<PdfEncryptionDetailsData>) {
-        
-        Object.assign(this, init);
-    }        
-}
-
-/**
- * Preferred width.
- */
 export class PreferredWidth {
 
     /**
@@ -1486,14 +931,8 @@ export class PreferredWidth {
         return PreferredWidth.attributeTypeMap;
     }
 
-    /**
-     * Gets the unit of measure used for this preferred width value.
-     */
     public type: PreferredWidth.TypeEnum;
     
-    /**
-     * Gets or sets the preferred width value. The unit of measure is specified in the  property.
-     */
     public value: number;
     
     public constructor(init?: Partial<PreferredWidth>) {
@@ -1512,9 +951,6 @@ export namespace PreferredWidth {
     }
 }
 // tslint:enable:quotemark
-/**
- * Container for the data about protection of the document
- */
 export class ProtectionData {
 
     /**
@@ -1534,9 +970,6 @@ export class ProtectionData {
         return ProtectionData.attributeTypeMap;
     }
 
-    /**
-     * Type of the protection
-     */
     public protectionType: string;
     
     public constructor(init?: Partial<ProtectionData>) {
@@ -1545,9 +978,6 @@ export class ProtectionData {
     }        
 }
 
-/**
- * Request on changing of protection
- */
 export class ProtectionRequest {
 
     /**
@@ -1577,19 +1007,10 @@ export class ProtectionRequest {
         return ProtectionRequest.attributeTypeMap;
     }
 
-    /**
-     * Current password
-     */
     public password: string;
     
-    /**
-     * New password
-     */
     public newPassword: string;
     
-    /**
-     * New type of protection
-     */
     public protectionType: string;
     
     public constructor(init?: Partial<ProtectionRequest>) {
@@ -1598,9 +1019,6 @@ export class ProtectionRequest {
     }        
 }
 
-/**
- * Class for document replace text request building.
- */
 export class ReplaceTextRequest {
 
     /**
@@ -1640,29 +1058,14 @@ export class ReplaceTextRequest {
         return ReplaceTextRequest.attributeTypeMap;
     }
 
-    /**
-     * Old text value (or regex pattern ) to replace.
-     */
     public oldValue: string;
     
-    /**
-     * New text value to replace by.
-     */
     public newValue: string;
     
-    /**
-     * Flag, true means the search is case-sensitive; false means the search is not case-sensitive.
-     */
     public isMatchCase: boolean;
     
-    /**
-     * Flag, means that only whole word matched are replaced.
-     */
     public isMatchWholeWord: boolean;
     
-    /**
-     * Flag, means that  contains regex expression.
-     */
     public isOldValueRegex: boolean;
     
     public constructor(init?: Partial<ReplaceTextRequest>) {
@@ -1671,9 +1074,6 @@ export class ReplaceTextRequest {
     }        
 }
 
-/**
- * base container class for save options data
- */
 export class SaveOptionsData {
 
     /**
@@ -1733,49 +1133,22 @@ export class SaveOptionsData {
         return SaveOptionsData.attributeTypeMap;
     }
 
-    /**
-     * Gets or sets a value determining how colors are rendered. { Normal | Grayscale}
-     */
     public colorMode: string;
     
-    /**
-     * format of save
-     */
     public saveFormat: string;
     
-    /**
-     * name of destination file
-     */
     public fileName: string;
     
-    /**
-     * Gets or sets a value determining how DrawingML shapes are rendered. { Fallback | DrawingML }
-     */
     public dmlRenderingMode: string;
     
-    /**
-     * Gets or sets a value determining how DrawingML effects are rendered. { Simplified | None | Fine }
-     */
     public dmlEffectsRenderingMode: string;
     
-    /**
-     * Controls zip output or not. Default value is false.
-     */
     public zipOutput: boolean;
     
-    /**
-     * Gets or sets a value determining whether the Aspose.Words.Properties.BuiltInDocumentProperties.LastSavedTime property is updated before saving.
-     */
     public updateLastSavedTimeProperty: boolean;
     
-    /**
-     * Gets or sets value determining whether content of  is updated before saving.
-     */
     public updateSdtContent: boolean;
     
-    /**
-     * Gets or sets a value determining if fields should be updated before saving the document to a fixed page format. Default value for this property is true
-     */
     public updateFields: boolean;
     
     public constructor(init?: Partial<SaveOptionsData>) {
@@ -1784,9 +1157,6 @@ export class SaveOptionsData {
     }        
 }
 
-/**
- * Result of saving.
- */
 export class SaveResult {
 
     /**
@@ -1816,19 +1186,10 @@ export class SaveResult {
         return SaveResult.attributeTypeMap;
     }
 
-    /**
-     * Link to source document.
-     */
     public sourceDocument: FileLink;
     
-    /**
-     * Link to destination document.
-     */
     public destDocument: FileLink;
     
-    /**
-     * Links to additional items (css, images etc).
-     */
     public additionalItems: Array<FileLink>;
     
     public constructor(init?: Partial<SaveResult>) {
@@ -1837,9 +1198,6 @@ export class SaveResult {
     }        
 }
 
-/**
- * Result of search operation.
- */
 export class SearchResult {
 
     /**
@@ -1864,14 +1222,8 @@ export class SearchResult {
         return SearchResult.attributeTypeMap;
     }
 
-    /**
-     * Link to result range start node.
-     */
     public rangeStart: DocumentPosition;
     
-    /**
-     * Link to result range end node.
-     */
     public rangeEnd: DocumentPosition;
     
     public constructor(init?: Partial<SearchResult>) {
@@ -1880,9 +1232,6 @@ export class SearchResult {
     }        
 }
 
-/**
- * Result of splitting document.
- */
 export class SplitDocumentResult {
 
     /**
@@ -1912,19 +1261,10 @@ export class SplitDocumentResult {
         return SplitDocumentResult.attributeTypeMap;
     }
 
-    /**
-     * Linkt to the source document.
-     */
     public sourceDocument: FileLink;
     
-    /**
-     * Array of pages.
-     */
     public pages: Array<FileLink>;
     
-    /**
-     * Link to the file archive with pages.
-     */
     public zippedPages: FileLink;
     
     public constructor(init?: Partial<SplitDocumentResult>) {
@@ -1933,9 +1273,6 @@ export class SplitDocumentResult {
     }        
 }
 
-/**
- * Child nodes of  or 
- */
 export class StoryChildNodes {
 
     /**
@@ -1955,9 +1292,6 @@ export class StoryChildNodes {
         return StoryChildNodes.attributeTypeMap;
     }
 
-    /**
-     * Child nodes.
-     */
     public childNodes: Array<NodeLink>;
     
     public constructor(init?: Partial<StoryChildNodes>) {
@@ -1966,9 +1300,6 @@ export class StoryChildNodes {
     }        
 }
 
-/**
- * Allows to specify System.Drawing.StringFormat options.
- */
 export class StringFormatData {
 
     /**
@@ -2008,29 +1339,14 @@ export class StringFormatData {
         return StringFormatData.attributeTypeMap;
     }
 
-    /**
-     * Gets or sets horizontal alignment of the string.
-     */
     public alignment: StringFormatData.AlignmentEnum;
     
-    /**
-     * Gets or sets a System.Drawing.StringFormatFlags enumeration that contains formatting information.
-     */
     public formatFlags: StringFormatData.FormatFlagsEnum;
     
-    /**
-     * Gets or sets the System.Drawing.Text.HotkeyPrefix object for this System.Drawing.StringFormat object.
-     */
     public hotkeyPrefix: StringFormatData.HotkeyPrefixEnum;
     
-    /**
-     * Gets or sets the vertical alignment of the string.
-     */
     public lineAlignment: StringFormatData.LineAlignmentEnum;
     
-    /**
-     * Gets or sets the System.Drawing.StringTrimming enumeration for this System.Drawing.StringFormat object.
-     */
     public trimming: StringFormatData.TrimmingEnum;
     
     public constructor(init?: Partial<StringFormatData>) {
@@ -2078,9 +1394,6 @@ export namespace StringFormatData {
     }
 }
 // tslint:enable:quotemark
-/**
- * Table cell element
- */
 export class TableCellInsert {
 
     /**
@@ -2100,9 +1413,6 @@ export class TableCellInsert {
         return TableCellInsert.attributeTypeMap;
     }
 
-    /**
-     * Table cell will be inserted after cell with specified 0-based index.
-     */
     public insertAfter: number;
     
     public constructor(init?: Partial<TableCellInsert>) {
@@ -2111,9 +1421,6 @@ export class TableCellInsert {
     }        
 }
 
-/**
- * Table element
- */
 export class TableInsert {
 
     /**
@@ -2143,19 +1450,10 @@ export class TableInsert {
         return TableInsert.attributeTypeMap;
     }
 
-    /**
-     * Table will be inserted before specified position.
-     */
     public postion: DocumentPosition;
     
-    /**
-     * Count of columns. Default is 2.
-     */
     public columnsCount: number;
     
-    /**
-     * Count of rows. Default is 2.
-     */
     public rowsCount: number;
     
     public constructor(init?: Partial<TableInsert>) {
@@ -2164,9 +1462,6 @@ export class TableInsert {
     }        
 }
 
-/**
- * Table row element
- */
 export class TableRowInsert {
 
     /**
@@ -2191,14 +1486,8 @@ export class TableRowInsert {
         return TableRowInsert.attributeTypeMap;
     }
 
-    /**
-     * Table row will be inserted after row with specified 0-based index.
-     */
     public insertAfter: number;
     
-    /**
-     * Count of columns. Default is 1.
-     */
     public columnsCount: number;
     
     public constructor(init?: Partial<TableRowInsert>) {
@@ -2207,9 +1496,6 @@ export class TableRowInsert {
     }        
 }
 
-/**
- * Class for insert watermark text request building. 
- */
 export class WatermarkText {
 
     /**
@@ -2234,14 +1520,8 @@ export class WatermarkText {
         return WatermarkText.attributeTypeMap;
     }
 
-    /**
-     * The watermark text.
-     */
     public text: string;
     
-    /**
-     * The watermark rotation angle.
-     */
     public rotationAngle: number;
     
     public constructor(init?: Partial<WatermarkText>) {
@@ -2250,9 +1530,6 @@ export class WatermarkText {
     }        
 }
 
-/**
- * Utility class for  serialization
- */
 export class XmlColor {
 
     /**
@@ -2277,14 +1554,8 @@ export class XmlColor {
         return XmlColor.attributeTypeMap;
     }
 
-    /**
-     * HTML string color representation
-     */
     public web: string;
     
-    /**
-     * Alpha component of color structure
-     */
     public alpha: number;
     
     public constructor(init?: Partial<XmlColor>) {
@@ -2293,9 +1564,6 @@ export class XmlColor {
     }        
 }
 
-/**
- * The list of fonts, available for document processing
- */
 export class AvailableFontsResponse extends AsposeResponse {
 
     /**
@@ -2325,19 +1593,10 @@ export class AvailableFontsResponse extends AsposeResponse {
         return super.getAttributeTypeMap().concat(AvailableFontsResponse.attributeTypeMap);
     }
 
-    /**
-     * The list of addititional fonts, provided by aspose team
-     */
     public additionalFonts: Array<FontInfo>;
     
-    /**
-     * Custom user fonts (from user file storage). To use them, you should specify \"fontsLocation\" parameter in any request
-     */
     public customFonts: Array<FontInfo>;
     
-    /**
-     * The list of system fonts, availiable on the server
-     */
     public systemFonts: Array<FontInfo>;
     
     public constructor(init?: Partial<AvailableFontsResponse>) {
@@ -2346,9 +1605,6 @@ export class AvailableFontsResponse extends AsposeResponse {
     }        
 }
 
-/**
- * Represents a single bookmark.
- */
 export class Bookmark extends LinkElement {
 
     /**
@@ -2373,14 +1629,8 @@ export class Bookmark extends LinkElement {
         return super.getAttributeTypeMap().concat(Bookmark.attributeTypeMap);
     }
 
-    /**
-     * Gets or sets the name of the bookmark.
-     */
     public name: string;
     
-    /**
-     * Gets or sets the text enclosed in the bookmark.
-     */
     public text: string;
     
     public constructor(init?: Partial<Bookmark>) {
@@ -2389,9 +1639,6 @@ export class Bookmark extends LinkElement {
     }        
 }
 
-/**
- * This response should be returned by the service when handling:  GET bookmarks/{bookmarkName}.
- */
 export class BookmarkResponse extends AsposeResponse {
 
     /**
@@ -2411,9 +1658,6 @@ export class BookmarkResponse extends AsposeResponse {
         return super.getAttributeTypeMap().concat(BookmarkResponse.attributeTypeMap);
     }
 
-    /**
-     * Bookmark.
-     */
     public bookmark: Bookmark;
     
     public constructor(init?: Partial<BookmarkResponse>) {
@@ -2422,9 +1666,6 @@ export class BookmarkResponse extends AsposeResponse {
     }        
 }
 
-/**
- * Represents an array of bookmarks.
- */
 export class Bookmarks extends LinkElement {
 
     /**
@@ -2444,9 +1685,6 @@ export class Bookmarks extends LinkElement {
         return super.getAttributeTypeMap().concat(Bookmarks.attributeTypeMap);
     }
 
-    /**
-     * Array of bookmarks.
-     */
     public bookmarkList: Array<Bookmark>;
     
     public constructor(init?: Partial<Bookmarks>) {
@@ -2455,9 +1693,6 @@ export class Bookmarks extends LinkElement {
     }        
 }
 
-/**
- * This response should be returned by the service when handling:  GET bookmarks.
- */
 export class BookmarksResponse extends AsposeResponse {
 
     /**
@@ -2477,9 +1712,6 @@ export class BookmarksResponse extends AsposeResponse {
         return super.getAttributeTypeMap().concat(BookmarksResponse.attributeTypeMap);
     }
 
-    /**
-     * Bookmarks which are contained in document.
-     */
     public bookmarks: Bookmarks;
     
     public constructor(init?: Partial<BookmarksResponse>) {
@@ -2488,9 +1720,6 @@ export class BookmarksResponse extends AsposeResponse {
     }        
 }
 
-/**
- * Represents a border of an object.
- */
 export class Border extends LinkElement {
 
     /**
@@ -2535,34 +1764,16 @@ export class Border extends LinkElement {
         return super.getAttributeTypeMap().concat(Border.attributeTypeMap);
     }
 
-    /**
-     * Gets or sets the border type.             
-     */
     public borderType: Border.BorderTypeEnum;
     
-    /**
-     * Gets or sets the border color.             
-     */
     public color: XmlColor;
     
-    /**
-     * Gets or sets distance of the border from text or from the page edge in points.
-     */
     public distanceFromText: number;
     
-    /**
-     * Gets or sets the border style.
-     */
     public lineStyle: Border.LineStyleEnum;
     
-    /**
-     * Gets or sets the border width in points.
-     */
     public lineWidth: number;
     
-    /**
-     * Gets or sets a value indicating whether the border has a shadow.
-     */
     public shadow: boolean;
     
     public constructor(init?: Partial<Border>) {
@@ -2616,9 +1827,6 @@ export namespace Border {
     }
 }
 // tslint:enable:quotemark
-/**
- * This response should be returned by the service when handling: GET {nodeWithBorders}/borders.
- */
 export class BorderResponse extends AsposeResponse {
 
     /**
@@ -2638,9 +1846,6 @@ export class BorderResponse extends AsposeResponse {
         return super.getAttributeTypeMap().concat(BorderResponse.attributeTypeMap);
     }
 
-    /**
-     * Table.
-     */
     public border: Border;
     
     public constructor(init?: Partial<BorderResponse>) {
@@ -2649,9 +1854,6 @@ export class BorderResponse extends AsposeResponse {
     }        
 }
 
-/**
- * Collection of borders.
- */
 export class BordersCollection extends LinkElement {
 
     /**
@@ -2671,9 +1873,6 @@ export class BordersCollection extends LinkElement {
         return super.getAttributeTypeMap().concat(BordersCollection.attributeTypeMap);
     }
 
-    /**
-     * Collection of comments
-     */
     public list: Array<Border>;
     
     public constructor(init?: Partial<BordersCollection>) {
@@ -2682,9 +1881,6 @@ export class BordersCollection extends LinkElement {
     }        
 }
 
-/**
- * This response should be returned by the service when handling: GET {nodeWithBorders}/borders.
- */
 export class BordersResponse extends AsposeResponse {
 
     /**
@@ -2704,9 +1900,6 @@ export class BordersResponse extends AsposeResponse {
         return super.getAttributeTypeMap().concat(BordersResponse.attributeTypeMap);
     }
 
-    /**
-     * Table.
-     */
     public borders: BordersCollection;
     
     public constructor(init?: Partial<BordersResponse>) {
@@ -2715,9 +1908,6 @@ export class BordersResponse extends AsposeResponse {
     }        
 }
 
-/**
- * This response should be returned by the service when handling: PUT http://api.aspose.com/v1.1/words/classify
- */
 export class ClassificationResponse extends AsposeResponse {
 
     /**
@@ -2747,19 +1937,10 @@ export class ClassificationResponse extends AsposeResponse {
         return super.getAttributeTypeMap().concat(ClassificationResponse.attributeTypeMap);
     }
 
-    /**
-     * Best class name.        
-     */
     public bestClassName: string;
     
-    /**
-     * Best class probability.
-     */
     public bestClassProbability: number;
     
-    /**
-     * Array of best classes results.
-     */
     public bestResults: Array<ClassificationResult>;
     
     public constructor(init?: Partial<ClassificationResponse>) {
@@ -2768,9 +1949,6 @@ export class ClassificationResponse extends AsposeResponse {
     }        
 }
 
-/**
- * Comment link.
- */
 export class CommentLink extends LinkElement {
 
     /**
@@ -2792,9 +1970,6 @@ export class CommentLink extends LinkElement {
     }        
 }
 
-/**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/comments/0 
- */
 export class CommentResponse extends AsposeResponse {
 
     /**
@@ -2814,9 +1989,6 @@ export class CommentResponse extends AsposeResponse {
         return super.getAttributeTypeMap().concat(CommentResponse.attributeTypeMap);
     }
 
-    /**
-     * Comment information
-     */
     public comment: Comment;
     
     public constructor(init?: Partial<CommentResponse>) {
@@ -2825,9 +1997,6 @@ export class CommentResponse extends AsposeResponse {
     }        
 }
 
-/**
- * Collection of comments.
- */
 export class CommentsCollection extends LinkElement {
 
     /**
@@ -2847,9 +2016,6 @@ export class CommentsCollection extends LinkElement {
         return super.getAttributeTypeMap().concat(CommentsCollection.attributeTypeMap);
     }
 
-    /**
-     * Collection of comments
-     */
     public commentList: Array<Comment>;
     
     public constructor(init?: Partial<CommentsCollection>) {
@@ -2858,9 +2024,6 @@ export class CommentsCollection extends LinkElement {
     }        
 }
 
-/**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/comments 
- */
 export class CommentsResponse extends AsposeResponse {
 
     /**
@@ -2880,9 +2043,6 @@ export class CommentsResponse extends AsposeResponse {
         return super.getAttributeTypeMap().concat(CommentsResponse.attributeTypeMap);
     }
 
-    /**
-     * Collection of comments.
-     */
     public comments: CommentsCollection;
     
     public constructor(init?: Partial<CommentsResponse>) {
@@ -2891,52 +2051,6 @@ export class CommentsResponse extends AsposeResponse {
     }        
 }
 
-/**
- * container class for doc/dot save options
- */
-export class DocSaveOptionsData extends SaveOptionsData {
-
-    /**
-     * Attribute type map
-     */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            name: "password",
-            baseName: "Password",
-            type: "string",
-        },        
-        {
-            name: "saveRoutingSlip",
-            baseName: "SaveRoutingSlip",
-            type: "boolean",
-        }    ];
-
-    /**
-     * Returns attribute type map
-     */
-    public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(DocSaveOptionsData.attributeTypeMap);
-    }
-
-    /**
-     * Password
-     */
-    public password: string;
-    
-    /**
-     * Determine whether or not save RoutingSlip data saved to output document
-     */
-    public saveRoutingSlip: boolean;
-    
-    public constructor(init?: Partial<DocSaveOptionsData>) {
-        super(init);
-        Object.assign(this, init);
-    }        
-}
-
-/**
- * Collection of document properties.
- */
 export class DocumentProperties extends LinkElement {
 
     /**
@@ -2956,9 +2070,6 @@ export class DocumentProperties extends LinkElement {
         return super.getAttributeTypeMap().concat(DocumentProperties.attributeTypeMap);
     }
 
-    /**
-     * Collection of document properties.
-     */
     public list: Array<DocumentProperty>;
     
     public constructor(init?: Partial<DocumentProperties>) {
@@ -2967,9 +2078,6 @@ export class DocumentProperties extends LinkElement {
     }        
 }
 
-/**
- * This response should be returned by the service when handling:  GET /documentProperties.
- */
 export class DocumentPropertiesResponse extends AsposeResponse {
 
     /**
@@ -2989,9 +2097,6 @@ export class DocumentPropertiesResponse extends AsposeResponse {
         return super.getAttributeTypeMap().concat(DocumentPropertiesResponse.attributeTypeMap);
     }
 
-    /**
-     * Collection of document properties.
-     */
     public documentProperties: DocumentProperties;
     
     public constructor(init?: Partial<DocumentPropertiesResponse>) {
@@ -3000,9 +2105,6 @@ export class DocumentPropertiesResponse extends AsposeResponse {
     }        
 }
 
-/**
- * Words document property DTO.
- */
 export class DocumentProperty extends LinkElement {
 
     /**
@@ -3032,19 +2134,10 @@ export class DocumentProperty extends LinkElement {
         return super.getAttributeTypeMap().concat(DocumentProperty.attributeTypeMap);
     }
 
-    /**
-     * Flag indicates whether the property is built-in or not. If true the property is built-in, if false the property is custom.
-     */
     public builtIn: boolean;
     
-    /**
-     * Name of the document property.
-     */
     public name: string;
     
-    /**
-     * string value of the document property. 
-     */
     public value: string;
     
     public constructor(init?: Partial<DocumentProperty>) {
@@ -3053,9 +2146,6 @@ export class DocumentProperty extends LinkElement {
     }        
 }
 
-/**
- * This response should be returned by the service when handling:  GET documentProperties/{propertyName}.
- */
 export class DocumentPropertyResponse extends AsposeResponse {
 
     /**
@@ -3075,9 +2165,6 @@ export class DocumentPropertyResponse extends AsposeResponse {
         return super.getAttributeTypeMap().concat(DocumentPropertyResponse.attributeTypeMap);
     }
 
-    /**
-     * Document property.
-     */
     public documentProperty: DocumentProperty;
     
     public constructor(init?: Partial<DocumentPropertyResponse>) {
@@ -3086,9 +2173,6 @@ export class DocumentPropertyResponse extends AsposeResponse {
     }        
 }
 
-/**
- * Represents the response with document description.
- */
 export class DocumentResponse extends AsposeResponse {
 
     /**
@@ -3108,9 +2192,6 @@ export class DocumentResponse extends AsposeResponse {
         return super.getAttributeTypeMap().concat(DocumentResponse.attributeTypeMap);
     }
 
-    /**
-     * Document description.
-     */
     public document: Document;
     
     public constructor(init?: Partial<DocumentResponse>) {
@@ -3119,9 +2200,6 @@ export class DocumentResponse extends AsposeResponse {
     }        
 }
 
-/**
- * Represents drawing objects collection DTO.
- */
 export class DrawingObjectCollection extends LinkElement {
 
     /**
@@ -3141,9 +2219,6 @@ export class DrawingObjectCollection extends LinkElement {
         return super.getAttributeTypeMap().concat(DrawingObjectCollection.attributeTypeMap);
     }
 
-    /**
-     * Collection of DrawingObjects links 
-     */
     public list: Array<LinkElement>;
     
     public constructor(init?: Partial<DrawingObjectCollection>) {
@@ -3152,9 +2227,6 @@ export class DrawingObjectCollection extends LinkElement {
     }        
 }
 
-/**
- * Response for \"drawingObjects/n\" resource.
- */
 export class DrawingObjectResponse extends AsposeResponse {
 
     /**
@@ -3174,9 +2246,6 @@ export class DrawingObjectResponse extends AsposeResponse {
         return super.getAttributeTypeMap().concat(DrawingObjectResponse.attributeTypeMap);
     }
 
-    /**
-     * Drawing object.
-     */
     public drawingObject: DrawingObject;
     
     public constructor(init?: Partial<DrawingObjectResponse>) {
@@ -3185,9 +2254,6 @@ export class DrawingObjectResponse extends AsposeResponse {
     }        
 }
 
-/**
- * This response should be returned by the service when handling:  GET /drawingObjects.
- */
 export class DrawingObjectsResponse extends AsposeResponse {
 
     /**
@@ -3207,9 +2273,6 @@ export class DrawingObjectsResponse extends AsposeResponse {
         return super.getAttributeTypeMap().concat(DrawingObjectsResponse.attributeTypeMap);
     }
 
-    /**
-     * Collection of drawing objects.
-     */
     public drawingObjects: DrawingObjectCollection;
     
     public constructor(init?: Partial<DrawingObjectsResponse>) {
@@ -3218,9 +2281,6 @@ export class DrawingObjectsResponse extends AsposeResponse {
     }        
 }
 
-/**
- * Represents DTO for collection of fields.
- */
 export class FieldCollection extends LinkElement {
 
     /**
@@ -3240,9 +2300,6 @@ export class FieldCollection extends LinkElement {
         return super.getAttributeTypeMap().concat(FieldCollection.attributeTypeMap);
     }
 
-    /**
-     * Collection of fields
-     */
     public list: Array<Field>;
     
     public constructor(init?: Partial<FieldCollection>) {
@@ -3251,9 +2308,6 @@ export class FieldCollection extends LinkElement {
     }        
 }
 
-/**
- * Represents a collection of merge fields within a document. 
- */
 export class FieldNames extends LinkElement {
 
     /**
@@ -3273,9 +2327,6 @@ export class FieldNames extends LinkElement {
         return super.getAttributeTypeMap().concat(FieldNames.attributeTypeMap);
     }
 
-    /**
-     * Collection of fields names.
-     */
     public names: Array<string>;
     
     public constructor(init?: Partial<FieldNames>) {
@@ -3284,9 +2335,6 @@ export class FieldNames extends LinkElement {
     }        
 }
 
-/**
- * This response should be returned by the service when handling:  GET /{name}/mailMergeFieldNames.
- */
 export class FieldNamesResponse extends AsposeResponse {
 
     /**
@@ -3306,9 +2354,6 @@ export class FieldNamesResponse extends AsposeResponse {
         return super.getAttributeTypeMap().concat(FieldNamesResponse.attributeTypeMap);
     }
 
-    /**
-     * Collection of mail merge fields.
-     */
     public fieldNames: FieldNames;
     
     public constructor(init?: Partial<FieldNamesResponse>) {
@@ -3317,9 +2362,6 @@ export class FieldNamesResponse extends AsposeResponse {
     }        
 }
 
-/**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/paragraphs/{0}/fields/{1} 
- */
 export class FieldResponse extends AsposeResponse {
 
     /**
@@ -3339,9 +2381,6 @@ export class FieldResponse extends AsposeResponse {
         return super.getAttributeTypeMap().concat(FieldResponse.attributeTypeMap);
     }
 
-    /**
-     * Field information
-     */
     public field: Field;
     
     public constructor(init?: Partial<FieldResponse>) {
@@ -3350,9 +2389,6 @@ export class FieldResponse extends AsposeResponse {
     }        
 }
 
-/**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/{nodePath}/fields
- */
 export class FieldsResponse extends AsposeResponse {
 
     /**
@@ -3372,9 +2408,6 @@ export class FieldsResponse extends AsposeResponse {
         return super.getAttributeTypeMap().concat(FieldsResponse.attributeTypeMap);
     }
 
-    /**
-     * Collection of fields.
-     */
     public fields: FieldCollection;
     
     public constructor(init?: Partial<FieldsResponse>) {
@@ -3383,9 +2416,6 @@ export class FieldsResponse extends AsposeResponse {
     }        
 }
 
-/**
- * Provides information for the file link.
- */
 export class FileLink extends Link {
 
     /**
@@ -3407,9 +2437,6 @@ export class FileLink extends Link {
     }        
 }
 
-/**
- * Contains common options that can be specified when saving a document into fixed page formats (PDF, XPS, images etc).
- */
 export class FixedPageSaveOptionsData extends SaveOptionsData {
 
     /**
@@ -3454,34 +2481,16 @@ export class FixedPageSaveOptionsData extends SaveOptionsData {
         return super.getAttributeTypeMap().concat(FixedPageSaveOptionsData.attributeTypeMap);
     }
 
-    /**
-     * Determines the quality of the JPEG images inside PDF document.
-     */
     public jpegQuality: number;
     
-    /**
-     * Allows to specify metafile rendering options.
-     */
     public metafileRenderingOptions: MetafileRenderingOptionsData;
     
-    /**
-     * Indicates the symbol set that is used to represent numbers while rendering to fixed page formats
-     */
     public numeralFormat: string;
     
-    /**
-     * Flag indicates whether it is required to optimize output of XPS.  If this flag is set redundant nested canvases and empty canvases are removed, also neighbor glyphs with the same formatting are concatenated.  Note: The accuracy of the content display may be affected if this property is set to true.  Default is false.
-     */
     public optimizeOutput: boolean;
     
-    /**
-     * Determines number of pages to render
-     */
     public pageCount: number;
     
-    /**
-     * Determines 0-based index of the first page to render
-     */
     public pageIndex: number;
     
     public constructor(init?: Partial<FixedPageSaveOptionsData>) {
@@ -3490,9 +2499,6 @@ export class FixedPageSaveOptionsData extends SaveOptionsData {
     }        
 }
 
-/**
- * Font element             
- */
 export class Font extends LinkElement {
 
     /**
@@ -3707,204 +2713,84 @@ export class Font extends LinkElement {
         return super.getAttributeTypeMap().concat(Font.attributeTypeMap);
     }
 
-    /**
-     * True if the font is formatted as all capital letters.             
-     */
     public allCaps: boolean;
     
-    /**
-     * Specifies whether the contents of this run shall have right-to-left characteristics.             
-     */
     public bidi: boolean;
     
-    /**
-     * True if the font is formatted as bold.             
-     */
     public bold: boolean;
     
-    /**
-     * True if the right-to-left text is formatted as bold.             
-     */
     public boldBi: boolean;
     
-    /**
-     * Border object that specifies border for the font.
-     */
     public border: Border;
     
-    /**
-     * Gets or sets the color of the font.             
-     */
     public color: XmlColor;
     
-    /**
-     * Specifies whether the contents of this run shall be treated as complex script text regardless of their Unicode character values when determining the formatting for this run.             
-     */
     public complexScript: boolean;
     
-    /**
-     * True if the font is formatted as double strikethrough text.             
-     */
     public doubleStrikeThrough: boolean;
     
-    /**
-     * True if the font is formatted as embossed.             
-     */
     public emboss: boolean;
     
-    /**
-     * True if the font is formatted as engraved.             
-     */
     public engrave: boolean;
     
-    /**
-     * True if the font is formatted as hidden text.             
-     */
     public hidden: boolean;
     
-    /**
-     * Gets or sets the highlight (marker) color.             
-     */
     public highlightColor: XmlColor;
     
-    /**
-     * True if the font is formatted as italic.             
-     */
     public italic: boolean;
     
-    /**
-     * True if the right-to-left text is formatted as italic.             
-     */
     public italicBi: boolean;
     
-    /**
-     * Gets or sets the font size at which kerning starts.             
-     */
     public kerning: number;
     
-    /**
-     * Gets or sets the locale identifier (language) of the formatted characters.             
-     */
     public localeId: number;
     
-    /**
-     * Gets or sets the locale identifier (language) of the formatted right-to-left characters.             
-     */
     public localeIdBi: number;
     
-    /**
-     * Gets or sets the locale identifier (language) of the formatted Asian characters.             
-     */
     public localeIdFarEast: number;
     
-    /**
-     * Gets or sets the name of the font             
-     */
     public name: string;
     
-    /**
-     * Returns or sets the font used for Latin text (characters with character codes from 0 (zero) through 127).             
-     */
     public nameAscii: string;
     
-    /**
-     * Returns or sets the name of the font in a right-to-left language document.             
-     */
     public nameBi: string;
     
-    /**
-     * Returns or sets an East Asian font name.             
-     */
     public nameFarEast: string;
     
-    /**
-     * Returns or sets the font used for characters with character codes from 128 through 255.             
-     */
     public nameOther: string;
     
-    /**
-     * True when the formatted characters are not to be spell checked.
-     */
     public noProofing: boolean;
     
-    /**
-     * True if the font is formatted as outline.             
-     */
     public outline: boolean;
     
-    /**
-     * Gets or sets the position of text (in points) relative to the base line. A positive number raises the text, and a negative number lowers it.             
-     */
     public position: number;
     
-    /**
-     * Gets or sets character width scaling in percent.             
-     */
     public scaling: number;
     
-    /**
-     * True if the font is formatted as shadowed.             
-     */
     public shadow: boolean;
     
-    /**
-     * Gets or sets the font size in points.             
-     */
     public size: number;
     
-    /**
-     * Gets or sets the font size in points used in a right-to-left document.             
-     */
     public sizeBi: number;
     
-    /**
-     * True if the font is formatted as small capital letters.             
-     */
     public smallCaps: boolean;
     
-    /**
-     * Returns or sets the spacing (in points) between characters.             
-     */
     public spacing: number;
     
-    /**
-     * True if the font is formatted as strikethrough text.             
-     */
     public strikeThrough: boolean;
     
-    /**
-     * Gets or sets the locale independent style identifier of the character style applied to this formatting.
-     */
     public styleIdentifier: Font.StyleIdentifierEnum;
     
-    /**
-     * Gets or sets the name of the character style applied to this formatting.             
-     */
     public styleName: string;
     
-    /**
-     * True if the font is formatted as subscript.             
-     */
     public subscript: boolean;
     
-    /**
-     * True if the font is formatted as superscript.             
-     */
     public superscript: boolean;
     
-    /**
-     * Gets or sets the font animation effect.
-     */
     public textEffect: Font.TextEffectEnum;
     
-    /**
-     * Gets or sets the type of underline applied to the font.
-     */
     public underline: Font.UnderlineEnum;
     
-    /**
-     * Gets or sets the color of the underline applied to the font.
-     */
     public underlineColor: XmlColor;
     
     public constructor(init?: Partial<Font>) {
@@ -4322,9 +3208,6 @@ export namespace Font {
     }
 }
 // tslint:enable:quotemark
-/**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/paragraphs/{0}/runs/{1}/font 
- */
 export class FontResponse extends AsposeResponse {
 
     /**
@@ -4344,9 +3227,6 @@ export class FontResponse extends AsposeResponse {
         return super.getAttributeTypeMap().concat(FontResponse.attributeTypeMap);
     }
 
-    /**
-     * Font
-     */
     public font: Font;
     
     public constructor(init?: Partial<FontResponse>) {
@@ -4355,9 +3235,6 @@ export class FontResponse extends AsposeResponse {
     }        
 }
 
-/**
- * Collection of footnotes.
- */
 export class FootnoteCollection extends LinkElement {
 
     /**
@@ -4377,9 +3254,6 @@ export class FootnoteCollection extends LinkElement {
         return super.getAttributeTypeMap().concat(FootnoteCollection.attributeTypeMap);
     }
 
-    /**
-     * Collection of foonotes links 
-     */
     public list: Array<Footnote>;
     
     public constructor(init?: Partial<FootnoteCollection>) {
@@ -4388,9 +3262,6 @@ export class FootnoteCollection extends LinkElement {
     }        
 }
 
-/**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/footnote/0 
- */
 export class FootnoteResponse extends AsposeResponse {
 
     /**
@@ -4410,9 +3281,6 @@ export class FootnoteResponse extends AsposeResponse {
         return super.getAttributeTypeMap().concat(FootnoteResponse.attributeTypeMap);
     }
 
-    /**
-     * Footnote information
-     */
     public footnote: Footnote;
     
     public constructor(init?: Partial<FootnoteResponse>) {
@@ -4421,9 +3289,6 @@ export class FootnoteResponse extends AsposeResponse {
     }        
 }
 
-/**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/footnotes 
- */
 export class FootnotesResponse extends AsposeResponse {
 
     /**
@@ -4443,9 +3308,6 @@ export class FootnotesResponse extends AsposeResponse {
         return super.getAttributeTypeMap().concat(FootnotesResponse.attributeTypeMap);
     }
 
-    /**
-     * Collection of footnotes.
-     */
     public footnotes: FootnoteCollection;
     
     public constructor(init?: Partial<FootnotesResponse>) {
@@ -4454,9 +3316,6 @@ export class FootnotesResponse extends AsposeResponse {
     }        
 }
 
-/**
- * Represents DTO for collection of formfields.
- */
 export class FormFieldCollection extends LinkElement {
 
     /**
@@ -4476,9 +3335,6 @@ export class FormFieldCollection extends LinkElement {
         return super.getAttributeTypeMap().concat(FormFieldCollection.attributeTypeMap);
     }
 
-    /**
-     * Collection of formfields
-     */
     public list: Array<FormField>;
     
     public constructor(init?: Partial<FormFieldCollection>) {
@@ -4487,9 +3343,6 @@ export class FormFieldCollection extends LinkElement {
     }        
 }
 
-/**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/paragraphs/{0}/formfields/{1} 
- */
 export class FormFieldResponse extends AsposeResponse {
 
     /**
@@ -4509,9 +3362,6 @@ export class FormFieldResponse extends AsposeResponse {
         return super.getAttributeTypeMap().concat(FormFieldResponse.attributeTypeMap);
     }
 
-    /**
-     * Field information
-     */
     public formField: FormField;
     
     public constructor(init?: Partial<FormFieldResponse>) {
@@ -4520,9 +3370,6 @@ export class FormFieldResponse extends AsposeResponse {
     }        
 }
 
-/**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/{nodePath}/formfields
- */
 export class FormFieldsResponse extends AsposeResponse {
 
     /**
@@ -4542,9 +3389,6 @@ export class FormFieldsResponse extends AsposeResponse {
         return super.getAttributeTypeMap().concat(FormFieldsResponse.attributeTypeMap);
     }
 
-    /**
-     * Collection of form fields.
-     */
     public formFields: FormFieldCollection;
     
     public constructor(init?: Partial<FormFieldsResponse>) {
@@ -4553,9 +3397,6 @@ export class FormFieldsResponse extends AsposeResponse {
     }        
 }
 
-/**
- * HeaderFooter link element
- */
 export class HeaderFooterLink extends LinkElement {
 
     /**
@@ -4575,9 +3416,6 @@ export class HeaderFooterLink extends LinkElement {
         return super.getAttributeTypeMap().concat(HeaderFooterLink.attributeTypeMap);
     }
 
-    /**
-     * Paragraph's text
-     */
     public type: HeaderFooterLink.TypeEnum;
     
     public constructor(init?: Partial<HeaderFooterLink>) {
@@ -4599,9 +3437,6 @@ export namespace HeaderFooterLink {
     }
 }
 // tslint:enable:quotemark
-/**
- * Collection of links to header/footers
- */
 export class HeaderFooterLinkCollection extends LinkElement {
 
     /**
@@ -4621,9 +3456,6 @@ export class HeaderFooterLinkCollection extends LinkElement {
         return super.getAttributeTypeMap().concat(HeaderFooterLinkCollection.attributeTypeMap);
     }
 
-    /**
-     * Collection of section's links
-     */
     public list: Array<HeaderFooterLink>;
     
     public constructor(init?: Partial<HeaderFooterLinkCollection>) {
@@ -4632,9 +3464,6 @@ export class HeaderFooterLinkCollection extends LinkElement {
     }        
 }
 
-/**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/headersfooters/{0} 
- */
 export class HeaderFooterResponse extends AsposeResponse {
 
     /**
@@ -4654,9 +3483,6 @@ export class HeaderFooterResponse extends AsposeResponse {
         return super.getAttributeTypeMap().concat(HeaderFooterResponse.attributeTypeMap);
     }
 
-    /**
-     * HeaderFooter
-     */
     public headerFooter: HeaderFooter;
     
     public constructor(init?: Partial<HeaderFooterResponse>) {
@@ -4665,9 +3491,6 @@ export class HeaderFooterResponse extends AsposeResponse {
     }        
 }
 
-/**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/headersfooters 
- */
 export class HeaderFootersResponse extends AsposeResponse {
 
     /**
@@ -4687,9 +3510,6 @@ export class HeaderFootersResponse extends AsposeResponse {
         return super.getAttributeTypeMap().concat(HeaderFootersResponse.attributeTypeMap);
     }
 
-    /**
-     * Collection of headers/footers
-     */
     public headerFooters: HeaderFooterLinkCollection;
     
     public constructor(init?: Partial<HeaderFootersResponse>) {
@@ -4698,431 +3518,6 @@ export class HeaderFootersResponse extends AsposeResponse {
     }        
 }
 
-/**
- * container class for html save options
- */
-export class HtmlSaveOptionsData extends SaveOptionsData {
-
-    /**
-     * Attribute type map
-     */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            name: "allowNegativeIndent",
-            baseName: "AllowNegativeIndent",
-            type: "boolean",
-        },        
-        {
-            name: "cssClassNamePrefix",
-            baseName: "CssClassNamePrefix",
-            type: "string",
-        },        
-        {
-            name: "cssStyleSheetFileName",
-            baseName: "CssStyleSheetFileName",
-            type: "string",
-        },        
-        {
-            name: "cssStyleSheetType",
-            baseName: "CssStyleSheetType",
-            type: "string",
-        },        
-        {
-            name: "documentSplitCriteria",
-            baseName: "DocumentSplitCriteria",
-            type: "string",
-        },        
-        {
-            name: "documentSplitHeadingLevel",
-            baseName: "DocumentSplitHeadingLevel",
-            type: "number",
-        },        
-        {
-            name: "encoding",
-            baseName: "Encoding",
-            type: "string",
-        },        
-        {
-            name: "exportDocumentProperties",
-            baseName: "ExportDocumentProperties",
-            type: "boolean",
-        },        
-        {
-            name: "exportDropDownFormFieldAsText",
-            baseName: "ExportDropDownFormFieldAsText",
-            type: "boolean",
-        },        
-        {
-            name: "exportFontResources",
-            baseName: "ExportFontResources",
-            type: "boolean",
-        },        
-        {
-            name: "exportFontsAsBase64",
-            baseName: "ExportFontsAsBase64",
-            type: "boolean",
-        },        
-        {
-            name: "exportHeadersFootersMode",
-            baseName: "ExportHeadersFootersMode",
-            type: "string",
-        },        
-        {
-            name: "exportImagesAsBase64",
-            baseName: "ExportImagesAsBase64",
-            type: "boolean",
-        },        
-        {
-            name: "exportLanguageInformation",
-            baseName: "ExportLanguageInformation",
-            type: "boolean",
-        },        
-        {
-            name: "exportListLabels",
-            baseName: "ExportListLabels",
-            type: "string",
-        },        
-        {
-            name: "exportOriginalUrlForLinkedImages",
-            baseName: "ExportOriginalUrlForLinkedImages",
-            type: "boolean",
-        },        
-        {
-            name: "exportPageMargins",
-            baseName: "ExportPageMargins",
-            type: "boolean",
-        },        
-        {
-            name: "exportPageSetup",
-            baseName: "ExportPageSetup",
-            type: "boolean",
-        },        
-        {
-            name: "exportRelativeFontSize",
-            baseName: "ExportRelativeFontSize",
-            type: "boolean",
-        },        
-        {
-            name: "exportRoundtripInformation",
-            baseName: "ExportRoundtripInformation",
-            type: "boolean",
-        },        
-        {
-            name: "exportTextBoxAsSvg",
-            baseName: "ExportTextBoxAsSvg",
-            type: "boolean",
-        },        
-        {
-            name: "exportTextInputFormFieldAsText",
-            baseName: "ExportTextInputFormFieldAsText",
-            type: "boolean",
-        },        
-        {
-            name: "exportTocPageNumbers",
-            baseName: "ExportTocPageNumbers",
-            type: "boolean",
-        },        
-        {
-            name: "exportXhtmlTransitional",
-            baseName: "ExportXhtmlTransitional",
-            type: "boolean",
-        },        
-        {
-            name: "fontResourcesSubsettingSizeThreshold",
-            baseName: "FontResourcesSubsettingSizeThreshold",
-            type: "number",
-        },        
-        {
-            name: "fontsFolder",
-            baseName: "FontsFolder",
-            type: "string",
-        },        
-        {
-            name: "fontsFolderAlias",
-            baseName: "FontsFolderAlias",
-            type: "string",
-        },        
-        {
-            name: "htmlVersion",
-            baseName: "HtmlVersion",
-            type: "HtmlSaveOptionsData.HtmlVersionEnum",
-        },        
-        {
-            name: "imageResolution",
-            baseName: "ImageResolution",
-            type: "number",
-        },        
-        {
-            name: "imagesFolder",
-            baseName: "ImagesFolder",
-            type: "string",
-        },        
-        {
-            name: "imagesFolderAlias",
-            baseName: "ImagesFolderAlias",
-            type: "string",
-        },        
-        {
-            name: "metafileFormat",
-            baseName: "MetafileFormat",
-            type: "HtmlSaveOptionsData.MetafileFormatEnum",
-        },        
-        {
-            name: "officeMathOutputMode",
-            baseName: "OfficeMathOutputMode",
-            type: "HtmlSaveOptionsData.OfficeMathOutputModeEnum",
-        },        
-        {
-            name: "prettyFormat",
-            baseName: "PrettyFormat",
-            type: "boolean",
-        },        
-        {
-            name: "resourceFolder",
-            baseName: "ResourceFolder",
-            type: "string",
-        },        
-        {
-            name: "resourceFolderAlias",
-            baseName: "ResourceFolderAlias",
-            type: "string",
-        },        
-        {
-            name: "scaleImageToShapeSize",
-            baseName: "ScaleImageToShapeSize",
-            type: "boolean",
-        },        
-        {
-            name: "tableWidthOutputMode",
-            baseName: "TableWidthOutputMode",
-            type: "string",
-        }    ];
-
-    /**
-     * Returns attribute type map
-     */
-    public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(HtmlSaveOptionsData.attributeTypeMap);
-    }
-
-    /**
-     * Specifies whether negative left and right indents of paragraphs are allowed (not normalized)
-     */
-    public allowNegativeIndent: boolean;
-    
-    /**
-     * Specifies a prefix which is added to all CSS class names. Default value is an empty string and generated CSS class names have no common prefix.  If this value is not empty, all CSS classes generated by Aspose.Words will start with the specified prefix.This might be useful, for example, if you add custom CSS to generated documents and want to prevent class name conflicts. If the value is not null or empty, it must be a valid CSS identifier.
-     */
-    public cssClassNamePrefix: string;
-    
-    /**
-     * Specifies the name of the CSS file written when the document is exported to HTML
-     */
-    public cssStyleSheetFileName: string;
-    
-    /**
-     * Specifies how CSS styles are exported
-     */
-    public cssStyleSheetType: string;
-    
-    /**
-     * Specifies how the document should be split when saving
-     */
-    public documentSplitCriteria: string;
-    
-    /**
-     * Specifies the maximum level of headings at which to split the document
-     */
-    public documentSplitHeadingLevel: number;
-    
-    /**
-     * Specifies the encoding to use when exporting
-     */
-    public encoding: string;
-    
-    /**
-     * Specifies whether to export built-in and custom document properties
-     */
-    public exportDocumentProperties: boolean;
-    
-    /**
-     * Controls how drop-down form fields are saved to HTML. Default value is false.
-     */
-    public exportDropDownFormFieldAsText: boolean;
-    
-    /**
-     * Specifies whether font resources should be exported
-     */
-    public exportFontResources: boolean;
-    
-    /**
-     * Specifies whether fonts resources should be embedded to HTML in Base64 encoding.  Default is false.
-     */
-    public exportFontsAsBase64: boolean;
-    
-    /**
-     * Specifies how headers and footers are output
-     */
-    public exportHeadersFootersMode: string;
-    
-    /**
-     * Specifies whether images are saved in Base64 format
-     */
-    public exportImagesAsBase64: boolean;
-    
-    /**
-     * Specifies whether language information is exported
-     */
-    public exportLanguageInformation: boolean;
-    
-    /**
-     * Controls how list labels are output
-     */
-    public exportListLabels: string;
-    
-    /**
-     * Specifies whether original URL should be used as the URL of the linked images. Default value is false.
-     */
-    public exportOriginalUrlForLinkedImages: boolean;
-    
-    /**
-     * Specifies whether page margins is exported to HTML, MHTML or EPUB. Default is false.
-     */
-    public exportPageMargins: boolean;
-    
-    /**
-     * Specifies whether page setup is exported
-     */
-    public exportPageSetup: boolean;
-    
-    /**
-     * Specifies whether font sizes should be output in relative units when saving
-     */
-    public exportRelativeFontSize: boolean;
-    
-    /**
-     * Specifies whether to write the roundtrip information when saving to HTML Default value is true.
-     */
-    public exportRoundtripInformation: boolean;
-    
-    /**
-     * Controls how textboxes represented by Aspose.Words.Drawing.Shape are saved to HTML, MHTML or EPUB. Default value is false.    When set to true, exports textboxes as inline \"svg\" elements. When false, exports as \"image\" elements.
-     */
-    public exportTextBoxAsSvg: boolean;
-    
-    /**
-     * Controls how text input form fields are saved
-     */
-    public exportTextInputFormFieldAsText: boolean;
-    
-    /**
-     * Specifies whether to write page numbers to table of contents when saving
-     */
-    public exportTocPageNumbers: boolean;
-    
-    /**
-     * Specifies whether to write the DOCTYPE declaration when saving
-     */
-    public exportXhtmlTransitional: boolean;
-    
-    /**
-     * Controls which font resources need subsetting when saving
-     */
-    public fontResourcesSubsettingSizeThreshold: number;
-    
-    /**
-     * Specifies the physical folder where fonts are saved when exporting a document
-     */
-    public fontsFolder: string;
-    
-    /**
-     * Specifies the name of the folder used to construct font URIs
-     */
-    public fontsFolderAlias: string;
-    
-    /**
-     * Specifies version of HTML standard that should be used when saving the document to HTML or MHTML.   Default value is Aspose.Words.Saving.HtmlVersion.Xhtml.
-     */
-    public htmlVersion: HtmlSaveOptionsData.HtmlVersionEnum;
-    
-    /**
-     * Specifies the output resolution for images when exporting
-     */
-    public imageResolution: number;
-    
-    /**
-     * Specifies the physical folder where images are saved when exporting a document
-     */
-    public imagesFolder: string;
-    
-    /**
-     * Specifies the name of the folder used to construct image URIs
-     */
-    public imagesFolderAlias: string;
-    
-    /**
-     * Specifies in what format metafiles are saved when exporting to HTML, MHTML, or EPUB.  Default value is Aspose.Words.Saving.HtmlMetafileFormat.Png, meaning that metafiles are rendered to raster PNG images.  Metafiles are not natively displayed by HTML browsers. By default, Aspose.Words converts WMF and EMF images into PNG files when exporting to HTML.Other options are to convert metafiles to SVG images or to export them as is without conversion. Some image transforms, in particular image cropping, will not be applied to metafile images if they are exported to HTML without conversion.
-     */
-    public metafileFormat: HtmlSaveOptionsData.MetafileFormatEnum;
-    
-    /**
-     * Controls how OfficeMath objects are exported to HTML, MHTML or EPUB.  Default value is HtmlOfficeMathOutputMode.Image.
-     */
-    public officeMathOutputMode: HtmlSaveOptionsData.OfficeMathOutputModeEnum;
-    
-    /**
-     * Specifies whether or not use pretty formats output
-     */
-    public prettyFormat: boolean;
-    
-    /**
-     * Specifies a physical folder where all resources like images, fonts, and external CSS are saved when a document is exported to HTML. Default is an empty string.
-     */
-    public resourceFolder: string;
-    
-    /**
-     * Specifies the name of the folder used to construct URIs of all resources written into an HTML document.  Default is an empty string.
-     */
-    public resourceFolderAlias: string;
-    
-    /**
-     * Specifies whether images are scaled by Aspose.Words to the bounding shape size when exporting
-     */
-    public scaleImageToShapeSize: boolean;
-    
-    /**
-     * Controls how table, row and cell widths are exported
-     */
-    public tableWidthOutputMode: string;
-    
-    public constructor(init?: Partial<HtmlSaveOptionsData>) {
-        super(init);
-        Object.assign(this, init);
-    }        
-}
-
-// tslint:disable:quotemark
-// tslint:disable-next-line:no-namespace
-export namespace HtmlSaveOptionsData {
-    export enum HtmlVersionEnum {
-        Xhtml = 'Xhtml' as any,
-        Html5 = 'Html5' as any,
-    }
-    export enum MetafileFormatEnum {
-        Png = 'Png' as any,
-        Svg = 'Svg' as any,
-        EmfOrWmf = 'EmfOrWmf' as any,
-    }
-    export enum OfficeMathOutputModeEnum {
-        Image = 'Image' as any,
-        MathML = 'MathML' as any,
-        Text = 'Text' as any,
-    }
-}
-// tslint:enable:quotemark
-/**
- * Hyperlink element.
- */
 export class Hyperlink extends LinkElement {
 
     /**
@@ -5147,14 +3542,8 @@ export class Hyperlink extends LinkElement {
         return super.getAttributeTypeMap().concat(Hyperlink.attributeTypeMap);
     }
 
-    /**
-     * Hypelink's display text
-     */
     public displayText: string;
     
-    /**
-     * Value
-     */
     public value: string;
     
     public constructor(init?: Partial<Hyperlink>) {
@@ -5163,9 +3552,6 @@ export class Hyperlink extends LinkElement {
     }        
 }
 
-/**
- * This response should be returned by the service when handling:  GET /{name}/hyperlinks/{hyperlinkIndex} .
- */
 export class HyperlinkResponse extends AsposeResponse {
 
     /**
@@ -5185,9 +3571,6 @@ export class HyperlinkResponse extends AsposeResponse {
         return super.getAttributeTypeMap().concat(HyperlinkResponse.attributeTypeMap);
     }
 
-    /**
-     * Hyperlink.
-     */
     public hyperlink: Hyperlink;
     
     public constructor(init?: Partial<HyperlinkResponse>) {
@@ -5196,9 +3579,6 @@ export class HyperlinkResponse extends AsposeResponse {
     }        
 }
 
-/**
- * Collection of .
- */
 export class Hyperlinks extends LinkElement {
 
     /**
@@ -5218,9 +3598,6 @@ export class Hyperlinks extends LinkElement {
         return super.getAttributeTypeMap().concat(Hyperlinks.attributeTypeMap);
     }
 
-    /**
-     * Array of .
-     */
     public hyperlinkList: Array<Hyperlink>;
     
     public constructor(init?: Partial<Hyperlinks>) {
@@ -5229,9 +3606,6 @@ export class Hyperlinks extends LinkElement {
     }        
 }
 
-/**
- * This response should be returned by the service when handling:  GET /{name}/hyperlinks .
- */
 export class HyperlinksResponse extends AsposeResponse {
 
     /**
@@ -5251,9 +3625,6 @@ export class HyperlinksResponse extends AsposeResponse {
         return super.getAttributeTypeMap().concat(HyperlinksResponse.attributeTypeMap);
     }
 
-    /**
-     * Collection of hyperlinks.
-     */
     public hyperlinks: Hyperlinks;
     
     public constructor(init?: Partial<HyperlinksResponse>) {
@@ -5262,9 +3633,6 @@ export class HyperlinksResponse extends AsposeResponse {
     }        
 }
 
-/**
- * Reference to node
- */
 export class NodeLink extends LinkElement {
 
     /**
@@ -5284,9 +3652,6 @@ export class NodeLink extends LinkElement {
         return super.getAttributeTypeMap().concat(NodeLink.attributeTypeMap);
     }
 
-    /**
-     * Node id
-     */
     public nodeId: string;
     
     public constructor(init?: Partial<NodeLink>) {
@@ -5295,71 +3660,6 @@ export class NodeLink extends LinkElement {
     }        
 }
 
-/**
- * container class for odt/ott save options
- */
-export class OdtSaveOptionsData extends SaveOptionsData {
-
-    /**
-     * Attribute type map
-     */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            name: "isStrictSchema11",
-            baseName: "IsStrictSchema11",
-            type: "boolean",
-        },        
-        {
-            name: "measureUnit",
-            baseName: "MeasureUnit",
-            type: "OdtSaveOptionsData.MeasureUnitEnum",
-        },        
-        {
-            name: "prettyFormat",
-            baseName: "PrettyFormat",
-            type: "boolean",
-        }    ];
-
-    /**
-     * Returns attribute type map
-     */
-    public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(OdtSaveOptionsData.attributeTypeMap);
-    }
-
-    /**
-     * Specifies whether export should correspond to ODT specification 1.1 strictly
-     */
-    public isStrictSchema11: boolean;
-    
-    /**
-     * Allows to specify units of measure to apply to document content. The default value is Aspose.Words.Saving.OdtSaveMeasureUnit.Centimeters  Open Office uses centimeters when specifying lengths, widths and other measurable formatting and content properties in documents whereas MS Office uses inches.
-     */
-    public measureUnit: OdtSaveOptionsData.MeasureUnitEnum;
-    
-    /**
-     * Specifies whether or not use pretty formats output
-     */
-    public prettyFormat: boolean;
-    
-    public constructor(init?: Partial<OdtSaveOptionsData>) {
-        super(init);
-        Object.assign(this, init);
-    }        
-}
-
-// tslint:disable:quotemark
-// tslint:disable-next-line:no-namespace
-export namespace OdtSaveOptionsData {
-    export enum MeasureUnitEnum {
-        Centimeters = 'Centimeters' as any,
-        Inches = 'Inches' as any,
-    }
-}
-// tslint:enable:quotemark
-/**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/officeMathObjects/0 
- */
 export class OfficeMathObjectResponse extends AsposeResponse {
 
     /**
@@ -5379,9 +3679,6 @@ export class OfficeMathObjectResponse extends AsposeResponse {
         return super.getAttributeTypeMap().concat(OfficeMathObjectResponse.attributeTypeMap);
     }
 
-    /**
-     * OfficeMathObject information
-     */
     public officeMathObject: OfficeMathObject;
     
     public constructor(init?: Partial<OfficeMathObjectResponse>) {
@@ -5390,9 +3687,6 @@ export class OfficeMathObjectResponse extends AsposeResponse {
     }        
 }
 
-/**
- * Collection of OfficeMath objects.
- */
 export class OfficeMathObjectsCollection extends LinkElement {
 
     /**
@@ -5412,9 +3706,6 @@ export class OfficeMathObjectsCollection extends LinkElement {
         return super.getAttributeTypeMap().concat(OfficeMathObjectsCollection.attributeTypeMap);
     }
 
-    /**
-     * Collection of OfficeMath objects.
-     */
     public list: Array<OfficeMathObject>;
     
     public constructor(init?: Partial<OfficeMathObjectsCollection>) {
@@ -5423,9 +3714,6 @@ export class OfficeMathObjectsCollection extends LinkElement {
     }        
 }
 
-/**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/OfficeMathObjects 
- */
 export class OfficeMathObjectsResponse extends AsposeResponse {
 
     /**
@@ -5445,9 +3733,6 @@ export class OfficeMathObjectsResponse extends AsposeResponse {
         return super.getAttributeTypeMap().concat(OfficeMathObjectsResponse.attributeTypeMap);
     }
 
-    /**
-     * Collection of OfficeMath objects.
-     */
     public officeMathObjects: OfficeMathObjectsCollection;
     
     public constructor(init?: Partial<OfficeMathObjectsResponse>) {
@@ -5456,62 +3741,6 @@ export class OfficeMathObjectsResponse extends AsposeResponse {
     }        
 }
 
-/**
- * container class for docx/docm/dotx/dotm/flatopc save options
- */
-export class OoxmlSaveOptionsData extends SaveOptionsData {
-
-    /**
-     * Attribute type map
-     */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            name: "compliance",
-            baseName: "Compliance",
-            type: "string",
-        },        
-        {
-            name: "password",
-            baseName: "Password",
-            type: "string",
-        },        
-        {
-            name: "prettyFormat",
-            baseName: "PrettyFormat",
-            type: "boolean",
-        }    ];
-
-    /**
-     * Returns attribute type map
-     */
-    public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(OoxmlSaveOptionsData.attributeTypeMap);
-    }
-
-    /**
-     * Specifies the OOXML version for the output document
-     */
-    public compliance: string;
-    
-    /**
-     * Specifies a password to encrypt document using ECMA376 Standard encryption algorithm
-     */
-    public password: string;
-    
-    /**
-     * Specifies whether or not use pretty formats output
-     */
-    public prettyFormat: boolean;
-    
-    public constructor(init?: Partial<OoxmlSaveOptionsData>) {
-        super(init);
-        Object.assign(this, init);
-    }        
-}
-
-/**
- * Represents the page setup properties of a section.             
- */
 export class PageSetup extends LinkElement {
 
     /**
@@ -5671,149 +3900,62 @@ export class PageSetup extends LinkElement {
         return super.getAttributeTypeMap().concat(PageSetup.attributeTypeMap);
     }
 
-    /**
-     * Specifies that this section contains bidirectional (complex scripts) text.             
-     */
     public bidi: boolean;
     
-    /**
-     * Specifies where the page border is positioned relative to intersecting texts and objects.             
-     */
     public borderAlwaysInFront: boolean;
     
-    /**
-     * Specifies which pages the page border is printed on.             
-     */
     public borderAppliesTo: PageSetup.BorderAppliesToEnum;
     
-    /**
-     * Gets or sets a value that indicates whether the specified page border is measured from the edge of the page or from the text it surrounds.             
-     */
     public borderDistanceFrom: PageSetup.BorderDistanceFromEnum;
     
-    /**
-     * Returns or sets the distance (in points) between the bottom edge of the page and the bottom boundary of the body text.             
-     */
     public bottomMargin: number;
     
-    /**
-     * True if a different header or footer is used on the first page.             
-     */
     public differentFirstPageHeaderFooter: boolean;
     
-    /**
-     * Gets or sets the paper tray (bin) to use for the first page of a section. The value is implementation (printer) specific.             
-     */
     public firstPageTray: number;
     
-    /**
-     * Returns or sets the distance (in points) between the footer and the bottom of the page.             
-     */
     public footerDistance: number;
     
-    /**
-     * Gets or sets the amount of extra space added to the margin for document binding.             
-     */
     public gutter: number;
     
-    /**
-     * Returns or sets the distance (in points) between the header and the top of the page.             
-     */
     public headerDistance: number;
     
-    /**
-     * Returns or sets the distance (in points) between the left edge of the page and the left boundary of the body text.             
-     */
     public leftMargin: number;
     
-    /**
-     * Returns or sets the numeric increment for line numbers.             
-     */
     public lineNumberCountBy: number;
     
-    /**
-     * Gets or sets distance between the right edge of line numbers and the left edge of the document.             
-     */
     public lineNumberDistanceFromText: number;
     
-    /**
-     * Gets or sets the way line numbering runs  that is, whether it starts over at the beginning of a new page or section or runs continuously.             
-     */
     public lineNumberRestartMode: PageSetup.LineNumberRestartModeEnum;
     
-    /**
-     * Gets or sets the starting line number.             
-     */
     public lineStartingNumber: number;
     
-    /**
-     * Returns or sets the orientation of the page.             
-     */
     public orientation: PageSetup.OrientationEnum;
     
-    /**
-     * Gets or sets the paper tray (bin) to be used for all but the first page of a section. The value is implementation (printer) specific.             
-     */
     public otherPagesTray: number;
     
-    /**
-     * Returns or sets the height of the page in points.             
-     */
     public pageHeight: number;
     
-    /**
-     * Gets or sets the page number format.             
-     */
     public pageNumberStyle: PageSetup.PageNumberStyleEnum;
     
-    /**
-     * Gets or sets the starting page number of the section.             
-     */
     public pageStartingNumber: number;
     
-    /**
-     * Returns or sets the width of the page in points.             
-     */
     public pageWidth: number;
     
-    /**
-     * Returns or sets the paper size.             
-     */
     public paperSize: PageSetup.PaperSizeEnum;
     
-    /**
-     * True if page numbering restarts at the beginning of the section.             
-     */
     public restartPageNumbering: boolean;
     
-    /**
-     * Returns or sets the distance (in points) between the right edge of the page and the right boundary of the body text.             
-     */
     public rightMargin: number;
     
-    /**
-     * Gets or sets whether Microsoft Word uses gutters for the section based on a right-to-left language or a left-to-right language.             
-     */
     public rtlGutter: boolean;
     
-    /**
-     * Returns or sets the type of section break for the specified object.             
-     */
     public sectionStart: PageSetup.SectionStartEnum;
     
-    /**
-     * True if endnotes are printed at the end of the next section that doesn't suppress endnotes.                 Suppressed endnotes are printed before the endnotes in that section.             
-     */
     public suppressEndnotes: boolean;
     
-    /**
-     * Returns or sets the distance (in points) between the top edge of the page and the top boundary of the body text.             
-     */
     public topMargin: number;
     
-    /**
-     * Returns or sets the vertical alignment of text on each page in a document or section.             
-     */
     public verticalAlignment: PageSetup.VerticalAlignmentEnum;
     
     public constructor(init?: Partial<PageSetup>) {
@@ -5941,9 +4083,6 @@ export namespace PageSetup {
     }
 }
 // tslint:enable:quotemark
-/**
- * Collection of links to paragraphs
- */
 export class ParagraphLinkCollection extends LinkElement {
 
     /**
@@ -5963,9 +4102,6 @@ export class ParagraphLinkCollection extends LinkElement {
         return super.getAttributeTypeMap().concat(ParagraphLinkCollection.attributeTypeMap);
     }
 
-    /**
-     * Collection of paragraph's links
-     */
     public paragraphLinkList: Array<ParagraphLink>;
     
     public constructor(init?: Partial<ParagraphLinkCollection>) {
@@ -5974,9 +4110,6 @@ export class ParagraphLinkCollection extends LinkElement {
     }        
 }
 
-/**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/paragraphs 
- */
 export class ParagraphLinkCollectionResponse extends AsposeResponse {
 
     /**
@@ -5996,9 +4129,6 @@ export class ParagraphLinkCollectionResponse extends AsposeResponse {
         return super.getAttributeTypeMap().concat(ParagraphLinkCollectionResponse.attributeTypeMap);
     }
 
-    /**
-     * Collection of paragraphs
-     */
     public paragraphs: ParagraphLinkCollection;
     
     public constructor(init?: Partial<ParagraphLinkCollectionResponse>) {
@@ -6007,9 +4137,6 @@ export class ParagraphLinkCollectionResponse extends AsposeResponse {
     }        
 }
 
-/**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/paragraphs/{0} 
- */
 export class ParagraphResponse extends AsposeResponse {
 
     /**
@@ -6029,9 +4156,6 @@ export class ParagraphResponse extends AsposeResponse {
         return super.getAttributeTypeMap().concat(ParagraphResponse.attributeTypeMap);
     }
 
-    /**
-     * Paragraph
-     */
     public paragraph: Paragraph;
     
     public constructor(init?: Partial<ParagraphResponse>) {
@@ -6040,9 +4164,6 @@ export class ParagraphResponse extends AsposeResponse {
     }        
 }
 
-/**
- * Response for the request of data about protection
- */
 export class ProtectionDataResponse extends AsposeResponse {
 
     /**
@@ -6067,14 +4188,8 @@ export class ProtectionDataResponse extends AsposeResponse {
         return super.getAttributeTypeMap().concat(ProtectionDataResponse.attributeTypeMap);
     }
 
-    /**
-     * Link to the document
-     */
     public documentLink: FileLink;
     
-    /**
-     * Protection's data of the document
-     */
     public protectionData: ProtectionData;
     
     public constructor(init?: Partial<ProtectionDataResponse>) {
@@ -6083,52 +4198,6 @@ export class ProtectionDataResponse extends AsposeResponse {
     }        
 }
 
-/**
- * Response for the request on changing protection of the document
- */
-export class ProtectionResponse extends AsposeResponse {
-
-    /**
-     * Attribute type map
-     */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            name: "documentLink",
-            baseName: "DocumentLink",
-            type: "FileLink",
-        },        
-        {
-            name: "protectionResult",
-            baseName: "ProtectionResult",
-            type: "boolean",
-        }    ];
-
-    /**
-     * Returns attribute type map
-     */
-    public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(ProtectionResponse.attributeTypeMap);
-    }
-
-    /**
-     * Link to the document
-     */
-    public documentLink: FileLink;
-    
-    /**
-     * Result of the changing of protection
-     */
-    public protectionResult: boolean;
-    
-    public constructor(init?: Partial<ProtectionResponse>) {
-        super(init);
-        Object.assign(this, init);
-    }        
-}
-
-/**
- * Response for \"Replace text\" action.
- */
 export class ReplaceTextResponse extends AsposeResponse {
 
     /**
@@ -6153,14 +4222,8 @@ export class ReplaceTextResponse extends AsposeResponse {
         return super.getAttributeTypeMap().concat(ReplaceTextResponse.attributeTypeMap);
     }
 
-    /**
-     * Link to the document.
-     */
     public documentLink: FileLink;
     
-    /**
-     * Number of occurrences of the captured text in the document.
-     */
     public matches: number;
     
     public constructor(init?: Partial<ReplaceTextResponse>) {
@@ -6169,9 +4232,6 @@ export class ReplaceTextResponse extends AsposeResponse {
     }        
 }
 
-/**
- * response of the modification operations for the revisions collection (now these are acceptAll and rejectAll)
- */
 export class RevisionsModificationResponse extends AsposeResponse {
 
     /**
@@ -6191,9 +4251,6 @@ export class RevisionsModificationResponse extends AsposeResponse {
         return super.getAttributeTypeMap().concat(RevisionsModificationResponse.attributeTypeMap);
     }
 
-    /**
-     * result of the modification operations for the revisions collection
-     */
     public result: ModificationOperationResult;
     
     public constructor(init?: Partial<RevisionsModificationResponse>) {
@@ -6202,62 +4259,6 @@ export class RevisionsModificationResponse extends AsposeResponse {
     }        
 }
 
-/**
- * container class for rtf save options
- */
-export class RtfSaveOptionsData extends SaveOptionsData {
-
-    /**
-     * Attribute type map
-     */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            name: "exportCompactSize",
-            baseName: "ExportCompactSize",
-            type: "boolean",
-        },        
-        {
-            name: "exportImagesForOldReaders",
-            baseName: "ExportImagesForOldReaders",
-            type: "boolean",
-        },        
-        {
-            name: "prettyFormat",
-            baseName: "PrettyFormat",
-            type: "boolean",
-        }    ];
-
-    /**
-     * Returns attribute type map
-     */
-    public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(RtfSaveOptionsData.attributeTypeMap);
-    }
-
-    /**
-     * Allows to make output RTF documents smaller in size, but if they contain RTL (right-to-left) text, it will not be displayed correctly
-     */
-    public exportCompactSize: boolean;
-    
-    /**
-     * Specifies whether the keywords for \"old readers\" are written to RTF or not
-     */
-    public exportImagesForOldReaders: boolean;
-    
-    /**
-     * Specifies whether or not use pretty formats output
-     */
-    public prettyFormat: boolean;
-    
-    public constructor(init?: Partial<RtfSaveOptionsData>) {
-        super(init);
-        Object.assign(this, init);
-    }        
-}
-
-/**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/paragraphs/{0}/runs/{1} 
- */
 export class RunResponse extends AsposeResponse {
 
     /**
@@ -6277,9 +4278,6 @@ export class RunResponse extends AsposeResponse {
         return super.getAttributeTypeMap().concat(RunResponse.attributeTypeMap);
     }
 
-    /**
-     * Run
-     */
     public run: Run;
     
     public constructor(init?: Partial<RunResponse>) {
@@ -6288,9 +4286,6 @@ export class RunResponse extends AsposeResponse {
     }        
 }
 
-/**
- * Represents DTO for collection of runs.
- */
 export class Runs extends LinkElement {
 
     /**
@@ -6310,9 +4305,6 @@ export class Runs extends LinkElement {
         return super.getAttributeTypeMap().concat(Runs.attributeTypeMap);
     }
 
-    /**
-     * Collection of fields
-     */
     public list: Array<Run>;
     
     public constructor(init?: Partial<Runs>) {
@@ -6321,9 +4313,6 @@ export class Runs extends LinkElement {
     }        
 }
 
-/**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/{paragraphPath}/runs
- */
 export class RunsResponse extends AsposeResponse {
 
     /**
@@ -6343,9 +4332,6 @@ export class RunsResponse extends AsposeResponse {
         return super.getAttributeTypeMap().concat(RunsResponse.attributeTypeMap);
     }
 
-    /**
-     * Collection of runs.
-     */
     public runs: Runs;
     
     public constructor(init?: Partial<RunsResponse>) {
@@ -6354,9 +4340,6 @@ export class RunsResponse extends AsposeResponse {
     }        
 }
 
-/**
- * Save response.
- */
 export class SaveResponse extends AsposeResponse {
 
     /**
@@ -6376,9 +4359,6 @@ export class SaveResponse extends AsposeResponse {
         return super.getAttributeTypeMap().concat(SaveResponse.attributeTypeMap);
     }
 
-    /**
-     * Save result.
-     */
     public saveResult: SaveResult;
     
     public constructor(init?: Partial<SaveResponse>) {
@@ -6387,9 +4367,6 @@ export class SaveResponse extends AsposeResponse {
     }        
 }
 
-/**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/search 
- */
 export class SearchResponse extends AsposeResponse {
 
     /**
@@ -6414,14 +4391,8 @@ export class SearchResponse extends AsposeResponse {
         return super.getAttributeTypeMap().concat(SearchResponse.attributeTypeMap);
     }
 
-    /**
-     * A regular expression pattern used to find matches.
-     */
     public searchingPattern: string;
     
-    /**
-     * Collection of search results.
-     */
     public searchResults: SearchResultsCollection;
     
     public constructor(init?: Partial<SearchResponse>) {
@@ -6430,9 +4401,6 @@ export class SearchResponse extends AsposeResponse {
     }        
 }
 
-/**
- * Collection of search results.
- */
 export class SearchResultsCollection extends LinkElement {
 
     /**
@@ -6452,9 +4420,6 @@ export class SearchResultsCollection extends LinkElement {
         return super.getAttributeTypeMap().concat(SearchResultsCollection.attributeTypeMap);
     }
 
-    /**
-     * Collection of comments
-     */
     public resultsList: Array<SearchResult>;
     
     public constructor(init?: Partial<SearchResultsCollection>) {
@@ -6463,9 +4428,6 @@ export class SearchResultsCollection extends LinkElement {
     }        
 }
 
-/**
- * Section element
- */
 export class Section extends LinkElement {
 
     /**
@@ -6505,29 +4467,14 @@ export class Section extends LinkElement {
         return super.getAttributeTypeMap().concat(Section.attributeTypeMap);
     }
 
-    /**
-     * Child nodes.
-     */
     public childNodes: Array<NodeLink>;
     
-    /**
-     * Link to HeaderFooters resource
-     */
     public headerFooters: LinkElement;
     
-    /**
-     * Link to PageSetup resource
-     */
     public pageSetup: LinkElement;
     
-    /**
-     * Link to Paragraphs resource
-     */
     public paragraphs: LinkElement;
     
-    /**
-     * Link to Tables resource
-     */
     public tables: LinkElement;
     
     public constructor(init?: Partial<Section>) {
@@ -6536,9 +4483,6 @@ export class Section extends LinkElement {
     }        
 }
 
-/**
- * Section link element
- */
 export class SectionLink extends LinkElement {
 
     /**
@@ -6560,9 +4504,6 @@ export class SectionLink extends LinkElement {
     }        
 }
 
-/**
- * Collection of links to sections
- */
 export class SectionLinkCollection extends LinkElement {
 
     /**
@@ -6582,9 +4523,6 @@ export class SectionLinkCollection extends LinkElement {
         return super.getAttributeTypeMap().concat(SectionLinkCollection.attributeTypeMap);
     }
 
-    /**
-     * Collection of section's links
-     */
     public sectionLinkList: Array<SectionLink>;
     
     public constructor(init?: Partial<SectionLinkCollection>) {
@@ -6593,9 +4531,6 @@ export class SectionLinkCollection extends LinkElement {
     }        
 }
 
-/**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/sections 
- */
 export class SectionLinkCollectionResponse extends AsposeResponse {
 
     /**
@@ -6615,9 +4550,6 @@ export class SectionLinkCollectionResponse extends AsposeResponse {
         return super.getAttributeTypeMap().concat(SectionLinkCollectionResponse.attributeTypeMap);
     }
 
-    /**
-     * Collection of sections
-     */
     public sections: SectionLinkCollection;
     
     public constructor(init?: Partial<SectionLinkCollectionResponse>) {
@@ -6626,9 +4558,6 @@ export class SectionLinkCollectionResponse extends AsposeResponse {
     }        
 }
 
-/**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/sections/{0}/PageSetup 
- */
 export class SectionPageSetupResponse extends AsposeResponse {
 
     /**
@@ -6648,9 +4577,6 @@ export class SectionPageSetupResponse extends AsposeResponse {
         return super.getAttributeTypeMap().concat(SectionPageSetupResponse.attributeTypeMap);
     }
 
-    /**
-     * Section
-     */
     public pageSetup: PageSetup;
     
     public constructor(init?: Partial<SectionPageSetupResponse>) {
@@ -6659,9 +4585,6 @@ export class SectionPageSetupResponse extends AsposeResponse {
     }        
 }
 
-/**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/sections/{0} 
- */
 export class SectionResponse extends AsposeResponse {
 
     /**
@@ -6681,9 +4604,6 @@ export class SectionResponse extends AsposeResponse {
         return super.getAttributeTypeMap().concat(SectionResponse.attributeTypeMap);
     }
 
-    /**
-     * Section
-     */
     public section: Section;
     
     public constructor(init?: Partial<SectionResponse>) {
@@ -6692,9 +4612,6 @@ export class SectionResponse extends AsposeResponse {
     }        
 }
 
-/**
- * This response should be returned by the service when handling:  POST /{name}/split .
- */
 export class SplitDocumentResponse extends AsposeResponse {
 
     /**
@@ -6714,9 +4631,6 @@ export class SplitDocumentResponse extends AsposeResponse {
         return super.getAttributeTypeMap().concat(SplitDocumentResponse.attributeTypeMap);
     }
 
-    /**
-     * Resylt of splitting document.
-     */
     public splitResult: SplitDocumentResult;
     
     public constructor(init?: Partial<SplitDocumentResponse>) {
@@ -6725,9 +4639,6 @@ export class SplitDocumentResponse extends AsposeResponse {
     }        
 }
 
-/**
- * Response for the request of the document's statistical data
- */
 export class StatDataResponse extends AsposeResponse {
 
     /**
@@ -6752,14 +4663,8 @@ export class StatDataResponse extends AsposeResponse {
         return super.getAttributeTypeMap().concat(StatDataResponse.attributeTypeMap);
     }
 
-    /**
-     * Link to the document
-     */
     public documentLink: FileLink;
     
-    /**
-     * Statistical data of the document
-     */
     public statData: DocumentStatData;
     
     public constructor(init?: Partial<StatDataResponse>) {
@@ -6768,9 +4673,6 @@ export class StatDataResponse extends AsposeResponse {
     }        
 }
 
-/**
- * Represents all formatting for a table row.
- */
 export class TableCellFormat extends LinkElement {
 
     /**
@@ -6845,64 +4747,28 @@ export class TableCellFormat extends LinkElement {
         return super.getAttributeTypeMap().concat(TableCellFormat.attributeTypeMap);
     }
 
-    /**
-     * Returns or sets the amount of space (in points) to add below the contents of cell.
-     */
     public bottomPadding: number;
     
-    /**
-     * If true, fits text in the cell, compressing each paragraph to the width of the cell.
-     */
     public fitText: boolean;
     
-    /**
-     * Specifies how the cell is merged horizontally with other cells in the row.
-     */
     public horizontalMerge: TableCellFormat.HorizontalMergeEnum;
     
-    /**
-     * Returns or sets the amount of space (in points) to add to the left of the contents of cell.
-     */
     public leftPadding: number;
     
-    /**
-     * Returns or sets the orientation of text in a table cell.
-     */
     public orientation: TableCellFormat.OrientationEnum;
     
-    /**
-     * Returns or sets the preferred width of the cell.
-     */
     public preferredWidth: PreferredWidth;
     
-    /**
-     * Returns or sets the amount of space (in points) to add to the right of the contents of cell.
-     */
     public rightPadding: number;
     
-    /**
-     * Returns or sets the amount of space (in points) to add above the contents of cell.
-     */
     public topPadding: number;
     
-    /**
-     * Returns or sets the vertical alignment of text in the cell.
-     */
     public verticalAlignment: TableCellFormat.VerticalAlignmentEnum;
     
-    /**
-     * Specifies how the cell is merged with other cells vertically.
-     */
     public verticalMerge: TableCellFormat.VerticalMergeEnum;
     
-    /**
-     * Gets the width of the cell in points.
-     */
     public width: number;
     
-    /**
-     * If true, wrap text for the cell.
-     */
     public wrapText: boolean;
     
     public constructor(init?: Partial<TableCellFormat>) {
@@ -6939,9 +4805,6 @@ export namespace TableCellFormat {
     }
 }
 // tslint:enable:quotemark
-/**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/tables/{0}/rows/{1}/cells/{2}/cellformat
- */
 export class TableCellFormatResponse extends AsposeResponse {
 
     /**
@@ -6961,9 +4824,6 @@ export class TableCellFormatResponse extends AsposeResponse {
         return super.getAttributeTypeMap().concat(TableCellFormatResponse.attributeTypeMap);
     }
 
-    /**
-     * Table.
-     */
     public cellFormat: TableCellFormat;
     
     public constructor(init?: Partial<TableCellFormatResponse>) {
@@ -6972,9 +4832,6 @@ export class TableCellFormatResponse extends AsposeResponse {
     }        
 }
 
-/**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/tables/{0}
- */
 export class TableCellResponse extends AsposeResponse {
 
     /**
@@ -6994,9 +4851,6 @@ export class TableCellResponse extends AsposeResponse {
         return super.getAttributeTypeMap().concat(TableCellResponse.attributeTypeMap);
     }
 
-    /**
-     * Table cell.
-     */
     public cell: TableCell;
     
     public constructor(init?: Partial<TableCellResponse>) {
@@ -7005,9 +4859,6 @@ export class TableCellResponse extends AsposeResponse {
     }        
 }
 
-/**
- * Collection of links to tables
- */
 export class TableLinkCollection extends LinkElement {
 
     /**
@@ -7027,9 +4878,6 @@ export class TableLinkCollection extends LinkElement {
         return super.getAttributeTypeMap().concat(TableLinkCollection.attributeTypeMap);
     }
 
-    /**
-     * Collection of table's links
-     */
     public tableLinkList: Array<TableLink>;
     
     public constructor(init?: Partial<TableLinkCollection>) {
@@ -7038,9 +4886,6 @@ export class TableLinkCollection extends LinkElement {
     }        
 }
 
-/**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/tables.
- */
 export class TableLinkCollectionResponse extends AsposeResponse {
 
     /**
@@ -7060,9 +4905,6 @@ export class TableLinkCollectionResponse extends AsposeResponse {
         return super.getAttributeTypeMap().concat(TableLinkCollectionResponse.attributeTypeMap);
     }
 
-    /**
-     * Collection of tables.
-     */
     public tables: TableLinkCollection;
     
     public constructor(init?: Partial<TableLinkCollectionResponse>) {
@@ -7071,9 +4913,6 @@ export class TableLinkCollectionResponse extends AsposeResponse {
     }        
 }
 
-/**
- * Represents the table properties.             
- */
 export class TableProperties extends LinkElement {
 
     /**
@@ -7158,74 +4997,32 @@ export class TableProperties extends LinkElement {
         return super.getAttributeTypeMap().concat(TableProperties.attributeTypeMap);
     }
 
-    /**
-     * Specifies how an inline table is aligned in the document.
-     */
     public alignment: TableProperties.AlignmentEnum;
     
-    /**
-     * Allows Microsoft Word and Aspose.Words to automatically resize cells in a table to fit their contents.
-     */
     public allowAutoFit: boolean;
     
-    /**
-     * Gets or sets whether this is a right-to-left table.
-     */
     public bidi: boolean;
     
-    /**
-     * Gets or sets the amount of space (in points) to add below the contents of cells.
-     */
     public bottomPadding: number;
     
-    /**
-     * Gets or sets the amount of space (in points) between the cells.
-     */
     public cellSpacing: number;
     
-    /**
-     * Gets or sets the value that represents the left indent of the table.
-     */
     public leftIndent: number;
     
-    /**
-     * Gets or sets the amount of space (in points) to add to the left of the contents of cells.
-     */
     public leftPadding: number;
     
-    /**
-     * Gets or sets the table preferred width.  Preferred width can be specified as a percentage, number of points or a special \"auto\" value.
-     */
     public preferredWidth: PreferredWidth;
     
-    /**
-     * Gets or sets the amount of space (in points) to add to the right of the contents of cells.
-     */
     public rightPadding: number;
     
-    /**
-     * Gets or sets the locale independent style identifier of the table style applied to this table.
-     */
     public styleIdentifier: TableProperties.StyleIdentifierEnum;
     
-    /**
-     * Gets or sets the name of the table style applied to this table.
-     */
     public styleName: string;
     
-    /**
-     * Gets or sets bit flags that specify how a table style is applied to this table.
-     */
     public styleOptions: TableProperties.StyleOptionsEnum;
     
-    /**
-     * Get or sets TextWrapping  for table.
-     */
     public textWrapping: TableProperties.TextWrappingEnum;
     
-    /**
-     * Gets or sets the amount of space (in points) to add above the contents of cells.
-     */
     public topPadding: number;
     
     public constructor(init?: Partial<TableProperties>) {
@@ -7635,9 +5432,6 @@ export namespace TableProperties {
     }
 }
 // tslint:enable:quotemark
-/**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/tables/{0}/properties
- */
 export class TablePropertiesResponse extends AsposeResponse {
 
     /**
@@ -7657,9 +5451,6 @@ export class TablePropertiesResponse extends AsposeResponse {
         return super.getAttributeTypeMap().concat(TablePropertiesResponse.attributeTypeMap);
     }
 
-    /**
-     * Table.
-     */
     public properties: TableProperties;
     
     public constructor(init?: Partial<TablePropertiesResponse>) {
@@ -7668,9 +5459,6 @@ export class TablePropertiesResponse extends AsposeResponse {
     }        
 }
 
-/**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/tables/{0}
- */
 export class TableResponse extends AsposeResponse {
 
     /**
@@ -7690,9 +5478,6 @@ export class TableResponse extends AsposeResponse {
         return super.getAttributeTypeMap().concat(TableResponse.attributeTypeMap);
     }
 
-    /**
-     * Table.
-     */
     public table: Table;
     
     public constructor(init?: Partial<TableResponse>) {
@@ -7701,9 +5486,6 @@ export class TableResponse extends AsposeResponse {
     }        
 }
 
-/**
- * Represents all formatting for a table row.
- */
 export class TableRowFormat extends LinkElement {
 
     /**
@@ -7738,24 +5520,12 @@ export class TableRowFormat extends LinkElement {
         return super.getAttributeTypeMap().concat(TableRowFormat.attributeTypeMap);
     }
 
-    /**
-     * True if the text in a table row is allowed to split across a page break.
-     */
     public allowBreakAcrossPages: boolean;
     
-    /**
-     * True if the row is repeated as a table heading on every page when the table spans more than one page.
-     */
     public headingFormat: boolean;
     
-    /**
-     * Gets or sets the height of the table row in points.
-     */
     public height: number;
     
-    /**
-     * Gets or sets the rule for determining the height of the table row.
-     */
     public heightRule: TableRowFormat.HeightRuleEnum;
     
     public constructor(init?: Partial<TableRowFormat>) {
@@ -7774,9 +5544,6 @@ export namespace TableRowFormat {
     }
 }
 // tslint:enable:quotemark
-/**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/tables/{0}/rows/{1}/rowformat
- */
 export class TableRowFormatResponse extends AsposeResponse {
 
     /**
@@ -7796,9 +5563,6 @@ export class TableRowFormatResponse extends AsposeResponse {
         return super.getAttributeTypeMap().concat(TableRowFormatResponse.attributeTypeMap);
     }
 
-    /**
-     * Table.
-     */
     public rowFormat: TableRowFormat;
     
     public constructor(init?: Partial<TableRowFormatResponse>) {
@@ -7807,9 +5571,6 @@ export class TableRowFormatResponse extends AsposeResponse {
     }        
 }
 
-/**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v1.1/words/Test.doc/tables/{0}
- */
 export class TableRowResponse extends AsposeResponse {
 
     /**
@@ -7829,9 +5590,6 @@ export class TableRowResponse extends AsposeResponse {
         return super.getAttributeTypeMap().concat(TableRowResponse.attributeTypeMap);
     }
 
-    /**
-     * Table row.
-     */
     public row: TableRow;
     
     public constructor(init?: Partial<TableRowResponse>) {
@@ -7840,9 +5598,6 @@ export class TableRowResponse extends AsposeResponse {
     }        
 }
 
-/**
- * Represents text DTO.
- */
 export class TextItem extends LinkElement {
 
     /**
@@ -7862,9 +5617,6 @@ export class TextItem extends LinkElement {
         return super.getAttributeTypeMap().concat(TextItem.attributeTypeMap);
     }
 
-    /**
-     * Text.
-     */
     public text: string;
     
     public constructor(init?: Partial<TextItem>) {
@@ -7873,9 +5625,6 @@ export class TextItem extends LinkElement {
     }        
 }
 
-/**
- * Represents text items DTO.
- */
 export class TextItems extends LinkElement {
 
     /**
@@ -7895,9 +5644,6 @@ export class TextItems extends LinkElement {
         return super.getAttributeTypeMap().concat(TextItems.attributeTypeMap);
     }
 
-    /**
-     * Collection of text items.
-     */
     public list: Array<TextItem>;
     
     public constructor(init?: Partial<TextItems>) {
@@ -7906,9 +5652,6 @@ export class TextItems extends LinkElement {
     }        
 }
 
-/**
- * This response should be returned by the service when handling:  GET /{name}/textItems .
- */
 export class TextItemsResponse extends AsposeResponse {
 
     /**
@@ -7928,9 +5671,6 @@ export class TextItemsResponse extends AsposeResponse {
         return super.getAttributeTypeMap().concat(TextItemsResponse.attributeTypeMap);
     }
 
-    /**
-     * Collection of text items.
-     */
     public textItems: TextItems;
     
     public constructor(init?: Partial<TextItemsResponse>) {
@@ -7939,158 +5679,6 @@ export class TextItemsResponse extends AsposeResponse {
     }        
 }
 
-/**
- * Container class for text save options.
- */
-export class TextSaveOptionsData extends SaveOptionsData {
-
-    /**
-     * Attribute type map
-     */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            name: "encoding",
-            baseName: "Encoding",
-            type: "string",
-        },        
-        {
-            name: "exportHeadersFooters",
-            baseName: "ExportHeadersFooters",
-            type: "boolean",
-        },        
-        {
-            name: "forcePageBreaks",
-            baseName: "ForcePageBreaks",
-            type: "boolean",
-        },        
-        {
-            name: "paragraphBreak",
-            baseName: "ParagraphBreak",
-            type: "string",
-        },        
-        {
-            name: "preserveTableLayout",
-            baseName: "PreserveTableLayout",
-            type: "boolean",
-        },        
-        {
-            name: "simplifyListLabels",
-            baseName: "SimplifyListLabels",
-            type: "boolean",
-        }    ];
-
-    /**
-     * Returns attribute type map
-     */
-    public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(TextSaveOptionsData.attributeTypeMap);
-    }
-
-    /**
-     * Specifies the encoding to use when exporting in plain text format
-     */
-    public encoding: string;
-    
-    /**
-     * Specifies whether to output headers and footers when exporting in plain text format
-     */
-    public exportHeadersFooters: boolean;
-    
-    /**
-     * Allows to specify whether the page breaks should be preserved during export. The default value is false.
-     */
-    public forcePageBreaks: boolean;
-    
-    /**
-     * Specifies the string to use as a paragraph break when exporting in plain text format
-     */
-    public paragraphBreak: string;
-    
-    /**
-     * Specifies whether the program should attempt to preserve layout of tables when saving in the plain text format
-     */
-    public preserveTableLayout: boolean;
-    
-    /**
-     * Specifies whether the program should simplify list labels in case of complex label formatting not being adequately represented by plain text
-     */
-    public simplifyListLabels: boolean;
-    
-    public constructor(init?: Partial<TextSaveOptionsData>) {
-        super(init);
-        Object.assign(this, init);
-    }        
-}
-
-/**
- * container class for wml save options
- */
-export class WordMLSaveOptionsData extends SaveOptionsData {
-
-    /**
-     * Attribute type map
-     */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            name: "prettyFormat",
-            baseName: "PrettyFormat",
-            type: "boolean",
-        }    ];
-
-    /**
-     * Returns attribute type map
-     */
-    public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(WordMLSaveOptionsData.attributeTypeMap);
-    }
-
-    /**
-     * Specifies whether or not use pretty formats output
-     */
-    public prettyFormat: boolean;
-    
-    public constructor(init?: Partial<WordMLSaveOptionsData>) {
-        super(init);
-        Object.assign(this, init);
-    }        
-}
-
-/**
- * Response for Api error
- */
-export class WordsApiErrorResponse extends AsposeResponse {
-
-    /**
-     * Attribute type map
-     */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            name: "message",
-            baseName: "Message",
-            type: "string",
-        }    ];
-
-    /**
-     * Returns attribute type map
-     */
-    public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(WordsApiErrorResponse.attributeTypeMap);
-    }
-
-    /**
-     * Error message.
-     */
-    public message: string;
-    
-    public constructor(init?: Partial<WordsApiErrorResponse>) {
-        super(init);
-        Object.assign(this, init);
-    }        
-}
-
-/**
- * Provides information for the words api resource link.
- */
 export class WordsApiLink extends Link {
 
     /**
@@ -8112,52 +5700,6 @@ export class WordsApiLink extends Link {
     }        
 }
 
-/**
- * container class for xaml flow save options
- */
-export class XamlFlowSaveOptionsData extends SaveOptionsData {
-
-    /**
-     * Attribute type map
-     */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            name: "imagesFolder",
-            baseName: "ImagesFolder",
-            type: "string",
-        },        
-        {
-            name: "imagesFolderAlias",
-            baseName: "ImagesFolderAlias",
-            type: "string",
-        }    ];
-
-    /**
-     * Returns attribute type map
-     */
-    public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(XamlFlowSaveOptionsData.attributeTypeMap);
-    }
-
-    /**
-     * Specifies the physical folder where images are saved when exporting
-     */
-    public imagesFolder: string;
-    
-    /**
-     * Specifies the name of the folder used to construct image URIs
-     */
-    public imagesFolderAlias: string;
-    
-    public constructor(init?: Partial<XamlFlowSaveOptionsData>) {
-        super(init);
-        Object.assign(this, init);
-    }        
-}
-
-/**
- * Comment.
- */
 export class Comment extends CommentLink {
 
     /**
@@ -8207,39 +5749,18 @@ export class Comment extends CommentLink {
         return super.getAttributeTypeMap().concat(Comment.attributeTypeMap);
     }
 
-    /**
-     * Returns or sets the author name for a comment.
-     */
     public author: string;
     
-    /**
-     * Content of comment
-     */
     public content: StoryChildNodes;
     
-    /**
-     * Gets the date and time that the comment was made.
-     */
     public dateTime: Date;
     
-    /**
-     * Returns or sets the initials of the user associated with a specific comment.
-     */
     public initial: string;
     
-    /**
-     * Link to comment range end node.
-     */
     public rangeEnd: DocumentPosition;
     
-    /**
-     * Link to comment range start node.
-     */
     public rangeStart: DocumentPosition;
     
-    /**
-     * This is a convenience property that allows to easily get or set text of the comment.
-     */
     public text: string;
     
     public constructor(init?: Partial<Comment>) {
@@ -8248,9 +5769,6 @@ export class Comment extends CommentLink {
     }        
 }
 
-/**
- * Represents link for Drawing Object DTO.
- */
 export class DrawingObjectLink extends NodeLink {
 
     /**
@@ -8272,47 +5790,6 @@ export class DrawingObjectLink extends NodeLink {
     }        
 }
 
-/**
- * Container class for epub save options.
- */
-export class EpubSaveOptionsData extends HtmlSaveOptionsData {
-
-    /**
-     * Attribute type map
-     */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            name: "epubNavigationMapLevel",
-            baseName: "EpubNavigationMapLevel",
-            type: "number",
-        }    ];
-
-    /**
-     * Returns attribute type map
-     */
-    public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(EpubSaveOptionsData.attributeTypeMap);
-    }
-
-    /**
-     * Specifies the maximum level of headings populated to the navigation map when exporting
-     */
-    public epubNavigationMapLevel: number;
-    
-    public constructor(init?: Partial<EpubSaveOptionsData>) {
-        super(init);
-        Object.assign(this, init);
-    }        
-}
-
-// tslint:disable:quotemark
-// tslint:disable-next-line:no-namespace
-export namespace EpubSaveOptionsData {
-}
-// tslint:enable:quotemark
-/**
- * Field link
- */
 export class FieldLink extends NodeLink {
 
     /**
@@ -8332,9 +5809,6 @@ export class FieldLink extends NodeLink {
         return super.getAttributeTypeMap().concat(FieldLink.attributeTypeMap);
     }
 
-    /**
-     * Field code
-     */
     public fieldCode: string;
     
     public constructor(init?: Partial<FieldLink>) {
@@ -8343,9 +5817,6 @@ export class FieldLink extends NodeLink {
     }        
 }
 
-/**
- * Footnote link.
- */
 export class FootnoteLink extends NodeLink {
 
     /**
@@ -8367,9 +5838,6 @@ export class FootnoteLink extends NodeLink {
     }        
 }
 
-/**
- * FromField
- */
 export class FormField extends NodeLink {
 
     /**
@@ -8429,49 +5897,22 @@ export class FormField extends NodeLink {
         return super.getAttributeTypeMap().concat(FormField.attributeTypeMap);
     }
 
-    /**
-     * True if references to the specified form field are automatically updated whenever the field is exited.
-     */
     public calculateOnExit: boolean;
     
-    /**
-     * True if a form field is enabled.
-     */
     public enabled: boolean;
     
-    /**
-     * Returns or sets an entry macro name for the form field.
-     */
     public entryMacro: string;
     
-    /**
-     * Returns or sets an exit macro name for the form field.
-     */
     public exitMacro: string;
     
-    /**
-     * Returns or sets the text that's displayed in a message box when the form field has the focus and the user presses F1.
-     */
     public helpText: string;
     
-    /**
-     * Gets or sets the form field name.
-     */
     public name: string;
     
-    /**
-     * Specifies the source of the text that's displayed in a message box when a form field has the focus and the user presses F1.
-     */
     public ownHelp: boolean;
     
-    /**
-     * Specifies the source of the text that's displayed in the status bar when a form field has the focus.
-     */
     public ownStatus: boolean;
     
-    /**
-     * Returns or sets the text that's displayed in the status bar when a form field has the focus.
-     */
     public statusText: string;
     
     public constructor(init?: Partial<FormField>) {
@@ -8480,9 +5921,6 @@ export class FormField extends NodeLink {
     }        
 }
 
-/**
- * Section element
- */
 export class HeaderFooter extends HeaderFooterLink {
 
     /**
@@ -8507,14 +5945,8 @@ export class HeaderFooter extends HeaderFooterLink {
         return super.getAttributeTypeMap().concat(HeaderFooter.attributeTypeMap);
     }
 
-    /**
-     * Link to DrawingObjects resource
-     */
     public drawingObjects: LinkElement;
     
-    /**
-     * Link to Paragraphs resource
-     */
     public paragraphs: LinkElement;
     
     public constructor(init?: Partial<HeaderFooter>) {
@@ -8528,152 +5960,6 @@ export class HeaderFooter extends HeaderFooterLink {
 export namespace HeaderFooter {
 }
 // tslint:enable:quotemark
-/**
- * container class for fixed html save options
- */
-export class HtmlFixedSaveOptionsData extends FixedPageSaveOptionsData {
-
-    /**
-     * Attribute type map
-     */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            name: "cssClassNamesPrefix",
-            baseName: "CssClassNamesPrefix",
-            type: "string",
-        },        
-        {
-            name: "encoding",
-            baseName: "Encoding",
-            type: "string",
-        },        
-        {
-            name: "exportEmbeddedCss",
-            baseName: "ExportEmbeddedCss",
-            type: "boolean",
-        },        
-        {
-            name: "exportEmbeddedFonts",
-            baseName: "ExportEmbeddedFonts",
-            type: "boolean",
-        },        
-        {
-            name: "exportEmbeddedImages",
-            baseName: "ExportEmbeddedImages",
-            type: "boolean",
-        },        
-        {
-            name: "exportFormFields",
-            baseName: "ExportFormFields",
-            type: "boolean",
-        },        
-        {
-            name: "fontFormat",
-            baseName: "FontFormat",
-            type: "string",
-        },        
-        {
-            name: "pageHorizontalAlignment",
-            baseName: "PageHorizontalAlignment",
-            type: "string",
-        },        
-        {
-            name: "pageMargins",
-            baseName: "PageMargins",
-            type: "number",
-        },        
-        {
-            name: "resourcesFolder",
-            baseName: "ResourcesFolder",
-            type: "string",
-        },        
-        {
-            name: "resourcesFolderAlias",
-            baseName: "ResourcesFolderAlias",
-            type: "string",
-        },        
-        {
-            name: "showPageBorder",
-            baseName: "ShowPageBorder",
-            type: "boolean",
-        }    ];
-
-    /**
-     * Returns attribute type map
-     */
-    public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(HtmlFixedSaveOptionsData.attributeTypeMap);
-    }
-
-    /**
-     * Specifies prefix which is added to all class names in style.css file. Default value is \"aw\".
-     */
-    public cssClassNamesPrefix: string;
-    
-    /**
-     * Encoding.
-     */
-    public encoding: string;
-    
-    /**
-     * Specifies whether the CSS (Cascading Style Sheet) should be embedded into Html document.
-     */
-    public exportEmbeddedCss: boolean;
-    
-    /**
-     * Specifies whether fonts should be embedded into Html document in Base64 format.
-     */
-    public exportEmbeddedFonts: boolean;
-    
-    /**
-     * Specifies whether images should be embedded into Html document in Base64 format.
-     */
-    public exportEmbeddedImages: boolean;
-    
-    /**
-     * Gets or sets indication of whether form fields are exported as interactive items (as 'input' tag) rather than converted to text or graphics.
-     */
-    public exportFormFields: boolean;
-    
-    /**
-     * Specifies export format of fonts
-     */
-    public fontFormat: string;
-    
-    /**
-     * Specifies the horizontal alignment of pages in an HTML document. Default value is HtmlFixedHorizontalPageAlignment.Center.
-     */
-    public pageHorizontalAlignment: string;
-    
-    /**
-     * Specifies the margins around pages in an HTML document. The margins value is measured in points and should be equal to or greater than 0. Default value is 10 points.
-     */
-    public pageMargins: number;
-    
-    /**
-     * Specifies the physical folder where resources are saved when exporting a document
-     */
-    public resourcesFolder: string;
-    
-    /**
-     * Specifies the name of the folder used to construct resource URIs
-     */
-    public resourcesFolderAlias: string;
-    
-    /**
-     * Specifies whether border around pages should be shown.
-     */
-    public showPageBorder: boolean;
-    
-    public constructor(init?: Partial<HtmlFixedSaveOptionsData>) {
-        super(init);
-        Object.assign(this, init);
-    }        
-}
-
-/**
- * Container abstract class for image save options
- */
 export class ImageSaveOptionsData extends FixedPageSaveOptionsData {
 
     /**
@@ -8753,69 +6039,30 @@ export class ImageSaveOptionsData extends FixedPageSaveOptionsData {
         return super.getAttributeTypeMap().concat(ImageSaveOptionsData.attributeTypeMap);
     }
 
-    /**
-     * Allows to specify additional System.Drawing.Graphics quality options.
-     */
     public graphicsQualityOptions: GraphicsQualityOptionsData;
     
-    /**
-     * Gets or sets the horizontal resolution for the generated images, in dots per inch.  This property has effect only when saving to raster image formats. The default value is 96.
-     */
     public horizontalResolution: number;
     
-    /**
-     * Brightness of image
-     */
     public imageBrightness: number;
     
-    /**
-     * Color mode of image
-     */
     public imageColorMode: string;
     
-    /**
-     * Contrast of image
-     */
     public imageContrast: number;
     
-    /**
-     * Background (paper) color of image
-     */
     public paperColor: string;
     
-    /**
-     * Pixel format of image
-     */
     public pixelFormat: string;
     
-    /**
-     * Sets both horizontal and vertical resolution for the generated images, in dots per inch.  This property has effect only when saving to raster image formats. The default value is 96.
-     */
     public resolution: number;
     
-    /**
-     * Zoom factor of image
-     */
     public scale: number;
     
-    /**
-     * Determine whether or not to use anti-aliasing for rendering
-     */
     public useAntiAliasing: boolean;
     
-    /**
-     * Gets or sets a value determining whether to use GDI+ or Aspose.Words metafile renderer when saving to EMF.
-     */
     public useGdiEmfRenderer: boolean;
     
-    /**
-     * Determine whether or not to use high quality (i.e. slow) rendering algorithms
-     */
     public useHighQualityRendering: boolean;
     
-    /**
-     * Gets or sets the vertical resolution for the generated images, in dots per inch.  This property has effect only when saving to raster image formats. The default value is 96.
-     */
     public verticalResolution: number;
     
     public constructor(init?: Partial<ImageSaveOptionsData>) {
@@ -8824,38 +6071,6 @@ export class ImageSaveOptionsData extends FixedPageSaveOptionsData {
     }        
 }
 
-/**
- * Container class for mhtml save options.
- */
-export class MhtmlSaveOptionsData extends HtmlSaveOptionsData {
-
-    /**
-     * Attribute type map
-     */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-    ];
-
-    /**
-     * Returns attribute type map
-     */
-    public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(MhtmlSaveOptionsData.attributeTypeMap);
-    }
-
-    public constructor(init?: Partial<MhtmlSaveOptionsData>) {
-        super(init);
-        Object.assign(this, init);
-    }        
-}
-
-// tslint:disable:quotemark
-// tslint:disable-next-line:no-namespace
-export namespace MhtmlSaveOptionsData {
-}
-// tslint:enable:quotemark
-/**
- * OfficeMath object link element
- */
 export class OfficeMathLink extends NodeLink {
 
     /**
@@ -8877,9 +6092,6 @@ export class OfficeMathLink extends NodeLink {
     }        
 }
 
-/**
- * Paragraph element
- */
 export class Paragraph extends NodeLink {
 
     /**
@@ -8899,9 +6111,6 @@ export class Paragraph extends NodeLink {
         return super.getAttributeTypeMap().concat(Paragraph.attributeTypeMap);
     }
 
-    /**
-     * Child nodes
-     */
     public childNodes: Array<NodeLink>;
     
     public constructor(init?: Partial<Paragraph>) {
@@ -8910,9 +6119,6 @@ export class Paragraph extends NodeLink {
     }        
 }
 
-/**
- * Paragraph link element
- */
 export class ParagraphLink extends NodeLink {
 
     /**
@@ -8932,9 +6138,6 @@ export class ParagraphLink extends NodeLink {
         return super.getAttributeTypeMap().concat(ParagraphLink.attributeTypeMap);
     }
 
-    /**
-     * Paragraph's text
-     */
     public text: string;
     
     public constructor(init?: Partial<ParagraphLink>) {
@@ -8943,358 +6146,6 @@ export class ParagraphLink extends NodeLink {
     }        
 }
 
-/**
- * Container class for pcl save options
- */
-export class PclSaveOptionsData extends FixedPageSaveOptionsData {
-
-    /**
-     * Attribute type map
-     */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            name: "falllbackFontName",
-            baseName: "FalllbackFontName",
-            type: "string",
-        },        
-        {
-            name: "rasterizeTransformedElements",
-            baseName: "RasterizeTransformedElements",
-            type: "boolean",
-        }    ];
-
-    /**
-     * Returns attribute type map
-     */
-    public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(PclSaveOptionsData.attributeTypeMap);
-    }
-
-    /**
-     * Name of the font that will be used if no expected font is found in printer and built-in fonts collections.
-     */
-    public falllbackFontName: string;
-    
-    /**
-     * Gets or sets a value determining whether or not complex transformed elements should be rasterized before saving to PCL document.  Default is true.
-     */
-    public rasterizeTransformedElements: boolean;
-    
-    public constructor(init?: Partial<PclSaveOptionsData>) {
-        super(init);
-        Object.assign(this, init);
-    }        
-}
-
-/**
- * container class for pdf save options
- */
-export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
-
-    /**
-     * Attribute type map
-     */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            name: "compliance",
-            baseName: "Compliance",
-            type: "string",
-        },        
-        {
-            name: "createNoteHyperlinks",
-            baseName: "CreateNoteHyperlinks",
-            type: "boolean",
-        },        
-        {
-            name: "customPropertiesExport",
-            baseName: "CustomPropertiesExport",
-            type: "string",
-        },        
-        {
-            name: "digitalSignatureDetails",
-            baseName: "DigitalSignatureDetails",
-            type: "PdfDigitalSignatureDetailsData",
-        },        
-        {
-            name: "displayDocTitle",
-            baseName: "DisplayDocTitle",
-            type: "boolean",
-        },        
-        {
-            name: "downsampleOptions",
-            baseName: "DownsampleOptions",
-            type: "DownsampleOptionsData",
-        },        
-        {
-            name: "embedFullFonts",
-            baseName: "EmbedFullFonts",
-            type: "boolean",
-        },        
-        {
-            name: "encryptionDetails",
-            baseName: "EncryptionDetails",
-            type: "PdfEncryptionDetailsData",
-        },        
-        {
-            name: "escapeUri",
-            baseName: "EscapeUri",
-            type: "boolean",
-        },        
-        {
-            name: "exportDocumentStructure",
-            baseName: "ExportDocumentStructure",
-            type: "boolean",
-        },        
-        {
-            name: "fontEmbeddingMode",
-            baseName: "FontEmbeddingMode",
-            type: "string",
-        },        
-        {
-            name: "headerFooterBookmarksExportMode",
-            baseName: "HeaderFooterBookmarksExportMode",
-            type: "PdfSaveOptionsData.HeaderFooterBookmarksExportModeEnum",
-        },        
-        {
-            name: "imageColorSpaceExportMode",
-            baseName: "ImageColorSpaceExportMode",
-            type: "string",
-        },        
-        {
-            name: "imageCompression",
-            baseName: "ImageCompression",
-            type: "string",
-        },        
-        {
-            name: "openHyperlinksInNewWindow",
-            baseName: "OpenHyperlinksInNewWindow",
-            type: "boolean",
-        },        
-        {
-            name: "outlineOptions",
-            baseName: "OutlineOptions",
-            type: "OutlineOptionsData",
-        },        
-        {
-            name: "pageMode",
-            baseName: "PageMode",
-            type: "string",
-        },        
-        {
-            name: "preblendImages",
-            baseName: "PreblendImages",
-            type: "boolean",
-        },        
-        {
-            name: "preserveFormFields",
-            baseName: "PreserveFormFields",
-            type: "boolean",
-        },        
-        {
-            name: "textCompression",
-            baseName: "TextCompression",
-            type: "string",
-        },        
-        {
-            name: "useBookFoldPrintingSettings",
-            baseName: "UseBookFoldPrintingSettings",
-            type: "boolean",
-        },        
-        {
-            name: "useCoreFonts",
-            baseName: "UseCoreFonts",
-            type: "boolean",
-        },        
-        {
-            name: "zoomBehavior",
-            baseName: "ZoomBehavior",
-            type: "string",
-        },        
-        {
-            name: "zoomFactor",
-            baseName: "ZoomFactor",
-            type: "number",
-        }    ];
-
-    /**
-     * Returns attribute type map
-     */
-    public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(PdfSaveOptionsData.attributeTypeMap);
-    }
-
-    /**
-     * Specifies the PDF standards compliance level for output documents
-     */
-    public compliance: string;
-    
-    /**
-     * Specifies whether to convert footnote/endnote references in main text story into active hyperlinks. When clicked the hyperlink will lead to the corresponding footnote/endnote. Default is false.
-     */
-    public createNoteHyperlinks: boolean;
-    
-    /**
-     * Gets or sets a value determining the way  are exported to PDF file. Default value is .
-     */
-    public customPropertiesExport: string;
-    
-    /**
-     * Specifies the details for signing the output PDF document
-     */
-    public digitalSignatureDetails: PdfDigitalSignatureDetailsData;
-    
-    /**
-     * A flag specifying whether the window’s title bar should display the document title taken from the Title entry of the document information dictionary.
-     */
-    public displayDocTitle: boolean;
-    
-    /**
-     * Allows to specify downsample options.
-     */
-    public downsampleOptions: DownsampleOptionsData;
-    
-    /**
-     * Controls how fonts are embedded into the resulting PDF documents
-     */
-    public embedFullFonts: boolean;
-    
-    /**
-     * Specifies the details for encrypting the output PDF document
-     */
-    public encryptionDetails: PdfEncryptionDetailsData;
-    
-    /**
-     * A flag specifying whether URI should be escaped before writing.             
-     */
-    public escapeUri: boolean;
-    
-    /**
-     * Determines whether or not to export document structure
-     */
-    public exportDocumentStructure: boolean;
-    
-    /**
-     * Specifies the font embedding mode
-     */
-    public fontEmbeddingMode: string;
-    
-    /**
-     * Determines how bookmarks in headers/footers are exported. The default value is Aspose.Words.Saving.HeaderFooterBookmarksExportMode.All.
-     */
-    public headerFooterBookmarksExportMode: PdfSaveOptionsData.HeaderFooterBookmarksExportModeEnum;
-    
-    /**
-     * Specifies how the color space will be selected for the images in PDF document.
-     */
-    public imageColorSpaceExportMode: string;
-    
-    /**
-     * Specifies compression type to be used for all images in the document
-     */
-    public imageCompression: string;
-    
-    /**
-     * Determines whether hyperlinks in the output Pdf document are forced to be opened in a new window (or tab) of a browser
-     */
-    public openHyperlinksInNewWindow: boolean;
-    
-    /**
-     * Allows to specify outline options
-     */
-    public outlineOptions: OutlineOptionsData;
-    
-    /**
-     * Specifies how the PDF document should be displayed when opened in the PDF reader
-     */
-    public pageMode: string;
-    
-    /**
-     * Gets or sets a value determining whether or not to preblend transparent images with black background color.
-     */
-    public preblendImages: boolean;
-    
-    /**
-     * Specifies whether to preserve Microsoft Word form fields as form fields in PDF or convert them to text
-     */
-    public preserveFormFields: boolean;
-    
-    /**
-     * Specifies compression type to be used for all textual content in the document
-     */
-    public textCompression: string;
-    
-    /**
-     * Determines whether the document should be saved using a booklet printing layout
-     */
-    public useBookFoldPrintingSettings: boolean;
-    
-    /**
-     * Determines whether or not to substitute TrueType fonts Arial, Times New Roman, Courier New and Symbol with core PDF Type 1 fonts
-     */
-    public useCoreFonts: boolean;
-    
-    /**
-     * Determines what type of zoom should be applied when a document is opened with a PDF viewer
-     */
-    public zoomBehavior: string;
-    
-    /**
-     * Determines zoom factor (in percentages) for a document
-     */
-    public zoomFactor: number;
-    
-    public constructor(init?: Partial<PdfSaveOptionsData>) {
-        super(init);
-        Object.assign(this, init);
-    }        
-}
-
-// tslint:disable:quotemark
-// tslint:disable-next-line:no-namespace
-export namespace PdfSaveOptionsData {
-    export enum HeaderFooterBookmarksExportModeEnum {
-        None = 'None' as any,
-        First = 'First' as any,
-        All = 'All' as any,
-    }
-}
-// tslint:enable:quotemark
-/**
- * container class for ps save options
- */
-export class PsSaveOptionsData extends FixedPageSaveOptionsData {
-
-    /**
-     * Attribute type map
-     */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            name: "useBookFoldPrintingSettings",
-            baseName: "UseBookFoldPrintingSettings",
-            type: "boolean",
-        }    ];
-
-    /**
-     * Returns attribute type map
-     */
-    public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(PsSaveOptionsData.attributeTypeMap);
-    }
-
-    /**
-     * Determines whether the document should be saved using a booklet printing layout
-     */
-    public useBookFoldPrintingSettings: boolean;
-    
-    public constructor(init?: Partial<PsSaveOptionsData>) {
-        super(init);
-        Object.assign(this, init);
-    }        
-}
-
-/**
- * Run link element
- */
 export class RunLink extends NodeLink {
 
     /**
@@ -9314,9 +6165,6 @@ export class RunLink extends NodeLink {
         return super.getAttributeTypeMap().concat(RunLink.attributeTypeMap);
     }
 
-    /**
-     * Run's text
-     */
     public text: string;
     
     public constructor(init?: Partial<RunLink>) {
@@ -9325,92 +6173,6 @@ export class RunLink extends NodeLink {
     }        
 }
 
-/**
- * container class for svg save options
- */
-export class SvgSaveOptionsData extends FixedPageSaveOptionsData {
-
-    /**
-     * Attribute type map
-     */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            name: "exportEmbeddedImages",
-            baseName: "ExportEmbeddedImages",
-            type: "boolean",
-        },        
-        {
-            name: "fitToViewPort",
-            baseName: "FitToViewPort",
-            type: "boolean",
-        },        
-        {
-            name: "resourcesFolder",
-            baseName: "ResourcesFolder",
-            type: "string",
-        },        
-        {
-            name: "resourcesFolderAlias",
-            baseName: "ResourcesFolderAlias",
-            type: "string",
-        },        
-        {
-            name: "showPageBorder",
-            baseName: "ShowPageBorder",
-            type: "boolean",
-        },        
-        {
-            name: "textOutputMode",
-            baseName: "TextOutputMode",
-            type: "string",
-        }    ];
-
-    /**
-     * Returns attribute type map
-     */
-    public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(SvgSaveOptionsData.attributeTypeMap);
-    }
-
-    /**
-     * Specified whether images should be embedded into SVG document as base64
-     */
-    public exportEmbeddedImages: boolean;
-    
-    /**
-     * Specifies if the output SVG should fill the available viewport area (browser window or container). When set to true width and height of output SVG are set to 100%.
-     */
-    public fitToViewPort: boolean;
-    
-    /**
-     * Specifies the physical folder where resources (images) are saved when exporting
-     */
-    public resourcesFolder: string;
-    
-    /**
-     * Specifies the name of the folder used to construct image URIs
-     */
-    public resourcesFolderAlias: string;
-    
-    /**
-     * Show/hide page stepper
-     */
-    public showPageBorder: boolean;
-    
-    /**
-     * Determines how text should be rendered
-     */
-    public textOutputMode: string;
-    
-    public constructor(init?: Partial<SvgSaveOptionsData>) {
-        super(init);
-        Object.assign(this, init);
-    }        
-}
-
-/**
- * Table element
- */
 export class Table extends NodeLink {
 
     /**
@@ -9435,14 +6197,8 @@ export class Table extends NodeLink {
         return super.getAttributeTypeMap().concat(Table.attributeTypeMap);
     }
 
-    /**
-     * Table properties.
-     */
     public tableProperties: TableProperties;
     
-    /**
-     * Collection of table's rows.
-     */
     public tableRowList: Array<TableRow>;
     
     public constructor(init?: Partial<Table>) {
@@ -9451,9 +6207,6 @@ export class Table extends NodeLink {
     }        
 }
 
-/**
- * Table cell element.
- */
 export class TableCell extends NodeLink {
 
     /**
@@ -9473,9 +6226,6 @@ export class TableCell extends NodeLink {
         return super.getAttributeTypeMap().concat(TableCell.attributeTypeMap);
     }
 
-    /**
-     * Child nodes.
-     */
     public childNodes: Array<NodeLink>;
     
     public constructor(init?: Partial<TableCell>) {
@@ -9484,9 +6234,6 @@ export class TableCell extends NodeLink {
     }        
 }
 
-/**
- * Table link element
- */
 export class TableLink extends NodeLink {
 
     /**
@@ -9508,9 +6255,6 @@ export class TableLink extends NodeLink {
     }        
 }
 
-/**
- * Table row element.
- */
 export class TableRow extends NodeLink {
 
     /**
@@ -9535,14 +6279,8 @@ export class TableRow extends NodeLink {
         return super.getAttributeTypeMap().concat(TableRow.attributeTypeMap);
     }
 
-    /**
-     * Provides access to the formatting properties of the row.
-     */
     public rowFormat: TableRowFormat;
     
-    /**
-     * Collection of table's rows.
-     */
     public tableCellList: Array<TableCell>;
     
     public constructor(init?: Partial<TableRow>) {
@@ -9551,139 +6289,6 @@ export class TableRow extends NodeLink {
     }        
 }
 
-/**
- * container class for xaml fixed save options
- */
-export class XamlFixedSaveOptionsData extends FixedPageSaveOptionsData {
-
-    /**
-     * Attribute type map
-     */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            name: "resourcesFolder",
-            baseName: "ResourcesFolder",
-            type: "string",
-        },        
-        {
-            name: "resourcesFolderAlias",
-            baseName: "ResourcesFolderAlias",
-            type: "string",
-        }    ];
-
-    /**
-     * Returns attribute type map
-     */
-    public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(XamlFixedSaveOptionsData.attributeTypeMap);
-    }
-
-    /**
-     * Specifies the physical folder where resources (images and fonts) are saved when exporting a document to fixed page Xaml format. Default is null.
-     */
-    public resourcesFolder: string;
-    
-    /**
-     * Specifies the name of the folder used to construct image URIs written into an fixed page Xaml document. Default is null.
-     */
-    public resourcesFolderAlias: string;
-    
-    public constructor(init?: Partial<XamlFixedSaveOptionsData>) {
-        super(init);
-        Object.assign(this, init);
-    }        
-}
-
-/**
- * Container class for xps save options.
- */
-export class XpsSaveOptionsData extends FixedPageSaveOptionsData {
-
-    /**
-     * Attribute type map
-     */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            name: "bookmarksOutlineLevel",
-            baseName: "BookmarksOutlineLevel",
-            type: "number",
-        },        
-        {
-            name: "headingsOutlineLevels",
-            baseName: "HeadingsOutlineLevels",
-            type: "number",
-        },        
-        {
-            name: "outlineOptions",
-            baseName: "OutlineOptions",
-            type: "OutlineOptionsData",
-        },        
-        {
-            name: "useBookFoldPrintingSettings",
-            baseName: "UseBookFoldPrintingSettings",
-            type: "boolean",
-        }    ];
-
-    /**
-     * Returns attribute type map
-     */
-    public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(XpsSaveOptionsData.attributeTypeMap);
-    }
-
-    /**
-     * Specifies the level in the XPS document outline at which to display Word bookmarks.
-     */
-    public bookmarksOutlineLevel: number;
-    
-    /**
-     * Specifies how many levels of headings (paragraphs formatted with the Heading styles) to include in the XPS document outline.
-     */
-    public headingsOutlineLevels: number;
-    
-    /**
-     * Allows to specify outline options
-     */
-    public outlineOptions: OutlineOptionsData;
-    
-    /**
-     * Determines whether the document should be saved using a booklet printing layout
-     */
-    public useBookFoldPrintingSettings: boolean;
-    
-    public constructor(init?: Partial<XpsSaveOptionsData>) {
-        super(init);
-        Object.assign(this, init);
-    }        
-}
-
-/**
- * Container class for bmp save options.
- */
-export class BmpSaveOptionsData extends ImageSaveOptionsData {
-
-    /**
-     * Attribute type map
-     */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-    ];
-
-    /**
-     * Returns attribute type map
-     */
-    public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(BmpSaveOptionsData.attributeTypeMap);
-    }
-
-    public constructor(init?: Partial<BmpSaveOptionsData>) {
-        super(init);
-        Object.assign(this, init);
-    }        
-}
-
-/**
- * Represents Drawing Object DTO.
- */
 export class DrawingObject extends DrawingObjectLink {
 
     /**
@@ -9748,54 +6353,24 @@ export class DrawingObject extends DrawingObjectLink {
         return super.getAttributeTypeMap().concat(DrawingObject.attributeTypeMap);
     }
 
-    /**
-     * Height of the drawing object in points.
-     */
     public height: number;
     
-    /**
-     * Link to image data. Can be null if shape does not have an image.
-     */
     public imageDataLink: WordsApiLink;
     
-    /**
-     * Distance in points from the origin to the left side of the image.             
-     */
     public left: number;
     
-    /**
-     * Link to ole object. Can be null if shape does not have ole data.
-     */
     public oleDataLink: WordsApiLink;
     
-    /**
-     * Specifies where the distance to the image is measured from.             
-     */
     public relativeHorizontalPosition: DrawingObject.RelativeHorizontalPositionEnum;
     
-    /**
-     * Specifies where the distance to the image measured from.
-     */
     public relativeVerticalPosition: DrawingObject.RelativeVerticalPositionEnum;
     
-    /**
-     * A list of links that originate from this .
-     */
     public renderLinks: Array<WordsApiLink>;
     
-    /**
-     * Distance in points from the origin to the top side of the image.
-     */
     public top: number;
     
-    /**
-     * Width of the drawing objects in points.
-     */
     public width: number;
     
-    /**
-     * Specifies how to wrap text around the image.
-     */
     public wrapType: DrawingObject.WrapTypeEnum;
     
     public constructor(init?: Partial<DrawingObject>) {
@@ -9840,33 +6415,6 @@ export namespace DrawingObject {
     }
 }
 // tslint:enable:quotemark
-/**
- * Container class for emf save options.
- */
-export class EmfSaveOptionsData extends ImageSaveOptionsData {
-
-    /**
-     * Attribute type map
-     */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-    ];
-
-    /**
-     * Returns attribute type map
-     */
-    public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(EmfSaveOptionsData.attributeTypeMap);
-    }
-
-    public constructor(init?: Partial<EmfSaveOptionsData>) {
-        super(init);
-        Object.assign(this, init);
-    }        
-}
-
-/**
- * Field
- */
 export class Field extends FieldLink {
 
     /**
@@ -9891,14 +6439,8 @@ export class Field extends FieldLink {
         return super.getAttributeTypeMap().concat(Field.attributeTypeMap);
     }
 
-    /**
-     * Gets or sets LCID of the field.
-     */
     public localeId: string;
     
-    /**
-     * Field result
-     */
     public result: string;
     
     public constructor(init?: Partial<Field>) {
@@ -9907,9 +6449,6 @@ export class Field extends FieldLink {
     }        
 }
 
-/**
- * Footnote.
- */
 export class Footnote extends FootnoteLink {
 
     /**
@@ -9949,29 +6488,14 @@ export class Footnote extends FootnoteLink {
         return super.getAttributeTypeMap().concat(Footnote.attributeTypeMap);
     }
 
-    /**
-     * Content of footnote.
-     */
     public content: StoryChildNodes;
     
-    /**
-     * Returns a value that specifies whether this is a footnote or endnote.
-     */
     public footnoteType: Footnote.FootnoteTypeEnum;
     
-    /**
-     * Link to comment range start node.
-     */
     public position: DocumentPosition;
     
-    /**
-     * Gets/sets custom reference mark to be used for this footnote. Default value is , meaning auto-numbered footnotes are used.
-     */
     public referenceMark: string;
     
-    /**
-     * This is a convenience property that allows to easily get or set text of the footnote.
-     */
     public text: string;
     
     public constructor(init?: Partial<Footnote>) {
@@ -9989,229 +6513,6 @@ export namespace Footnote {
     }
 }
 // tslint:enable:quotemark
-/**
- * FormField checkbox element
- */
-export class FormFieldCheckbox extends FormField {
-
-    /**
-     * Attribute type map
-     */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            name: "checkBoxSize",
-            baseName: "CheckBoxSize",
-            type: "number",
-        },        
-        {
-            name: "checked",
-            baseName: "Checked",
-            type: "boolean",
-        },        
-        {
-            name: "isCheckBoxExactSize",
-            baseName: "IsCheckBoxExactSize",
-            type: "boolean",
-        }    ];
-
-    /**
-     * Returns attribute type map
-     */
-    public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(FormFieldCheckbox.attributeTypeMap);
-    }
-
-    /**
-     * Gets or sets the size of the checkbox in points. Has effect only when  is true.
-     */
-    public checkBoxSize: number;
-    
-    /**
-     * Gets or sets the checked status of the check box form field.
-     */
-    public checked: boolean;
-    
-    /**
-     * Gets or sets the boolean value that indicates whether the size of the textbox is automatic or specified explicitly.
-     */
-    public isCheckBoxExactSize: boolean;
-    
-    public constructor(init?: Partial<FormFieldCheckbox>) {
-        super(init);
-        Object.assign(this, init);
-    }        
-}
-
-/**
- * FormField dropdownlist element
- */
-export class FormFieldDropDown extends FormField {
-
-    /**
-     * Attribute type map
-     */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            name: "dropDownItems",
-            baseName: "DropDownItems",
-            type: "Array<string>",
-        },        
-        {
-            name: "dropDownSelectedIndex",
-            baseName: "DropDownSelectedIndex",
-            type: "number",
-        }    ];
-
-    /**
-     * Returns attribute type map
-     */
-    public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(FormFieldDropDown.attributeTypeMap);
-    }
-
-    /**
-     * Provides access to the items of a dropdown form field.
-     */
-    public dropDownItems: Array<string>;
-    
-    /**
-     * Gets or sets the index specifying the currently selected item in a dropdown form field.
-     */
-    public dropDownSelectedIndex: number;
-    
-    public constructor(init?: Partial<FormFieldDropDown>) {
-        super(init);
-        Object.assign(this, init);
-    }        
-}
-
-/**
- * FormField text input element
- */
-export class FormFieldTextInput extends FormField {
-
-    /**
-     * Attribute type map
-     */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            name: "maxLength",
-            baseName: "MaxLength",
-            type: "number",
-        },        
-        {
-            name: "textInputDefault",
-            baseName: "TextInputDefault",
-            type: "string",
-        },        
-        {
-            name: "textInputFormat",
-            baseName: "TextInputFormat",
-            type: "string",
-        },        
-        {
-            name: "textInputType",
-            baseName: "TextInputType",
-            type: "FormFieldTextInput.TextInputTypeEnum",
-        }    ];
-
-    /**
-     * Returns attribute type map
-     */
-    public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(FormFieldTextInput.attributeTypeMap);
-    }
-
-    /**
-     * Maximum length for the text field. Zero when the length is not limited.
-     */
-    public maxLength: number;
-    
-    /**
-     * Gets or sets the default string or a calculation expression of a text form field. 
-     */
-    public textInputDefault: string;
-    
-    /**
-     * Returns or sets the text formatting for a text form field.
-     */
-    public textInputFormat: string;
-    
-    /**
-     * Gets or sets the type of a text form field.
-     */
-    public textInputType: FormFieldTextInput.TextInputTypeEnum;
-    
-    public constructor(init?: Partial<FormFieldTextInput>) {
-        super(init);
-        Object.assign(this, init);
-    }        
-}
-
-// tslint:disable:quotemark
-// tslint:disable-next-line:no-namespace
-export namespace FormFieldTextInput {
-    export enum TextInputTypeEnum {
-        Regular = 'Regular' as any,
-        Number = 'Number' as any,
-        Date = 'Date' as any,
-        CurrentDate = 'CurrentDate' as any,
-        CurrentTime = 'CurrentTime' as any,
-        Calculated = 'Calculated' as any,
-    }
-}
-// tslint:enable:quotemark
-/**
- * Container class for gif save options.
- */
-export class GifSaveOptionsData extends ImageSaveOptionsData {
-
-    /**
-     * Attribute type map
-     */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-    ];
-
-    /**
-     * Returns attribute type map
-     */
-    public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(GifSaveOptionsData.attributeTypeMap);
-    }
-
-    public constructor(init?: Partial<GifSaveOptionsData>) {
-        super(init);
-        Object.assign(this, init);
-    }        
-}
-
-/**
- * container class for jpeg save options.
- */
-export class JpegSaveOptionsData extends ImageSaveOptionsData {
-
-    /**
-     * Attribute type map
-     */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-    ];
-
-    /**
-     * Returns attribute type map
-     */
-    public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(JpegSaveOptionsData.attributeTypeMap);
-    }
-
-    public constructor(init?: Partial<JpegSaveOptionsData>) {
-        super(init);
-        Object.assign(this, init);
-    }        
-}
-
-/**
- * OfficeMath object.
- */
 export class OfficeMathObject extends OfficeMathLink {
 
     /**
@@ -10246,24 +6547,12 @@ export class OfficeMathObject extends OfficeMathLink {
         return super.getAttributeTypeMap().concat(OfficeMathObject.attributeTypeMap);
     }
 
-    /**
-     * Content of footnote.
-     */
     public content: StoryChildNodes;
     
-    /**
-     * Gets/sets Office Math display format type which represents whether an equation is displayed inline with the text or displayed on its own line.
-     */
     public displayType: OfficeMathObject.DisplayTypeEnum;
     
-    /**
-     * Gets/sets Office Math justification.
-     */
     public justification: OfficeMathObject.JustificationEnum;
     
-    /**
-     * Gets type Aspose.Words.Math.OfficeMath.MathObjectType of this Office Math object.
-     */
     public mathObjectType: OfficeMathObject.MathObjectTypeEnum;
     
     public constructor(init?: Partial<OfficeMathObject>) {
@@ -10321,33 +6610,6 @@ export namespace OfficeMathObject {
     }
 }
 // tslint:enable:quotemark
-/**
- * container class for png save options.
- */
-export class PngSaveOptionsData extends ImageSaveOptionsData {
-
-    /**
-     * Attribute type map
-     */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-    ];
-
-    /**
-     * Returns attribute type map
-     */
-    public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(PngSaveOptionsData.attributeTypeMap);
-    }
-
-    public constructor(init?: Partial<PngSaveOptionsData>) {
-        super(init);
-        Object.assign(this, init);
-    }        
-}
-
-/**
- * Run element
- */
 export class Run extends RunLink {
 
     /**
@@ -10369,9 +6631,6 @@ export class Run extends RunLink {
     }        
 }
 
-/**
- * Container class for tiff save options.
- */
 export class TiffSaveOptionsData extends ImageSaveOptionsData {
 
     /**
@@ -10396,14 +6655,8 @@ export class TiffSaveOptionsData extends ImageSaveOptionsData {
         return super.getAttributeTypeMap().concat(TiffSaveOptionsData.attributeTypeMap);
     }
 
-    /**
-     * Specifies method used while converting images to 1 bpp format.
-     */
     public tiffBinarizationMethod: string;
     
-    /**
-     * Type of compression.
-     */
     public tiffCompression: string;
     
     public constructor(init?: Partial<TiffSaveOptionsData>) {
@@ -10431,10 +6684,6 @@ const enumsMap = {
     "Font.TextEffectEnum": Font.TextEffectEnum,
     "Font.UnderlineEnum": Font.UnderlineEnum,
     "HeaderFooterLink.TypeEnum": HeaderFooterLink.TypeEnum,
-    "HtmlSaveOptionsData.HtmlVersionEnum": HtmlSaveOptionsData.HtmlVersionEnum,
-    "HtmlSaveOptionsData.MetafileFormatEnum": HtmlSaveOptionsData.MetafileFormatEnum,
-    "HtmlSaveOptionsData.OfficeMathOutputModeEnum": HtmlSaveOptionsData.OfficeMathOutputModeEnum,
-    "OdtSaveOptionsData.MeasureUnitEnum": OdtSaveOptionsData.MeasureUnitEnum,
     "PageSetup.BorderAppliesToEnum": PageSetup.BorderAppliesToEnum,
     "PageSetup.BorderDistanceFromEnum": PageSetup.BorderDistanceFromEnum,
     "PageSetup.LineNumberRestartModeEnum": PageSetup.LineNumberRestartModeEnum,
@@ -10452,12 +6701,10 @@ const enumsMap = {
     "TableProperties.StyleOptionsEnum": TableProperties.StyleOptionsEnum,
     "TableProperties.TextWrappingEnum": TableProperties.TextWrappingEnum,
     "TableRowFormat.HeightRuleEnum": TableRowFormat.HeightRuleEnum,
-    "PdfSaveOptionsData.HeaderFooterBookmarksExportModeEnum": PdfSaveOptionsData.HeaderFooterBookmarksExportModeEnum,
     "DrawingObject.RelativeHorizontalPositionEnum": DrawingObject.RelativeHorizontalPositionEnum,
     "DrawingObject.RelativeVerticalPositionEnum": DrawingObject.RelativeVerticalPositionEnum,
     "DrawingObject.WrapTypeEnum": DrawingObject.WrapTypeEnum,
     "Footnote.FootnoteTypeEnum": Footnote.FootnoteTypeEnum,
-    "FormFieldTextInput.TextInputTypeEnum": FormFieldTextInput.TextInputTypeEnum,
     "OfficeMathObject.DisplayTypeEnum": OfficeMathObject.DisplayTypeEnum,
     "OfficeMathObject.JustificationEnum": OfficeMathObject.JustificationEnum,
     "OfficeMathObject.MathObjectTypeEnum": OfficeMathObject.MathObjectTypeEnum,
@@ -10466,7 +6713,6 @@ const enumsMap = {
 const typeMap = {
             AsposeResponse,
             BookmarkData,
-            BookmarksOutlineLevelData,
             ClassificationResult,
             CompareData,
             Document,
@@ -10474,7 +6720,6 @@ const typeMap = {
             DocumentEntryList,
             DocumentPosition,
             DocumentStatData,
-            DownsampleOptionsData,
             FontInfo,
             FootnotesStatData,
             GraphicsQualityOptionsData,
@@ -10483,12 +6728,9 @@ const typeMap = {
             LoadWebDocumentData,
             MetafileRenderingOptionsData,
             ModificationOperationResult,
-            OutlineOptionsData,
             PageNumber,
             PageStatData,
             ParagraphInsert,
-            PdfDigitalSignatureDetailsData,
-            PdfEncryptionDetailsData,
             PreferredWidth,
             ProtectionData,
             ProtectionRequest,
@@ -10518,7 +6760,6 @@ const typeMap = {
             CommentResponse,
             CommentsCollection,
             CommentsResponse,
-            DocSaveOptionsData,
             DocumentProperties,
             DocumentPropertiesResponse,
             DocumentProperty,
@@ -10546,26 +6787,21 @@ const typeMap = {
             HeaderFooterLinkCollection,
             HeaderFooterResponse,
             HeaderFootersResponse,
-            HtmlSaveOptionsData,
             Hyperlink,
             HyperlinkResponse,
             Hyperlinks,
             HyperlinksResponse,
             NodeLink,
-            OdtSaveOptionsData,
             OfficeMathObjectResponse,
             OfficeMathObjectsCollection,
             OfficeMathObjectsResponse,
-            OoxmlSaveOptionsData,
             PageSetup,
             ParagraphLinkCollection,
             ParagraphLinkCollectionResponse,
             ParagraphResponse,
             ProtectionDataResponse,
-            ProtectionResponse,
             ReplaceTextResponse,
             RevisionsModificationResponse,
-            RtfSaveOptionsData,
             RunResponse,
             Runs,
             RunsResponse,
@@ -10594,47 +6830,26 @@ const typeMap = {
             TextItem,
             TextItems,
             TextItemsResponse,
-            TextSaveOptionsData,
-            WordMLSaveOptionsData,
-            WordsApiErrorResponse,
             WordsApiLink,
-            XamlFlowSaveOptionsData,
             Comment,
             DrawingObjectLink,
-            EpubSaveOptionsData,
             FieldLink,
             FootnoteLink,
             FormField,
             HeaderFooter,
-            HtmlFixedSaveOptionsData,
             ImageSaveOptionsData,
-            MhtmlSaveOptionsData,
             OfficeMathLink,
             Paragraph,
             ParagraphLink,
-            PclSaveOptionsData,
-            PdfSaveOptionsData,
-            PsSaveOptionsData,
             RunLink,
-            SvgSaveOptionsData,
             Table,
             TableCell,
             TableLink,
             TableRow,
-            XamlFixedSaveOptionsData,
-            XpsSaveOptionsData,
-            BmpSaveOptionsData,
             DrawingObject,
-            EmfSaveOptionsData,
             Field,
             Footnote,
-            FormFieldCheckbox,
-            FormFieldDropDown,
-            FormFieldTextInput,
-            GifSaveOptionsData,
-            JpegSaveOptionsData,
             OfficeMathObject,
-            PngSaveOptionsData,
             Run,
             TiffSaveOptionsData,
 };
@@ -10646,7 +6861,7 @@ export {enumsMap, typeMap};
  */
 export class AcceptAllRevisionsRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
@@ -10685,12 +6900,12 @@ export class AcceptAllRevisionsRequest {
  */
 export class ClassifyRequest {
     /**
-     * Text to classify.
+     * Gets or sets text
      */
     public text: string;
 
     /**
-     * Count of the best classes to return.
+     * Gets or sets bestClassesCount
      */
     public bestClassesCount: string;
     
@@ -10704,7 +6919,7 @@ export class ClassifyRequest {
  */
 export class ClassifyDocumentRequest {
     /**
-     * The document name.
+     * Gets or sets documentName
      */
     public documentName: string;
 
@@ -10729,12 +6944,17 @@ export class ClassifyDocumentRequest {
     public password: string;
 
     /**
-     * Count of the best classes to return.
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Gets or sets bestClassesCount
      */
     public bestClassesCount: string;
 
     /**
-     * Taxonomy to use for classification return.
+     * Gets or sets taxonomy
      */
     public taxonomy: string;
     
@@ -10748,17 +6968,17 @@ export class ClassifyDocumentRequest {
  */
 export class CreateOrUpdateDocumentPropertyRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * The property name.
+     * Gets or sets propertyName
      */
     public propertyName: string;
 
     /**
-     * The property with new value.
+     * Gets or sets property
      */
     public property: DocumentProperty;
 
@@ -10807,12 +7027,12 @@ export class CreateOrUpdateDocumentPropertyRequest {
  */
 export class DeleteBorderRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * Path to node with border(node should be cell or row).
+     * Gets or sets nodePath
      */
     public nodePath: string;
 
@@ -10866,12 +7086,12 @@ export class DeleteBorderRequest {
  */
 export class DeleteBordersRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * Path to node with borders(node should be cell or row).
+     * Gets or sets nodePath
      */
     public nodePath: string;
 
@@ -10920,12 +7140,12 @@ export class DeleteBordersRequest {
  */
 export class DeleteCommentRequest {
     /**
-     * The file name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * Comment index
+     * Gets or sets commentIndex
      */
     public commentIndex: number;
 
@@ -10974,7 +7194,7 @@ export class DeleteCommentRequest {
  */
 export class DeleteDocumentMacrosRequest {
     /**
-     * The file name.
+     * Gets or sets name
      */
     public name: string;
 
@@ -11023,12 +7243,12 @@ export class DeleteDocumentMacrosRequest {
  */
 export class DeleteDocumentPropertyRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * The property name.
+     * Gets or sets propertyName
      */
     public propertyName: string;
 
@@ -11077,7 +7297,7 @@ export class DeleteDocumentPropertyRequest {
  */
 export class DeleteDocumentWatermarkRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
@@ -11126,7 +7346,7 @@ export class DeleteDocumentWatermarkRequest {
  */
 export class DeleteDrawingObjectRequest {
     /**
-     * The file name.
+     * Gets or sets name
      */
     public name: string;
 
@@ -11171,7 +7391,7 @@ export class DeleteDrawingObjectRequest {
     public revisionDateTime: string;
 
     /**
-     * Path to node, which contains collection of drawing objects.
+     * Gets or sets nodePath
      */
     public nodePath: string;
     
@@ -11185,7 +7405,7 @@ export class DeleteDrawingObjectRequest {
  */
 export class DeleteFieldRequest {
     /**
-     * The file name.
+     * Gets or sets name
      */
     public name: string;
 
@@ -11230,7 +7450,7 @@ export class DeleteFieldRequest {
     public revisionDateTime: string;
 
     /**
-     * Path to node, which contains collection of fields.
+     * Gets or sets nodePath
      */
     public nodePath: string;
     
@@ -11244,7 +7464,7 @@ export class DeleteFieldRequest {
  */
 export class DeleteFieldsRequest {
     /**
-     * The file name.
+     * Gets or sets name
      */
     public name: string;
 
@@ -11284,7 +7504,7 @@ export class DeleteFieldsRequest {
     public revisionDateTime: string;
 
     /**
-     * Path to node, which contains collection of fields.
+     * Gets or sets nodePath
      */
     public nodePath: string;
     
@@ -11298,7 +7518,7 @@ export class DeleteFieldsRequest {
  */
 export class DeleteFootnoteRequest {
     /**
-     * The file name.
+     * Gets or sets name
      */
     public name: string;
 
@@ -11343,7 +7563,7 @@ export class DeleteFootnoteRequest {
     public revisionDateTime: string;
 
     /**
-     * Path to node, which contains collection of footnotes.
+     * Gets or sets nodePath
      */
     public nodePath: string;
     
@@ -11357,7 +7577,7 @@ export class DeleteFootnoteRequest {
  */
 export class DeleteFormFieldRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
@@ -11402,7 +7622,7 @@ export class DeleteFormFieldRequest {
     public revisionDateTime: string;
 
     /**
-     * Path to node that contains collection of formfields.
+     * Gets or sets nodePath
      */
     public nodePath: string;
     
@@ -11416,7 +7636,7 @@ export class DeleteFormFieldRequest {
  */
 export class DeleteHeaderFooterRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
@@ -11461,7 +7681,7 @@ export class DeleteHeaderFooterRequest {
     public revisionDateTime: string;
 
     /**
-     * Path to parent section.
+     * Gets or sets sectionPath
      */
     public sectionPath: string;
     
@@ -11475,7 +7695,7 @@ export class DeleteHeaderFooterRequest {
  */
 export class DeleteHeadersFootersRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
@@ -11515,12 +7735,12 @@ export class DeleteHeadersFootersRequest {
     public revisionDateTime: string;
 
     /**
-     * Path to parent section.
+     * Gets or sets sectionPath
      */
     public sectionPath: string;
 
     /**
-     * List of types of headers and footers.
+     * Gets or sets headersFootersTypes
      */
     public headersFootersTypes: string;
     
@@ -11534,7 +7754,7 @@ export class DeleteHeadersFootersRequest {
  */
 export class DeleteOfficeMathObjectRequest {
     /**
-     * The file name.
+     * Gets or sets name
      */
     public name: string;
 
@@ -11579,7 +7799,7 @@ export class DeleteOfficeMathObjectRequest {
     public revisionDateTime: string;
 
     /**
-     * Path to node, which contains collection of OfficeMath objects.
+     * Gets or sets nodePath
      */
     public nodePath: string;
     
@@ -11593,7 +7813,7 @@ export class DeleteOfficeMathObjectRequest {
  */
 export class DeleteParagraphRequest {
     /**
-     * The file name.
+     * Gets or sets name
      */
     public name: string;
 
@@ -11638,7 +7858,7 @@ export class DeleteParagraphRequest {
     public revisionDateTime: string;
 
     /**
-     * Path to node which contains paragraphs.
+     * Gets or sets nodePath
      */
     public nodePath: string;
     
@@ -11652,12 +7872,12 @@ export class DeleteParagraphRequest {
  */
 export class DeleteRunRequest {
     /**
-     * The file name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * Path to parent paragraph.
+     * Gets or sets paragraphPath
      */
     public paragraphPath: string;
 
@@ -11711,7 +7931,7 @@ export class DeleteRunRequest {
  */
 export class DeleteTableRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
@@ -11756,7 +7976,7 @@ export class DeleteTableRequest {
     public revisionDateTime: string;
 
     /**
-     * Path to node, which contains tables.
+     * Gets or sets nodePath
      */
     public nodePath: string;
     
@@ -11770,12 +7990,12 @@ export class DeleteTableRequest {
  */
 export class DeleteTableCellRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * Path to table row.
+     * Gets or sets tableRowPath
      */
     public tableRowPath: string;
 
@@ -11829,12 +8049,12 @@ export class DeleteTableCellRequest {
  */
 export class DeleteTableRowRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * Path to table.
+     * Gets or sets tablePath
      */
     public tablePath: string;
 
@@ -11888,12 +8108,12 @@ export class DeleteTableRowRequest {
  */
 export class DeleteUnprotectDocumentRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * with protection settings.            
+     * Gets or sets protectionRequest
      */
     public protectionRequest: ProtectionRequest;
 
@@ -11932,7 +8152,7 @@ export class DeleteUnprotectDocumentRequest {
  */
 export class GetAvailableFontsRequest {
     /**
-     * Folder in filestorage with custom fonts.
+     * Gets or sets fontsLocation
      */
     public fontsLocation: string;
     
@@ -11946,12 +8166,12 @@ export class GetAvailableFontsRequest {
  */
 export class GetBorderRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * Path to node with border(node should be cell or row).
+     * Gets or sets nodePath
      */
     public nodePath: string;
 
@@ -11990,12 +8210,12 @@ export class GetBorderRequest {
  */
 export class GetBordersRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * Path to node with borders(node should be cell or row).
+     * Gets or sets nodePath
      */
     public nodePath: string;
 
@@ -12029,12 +8249,12 @@ export class GetBordersRequest {
  */
 export class GetCommentRequest {
     /**
-     * The file name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * Comment index
+     * Gets or sets commentIndex
      */
     public commentIndex: number;
 
@@ -12068,7 +8288,7 @@ export class GetCommentRequest {
  */
 export class GetCommentsRequest {
     /**
-     * The file name.
+     * Gets or sets name
      */
     public name: string;
 
@@ -12102,7 +8322,7 @@ export class GetCommentsRequest {
  */
 export class GetDocumentRequest {
     /**
-     * The file name.
+     * Gets or sets documentName
      */
     public documentName: string;
 
@@ -12136,12 +8356,12 @@ export class GetDocumentRequest {
  */
 export class GetDocumentBookmarkByNameRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * The bookmark name.
+     * Gets or sets bookmarkName
      */
     public bookmarkName: string;
 
@@ -12175,7 +8395,7 @@ export class GetDocumentBookmarkByNameRequest {
  */
 export class GetDocumentBookmarksRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
@@ -12209,7 +8429,7 @@ export class GetDocumentBookmarksRequest {
  */
 export class GetDocumentDrawingObjectByIndexRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
@@ -12239,7 +8459,7 @@ export class GetDocumentDrawingObjectByIndexRequest {
     public password: string;
 
     /**
-     * Path to node, which contains collection of drawing objects.
+     * Gets or sets nodePath
      */
     public nodePath: string;
     
@@ -12253,7 +8473,7 @@ export class GetDocumentDrawingObjectByIndexRequest {
  */
 export class GetDocumentDrawingObjectImageDataRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
@@ -12283,7 +8503,7 @@ export class GetDocumentDrawingObjectImageDataRequest {
     public password: string;
 
     /**
-     * Path to node, which contains collection of drawing objects.
+     * Gets or sets nodePath
      */
     public nodePath: string;
     
@@ -12297,7 +8517,7 @@ export class GetDocumentDrawingObjectImageDataRequest {
  */
 export class GetDocumentDrawingObjectOleDataRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
@@ -12327,7 +8547,7 @@ export class GetDocumentDrawingObjectOleDataRequest {
     public password: string;
 
     /**
-     * Path to node, which contains collection of drawing objects.
+     * Gets or sets nodePath
      */
     public nodePath: string;
     
@@ -12341,7 +8561,7 @@ export class GetDocumentDrawingObjectOleDataRequest {
  */
 export class GetDocumentDrawingObjectsRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
@@ -12366,7 +8586,7 @@ export class GetDocumentDrawingObjectsRequest {
     public password: string;
 
     /**
-     * Path to node, which contains collection of drawing objects.
+     * Gets or sets nodePath
      */
     public nodePath: string;
     
@@ -12380,7 +8600,7 @@ export class GetDocumentDrawingObjectsRequest {
  */
 export class GetDocumentFieldNamesRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
@@ -12405,7 +8625,7 @@ export class GetDocumentFieldNamesRequest {
     public password: string;
 
     /**
-     * If true, result includes \"mustache\" field names.
+     * Gets or sets useNonMergeFields
      */
     public useNonMergeFields: boolean;
     
@@ -12419,12 +8639,12 @@ export class GetDocumentFieldNamesRequest {
  */
 export class GetDocumentHyperlinkByIndexRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * The hyperlink index.
+     * Gets or sets hyperlinkIndex
      */
     public hyperlinkIndex: number;
 
@@ -12458,7 +8678,7 @@ export class GetDocumentHyperlinkByIndexRequest {
  */
 export class GetDocumentHyperlinksRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
@@ -12492,7 +8712,7 @@ export class GetDocumentHyperlinksRequest {
  */
 export class GetDocumentParagraphRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
@@ -12522,7 +8742,7 @@ export class GetDocumentParagraphRequest {
     public password: string;
 
     /**
-     * Path to node which contains paragraphs.
+     * Gets or sets nodePath
      */
     public nodePath: string;
     
@@ -12536,12 +8756,12 @@ export class GetDocumentParagraphRequest {
  */
 export class GetDocumentParagraphRunRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * Path to parent paragraph.
+     * Gets or sets paragraphPath
      */
     public paragraphPath: string;
 
@@ -12580,12 +8800,12 @@ export class GetDocumentParagraphRunRequest {
  */
 export class GetDocumentParagraphRunFontRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * Path to parent paragraph.
+     * Gets or sets paragraphPath
      */
     public paragraphPath: string;
 
@@ -12624,12 +8844,12 @@ export class GetDocumentParagraphRunFontRequest {
  */
 export class GetDocumentParagraphRunsRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * Path to parent paragraph.
+     * Gets or sets paragraphPath
      */
     public paragraphPath: string;
 
@@ -12663,7 +8883,7 @@ export class GetDocumentParagraphRunsRequest {
  */
 export class GetDocumentParagraphsRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
@@ -12688,7 +8908,7 @@ export class GetDocumentParagraphsRequest {
     public password: string;
 
     /**
-     * Path to node which contains paragraphs.
+     * Gets or sets nodePath
      */
     public nodePath: string;
     
@@ -12702,7 +8922,7 @@ export class GetDocumentParagraphsRequest {
  */
 export class GetDocumentPropertiesRequest {
     /**
-     * The document's name.
+     * Gets or sets name
      */
     public name: string;
 
@@ -12736,12 +8956,12 @@ export class GetDocumentPropertiesRequest {
  */
 export class GetDocumentPropertyRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * The property name.
+     * Gets or sets propertyName
      */
     public propertyName: string;
 
@@ -12775,7 +8995,7 @@ export class GetDocumentPropertyRequest {
  */
 export class GetDocumentProtectionRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
@@ -12809,7 +9029,7 @@ export class GetDocumentProtectionRequest {
  */
 export class GetDocumentStatisticsRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
@@ -12834,17 +9054,17 @@ export class GetDocumentStatisticsRequest {
     public password: string;
 
     /**
-     * Support including/excluding comments from the WordCount. Default value is \"true\".
+     * Gets or sets includeComments
      */
     public includeComments: boolean;
 
     /**
-     * Support including/excluding footnotes from the WordCount. Default value is \"false\".
+     * Gets or sets includeFootnotes
      */
     public includeFootnotes: boolean;
 
     /**
-     * Support including/excluding shape's text from the WordCount. Default value is \"false\"
+     * Gets or sets includeTextInShapes
      */
     public includeTextInShapes: boolean;
     
@@ -12858,7 +9078,7 @@ export class GetDocumentStatisticsRequest {
  */
 export class GetDocumentTextItemsRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
@@ -12892,12 +9112,12 @@ export class GetDocumentTextItemsRequest {
  */
 export class GetDocumentWithFormatRequest {
     /**
-     * The file name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * The destination format.
+     * Gets or sets format
      */
     public format: string;
 
@@ -12922,7 +9142,7 @@ export class GetDocumentWithFormatRequest {
     public password: string;
 
     /**
-     * Path to save result
+     * Gets or sets outPath
      */
     public outPath: string;
 
@@ -12941,7 +9161,7 @@ export class GetDocumentWithFormatRequest {
  */
 export class GetFieldRequest {
     /**
-     * The file name.
+     * Gets or sets name
      */
     public name: string;
 
@@ -12971,7 +9191,7 @@ export class GetFieldRequest {
     public password: string;
 
     /**
-     * Path to node, which contains collection of fields.
+     * Gets or sets nodePath
      */
     public nodePath: string;
     
@@ -12985,7 +9205,7 @@ export class GetFieldRequest {
  */
 export class GetFieldsRequest {
     /**
-     * The file name.
+     * Gets or sets name
      */
     public name: string;
 
@@ -13010,7 +9230,7 @@ export class GetFieldsRequest {
     public password: string;
 
     /**
-     * Path to node, which contains collection of fields.
+     * Gets or sets nodePath
      */
     public nodePath: string;
     
@@ -13024,7 +9244,7 @@ export class GetFieldsRequest {
  */
 export class GetFootnoteRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
@@ -13054,7 +9274,7 @@ export class GetFootnoteRequest {
     public password: string;
 
     /**
-     * Path to node, which contains collection of footnotes.
+     * Gets or sets nodePath
      */
     public nodePath: string;
     
@@ -13068,7 +9288,7 @@ export class GetFootnoteRequest {
  */
 export class GetFootnotesRequest {
     /**
-     * The file name.
+     * Gets or sets name
      */
     public name: string;
 
@@ -13093,7 +9313,7 @@ export class GetFootnotesRequest {
     public password: string;
 
     /**
-     * Path to node, which contains collection of footnotes.
+     * Gets or sets nodePath
      */
     public nodePath: string;
     
@@ -13107,7 +9327,7 @@ export class GetFootnotesRequest {
  */
 export class GetFormFieldRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
@@ -13137,7 +9357,7 @@ export class GetFormFieldRequest {
     public password: string;
 
     /**
-     * Path to node that contains collection of formfields.
+     * Gets or sets nodePath
      */
     public nodePath: string;
     
@@ -13151,7 +9371,7 @@ export class GetFormFieldRequest {
  */
 export class GetFormFieldsRequest {
     /**
-     * The file name.
+     * Gets or sets name
      */
     public name: string;
 
@@ -13176,7 +9396,7 @@ export class GetFormFieldsRequest {
     public password: string;
 
     /**
-     * Path to node containing collection of form fields.
+     * Gets or sets nodePath
      */
     public nodePath: string;
     
@@ -13190,12 +9410,12 @@ export class GetFormFieldsRequest {
  */
 export class GetHeaderFooterRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * Header/footer index.
+     * Gets or sets headerFooterIndex
      */
     public headerFooterIndex: number;
 
@@ -13220,7 +9440,7 @@ export class GetHeaderFooterRequest {
     public password: string;
 
     /**
-     * List of types of headers and footers.
+     * Gets or sets filterByType
      */
     public filterByType: string;
     
@@ -13234,17 +9454,17 @@ export class GetHeaderFooterRequest {
  */
 export class GetHeaderFooterOfSectionRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * Header/footer index.
+     * Gets or sets headerFooterIndex
      */
     public headerFooterIndex: number;
 
     /**
-     * Section index.
+     * Gets or sets sectionIndex
      */
     public sectionIndex: number;
 
@@ -13269,7 +9489,7 @@ export class GetHeaderFooterOfSectionRequest {
     public password: string;
 
     /**
-     * List of types of headers and footers.
+     * Gets or sets filterByType
      */
     public filterByType: string;
     
@@ -13283,7 +9503,7 @@ export class GetHeaderFooterOfSectionRequest {
  */
 export class GetHeaderFootersRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
@@ -13308,12 +9528,12 @@ export class GetHeaderFootersRequest {
     public password: string;
 
     /**
-     * Path to parent section.
+     * Gets or sets sectionPath
      */
     public sectionPath: string;
 
     /**
-     * List of types of headers and footers.
+     * Gets or sets filterByType
      */
     public filterByType: string;
     
@@ -13327,7 +9547,7 @@ export class GetHeaderFootersRequest {
  */
 export class GetOfficeMathObjectRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
@@ -13357,7 +9577,7 @@ export class GetOfficeMathObjectRequest {
     public password: string;
 
     /**
-     * Path to node, which contains collection of OfficeMath objects.
+     * Gets or sets nodePath
      */
     public nodePath: string;
     
@@ -13371,7 +9591,7 @@ export class GetOfficeMathObjectRequest {
  */
 export class GetOfficeMathObjectsRequest {
     /**
-     * The file name.
+     * Gets or sets name
      */
     public name: string;
 
@@ -13396,7 +9616,7 @@ export class GetOfficeMathObjectsRequest {
     public password: string;
 
     /**
-     * Path to node, which contains collection of OfficeMath objects.
+     * Gets or sets nodePath
      */
     public nodePath: string;
     
@@ -13410,12 +9630,12 @@ export class GetOfficeMathObjectsRequest {
  */
 export class GetSectionRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * Section index
+     * Gets or sets sectionIndex
      */
     public sectionIndex: number;
 
@@ -13449,12 +9669,12 @@ export class GetSectionRequest {
  */
 export class GetSectionPageSetupRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * Section index
+     * Gets or sets sectionIndex
      */
     public sectionIndex: number;
 
@@ -13488,7 +9708,7 @@ export class GetSectionPageSetupRequest {
  */
 export class GetSectionsRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
@@ -13522,7 +9742,7 @@ export class GetSectionsRequest {
  */
 export class GetTableRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
@@ -13552,7 +9772,7 @@ export class GetTableRequest {
     public password: string;
 
     /**
-     * Path to node, which contains tables.
+     * Gets or sets nodePath
      */
     public nodePath: string;
     
@@ -13566,12 +9786,12 @@ export class GetTableRequest {
  */
 export class GetTableCellRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * Path to table row.
+     * Gets or sets tableRowPath
      */
     public tableRowPath: string;
 
@@ -13610,12 +9830,12 @@ export class GetTableCellRequest {
  */
 export class GetTableCellFormatRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * Path to table row.
+     * Gets or sets tableRowPath
      */
     public tableRowPath: string;
 
@@ -13654,7 +9874,7 @@ export class GetTableCellFormatRequest {
  */
 export class GetTablePropertiesRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
@@ -13684,7 +9904,7 @@ export class GetTablePropertiesRequest {
     public password: string;
 
     /**
-     * Path to node, which contains tables.
+     * Gets or sets nodePath
      */
     public nodePath: string;
     
@@ -13698,12 +9918,12 @@ export class GetTablePropertiesRequest {
  */
 export class GetTableRowRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * Path to table.
+     * Gets or sets tablePath
      */
     public tablePath: string;
 
@@ -13742,12 +9962,12 @@ export class GetTableRowRequest {
  */
 export class GetTableRowFormatRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * Path to table.
+     * Gets or sets tablePath
      */
     public tablePath: string;
 
@@ -13786,7 +10006,7 @@ export class GetTableRowFormatRequest {
  */
 export class GetTablesRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
@@ -13811,7 +10031,7 @@ export class GetTablesRequest {
     public password: string;
 
     /**
-     * Path to node, which contains tables.
+     * Gets or sets nodePath
      */
     public nodePath: string;
     
@@ -13825,7 +10045,7 @@ export class GetTablesRequest {
  */
 export class InsertTableRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
@@ -13865,12 +10085,12 @@ export class InsertTableRequest {
     public revisionDateTime: string;
 
     /**
-     * Table parameters/
+     * Gets or sets table
      */
     public table: TableInsert;
 
     /**
-     * Path to node, which contains tables.
+     * Gets or sets nodePath
      */
     public nodePath: string;
     
@@ -13884,12 +10104,12 @@ export class InsertTableRequest {
  */
 export class InsertTableCellRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * Path to table row.
+     * Gets or sets tableRowPath
      */
     public tableRowPath: string;
 
@@ -13929,7 +10149,7 @@ export class InsertTableCellRequest {
     public revisionDateTime: string;
 
     /**
-     * Table cell parameters/
+     * Gets or sets cell
      */
     public cell: TableCellInsert;
     
@@ -13943,12 +10163,12 @@ export class InsertTableCellRequest {
  */
 export class InsertTableRowRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * Path to table.
+     * Gets or sets tablePath
      */
     public tablePath: string;
 
@@ -13988,7 +10208,7 @@ export class InsertTableRowRequest {
     public revisionDateTime: string;
 
     /**
-     * Table row parameters/
+     * Gets or sets row
      */
     public row: TableRowInsert;
     
@@ -14002,12 +10222,12 @@ export class InsertTableRowRequest {
  */
 export class PostAppendDocumentRequest {
     /**
-     * Original document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * with a list of documents to append.            
+     * Gets or sets documentList
      */
     public documentList: DocumentEntryList;
 
@@ -14056,12 +10276,12 @@ export class PostAppendDocumentRequest {
  */
 export class PostChangeDocumentProtectionRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * with protection settings.            
+     * Gets or sets protectionRequest
      */
     public protectionRequest: ProtectionRequest;
 
@@ -14100,17 +10320,17 @@ export class PostChangeDocumentProtectionRequest {
  */
 export class PostCommentRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * Comment index
+     * Gets or sets commentIndex
      */
     public commentIndex: number;
 
     /**
-     * Comment data.
+     * Gets or sets comment
      */
     public comment: Comment;
 
@@ -14159,12 +10379,12 @@ export class PostCommentRequest {
  */
 export class PostCompareDocumentRequest {
     /**
-     * Original document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * with a document to compare.            
+     * Gets or sets compareData
      */
     public compareData: CompareData;
 
@@ -14203,7 +10423,7 @@ export class PostCompareDocumentRequest {
  */
 export class PostDocumentExecuteMailMergeRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
@@ -14233,27 +10453,27 @@ export class PostDocumentExecuteMailMergeRequest {
     public password: string;
 
     /**
-     * With regions flag.
+     * Gets or sets withRegions
      */
     public withRegions: boolean;
 
     /**
-     * Mail merge data.
+     * Gets or sets mailMergeDataFile
      */
     public mailMergeDataFile: string;
 
     /**
-     * Clean up options.
+     * Gets or sets cleanup
      */
     public cleanup: string;
 
     /**
-     * Gets or sets a value indicating whether paragraph with TableStart or              TableEnd field should be fully included into mail merge region or particular range between TableStart and TableEnd fields.              The default value is true.
+     * Gets or sets useWholeParagraphAsRegion
      */
     public useWholeParagraphAsRegion: boolean;
 
     /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved with autogenerated name.
+     * Gets or sets destFileName
      */
     public destFileName: string;
     
@@ -14267,17 +10487,17 @@ export class PostDocumentExecuteMailMergeRequest {
  */
 export class PostDocumentParagraphRunFontRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * Font dto object
+     * Gets or sets fontDto
      */
     public fontDto: Font;
 
     /**
-     * Path to parent paragraph.
+     * Gets or sets paragraphPath
      */
     public paragraphPath: string;
 
@@ -14331,12 +10551,12 @@ export class PostDocumentParagraphRunFontRequest {
  */
 export class PostDocumentSaveAsRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * Save options.
+     * Gets or sets saveOptionsData
      */
     public saveOptionsData: SaveOptionsData;
 
@@ -14380,7 +10600,7 @@ export class PostDocumentSaveAsRequest {
  */
 export class PostDrawingObjectRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
@@ -14435,7 +10655,7 @@ export class PostDrawingObjectRequest {
     public revisionDateTime: string;
 
     /**
-     * Path to node, which contains collection of drawing objects.
+     * Gets or sets nodePath
      */
     public nodePath: string;
     
@@ -14449,7 +10669,7 @@ export class PostDrawingObjectRequest {
  */
 export class PostExecuteTemplateRequest {
     /**
-     * The template document name.
+     * Gets or sets name
      */
     public name: string;
 
@@ -14479,22 +10699,22 @@ export class PostExecuteTemplateRequest {
     public password: string;
 
     /**
-     * Clean up options.
+     * Gets or sets cleanup
      */
     public cleanup: string;
 
     /**
-     * Gets or sets a value indicating whether paragraph with TableStart or  TableEnd field should be fully included into mail merge region or particular range between TableStart and TableEnd fields.   The default value is true.
+     * Gets or sets useWholeParagraphAsRegion
      */
     public useWholeParagraphAsRegion: boolean;
 
     /**
-     * Merge with regions or not. True by default
+     * Gets or sets withRegions
      */
     public withRegions: boolean;
 
     /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved with autogenerated name.
+     * Gets or sets destFileName
      */
     public destFileName: string;
     
@@ -14508,12 +10728,12 @@ export class PostExecuteTemplateRequest {
  */
 export class PostFieldRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * Field data.
+     * Gets or sets field
      */
     public field: Field;
 
@@ -14558,7 +10778,7 @@ export class PostFieldRequest {
     public revisionDateTime: string;
 
     /**
-     * Path to node, which contains collection of fields.
+     * Gets or sets nodePath
      */
     public nodePath: string;
     
@@ -14572,12 +10792,12 @@ export class PostFieldRequest {
  */
 export class PostFootnoteRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * Footnote data.
+     * Gets or sets footnoteDto
      */
     public footnoteDto: Footnote;
 
@@ -14622,7 +10842,7 @@ export class PostFootnoteRequest {
     public revisionDateTime: string;
 
     /**
-     * Path to node, which contains collection of footnotes.
+     * Gets or sets nodePath
      */
     public nodePath: string;
     
@@ -14636,12 +10856,12 @@ export class PostFootnoteRequest {
  */
 export class PostFormFieldRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * From field data.
+     * Gets or sets formField
      */
     public formField: FormField;
 
@@ -14686,7 +10906,7 @@ export class PostFormFieldRequest {
     public revisionDateTime: string;
 
     /**
-     * Path to node that contains collection of formfields.
+     * Gets or sets nodePath
      */
     public nodePath: string;
     
@@ -14700,7 +10920,7 @@ export class PostFormFieldRequest {
  */
 export class PostInsertDocumentWatermarkImageRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
@@ -14745,12 +10965,12 @@ export class PostInsertDocumentWatermarkImageRequest {
     public revisionDateTime: string;
 
     /**
-     * The watermark rotation angle.
+     * Gets or sets rotationAngle
      */
     public rotationAngle: number;
 
     /**
-     * The image file server full name. If the name is empty the image is expected in request content.
+     * Gets or sets image
      */
     public image: string;
     
@@ -14764,12 +10984,12 @@ export class PostInsertDocumentWatermarkImageRequest {
  */
 export class PostInsertDocumentWatermarkTextRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * with the watermark data.            
+     * Gets or sets watermarkText
      */
     public watermarkText: WatermarkText;
 
@@ -14818,12 +11038,12 @@ export class PostInsertDocumentWatermarkTextRequest {
  */
 export class PostInsertPageNumbersRequest {
     /**
-     * A document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * with the page numbers settings.
+     * Gets or sets pageNumber
      */
     public pageNumber: PageNumber;
 
@@ -14872,7 +11092,7 @@ export class PostInsertPageNumbersRequest {
  */
 export class PostLoadWebDocumentRequest {
     /**
-     * Parameters of loading.
+     * Gets or sets data
      */
     public data: LoadWebDocumentData;
 
@@ -14891,12 +11111,12 @@ export class PostLoadWebDocumentRequest {
  */
 export class PostReplaceTextRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * with the replace operation settings.            
+     * Gets or sets replaceText
      */
     public replaceText: ReplaceTextRequest;
 
@@ -14945,17 +11165,17 @@ export class PostReplaceTextRequest {
  */
 export class PostRunRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * Run data.
+     * Gets or sets run
      */
     public run: Run;
 
     /**
-     * Path to parent paragraph.
+     * Gets or sets paragraphPath
      */
     public paragraphPath: string;
 
@@ -15009,7 +11229,7 @@ export class PostRunRequest {
  */
 export class PostSplitDocumentRequest {
     /**
-     * Original document name.
+     * Gets or sets name
      */
     public name: string;
 
@@ -15039,22 +11259,22 @@ export class PostSplitDocumentRequest {
     public destFileName: string;
 
     /**
-     * Format to split.
+     * Gets or sets format
      */
     public format: string;
 
     /**
-     * Start page.
+     * Gets or sets from
      */
     public from: number;
 
     /**
-     * End page.
+     * Gets or sets to
      */
     public to: number;
 
     /**
-     * ZipOutput or not.
+     * Gets or sets zipOutput
      */
     public zipOutput: boolean;
 
@@ -15073,17 +11293,17 @@ export class PostSplitDocumentRequest {
  */
 export class PostUpdateDocumentBookmarkRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * with new bookmark data.            
+     * Gets or sets bookmarkData
      */
     public bookmarkData: BookmarkData;
 
     /**
-     * The bookmark name.
+     * Gets or sets bookmarkName
      */
     public bookmarkName: string;
 
@@ -15132,7 +11352,7 @@ export class PostUpdateDocumentBookmarkRequest {
  */
 export class PostUpdateDocumentFieldsRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
@@ -15171,12 +11391,12 @@ export class PostUpdateDocumentFieldsRequest {
  */
 export class PutCommentRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * Comment data.
+     * Gets or sets comment
      */
     public comment: Comment;
 
@@ -15230,7 +11450,7 @@ export class PutConvertDocumentRequest {
     public document: Buffer;
 
     /**
-     * Format to convert.
+     * Gets or sets format
      */
     public format: string;
 
@@ -15240,12 +11460,12 @@ export class PutConvertDocumentRequest {
     public storage: string;
 
     /**
-     * Path for saving operation result to the local storage.
+     * Gets or sets outPath
      */
     public outPath: string;
 
     /**
-     * This file name will be used when resulting document has dynamic field for document file name {filename}. If it is not setted, \"sourceFilename\" will be used instead. 
+     * Gets or sets documentFileName
      */
     public documentFileName: string;
 
@@ -15269,12 +11489,12 @@ export class PutCreateDocumentRequest {
     public storage: string;
 
     /**
-     * The file name.
+     * Gets or sets fileName
      */
     public fileName: string;
 
     /**
-     * The document folder.
+     * Gets or sets folder
      */
     public folder: string;
     
@@ -15293,7 +11513,7 @@ export class PutDocumentFieldNamesRequest {
     public template: Buffer;
 
     /**
-     * Use non merge fields or not.
+     * Gets or sets useNonMergeFields
      */
     public useNonMergeFields: boolean;
     
@@ -15307,12 +11527,12 @@ export class PutDocumentFieldNamesRequest {
  */
 export class PutDocumentSaveAsTiffRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * Tiff save options.
+     * Gets or sets saveOptions
      */
     public saveOptions: TiffSaveOptionsData;
 
@@ -15342,92 +11562,92 @@ export class PutDocumentSaveAsTiffRequest {
     public destFileName: string;
 
     /**
-     * The resulting file name.
+     * Gets or sets resultFile
      */
     public resultFile: string;
 
     /**
-     * Use antialiasing flag.
+     * Gets or sets useAntiAliasing
      */
     public useAntiAliasing: boolean;
 
     /**
-     * Use high quality flag.
+     * Gets or sets useHighQualityRendering
      */
     public useHighQualityRendering: boolean;
 
     /**
-     * Brightness for the generated images.
+     * Gets or sets imageBrightness
      */
     public imageBrightness: number;
 
     /**
-     * Color mode for the generated images.
+     * Gets or sets imageColorMode
      */
     public imageColorMode: string;
 
     /**
-     * The contrast for the generated images.
+     * Gets or sets imageContrast
      */
     public imageContrast: number;
 
     /**
-     * The images numeral format.
+     * Gets or sets numeralFormat
      */
     public numeralFormat: string;
 
     /**
-     * Number of pages to render.
+     * Gets or sets pageCount
      */
     public pageCount: number;
 
     /**
-     * Page index to start rendering.
+     * Gets or sets pageIndex
      */
     public pageIndex: number;
 
     /**
-     * Background image color.
+     * Gets or sets paperColor
      */
     public paperColor: string;
 
     /**
-     * The pixel format of generated images.
+     * Gets or sets pixelFormat
      */
     public pixelFormat: string;
 
     /**
-     * The resolution of generated images.
+     * Gets or sets resolution
      */
     public resolution: number;
 
     /**
-     * Zoom factor for generated images.
+     * Gets or sets scale
      */
     public scale: number;
 
     /**
-     * The compression tipe.
+     * Gets or sets tiffCompression
      */
     public tiffCompression: string;
 
     /**
-     * Optional, default is Fallback.
+     * Gets or sets dmlRenderingMode
      */
     public dmlRenderingMode: string;
 
     /**
-     * Optional, default is Simplified.
+     * Gets or sets dmlEffectsRenderingMode
      */
     public dmlEffectsRenderingMode: string;
 
     /**
-     * Optional, Tiff binarization method, possible values are: FloydSteinbergDithering, Threshold.
+     * Gets or sets tiffBinarizationMethod
      */
     public tiffBinarizationMethod: string;
 
     /**
-     * Optional. A value determining zip output or not.
+     * Gets or sets zipOutput
      */
     public zipOutput: boolean;
 
@@ -15446,7 +11666,7 @@ export class PutDocumentSaveAsTiffRequest {
  */
 export class PutDrawingObjectRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
@@ -15496,7 +11716,7 @@ export class PutDrawingObjectRequest {
     public revisionDateTime: string;
 
     /**
-     * Path to node, which contains collection of drawing objects.
+     * Gets or sets nodePath
      */
     public nodePath: string;
     
@@ -15520,17 +11740,17 @@ export class PutExecuteMailMergeOnlineRequest {
     public data: Buffer;
 
     /**
-     * With regions flag.
+     * Gets or sets withRegions
      */
     public withRegions: boolean;
 
     /**
-     * Clean up options.
+     * Gets or sets cleanup
      */
     public cleanup: string;
 
     /**
-     * This file name will be used when resulting document has dynamic field for document file name {filename}. If it is not setted, \"template\" will be used instead. 
+     * Gets or sets documentFileName
      */
     public documentFileName: string;
     
@@ -15554,22 +11774,22 @@ export class PutExecuteTemplateOnlineRequest {
     public data: Buffer;
 
     /**
-     * Clean up options.
+     * Gets or sets cleanup
      */
     public cleanup: string;
 
     /**
-     * Gets or sets a value indicating whether paragraph with TableStart or              TableEnd field should be fully included into mail merge region or particular range between TableStart and TableEnd fields.              The default value is true.
+     * Gets or sets useWholeParagraphAsRegion
      */
     public useWholeParagraphAsRegion: boolean;
 
     /**
-     * Merge with regions or not. True by default
+     * Gets or sets withRegions
      */
     public withRegions: boolean;
 
     /**
-     * This file name will be used when resulting document has dynamic field for document file name {filename}.  If it is not setted, \"template\" will be used instead.  Note: if withRegions == true executeTemplate updates fields only inside regions
+     * Gets or sets documentFileName
      */
     public documentFileName: string;
     
@@ -15583,12 +11803,12 @@ export class PutExecuteTemplateOnlineRequest {
  */
 export class PutFieldRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * Field data.
+     * Gets or sets field
      */
     public field: Field;
 
@@ -15628,12 +11848,12 @@ export class PutFieldRequest {
     public revisionDateTime: string;
 
     /**
-     * Path to node, which contains collection of fields.
+     * Gets or sets nodePath
      */
     public nodePath: string;
 
     /**
-     * Field will be inserted before node with id=\"nodeId\".
+     * Gets or sets insertBeforeNode
      */
     public insertBeforeNode: string;
     
@@ -15647,12 +11867,12 @@ export class PutFieldRequest {
  */
 export class PutFootnoteRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * Footnote data.
+     * Gets or sets footnoteDto
      */
     public footnoteDto: Footnote;
 
@@ -15692,7 +11912,7 @@ export class PutFootnoteRequest {
     public revisionDateTime: string;
 
     /**
-     * Path to node, which contains collection of footnotes.
+     * Gets or sets nodePath
      */
     public nodePath: string;
     
@@ -15706,12 +11926,12 @@ export class PutFootnoteRequest {
  */
 export class PutFormFieldRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * From field data.
+     * Gets or sets formField
      */
     public formField: FormField;
 
@@ -15751,12 +11971,12 @@ export class PutFormFieldRequest {
     public revisionDateTime: string;
 
     /**
-     * Path to node that contains collection of formfields.
+     * Gets or sets nodePath
      */
     public nodePath: string;
 
     /**
-     * Form field will be inserted before node with index.
+     * Gets or sets insertBeforeNode
      */
     public insertBeforeNode: string;
     
@@ -15770,12 +11990,12 @@ export class PutFormFieldRequest {
  */
 export class PutHeaderFooterRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * Type of header/footer.
+     * Gets or sets headerFooterType
      */
     public headerFooterType: string;
 
@@ -15815,7 +12035,7 @@ export class PutHeaderFooterRequest {
     public revisionDateTime: string;
 
     /**
-     * Path to parent section.
+     * Gets or sets sectionPath
      */
     public sectionPath: string;
     
@@ -15829,12 +12049,12 @@ export class PutHeaderFooterRequest {
  */
 export class PutParagraphRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * Paragraph data.
+     * Gets or sets paragraph
      */
     public paragraph: ParagraphInsert;
 
@@ -15874,12 +12094,12 @@ export class PutParagraphRequest {
     public revisionDateTime: string;
 
     /**
-     * Path to node which contains paragraphs.
+     * Gets or sets nodePath
      */
     public nodePath: string;
 
     /**
-     * Paragraph will be inserted before node with index.
+     * Gets or sets insertBeforeNode
      */
     public insertBeforeNode: string;
     
@@ -15893,12 +12113,12 @@ export class PutParagraphRequest {
  */
 export class PutProtectDocumentRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * with protection settings.            
+     * Gets or sets protectionRequest
      */
     public protectionRequest: ProtectionRequest;
 
@@ -15937,17 +12157,17 @@ export class PutProtectDocumentRequest {
  */
 export class PutRunRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * Path to parent paragraph.
+     * Gets or sets paragraphPath
      */
     public paragraphPath: string;
 
     /**
-     * Run data.
+     * Gets or sets run
      */
     public run: Run;
 
@@ -15987,7 +12207,7 @@ export class PutRunRequest {
     public revisionDateTime: string;
 
     /**
-     * Paragraph will be inserted before node with index.
+     * Gets or sets insertBeforeNode
      */
     public insertBeforeNode: string;
     
@@ -16001,7 +12221,7 @@ export class PutRunRequest {
  */
 export class RejectAllRevisionsRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
@@ -16040,12 +12260,12 @@ export class RejectAllRevisionsRequest {
  */
 export class RenderDrawingObjectRequest {
     /**
-     * The file name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * The destination format.
+     * Gets or sets format
      */
     public format: string;
 
@@ -16075,7 +12295,12 @@ export class RenderDrawingObjectRequest {
     public password: string;
 
     /**
-     * Path to node, which contains drawing objects.
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Gets or sets nodePath
      */
     public nodePath: string;
 
@@ -16094,12 +12319,12 @@ export class RenderDrawingObjectRequest {
  */
 export class RenderMathObjectRequest {
     /**
-     * The file name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * The destination format.
+     * Gets or sets format
      */
     public format: string;
 
@@ -16129,7 +12354,12 @@ export class RenderMathObjectRequest {
     public password: string;
 
     /**
-     * Path to node, which contains office math objects.
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Gets or sets nodePath
      */
     public nodePath: string;
 
@@ -16148,17 +12378,17 @@ export class RenderMathObjectRequest {
  */
 export class RenderPageRequest {
     /**
-     * The file name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * Comment index
+     * Gets or sets pageIndex
      */
     public pageIndex: number;
 
     /**
-     * The destination format.
+     * Gets or sets format
      */
     public format: string;
 
@@ -16183,6 +12413,11 @@ export class RenderPageRequest {
     public password: string;
 
     /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
@@ -16197,12 +12432,12 @@ export class RenderPageRequest {
  */
 export class RenderParagraphRequest {
     /**
-     * The file name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * The destination format.
+     * Gets or sets format
      */
     public format: string;
 
@@ -16232,7 +12467,12 @@ export class RenderParagraphRequest {
     public password: string;
 
     /**
-     * Path to node, which contains paragraphs.
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Gets or sets nodePath
      */
     public nodePath: string;
 
@@ -16251,12 +12491,12 @@ export class RenderParagraphRequest {
  */
 export class RenderTableRequest {
     /**
-     * The file name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * The destination format.
+     * Gets or sets format
      */
     public format: string;
 
@@ -16286,7 +12526,12 @@ export class RenderTableRequest {
     public password: string;
 
     /**
-     * Path to node, which contains tables.
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Gets or sets nodePath
      */
     public nodePath: string;
 
@@ -16315,12 +12560,12 @@ export class ResetCacheRequest {
  */
 export class SearchRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * The regular expression used to find matches.
+     * Gets or sets pattern
      */
     public pattern: string;
 
@@ -16343,6 +12588,11 @@ export class SearchRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
+
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
     
     public constructor(init?: Partial<SearchRequest>) {        
         Object.assign(this, init);
@@ -16354,17 +12604,17 @@ export class SearchRequest {
  */
 export class UpdateBorderRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * Border properties
+     * Gets or sets borderProperties
      */
     public borderProperties: Border;
 
     /**
-     * Path to node with border(node should be cell or row).
+     * Gets or sets nodePath
      */
     public nodePath: string;
 
@@ -16418,17 +12668,17 @@ export class UpdateBorderRequest {
  */
 export class UpdateSectionPageSetupRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * Section index
+     * Gets or sets sectionIndex
      */
     public sectionIndex: number;
 
     /**
-     * Page setup properties dto
+     * Gets or sets pageSetup
      */
     public pageSetup: PageSetup;
 
@@ -16477,12 +12727,12 @@ export class UpdateSectionPageSetupRequest {
  */
 export class UpdateTableCellFormatRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * Path to table row.
+     * Gets or sets tableRowPath
      */
     public tableRowPath: string;
 
@@ -16527,7 +12777,7 @@ export class UpdateTableCellFormatRequest {
     public revisionDateTime: string;
 
     /**
-     * The properties.
+     * Gets or sets format
      */
     public format: TableCellFormat;
     
@@ -16541,7 +12791,7 @@ export class UpdateTableCellFormatRequest {
  */
 export class UpdateTablePropertiesRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
@@ -16586,12 +12836,12 @@ export class UpdateTablePropertiesRequest {
     public revisionDateTime: string;
 
     /**
-     * The properties.
+     * Gets or sets properties
      */
     public properties: TableProperties;
 
     /**
-     * Path to node, which contains tables.
+     * Gets or sets nodePath
      */
     public nodePath: string;
     
@@ -16605,12 +12855,12 @@ export class UpdateTablePropertiesRequest {
  */
 export class UpdateTableRowFormatRequest {
     /**
-     * The document name.
+     * Gets or sets name
      */
     public name: string;
 
     /**
-     * Path to table.
+     * Gets or sets tablePath
      */
     public tablePath: string;
 
@@ -16655,7 +12905,7 @@ export class UpdateTableRowFormatRequest {
     public revisionDateTime: string;
 
     /**
-     * Table row format.
+     * Gets or sets format
      */
     public format: TableRowFormat;
     

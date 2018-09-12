@@ -79,4 +79,34 @@ describe("Text classification", () => {
               });
         });
     });
+
+    describe("classify with taxonomy \"documents\"", () => {
+        const wordsApi = BaseTest.initializeWordsApi();
+        const storageApi = BaseTest.initializeStorageApi();
+        const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
+        const remoteFileName = "SourceDocument.docx";
+        const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
+        const taxonomy = "documents";
+        before(() => {
+            return new Promise((resolve) => {
+                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
+                    expect(responseMessage.status).to.equal("OK");
+                    resolve();
+                });
+            });
+        });
+
+        it("should return response with code 200", () => {
+            const request = new ClassifyDocumentRequest();
+            request.documentName = remoteFileName;
+            request.folder = remotePath;
+            request.taxonomy = taxonomy;
+            return wordsApi.classifyDocument(request)
+              .then((result) => {
+                  // Assert
+                  expect(result.body.code).to.equal(200);
+                  expect(result.response.statusCode).to.equal(200);
+              });
+        });
+    });
 });

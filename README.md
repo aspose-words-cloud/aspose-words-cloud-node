@@ -69,6 +69,10 @@ Every method returns a chainable promise.
 ```
 
 # Release notes
+## 18.8
++ Added "HeaderFooterBookmarksExportMode" option to PdfSaveOptions
++ Added "OutlineOptions.CreateOutlinesForHeadingsInTable" option
++ Added "taxonomy" parameter to document classification
 ## 18.7
 + Added new resource "availableFonts"
 + Added "EscapeUri" option to PdfSaveOptions

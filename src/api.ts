@@ -55,7 +55,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Accept all revisions in document
      * @param requestObj contains request parameters
      */
     public async acceptAllRevisions(requestObj: model.AcceptAllRevisionsRequest): Promise<{response: http.ClientResponse, body: model.RevisionsModificationResponse}> {
@@ -90,7 +90,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Classify raw text.
      * @param requestObj contains request parameters
      */
     public async classify(requestObj: model.ClassifyRequest): Promise<{response: http.ClientResponse, body: model.ClassificationResponse}> {
@@ -106,13 +106,13 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj.text" was null or undefined when calling classify.');
         }
         
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "text", requestObj.text);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "bestClassesCount", requestObj.bestClassesCount);
         const requestOptions: request.Options = {
-            method: "POST",
+            method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
             json: true,
+            body: ObjectSerializer.serialize(requestObj.text, requestObj.text.constructor.name === "Object" ? "string" : requestObj.text.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -121,7 +121,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Classify document.
      * @param requestObj contains request parameters
      */
     public async classifyDocument(requestObj: model.ClassifyDocumentRequest): Promise<{response: http.ClientResponse, body: model.ClassificationResponse}> {
@@ -142,11 +142,10 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "bestClassesCount", requestObj.bestClassesCount);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "taxonomy", requestObj.taxonomy);
         const requestOptions: request.Options = {
-            method: "POST",
+            method: "GET",
             qs: queryParameters,
             uri: localVarPath,
             json: true,
@@ -158,7 +157,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Add new or update existing document property.
      * @param requestObj contains request parameters
      */
     public async createOrUpdateDocumentProperty(requestObj: model.CreateOrUpdateDocumentPropertyRequest): Promise<{response: http.ClientResponse, body: model.DocumentPropertyResponse}> {
@@ -207,7 +206,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Resets border properties to default values.              'nodePath' should refer to node with cell or row
      * @param requestObj contains request parameters
      */
     public async deleteBorder(requestObj: model.DeleteBorderRequest): Promise<{response: http.ClientResponse, body: model.BorderResponse}> {
@@ -256,7 +255,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Resets borders properties to default values.              'nodePath' should refer to node with cell or row
      * @param requestObj contains request parameters
      */
     public async deleteBorders(requestObj: model.DeleteBordersRequest): Promise<{response: http.ClientResponse, body: model.BordersResponse}> {
@@ -299,7 +298,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Remove comment from document.
      * @param requestObj contains request parameters
      */
     public async deleteComment(requestObj: model.DeleteCommentRequest): Promise<{response: http.ClientResponse, body: model.AsposeResponse}> {
@@ -342,7 +341,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Remove macros from document.
      * @param requestObj contains request parameters
      */
     public async deleteDocumentMacros(requestObj: model.DeleteDocumentMacrosRequest): Promise<{response: http.ClientResponse, body: model.AsposeResponse}> {
@@ -379,7 +378,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Delete document property.
      * @param requestObj contains request parameters
      */
     public async deleteDocumentProperty(requestObj: model.DeleteDocumentPropertyRequest): Promise<{response: http.ClientResponse, body: model.AsposeResponse}> {
@@ -422,7 +421,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Delete watermark (for deleting last watermark from the document).
      * @param requestObj contains request parameters
      */
     public async deleteDocumentWatermark(requestObj: model.DeleteDocumentWatermarkRequest): Promise<{response: http.ClientResponse, body: model.DocumentResponse}> {
@@ -459,7 +458,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Removes drawing object from document.
      * @param requestObj contains request parameters
      */
     public async deleteDrawingObject(requestObj: model.DeleteDrawingObjectRequest): Promise<{response: http.ClientResponse, body: model.AsposeResponse}> {
@@ -503,7 +502,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Delete field from document.
      * @param requestObj contains request parameters
      */
     public async deleteField(requestObj: model.DeleteFieldRequest): Promise<{response: http.ClientResponse, body: model.AsposeResponse}> {
@@ -547,7 +546,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Remove fields from section paragraph.
      * @param requestObj contains request parameters
      */
     public async deleteFields(requestObj: model.DeleteFieldsRequest): Promise<{response: http.ClientResponse, body: model.AsposeResponse}> {
@@ -585,7 +584,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Removes footnote from document.
      * @param requestObj contains request parameters
      */
     public async deleteFootnote(requestObj: model.DeleteFootnoteRequest): Promise<{response: http.ClientResponse, body: model.AsposeResponse}> {
@@ -629,7 +628,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Removes form field from document.
      * @param requestObj contains request parameters
      */
     public async deleteFormField(requestObj: model.DeleteFormFieldRequest): Promise<{response: http.ClientResponse, body: model.AsposeResponse}> {
@@ -673,7 +672,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Delete header/footer from document.
      * @param requestObj contains request parameters
      */
     public async deleteHeaderFooter(requestObj: model.DeleteHeaderFooterRequest): Promise<{response: http.ClientResponse, body: model.AsposeResponse}> {
@@ -717,7 +716,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Delete document headers and footers.
      * @param requestObj contains request parameters
      */
     public async deleteHeadersFooters(requestObj: model.DeleteHeadersFootersRequest): Promise<{response: http.ClientResponse, body: model.AsposeResponse}> {
@@ -756,7 +755,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Removes OfficeMath object from document.
      * @param requestObj contains request parameters
      */
     public async deleteOfficeMathObject(requestObj: model.DeleteOfficeMathObjectRequest): Promise<{response: http.ClientResponse, body: model.AsposeResponse}> {
@@ -800,7 +799,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Remove paragraph from section.
      * @param requestObj contains request parameters
      */
     public async deleteParagraph(requestObj: model.DeleteParagraphRequest): Promise<{response: http.ClientResponse, body: model.AsposeResponse}> {
@@ -844,7 +843,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Removes run from document.
      * @param requestObj contains request parameters
      */
     public async deleteRun(requestObj: model.DeleteRunRequest): Promise<{response: http.ClientResponse, body: model.AsposeResponse}> {
@@ -893,7 +892,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Delete a table.
      * @param requestObj contains request parameters
      */
     public async deleteTable(requestObj: model.DeleteTableRequest): Promise<{response: http.ClientResponse, body: model.AsposeResponse}> {
@@ -937,7 +936,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Delete a table cell.
      * @param requestObj contains request parameters
      */
     public async deleteTableCell(requestObj: model.DeleteTableCellRequest): Promise<{response: http.ClientResponse, body: model.AsposeResponse}> {
@@ -986,7 +985,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Delete a table row.
      * @param requestObj contains request parameters
      */
     public async deleteTableRow(requestObj: model.DeleteTableRowRequest): Promise<{response: http.ClientResponse, body: model.AsposeResponse}> {
@@ -1035,7 +1034,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Unprotect document.
      * @param requestObj contains request parameters
      */
     public async deleteUnprotectDocument(requestObj: model.DeleteUnprotectDocumentRequest): Promise<{response: http.ClientResponse, body: model.ProtectionDataResponse}> {
@@ -1076,7 +1075,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Gets the list of fonts, available for document processing
      * @param requestObj contains request parameters
      */
     public async getAvailableFonts(requestObj: model.GetAvailableFontsRequest): Promise<{response: http.ClientResponse, body: model.AvailableFontsResponse}> {
@@ -1101,7 +1100,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Return a border. 'nodePath' should refer to node with cell or row
      * @param requestObj contains request parameters
      */
     public async getBorder(requestObj: model.GetBorderRequest): Promise<{response: http.ClientResponse, body: model.BorderResponse}> {
@@ -1147,7 +1146,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Return a collection of borders. 'nodePath' should refer to node with cell or row
      * @param requestObj contains request parameters
      */
     public async getBorders(requestObj: model.GetBordersRequest): Promise<{response: http.ClientResponse, body: model.BordersResponse}> {
@@ -1187,7 +1186,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Get comment from document.
      * @param requestObj contains request parameters
      */
     public async getComment(requestObj: model.GetCommentRequest): Promise<{response: http.ClientResponse, body: model.CommentResponse}> {
@@ -1227,7 +1226,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Get comments from document.
      * @param requestObj contains request parameters
      */
     public async getComments(requestObj: model.GetCommentsRequest): Promise<{response: http.ClientResponse, body: model.CommentsResponse}> {
@@ -1261,7 +1260,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Read document common info.
      * @param requestObj contains request parameters
      */
     public async getDocument(requestObj: model.GetDocumentRequest): Promise<{response: http.ClientResponse, body: model.DocumentResponse}> {
@@ -1295,7 +1294,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Read document bookmark data by its name.
      * @param requestObj contains request parameters
      */
     public async getDocumentBookmarkByName(requestObj: model.GetDocumentBookmarkByNameRequest): Promise<{response: http.ClientResponse, body: model.BookmarkResponse}> {
@@ -1335,7 +1334,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Read document bookmarks common info.
      * @param requestObj contains request parameters
      */
     public async getDocumentBookmarks(requestObj: model.GetDocumentBookmarksRequest): Promise<{response: http.ClientResponse, body: model.BookmarksResponse}> {
@@ -1369,7 +1368,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Read document drawing object common info by its index or convert to format specified.
      * @param requestObj contains request parameters
      */
     public async getDocumentDrawingObjectByIndex(requestObj: model.GetDocumentDrawingObjectByIndexRequest): Promise<{response: http.ClientResponse, body: model.DrawingObjectResponse}> {
@@ -1410,7 +1409,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Read drawing object image data.
      * @param requestObj contains request parameters
      */
     public async getDocumentDrawingObjectImageData(requestObj: model.GetDocumentDrawingObjectImageDataRequest): Promise<{response: http.ClientResponse, body: Buffer}> {
@@ -1451,7 +1450,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Get drawing object OLE data.
      * @param requestObj contains request parameters
      */
     public async getDocumentDrawingObjectOleData(requestObj: model.GetDocumentDrawingObjectOleDataRequest): Promise<{response: http.ClientResponse, body: Buffer}> {
@@ -1492,7 +1491,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Read document drawing objects common info.
      * @param requestObj contains request parameters
      */
     public async getDocumentDrawingObjects(requestObj: model.GetDocumentDrawingObjectsRequest): Promise<{response: http.ClientResponse, body: model.DrawingObjectsResponse}> {
@@ -1527,7 +1526,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Read document field names.
      * @param requestObj contains request parameters
      */
     public async getDocumentFieldNames(requestObj: model.GetDocumentFieldNamesRequest): Promise<{response: http.ClientResponse, body: model.FieldNamesResponse}> {
@@ -1562,7 +1561,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Read document hyperlink by its index.
      * @param requestObj contains request parameters
      */
     public async getDocumentHyperlinkByIndex(requestObj: model.GetDocumentHyperlinkByIndexRequest): Promise<{response: http.ClientResponse, body: model.HyperlinkResponse}> {
@@ -1602,7 +1601,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Read document hyperlinks common info.
      * @param requestObj contains request parameters
      */
     public async getDocumentHyperlinks(requestObj: model.GetDocumentHyperlinksRequest): Promise<{response: http.ClientResponse, body: model.HyperlinksResponse}> {
@@ -1636,7 +1635,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * This resource represents one of the paragraphs contained in the document.
      * @param requestObj contains request parameters
      */
     public async getDocumentParagraph(requestObj: model.GetDocumentParagraphRequest): Promise<{response: http.ClientResponse, body: model.ParagraphResponse}> {
@@ -1677,7 +1676,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * This resource represents run of text contained in the document.
      * @param requestObj contains request parameters
      */
     public async getDocumentParagraphRun(requestObj: model.GetDocumentParagraphRunRequest): Promise<{response: http.ClientResponse, body: model.RunResponse}> {
@@ -1723,7 +1722,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * This resource represents font of run.
      * @param requestObj contains request parameters
      */
     public async getDocumentParagraphRunFont(requestObj: model.GetDocumentParagraphRunFontRequest): Promise<{response: http.ClientResponse, body: model.FontResponse}> {
@@ -1769,7 +1768,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * This resource represents collection of runs in the paragraph.
      * @param requestObj contains request parameters
      */
     public async getDocumentParagraphRuns(requestObj: model.GetDocumentParagraphRunsRequest): Promise<{response: http.ClientResponse, body: model.RunsResponse}> {
@@ -1809,7 +1808,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Return a list of paragraphs that are contained in the document.
      * @param requestObj contains request parameters
      */
     public async getDocumentParagraphs(requestObj: model.GetDocumentParagraphsRequest): Promise<{response: http.ClientResponse, body: model.ParagraphLinkCollectionResponse}> {
@@ -1844,7 +1843,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Read document properties info.
      * @param requestObj contains request parameters
      */
     public async getDocumentProperties(requestObj: model.GetDocumentPropertiesRequest): Promise<{response: http.ClientResponse, body: model.DocumentPropertiesResponse}> {
@@ -1878,7 +1877,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Read document property info by the property name.
      * @param requestObj contains request parameters
      */
     public async getDocumentProperty(requestObj: model.GetDocumentPropertyRequest): Promise<{response: http.ClientResponse, body: model.DocumentPropertyResponse}> {
@@ -1918,7 +1917,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Read document protection common info.
      * @param requestObj contains request parameters
      */
     public async getDocumentProtection(requestObj: model.GetDocumentProtectionRequest): Promise<{response: http.ClientResponse, body: model.ProtectionDataResponse}> {
@@ -1952,7 +1951,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Read document statistics.
      * @param requestObj contains request parameters
      */
     public async getDocumentStatistics(requestObj: model.GetDocumentStatisticsRequest): Promise<{response: http.ClientResponse, body: model.StatDataResponse}> {
@@ -1989,7 +1988,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Read document text items.
      * @param requestObj contains request parameters
      */
     public async getDocumentTextItems(requestObj: model.GetDocumentTextItemsRequest): Promise<{response: http.ClientResponse, body: model.TextItemsResponse}> {
@@ -2023,7 +2022,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Export the document into the specified format.
      * @param requestObj contains request parameters
      */
     public async getDocumentWithFormat(requestObj: model.GetDocumentWithFormatRequest): Promise<{response: http.ClientResponse, body: Buffer}> {
@@ -2065,7 +2064,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Get field from document.
      * @param requestObj contains request parameters
      */
     public async getField(requestObj: model.GetFieldRequest): Promise<{response: http.ClientResponse, body: model.FieldResponse}> {
@@ -2106,7 +2105,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Get fields from document.
      * @param requestObj contains request parameters
      */
     public async getFields(requestObj: model.GetFieldsRequest): Promise<{response: http.ClientResponse, body: model.FieldsResponse}> {
@@ -2141,7 +2140,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Read footnote by index.
      * @param requestObj contains request parameters
      */
     public async getFootnote(requestObj: model.GetFootnoteRequest): Promise<{response: http.ClientResponse, body: model.FootnoteResponse}> {
@@ -2182,7 +2181,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Get footnotes from document.
      * @param requestObj contains request parameters
      */
     public async getFootnotes(requestObj: model.GetFootnotesRequest): Promise<{response: http.ClientResponse, body: model.FootnotesResponse}> {
@@ -2217,7 +2216,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Returns representation of an one of the form field.
      * @param requestObj contains request parameters
      */
     public async getFormField(requestObj: model.GetFormFieldRequest): Promise<{response: http.ClientResponse, body: model.FormFieldResponse}> {
@@ -2258,7 +2257,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Get form fields from document.
      * @param requestObj contains request parameters
      */
     public async getFormFields(requestObj: model.GetFormFieldsRequest): Promise<{response: http.ClientResponse, body: model.FormFieldsResponse}> {
@@ -2293,7 +2292,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Return a header/footer that is contained in the document.
      * @param requestObj contains request parameters
      */
     public async getHeaderFooter(requestObj: model.GetHeaderFooterRequest): Promise<{response: http.ClientResponse, body: model.HeaderFooterResponse}> {
@@ -2334,7 +2333,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Return a header/footer that is contained in the document.
      * @param requestObj contains request parameters
      */
     public async getHeaderFooterOfSection(requestObj: model.GetHeaderFooterOfSectionRequest): Promise<{response: http.ClientResponse, body: model.HeaderFooterResponse}> {
@@ -2381,7 +2380,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Return a list of header/footers that are contained in the document.
      * @param requestObj contains request parameters
      */
     public async getHeaderFooters(requestObj: model.GetHeaderFootersRequest): Promise<{response: http.ClientResponse, body: model.HeaderFootersResponse}> {
@@ -2417,7 +2416,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Read OfficeMath object by index.
      * @param requestObj contains request parameters
      */
     public async getOfficeMathObject(requestObj: model.GetOfficeMathObjectRequest): Promise<{response: http.ClientResponse, body: model.OfficeMathObjectResponse}> {
@@ -2458,7 +2457,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Get OfficeMath objects from document.
      * @param requestObj contains request parameters
      */
     public async getOfficeMathObjects(requestObj: model.GetOfficeMathObjectsRequest): Promise<{response: http.ClientResponse, body: model.OfficeMathObjectsResponse}> {
@@ -2493,7 +2492,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Get document section by index.
      * @param requestObj contains request parameters
      */
     public async getSection(requestObj: model.GetSectionRequest): Promise<{response: http.ClientResponse, body: model.SectionResponse}> {
@@ -2533,7 +2532,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Get page setup of section.
      * @param requestObj contains request parameters
      */
     public async getSectionPageSetup(requestObj: model.GetSectionPageSetupRequest): Promise<{response: http.ClientResponse, body: model.SectionPageSetupResponse}> {
@@ -2573,7 +2572,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Return a list of sections that are contained in the document.
      * @param requestObj contains request parameters
      */
     public async getSections(requestObj: model.GetSectionsRequest): Promise<{response: http.ClientResponse, body: model.SectionLinkCollectionResponse}> {
@@ -2607,7 +2606,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Return a table.
      * @param requestObj contains request parameters
      */
     public async getTable(requestObj: model.GetTableRequest): Promise<{response: http.ClientResponse, body: model.TableResponse}> {
@@ -2648,7 +2647,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Return a table cell.
      * @param requestObj contains request parameters
      */
     public async getTableCell(requestObj: model.GetTableCellRequest): Promise<{response: http.ClientResponse, body: model.TableCellResponse}> {
@@ -2694,7 +2693,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Return a table cell format.
      * @param requestObj contains request parameters
      */
     public async getTableCellFormat(requestObj: model.GetTableCellFormatRequest): Promise<{response: http.ClientResponse, body: model.TableCellFormatResponse}> {
@@ -2740,7 +2739,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Return a table properties.
      * @param requestObj contains request parameters
      */
     public async getTableProperties(requestObj: model.GetTablePropertiesRequest): Promise<{response: http.ClientResponse, body: model.TablePropertiesResponse}> {
@@ -2781,7 +2780,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Return a table row.
      * @param requestObj contains request parameters
      */
     public async getTableRow(requestObj: model.GetTableRowRequest): Promise<{response: http.ClientResponse, body: model.TableRowResponse}> {
@@ -2827,7 +2826,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Return a table row format.
      * @param requestObj contains request parameters
      */
     public async getTableRowFormat(requestObj: model.GetTableRowFormatRequest): Promise<{response: http.ClientResponse, body: model.TableRowFormatResponse}> {
@@ -2873,7 +2872,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Return a list of tables that are contained in the document.
      * @param requestObj contains request parameters
      */
     public async getTables(requestObj: model.GetTablesRequest): Promise<{response: http.ClientResponse, body: model.TableLinkCollectionResponse}> {
@@ -2908,7 +2907,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Adds table to document, returns added table's data.             
      * @param requestObj contains request parameters
      */
     public async insertTable(requestObj: model.InsertTableRequest): Promise<{response: http.ClientResponse, body: model.TableResponse}> {
@@ -2934,7 +2933,7 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "nodePath", requestObj.nodePath);
         const requestOptions: request.Options = {
-            method: "POST",
+            method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
             json: true,
@@ -2947,7 +2946,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Adds table cell to table, returns added cell's data.             
      * @param requestObj contains request parameters
      */
     public async insertTableCell(requestObj: model.InsertTableCellRequest): Promise<{response: http.ClientResponse, body: model.TableCellResponse}> {
@@ -2978,7 +2977,7 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
         const requestOptions: request.Options = {
-            method: "POST",
+            method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
             json: true,
@@ -2991,7 +2990,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Adds table row to table, returns added row's data.             
      * @param requestObj contains request parameters
      */
     public async insertTableRow(requestObj: model.InsertTableRowRequest): Promise<{response: http.ClientResponse, body: model.TableRowResponse}> {
@@ -3022,7 +3021,7 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
         const requestOptions: request.Options = {
-            method: "POST",
+            method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
             json: true,
@@ -3035,7 +3034,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Append documents to original document.
      * @param requestObj contains request parameters
      */
     public async postAppendDocument(requestObj: model.PostAppendDocumentRequest): Promise<{response: http.ClientResponse, body: model.DocumentResponse}> {
@@ -3078,7 +3077,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Change document protection.
      * @param requestObj contains request parameters
      */
     public async postChangeDocumentProtection(requestObj: model.PostChangeDocumentProtectionRequest): Promise<{response: http.ClientResponse, body: model.ProtectionDataResponse}> {
@@ -3119,7 +3118,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Updates the comment, returns updated comment's data.
      * @param requestObj contains request parameters
      */
     public async postComment(requestObj: model.PostCommentRequest): Promise<{response: http.ClientResponse, body: model.CommentResponse}> {
@@ -3168,7 +3167,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Compare document with original document.
      * @param requestObj contains request parameters
      */
     public async postCompareDocument(requestObj: model.PostCompareDocumentRequest): Promise<{response: http.ClientResponse, body: model.DocumentResponse}> {
@@ -3209,7 +3208,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Execute document mail merge operation.
      * @param requestObj contains request parameters
      */
     public async postDocumentExecuteMailMerge(requestObj: model.PostDocumentExecuteMailMergeRequest): Promise<{response: http.ClientResponse, body: model.DocumentResponse}> {
@@ -3254,7 +3253,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Updates font properties, returns updated font data.
      * @param requestObj contains request parameters
      */
     public async postDocumentParagraphRunFont(requestObj: model.PostDocumentParagraphRunFontRequest): Promise<{response: http.ClientResponse, body: model.FontResponse}> {
@@ -3309,7 +3308,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Convert document to destination format with detailed settings and save result to storage.
      * @param requestObj contains request parameters
      */
     public async postDocumentSaveAs(requestObj: model.PostDocumentSaveAsRequest): Promise<{response: http.ClientResponse, body: model.SaveResponse}> {
@@ -3351,7 +3350,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Updates drawing object, returns updated  drawing object's data.
      * @param requestObj contains request parameters
      */
     public async postDrawingObject(requestObj: model.PostDrawingObjectRequest): Promise<{response: http.ClientResponse, body: model.DrawingObjectResponse}> {
@@ -3415,7 +3414,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Populate document template with data.
      * @param requestObj contains request parameters
      */
     public async postExecuteTemplate(requestObj: model.PostExecuteTemplateRequest): Promise<{response: http.ClientResponse, body: model.DocumentResponse}> {
@@ -3464,7 +3463,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Updates field's properties, returns updated field's data.
      * @param requestObj contains request parameters
      */
     public async postField(requestObj: model.PostFieldRequest): Promise<{response: http.ClientResponse, body: model.FieldResponse}> {
@@ -3514,7 +3513,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Updates footnote's properties, returns updated run's data.
      * @param requestObj contains request parameters
      */
     public async postFootnote(requestObj: model.PostFootnoteRequest): Promise<{response: http.ClientResponse, body: model.FootnoteResponse}> {
@@ -3564,7 +3563,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Updates properties of form field, returns updated form field.
      * @param requestObj contains request parameters
      */
     public async postFormField(requestObj: model.PostFormFieldRequest): Promise<{response: http.ClientResponse, body: model.FormFieldResponse}> {
@@ -3614,7 +3613,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Insert document watermark image.
      * @param requestObj contains request parameters
      */
     public async postInsertDocumentWatermarkImage(requestObj: model.PostInsertDocumentWatermarkImageRequest): Promise<{response: http.ClientResponse, body: model.DocumentResponse}> {
@@ -3659,7 +3658,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Insert document watermark text.
      * @param requestObj contains request parameters
      */
     public async postInsertDocumentWatermarkText(requestObj: model.PostInsertDocumentWatermarkTextRequest): Promise<{response: http.ClientResponse, body: model.DocumentResponse}> {
@@ -3702,7 +3701,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Insert document page numbers.
      * @param requestObj contains request parameters
      */
     public async postInsertPageNumbers(requestObj: model.PostInsertPageNumbersRequest): Promise<{response: http.ClientResponse, body: model.DocumentResponse}> {
@@ -3745,7 +3744,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Loads new document from web into the file with any supported format of data.
      * @param requestObj contains request parameters
      */
     public async postLoadWebDocument(requestObj: model.PostLoadWebDocumentRequest): Promise<{response: http.ClientResponse, body: model.SaveResponse}> {
@@ -3776,7 +3775,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Replace document text.
      * @param requestObj contains request parameters
      */
     public async postReplaceText(requestObj: model.PostReplaceTextRequest): Promise<{response: http.ClientResponse, body: model.ReplaceTextResponse}> {
@@ -3819,7 +3818,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Updates run's properties, returns updated run's data.
      * @param requestObj contains request parameters
      */
     public async postRun(requestObj: model.PostRunRequest): Promise<{response: http.ClientResponse, body: model.RunResponse}> {
@@ -3874,7 +3873,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Split document.
      * @param requestObj contains request parameters
      */
     public async postSplitDocument(requestObj: model.PostSplitDocumentRequest): Promise<{response: http.ClientResponse, body: model.SplitDocumentResponse}> {
@@ -3914,7 +3913,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Update document bookmark.
      * @param requestObj contains request parameters
      */
     public async postUpdateDocumentBookmark(requestObj: model.PostUpdateDocumentBookmarkRequest): Promise<{response: http.ClientResponse, body: model.BookmarkResponse}> {
@@ -3963,7 +3962,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Update (reevaluate) fields in document.
      * @param requestObj contains request parameters
      */
     public async postUpdateDocumentFields(requestObj: model.PostUpdateDocumentFieldsRequest): Promise<{response: http.ClientResponse, body: model.DocumentResponse}> {
@@ -3998,7 +3997,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Adds comment to document, returns inserted comment's data.
      * @param requestObj contains request parameters
      */
     public async putComment(requestObj: model.PutCommentRequest): Promise<{response: http.ClientResponse, body: model.CommentResponse}> {
@@ -4041,7 +4040,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Convert document from request content to format specified.
      * @param requestObj contains request parameters
      */
     public async putConvertDocument(requestObj: model.PutConvertDocumentRequest): Promise<{response: http.ClientResponse, body: Buffer}> {
@@ -4086,7 +4085,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Creates new document. Document is created with format which is recognized from file extensions.  Supported extentions: \".doc\", \".docx\", \".docm\", \".dot\", \".dotm\", \".dotx\", \".flatopc\", \".fopc\", \".flatopc_macro\", \".fopc_macro\", \".flatopc_template\", \".fopc_template\", \".flatopc_template_macro\", \".fopc_template_macro\", \".wordml\", \".wml\", \".rtf\"
      * @param requestObj contains request parameters
      */
     public async putCreateDocument(requestObj: model.PutCreateDocumentRequest): Promise<{response: http.ClientResponse, body: model.DocumentResponse}> {
@@ -4113,7 +4112,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Read document field names.
      * @param requestObj contains request parameters
      */
     public async putDocumentFieldNames(requestObj: model.PutDocumentFieldNamesRequest): Promise<{response: http.ClientResponse, body: model.FieldNamesResponse}> {
@@ -4149,7 +4148,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Convert document to tiff with detailed settings and save result to storage.
      * @param requestObj contains request parameters
      */
     public async putDocumentSaveAsTiff(requestObj: model.PutDocumentSaveAsTiffRequest): Promise<{response: http.ClientResponse, body: model.SaveResponse}> {
@@ -4209,7 +4208,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Adds  drawing object to document, returns added  drawing object's data.
      * @param requestObj contains request parameters
      */
     public async putDrawingObject(requestObj: model.PutDrawingObjectRequest): Promise<{response: http.ClientResponse, body: model.DrawingObjectResponse}> {
@@ -4267,7 +4266,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Execute document mail merge online.
      * @param requestObj contains request parameters
      */
     public async putExecuteMailMergeOnline(requestObj: model.PutExecuteMailMergeOnlineRequest): Promise<{response: http.ClientResponse, body: Buffer}> {
@@ -4314,7 +4313,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Populate document template with data online.
      * @param requestObj contains request parameters
      */
     public async putExecuteTemplateOnline(requestObj: model.PutExecuteTemplateOnlineRequest): Promise<{response: http.ClientResponse, body: Buffer}> {
@@ -4362,7 +4361,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Adds field to document, returns inserted field's data.
      * @param requestObj contains request parameters
      */
     public async putField(requestObj: model.PutFieldRequest): Promise<{response: http.ClientResponse, body: model.FieldResponse}> {
@@ -4407,7 +4406,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Adds footnote to document, returns added footnote's data.
      * @param requestObj contains request parameters
      */
     public async putFootnote(requestObj: model.PutFootnoteRequest): Promise<{response: http.ClientResponse, body: model.FootnoteResponse}> {
@@ -4451,7 +4450,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Adds form field to paragraph, returns added form field's data.
      * @param requestObj contains request parameters
      */
     public async putFormField(requestObj: model.PutFormFieldRequest): Promise<{response: http.ClientResponse, body: model.FormFieldResponse}> {
@@ -4496,7 +4495,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Insert to document header or footer.
      * @param requestObj contains request parameters
      */
     public async putHeaderFooter(requestObj: model.PutHeaderFooterRequest): Promise<{response: http.ClientResponse, body: model.HeaderFooterResponse}> {
@@ -4518,7 +4517,6 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj.headerFooterType" was null or undefined when calling putHeaderFooter.');
         }
         
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "headerFooterType", requestObj.headerFooterType);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
@@ -4532,6 +4530,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
+            body: ObjectSerializer.serialize(requestObj.headerFooterType, requestObj.headerFooterType.constructor.name === "Object" ? "string" : requestObj.headerFooterType.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -4540,7 +4539,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Adds paragraph to document, returns added paragraph's data.
      * @param requestObj contains request parameters
      */
     public async putParagraph(requestObj: model.PutParagraphRequest): Promise<{response: http.ClientResponse, body: model.ParagraphResponse}> {
@@ -4585,7 +4584,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Protect document.
      * @param requestObj contains request parameters
      */
     public async putProtectDocument(requestObj: model.PutProtectDocumentRequest): Promise<{response: http.ClientResponse, body: model.ProtectionDataResponse}> {
@@ -4626,7 +4625,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Adds run to document, returns added paragraph's data.
      * @param requestObj contains request parameters
      */
     public async putRun(requestObj: model.PutRunRequest): Promise<{response: http.ClientResponse, body: model.RunResponse}> {
@@ -4676,7 +4675,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Reject all revisions in document
      * @param requestObj contains request parameters
      */
     public async rejectAllRevisions(requestObj: model.RejectAllRevisionsRequest): Promise<{response: http.ClientResponse, body: model.RevisionsModificationResponse}> {
@@ -4711,7 +4710,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Renders drawing object to specified format.
      * @param requestObj contains request parameters
      */
     public async renderDrawingObject(requestObj: model.RenderDrawingObjectRequest): Promise<{response: http.ClientResponse, body: Buffer}> {
@@ -4744,11 +4743,10 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "nodePath", requestObj.nodePath);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", requestObj.fontsLocation);
         const requestOptions: request.Options = {
-            method: "POST",
+            method: "GET",
             qs: queryParameters,
             uri: localVarPath,
             encoding: null,
@@ -4760,7 +4758,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Renders math object to specified format.
      * @param requestObj contains request parameters
      */
     public async renderMathObject(requestObj: model.RenderMathObjectRequest): Promise<{response: http.ClientResponse, body: Buffer}> {
@@ -4793,11 +4791,10 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "nodePath", requestObj.nodePath);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", requestObj.fontsLocation);
         const requestOptions: request.Options = {
-            method: "POST",
+            method: "GET",
             qs: queryParameters,
             uri: localVarPath,
             encoding: null,
@@ -4809,7 +4806,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Renders page to specified format.
      * @param requestObj contains request parameters
      */
     public async renderPage(requestObj: model.RenderPageRequest): Promise<{response: http.ClientResponse, body: Buffer}> {
@@ -4842,10 +4839,9 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", requestObj.fontsLocation);
         const requestOptions: request.Options = {
-            method: "POST",
+            method: "GET",
             qs: queryParameters,
             uri: localVarPath,
             encoding: null,
@@ -4857,7 +4853,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Renders paragraph to specified format.
      * @param requestObj contains request parameters
      */
     public async renderParagraph(requestObj: model.RenderParagraphRequest): Promise<{response: http.ClientResponse, body: Buffer}> {
@@ -4890,11 +4886,10 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "nodePath", requestObj.nodePath);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", requestObj.fontsLocation);
         const requestOptions: request.Options = {
-            method: "POST",
+            method: "GET",
             qs: queryParameters,
             uri: localVarPath,
             encoding: null,
@@ -4906,7 +4901,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Renders table to specified format.
      * @param requestObj contains request parameters
      */
     public async renderTable(requestObj: model.RenderTableRequest): Promise<{response: http.ClientResponse, body: Buffer}> {
@@ -4939,11 +4934,10 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "nodePath", requestObj.nodePath);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", requestObj.fontsLocation);
         const requestOptions: request.Options = {
-            method: "POST",
+            method: "GET",
             qs: queryParameters,
             uri: localVarPath,
             encoding: null,
@@ -4955,7 +4949,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Resets font's cache.
      * @param requestObj contains request parameters
      */
     public async resetCache(requestObj: model.ResetCacheRequest): Promise<{response: http.ClientResponse, body: model.AsposeResponse}> {
@@ -4967,7 +4961,7 @@ export class WordsApi {
         const queryParameters: any = {};
         
         const requestOptions: request.Options = {
-            method: "POST",
+            method: "DELETE",
             qs: queryParameters,
             uri: localVarPath,
             json: true,
@@ -4979,7 +4973,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Search text in document.
      * @param requestObj contains request parameters
      */
     public async search(requestObj: model.SearchRequest): Promise<{response: http.ClientResponse, body: model.SearchResponse}> {
@@ -5006,9 +5000,8 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
         const requestOptions: request.Options = {
-            method: "POST",
+            method: "GET",
             qs: queryParameters,
             uri: localVarPath,
             json: true,
@@ -5020,7 +5013,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Updates border properties.              'nodePath' should refer to node with cell or row
      * @param requestObj contains request parameters
      */
     public async updateBorder(requestObj: model.UpdateBorderRequest): Promise<{response: http.ClientResponse, body: model.BorderResponse}> {
@@ -5075,7 +5068,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Update page setup of section.
      * @param requestObj contains request parameters
      */
     public async updateSectionPageSetup(requestObj: model.UpdateSectionPageSetupRequest): Promise<{response: http.ClientResponse, body: model.SectionPageSetupResponse}> {
@@ -5124,7 +5117,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Updates a table cell format.
      * @param requestObj contains request parameters
      */
     public async updateTableCellFormat(requestObj: model.UpdateTableCellFormatRequest): Promise<{response: http.ClientResponse, body: model.TableCellFormatResponse}> {
@@ -5174,7 +5167,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Updates a table properties.
      * @param requestObj contains request parameters
      */
     public async updateTableProperties(requestObj: model.UpdateTablePropertiesRequest): Promise<{response: http.ClientResponse, body: model.TablePropertiesResponse}> {
@@ -5219,7 +5212,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Updates a table row format.
      * @param requestObj contains request parameters
      */
     public async updateTableRowFormat(requestObj: model.UpdateTableRowFormatRequest): Promise<{response: http.ClientResponse, body: model.TableRowFormatResponse}> {

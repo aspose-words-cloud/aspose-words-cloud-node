@@ -1676,6 +1676,47 @@ export class WordsApi {
     }
 
     /**
+     * Represents all the formatting for a paragraph.
+     * @param requestObj contains request parameters
+     */
+    public async getDocumentParagraphFormat(requestObj: model.GetDocumentParagraphFormatRequest): Promise<{response: http.ClientResponse, body: model.ParagraphFormatResponse}> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentParagraphFormat.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}/format"
+            .replace("{" + "name" + "}", String(requestObj.name))
+            .replace("{" + "index" + "}", String(requestObj.index));
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.name' is not null or undefined
+        if (requestObj.name === null || requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was null or undefined when calling getDocumentParagraphFormat.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null or undefined
+        if (requestObj.index === null || requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was null or undefined when calling getDocumentParagraphFormat.');
+        }
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "nodePath", requestObj.nodePath);
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result =  ObjectSerializer.deserialize(response.body, "ParagraphFormatResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+    /**
      * This resource represents run of text contained in the document.
      * @param requestObj contains request parameters
      */
@@ -3249,6 +3290,61 @@ export class WordsApi {
         (requestOptions as any).formData = formParams;        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+    /**
+     * Updates paragrpaph format properties, returns updated format properties.
+     * @param requestObj contains request parameters
+     */
+    public async postDocumentParagraphFormat(requestObj: model.PostDocumentParagraphFormatRequest): Promise<{response: http.ClientResponse, body: model.ParagraphFormatResponse}> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling postDocumentParagraphFormat.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}/format"
+            .replace("{" + "name" + "}", String(requestObj.name))
+            .replace("{" + "nodePath" + "}", String(requestObj.nodePath))
+            .replace("{" + "index" + "}", String(requestObj.index));
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.name' is not null or undefined
+        if (requestObj.name === null || requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was null or undefined when calling postDocumentParagraphFormat.');
+        }
+
+        // verify required parameter 'requestObj.dto' is not null or undefined
+        if (requestObj.dto === null || requestObj.dto === undefined) {
+            throw new Error('Required parameter "requestObj.dto" was null or undefined when calling postDocumentParagraphFormat.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not null or undefined
+        if (requestObj.nodePath === null || requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was null or undefined when calling postDocumentParagraphFormat.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null or undefined
+        if (requestObj.index === null || requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was null or undefined when calling postDocumentParagraphFormat.');
+        }
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+            body: ObjectSerializer.serialize(requestObj.dto, requestObj.dto.constructor.name === "Object" ? "ParagraphFormat" : requestObj.dto.constructor.name),
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result =  ObjectSerializer.deserialize(response.body, "ParagraphFormatResponse");
         return Promise.resolve({body: result, response});
     }
 

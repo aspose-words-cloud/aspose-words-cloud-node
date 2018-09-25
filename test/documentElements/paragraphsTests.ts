@@ -25,7 +25,7 @@
 import { expect } from "chai";
 import "mocha";
 
-import { DeleteParagraphRequest, GetDocumentParagraphRequest, GetDocumentParagraphsRequest, ParagraphInsert, PutParagraphRequest, RenderParagraphRequest } from "../../src/model/model";
+import { DeleteParagraphRequest, GetDocumentParagraphFormatRequest, GetDocumentParagraphRequest, GetDocumentParagraphsRequest, ParagraphFormat, ParagraphInsert, PostDocumentParagraphFormatRequest, PutParagraphRequest, RenderParagraphRequest } from "../../src/model/model";
 import * as BaseTest from "../baseTest";
 
 const testFolder = "DocumentElements/Paragraphs";
@@ -198,6 +198,80 @@ describe("paragraphs", () => {
                             // Assert
                             expect(result.response.statusCode).to.equal(200);
                             expect(result.body.byteLength).to.greaterThan(0);
+                        });
+                });
+        });
+    });
+
+    describe("getParagraphFormat function", () => {
+        it("should return response with code 200", () => {
+
+            const storageApi = BaseTest.initializeStorageApi();
+            const wordsApi = BaseTest.initializeWordsApi();
+
+            const localPath = BaseTest.localCommonTestDataFolder + "/test_doc.docx";
+            const remoteFileName = "TestGetParagraphFormat.docx";
+            const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
+
+            return new Promise((resolve) => {
+                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
+                    expect(responseMessage.status).to.equal("OK");
+                    resolve();
+                });
+            })
+                .then(() => {
+                    const request = new GetDocumentParagraphFormatRequest();
+                    request.name = remoteFileName;
+                    request.folder = remotePath;
+                    request.index = 0;
+
+                    // Act
+                    return wordsApi.getDocumentParagraphFormat(request)
+                        .then((result) => {
+                            // Assert
+                            expect(result.body.code).to.equal(200);
+                            expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.paragraphFormat).to.exist.and.not.equal(null);
+                        });
+                });
+        });
+    });    
+
+    describe("updateParagraphFormat function", () => {
+        it("should return response with code 200", () => {
+
+            const storageApi = BaseTest.initializeStorageApi();
+            const wordsApi = BaseTest.initializeWordsApi();
+
+            const localPath = BaseTest.localCommonTestDataFolder + "/test_doc.docx";
+            const remoteFileName = "TestUpdateParagraphFormat.docx";
+            const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
+
+            return new Promise((resolve) => {
+                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
+                    expect(responseMessage.status).to.equal("OK");
+                    resolve();
+                });
+            })
+                .then(() => {
+                    const request = new PostDocumentParagraphFormatRequest();
+                    request.name = remoteFileName;
+                    request.folder = remotePath;
+                    request.index = 0;
+                    request.dto = new ParagraphFormat(
+                    {
+                        alignment: ParagraphFormat.AlignmentEnum.Right,
+                    });
+
+                    // Act
+                    return wordsApi.postDocumentParagraphFormat(request)
+                        .then((result) => {
+                            // Assert
+                            expect(result.body.code).to.equal(200);
+                            expect(result.response.statusCode).to.equal(200);
+
+                            expect(result.body.paragraphFormat).to.exist.and.not.equal(null);
                         });
                 });
         });

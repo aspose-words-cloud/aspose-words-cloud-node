@@ -46,7 +46,6 @@ export interface IAuthentication {
  */
 export class OAuth implements IAuthentication {
     private accessToken: string;
-    private refreshToken: string;
 
      /**
       * Apply authentication settings to header and query params.
@@ -84,7 +83,6 @@ export class OAuth implements IAuthentication {
 
         const response = await invokeApiMethod(requestOptions, configuration, true);
         this.accessToken = response.body.access_token;
-        this.refreshToken = response.body.refresh_token;
         return Promise.resolve();
     }
 }

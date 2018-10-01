@@ -87,24 +87,4 @@ export class OAuth implements IAuthentication {
         this.refreshToken = response.body.refresh_token;
         return Promise.resolve();
     }
-
-	/**
-	 * Refresh token is obsolete, DO NOT USE.
-	 */
-    private async _refreshToken(configuration: Configuration): Promise<void> {
-        const requestOptions: request.Options = {
-            method: "POST",
-            json: true,
-            uri: configuration.baseUrl + "/oauth2/token",
-            form: {
-                grant_type: "refresh_token",
-                refresh_token: this.refreshToken,
-            },
-        };
-
-        const response = await invokeApiMethod(requestOptions, configuration, true);
-        this.accessToken = response.body.access_token;
-        this.refreshToken = response.body.refresh_token;
-        return Promise.resolve();
-    }
 }

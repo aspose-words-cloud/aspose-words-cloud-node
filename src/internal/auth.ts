@@ -67,7 +67,7 @@ export class OAuth implements IAuthentication {
      * Handle 401 response.
      */
     public async handle401response(configuration: Configuration) {
-        await this._refreshToken(configuration);
+        await this._requestToken(configuration);
     }
 
     private async _requestToken(configuration: Configuration): Promise<void> {
@@ -88,6 +88,9 @@ export class OAuth implements IAuthentication {
         return Promise.resolve();
     }
 
+	/**
+	 * Refresh token is obsolete, DO NOT USE.
+	 */
     private async _refreshToken(configuration: Configuration): Promise<void> {
         const requestOptions: request.Options = {
             method: "POST",

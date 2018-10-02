@@ -259,7 +259,7 @@ describe("paragraphs", () => {
                     request.name = remoteFileName;
                     request.folder = remotePath;
                     request.index = 0;
-					request.nodePath = '';
+                    request.nodePath = "";
                     request.dto = new ParagraphFormat(
                     {
                         alignment: ParagraphFormat.AlignmentEnum.Right,

@@ -58,7 +58,7 @@ export class WordsApi {
      * Accept all revisions in document
      * @param requestObj contains request parameters
      */
-    public async acceptAllRevisions(requestObj: model.AcceptAllRevisionsRequest): Promise<{response: http.ClientResponse, body: model.RevisionsModificationResponse}> {
+    public async acceptAllRevisions(requestObj: model.AcceptAllRevisionsRequest): Promise<{response: http.IncomingMessage, body: model.RevisionsModificationResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling acceptAllRevisions.');
         }
@@ -93,7 +93,7 @@ export class WordsApi {
      * Classify raw text.
      * @param requestObj contains request parameters
      */
-    public async classify(requestObj: model.ClassifyRequest): Promise<{response: http.ClientResponse, body: model.ClassificationResponse}> {
+    public async classify(requestObj: model.ClassifyRequest): Promise<{response: http.IncomingMessage, body: model.ClassificationResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling classify.');
         }
@@ -124,7 +124,7 @@ export class WordsApi {
      * Classify document.
      * @param requestObj contains request parameters
      */
-    public async classifyDocument(requestObj: model.ClassifyDocumentRequest): Promise<{response: http.ClientResponse, body: model.ClassificationResponse}> {
+    public async classifyDocument(requestObj: model.ClassifyDocumentRequest): Promise<{response: http.IncomingMessage, body: model.ClassificationResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling classifyDocument.');
         }
@@ -160,7 +160,7 @@ export class WordsApi {
      * Add new or update existing document property.
      * @param requestObj contains request parameters
      */
-    public async createOrUpdateDocumentProperty(requestObj: model.CreateOrUpdateDocumentPropertyRequest): Promise<{response: http.ClientResponse, body: model.DocumentPropertyResponse}> {
+    public async createOrUpdateDocumentProperty(requestObj: model.CreateOrUpdateDocumentPropertyRequest): Promise<{response: http.IncomingMessage, body: model.DocumentPropertyResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling createOrUpdateDocumentProperty.');
         }
@@ -209,7 +209,7 @@ export class WordsApi {
      * Resets border properties to default values.              'nodePath' should refer to node with cell or row
      * @param requestObj contains request parameters
      */
-    public async deleteBorder(requestObj: model.DeleteBorderRequest): Promise<{response: http.ClientResponse, body: model.BorderResponse}> {
+    public async deleteBorder(requestObj: model.DeleteBorderRequest): Promise<{response: http.IncomingMessage, body: model.BorderResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteBorder.');
         }
@@ -258,7 +258,7 @@ export class WordsApi {
      * Resets borders properties to default values.              'nodePath' should refer to node with cell or row
      * @param requestObj contains request parameters
      */
-    public async deleteBorders(requestObj: model.DeleteBordersRequest): Promise<{response: http.ClientResponse, body: model.BordersResponse}> {
+    public async deleteBorders(requestObj: model.DeleteBordersRequest): Promise<{response: http.IncomingMessage, body: model.BordersResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteBorders.');
         }
@@ -301,7 +301,7 @@ export class WordsApi {
      * Remove comment from document.
      * @param requestObj contains request parameters
      */
-    public async deleteComment(requestObj: model.DeleteCommentRequest): Promise<{response: http.ClientResponse, body: model.AsposeResponse}> {
+    public async deleteComment(requestObj: model.DeleteCommentRequest): Promise<{response: http.IncomingMessage, body: model.AsposeResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteComment.');
         }
@@ -344,7 +344,7 @@ export class WordsApi {
      * Remove macros from document.
      * @param requestObj contains request parameters
      */
-    public async deleteDocumentMacros(requestObj: model.DeleteDocumentMacrosRequest): Promise<{response: http.ClientResponse, body: model.AsposeResponse}> {
+    public async deleteDocumentMacros(requestObj: model.DeleteDocumentMacrosRequest): Promise<{response: http.IncomingMessage, body: model.AsposeResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteDocumentMacros.');
         }
@@ -381,7 +381,7 @@ export class WordsApi {
      * Delete document property.
      * @param requestObj contains request parameters
      */
-    public async deleteDocumentProperty(requestObj: model.DeleteDocumentPropertyRequest): Promise<{response: http.ClientResponse, body: model.AsposeResponse}> {
+    public async deleteDocumentProperty(requestObj: model.DeleteDocumentPropertyRequest): Promise<{response: http.IncomingMessage, body: model.AsposeResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteDocumentProperty.');
         }
@@ -424,7 +424,7 @@ export class WordsApi {
      * Delete watermark (for deleting last watermark from the document).
      * @param requestObj contains request parameters
      */
-    public async deleteDocumentWatermark(requestObj: model.DeleteDocumentWatermarkRequest): Promise<{response: http.ClientResponse, body: model.DocumentResponse}> {
+    public async deleteDocumentWatermark(requestObj: model.DeleteDocumentWatermarkRequest): Promise<{response: http.IncomingMessage, body: model.DocumentResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteDocumentWatermark.');
         }
@@ -461,7 +461,7 @@ export class WordsApi {
      * Removes drawing object from document.
      * @param requestObj contains request parameters
      */
-    public async deleteDrawingObject(requestObj: model.DeleteDrawingObjectRequest): Promise<{response: http.ClientResponse, body: model.AsposeResponse}> {
+    public async deleteDrawingObject(requestObj: model.DeleteDrawingObjectRequest): Promise<{response: http.IncomingMessage, body: model.AsposeResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteDrawingObject.');
         }
@@ -505,7 +505,7 @@ export class WordsApi {
      * Delete field from document.
      * @param requestObj contains request parameters
      */
-    public async deleteField(requestObj: model.DeleteFieldRequest): Promise<{response: http.ClientResponse, body: model.AsposeResponse}> {
+    public async deleteField(requestObj: model.DeleteFieldRequest): Promise<{response: http.IncomingMessage, body: model.AsposeResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteField.');
         }
@@ -549,7 +549,7 @@ export class WordsApi {
      * Remove fields from section paragraph.
      * @param requestObj contains request parameters
      */
-    public async deleteFields(requestObj: model.DeleteFieldsRequest): Promise<{response: http.ClientResponse, body: model.AsposeResponse}> {
+    public async deleteFields(requestObj: model.DeleteFieldsRequest): Promise<{response: http.IncomingMessage, body: model.AsposeResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteFields.');
         }
@@ -587,7 +587,7 @@ export class WordsApi {
      * Removes footnote from document.
      * @param requestObj contains request parameters
      */
-    public async deleteFootnote(requestObj: model.DeleteFootnoteRequest): Promise<{response: http.ClientResponse, body: model.AsposeResponse}> {
+    public async deleteFootnote(requestObj: model.DeleteFootnoteRequest): Promise<{response: http.IncomingMessage, body: model.AsposeResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteFootnote.');
         }
@@ -631,7 +631,7 @@ export class WordsApi {
      * Removes form field from document.
      * @param requestObj contains request parameters
      */
-    public async deleteFormField(requestObj: model.DeleteFormFieldRequest): Promise<{response: http.ClientResponse, body: model.AsposeResponse}> {
+    public async deleteFormField(requestObj: model.DeleteFormFieldRequest): Promise<{response: http.IncomingMessage, body: model.AsposeResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteFormField.');
         }
@@ -675,7 +675,7 @@ export class WordsApi {
      * Delete header/footer from document.
      * @param requestObj contains request parameters
      */
-    public async deleteHeaderFooter(requestObj: model.DeleteHeaderFooterRequest): Promise<{response: http.ClientResponse, body: model.AsposeResponse}> {
+    public async deleteHeaderFooter(requestObj: model.DeleteHeaderFooterRequest): Promise<{response: http.IncomingMessage, body: model.AsposeResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteHeaderFooter.');
         }
@@ -719,7 +719,7 @@ export class WordsApi {
      * Delete document headers and footers.
      * @param requestObj contains request parameters
      */
-    public async deleteHeadersFooters(requestObj: model.DeleteHeadersFootersRequest): Promise<{response: http.ClientResponse, body: model.AsposeResponse}> {
+    public async deleteHeadersFooters(requestObj: model.DeleteHeadersFootersRequest): Promise<{response: http.IncomingMessage, body: model.AsposeResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteHeadersFooters.');
         }
@@ -758,7 +758,7 @@ export class WordsApi {
      * Removes OfficeMath object from document.
      * @param requestObj contains request parameters
      */
-    public async deleteOfficeMathObject(requestObj: model.DeleteOfficeMathObjectRequest): Promise<{response: http.ClientResponse, body: model.AsposeResponse}> {
+    public async deleteOfficeMathObject(requestObj: model.DeleteOfficeMathObjectRequest): Promise<{response: http.IncomingMessage, body: model.AsposeResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteOfficeMathObject.');
         }
@@ -802,7 +802,7 @@ export class WordsApi {
      * Remove paragraph from section.
      * @param requestObj contains request parameters
      */
-    public async deleteParagraph(requestObj: model.DeleteParagraphRequest): Promise<{response: http.ClientResponse, body: model.AsposeResponse}> {
+    public async deleteParagraph(requestObj: model.DeleteParagraphRequest): Promise<{response: http.IncomingMessage, body: model.AsposeResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteParagraph.');
         }
@@ -846,7 +846,7 @@ export class WordsApi {
      * Removes run from document.
      * @param requestObj contains request parameters
      */
-    public async deleteRun(requestObj: model.DeleteRunRequest): Promise<{response: http.ClientResponse, body: model.AsposeResponse}> {
+    public async deleteRun(requestObj: model.DeleteRunRequest): Promise<{response: http.IncomingMessage, body: model.AsposeResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteRun.');
         }
@@ -895,7 +895,7 @@ export class WordsApi {
      * Delete a table.
      * @param requestObj contains request parameters
      */
-    public async deleteTable(requestObj: model.DeleteTableRequest): Promise<{response: http.ClientResponse, body: model.AsposeResponse}> {
+    public async deleteTable(requestObj: model.DeleteTableRequest): Promise<{response: http.IncomingMessage, body: model.AsposeResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteTable.');
         }
@@ -939,7 +939,7 @@ export class WordsApi {
      * Delete a table cell.
      * @param requestObj contains request parameters
      */
-    public async deleteTableCell(requestObj: model.DeleteTableCellRequest): Promise<{response: http.ClientResponse, body: model.AsposeResponse}> {
+    public async deleteTableCell(requestObj: model.DeleteTableCellRequest): Promise<{response: http.IncomingMessage, body: model.AsposeResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteTableCell.');
         }
@@ -988,7 +988,7 @@ export class WordsApi {
      * Delete a table row.
      * @param requestObj contains request parameters
      */
-    public async deleteTableRow(requestObj: model.DeleteTableRowRequest): Promise<{response: http.ClientResponse, body: model.AsposeResponse}> {
+    public async deleteTableRow(requestObj: model.DeleteTableRowRequest): Promise<{response: http.IncomingMessage, body: model.AsposeResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteTableRow.');
         }
@@ -1037,7 +1037,7 @@ export class WordsApi {
      * Unprotect document.
      * @param requestObj contains request parameters
      */
-    public async deleteUnprotectDocument(requestObj: model.DeleteUnprotectDocumentRequest): Promise<{response: http.ClientResponse, body: model.ProtectionDataResponse}> {
+    public async deleteUnprotectDocument(requestObj: model.DeleteUnprotectDocumentRequest): Promise<{response: http.IncomingMessage, body: model.ProtectionDataResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteUnprotectDocument.');
         }
@@ -1078,7 +1078,7 @@ export class WordsApi {
      * Gets the list of fonts, available for document processing
      * @param requestObj contains request parameters
      */
-    public async getAvailableFonts(requestObj: model.GetAvailableFontsRequest): Promise<{response: http.ClientResponse, body: model.AvailableFontsResponse}> {
+    public async getAvailableFonts(requestObj: model.GetAvailableFontsRequest): Promise<{response: http.IncomingMessage, body: model.AvailableFontsResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getAvailableFonts.');
         }
@@ -1103,7 +1103,7 @@ export class WordsApi {
      * Return a border. 'nodePath' should refer to node with cell or row
      * @param requestObj contains request parameters
      */
-    public async getBorder(requestObj: model.GetBorderRequest): Promise<{response: http.ClientResponse, body: model.BorderResponse}> {
+    public async getBorder(requestObj: model.GetBorderRequest): Promise<{response: http.IncomingMessage, body: model.BorderResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getBorder.');
         }
@@ -1149,7 +1149,7 @@ export class WordsApi {
      * Return a collection of borders. 'nodePath' should refer to node with cell or row
      * @param requestObj contains request parameters
      */
-    public async getBorders(requestObj: model.GetBordersRequest): Promise<{response: http.ClientResponse, body: model.BordersResponse}> {
+    public async getBorders(requestObj: model.GetBordersRequest): Promise<{response: http.IncomingMessage, body: model.BordersResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getBorders.');
         }
@@ -1189,7 +1189,7 @@ export class WordsApi {
      * Get comment from document.
      * @param requestObj contains request parameters
      */
-    public async getComment(requestObj: model.GetCommentRequest): Promise<{response: http.ClientResponse, body: model.CommentResponse}> {
+    public async getComment(requestObj: model.GetCommentRequest): Promise<{response: http.IncomingMessage, body: model.CommentResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getComment.');
         }
@@ -1229,7 +1229,7 @@ export class WordsApi {
      * Get comments from document.
      * @param requestObj contains request parameters
      */
-    public async getComments(requestObj: model.GetCommentsRequest): Promise<{response: http.ClientResponse, body: model.CommentsResponse}> {
+    public async getComments(requestObj: model.GetCommentsRequest): Promise<{response: http.IncomingMessage, body: model.CommentsResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getComments.');
         }
@@ -1263,7 +1263,7 @@ export class WordsApi {
      * Read document common info.
      * @param requestObj contains request parameters
      */
-    public async getDocument(requestObj: model.GetDocumentRequest): Promise<{response: http.ClientResponse, body: model.DocumentResponse}> {
+    public async getDocument(requestObj: model.GetDocumentRequest): Promise<{response: http.IncomingMessage, body: model.DocumentResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocument.');
         }
@@ -1297,7 +1297,7 @@ export class WordsApi {
      * Read document bookmark data by its name.
      * @param requestObj contains request parameters
      */
-    public async getDocumentBookmarkByName(requestObj: model.GetDocumentBookmarkByNameRequest): Promise<{response: http.ClientResponse, body: model.BookmarkResponse}> {
+    public async getDocumentBookmarkByName(requestObj: model.GetDocumentBookmarkByNameRequest): Promise<{response: http.IncomingMessage, body: model.BookmarkResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentBookmarkByName.');
         }
@@ -1337,7 +1337,7 @@ export class WordsApi {
      * Read document bookmarks common info.
      * @param requestObj contains request parameters
      */
-    public async getDocumentBookmarks(requestObj: model.GetDocumentBookmarksRequest): Promise<{response: http.ClientResponse, body: model.BookmarksResponse}> {
+    public async getDocumentBookmarks(requestObj: model.GetDocumentBookmarksRequest): Promise<{response: http.IncomingMessage, body: model.BookmarksResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentBookmarks.');
         }
@@ -1371,7 +1371,7 @@ export class WordsApi {
      * Read document drawing object common info by its index or convert to format specified.
      * @param requestObj contains request parameters
      */
-    public async getDocumentDrawingObjectByIndex(requestObj: model.GetDocumentDrawingObjectByIndexRequest): Promise<{response: http.ClientResponse, body: model.DrawingObjectResponse}> {
+    public async getDocumentDrawingObjectByIndex(requestObj: model.GetDocumentDrawingObjectByIndexRequest): Promise<{response: http.IncomingMessage, body: model.DrawingObjectResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentDrawingObjectByIndex.');
         }
@@ -1412,7 +1412,7 @@ export class WordsApi {
      * Read drawing object image data.
      * @param requestObj contains request parameters
      */
-    public async getDocumentDrawingObjectImageData(requestObj: model.GetDocumentDrawingObjectImageDataRequest): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async getDocumentDrawingObjectImageData(requestObj: model.GetDocumentDrawingObjectImageDataRequest): Promise<{response: http.IncomingMessage, body: Buffer}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentDrawingObjectImageData.');
         }
@@ -1453,7 +1453,7 @@ export class WordsApi {
      * Get drawing object OLE data.
      * @param requestObj contains request parameters
      */
-    public async getDocumentDrawingObjectOleData(requestObj: model.GetDocumentDrawingObjectOleDataRequest): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async getDocumentDrawingObjectOleData(requestObj: model.GetDocumentDrawingObjectOleDataRequest): Promise<{response: http.IncomingMessage, body: Buffer}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentDrawingObjectOleData.');
         }
@@ -1494,7 +1494,7 @@ export class WordsApi {
      * Read document drawing objects common info.
      * @param requestObj contains request parameters
      */
-    public async getDocumentDrawingObjects(requestObj: model.GetDocumentDrawingObjectsRequest): Promise<{response: http.ClientResponse, body: model.DrawingObjectsResponse}> {
+    public async getDocumentDrawingObjects(requestObj: model.GetDocumentDrawingObjectsRequest): Promise<{response: http.IncomingMessage, body: model.DrawingObjectsResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentDrawingObjects.');
         }
@@ -1529,7 +1529,7 @@ export class WordsApi {
      * Read document field names.
      * @param requestObj contains request parameters
      */
-    public async getDocumentFieldNames(requestObj: model.GetDocumentFieldNamesRequest): Promise<{response: http.ClientResponse, body: model.FieldNamesResponse}> {
+    public async getDocumentFieldNames(requestObj: model.GetDocumentFieldNamesRequest): Promise<{response: http.IncomingMessage, body: model.FieldNamesResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentFieldNames.');
         }
@@ -1564,7 +1564,7 @@ export class WordsApi {
      * Read document hyperlink by its index.
      * @param requestObj contains request parameters
      */
-    public async getDocumentHyperlinkByIndex(requestObj: model.GetDocumentHyperlinkByIndexRequest): Promise<{response: http.ClientResponse, body: model.HyperlinkResponse}> {
+    public async getDocumentHyperlinkByIndex(requestObj: model.GetDocumentHyperlinkByIndexRequest): Promise<{response: http.IncomingMessage, body: model.HyperlinkResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentHyperlinkByIndex.');
         }
@@ -1604,7 +1604,7 @@ export class WordsApi {
      * Read document hyperlinks common info.
      * @param requestObj contains request parameters
      */
-    public async getDocumentHyperlinks(requestObj: model.GetDocumentHyperlinksRequest): Promise<{response: http.ClientResponse, body: model.HyperlinksResponse}> {
+    public async getDocumentHyperlinks(requestObj: model.GetDocumentHyperlinksRequest): Promise<{response: http.IncomingMessage, body: model.HyperlinksResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentHyperlinks.');
         }
@@ -1638,7 +1638,7 @@ export class WordsApi {
      * This resource represents one of the paragraphs contained in the document.
      * @param requestObj contains request parameters
      */
-    public async getDocumentParagraph(requestObj: model.GetDocumentParagraphRequest): Promise<{response: http.ClientResponse, body: model.ParagraphResponse}> {
+    public async getDocumentParagraph(requestObj: model.GetDocumentParagraphRequest): Promise<{response: http.IncomingMessage, body: model.ParagraphResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentParagraph.');
         }
@@ -1679,7 +1679,7 @@ export class WordsApi {
      * Represents all the formatting for a paragraph.
      * @param requestObj contains request parameters
      */
-    public async getDocumentParagraphFormat(requestObj: model.GetDocumentParagraphFormatRequest): Promise<{response: http.ClientResponse, body: model.ParagraphFormatResponse}> {
+    public async getDocumentParagraphFormat(requestObj: model.GetDocumentParagraphFormatRequest): Promise<{response: http.IncomingMessage, body: model.ParagraphFormatResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentParagraphFormat.');
         }
@@ -1720,7 +1720,7 @@ export class WordsApi {
      * This resource represents run of text contained in the document.
      * @param requestObj contains request parameters
      */
-    public async getDocumentParagraphRun(requestObj: model.GetDocumentParagraphRunRequest): Promise<{response: http.ClientResponse, body: model.RunResponse}> {
+    public async getDocumentParagraphRun(requestObj: model.GetDocumentParagraphRunRequest): Promise<{response: http.IncomingMessage, body: model.RunResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentParagraphRun.');
         }
@@ -1766,7 +1766,7 @@ export class WordsApi {
      * This resource represents font of run.
      * @param requestObj contains request parameters
      */
-    public async getDocumentParagraphRunFont(requestObj: model.GetDocumentParagraphRunFontRequest): Promise<{response: http.ClientResponse, body: model.FontResponse}> {
+    public async getDocumentParagraphRunFont(requestObj: model.GetDocumentParagraphRunFontRequest): Promise<{response: http.IncomingMessage, body: model.FontResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentParagraphRunFont.');
         }
@@ -1812,7 +1812,7 @@ export class WordsApi {
      * This resource represents collection of runs in the paragraph.
      * @param requestObj contains request parameters
      */
-    public async getDocumentParagraphRuns(requestObj: model.GetDocumentParagraphRunsRequest): Promise<{response: http.ClientResponse, body: model.RunsResponse}> {
+    public async getDocumentParagraphRuns(requestObj: model.GetDocumentParagraphRunsRequest): Promise<{response: http.IncomingMessage, body: model.RunsResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentParagraphRuns.');
         }
@@ -1852,7 +1852,7 @@ export class WordsApi {
      * Return a list of paragraphs that are contained in the document.
      * @param requestObj contains request parameters
      */
-    public async getDocumentParagraphs(requestObj: model.GetDocumentParagraphsRequest): Promise<{response: http.ClientResponse, body: model.ParagraphLinkCollectionResponse}> {
+    public async getDocumentParagraphs(requestObj: model.GetDocumentParagraphsRequest): Promise<{response: http.IncomingMessage, body: model.ParagraphLinkCollectionResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentParagraphs.');
         }
@@ -1887,7 +1887,7 @@ export class WordsApi {
      * Read document properties info.
      * @param requestObj contains request parameters
      */
-    public async getDocumentProperties(requestObj: model.GetDocumentPropertiesRequest): Promise<{response: http.ClientResponse, body: model.DocumentPropertiesResponse}> {
+    public async getDocumentProperties(requestObj: model.GetDocumentPropertiesRequest): Promise<{response: http.IncomingMessage, body: model.DocumentPropertiesResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentProperties.');
         }
@@ -1921,7 +1921,7 @@ export class WordsApi {
      * Read document property info by the property name.
      * @param requestObj contains request parameters
      */
-    public async getDocumentProperty(requestObj: model.GetDocumentPropertyRequest): Promise<{response: http.ClientResponse, body: model.DocumentPropertyResponse}> {
+    public async getDocumentProperty(requestObj: model.GetDocumentPropertyRequest): Promise<{response: http.IncomingMessage, body: model.DocumentPropertyResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentProperty.');
         }
@@ -1961,7 +1961,7 @@ export class WordsApi {
      * Read document protection common info.
      * @param requestObj contains request parameters
      */
-    public async getDocumentProtection(requestObj: model.GetDocumentProtectionRequest): Promise<{response: http.ClientResponse, body: model.ProtectionDataResponse}> {
+    public async getDocumentProtection(requestObj: model.GetDocumentProtectionRequest): Promise<{response: http.IncomingMessage, body: model.ProtectionDataResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentProtection.');
         }
@@ -1995,7 +1995,7 @@ export class WordsApi {
      * Read document statistics.
      * @param requestObj contains request parameters
      */
-    public async getDocumentStatistics(requestObj: model.GetDocumentStatisticsRequest): Promise<{response: http.ClientResponse, body: model.StatDataResponse}> {
+    public async getDocumentStatistics(requestObj: model.GetDocumentStatisticsRequest): Promise<{response: http.IncomingMessage, body: model.StatDataResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentStatistics.');
         }
@@ -2032,7 +2032,7 @@ export class WordsApi {
      * Read document text items.
      * @param requestObj contains request parameters
      */
-    public async getDocumentTextItems(requestObj: model.GetDocumentTextItemsRequest): Promise<{response: http.ClientResponse, body: model.TextItemsResponse}> {
+    public async getDocumentTextItems(requestObj: model.GetDocumentTextItemsRequest): Promise<{response: http.IncomingMessage, body: model.TextItemsResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentTextItems.');
         }
@@ -2066,7 +2066,7 @@ export class WordsApi {
      * Export the document into the specified format.
      * @param requestObj contains request parameters
      */
-    public async getDocumentWithFormat(requestObj: model.GetDocumentWithFormatRequest): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async getDocumentWithFormat(requestObj: model.GetDocumentWithFormatRequest): Promise<{response: http.IncomingMessage, body: Buffer}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentWithFormat.');
         }
@@ -2108,7 +2108,7 @@ export class WordsApi {
      * Get field from document.
      * @param requestObj contains request parameters
      */
-    public async getField(requestObj: model.GetFieldRequest): Promise<{response: http.ClientResponse, body: model.FieldResponse}> {
+    public async getField(requestObj: model.GetFieldRequest): Promise<{response: http.IncomingMessage, body: model.FieldResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getField.');
         }
@@ -2149,7 +2149,7 @@ export class WordsApi {
      * Get fields from document.
      * @param requestObj contains request parameters
      */
-    public async getFields(requestObj: model.GetFieldsRequest): Promise<{response: http.ClientResponse, body: model.FieldsResponse}> {
+    public async getFields(requestObj: model.GetFieldsRequest): Promise<{response: http.IncomingMessage, body: model.FieldsResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getFields.');
         }
@@ -2184,7 +2184,7 @@ export class WordsApi {
      * Read footnote by index.
      * @param requestObj contains request parameters
      */
-    public async getFootnote(requestObj: model.GetFootnoteRequest): Promise<{response: http.ClientResponse, body: model.FootnoteResponse}> {
+    public async getFootnote(requestObj: model.GetFootnoteRequest): Promise<{response: http.IncomingMessage, body: model.FootnoteResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getFootnote.');
         }
@@ -2225,7 +2225,7 @@ export class WordsApi {
      * Get footnotes from document.
      * @param requestObj contains request parameters
      */
-    public async getFootnotes(requestObj: model.GetFootnotesRequest): Promise<{response: http.ClientResponse, body: model.FootnotesResponse}> {
+    public async getFootnotes(requestObj: model.GetFootnotesRequest): Promise<{response: http.IncomingMessage, body: model.FootnotesResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getFootnotes.');
         }
@@ -2260,7 +2260,7 @@ export class WordsApi {
      * Returns representation of an one of the form field.
      * @param requestObj contains request parameters
      */
-    public async getFormField(requestObj: model.GetFormFieldRequest): Promise<{response: http.ClientResponse, body: model.FormFieldResponse}> {
+    public async getFormField(requestObj: model.GetFormFieldRequest): Promise<{response: http.IncomingMessage, body: model.FormFieldResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getFormField.');
         }
@@ -2301,7 +2301,7 @@ export class WordsApi {
      * Get form fields from document.
      * @param requestObj contains request parameters
      */
-    public async getFormFields(requestObj: model.GetFormFieldsRequest): Promise<{response: http.ClientResponse, body: model.FormFieldsResponse}> {
+    public async getFormFields(requestObj: model.GetFormFieldsRequest): Promise<{response: http.IncomingMessage, body: model.FormFieldsResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getFormFields.');
         }
@@ -2336,7 +2336,7 @@ export class WordsApi {
      * Return a header/footer that is contained in the document.
      * @param requestObj contains request parameters
      */
-    public async getHeaderFooter(requestObj: model.GetHeaderFooterRequest): Promise<{response: http.ClientResponse, body: model.HeaderFooterResponse}> {
+    public async getHeaderFooter(requestObj: model.GetHeaderFooterRequest): Promise<{response: http.IncomingMessage, body: model.HeaderFooterResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getHeaderFooter.');
         }
@@ -2377,7 +2377,7 @@ export class WordsApi {
      * Return a header/footer that is contained in the document.
      * @param requestObj contains request parameters
      */
-    public async getHeaderFooterOfSection(requestObj: model.GetHeaderFooterOfSectionRequest): Promise<{response: http.ClientResponse, body: model.HeaderFooterResponse}> {
+    public async getHeaderFooterOfSection(requestObj: model.GetHeaderFooterOfSectionRequest): Promise<{response: http.IncomingMessage, body: model.HeaderFooterResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getHeaderFooterOfSection.');
         }
@@ -2424,7 +2424,7 @@ export class WordsApi {
      * Return a list of header/footers that are contained in the document.
      * @param requestObj contains request parameters
      */
-    public async getHeaderFooters(requestObj: model.GetHeaderFootersRequest): Promise<{response: http.ClientResponse, body: model.HeaderFootersResponse}> {
+    public async getHeaderFooters(requestObj: model.GetHeaderFootersRequest): Promise<{response: http.IncomingMessage, body: model.HeaderFootersResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getHeaderFooters.');
         }
@@ -2460,7 +2460,7 @@ export class WordsApi {
      * Read OfficeMath object by index.
      * @param requestObj contains request parameters
      */
-    public async getOfficeMathObject(requestObj: model.GetOfficeMathObjectRequest): Promise<{response: http.ClientResponse, body: model.OfficeMathObjectResponse}> {
+    public async getOfficeMathObject(requestObj: model.GetOfficeMathObjectRequest): Promise<{response: http.IncomingMessage, body: model.OfficeMathObjectResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getOfficeMathObject.');
         }
@@ -2501,7 +2501,7 @@ export class WordsApi {
      * Get OfficeMath objects from document.
      * @param requestObj contains request parameters
      */
-    public async getOfficeMathObjects(requestObj: model.GetOfficeMathObjectsRequest): Promise<{response: http.ClientResponse, body: model.OfficeMathObjectsResponse}> {
+    public async getOfficeMathObjects(requestObj: model.GetOfficeMathObjectsRequest): Promise<{response: http.IncomingMessage, body: model.OfficeMathObjectsResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getOfficeMathObjects.');
         }
@@ -2536,7 +2536,7 @@ export class WordsApi {
      * Get document section by index.
      * @param requestObj contains request parameters
      */
-    public async getSection(requestObj: model.GetSectionRequest): Promise<{response: http.ClientResponse, body: model.SectionResponse}> {
+    public async getSection(requestObj: model.GetSectionRequest): Promise<{response: http.IncomingMessage, body: model.SectionResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getSection.');
         }
@@ -2576,7 +2576,7 @@ export class WordsApi {
      * Get page setup of section.
      * @param requestObj contains request parameters
      */
-    public async getSectionPageSetup(requestObj: model.GetSectionPageSetupRequest): Promise<{response: http.ClientResponse, body: model.SectionPageSetupResponse}> {
+    public async getSectionPageSetup(requestObj: model.GetSectionPageSetupRequest): Promise<{response: http.IncomingMessage, body: model.SectionPageSetupResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getSectionPageSetup.');
         }
@@ -2616,7 +2616,7 @@ export class WordsApi {
      * Return a list of sections that are contained in the document.
      * @param requestObj contains request parameters
      */
-    public async getSections(requestObj: model.GetSectionsRequest): Promise<{response: http.ClientResponse, body: model.SectionLinkCollectionResponse}> {
+    public async getSections(requestObj: model.GetSectionsRequest): Promise<{response: http.IncomingMessage, body: model.SectionLinkCollectionResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getSections.');
         }
@@ -2650,7 +2650,7 @@ export class WordsApi {
      * Return a table.
      * @param requestObj contains request parameters
      */
-    public async getTable(requestObj: model.GetTableRequest): Promise<{response: http.ClientResponse, body: model.TableResponse}> {
+    public async getTable(requestObj: model.GetTableRequest): Promise<{response: http.IncomingMessage, body: model.TableResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getTable.');
         }
@@ -2691,7 +2691,7 @@ export class WordsApi {
      * Return a table cell.
      * @param requestObj contains request parameters
      */
-    public async getTableCell(requestObj: model.GetTableCellRequest): Promise<{response: http.ClientResponse, body: model.TableCellResponse}> {
+    public async getTableCell(requestObj: model.GetTableCellRequest): Promise<{response: http.IncomingMessage, body: model.TableCellResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getTableCell.');
         }
@@ -2737,7 +2737,7 @@ export class WordsApi {
      * Return a table cell format.
      * @param requestObj contains request parameters
      */
-    public async getTableCellFormat(requestObj: model.GetTableCellFormatRequest): Promise<{response: http.ClientResponse, body: model.TableCellFormatResponse}> {
+    public async getTableCellFormat(requestObj: model.GetTableCellFormatRequest): Promise<{response: http.IncomingMessage, body: model.TableCellFormatResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getTableCellFormat.');
         }
@@ -2783,7 +2783,7 @@ export class WordsApi {
      * Return a table properties.
      * @param requestObj contains request parameters
      */
-    public async getTableProperties(requestObj: model.GetTablePropertiesRequest): Promise<{response: http.ClientResponse, body: model.TablePropertiesResponse}> {
+    public async getTableProperties(requestObj: model.GetTablePropertiesRequest): Promise<{response: http.IncomingMessage, body: model.TablePropertiesResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getTableProperties.');
         }
@@ -2824,7 +2824,7 @@ export class WordsApi {
      * Return a table row.
      * @param requestObj contains request parameters
      */
-    public async getTableRow(requestObj: model.GetTableRowRequest): Promise<{response: http.ClientResponse, body: model.TableRowResponse}> {
+    public async getTableRow(requestObj: model.GetTableRowRequest): Promise<{response: http.IncomingMessage, body: model.TableRowResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getTableRow.');
         }
@@ -2870,7 +2870,7 @@ export class WordsApi {
      * Return a table row format.
      * @param requestObj contains request parameters
      */
-    public async getTableRowFormat(requestObj: model.GetTableRowFormatRequest): Promise<{response: http.ClientResponse, body: model.TableRowFormatResponse}> {
+    public async getTableRowFormat(requestObj: model.GetTableRowFormatRequest): Promise<{response: http.IncomingMessage, body: model.TableRowFormatResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getTableRowFormat.');
         }
@@ -2916,7 +2916,7 @@ export class WordsApi {
      * Return a list of tables that are contained in the document.
      * @param requestObj contains request parameters
      */
-    public async getTables(requestObj: model.GetTablesRequest): Promise<{response: http.ClientResponse, body: model.TableLinkCollectionResponse}> {
+    public async getTables(requestObj: model.GetTablesRequest): Promise<{response: http.IncomingMessage, body: model.TableLinkCollectionResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getTables.');
         }
@@ -2951,7 +2951,7 @@ export class WordsApi {
      * Adds table to document, returns added table's data.             
      * @param requestObj contains request parameters
      */
-    public async insertTable(requestObj: model.InsertTableRequest): Promise<{response: http.ClientResponse, body: model.TableResponse}> {
+    public async insertTable(requestObj: model.InsertTableRequest): Promise<{response: http.IncomingMessage, body: model.TableResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling insertTable.');
         }
@@ -2990,7 +2990,7 @@ export class WordsApi {
      * Adds table cell to table, returns added cell's data.             
      * @param requestObj contains request parameters
      */
-    public async insertTableCell(requestObj: model.InsertTableCellRequest): Promise<{response: http.ClientResponse, body: model.TableCellResponse}> {
+    public async insertTableCell(requestObj: model.InsertTableCellRequest): Promise<{response: http.IncomingMessage, body: model.TableCellResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling insertTableCell.');
         }
@@ -3034,7 +3034,7 @@ export class WordsApi {
      * Adds table row to table, returns added row's data.             
      * @param requestObj contains request parameters
      */
-    public async insertTableRow(requestObj: model.InsertTableRowRequest): Promise<{response: http.ClientResponse, body: model.TableRowResponse}> {
+    public async insertTableRow(requestObj: model.InsertTableRowRequest): Promise<{response: http.IncomingMessage, body: model.TableRowResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling insertTableRow.');
         }
@@ -3078,7 +3078,7 @@ export class WordsApi {
      * Append documents to original document.
      * @param requestObj contains request parameters
      */
-    public async postAppendDocument(requestObj: model.PostAppendDocumentRequest): Promise<{response: http.ClientResponse, body: model.DocumentResponse}> {
+    public async postAppendDocument(requestObj: model.PostAppendDocumentRequest): Promise<{response: http.IncomingMessage, body: model.DocumentResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postAppendDocument.');
         }
@@ -3121,7 +3121,7 @@ export class WordsApi {
      * Change document protection.
      * @param requestObj contains request parameters
      */
-    public async postChangeDocumentProtection(requestObj: model.PostChangeDocumentProtectionRequest): Promise<{response: http.ClientResponse, body: model.ProtectionDataResponse}> {
+    public async postChangeDocumentProtection(requestObj: model.PostChangeDocumentProtectionRequest): Promise<{response: http.IncomingMessage, body: model.ProtectionDataResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postChangeDocumentProtection.');
         }
@@ -3162,7 +3162,7 @@ export class WordsApi {
      * Updates the comment, returns updated comment's data.
      * @param requestObj contains request parameters
      */
-    public async postComment(requestObj: model.PostCommentRequest): Promise<{response: http.ClientResponse, body: model.CommentResponse}> {
+    public async postComment(requestObj: model.PostCommentRequest): Promise<{response: http.IncomingMessage, body: model.CommentResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postComment.');
         }
@@ -3211,7 +3211,7 @@ export class WordsApi {
      * Compare document with original document.
      * @param requestObj contains request parameters
      */
-    public async postCompareDocument(requestObj: model.PostCompareDocumentRequest): Promise<{response: http.ClientResponse, body: model.DocumentResponse}> {
+    public async postCompareDocument(requestObj: model.PostCompareDocumentRequest): Promise<{response: http.IncomingMessage, body: model.DocumentResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postCompareDocument.');
         }
@@ -3252,7 +3252,7 @@ export class WordsApi {
      * Execute document mail merge operation.
      * @param requestObj contains request parameters
      */
-    public async postDocumentExecuteMailMerge(requestObj: model.PostDocumentExecuteMailMergeRequest): Promise<{response: http.ClientResponse, body: model.DocumentResponse}> {
+    public async postDocumentExecuteMailMerge(requestObj: model.PostDocumentExecuteMailMergeRequest): Promise<{response: http.IncomingMessage, body: model.DocumentResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postDocumentExecuteMailMerge.');
         }
@@ -3297,7 +3297,7 @@ export class WordsApi {
      * Updates paragrpaph format properties, returns updated format properties.
      * @param requestObj contains request parameters
      */
-    public async postDocumentParagraphFormat(requestObj: model.PostDocumentParagraphFormatRequest): Promise<{response: http.ClientResponse, body: model.ParagraphFormatResponse}> {
+    public async postDocumentParagraphFormat(requestObj: model.PostDocumentParagraphFormatRequest): Promise<{response: http.IncomingMessage, body: model.ParagraphFormatResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postDocumentParagraphFormat.');
         }
@@ -3352,7 +3352,7 @@ export class WordsApi {
      * Updates font properties, returns updated font data.
      * @param requestObj contains request parameters
      */
-    public async postDocumentParagraphRunFont(requestObj: model.PostDocumentParagraphRunFontRequest): Promise<{response: http.ClientResponse, body: model.FontResponse}> {
+    public async postDocumentParagraphRunFont(requestObj: model.PostDocumentParagraphRunFontRequest): Promise<{response: http.IncomingMessage, body: model.FontResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postDocumentParagraphRunFont.');
         }
@@ -3407,7 +3407,7 @@ export class WordsApi {
      * Convert document to destination format with detailed settings and save result to storage.
      * @param requestObj contains request parameters
      */
-    public async postDocumentSaveAs(requestObj: model.PostDocumentSaveAsRequest): Promise<{response: http.ClientResponse, body: model.SaveResponse}> {
+    public async postDocumentSaveAs(requestObj: model.PostDocumentSaveAsRequest): Promise<{response: http.IncomingMessage, body: model.SaveResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postDocumentSaveAs.');
         }
@@ -3449,7 +3449,7 @@ export class WordsApi {
      * Updates drawing object, returns updated  drawing object's data.
      * @param requestObj contains request parameters
      */
-    public async postDrawingObject(requestObj: model.PostDrawingObjectRequest): Promise<{response: http.ClientResponse, body: model.DrawingObjectResponse}> {
+    public async postDrawingObject(requestObj: model.PostDrawingObjectRequest): Promise<{response: http.IncomingMessage, body: model.DrawingObjectResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postDrawingObject.');
         }
@@ -3513,7 +3513,7 @@ export class WordsApi {
      * Populate document template with data.
      * @param requestObj contains request parameters
      */
-    public async postExecuteTemplate(requestObj: model.PostExecuteTemplateRequest): Promise<{response: http.ClientResponse, body: model.DocumentResponse}> {
+    public async postExecuteTemplate(requestObj: model.PostExecuteTemplateRequest): Promise<{response: http.IncomingMessage, body: model.DocumentResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postExecuteTemplate.');
         }
@@ -3562,7 +3562,7 @@ export class WordsApi {
      * Updates field's properties, returns updated field's data.
      * @param requestObj contains request parameters
      */
-    public async postField(requestObj: model.PostFieldRequest): Promise<{response: http.ClientResponse, body: model.FieldResponse}> {
+    public async postField(requestObj: model.PostFieldRequest): Promise<{response: http.IncomingMessage, body: model.FieldResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postField.');
         }
@@ -3612,7 +3612,7 @@ export class WordsApi {
      * Updates footnote's properties, returns updated run's data.
      * @param requestObj contains request parameters
      */
-    public async postFootnote(requestObj: model.PostFootnoteRequest): Promise<{response: http.ClientResponse, body: model.FootnoteResponse}> {
+    public async postFootnote(requestObj: model.PostFootnoteRequest): Promise<{response: http.IncomingMessage, body: model.FootnoteResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postFootnote.');
         }
@@ -3662,7 +3662,7 @@ export class WordsApi {
      * Updates properties of form field, returns updated form field.
      * @param requestObj contains request parameters
      */
-    public async postFormField(requestObj: model.PostFormFieldRequest): Promise<{response: http.ClientResponse, body: model.FormFieldResponse}> {
+    public async postFormField(requestObj: model.PostFormFieldRequest): Promise<{response: http.IncomingMessage, body: model.FormFieldResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postFormField.');
         }
@@ -3712,7 +3712,7 @@ export class WordsApi {
      * Insert document watermark image.
      * @param requestObj contains request parameters
      */
-    public async postInsertDocumentWatermarkImage(requestObj: model.PostInsertDocumentWatermarkImageRequest): Promise<{response: http.ClientResponse, body: model.DocumentResponse}> {
+    public async postInsertDocumentWatermarkImage(requestObj: model.PostInsertDocumentWatermarkImageRequest): Promise<{response: http.IncomingMessage, body: model.DocumentResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postInsertDocumentWatermarkImage.');
         }
@@ -3757,7 +3757,7 @@ export class WordsApi {
      * Insert document watermark text.
      * @param requestObj contains request parameters
      */
-    public async postInsertDocumentWatermarkText(requestObj: model.PostInsertDocumentWatermarkTextRequest): Promise<{response: http.ClientResponse, body: model.DocumentResponse}> {
+    public async postInsertDocumentWatermarkText(requestObj: model.PostInsertDocumentWatermarkTextRequest): Promise<{response: http.IncomingMessage, body: model.DocumentResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postInsertDocumentWatermarkText.');
         }
@@ -3800,7 +3800,7 @@ export class WordsApi {
      * Insert document page numbers.
      * @param requestObj contains request parameters
      */
-    public async postInsertPageNumbers(requestObj: model.PostInsertPageNumbersRequest): Promise<{response: http.ClientResponse, body: model.DocumentResponse}> {
+    public async postInsertPageNumbers(requestObj: model.PostInsertPageNumbersRequest): Promise<{response: http.IncomingMessage, body: model.DocumentResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postInsertPageNumbers.');
         }
@@ -3843,7 +3843,7 @@ export class WordsApi {
      * Loads new document from web into the file with any supported format of data.
      * @param requestObj contains request parameters
      */
-    public async postLoadWebDocument(requestObj: model.PostLoadWebDocumentRequest): Promise<{response: http.ClientResponse, body: model.SaveResponse}> {
+    public async postLoadWebDocument(requestObj: model.PostLoadWebDocumentRequest): Promise<{response: http.IncomingMessage, body: model.SaveResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postLoadWebDocument.');
         }
@@ -3874,7 +3874,7 @@ export class WordsApi {
      * Replace document text.
      * @param requestObj contains request parameters
      */
-    public async postReplaceText(requestObj: model.PostReplaceTextRequest): Promise<{response: http.ClientResponse, body: model.ReplaceTextResponse}> {
+    public async postReplaceText(requestObj: model.PostReplaceTextRequest): Promise<{response: http.IncomingMessage, body: model.ReplaceTextResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postReplaceText.');
         }
@@ -3917,7 +3917,7 @@ export class WordsApi {
      * Updates run's properties, returns updated run's data.
      * @param requestObj contains request parameters
      */
-    public async postRun(requestObj: model.PostRunRequest): Promise<{response: http.ClientResponse, body: model.RunResponse}> {
+    public async postRun(requestObj: model.PostRunRequest): Promise<{response: http.IncomingMessage, body: model.RunResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postRun.');
         }
@@ -3972,7 +3972,7 @@ export class WordsApi {
      * Split document.
      * @param requestObj contains request parameters
      */
-    public async postSplitDocument(requestObj: model.PostSplitDocumentRequest): Promise<{response: http.ClientResponse, body: model.SplitDocumentResponse}> {
+    public async postSplitDocument(requestObj: model.PostSplitDocumentRequest): Promise<{response: http.IncomingMessage, body: model.SplitDocumentResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postSplitDocument.');
         }
@@ -4012,7 +4012,7 @@ export class WordsApi {
      * Update document bookmark.
      * @param requestObj contains request parameters
      */
-    public async postUpdateDocumentBookmark(requestObj: model.PostUpdateDocumentBookmarkRequest): Promise<{response: http.ClientResponse, body: model.BookmarkResponse}> {
+    public async postUpdateDocumentBookmark(requestObj: model.PostUpdateDocumentBookmarkRequest): Promise<{response: http.IncomingMessage, body: model.BookmarkResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postUpdateDocumentBookmark.');
         }
@@ -4061,7 +4061,7 @@ export class WordsApi {
      * Update (reevaluate) fields in document.
      * @param requestObj contains request parameters
      */
-    public async postUpdateDocumentFields(requestObj: model.PostUpdateDocumentFieldsRequest): Promise<{response: http.ClientResponse, body: model.DocumentResponse}> {
+    public async postUpdateDocumentFields(requestObj: model.PostUpdateDocumentFieldsRequest): Promise<{response: http.IncomingMessage, body: model.DocumentResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling postUpdateDocumentFields.');
         }
@@ -4096,7 +4096,7 @@ export class WordsApi {
      * Adds comment to document, returns inserted comment's data.
      * @param requestObj contains request parameters
      */
-    public async putComment(requestObj: model.PutCommentRequest): Promise<{response: http.ClientResponse, body: model.CommentResponse}> {
+    public async putComment(requestObj: model.PutCommentRequest): Promise<{response: http.IncomingMessage, body: model.CommentResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putComment.');
         }
@@ -4139,7 +4139,7 @@ export class WordsApi {
      * Convert document from request content to format specified.
      * @param requestObj contains request parameters
      */
-    public async putConvertDocument(requestObj: model.PutConvertDocumentRequest): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async putConvertDocument(requestObj: model.PutConvertDocumentRequest): Promise<{response: http.IncomingMessage, body: Buffer}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putConvertDocument.');
         }
@@ -4184,7 +4184,7 @@ export class WordsApi {
      * Creates new document. Document is created with format which is recognized from file extensions.  Supported extentions: \".doc\", \".docx\", \".docm\", \".dot\", \".dotm\", \".dotx\", \".flatopc\", \".fopc\", \".flatopc_macro\", \".fopc_macro\", \".flatopc_template\", \".fopc_template\", \".flatopc_template_macro\", \".fopc_template_macro\", \".wordml\", \".wml\", \".rtf\"
      * @param requestObj contains request parameters
      */
-    public async putCreateDocument(requestObj: model.PutCreateDocumentRequest): Promise<{response: http.ClientResponse, body: model.DocumentResponse}> {
+    public async putCreateDocument(requestObj: model.PutCreateDocumentRequest): Promise<{response: http.IncomingMessage, body: model.DocumentResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putCreateDocument.');
         }
@@ -4211,7 +4211,7 @@ export class WordsApi {
      * Read document field names.
      * @param requestObj contains request parameters
      */
-    public async putDocumentFieldNames(requestObj: model.PutDocumentFieldNamesRequest): Promise<{response: http.ClientResponse, body: model.FieldNamesResponse}> {
+    public async putDocumentFieldNames(requestObj: model.PutDocumentFieldNamesRequest): Promise<{response: http.IncomingMessage, body: model.FieldNamesResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putDocumentFieldNames.');
         }
@@ -4247,7 +4247,7 @@ export class WordsApi {
      * Convert document to tiff with detailed settings and save result to storage.
      * @param requestObj contains request parameters
      */
-    public async putDocumentSaveAsTiff(requestObj: model.PutDocumentSaveAsTiffRequest): Promise<{response: http.ClientResponse, body: model.SaveResponse}> {
+    public async putDocumentSaveAsTiff(requestObj: model.PutDocumentSaveAsTiffRequest): Promise<{response: http.IncomingMessage, body: model.SaveResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putDocumentSaveAsTiff.');
         }
@@ -4307,7 +4307,7 @@ export class WordsApi {
      * Adds  drawing object to document, returns added  drawing object's data.
      * @param requestObj contains request parameters
      */
-    public async putDrawingObject(requestObj: model.PutDrawingObjectRequest): Promise<{response: http.ClientResponse, body: model.DrawingObjectResponse}> {
+    public async putDrawingObject(requestObj: model.PutDrawingObjectRequest): Promise<{response: http.IncomingMessage, body: model.DrawingObjectResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putDrawingObject.');
         }
@@ -4365,7 +4365,7 @@ export class WordsApi {
      * Execute document mail merge online.
      * @param requestObj contains request parameters
      */
-    public async putExecuteMailMergeOnline(requestObj: model.PutExecuteMailMergeOnlineRequest): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async putExecuteMailMergeOnline(requestObj: model.PutExecuteMailMergeOnlineRequest): Promise<{response: http.IncomingMessage, body: Buffer}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putExecuteMailMergeOnline.');
         }
@@ -4412,7 +4412,7 @@ export class WordsApi {
      * Populate document template with data online.
      * @param requestObj contains request parameters
      */
-    public async putExecuteTemplateOnline(requestObj: model.PutExecuteTemplateOnlineRequest): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async putExecuteTemplateOnline(requestObj: model.PutExecuteTemplateOnlineRequest): Promise<{response: http.IncomingMessage, body: Buffer}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putExecuteTemplateOnline.');
         }
@@ -4460,7 +4460,7 @@ export class WordsApi {
      * Adds field to document, returns inserted field's data.
      * @param requestObj contains request parameters
      */
-    public async putField(requestObj: model.PutFieldRequest): Promise<{response: http.ClientResponse, body: model.FieldResponse}> {
+    public async putField(requestObj: model.PutFieldRequest): Promise<{response: http.IncomingMessage, body: model.FieldResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putField.');
         }
@@ -4505,7 +4505,7 @@ export class WordsApi {
      * Adds footnote to document, returns added footnote's data.
      * @param requestObj contains request parameters
      */
-    public async putFootnote(requestObj: model.PutFootnoteRequest): Promise<{response: http.ClientResponse, body: model.FootnoteResponse}> {
+    public async putFootnote(requestObj: model.PutFootnoteRequest): Promise<{response: http.IncomingMessage, body: model.FootnoteResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putFootnote.');
         }
@@ -4549,7 +4549,7 @@ export class WordsApi {
      * Adds form field to paragraph, returns added form field's data.
      * @param requestObj contains request parameters
      */
-    public async putFormField(requestObj: model.PutFormFieldRequest): Promise<{response: http.ClientResponse, body: model.FormFieldResponse}> {
+    public async putFormField(requestObj: model.PutFormFieldRequest): Promise<{response: http.IncomingMessage, body: model.FormFieldResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putFormField.');
         }
@@ -4594,7 +4594,7 @@ export class WordsApi {
      * Insert to document header or footer.
      * @param requestObj contains request parameters
      */
-    public async putHeaderFooter(requestObj: model.PutHeaderFooterRequest): Promise<{response: http.ClientResponse, body: model.HeaderFooterResponse}> {
+    public async putHeaderFooter(requestObj: model.PutHeaderFooterRequest): Promise<{response: http.IncomingMessage, body: model.HeaderFooterResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putHeaderFooter.');
         }
@@ -4638,7 +4638,7 @@ export class WordsApi {
      * Adds paragraph to document, returns added paragraph's data.
      * @param requestObj contains request parameters
      */
-    public async putParagraph(requestObj: model.PutParagraphRequest): Promise<{response: http.ClientResponse, body: model.ParagraphResponse}> {
+    public async putParagraph(requestObj: model.PutParagraphRequest): Promise<{response: http.IncomingMessage, body: model.ParagraphResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putParagraph.');
         }
@@ -4683,7 +4683,7 @@ export class WordsApi {
      * Protect document.
      * @param requestObj contains request parameters
      */
-    public async putProtectDocument(requestObj: model.PutProtectDocumentRequest): Promise<{response: http.ClientResponse, body: model.ProtectionDataResponse}> {
+    public async putProtectDocument(requestObj: model.PutProtectDocumentRequest): Promise<{response: http.IncomingMessage, body: model.ProtectionDataResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putProtectDocument.');
         }
@@ -4724,7 +4724,7 @@ export class WordsApi {
      * Adds run to document, returns added paragraph's data.
      * @param requestObj contains request parameters
      */
-    public async putRun(requestObj: model.PutRunRequest): Promise<{response: http.ClientResponse, body: model.RunResponse}> {
+    public async putRun(requestObj: model.PutRunRequest): Promise<{response: http.IncomingMessage, body: model.RunResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling putRun.');
         }
@@ -4774,7 +4774,7 @@ export class WordsApi {
      * Reject all revisions in document
      * @param requestObj contains request parameters
      */
-    public async rejectAllRevisions(requestObj: model.RejectAllRevisionsRequest): Promise<{response: http.ClientResponse, body: model.RevisionsModificationResponse}> {
+    public async rejectAllRevisions(requestObj: model.RejectAllRevisionsRequest): Promise<{response: http.IncomingMessage, body: model.RevisionsModificationResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling rejectAllRevisions.');
         }
@@ -4809,7 +4809,7 @@ export class WordsApi {
      * Renders drawing object to specified format.
      * @param requestObj contains request parameters
      */
-    public async renderDrawingObject(requestObj: model.RenderDrawingObjectRequest): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async renderDrawingObject(requestObj: model.RenderDrawingObjectRequest): Promise<{response: http.IncomingMessage, body: Buffer}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling renderDrawingObject.');
         }
@@ -4857,7 +4857,7 @@ export class WordsApi {
      * Renders math object to specified format.
      * @param requestObj contains request parameters
      */
-    public async renderMathObject(requestObj: model.RenderMathObjectRequest): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async renderMathObject(requestObj: model.RenderMathObjectRequest): Promise<{response: http.IncomingMessage, body: Buffer}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling renderMathObject.');
         }
@@ -4905,7 +4905,7 @@ export class WordsApi {
      * Renders page to specified format.
      * @param requestObj contains request parameters
      */
-    public async renderPage(requestObj: model.RenderPageRequest): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async renderPage(requestObj: model.RenderPageRequest): Promise<{response: http.IncomingMessage, body: Buffer}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling renderPage.');
         }
@@ -4952,7 +4952,7 @@ export class WordsApi {
      * Renders paragraph to specified format.
      * @param requestObj contains request parameters
      */
-    public async renderParagraph(requestObj: model.RenderParagraphRequest): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async renderParagraph(requestObj: model.RenderParagraphRequest): Promise<{response: http.IncomingMessage, body: Buffer}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling renderParagraph.');
         }
@@ -5000,7 +5000,7 @@ export class WordsApi {
      * Renders table to specified format.
      * @param requestObj contains request parameters
      */
-    public async renderTable(requestObj: model.RenderTableRequest): Promise<{response: http.ClientResponse, body: Buffer}> {
+    public async renderTable(requestObj: model.RenderTableRequest): Promise<{response: http.IncomingMessage, body: Buffer}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling renderTable.');
         }
@@ -5048,7 +5048,7 @@ export class WordsApi {
      * Resets font's cache.
      * @param requestObj contains request parameters
      */
-    public async resetCache(requestObj: model.ResetCacheRequest): Promise<{response: http.ClientResponse, body: model.AsposeResponse}> {
+    public async resetCache(requestObj: model.ResetCacheRequest): Promise<{response: http.IncomingMessage, body: model.AsposeResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling resetCache.');
         }
@@ -5072,7 +5072,7 @@ export class WordsApi {
      * Search text in document.
      * @param requestObj contains request parameters
      */
-    public async search(requestObj: model.SearchRequest): Promise<{response: http.ClientResponse, body: model.SearchResponse}> {
+    public async search(requestObj: model.SearchRequest): Promise<{response: http.IncomingMessage, body: model.SearchResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling search.');
         }
@@ -5112,7 +5112,7 @@ export class WordsApi {
      * Updates border properties.              'nodePath' should refer to node with cell or row
      * @param requestObj contains request parameters
      */
-    public async updateBorder(requestObj: model.UpdateBorderRequest): Promise<{response: http.ClientResponse, body: model.BorderResponse}> {
+    public async updateBorder(requestObj: model.UpdateBorderRequest): Promise<{response: http.IncomingMessage, body: model.BorderResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling updateBorder.');
         }
@@ -5167,7 +5167,7 @@ export class WordsApi {
      * Update page setup of section.
      * @param requestObj contains request parameters
      */
-    public async updateSectionPageSetup(requestObj: model.UpdateSectionPageSetupRequest): Promise<{response: http.ClientResponse, body: model.SectionPageSetupResponse}> {
+    public async updateSectionPageSetup(requestObj: model.UpdateSectionPageSetupRequest): Promise<{response: http.IncomingMessage, body: model.SectionPageSetupResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling updateSectionPageSetup.');
         }
@@ -5216,7 +5216,7 @@ export class WordsApi {
      * Updates a table cell format.
      * @param requestObj contains request parameters
      */
-    public async updateTableCellFormat(requestObj: model.UpdateTableCellFormatRequest): Promise<{response: http.ClientResponse, body: model.TableCellFormatResponse}> {
+    public async updateTableCellFormat(requestObj: model.UpdateTableCellFormatRequest): Promise<{response: http.IncomingMessage, body: model.TableCellFormatResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling updateTableCellFormat.');
         }
@@ -5266,7 +5266,7 @@ export class WordsApi {
      * Updates a table properties.
      * @param requestObj contains request parameters
      */
-    public async updateTableProperties(requestObj: model.UpdateTablePropertiesRequest): Promise<{response: http.ClientResponse, body: model.TablePropertiesResponse}> {
+    public async updateTableProperties(requestObj: model.UpdateTablePropertiesRequest): Promise<{response: http.IncomingMessage, body: model.TablePropertiesResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling updateTableProperties.');
         }
@@ -5311,7 +5311,7 @@ export class WordsApi {
      * Updates a table row format.
      * @param requestObj contains request parameters
      */
-    public async updateTableRowFormat(requestObj: model.UpdateTableRowFormatRequest): Promise<{response: http.ClientResponse, body: model.TableRowFormatResponse}> {
+    public async updateTableRowFormat(requestObj: model.UpdateTableRowFormatRequest): Promise<{response: http.IncomingMessage, body: model.TableRowFormatResponse}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling updateTableRowFormat.');
         }

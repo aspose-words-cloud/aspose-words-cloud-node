@@ -69,6 +69,9 @@ Every method returns a chainable promise.
 ```
 
 # Release notes
+## 18.9
++ Added SaveOptions (HtmlFixedSaveOptions.SaveFontFaceCssSeparately, MtmlSaveOption.ExportCidUrlsForMhtmlResources)
++ Added "paragraph format" resource (It provides access to the paragraph formatting properties)
 ## 18.8
 + Added "HeaderFooterBookmarksExportMode" option to PdfSaveOptions
 + Added "OutlineOptions.CreateOutlinesForHeadingsInTable" option

@@ -17,7 +17,7 @@ gulp.task('clean', function (callback) {
     callback();
 });
 
-gulp.task('build', ["clean"], function () {
+gulp.task('build', gulp.series("clean", function () {
     var tsProject = ts.createProject('tsconfig.json');
     var tsResult = tsProject.src()
         .pipe(tsProject())
@@ -26,9 +26,9 @@ gulp.task('build', ["clean"], function () {
         });
 
     return tsResult.pipe(gulp.dest(buildConfig.targetPath));
-});
+}));
 
-gulp.task('buildRelease', ["clean"], function () {
+gulp.task('buildRelease', gulp.series("clean", function () {
     var tsProject = ts.createProject('tsconfigPack.json');
     var tsResult = tsProject.src()
         .pipe(tsProject())
@@ -37,7 +37,7 @@ gulp.task('buildRelease', ["clean"], function () {
         });
 
     return tsResult.pipe(gulp.dest(buildConfig.targetPath));
-});
+}));
 
 gulp.task('copyTestConfig', function () {
     return gulp
@@ -45,11 +45,11 @@ gulp.task('copyTestConfig', function () {
             .pipe(gulp.dest(buildConfig.targetPath));
 });
 
-gulp.task('cucumber', ["build", "copyTestConfig"], function () {
+gulp.task('cucumber', gulp.series("build", "copyTestConfig", function () {
         
     return gulp.src('./bdd/features/**/*.feature').pipe(cucumber({
         'steps': './dist/bdd/steps/**/*.js',
         'support': './dist/bdd/support/**/*.js',
         'format': 'json:./reports/bdd_results.json',        
     }));
-});
+}));

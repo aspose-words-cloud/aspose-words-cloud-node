@@ -8668,6 +8668,11 @@ export class TextSaveOptionsData extends SaveOptionsData {
      */
     public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
+            name: "addBidiMarks",
+            baseName: "AddBidiMarks",
+            type: "boolean",
+        },        
+        {
             name: "encoding",
             baseName: "Encoding",
             type: "string",
@@ -8705,6 +8710,11 @@ export class TextSaveOptionsData extends SaveOptionsData {
         return super.getAttributeTypeMap().concat(TextSaveOptionsData.attributeTypeMap);
     }
 
+    /**
+     * Specifies whether to add bi-directional marks before each BiDi run when exporting in plain text format. The default value is true.
+     */
+    public addBidiMarks: boolean;
+    
     /**
      * Specifies the encoding to use when exporting in plain text format
      */

@@ -1003,11 +1003,6 @@ export class MetafileRenderingOptionsData {
             name: "useEmfEmbeddedToWmf",
             baseName: "UseEmfEmbeddedToWmf",
             type: "boolean",
-        },        
-        {
-            name: "scaleWmfFontsToMetafileSize",
-            baseName: "ScaleWmfFontsToMetafileSize",
-            type: "boolean",
         }    ];
 
     /**
@@ -1036,11 +1031,6 @@ export class MetafileRenderingOptionsData {
      * Determines how WMF metafiles with embedded EMF metafiles should be rendered
      */
     public useEmfEmbeddedToWmf: boolean;
-    
-    /**
-     * Gets or sets a value determining whether or not to scale fonts in WMF metafile according to metafile size on the page.
-     */
-    public scaleWmfFontsToMetafileSize: boolean;
     
     public constructor(init?: Partial<MetafileRenderingOptionsData>) {
         
@@ -4888,11 +4878,6 @@ export class HtmlSaveOptionsData extends SaveOptionsData {
             type: "boolean",
         },        
         {
-            name: "resolveFontNames",
-            baseName: "ResolveFontNames",
-            type: "boolean",
-        },        
-        {
             name: "resourceFolder",
             baseName: "ResourceFolder",
             type: "string",
@@ -5089,11 +5074,6 @@ export class HtmlSaveOptionsData extends SaveOptionsData {
      * Specifies whether or not use pretty formats output
      */
     public prettyFormat: boolean;
-    
-    /**
-     * A new option HtmlSaveOptions.ResolveFontNames has been added that affects writing of font names to HTML-based formats. By default this option is set to false and, as before, Aspose.Words writes font names as specified in the source document, ignoring Document.FontSettings. If this option is set to true, Aspose.Words resolves all font names before writing them to HTML. That is, it checks availability of each font using Document.FontSettings and substitutes unavailable fonts if needed.
-     */
-    public resolveFontNames: boolean;
     
     /**
      * Specifies a physical folder where all resources like images, fonts, and external CSS are saved when a document is exported to HTML. Default is an empty string.

@@ -69,6 +69,8 @@ Every method returns a chainable promise.
 ```
 
 # Release notes
+## 19.2
++ TxtSaveOptions.ExportHeadersFooters was removed
 ## 18.9
 + Added SaveOptions (HtmlFixedSaveOptions.SaveFontFaceCssSeparately, MtmlSaveOption.ExportCidUrlsForMhtmlResources)
 + Added "paragraph format" resource (It provides access to the paragraph formatting properties)

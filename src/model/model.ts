@@ -726,7 +726,7 @@ export class FilesUploadResult {
         {
             name: "errors",
             baseName: "Errors",
-            type: "Array<StorageApiError>",
+            type: "Array<Error>",
         }    ];
 
     /**
@@ -744,7 +744,7 @@ export class FilesUploadResult {
     /**
      * List of errors.
      */
-    public errors: Array<StorageApiError>;
+    public errors: Array<Error>;
     
     public constructor(init?: Partial<FilesUploadResult>) {
         
@@ -1182,6 +1182,69 @@ export class MetafileRenderingOptionsData {
     public useEmfEmbeddedToWmf: boolean;
     
     public constructor(init?: Partial<MetafileRenderingOptionsData>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
+/**
+ * Error
+ */
+export class ModelError {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            name: "code",
+            baseName: "Code",
+            type: "string",
+        },        
+        {
+            name: "message",
+            baseName: "Message",
+            type: "string",
+        },        
+        {
+            name: "description",
+            baseName: "Description",
+            type: "string",
+        },        
+        {
+            name: "innerError",
+            baseName: "InnerError",
+            type: "ErrorDetails",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return ModelError.attributeTypeMap;
+    }
+
+    /**
+     * Code             
+     */
+    public code: string;
+    
+    /**
+     * Message             
+     */
+    public message: string;
+    
+    /**
+     * Description             
+     */
+    public description: string;
+    
+    /**
+     * Inner Error             
+     */
+    public innerError: ErrorDetails;
+    
+    public constructor(init?: Partial<ModelError>) {
         
         Object.assign(this, init);
     }        
@@ -2143,69 +2206,6 @@ export class SplitDocumentResult {
     public zippedPages: FileLink;
     
     public constructor(init?: Partial<SplitDocumentResult>) {
-        
-        Object.assign(this, init);
-    }        
-}
-
-/**
- * Error
- */
-export class StorageApiError {
-
-    /**
-     * Attribute type map
-     */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            name: "code",
-            baseName: "Code",
-            type: "string",
-        },        
-        {
-            name: "message",
-            baseName: "Message",
-            type: "string",
-        },        
-        {
-            name: "description",
-            baseName: "Description",
-            type: "string",
-        },        
-        {
-            name: "innerError",
-            baseName: "InnerError",
-            type: "ErrorDetails",
-        }    ];
-
-    /**
-     * Returns attribute type map
-     */
-    public static getAttributeTypeMap() {
-        return StorageApiError.attributeTypeMap;
-    }
-
-    /**
-     * Code             
-     */
-    public code: string;
-    
-    /**
-     * Message             
-     */
-    public message: string;
-    
-    /**
-     * Description             
-     */
-    public description: string;
-    
-    /**
-     * Inner Error             
-     */
-    public innerError: ErrorDetails;
-    
-    public constructor(init?: Partial<StorageApiError>) {
         
         Object.assign(this, init);
     }        
@@ -11513,6 +11513,7 @@ const typeMap = {
             LinkElement,
             LoadWebDocumentData,
             MetafileRenderingOptionsData,
+            ModelError,
             ModificationOperationResult,
             OutlineOptionsData,
             PageNumber,
@@ -11530,7 +11531,6 @@ const typeMap = {
             SaveResult,
             SearchResult,
             SplitDocumentResult,
-            StorageApiError,
             StorageFile,
             StoryChildNodes,
             StringFormatData,

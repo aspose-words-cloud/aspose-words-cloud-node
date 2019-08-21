@@ -15757,45 +15757,6 @@ export class GetRangeTextRequest {
 }
 
 /**
- * Request model for GetRangeText operation.
- */
-export class GetRangeTextRequest {
-    /**
-     * The document.
-     */
-    public name: string;
-
-    /**
-     * The range start identifier.
-     */
-    public rangeStartIdentifier: string;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-    
-    public constructor(init?: Partial<GetRangeTextRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
  * Request model for GetRun operation.
  */
 export class GetRunRequest {
@@ -17790,50 +17751,6 @@ export class RemoveRangeRequest {
 }
 
 /**
- * Request model for RemoveRange operation.
- */
-export class RemoveRangeRequest {
-    /**
-     * The document.
-     */
-    public name: string;
-
-    /**
-     * The range start identifier.
-     */
-    public rangeStartIdentifier: string;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    /**
-     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-    
-    public constructor(init?: Partial<RemoveRangeRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
  * Request model for RenderDrawingObject operation.
  */
 export class RenderDrawingObjectRequest {
@@ -18403,55 +18320,6 @@ export class ReplaceWithTextRequest {
 }
 
 /**
- * Request model for ReplaceWithText operation.
- */
-export class ReplaceWithTextRequest {
-    /**
-     * The document.
-     */
-    public name: string;
-
-    /**
-     * The range start identifier.
-     */
-    public rangeStartIdentifier: string;
-
-    /**
-     * Model with text for replacement.
-     */
-    public rangeText: ReplaceRange;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    /**
-     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-    
-    public constructor(init?: Partial<ReplaceWithTextRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
  * Request model for ResetCache operation.
  */
 export class ResetCacheRequest {
@@ -18533,55 +18401,6 @@ export class SaveAsRangeRequest {
      * The range end identifier.
      */
     public rangeEndIdentifier: string;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    /**
-     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-    
-    public constructor(init?: Partial<SaveAsRangeRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for SaveAsRange operation.
- */
-export class SaveAsRangeRequest {
-    /**
-     * The document.
-     */
-    public name: string;
-
-    /**
-     * The range start identifier.
-     */
-    public rangeStartIdentifier: string;
-
-    /**
-     * Parameters of a new document.
-     */
-    public documentParameters: RangeDocument;
 
     /**
      * Original document folder.

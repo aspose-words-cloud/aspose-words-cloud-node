@@ -685,7 +685,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Removes drawing object from document.
      * @param requestObj contains request parameters
      */
     public async deleteDrawingObjectWithoutNodePath(requestObj: model.DeleteDrawingObjectWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: body?: any; }> {
@@ -773,7 +773,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Deletes field from document.
      * @param requestObj contains request parameters
      */
     public async deleteFieldWithoutNodePath(requestObj: model.DeleteFieldWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: body?: any; }> {
@@ -855,7 +855,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Removes fields from section paragraph.
      * @param requestObj contains request parameters
      */
     public async deleteFieldsWithoutNodePath(requestObj: model.DeleteFieldsWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: body?: any; }> {
@@ -997,7 +997,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Removes footnote from document.
      * @param requestObj contains request parameters
      */
     public async deleteFootnoteWithoutNodePath(requestObj: model.DeleteFootnoteWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: body?: any; }> {
@@ -1085,7 +1085,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Removes form field from document.
      * @param requestObj contains request parameters
      */
     public async deleteFormFieldWithoutNodePath(requestObj: model.DeleteFormFieldWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: body?: any; }> {
@@ -1297,7 +1297,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Removes OfficeMath object from document.
      * @param requestObj contains request parameters
      */
     public async deleteOfficeMathObjectWithoutNodePath(requestObj: model.DeleteOfficeMathObjectWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: body?: any; }> {
@@ -1385,7 +1385,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Removes paragraph from section.
      * @param requestObj contains request parameters
      */
     public async deleteParagraphWithoutNodePath(requestObj: model.DeleteParagraphWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: body?: any; }> {
@@ -1614,7 +1614,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Deletes a table.
      * @param requestObj contains request parameters
      */
     public async deleteTableWithoutNodePath(requestObj: model.DeleteTableWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: body?: any; }> {
@@ -2155,7 +2155,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Reads document drawing object common info by its index or convert to format specified.
      * @param requestObj contains request parameters
      */
     public async getDocumentDrawingObjectByIndexWithoutNodePath(requestObj: model.GetDocumentDrawingObjectByIndexWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: model.DrawingObjectResponse}> {
@@ -2241,10 +2241,10 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Reads drawing object image data.
      * @param requestObj contains request parameters
      */
-    public async getDocumentDrawingObjectImageDataWithoutNodePath(requestObj: model.GetDocumentDrawingObjectImageDataWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: model.Buffer}> {
+    public async getDocumentDrawingObjectImageDataWithoutNodePath(requestObj: model.GetDocumentDrawingObjectImageDataWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: Buffer}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentDrawingObjectImageDataWithoutNodePath.');
         }
@@ -2327,10 +2327,10 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Gets drawing object OLE data.
      * @param requestObj contains request parameters
      */
-    public async getDocumentDrawingObjectOleDataWithoutNodePath(requestObj: model.GetDocumentDrawingObjectOleDataWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: model.Buffer}> {
+    public async getDocumentDrawingObjectOleDataWithoutNodePath(requestObj: model.GetDocumentDrawingObjectOleDataWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: Buffer}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentDrawingObjectOleDataWithoutNodePath.');
         }
@@ -2407,7 +2407,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Reads document drawing objects common info.
      * @param requestObj contains request parameters
      */
     public async getDocumentDrawingObjectsWithoutNodePath(requestObj: model.GetDocumentDrawingObjectsWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: model.DrawingObjectsResponse}> {
@@ -2819,7 +2819,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Gets field from document.
      * @param requestObj contains request parameters
      */
     public async getFieldWithoutNodePath(requestObj: model.GetFieldWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: model.FieldResponse}> {
@@ -2899,7 +2899,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Get fields from document.
      * @param requestObj contains request parameters
      */
     public async getFieldsWithoutNodePath(requestObj: model.GetFieldsWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: model.FieldsResponse}> {
@@ -3010,7 +3010,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Reads footnote by index.
      * @param requestObj contains request parameters
      */
     public async getFootnoteWithoutNodePath(requestObj: model.GetFootnoteWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: model.FootnoteResponse}> {
@@ -3090,7 +3090,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Gets footnotes from document.
      * @param requestObj contains request parameters
      */
     public async getFootnotesWithoutNodePath(requestObj: model.GetFootnotesWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: model.FootnotesResponse}> {
@@ -3170,7 +3170,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Returns representation of an one of the form field.
      * @param requestObj contains request parameters
      */
     public async getFormFieldWithoutNodePath(requestObj: model.GetFormFieldWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: model.FormFieldResponse}> {
@@ -3250,7 +3250,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Gets form fields from document.
      * @param requestObj contains request parameters
      */
     public async getFormFieldsWithoutNodePath(requestObj: model.GetFormFieldsWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: model.FormFieldsResponse}> {
@@ -3459,7 +3459,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Reads OfficeMath object by index.
      * @param requestObj contains request parameters
      */
     public async getOfficeMathObjectWithoutNodePath(requestObj: model.GetOfficeMathObjectWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: model.OfficeMathObjectResponse}> {
@@ -3539,7 +3539,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Gets OfficeMath objects from document.
      * @param requestObj contains request parameters
      */
     public async getOfficeMathObjectsWithoutNodePath(requestObj: model.GetOfficeMathObjectsWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: model.OfficeMathObjectsResponse}> {
@@ -3665,7 +3665,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Represents all the formatting for a paragraph.
      * @param requestObj contains request parameters
      */
     public async getParagraphFormatWithoutNodePath(requestObj: model.GetParagraphFormatWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: model.ParagraphFormatResponse}> {
@@ -3705,7 +3705,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * This resource represents one of the paragraphs contained in the document.
      * @param requestObj contains request parameters
      */
     public async getParagraphWithoutNodePath(requestObj: model.GetParagraphWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: model.ParagraphResponse}> {
@@ -3785,7 +3785,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Returns a list of paragraphs that are contained in the document.
      * @param requestObj contains request parameters
      */
     public async getParagraphsWithoutNodePath(requestObj: model.GetParagraphsWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: model.ParagraphLinkCollectionResponse}> {
@@ -3846,46 +3846,6 @@ export class WordsApi {
         // verify required parameter 'requestObj.rangeEndIdentifier' is not null or undefined
         if (requestObj.rangeEndIdentifier === null || requestObj.rangeEndIdentifier === undefined) {
             throw new Error('Required parameter "requestObj.rangeEndIdentifier" was null or undefined when calling getRangeText.');
-        }
-        
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
-        const requestOptions: request.Options = {
-            method: "GET",
-            qs: queryParameters,
-            uri: localVarPath,
-            json: true,
-        };
-
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result =  ObjectSerializer.deserialize(response.body, "RangeTextResponse");
-        return Promise.resolve({body: result, response});
-    }
-
-    /**
-     * Gets the text from the range.
-     * @param requestObj contains request parameters
-     */
-    public async getRangeText2(requestObj: model.GetRangeTextRequest): Promise<{response: http.IncomingMessage, body: model.RangeTextResponse}> {
-        if (requestObj === null || requestObj === undefined) {
-            throw new Error('Required parameter "requestObj" was null or undefined when calling getRangeText2.');
-        }
-
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/range/{rangeStartIdentifier}"
-            .replace("{" + "name" + "}", String(requestObj.name))
-            .replace("{" + "rangeStartIdentifier" + "}", String(requestObj.rangeStartIdentifier));
-        const queryParameters: any = {};
-
-        // verify required parameter 'requestObj.name' is not null or undefined
-        if (requestObj.name === null || requestObj.name === undefined) {
-            throw new Error('Required parameter "requestObj.name" was null or undefined when calling getRangeText2.');
-        }
-
-        // verify required parameter 'requestObj.rangeStartIdentifier' is not null or undefined
-        if (requestObj.rangeStartIdentifier === null || requestObj.rangeStartIdentifier === undefined) {
-            throw new Error('Required parameter "requestObj.rangeStartIdentifier" was null or undefined when calling getRangeText2.');
         }
         
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -4335,7 +4295,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Returns a table properties.
      * @param requestObj contains request parameters
      */
     public async getTablePropertiesWithoutNodePath(requestObj: model.GetTablePropertiesWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: model.TablePropertiesResponse}> {
@@ -4467,7 +4427,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Returns a table.
      * @param requestObj contains request parameters
      */
     public async getTableWithoutNodePath(requestObj: model.GetTableWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: model.TableResponse}> {
@@ -4547,7 +4507,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Returns a list of tables that are contained in the document.
      * @param requestObj contains request parameters
      */
     public async getTablesWithoutNodePath(requestObj: model.GetTablesWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: model.TableLinkCollectionResponse}> {
@@ -4687,7 +4647,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Adds drawing object to document, returns added  drawing object's data.
      * @param requestObj contains request parameters
      */
     public async insertDrawingObjectWithoutNodePath(requestObj: model.InsertDrawingObjectWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: model.DrawingObjectResponse}> {
@@ -4794,7 +4754,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Adds field to document, returns inserted field's data.
      * @param requestObj contains request parameters
      */
     public async insertFieldWithoutNodePath(requestObj: model.InsertFieldWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: model.FieldResponse}> {
@@ -4887,7 +4847,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Adds footnote to document, returns added footnote's data.
      * @param requestObj contains request parameters
      */
     public async insertFootnoteWithoutNodePath(requestObj: model.InsertFootnoteWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: model.FootnoteResponse}> {
@@ -4980,7 +4940,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Adds form field to paragraph, returns added form field's data.
      * @param requestObj contains request parameters
      */
     public async insertFormFieldWithoutNodePath(requestObj: model.InsertFormFieldWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: model.FormFieldResponse}> {
@@ -5348,7 +5308,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Adds table to document, returns added table's data.             
      * @param requestObj contains request parameters
      */
     public async insertTableWithoutNodePath(requestObj: model.InsertTableWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: model.TableResponse}> {
@@ -5701,47 +5661,6 @@ export class WordsApi {
     }
 
     /**
-     * Removes the range from the document.
-     * @param requestObj contains request parameters
-     */
-    public async removeRange2(requestObj: model.RemoveRangeRequest): Promise<{response: http.IncomingMessage, body: model.DocumentResponse}> {
-        if (requestObj === null || requestObj === undefined) {
-            throw new Error('Required parameter "requestObj" was null or undefined when calling removeRange2.');
-        }
-
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/range/{rangeStartIdentifier}"
-            .replace("{" + "name" + "}", String(requestObj.name))
-            .replace("{" + "rangeStartIdentifier" + "}", String(requestObj.rangeStartIdentifier));
-        const queryParameters: any = {};
-
-        // verify required parameter 'requestObj.name' is not null or undefined
-        if (requestObj.name === null || requestObj.name === undefined) {
-            throw new Error('Required parameter "requestObj.name" was null or undefined when calling removeRange2.');
-        }
-
-        // verify required parameter 'requestObj.rangeStartIdentifier' is not null or undefined
-        if (requestObj.rangeStartIdentifier === null || requestObj.rangeStartIdentifier === undefined) {
-            throw new Error('Required parameter "requestObj.rangeStartIdentifier" was null or undefined when calling removeRange2.');
-        }
-        
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
-        const requestOptions: request.Options = {
-            method: "DELETE",
-            qs: queryParameters,
-            uri: localVarPath,
-            json: true,
-        };
-
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
-        return Promise.resolve({body: result, response});
-    }
-
-    /**
      * Renders drawing object to specified format.
      * @param requestObj contains request parameters
      */
@@ -5795,10 +5714,10 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Renders drawing object to specified format.
      * @param requestObj contains request parameters
      */
-    public async renderDrawingObjectWithoutNodePath(requestObj: model.RenderDrawingObjectWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: model.Buffer}> {
+    public async renderDrawingObjectWithoutNodePath(requestObj: model.RenderDrawingObjectWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: Buffer}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling renderDrawingObjectWithoutNodePath.');
         }
@@ -5895,10 +5814,10 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Renders math object to specified format.
      * @param requestObj contains request parameters
      */
-    public async renderMathObjectWithoutNodePath(requestObj: model.RenderMathObjectWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: model.Buffer}> {
+    public async renderMathObjectWithoutNodePath(requestObj: model.RenderMathObjectWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: Buffer}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling renderMathObjectWithoutNodePath.');
         }
@@ -6042,10 +5961,10 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Renders paragraph to specified format.
      * @param requestObj contains request parameters
      */
-    public async renderParagraphWithoutNodePath(requestObj: model.RenderParagraphWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: model.Buffer}> {
+    public async renderParagraphWithoutNodePath(requestObj: model.RenderParagraphWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: Buffer}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling renderParagraphWithoutNodePath.');
         }
@@ -6142,10 +6061,10 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Renders table to specified format.
      * @param requestObj contains request parameters
      */
-    public async renderTableWithoutNodePath(requestObj: model.RenderTableWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: model.Buffer}> {
+    public async renderTableWithoutNodePath(requestObj: model.RenderTableWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: Buffer}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling renderTableWithoutNodePath.');
         }
@@ -6285,53 +6204,6 @@ export class WordsApi {
     }
 
     /**
-     * Replaces the content in the range.
-     * @param requestObj contains request parameters
-     */
-    public async replaceWithText2(requestObj: model.ReplaceWithTextRequest): Promise<{response: http.IncomingMessage, body: model.DocumentResponse}> {
-        if (requestObj === null || requestObj === undefined) {
-            throw new Error('Required parameter "requestObj" was null or undefined when calling replaceWithText2.');
-        }
-
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/range/{rangeStartIdentifier}"
-            .replace("{" + "name" + "}", String(requestObj.name))
-            .replace("{" + "rangeStartIdentifier" + "}", String(requestObj.rangeStartIdentifier));
-        const queryParameters: any = {};
-
-        // verify required parameter 'requestObj.name' is not null or undefined
-        if (requestObj.name === null || requestObj.name === undefined) {
-            throw new Error('Required parameter "requestObj.name" was null or undefined when calling replaceWithText2.');
-        }
-
-        // verify required parameter 'requestObj.rangeStartIdentifier' is not null or undefined
-        if (requestObj.rangeStartIdentifier === null || requestObj.rangeStartIdentifier === undefined) {
-            throw new Error('Required parameter "requestObj.rangeStartIdentifier" was null or undefined when calling replaceWithText2.');
-        }
-
-        // verify required parameter 'requestObj.rangeText' is not null or undefined
-        if (requestObj.rangeText === null || requestObj.rangeText === undefined) {
-            throw new Error('Required parameter "requestObj.rangeText" was null or undefined when calling replaceWithText2.');
-        }
-        
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
-        const requestOptions: request.Options = {
-            method: "POST",
-            qs: queryParameters,
-            uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(requestObj.rangeText, requestObj.rangeText.constructor.name === "Object" ? "ReplaceRange" : requestObj.rangeText.constructor.name),
-        };
-
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
-        return Promise.resolve({body: result, response});
-    }
-
-    /**
      * Resets font's cache.
      * @param requestObj contains request parameters
      */
@@ -6428,53 +6300,6 @@ export class WordsApi {
         // verify required parameter 'requestObj.rangeEndIdentifier' is not null or undefined
         if (requestObj.rangeEndIdentifier === null || requestObj.rangeEndIdentifier === undefined) {
             throw new Error('Required parameter "requestObj.rangeEndIdentifier" was null or undefined when calling saveAsRange.');
-        }
-        
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
-        const requestOptions: request.Options = {
-            method: "POST",
-            qs: queryParameters,
-            uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(requestObj.documentParameters, requestObj.documentParameters.constructor.name === "Object" ? "RangeDocument" : requestObj.documentParameters.constructor.name),
-        };
-
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
-        return Promise.resolve({body: result, response});
-    }
-
-    /**
-     * Saves the selected range as a new document.
-     * @param requestObj contains request parameters
-     */
-    public async saveAsRange2(requestObj: model.SaveAsRangeRequest): Promise<{response: http.IncomingMessage, body: model.DocumentResponse}> {
-        if (requestObj === null || requestObj === undefined) {
-            throw new Error('Required parameter "requestObj" was null or undefined when calling saveAsRange2.');
-        }
-
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/range/{rangeStartIdentifier}/SaveAs"
-            .replace("{" + "name" + "}", String(requestObj.name))
-            .replace("{" + "rangeStartIdentifier" + "}", String(requestObj.rangeStartIdentifier));
-        const queryParameters: any = {};
-
-        // verify required parameter 'requestObj.name' is not null or undefined
-        if (requestObj.name === null || requestObj.name === undefined) {
-            throw new Error('Required parameter "requestObj.name" was null or undefined when calling saveAsRange2.');
-        }
-
-        // verify required parameter 'requestObj.rangeStartIdentifier' is not null or undefined
-        if (requestObj.rangeStartIdentifier === null || requestObj.rangeStartIdentifier === undefined) {
-            throw new Error('Required parameter "requestObj.rangeStartIdentifier" was null or undefined when calling saveAsRange2.');
-        }
-
-        // verify required parameter 'requestObj.documentParameters' is not null or undefined
-        if (requestObj.documentParameters === null || requestObj.documentParameters === undefined) {
-            throw new Error('Required parameter "requestObj.documentParameters" was null or undefined when calling saveAsRange2.');
         }
         
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -6899,7 +6724,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Updates drawing object, returns updated  drawing object's data.
      * @param requestObj contains request parameters
      */
     public async updateDrawingObjectWithoutNodePath(requestObj: model.UpdateDrawingObjectWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: model.DrawingObjectResponse}> {
@@ -7107,7 +6932,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Updates footnote's properties, returns updated run's data.
      * @param requestObj contains request parameters
      */
     public async updateFootnoteWithoutNodePath(requestObj: model.UpdateFootnoteWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: model.FootnoteResponse}> {
@@ -7211,7 +7036,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Updates properties of form field, returns updated form field.
      * @param requestObj contains request parameters
      */
     public async updateFormFieldWithoutNodePath(requestObj: model.UpdateFormFieldWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: model.FormFieldResponse}> {
@@ -7574,7 +7399,7 @@ export class WordsApi {
     }
 
     /**
-     * 
+     * Updates a table properties.
      * @param requestObj contains request parameters
      */
     public async updateTablePropertiesWithoutNodePath(requestObj: model.UpdateTablePropertiesWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: model.TablePropertiesResponse}> {

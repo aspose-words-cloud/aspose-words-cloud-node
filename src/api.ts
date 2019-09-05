@@ -1,7 +1,7 @@
 /*
 * MIT License
 
-* Copyright (c) 2018 Aspose Pty Ltd
+* Copyright (c) 2019 Aspose Pty Ltd
 
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -279,7 +279,7 @@ export class WordsApi {
             encoding: null,
         };
 
-        (requestOptions as any).formData = formParams;        
+        requestOptions.formData = formParams;        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "Buffer");
         return Promise.resolve({body: result, response});
@@ -289,7 +289,7 @@ export class WordsApi {
      * Copy file
      * @param requestObj contains request parameters
      */
-    public async copyFile(requestObj: model.CopyFileRequest): Promise<{response: http.IncomingMessage, body: body?: any; }> {
+    public async copyFile(requestObj: model.CopyFileRequest): Promise<{response: http.IncomingMessage}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling copyFile.');
         }
@@ -320,13 +320,14 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve({response});
     }
 
     /**
      * Copy folder
      * @param requestObj contains request parameters
      */
-    public async copyFolder(requestObj: model.CopyFolderRequest): Promise<{response: http.IncomingMessage, body: body?: any; }> {
+    public async copyFolder(requestObj: model.CopyFolderRequest): Promise<{response: http.IncomingMessage}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling copyFolder.');
         }
@@ -356,6 +357,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve({response});
     }
 
     /**
@@ -389,7 +391,7 @@ export class WordsApi {
      * Create the folder
      * @param requestObj contains request parameters
      */
-    public async createFolder(requestObj: model.CreateFolderRequest): Promise<{response: http.IncomingMessage, body: body?: any; }> {
+    public async createFolder(requestObj: model.CreateFolderRequest): Promise<{response: http.IncomingMessage}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling createFolder.');
         }
@@ -412,6 +414,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve({response});
     }
 
     /**
@@ -559,7 +562,7 @@ export class WordsApi {
      * Removes comment from document.
      * @param requestObj contains request parameters
      */
-    public async deleteComment(requestObj: model.DeleteCommentRequest): Promise<{response: http.IncomingMessage, body: body?: any; }> {
+    public async deleteComment(requestObj: model.DeleteCommentRequest): Promise<{response: http.IncomingMessage}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteComment.');
         }
@@ -594,13 +597,14 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve({response});
     }
 
     /**
      * Deletes document property.
      * @param requestObj contains request parameters
      */
-    public async deleteDocumentProperty(requestObj: model.DeleteDocumentPropertyRequest): Promise<{response: http.IncomingMessage, body: body?: any; }> {
+    public async deleteDocumentProperty(requestObj: model.DeleteDocumentPropertyRequest): Promise<{response: http.IncomingMessage}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteDocumentProperty.');
         }
@@ -635,13 +639,14 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve({response});
     }
 
     /**
      * Removes drawing object from document.
      * @param requestObj contains request parameters
      */
-    public async deleteDrawingObject(requestObj: model.DeleteDrawingObjectRequest): Promise<{response: http.IncomingMessage, body: body?: any; }> {
+    public async deleteDrawingObject(requestObj: model.DeleteDrawingObjectRequest): Promise<{response: http.IncomingMessage}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteDrawingObject.');
         }
@@ -682,13 +687,14 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve({response});
     }
 
     /**
      * Removes drawing object from document.
      * @param requestObj contains request parameters
      */
-    public async deleteDrawingObjectWithoutNodePath(requestObj: model.DeleteDrawingObjectWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: body?: any; }> {
+    public async deleteDrawingObjectWithoutNodePath(requestObj: model.DeleteDrawingObjectWithoutNodePathRequest): Promise<{response: http.IncomingMessage}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteDrawingObjectWithoutNodePath.');
         }
@@ -723,13 +729,14 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve({response});
     }
 
     /**
      * Deletes field from document.
      * @param requestObj contains request parameters
      */
-    public async deleteField(requestObj: model.DeleteFieldRequest): Promise<{response: http.IncomingMessage, body: body?: any; }> {
+    public async deleteField(requestObj: model.DeleteFieldRequest): Promise<{response: http.IncomingMessage}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteField.');
         }
@@ -770,13 +777,14 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve({response});
     }
 
     /**
      * Deletes field from document.
      * @param requestObj contains request parameters
      */
-    public async deleteFieldWithoutNodePath(requestObj: model.DeleteFieldWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: body?: any; }> {
+    public async deleteFieldWithoutNodePath(requestObj: model.DeleteFieldWithoutNodePathRequest): Promise<{response: http.IncomingMessage}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteFieldWithoutNodePath.');
         }
@@ -811,13 +819,14 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve({response});
     }
 
     /**
      * Removes fields from section paragraph.
      * @param requestObj contains request parameters
      */
-    public async deleteFields(requestObj: model.DeleteFieldsRequest): Promise<{response: http.IncomingMessage, body: body?: any; }> {
+    public async deleteFields(requestObj: model.DeleteFieldsRequest): Promise<{response: http.IncomingMessage}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteFields.');
         }
@@ -852,13 +861,14 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve({response});
     }
 
     /**
      * Removes fields from section paragraph.
      * @param requestObj contains request parameters
      */
-    public async deleteFieldsWithoutNodePath(requestObj: model.DeleteFieldsWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: body?: any; }> {
+    public async deleteFieldsWithoutNodePath(requestObj: model.DeleteFieldsWithoutNodePathRequest): Promise<{response: http.IncomingMessage}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteFieldsWithoutNodePath.');
         }
@@ -887,13 +897,14 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve({response});
     }
 
     /**
      * Delete file
      * @param requestObj contains request parameters
      */
-    public async deleteFile(requestObj: model.DeleteFileRequest): Promise<{response: http.IncomingMessage, body: body?: any; }> {
+    public async deleteFile(requestObj: model.DeleteFileRequest): Promise<{response: http.IncomingMessage}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteFile.');
         }
@@ -917,13 +928,14 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve({response});
     }
 
     /**
      * Delete folder
      * @param requestObj contains request parameters
      */
-    public async deleteFolder(requestObj: model.DeleteFolderRequest): Promise<{response: http.IncomingMessage, body: body?: any; }> {
+    public async deleteFolder(requestObj: model.DeleteFolderRequest): Promise<{response: http.IncomingMessage}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteFolder.');
         }
@@ -947,13 +959,14 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve({response});
     }
 
     /**
      * Removes footnote from document.
      * @param requestObj contains request parameters
      */
-    public async deleteFootnote(requestObj: model.DeleteFootnoteRequest): Promise<{response: http.IncomingMessage, body: body?: any; }> {
+    public async deleteFootnote(requestObj: model.DeleteFootnoteRequest): Promise<{response: http.IncomingMessage}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteFootnote.');
         }
@@ -994,13 +1007,14 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve({response});
     }
 
     /**
      * Removes footnote from document.
      * @param requestObj contains request parameters
      */
-    public async deleteFootnoteWithoutNodePath(requestObj: model.DeleteFootnoteWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: body?: any; }> {
+    public async deleteFootnoteWithoutNodePath(requestObj: model.DeleteFootnoteWithoutNodePathRequest): Promise<{response: http.IncomingMessage}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteFootnoteWithoutNodePath.');
         }
@@ -1035,13 +1049,14 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve({response});
     }
 
     /**
      * Removes form field from document.
      * @param requestObj contains request parameters
      */
-    public async deleteFormField(requestObj: model.DeleteFormFieldRequest): Promise<{response: http.IncomingMessage, body: body?: any; }> {
+    public async deleteFormField(requestObj: model.DeleteFormFieldRequest): Promise<{response: http.IncomingMessage}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteFormField.');
         }
@@ -1082,13 +1097,14 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve({response});
     }
 
     /**
      * Removes form field from document.
      * @param requestObj contains request parameters
      */
-    public async deleteFormFieldWithoutNodePath(requestObj: model.DeleteFormFieldWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: body?: any; }> {
+    public async deleteFormFieldWithoutNodePath(requestObj: model.DeleteFormFieldWithoutNodePathRequest): Promise<{response: http.IncomingMessage}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteFormFieldWithoutNodePath.');
         }
@@ -1123,13 +1139,14 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve({response});
     }
 
     /**
      * Deletes header/footer from document.
      * @param requestObj contains request parameters
      */
-    public async deleteHeaderFooter(requestObj: model.DeleteHeaderFooterRequest): Promise<{response: http.IncomingMessage, body: body?: any; }> {
+    public async deleteHeaderFooter(requestObj: model.DeleteHeaderFooterRequest): Promise<{response: http.IncomingMessage}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteHeaderFooter.');
         }
@@ -1170,13 +1187,14 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve({response});
     }
 
     /**
      * Deletes document headers and footers.
      * @param requestObj contains request parameters
      */
-    public async deleteHeadersFooters(requestObj: model.DeleteHeadersFootersRequest): Promise<{response: http.IncomingMessage, body: body?: any; }> {
+    public async deleteHeadersFooters(requestObj: model.DeleteHeadersFootersRequest): Promise<{response: http.IncomingMessage}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteHeadersFooters.');
         }
@@ -1212,13 +1230,14 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve({response});
     }
 
     /**
      * Removes macros from document.
      * @param requestObj contains request parameters
      */
-    public async deleteMacros(requestObj: model.DeleteMacrosRequest): Promise<{response: http.IncomingMessage, body: body?: any; }> {
+    public async deleteMacros(requestObj: model.DeleteMacrosRequest): Promise<{response: http.IncomingMessage}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteMacros.');
         }
@@ -1247,13 +1266,14 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve({response});
     }
 
     /**
      * Removes OfficeMath object from document.
      * @param requestObj contains request parameters
      */
-    public async deleteOfficeMathObject(requestObj: model.DeleteOfficeMathObjectRequest): Promise<{response: http.IncomingMessage, body: body?: any; }> {
+    public async deleteOfficeMathObject(requestObj: model.DeleteOfficeMathObjectRequest): Promise<{response: http.IncomingMessage}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteOfficeMathObject.');
         }
@@ -1294,13 +1314,14 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve({response});
     }
 
     /**
      * Removes OfficeMath object from document.
      * @param requestObj contains request parameters
      */
-    public async deleteOfficeMathObjectWithoutNodePath(requestObj: model.DeleteOfficeMathObjectWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: body?: any; }> {
+    public async deleteOfficeMathObjectWithoutNodePath(requestObj: model.DeleteOfficeMathObjectWithoutNodePathRequest): Promise<{response: http.IncomingMessage}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteOfficeMathObjectWithoutNodePath.');
         }
@@ -1335,13 +1356,14 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve({response});
     }
 
     /**
      * Removes paragraph from section.
      * @param requestObj contains request parameters
      */
-    public async deleteParagraph(requestObj: model.DeleteParagraphRequest): Promise<{response: http.IncomingMessage, body: body?: any; }> {
+    public async deleteParagraph(requestObj: model.DeleteParagraphRequest): Promise<{response: http.IncomingMessage}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteParagraph.');
         }
@@ -1382,13 +1404,14 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve({response});
     }
 
     /**
      * Removes paragraph from section.
      * @param requestObj contains request parameters
      */
-    public async deleteParagraphWithoutNodePath(requestObj: model.DeleteParagraphWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: body?: any; }> {
+    public async deleteParagraphWithoutNodePath(requestObj: model.DeleteParagraphWithoutNodePathRequest): Promise<{response: http.IncomingMessage}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteParagraphWithoutNodePath.');
         }
@@ -1423,13 +1446,14 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve({response});
     }
 
     /**
      * Removes run from document.
      * @param requestObj contains request parameters
      */
-    public async deleteRun(requestObj: model.DeleteRunRequest): Promise<{response: http.IncomingMessage, body: body?: any; }> {
+    public async deleteRun(requestObj: model.DeleteRunRequest): Promise<{response: http.IncomingMessage}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteRun.');
         }
@@ -1470,13 +1494,14 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve({response});
     }
 
     /**
      * Deletes a table.
      * @param requestObj contains request parameters
      */
-    public async deleteTable(requestObj: model.DeleteTableRequest): Promise<{response: http.IncomingMessage, body: body?: any; }> {
+    public async deleteTable(requestObj: model.DeleteTableRequest): Promise<{response: http.IncomingMessage}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteTable.');
         }
@@ -1517,13 +1542,14 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve({response});
     }
 
     /**
      * Deletes a table cell.
      * @param requestObj contains request parameters
      */
-    public async deleteTableCell(requestObj: model.DeleteTableCellRequest): Promise<{response: http.IncomingMessage, body: body?: any; }> {
+    public async deleteTableCell(requestObj: model.DeleteTableCellRequest): Promise<{response: http.IncomingMessage}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteTableCell.');
         }
@@ -1564,13 +1590,14 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve({response});
     }
 
     /**
      * Deletes a table row.
      * @param requestObj contains request parameters
      */
-    public async deleteTableRow(requestObj: model.DeleteTableRowRequest): Promise<{response: http.IncomingMessage, body: body?: any; }> {
+    public async deleteTableRow(requestObj: model.DeleteTableRowRequest): Promise<{response: http.IncomingMessage}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteTableRow.');
         }
@@ -1611,13 +1638,14 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve({response});
     }
 
     /**
      * Deletes a table.
      * @param requestObj contains request parameters
      */
-    public async deleteTableWithoutNodePath(requestObj: model.DeleteTableWithoutNodePathRequest): Promise<{response: http.IncomingMessage, body: body?: any; }> {
+    public async deleteTableWithoutNodePath(requestObj: model.DeleteTableWithoutNodePathRequest): Promise<{response: http.IncomingMessage}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteTableWithoutNodePath.');
         }
@@ -1652,6 +1680,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve({response});
     }
 
     /**
@@ -1762,7 +1791,7 @@ export class WordsApi {
             json: true,
         };
 
-        (requestOptions as any).formData = formParams;        
+        requestOptions.formData = formParams;        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
         return Promise.resolve({body: result, response});
@@ -1809,7 +1838,7 @@ export class WordsApi {
             encoding: null,
         };
 
-        (requestOptions as any).formData = formParams;        
+        requestOptions.formData = formParams;        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "Buffer");
         return Promise.resolve({body: result, response});
@@ -2505,7 +2534,7 @@ export class WordsApi {
             json: true,
         };
 
-        (requestOptions as any).formData = formParams;        
+        requestOptions.formData = formParams;        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "FieldNamesResponse");
         return Promise.resolve({body: result, response});
@@ -4640,7 +4669,7 @@ export class WordsApi {
             json: true,
         };
 
-        (requestOptions as any).formData = formParams;        
+        requestOptions.formData = formParams;        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "DrawingObjectResponse");
         return Promise.resolve({body: result, response});
@@ -4697,7 +4726,7 @@ export class WordsApi {
             json: true,
         };
 
-        (requestOptions as any).formData = formParams;        
+        requestOptions.formData = formParams;        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "DrawingObjectResponse");
         return Promise.resolve({body: result, response});
@@ -5384,7 +5413,7 @@ export class WordsApi {
             json: true,
         };
 
-        (requestOptions as any).formData = formParams;        
+        requestOptions.formData = formParams;        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
         return Promise.resolve({body: result, response});
@@ -5468,7 +5497,7 @@ export class WordsApi {
      * Move file
      * @param requestObj contains request parameters
      */
-    public async moveFile(requestObj: model.MoveFileRequest): Promise<{response: http.IncomingMessage, body: body?: any; }> {
+    public async moveFile(requestObj: model.MoveFileRequest): Promise<{response: http.IncomingMessage}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling moveFile.');
         }
@@ -5499,13 +5528,14 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve({response});
     }
 
     /**
      * Move folder
      * @param requestObj contains request parameters
      */
-    public async moveFolder(requestObj: model.MoveFolderRequest): Promise<{response: http.IncomingMessage, body: body?: any; }> {
+    public async moveFolder(requestObj: model.MoveFolderRequest): Promise<{response: http.IncomingMessage}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling moveFolder.');
         }
@@ -5535,6 +5565,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve({response});
     }
 
     /**
@@ -6207,7 +6238,7 @@ export class WordsApi {
      * Resets font's cache.
      * @param requestObj contains request parameters
      */
-    public async resetCache(requestObj: model.ResetCacheRequest): Promise<{response: http.IncomingMessage, body: body?: any; }> {
+    public async resetCache(requestObj: model.ResetCacheRequest): Promise<{response: http.IncomingMessage}> {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling resetCache.');
         }
@@ -6223,6 +6254,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve({response});
     }
 
     /**
@@ -6252,7 +6284,6 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", requestObj.fontsLocation);
         const requestOptions: request.Options = {
             method: "PUT",
@@ -6306,7 +6337,6 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
@@ -6347,8 +6377,6 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "resultFile", requestObj.resultFile);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "useAntiAliasing", requestObj.useAntiAliasing);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "useHighQualityRendering", requestObj.useHighQualityRendering);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "imageBrightness", requestObj.imageBrightness);
@@ -6717,7 +6745,7 @@ export class WordsApi {
             json: true,
         };
 
-        (requestOptions as any).formData = formParams;        
+        requestOptions.formData = formParams;        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "DrawingObjectResponse");
         return Promise.resolve({body: result, response});
@@ -6780,7 +6808,7 @@ export class WordsApi {
             json: true,
         };
 
-        (requestOptions as any).formData = formParams;        
+        requestOptions.formData = formParams;        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "DrawingObjectResponse");
         return Promise.resolve({body: result, response});
@@ -7528,7 +7556,7 @@ export class WordsApi {
             json: true,
         };
 
-        (requestOptions as any).formData = formParams;        
+        requestOptions.formData = formParams;        
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result =  ObjectSerializer.deserialize(response.body, "FilesUploadResult");
         return Promise.resolve({body: result, response});

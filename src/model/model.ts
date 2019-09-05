@@ -1,7 +1,7 @@
 /*
 * MIT License
 
-* Copyright (c) 2018 Aspose Pty Ltd
+* Copyright (c) 2019 Aspose Pty Ltd
 
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -726,7 +726,7 @@ export class FilesUploadResult {
         {
             name: "errors",
             baseName: "Errors",
-            type: "Array<Error>",
+            type: "Array<StorageApiError>",
         }    ];
 
     /**
@@ -744,7 +744,7 @@ export class FilesUploadResult {
     /**
      * List of errors.
      */
-    public errors: Array<Error>;
+    public errors: Array<StorageApiError>;
     
     public constructor(init?: Partial<FilesUploadResult>) {
         
@@ -1182,69 +1182,6 @@ export class MetafileRenderingOptionsData {
     public useEmfEmbeddedToWmf: boolean;
     
     public constructor(init?: Partial<MetafileRenderingOptionsData>) {
-        
-        Object.assign(this, init);
-    }        
-}
-
-/**
- * Error
- */
-export class ModelError {
-
-    /**
-     * Attribute type map
-     */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            name: "code",
-            baseName: "Code",
-            type: "string",
-        },        
-        {
-            name: "message",
-            baseName: "Message",
-            type: "string",
-        },        
-        {
-            name: "description",
-            baseName: "Description",
-            type: "string",
-        },        
-        {
-            name: "innerError",
-            baseName: "InnerError",
-            type: "ErrorDetails",
-        }    ];
-
-    /**
-     * Returns attribute type map
-     */
-    public static getAttributeTypeMap() {
-        return ModelError.attributeTypeMap;
-    }
-
-    /**
-     * Code             
-     */
-    public code: string;
-    
-    /**
-     * Message             
-     */
-    public message: string;
-    
-    /**
-     * Description             
-     */
-    public description: string;
-    
-    /**
-     * Inner Error             
-     */
-    public innerError: ErrorDetails;
-    
-    public constructor(init?: Partial<ModelError>) {
         
         Object.assign(this, init);
     }        
@@ -2206,6 +2143,69 @@ export class SplitDocumentResult {
     public zippedPages: FileLink;
     
     public constructor(init?: Partial<SplitDocumentResult>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
+/**
+ * Error
+ */
+export class StorageApiError {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            name: "code",
+            baseName: "Code",
+            type: "string",
+        },        
+        {
+            name: "message",
+            baseName: "Message",
+            type: "string",
+        },        
+        {
+            name: "description",
+            baseName: "Description",
+            type: "string",
+        },        
+        {
+            name: "innerError",
+            baseName: "InnerError",
+            type: "ErrorDetails",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return StorageApiError.attributeTypeMap;
+    }
+
+    /**
+     * Code             
+     */
+    public code: string;
+    
+    /**
+     * Message             
+     */
+    public message: string;
+    
+    /**
+     * Description             
+     */
+    public description: string;
+    
+    /**
+     * Inner Error             
+     */
+    public innerError: ErrorDetails;
+    
+    public constructor(init?: Partial<StorageApiError>) {
         
         Object.assign(this, init);
     }        
@@ -10167,7 +10167,7 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
     public digitalSignatureDetails: PdfDigitalSignatureDetailsData;
     
     /**
-     * Gets or sets a flag specifying whether the window’s title bar should display the document title taken from the Title entry of the document information dictionary.
+     * Gets or sets a flag specifying whether the window�s title bar should display the document title taken from the Title entry of the document information dictionary.
      */
     public displayDocTitle: boolean;
     
@@ -11513,7 +11513,6 @@ const typeMap = {
             LinkElement,
             LoadWebDocumentData,
             MetafileRenderingOptionsData,
-            ModelError,
             ModificationOperationResult,
             OutlineOptionsData,
             PageNumber,
@@ -11531,6 +11530,7 @@ const typeMap = {
             SaveResult,
             SearchResult,
             SplitDocumentResult,
+            StorageApiError,
             StorageFile,
             StoryChildNodes,
             StringFormatData,
@@ -15722,7 +15722,7 @@ export class GetRangeTextRequest {
     public name: string;
 
     /**
-     * The range start identifier.
+     * The range start identifier. Identifier is the value of the \"nodeId\" field, which every document node has, extended with the prefix \"id\". It looks like \"id0.7\". Also values like \"image5\" and \"table3\" can be used as an identifier for images and tables, where the number is an index of the image/table.
      */
     public rangeStartIdentifier: string;
 
@@ -17711,7 +17711,7 @@ export class RemoveRangeRequest {
     public name: string;
 
     /**
-     * The range start identifier.
+     * The range start identifier. Identifier is the value of the \"nodeId\" field, which every document node has, extended with the prefix \"id\". It looks like \"id0.7\". Also values like \"image5\" and \"table3\" can be used as an identifier for images and tables, where the number is an index of the image/table.
      */
     public rangeStartIdentifier: string;
 
@@ -18275,7 +18275,7 @@ export class ReplaceWithTextRequest {
     public name: string;
 
     /**
-     * The range start identifier.
+     * The range start identifier. Identifier is the value of the \"nodeId\" field, which every document node has, extended with the prefix \"id\". It looks like \"id0.7\". Also values like \"image5\" and \"table3\" can be used as an identifier for images and tables, where the number is an index of the image/table.
      */
     public rangeStartIdentifier: string;
 
@@ -18364,11 +18364,6 @@ export class SaveAsRequest {
     public password: string;
 
     /**
-     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
@@ -18388,7 +18383,7 @@ export class SaveAsRangeRequest {
     public name: string;
 
     /**
-     * The range start identifier.
+     * The range start identifier. Identifier is the value of the \"nodeId\" field, which every document node has, extended with the prefix \"id\". It looks like \"id0.7\". Also values like \"image5\" and \"table3\" can be used as an identifier for images and tables, where the number is an index of the image/table.
      */
     public rangeStartIdentifier: string;
 
@@ -18421,11 +18416,6 @@ export class SaveAsRangeRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-    /**
-     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
     
     public constructor(init?: Partial<SaveAsRangeRequest>) {        
         Object.assign(this, init);
@@ -18465,16 +18455,6 @@ export class SaveAsTiffRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-    /**
-     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
-     * The resulting file name.
-     */
-    public resultFile: string;
 
     /**
      * Use antialiasing flag.

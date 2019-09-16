@@ -1,7 +1,7 @@
 /*
 * MIT License
 
-* Copyright (c) 2018 Aspose Pty Ltd
+* Copyright (c) 2019 Aspose Pty Ltd
 
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -25,7 +25,7 @@
 import { expect } from "chai";
 import "mocha";
 
-import { DocumentEntry, DocumentEntryList, PostAppendDocumentRequest } from "../../src/model/model";
+import { AppendDocumentRequest, DocumentEntry, DocumentEntryList } from "../../src/model/model";
 import * as BaseTest from "../baseTest";
 
 const testFolder = "DocumentActions/AppendDocument";
@@ -34,37 +34,31 @@ describe("postAppendDocument function", () => {
 
     it("should return response with code 200", () => {
 
-        const storageApi = BaseTest.initializeStorageApi();
         const wordsApi = BaseTest.initializeWordsApi();
 
         const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
         const remoteFileName = "TestPostAppendDocument.docx";
         const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
-        return new Promise((resolve) => {
-            storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                expect(responseMessage.status).to.equal("OK");
-                resolve();
-            });
-        })
-            .then(() => {
+        return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, localPath)
+        .then((result) => {
+                expect(result.response.statusMessage).to.equal("OK");
                 const docEntry = new DocumentEntry();
                 docEntry.href = remotePath + "/" + remoteFileName;
                 docEntry.importFormatMode = "KeepSourceFormatting";
-                const request = new PostAppendDocumentRequest();
+                const request = new AppendDocumentRequest();
                 request.documentList = new DocumentEntryList();
                 request.documentList.documentEntries = [docEntry];
                 request.name = remoteFileName;
                 request.folder = remotePath;
 
                 // Act
-                return wordsApi.postAppendDocument(request)
-                    .then((result) => {
+                return wordsApi.appendDocument(request)
+                    .then((result1) => {
                         // Assert
-                        expect(result.body.code).to.equal(200);
-                        expect(result.response.statusCode).to.equal(200);
+                        expect(result1.response.statusCode).to.equal(200);
 
-                        expect(result.body.document.links.length).to.greaterThan(10);
+                        expect(result1.body.document.links.length).to.greaterThan(10);
                     });
             });
     });

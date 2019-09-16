@@ -1,7 +1,7 @@
 /*
 * MIT License
 
-* Copyright (c) 2018 Aspose Pty Ltd
+* Copyright (c) 2019 Aspose Pty Ltd
 
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -38,8 +38,7 @@ describe("fonts", () => {
             return wordsApi.resetCache(request)
                 .then((result) => {
                     // Assert
-                    expect(result.body.code).to.equal(200);
-                    expect(result.response.statusCode).to.equal(200);
+                    expect(result.statusCode).to.equal(200);
                 });
 
         });
@@ -54,7 +53,6 @@ describe("fonts", () => {
             return wordsApi.getAvailableFonts(request)
                 .then((result) => {
                     // Assert
-                    expect(result.body.code).to.equal(200);
                     expect(result.response.statusCode).to.equal(200);
                 });
 

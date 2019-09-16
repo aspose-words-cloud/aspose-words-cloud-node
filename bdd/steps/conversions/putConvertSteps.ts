@@ -1,7 +1,7 @@
 /*
 * MIT License
 
-* Copyright (c) 2018 Aspose Pty Ltd
+* Copyright (c) 2019 Aspose Pty Ltd
 
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -35,7 +35,7 @@ When(/^I execute conversion \(PUT convert\)$/, function() {
     const wordsApi = BaseTest.initializeWordsApi();
     const request = this.request;
         
-    return wordsApi.putConvertDocument(request)
+    return wordsApi.convertDocument(request)
         .then((result) => {                        
             this.response = result;
         });

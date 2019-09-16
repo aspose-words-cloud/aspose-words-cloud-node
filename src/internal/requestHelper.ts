@@ -1,7 +1,7 @@
 /*
 * MIT License
 
-* Copyright (c) 2018 Aspose Pty Ltd
+* Copyright (c) 2019 Aspose Pty Ltd
 
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -87,7 +87,7 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
     }
 
     requestOptions.headers["x-aspose-client"] = "nodejs sdk";
-    requestOptions.headers["x-aspose-client-version"] = "19.2";
+    requestOptions.headers["x-aspose-client-version"] = "19.9";
 
     const auth = confguration.authentication;
     if (!notApplyAuthToRequest) {
@@ -111,8 +111,8 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
                             bodyContent = JSON.parse(bodyContent.toString("utf8"));
                         }
 
-                        const result = ObjectSerializer.deserialize(bodyContent, "WordsApiErrorResponse");
-                        reject({ message: result.message, code: response.statusCode });
+                        const data = ObjectSerializer.deserialize(bodyContent, "WordsApiErrorResponse");
+                        reject({ response, body: data });
                     } catch (error) {
                         reject({ message: "Error while parse server error: " + error });
                     }

@@ -1,7 +1,7 @@
 /*
 * MIT License
 
-* Copyright (c) 2018 Aspose Pty Ltd
+* Copyright (c) 2019 Aspose Pty Ltd
 
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -25,21 +25,24 @@
 import "mocha";
 
 import { expect } from "chai";
-import { GetDocumentRequest } from "../../src/model/model";
+import {IncomingMessage} from "http";
+import { GetDocumentRequest, WordsApiErrorResponse } from "../../src/model/model";
 import { initializeWordsApi } from "../baseTest";
 
 describe("errorHandling tests", () => {
 
-    it("If file does not exist, 400 response should be returned with message 'Error while loading file '", () => {
+    it("If file does not exist, 404 response should be returned with message 'Error while loading file '", () => {
 
         const wordsApi = initializeWordsApi();        
         const request = new GetDocumentRequest();
         request.documentName = "noFileWithThisName.docx";
                         
         return wordsApi.getDocument(request)            
-            .catch((error) => {               
-                expect(error.code).to.equal(400);
-                expect(error.message).to.equal("Error while loading file \'noFileWithThisName.docx\' from storage: AmazonS3 exception: Error \'The specified key does not exist.\', Bucket \'afc-testdata\', FilePath \'6/Words/noFileWithThisName.docx\'");               
+            .catch((errorResponse) => {
+                expect(errorResponse.response instanceof IncomingMessage).to.be.true;
+                expect(errorResponse.body instanceof WordsApiErrorResponse).to.be.true;
+                expect(errorResponse.response.statusCode).to.equal(404);
+                expect(errorResponse.body.error.message.startsWith("Error while loading file 'noFileWithThisName.docx' from storage: AmazonS3 Storage exception:")).to.be.true;               
             });
     });    
 });

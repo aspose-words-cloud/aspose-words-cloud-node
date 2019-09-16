@@ -1,7 +1,7 @@
 /*
 * MIT License
 
-* Copyright (c) 2018 Aspose Pty Ltd
+* Copyright (c) 2019 Aspose Pty Ltd
 
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -34,20 +34,15 @@ describe("pages", () => {
     describe("renderPage function", () => {
         it("should return response with code 200", () => {
 
-            const storageApi = BaseTest.initializeStorageApi();
             const wordsApi = BaseTest.initializeWordsApi();
 
             const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
             const remoteFileName = "TestRenderPage.docx";
             const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
-            return new Promise((resolve) => {
-                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                    expect(responseMessage.status).to.equal("OK");
-                    resolve();
-                });
-            })
-                .then(() => {
+            return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
                     const request = new RenderPageRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
@@ -56,10 +51,10 @@ describe("pages", () => {
                     
                     // Act
                     return wordsApi.renderPage(request)
-                        .then((result) => {
+                        .then((result1) => {
                             // Assert
-                            expect(result.response.statusCode).to.equal(200);
-                            expect(result.body.byteLength).to.greaterThan(0);
+                            expect(result1.response.statusCode).to.equal(200);
+                            expect(result1.body.byteLength).to.greaterThan(0);
                         });
                 });
         });

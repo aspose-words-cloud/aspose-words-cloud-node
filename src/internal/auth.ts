@@ -1,7 +1,7 @@
 /*
 * MIT License
 
-* Copyright (c) 2018 Aspose Pty Ltd
+* Copyright (c) 2019 Aspose Pty Ltd
 
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -73,7 +73,7 @@ export class OAuth implements IAuthentication {
         const requestOptions: request.Options = {
             method: "POST",
             json: true,
-            uri: configuration.baseUrl + "/oauth2/token",
+            uri: configuration.baseUrl + "/connect/token",
             form: {
                 grant_type: "client_credentials",
                 client_id: configuration.appSID,

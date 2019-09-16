@@ -1,7 +1,7 @@
 /*
 * MIT License
 
-* Copyright (c) 2018 Aspose Pty Ltd
+* Copyright (c) 2019 Aspose Pty Ltd
 
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -25,7 +25,7 @@
 import { expect } from "chai";
 import "mocha";
 
-import { DeleteRunRequest, Font, GetDocumentParagraphRunFontRequest, GetDocumentParagraphRunRequest, GetDocumentParagraphRunsRequest, PostDocumentParagraphRunFontRequest, PostRunRequest, PutRunRequest, Run } from "../../src/model/model";
+import { DeleteRunRequest, Font, GetRunFontRequest, GetRunRequest, GetRunsRequest, InsertRunRequest, Run, UpdateRunFontRequest, UpdateRunRequest } from "../../src/model/model";
 import * as BaseTest from "../baseTest";
 
 const testFolder = "DocumentElements/Runs";
@@ -34,33 +34,27 @@ describe("runs", () => {
     describe("getDocumentParagraphRuns function", () => {
         it("should return response with code 200", () => {
 
-            const storageApi = BaseTest.initializeStorageApi();
             const wordsApi = BaseTest.initializeWordsApi();
 
             const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
             const remoteFileName = "TestGetRuns.docx";
             const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
-            return new Promise((resolve) => {
-                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                    expect(responseMessage.status).to.equal("OK");
-                    resolve();
-                });
-            })
-                .then(() => {
-                    const request = new GetDocumentParagraphRunsRequest();
+            return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
+                    const request = new GetRunsRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
                     request.paragraphPath = "sections/0/paragraphs/0";
 
                     // Act
-                    return wordsApi.getDocumentParagraphRuns(request)
-                        .then((result) => {
+                    return wordsApi.getRuns(request)
+                        .then((result1) => {
                             // Assert
-                            expect(result.body.code).to.equal(200);
-                            expect(result.response.statusCode).to.equal(200);
+                            expect(result1.response.statusCode).to.equal(200);
 
-                            expect(result.body.runs).to.exist.and.not.equal(null);
+                            expect(result1.body.runs).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -69,34 +63,28 @@ describe("runs", () => {
     describe("getDocumentParagraphRun function", () => {
         it("should return response with code 200", () => {
 
-            const storageApi = BaseTest.initializeStorageApi();
             const wordsApi = BaseTest.initializeWordsApi();
 
             const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
             const remoteFileName = "TestGetRun.docx";
             const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
-            return new Promise((resolve) => {
-                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                    expect(responseMessage.status).to.equal("OK");
-                    resolve();
-                });
-            })
-                .then(() => {
-                    const request = new GetDocumentParagraphRunRequest();
+            return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
+                    const request = new GetRunRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
                     request.paragraphPath = "sections/0/paragraphs/0";
                     request.index = 0;
 
                     // Act
-                    return wordsApi.getDocumentParagraphRun(request)
-                        .then((result) => {
+                    return wordsApi.getRun(request)
+                        .then((result1) => {
                             // Assert
-                            expect(result.body.code).to.equal(200);
-                            expect(result.response.statusCode).to.equal(200);
+                            expect(result1.response.statusCode).to.equal(200);
 
-                            expect(result.body.run).to.exist.and.not.equal(null);
+                            expect(result1.body.run).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -105,34 +93,28 @@ describe("runs", () => {
     describe("putRun function", () => {
         it("should return response with code 200", () => {
 
-            const storageApi = BaseTest.initializeStorageApi();
             const wordsApi = BaseTest.initializeWordsApi();
 
             const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
             const remoteFileName = "TestPutRun.docx";
             const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
-            return new Promise((resolve) => {
-                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                    expect(responseMessage.status).to.equal("OK");
-                    resolve();
-                });
-            })
-                .then(() => {
-                    const request = new PutRunRequest();
+            return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
+                    const request = new InsertRunRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
                     request.paragraphPath = "sections/0/paragraphs/0";
                     request.run = new Run({ text: "new" });
 
                     // Act
-                    return wordsApi.putRun(request)
-                        .then((result) => {
+                    return wordsApi.insertRun(request)
+                        .then((result1) => {
                             // Assert
-                            expect(result.body.code).to.equal(200);
-                            expect(result.response.statusCode).to.equal(200);
+                            expect(result1.response.statusCode).to.equal(200);
 
-                            expect(result.body.run).to.exist.and.not.equal(null);
+                            expect(result1.body.run).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -141,21 +123,16 @@ describe("runs", () => {
     describe("postRun function", () => {
         it("should return response with code 200", () => {
 
-            const storageApi = BaseTest.initializeStorageApi();
             const wordsApi = BaseTest.initializeWordsApi();
 
             const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
             const remoteFileName = "TestPostRun.docx";
             const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
-            return new Promise((resolve) => {
-                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                    expect(responseMessage.status).to.equal("OK");
-                    resolve();
-                });
-            })
-                .then(() => {
-                    const request = new PostRunRequest();
+            return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
+                    const request = new UpdateRunRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
                     request.paragraphPath = "sections/0/paragraphs/0";
@@ -163,13 +140,12 @@ describe("runs", () => {
                     request.run = new Run({ text: "new" });
 
                     // Act
-                    return wordsApi.postRun(request)
-                        .then((result) => {
+                    return wordsApi.updateRun(request)
+                        .then((result1) => {
                             // Assert
-                            expect(result.body.code).to.equal(200);
-                            expect(result.response.statusCode).to.equal(200);
+                            expect(result1.response.statusCode).to.equal(200);
 
-                            expect(result.body.run).to.exist.and.not.equal(null);
+                            expect(result1.body.run).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -178,20 +154,15 @@ describe("runs", () => {
     describe("deleteRun function", () => {
         it("should return response with code 200", () => {
 
-            const storageApi = BaseTest.initializeStorageApi();
             const wordsApi = BaseTest.initializeWordsApi();
 
             const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
             const remoteFileName = "TestDeleteRun.docx";
             const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
-            return new Promise((resolve) => {
-                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                    expect(responseMessage.status).to.equal("OK");
-                    resolve();
-                });
-            })
-                .then(() => {
+            return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
                     const request = new DeleteRunRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
@@ -200,10 +171,9 @@ describe("runs", () => {
 
                     // Act
                     return wordsApi.deleteRun(request)
-                        .then((result) => {
+                        .then((result1) => {
                             // Assert
-                            expect(result.body.code).to.equal(200);
-                            expect(result.response.statusCode).to.equal(200);
+                            expect(result1.statusCode).to.equal(200);
                         });
                 });
         });
@@ -212,34 +182,28 @@ describe("runs", () => {
     describe("getDocumentParagraphRunFont function", () => {
         it("should return response with code 200", () => {
 
-            const storageApi = BaseTest.initializeStorageApi();
             const wordsApi = BaseTest.initializeWordsApi();
 
             const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
             const remoteFileName = "TestGetRunFont.docx";
             const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
-            return new Promise((resolve) => {
-                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                    expect(responseMessage.status).to.equal("OK");
-                    resolve();
-                });
-            })
-                .then(() => {
-                    const request = new GetDocumentParagraphRunFontRequest();
+            return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
+                    const request = new GetRunFontRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
                     request.paragraphPath = "sections/0/paragraphs/0";
                     request.index = 0;
 
                     // Act
-                    return wordsApi.getDocumentParagraphRunFont(request)
-                        .then((result) => {
+                    return wordsApi.getRunFont(request)
+                        .then((result1) => {
                             // Assert
-                            expect(result.body.code).to.equal(200);
-                            expect(result.response.statusCode).to.equal(200);
+                            expect(result1.response.statusCode).to.equal(200);
 
-                            expect(result.body.font).to.exist.and.not.equal(null);
+                            expect(result1.body.font).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -248,21 +212,16 @@ describe("runs", () => {
     describe("postDocumentParagraphRunFont function", () => {
         it("should return response with code 200", () => {
 
-            const storageApi = BaseTest.initializeStorageApi();
             const wordsApi = BaseTest.initializeWordsApi();
 
             const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
             const remoteFileName = "TestPostRun.docx";
             const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
-            return new Promise((resolve) => {
-                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                    expect(responseMessage.status).to.equal("OK");
-                    resolve();
-                });
-            })
-                .then(() => {
-                    const request = new PostDocumentParagraphRunFontRequest();
+            return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
+                    const request = new UpdateRunFontRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
                     request.paragraphPath = "sections/0/paragraphs/0";
@@ -270,13 +229,12 @@ describe("runs", () => {
                     request.fontDto = new Font({ bold: true });
 
                     // Act
-                    return wordsApi.postDocumentParagraphRunFont(request)
-                        .then((result) => {
+                    return wordsApi.updateRunFont(request)
+                        .then((result1) => {
                             // Assert
-                            expect(result.body.code).to.equal(200);
-                            expect(result.response.statusCode).to.equal(200);
+                            expect(result1.response.statusCode).to.equal(200);
 
-                            expect(result.body.font).to.exist.and.not.equal(null);
+                            expect(result1.body.font).to.exist.and.not.equal(null);
                         });
                 });
         });

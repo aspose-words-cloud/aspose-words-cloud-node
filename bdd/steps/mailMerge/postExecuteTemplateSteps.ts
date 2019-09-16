@@ -1,7 +1,7 @@
 /*
 * MIT License
 
-* Copyright (c) 2018 Aspose Pty Ltd
+* Copyright (c) 2019 Aspose Pty Ltd
 
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -31,7 +31,8 @@ import * as BaseTest from "../../../test/baseTest";
 const testFolder = "DocumentActions/MailMerge/";
 
 Given(/^I have specified a template file name (.*) in storage$/, function(templateName, callback) {
-    const storageApi = BaseTest.initializeStorageApi();
+
+    const worsApi = BaseTest.initializeWordsApi();
 
     const remotePath = BaseTest.remoteBaseFolder + testFolder;
     const localPath = BaseTest.localBaseTestDataFolder + testFolder + templateName;
@@ -39,8 +40,9 @@ Given(/^I have specified a template file name (.*) in storage$/, function(templa
     this.request.name = templateName;
     this.request.folder = remotePath.slice(0, -1);
 
-    storageApi.PutCreate(remotePath + templateName, null, null, localPath, (responseMessage) => {
-        expect(responseMessage.status).to.equal("OK");
+    worsApi.uploadFileToStorage(remotePath + templateName, localPath)
+    .then((result) => {
+        expect(result.response.statusMessage).to.equal("OK");
         callback();
     });
 });
@@ -53,7 +55,7 @@ When(/^I execute template$/, function() {
     const wordsApi = BaseTest.initializeWordsApi();
     const request = this.request;
 
-    return wordsApi.postExecuteTemplate(request)
+    return wordsApi.executeMailMerge(request)
         .then((result) => {
             this.response = result;
         });
@@ -64,6 +66,7 @@ Then(/^image should be rendered$/, function(callback) {
     const request = new GetDocumentDrawingObjectsRequest({
         folder: BaseTest.remoteBaseFolder + "DocumentActions/MailMerge",
         name: "ExecuteTemplateWithImagesResult.doc",
+        nodePath: null
     });
 
     wordsApi.getDocumentDrawingObjects(request).then((result) => {

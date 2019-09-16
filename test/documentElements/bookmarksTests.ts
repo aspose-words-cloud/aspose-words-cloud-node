@@ -1,7 +1,7 @@
 /*
 * MIT License
 
-* Copyright (c) 2018 Aspose Pty Ltd
+* Copyright (c) 2019 Aspose Pty Ltd
 
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -25,7 +25,7 @@
 import { expect } from "chai";
 import "mocha";
 
-import { BookmarkData, GetDocumentBookmarkByNameRequest, GetDocumentBookmarksRequest, PostUpdateDocumentBookmarkRequest } from "../../src/model/model";
+import { BookmarkData, GetBookmarkByNameRequest, GetBookmarksRequest, UpdateBookmarkRequest } from "../../src/model/model";
 import * as BaseTest from "../baseTest";
 
 const testFolder = "DocumentElements/Bookmarks";
@@ -34,32 +34,26 @@ describe("bookmarks", () => {
     describe("getBookmarks function", () => {
         it("should return response with code 200", () => {
 
-            const storageApi = BaseTest.initializeStorageApi();
             const wordsApi = BaseTest.initializeWordsApi();
 
             const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
             const remoteFileName = "TestGetBookmarks.docx";
             const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
-            return new Promise((resolve) => {
-                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                    expect(responseMessage.status).to.equal("OK");
-                    resolve();
-                });
-            })
-                .then(() => {
-                    const request = new GetDocumentBookmarksRequest();
+            return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
+                    const request = new GetBookmarksRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
 
                     // Act
-                    return wordsApi.getDocumentBookmarks(request)
-                        .then((result) => {
+                    return wordsApi.getBookmarks(request)
+                        .then((result1) => {
                             // Assert
-                            expect(result.body.code).to.equal(200);
-                            expect(result.response.statusCode).to.equal(200);
+                            expect(result1.response.statusCode).to.equal(200);
 
-                            expect(result.body.bookmarks).to.exist.and.not.equal(null);
+                            expect(result1.body.bookmarks).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -68,33 +62,27 @@ describe("bookmarks", () => {
     describe("getBookmark function", () => {
         it("should return response with code 200", () => {
 
-            const storageApi = BaseTest.initializeStorageApi();
             const wordsApi = BaseTest.initializeWordsApi();
 
             const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
             const remoteFileName = "TestGetBookmark.docx";
             const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
-            return new Promise((resolve) => {
-                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                    expect(responseMessage.status).to.equal("OK");
-                    resolve();
-                });
-            })
-                .then(() => {
-                    const request = new GetDocumentBookmarkByNameRequest();
+            return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
+                    const request = new GetBookmarkByNameRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
                     request.bookmarkName = "aspose";
 
                     // Act
-                    return wordsApi.getDocumentBookmarkByName(request)
-                        .then((result) => {
+                    return wordsApi.getBookmarkByName(request)
+                        .then((result1) => {
                             // Assert
-                            expect(result.body.code).to.equal(200);
-                            expect(result.response.statusCode).to.equal(200);
+                            expect(result1.response.statusCode).to.equal(200);
 
-                            expect(result.body.bookmark).to.exist.and.not.equal(null);
+                            expect(result1.body.bookmark).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -103,21 +91,16 @@ describe("bookmarks", () => {
     describe("postUpdateDocumentBookmark function", () => {
         it("should return response with code 200", () => {
 
-            const storageApi = BaseTest.initializeStorageApi();
             const wordsApi = BaseTest.initializeWordsApi();
 
             const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
             const remoteFileName = "TestUpdateBookmark.docx";
             const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
-            return new Promise((resolve) => {
-                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                    expect(responseMessage.status).to.equal("OK");
-                    resolve();
-                });
-            })
-                .then(() => {
-                    const request = new PostUpdateDocumentBookmarkRequest();
+            return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
+                    const request = new UpdateBookmarkRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
                     request.bookmarkName = "aspose";
@@ -126,13 +109,12 @@ describe("bookmarks", () => {
                     });
 
                     // Act
-                    return wordsApi.postUpdateDocumentBookmark(request)
-                        .then((result) => {
+                    return wordsApi.updateBookmark(request)
+                        .then((result1) => {
                             // Assert
-                            expect(result.body.code).to.equal(200);
-                            expect(result.response.statusCode).to.equal(200);
+                            expect(result1.response.statusCode).to.equal(200);
 
-                            expect(result.body.bookmark).to.exist.and.not.equal(null);
+                            expect(result1.body.bookmark).to.exist.and.not.equal(null);
                         });
                 });
         });

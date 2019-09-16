@@ -21,6 +21,43 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
 */
+import { IncomingMessage } from "http";
+import { Readable } from "stream";
+
+/**
+ * Generic class for Words Cloud API response
+ */
+export class WordsIncomingMessage<T> {
+    /**
+     * Gets or sets raw response
+     */
+    public response: IncomingMessage;
+    
+    /**
+     * Get or set parsed response
+     */
+    public body: T;
+}
+
+/**
+ * Attribute description
+ */
+export class AttributeInfo {
+    /**
+     * Gets or sets attribute name
+     */
+    public name: string;
+    
+    /**
+     * Gets or sets attribute base name
+     */
+    public baseName: string;
+    
+    /**
+     * Gets or sets attribute type name
+     */
+    public type: string;
+}
 
 /**
  * Api error.
@@ -30,7 +67,7 @@ export class ApiError {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "code",
             baseName: "Code",
@@ -103,7 +140,7 @@ export class BookmarkData {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "name",
             baseName: "Name",
@@ -146,7 +183,7 @@ export class BookmarksOutlineLevelData {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "name",
             baseName: "Name",
@@ -189,7 +226,7 @@ export class ClassificationResult {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "className",
             baseName: "ClassName",
@@ -232,7 +269,7 @@ export class CompareData {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "comparingWithDocument",
             baseName: "ComparingWithDocument",
@@ -285,7 +322,7 @@ export class Document {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "links",
             baseName: "Links",
@@ -360,6 +397,9 @@ export class Document {
     }        
 }
 
+/**
+ * Enums for Document
+ */
 // tslint:disable:quotemark
 // tslint:disable-next-line:no-namespace
 export namespace Document {
@@ -396,7 +436,7 @@ export class DocumentEntry {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "href",
             baseName: "Href",
@@ -439,7 +479,7 @@ export class DocumentEntryList {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "documentEntries",
             baseName: "DocumentEntries",
@@ -472,7 +512,7 @@ export class DocumentPosition {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "node",
             baseName: "Node",
@@ -515,7 +555,7 @@ export class DocumentStatData {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "wordCount",
             baseName: "WordCount",
@@ -588,7 +628,7 @@ export class DownsampleOptionsData {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "downsampleImages",
             baseName: "DownsampleImages",
@@ -641,7 +681,7 @@ export class ErrorDetails {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "requestId",
             baseName: "RequestId",
@@ -684,7 +724,7 @@ export class FilesList {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "value",
             baseName: "Value",
@@ -717,7 +757,7 @@ export class FilesUploadResult {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "uploaded",
             baseName: "Uploaded",
@@ -760,7 +800,7 @@ export class FontInfo {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "fontFamilyName",
             baseName: "FontFamilyName",
@@ -823,7 +863,7 @@ export class FootnotesStatData {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "wordCount",
             baseName: "WordCount",
@@ -866,7 +906,7 @@ export class GraphicsQualityOptionsData {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "compositingMode",
             baseName: "CompositingMode",
@@ -941,6 +981,9 @@ export class GraphicsQualityOptionsData {
     }        
 }
 
+/**
+ * Enums for GraphicsQualityOptionsData
+ */
 // tslint:disable:quotemark
 // tslint:disable-next-line:no-namespace
 export namespace GraphicsQualityOptionsData {
@@ -993,7 +1036,7 @@ export class Link {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "href",
             baseName: "Href",
@@ -1056,7 +1099,7 @@ export class LinkElement {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "link",
             baseName: "link",
@@ -1089,7 +1132,7 @@ export class LoadWebDocumentData {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "loadingDocumentUrl",
             baseName: "LoadingDocumentUrl",
@@ -1132,7 +1175,7 @@ export class MetafileRenderingOptionsData {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "emfPlusDualRenderingMode",
             baseName: "EmfPlusDualRenderingMode",
@@ -1195,7 +1238,7 @@ export class ModificationOperationResult {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "source",
             baseName: "Source",
@@ -1238,7 +1281,7 @@ export class OutlineOptionsData {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "bookmarksOutlineLevels",
             baseName: "BookmarksOutlineLevels",
@@ -1321,7 +1364,7 @@ export class PageNumber {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "format",
             baseName: "Format",
@@ -1384,7 +1427,7 @@ export class PageStatData {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "pageNumber",
             baseName: "PageNumber",
@@ -1447,7 +1490,7 @@ export class ParagraphInsert {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "text",
             baseName: "Text",
@@ -1480,7 +1523,7 @@ export class PdfDigitalSignatureDetailsData {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "certificateFilename",
             baseName: "CertificateFilename",
@@ -1553,7 +1596,7 @@ export class PdfEncryptionDetailsData {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "encryptionAlgorithm",
             baseName: "EncryptionAlgorithm",
@@ -1616,7 +1659,7 @@ export class PreferredWidth {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "type",
             baseName: "Type",
@@ -1651,6 +1694,9 @@ export class PreferredWidth {
     }        
 }
 
+/**
+ * Enums for PreferredWidth
+ */
 // tslint:disable:quotemark
 // tslint:disable-next-line:no-namespace
 export namespace PreferredWidth {
@@ -1669,7 +1715,7 @@ export class ProtectionData {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "protectionType",
             baseName: "ProtectionType",
@@ -1702,7 +1748,7 @@ export class ProtectionRequest {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "password",
             baseName: "Password",
@@ -1755,7 +1801,7 @@ export class RangeDocument {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "documentName",
             baseName: "DocumentName",
@@ -1788,7 +1834,7 @@ export class ReplaceRange {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "text",
             baseName: "Text",
@@ -1821,7 +1867,7 @@ export class ReplaceTextParameters {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "oldValue",
             baseName: "OldValue",
@@ -1894,7 +1940,7 @@ export class SaveOptionsData {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "colorMode",
             baseName: "ColorMode",
@@ -2007,7 +2053,7 @@ export class SaveResult {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "sourceDocument",
             baseName: "SourceDocument",
@@ -2060,7 +2106,7 @@ export class SearchResult {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "rangeStart",
             baseName: "RangeStart",
@@ -2103,7 +2149,7 @@ export class SplitDocumentResult {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "sourceDocument",
             baseName: "SourceDocument",
@@ -2156,7 +2202,7 @@ export class StorageApiError {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "code",
             baseName: "Code",
@@ -2219,7 +2265,7 @@ export class StorageFile {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "name",
             baseName: "Name",
@@ -2292,7 +2338,7 @@ export class StoryChildNodes {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "childNodes",
             baseName: "ChildNodes",
@@ -2325,7 +2371,7 @@ export class StringFormatData {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "alignment",
             baseName: "Alignment",
@@ -2390,6 +2436,9 @@ export class StringFormatData {
     }        
 }
 
+/**
+ * Enums for StringFormatData
+ */
 // tslint:disable:quotemark
 // tslint:disable-next-line:no-namespace
 export namespace StringFormatData {
@@ -2437,7 +2486,7 @@ export class TableCellInsert {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "insertAfter",
             baseName: "InsertAfter",
@@ -2470,7 +2519,7 @@ export class TableInsert {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "position",
             baseName: "Position",
@@ -2523,7 +2572,7 @@ export class TableRowInsert {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "insertAfter",
             baseName: "InsertAfter",
@@ -2566,7 +2615,7 @@ export class WatermarkText {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "text",
             baseName: "Text",
@@ -2609,7 +2658,7 @@ export class WordsResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "requestId",
             baseName: "RequestId",
@@ -2642,7 +2691,7 @@ export class XmlColor {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "web",
             baseName: "Web",
@@ -2685,7 +2734,7 @@ export class AvailableFontsResponse extends WordsResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "additionalFonts",
             baseName: "AdditionalFonts",
@@ -2738,7 +2787,7 @@ export class Bookmark extends LinkElement {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "name",
             baseName: "Name",
@@ -2781,7 +2830,7 @@ export class BookmarkResponse extends WordsResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "bookmark",
             baseName: "Bookmark",
@@ -2814,7 +2863,7 @@ export class Bookmarks extends LinkElement {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "bookmarkList",
             baseName: "BookmarkList",
@@ -2847,7 +2896,7 @@ export class BookmarksResponse extends WordsResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "bookmarks",
             baseName: "Bookmarks",
@@ -2880,7 +2929,7 @@ export class Border extends LinkElement {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "borderType",
             baseName: "BorderType",
@@ -2955,6 +3004,9 @@ export class Border extends LinkElement {
     }        
 }
 
+/**
+ * Enums for Border
+ */
 // tslint:disable:quotemark
 // tslint:disable-next-line:no-namespace
 export namespace Border {
@@ -3008,7 +3060,7 @@ export class BorderResponse extends WordsResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "border",
             baseName: "Border",
@@ -3041,7 +3093,7 @@ export class BordersCollection extends LinkElement {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "list",
             baseName: "List",
@@ -3074,7 +3126,7 @@ export class BordersResponse extends WordsResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "borders",
             baseName: "Borders",
@@ -3107,7 +3159,7 @@ export class ClassificationResponse extends WordsResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "bestClassName",
             baseName: "BestClassName",
@@ -3160,7 +3212,7 @@ export class CommentLink extends LinkElement {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
     ];
 
     /**
@@ -3184,7 +3236,7 @@ export class CommentResponse extends WordsResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "comment",
             baseName: "Comment",
@@ -3217,7 +3269,7 @@ export class CommentsCollection extends LinkElement {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "commentList",
             baseName: "CommentList",
@@ -3250,7 +3302,7 @@ export class CommentsResponse extends WordsResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "comments",
             baseName: "Comments",
@@ -3283,7 +3335,7 @@ export class DocSaveOptionsData extends SaveOptionsData {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "password",
             baseName: "Password",
@@ -3326,7 +3378,7 @@ export class DocumentProperties extends LinkElement {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "list",
             baseName: "List",
@@ -3359,7 +3411,7 @@ export class DocumentPropertiesResponse extends WordsResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "documentProperties",
             baseName: "DocumentProperties",
@@ -3392,7 +3444,7 @@ export class DocumentProperty extends LinkElement {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "builtIn",
             baseName: "BuiltIn",
@@ -3445,7 +3497,7 @@ export class DocumentPropertyResponse extends WordsResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "documentProperty",
             baseName: "DocumentProperty",
@@ -3478,7 +3530,7 @@ export class DocumentResponse extends WordsResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "document",
             baseName: "Document",
@@ -3511,7 +3563,7 @@ export class DrawingObjectCollection extends LinkElement {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "list",
             baseName: "List",
@@ -3544,7 +3596,7 @@ export class DrawingObjectResponse extends WordsResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "drawingObject",
             baseName: "DrawingObject",
@@ -3577,7 +3629,7 @@ export class DrawingObjectsResponse extends WordsResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "drawingObjects",
             baseName: "DrawingObjects",
@@ -3610,7 +3662,7 @@ export class FieldCollection extends LinkElement {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "list",
             baseName: "List",
@@ -3643,7 +3695,7 @@ export class FieldNames extends LinkElement {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "names",
             baseName: "Names",
@@ -3676,7 +3728,7 @@ export class FieldNamesResponse extends WordsResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "fieldNames",
             baseName: "FieldNames",
@@ -3709,7 +3761,7 @@ export class FieldResponse extends WordsResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "field",
             baseName: "Field",
@@ -3742,7 +3794,7 @@ export class FieldsResponse extends WordsResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "fields",
             baseName: "Fields",
@@ -3775,7 +3827,7 @@ export class FileLink extends Link {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
     ];
 
     /**
@@ -3799,7 +3851,7 @@ export class FixedPageSaveOptionsData extends SaveOptionsData {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "jpegQuality",
             baseName: "JpegQuality",
@@ -3882,7 +3934,7 @@ export class Font extends LinkElement {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "allCaps",
             baseName: "AllCaps",
@@ -4297,6 +4349,9 @@ export class Font extends LinkElement {
     }        
 }
 
+/**
+ * Enums for Font
+ */
 // tslint:disable:quotemark
 // tslint:disable-next-line:no-namespace
 export namespace Font {
@@ -4714,7 +4769,7 @@ export class FontResponse extends WordsResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "font",
             baseName: "Font",
@@ -4747,7 +4802,7 @@ export class FootnoteCollection extends LinkElement {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "list",
             baseName: "List",
@@ -4780,7 +4835,7 @@ export class FootnoteResponse extends WordsResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "footnote",
             baseName: "Footnote",
@@ -4813,7 +4868,7 @@ export class FootnotesResponse extends WordsResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "footnotes",
             baseName: "Footnotes",
@@ -4846,7 +4901,7 @@ export class FormFieldCollection extends LinkElement {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "list",
             baseName: "List",
@@ -4879,7 +4934,7 @@ export class FormFieldResponse extends WordsResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "formField",
             baseName: "FormField",
@@ -4912,7 +4967,7 @@ export class FormFieldsResponse extends WordsResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "formFields",
             baseName: "FormFields",
@@ -4945,7 +5000,7 @@ export class HeaderFooterLink extends LinkElement {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "type",
             baseName: "Type",
@@ -4970,6 +5025,9 @@ export class HeaderFooterLink extends LinkElement {
     }        
 }
 
+/**
+ * Enums for HeaderFooterLink
+ */
 // tslint:disable:quotemark
 // tslint:disable-next-line:no-namespace
 export namespace HeaderFooterLink {
@@ -4991,7 +5049,7 @@ export class HeaderFooterLinkCollection extends LinkElement {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "list",
             baseName: "List",
@@ -5024,7 +5082,7 @@ export class HeaderFooterResponse extends WordsResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "headerFooter",
             baseName: "HeaderFooter",
@@ -5057,7 +5115,7 @@ export class HeaderFootersResponse extends WordsResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "headerFooters",
             baseName: "HeaderFooters",
@@ -5090,7 +5148,7 @@ export class HtmlSaveOptionsData extends SaveOptionsData {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "allowNegativeIndent",
             baseName: "AllowNegativeIndent",
@@ -5485,6 +5543,9 @@ export class HtmlSaveOptionsData extends SaveOptionsData {
     }        
 }
 
+/**
+ * Enums for HtmlSaveOptionsData
+ */
 // tslint:disable:quotemark
 // tslint:disable-next-line:no-namespace
 export namespace HtmlSaveOptionsData {
@@ -5512,7 +5573,7 @@ export class Hyperlink extends LinkElement {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "displayText",
             baseName: "DisplayText",
@@ -5555,7 +5616,7 @@ export class HyperlinkResponse extends WordsResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "hyperlink",
             baseName: "Hyperlink",
@@ -5588,7 +5649,7 @@ export class Hyperlinks extends LinkElement {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "hyperlinkList",
             baseName: "HyperlinkList",
@@ -5621,7 +5682,7 @@ export class HyperlinksResponse extends WordsResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "hyperlinks",
             baseName: "Hyperlinks",
@@ -5654,7 +5715,7 @@ export class NodeLink extends LinkElement {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "nodeId",
             baseName: "NodeId",
@@ -5687,7 +5748,7 @@ export class OdtSaveOptionsData extends SaveOptionsData {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "isStrictSchema11",
             baseName: "IsStrictSchema11",
@@ -5732,6 +5793,9 @@ export class OdtSaveOptionsData extends SaveOptionsData {
     }        
 }
 
+/**
+ * Enums for OdtSaveOptionsData
+ */
 // tslint:disable:quotemark
 // tslint:disable-next-line:no-namespace
 export namespace OdtSaveOptionsData {
@@ -5749,7 +5813,7 @@ export class OfficeMathObjectResponse extends WordsResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "officeMathObject",
             baseName: "OfficeMathObject",
@@ -5782,7 +5846,7 @@ export class OfficeMathObjectsCollection extends LinkElement {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "list",
             baseName: "List",
@@ -5815,7 +5879,7 @@ export class OfficeMathObjectsResponse extends WordsResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "officeMathObjects",
             baseName: "OfficeMathObjects",
@@ -5848,7 +5912,7 @@ export class OoxmlSaveOptionsData extends SaveOptionsData {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "compliance",
             baseName: "Compliance",
@@ -5901,7 +5965,7 @@ export class PageSetup extends LinkElement {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "bidi",
             baseName: "Bidi",
@@ -6206,6 +6270,9 @@ export class PageSetup extends LinkElement {
     }        
 }
 
+/**
+ * Enums for PageSetup
+ */
 // tslint:disable:quotemark
 // tslint:disable-next-line:no-namespace
 export namespace PageSetup {
@@ -6333,7 +6400,7 @@ export class ParagraphFormat extends LinkElement {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "addSpaceBetweenFarEastAndAlpha",
             baseName: "AddSpaceBetweenFarEastAndAlpha",
@@ -6598,6 +6665,9 @@ export class ParagraphFormat extends LinkElement {
     }        
 }
 
+/**
+ * Enums for ParagraphFormat
+ */
 // tslint:disable:quotemark
 // tslint:disable-next-line:no-namespace
 export namespace ParagraphFormat {
@@ -7019,7 +7089,7 @@ export class ParagraphFormatResponse extends WordsResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "paragraphFormat",
             baseName: "ParagraphFormat",
@@ -7052,7 +7122,7 @@ export class ParagraphLinkCollection extends LinkElement {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "paragraphLinkList",
             baseName: "ParagraphLinkList",
@@ -7085,7 +7155,7 @@ export class ParagraphLinkCollectionResponse extends WordsResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "paragraphs",
             baseName: "Paragraphs",
@@ -7118,7 +7188,7 @@ export class ParagraphResponse extends WordsResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "paragraph",
             baseName: "Paragraph",
@@ -7151,7 +7221,7 @@ export class ProtectionDataResponse extends WordsResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "documentLink",
             baseName: "DocumentLink",
@@ -7194,7 +7264,7 @@ export class RangeTextResponse extends WordsResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "text",
             baseName: "Text",
@@ -7227,7 +7297,7 @@ export class ReplaceTextResponse extends WordsResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "documentLink",
             baseName: "DocumentLink",
@@ -7270,7 +7340,7 @@ export class RevisionsModificationResponse extends WordsResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "result",
             baseName: "Result",
@@ -7303,7 +7373,7 @@ export class RtfSaveOptionsData extends SaveOptionsData {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "exportCompactSize",
             baseName: "ExportCompactSize",
@@ -7356,7 +7426,7 @@ export class RunResponse extends WordsResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "run",
             baseName: "Run",
@@ -7389,7 +7459,7 @@ export class Runs extends LinkElement {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "list",
             baseName: "List",
@@ -7422,7 +7492,7 @@ export class RunsResponse extends WordsResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "runs",
             baseName: "Runs",
@@ -7455,7 +7525,7 @@ export class SaveResponse extends WordsResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "saveResult",
             baseName: "SaveResult",
@@ -7488,7 +7558,7 @@ export class SearchResponse extends WordsResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "searchingPattern",
             baseName: "SearchingPattern",
@@ -7531,7 +7601,7 @@ export class SearchResultsCollection extends LinkElement {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "resultsList",
             baseName: "ResultsList",
@@ -7564,7 +7634,7 @@ export class Section extends LinkElement {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "childNodes",
             baseName: "ChildNodes",
@@ -7637,7 +7707,7 @@ export class SectionLink extends LinkElement {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
     ];
 
     /**
@@ -7661,7 +7731,7 @@ export class SectionLinkCollection extends LinkElement {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "sectionLinkList",
             baseName: "SectionLinkList",
@@ -7694,7 +7764,7 @@ export class SectionLinkCollectionResponse extends WordsResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "sections",
             baseName: "Sections",
@@ -7727,7 +7797,7 @@ export class SectionPageSetupResponse extends WordsResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "pageSetup",
             baseName: "PageSetup",
@@ -7760,7 +7830,7 @@ export class SectionResponse extends WordsResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "section",
             baseName: "Section",
@@ -7793,7 +7863,7 @@ export class SplitDocumentResponse extends WordsResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "splitResult",
             baseName: "SplitResult",
@@ -7826,7 +7896,7 @@ export class StatDataResponse extends WordsResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "documentLink",
             baseName: "DocumentLink",
@@ -7869,7 +7939,7 @@ export class TableCellFormat extends LinkElement {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "bottomPadding",
             baseName: "BottomPadding",
@@ -8004,6 +8074,9 @@ export class TableCellFormat extends LinkElement {
     }        
 }
 
+/**
+ * Enums for TableCellFormat
+ */
 // tslint:disable:quotemark
 // tslint:disable-next-line:no-namespace
 export namespace TableCellFormat {
@@ -8040,7 +8113,7 @@ export class TableCellFormatResponse extends WordsResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "cellFormat",
             baseName: "CellFormat",
@@ -8073,7 +8146,7 @@ export class TableCellResponse extends WordsResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "cell",
             baseName: "Cell",
@@ -8106,7 +8179,7 @@ export class TableLinkCollection extends LinkElement {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "tableLinkList",
             baseName: "TableLinkList",
@@ -8139,7 +8212,7 @@ export class TableLinkCollectionResponse extends WordsResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "tables",
             baseName: "Tables",
@@ -8172,7 +8245,7 @@ export class TableProperties extends LinkElement {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "alignment",
             baseName: "Alignment",
@@ -8327,6 +8400,9 @@ export class TableProperties extends LinkElement {
     }        
 }
 
+/**
+ * Enums for TableProperties
+ */
 // tslint:disable:quotemark
 // tslint:disable-next-line:no-namespace
 export namespace TableProperties {
@@ -8736,7 +8812,7 @@ export class TablePropertiesResponse extends WordsResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "properties",
             baseName: "Properties",
@@ -8769,7 +8845,7 @@ export class TableResponse extends WordsResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "table",
             baseName: "Table",
@@ -8802,7 +8878,7 @@ export class TableRowFormat extends LinkElement {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "allowBreakAcrossPages",
             baseName: "AllowBreakAcrossPages",
@@ -8857,6 +8933,9 @@ export class TableRowFormat extends LinkElement {
     }        
 }
 
+/**
+ * Enums for TableRowFormat
+ */
 // tslint:disable:quotemark
 // tslint:disable-next-line:no-namespace
 export namespace TableRowFormat {
@@ -8875,7 +8954,7 @@ export class TableRowFormatResponse extends WordsResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "rowFormat",
             baseName: "RowFormat",
@@ -8908,7 +8987,7 @@ export class TableRowResponse extends WordsResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "row",
             baseName: "Row",
@@ -8941,7 +9020,7 @@ export class TextSaveOptionsData extends SaveOptionsData {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "addBidiMarks",
             baseName: "AddBidiMarks",
@@ -9034,7 +9113,7 @@ export class WordMLSaveOptionsData extends SaveOptionsData {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "prettyFormat",
             baseName: "PrettyFormat",
@@ -9067,7 +9146,7 @@ export class WordsApiErrorResponse extends WordsResponse {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "error",
             baseName: "Error",
@@ -9100,7 +9179,7 @@ export class WordsApiLink extends Link {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
     ];
 
     /**
@@ -9124,7 +9203,7 @@ export class XamlFlowSaveOptionsData extends SaveOptionsData {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "imagesFolder",
             baseName: "ImagesFolder",
@@ -9167,7 +9246,7 @@ export class Comment extends CommentLink {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "author",
             baseName: "Author",
@@ -9260,7 +9339,7 @@ export class DrawingObjectLink extends NodeLink {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
     ];
 
     /**
@@ -9284,7 +9363,7 @@ export class EpubSaveOptionsData extends HtmlSaveOptionsData {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "epubNavigationMapLevel",
             baseName: "EpubNavigationMapLevel",
@@ -9309,6 +9388,9 @@ export class EpubSaveOptionsData extends HtmlSaveOptionsData {
     }        
 }
 
+/**
+ * Enums for EpubSaveOptionsData
+ */
 // tslint:disable:quotemark
 // tslint:disable-next-line:no-namespace
 export namespace EpubSaveOptionsData {
@@ -9322,7 +9404,7 @@ export class FieldLink extends NodeLink {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "fieldCode",
             baseName: "FieldCode",
@@ -9355,7 +9437,7 @@ export class FootnoteLink extends NodeLink {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
     ];
 
     /**
@@ -9379,7 +9461,7 @@ export class FormField extends NodeLink {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "calculateOnExit",
             baseName: "CalculateOnExit",
@@ -9492,7 +9574,7 @@ export class HeaderFooter extends HeaderFooterLink {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "drawingObjects",
             baseName: "DrawingObjects",
@@ -9527,6 +9609,9 @@ export class HeaderFooter extends HeaderFooterLink {
     }        
 }
 
+/**
+ * Enums for HeaderFooter
+ */
 // tslint:disable:quotemark
 // tslint:disable-next-line:no-namespace
 export namespace HeaderFooter {
@@ -9540,7 +9625,7 @@ export class HtmlFixedSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "cssClassNamesPrefix",
             baseName: "CssClassNamesPrefix",
@@ -9693,7 +9778,7 @@ export class ImageSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "graphicsQualityOptions",
             baseName: "GraphicsQualityOptions",
@@ -9846,7 +9931,7 @@ export class MhtmlSaveOptionsData extends HtmlSaveOptionsData {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "exportCidUrlsForMhtmlResources",
             baseName: "ExportCidUrlsForMhtmlResources",
@@ -9871,6 +9956,9 @@ export class MhtmlSaveOptionsData extends HtmlSaveOptionsData {
     }        
 }
 
+/**
+ * Enums for MhtmlSaveOptionsData
+ */
 // tslint:disable:quotemark
 // tslint:disable-next-line:no-namespace
 export namespace MhtmlSaveOptionsData {
@@ -9884,7 +9972,7 @@ export class OfficeMathLink extends NodeLink {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
     ];
 
     /**
@@ -9908,7 +9996,7 @@ export class Paragraph extends NodeLink {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "childNodes",
             baseName: "ChildNodes",
@@ -9941,7 +10029,7 @@ export class ParagraphLink extends NodeLink {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "text",
             baseName: "Text",
@@ -9974,7 +10062,7 @@ export class PclSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "falllbackFontName",
             baseName: "FalllbackFontName",
@@ -10017,7 +10105,7 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "compliance",
             baseName: "Compliance",
@@ -10272,6 +10360,9 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
     }        
 }
 
+/**
+ * Enums for PdfSaveOptionsData
+ */
 // tslint:disable:quotemark
 // tslint:disable-next-line:no-namespace
 export namespace PdfSaveOptionsData {
@@ -10290,7 +10381,7 @@ export class PsSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "useBookFoldPrintingSettings",
             baseName: "UseBookFoldPrintingSettings",
@@ -10323,7 +10414,7 @@ export class RunLink extends NodeLink {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "text",
             baseName: "Text",
@@ -10356,7 +10447,7 @@ export class SvgSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "exportEmbeddedImages",
             baseName: "ExportEmbeddedImages",
@@ -10439,7 +10530,7 @@ export class Table extends NodeLink {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "tableProperties",
             baseName: "TableProperties",
@@ -10482,7 +10573,7 @@ export class TableCell extends NodeLink {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "childNodes",
             baseName: "ChildNodes",
@@ -10515,7 +10606,7 @@ export class TableLink extends NodeLink {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
     ];
 
     /**
@@ -10539,7 +10630,7 @@ export class TableRow extends NodeLink {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "rowFormat",
             baseName: "RowFormat",
@@ -10582,7 +10673,7 @@ export class XamlFixedSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "resourcesFolder",
             baseName: "ResourcesFolder",
@@ -10625,7 +10716,7 @@ export class XpsSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "bookmarksOutlineLevel",
             baseName: "BookmarksOutlineLevel",
@@ -10688,7 +10779,7 @@ export class BmpSaveOptionsData extends ImageSaveOptionsData {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
     ];
 
     /**
@@ -10712,7 +10803,7 @@ export class DrawingObject extends DrawingObjectLink {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "height",
             baseName: "Height",
@@ -10827,6 +10918,9 @@ export class DrawingObject extends DrawingObjectLink {
     }        
 }
 
+/**
+ * Enums for DrawingObject
+ */
 // tslint:disable:quotemark
 // tslint:disable-next-line:no-namespace
 export namespace DrawingObject {
@@ -10871,7 +10965,7 @@ export class EmfSaveOptionsData extends ImageSaveOptionsData {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
     ];
 
     /**
@@ -10895,7 +10989,7 @@ export class Field extends FieldLink {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "localeId",
             baseName: "LocaleId",
@@ -10938,7 +11032,7 @@ export class Footnote extends FootnoteLink {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "content",
             baseName: "Content",
@@ -11003,6 +11097,9 @@ export class Footnote extends FootnoteLink {
     }        
 }
 
+/**
+ * Enums for Footnote
+ */
 // tslint:disable:quotemark
 // tslint:disable-next-line:no-namespace
 export namespace Footnote {
@@ -11020,7 +11117,7 @@ export class FormFieldCheckbox extends FormField {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "checkBoxSize",
             baseName: "CheckBoxSize",
@@ -11073,7 +11170,7 @@ export class FormFieldDropDown extends FormField {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "dropDownItems",
             baseName: "DropDownItems",
@@ -11116,7 +11213,7 @@ export class FormFieldTextInput extends FormField {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "maxLength",
             baseName: "MaxLength",
@@ -11171,6 +11268,9 @@ export class FormFieldTextInput extends FormField {
     }        
 }
 
+/**
+ * Enums for FormFieldTextInput
+ */
 // tslint:disable:quotemark
 // tslint:disable-next-line:no-namespace
 export namespace FormFieldTextInput {
@@ -11192,7 +11292,7 @@ export class GifSaveOptionsData extends ImageSaveOptionsData {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
     ];
 
     /**
@@ -11216,7 +11316,7 @@ export class JpegSaveOptionsData extends ImageSaveOptionsData {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
     ];
 
     /**
@@ -11240,7 +11340,7 @@ export class OfficeMathObject extends OfficeMathLink {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "content",
             baseName: "Content",
@@ -11295,6 +11395,9 @@ export class OfficeMathObject extends OfficeMathLink {
     }        
 }
 
+/**
+ * Enums for OfficeMathObject
+ */
 // tslint:disable:quotemark
 // tslint:disable-next-line:no-namespace
 export namespace OfficeMathObject {
@@ -11352,7 +11455,7 @@ export class PngSaveOptionsData extends ImageSaveOptionsData {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
     ];
 
     /**
@@ -11376,7 +11479,7 @@ export class Run extends RunLink {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
     ];
 
     /**
@@ -11400,7 +11503,7 @@ export class TiffSaveOptionsData extends ImageSaveOptionsData {
     /**
      * Attribute type map
      */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+    public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "tiffBinarizationMethod",
             baseName: "TiffBinarizationMethod",
@@ -11883,7 +11986,7 @@ export class ConvertDocumentRequest {
     /**
      * Converting document
      */
-    public document: Buffer;
+    public document: Readable;
 
     /**
      * Format to convert.
@@ -13731,12 +13834,12 @@ export class ExecuteMailMergeOnlineRequest {
     /**
      * File with template
      */
-    public template: Buffer;
+    public template: Readable;
 
     /**
      * File with mailmerge data
      */
-    public data: Buffer;
+    public data: Readable;
 
     /**
      * With regions flag.
@@ -14403,7 +14506,7 @@ export class GetDocumentFieldNamesOnlineRequest {
     /**
      * File with template
      */
-    public template: Buffer;
+    public template: Readable;
 
     /**
      * Use non merge fields or not.
@@ -16481,7 +16584,7 @@ export class InsertDrawingObjectRequest {
     /**
      * File with image
      */
-    public imageFile: Buffer;
+    public imageFile: Readable;
 
     /**
      * Path to the node, which contains collection of drawing objects.
@@ -16545,7 +16648,7 @@ export class InsertDrawingObjectWithoutNodePathRequest {
     /**
      * File with image
      */
-    public imageFile: Buffer;
+    public imageFile: Readable;
 
     /**
      * Original document folder.
@@ -17430,7 +17533,7 @@ export class InsertWatermarkImageRequest {
     /**
      * File with image
      */
-    public imageFile: Buffer;
+    public imageFile: Readable;
 
     /**
      * Original document folder.
@@ -18897,7 +19000,7 @@ export class UpdateDrawingObjectRequest {
     /**
      * File with image
      */
-    public imageFile: Buffer;
+    public imageFile: Readable;
 
     /**
      * Path to the node, which contains collection of drawing objects.
@@ -18966,7 +19069,7 @@ export class UpdateDrawingObjectWithoutNodePathRequest {
     /**
      * File with image
      */
-    public imageFile: Buffer;
+    public imageFile: Readable;
 
     /**
      * Object index.
@@ -19871,7 +19974,7 @@ export class UploadFileRequest {
     /**
      * File to upload
      */
-    public file: Buffer;
+    public file: Readable;
 
     /**
      * Path where to upload including filename and extension e.g. /file.ext or /Folder 1/file.ext              If the content is multipart and path does not contains the file name it tries to get them from filename parameter              from Content-Disposition header.

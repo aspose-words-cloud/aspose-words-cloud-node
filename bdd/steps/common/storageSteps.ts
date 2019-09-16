@@ -1,7 +1,7 @@
 /*
 * MIT License
 
-* Copyright (c) 2018 Aspose Pty Ltd
+* Copyright (c) 2019 Aspose Pty Ltd
 
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -25,45 +25,63 @@
 import { expect } from "chai";
 import { Given, Then } from "cucumber";
 import * as BaseTest from "../../../test/baseTest";
+import { DeleteFileRequest, DownloadFileRequest } from "../../../src/api";
 
-Given(/^I have uploaded document with name (.*) and subfolder is (.*) to storage$/, function(documentName, folder, callback) {
-    const storageApi = BaseTest.initializeStorageApi();
+Given(/^I have uploaded document with name (.*) and subfolder is (.*) to storage$/, function (documentName, folder, callback) {
+
+    const wordsApi = BaseTest.initializeWordsApi();
 
     const remotePath = BaseTest.remoteBaseFolder + folder;
     const localPath = BaseTest.localBaseTestDataFolder + folder + documentName;
 
-    storageApi.PutCreate(remotePath + documentName, null, null, localPath, (responseMessage) => {
-        expect(responseMessage.status).to.equal("OK");
-        callback();
-    });    
+    wordsApi.uploadFileToStorage(remotePath + documentName, localPath)
+        .then((result) => {
+            expect(result.response.statusMessage).to.equal("OK");
+            callback();
+        });
 });
 
-Given(/^There is no file (.*) on storage in (.*) folder$/, function(documentName, folder, callback) {
-    const storageApi = BaseTest.initializeStorageApi();
+Given(/^There is no file (.*) on storage in (.*) folder$/, function (documentName, folder, callback) {
+
+    const wordsApi = BaseTest.initializeWordsApi();
 
     let remotePath = BaseTest.remoteBaseFolder + folder + documentName;
     if (folder === "output") {
         remotePath = BaseTest.remoteBaseTestOutFolder + documentName;
     }
 
-    storageApi.DeleteFile(remotePath, null, null, (responseMessage) => {
-        expect(responseMessage.status).to.equal("OK");
+    const request: DeleteFileRequest = {
+        path: remotePath,
+        storageName: undefined,
+        versionId: undefined
+    };
+
+    wordsApi.deleteFile(request)
+    .then((result) => {
+        expect(result.statusMessage).to.equal("OK");
         callback();
-    });    
+    });
 });
 
-Then(/^document (.*) is existed on storage in (.*) folder$/, function(documentName, folder, callback) {
-    const storageApi = BaseTest.initializeStorageApi();
+Then(/^document (.*) is existed on storage in (.*) folder$/, function (documentName, folder, callback) {
+
+    const wordsApi = BaseTest.initializeWordsApi();
 
     let remotePath = BaseTest.remoteBaseFolder + folder + documentName;
-    
+
     if (folder === "output") {
         remotePath = BaseTest.remoteBaseTestOutFolder + documentName;
     }
 
-    storageApi.GetIsExist(remotePath, null, null, (responseMessage) => {
-        expect(responseMessage.status).to.equal("OK");        
-        expect(responseMessage.body.FileExist.IsExist).to.equal(true);
+    const request : DownloadFileRequest = {
+        path: remotePath,
+        storageName: undefined,
+        versionId: undefined
+    };
+
+    wordsApi.downloadFile(request).
+    then((result) => {
+        expect(result.response.statusMessage).to.equal("OK");
         callback();
-    });    
+    });
 });

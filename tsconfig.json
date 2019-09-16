@@ -12,8 +12,7 @@
         "noLib": false,
         "declaration": true,
         "lib": ["es5", "es6", "scripthost"],
-        "outDir": "dist",
-        "rootDir": "./"
+        "outDir": "dist"
     },
     "include": [
         "src/**/*",

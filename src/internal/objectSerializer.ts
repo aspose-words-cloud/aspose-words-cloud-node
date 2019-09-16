@@ -1,7 +1,7 @@
 /*
 * MIT License
 
-* Copyright (c) 2018 Aspose Pty Ltd
+* Copyright (c) 2019 Aspose Pty Ltd
 
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -60,7 +60,7 @@ export class ObjectSerializer {
             }
             return transformedData;
         } else if (type === "Date") {
-            return data.toString();
+            return data.toISOString();
         } else {
             if (enumsMap[type]) {
                 return data;

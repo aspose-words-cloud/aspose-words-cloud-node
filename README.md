@@ -47,12 +47,17 @@ var request = new PostDocumentSaveAsRequest({
         })
 });
 
-wordsApi.postDocumentSaveAs(request).then((result) => {    
-    console.log(result.body.code);    
-}).catch(function(err) {
-    // Deal with an error
-    console.log(err);
-});
+wordsApi.postDocumentSaveAs(request)
+    .then((result) => {
+        // Deal with a result
+        console.log(result.response.statusCode);
+        console.log(result.body);
+    })
+    .catch(function(err) {
+        // Deal with an error
+        console.log(err.reponse.statusCode);
+        console.log(err.body);
+    });
 
 ```
 

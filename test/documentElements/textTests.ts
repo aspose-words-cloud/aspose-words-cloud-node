@@ -1,7 +1,7 @@
 /*
 * MIT License
 
-* Copyright (c) 2018 Aspose Pty Ltd
+* Copyright (c) 2019 Aspose Pty Ltd
 
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -25,7 +25,7 @@
 import { expect } from "chai";
 import "mocha";
 
-import { GetDocumentTextItemsRequest, PostReplaceTextRequest, ReplaceTextRequest, SearchRequest } from "../../src/model/model";
+import { GetRunsRequest, ReplaceTextParameters, ReplaceTextRequest, SearchRequest } from "../../src/model/model";
 import * as BaseTest from "../baseTest";
 
 const testFolder = "DocumentElements/Text";
@@ -34,32 +34,27 @@ describe("text", () => {
     describe("getDocumentTextItems function", () => {
         it("should return response with code 200", () => {
 
-            const storageApi = BaseTest.initializeStorageApi();
             const wordsApi = BaseTest.initializeWordsApi();
 
             const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
             const remoteFileName = "TestGetDocumentTextItems.docx";
             const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
-            return new Promise((resolve) => {
-                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                    expect(responseMessage.status).to.equal("OK");
-                    resolve();
-                });
-            })
-                .then(() => {
-                    const request = new GetDocumentTextItemsRequest();
+            return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
+                    const request = new GetRunsRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
+                    request.paragraphPath = "sections/0/paragraphs/0";
 
                     // Act
-                    return wordsApi.getDocumentTextItems(request)
-                        .then((result) => {
+                    return wordsApi.getRuns(request)
+                        .then((result1) => {
                             // Assert
-                            expect(result.body.code).to.equal(200);
-                            expect(result.response.statusCode).to.equal(200);
+                            expect(result1.response.statusCode).to.equal(200);
 
-                            expect(result.body.textItems).to.exist.and.not.equal(null);
+                            expect(result1.body.runs).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -68,33 +63,27 @@ describe("text", () => {
     describe("postReplaceText function", () => {
         it("should return response with code 200", () => {
 
-            const storageApi = BaseTest.initializeStorageApi();
             const wordsApi = BaseTest.initializeWordsApi();
 
             const localPath = BaseTest.localBaseTestDataFolder + testFolder + "/SampleWordDocument.docx";
             const remoteFileName = "TestPostReplaceText.docx";
             const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
-            return new Promise((resolve) => {
-                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                    expect(responseMessage.status).to.equal("OK");
-                    resolve();
-                });
-            })
-                .then(() => {
-                    const request = new PostReplaceTextRequest();
+            return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
+                    const request = new ReplaceTextRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
-                    request.replaceText = new ReplaceTextRequest ({ oldValue: "aspose", newValue: "aspose new" });
+                    request.replaceText = new ReplaceTextParameters ({ oldValue: "aspose", newValue: "aspose new" });
 
                     // Act
-                    return wordsApi.postReplaceText(request)
-                        .then((result) => {
+                    return wordsApi.replaceText(request)
+                        .then((result1) => {
                             // Assert
-                            expect(result.body.code).to.equal(200);
-                            expect(result.response.statusCode).to.equal(200);
+                            expect(result1.response.statusCode).to.equal(200);
 
-                            expect(result.body.matches).to.exist.and.not.equal(null);
+                            expect(result1.body.matches).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -103,20 +92,15 @@ describe("text", () => {
     describe("search function", () => {
         it("should return response with code 200", () => {
 
-            const storageApi = BaseTest.initializeStorageApi();
             const wordsApi = BaseTest.initializeWordsApi();
 
             const localPath = BaseTest.localBaseTestDataFolder + testFolder + "/SampleWordDocument.docx";
             const remoteFileName = "TestSearch.docx";
             const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
-            return new Promise((resolve) => {
-                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                    expect(responseMessage.status).to.equal("OK");
-                    resolve();
-                });
-            })
-                .then(() => {
+            return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
                     const request = new SearchRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
@@ -124,12 +108,11 @@ describe("text", () => {
 
                     // Act
                     return wordsApi.search(request)
-                        .then((result) => {
+                        .then((result1) => {
                             // Assert
-                            expect(result.body.code).to.equal(200);
-                            expect(result.response.statusCode).to.equal(200);
+                            expect(result1.response.statusCode).to.equal(200);
 
-                            expect(result.body.searchResults).to.exist.and.not.equal(null);
+                            expect(result1.body.searchResults).to.exist.and.not.equal(null);
                         });
                 });
         });

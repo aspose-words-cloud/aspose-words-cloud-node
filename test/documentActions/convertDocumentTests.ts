@@ -1,7 +1,7 @@
 /*
 * MIT License
 
-* Copyright (c) 2018 Aspose Pty Ltd
+* Copyright (c) 2019 Aspose Pty Ltd
 
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -27,13 +27,12 @@ import "mocha";
 import * as testWithTestCases from "mocha-cases";
 
 import * as fs from "fs";
-import { GetDocumentWithFormatRequest, PostDocumentSaveAsRequest, PutConvertDocumentRequest, PutDocumentSaveAsTiffRequest, SaveOptionsData, TiffSaveOptionsData } from "../../src/model/model";
+import { ConvertDocumentRequest, GetDocumentWithFormatRequest, SaveAsRequest, SaveAsTiffRequest, SaveOptionsData, TiffSaveOptionsData } from "../../src/model/model";
 import * as BaseTest from "../baseTest";
 
 const testFolder = "DocumentActions/ConvertDocument";
 
 describe("convert document", () => {
-    const storageApi = BaseTest.initializeStorageApi();
     const wordsApi = BaseTest.initializeWordsApi();
 
     describe("from docx to other formats", () => {
@@ -44,21 +43,20 @@ describe("convert document", () => {
         const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
         before(() => {
-            return new Promise((resolve) => {
-                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                    expect(responseMessage.status).to.equal("OK");
-                    resolve();
-                });
+            return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
             });
         });
 
         describe("postDocumentSaveAs function", () => {
+            // tslint:disable:completed-docs
             /**
              * Test runner
-             * @param value destination fromat
+             * @param value destination format
              */
             function runner(value) {
-                const request = new PostDocumentSaveAsRequest({
+                const request = new SaveAsRequest({
                     saveOptionsData: new SaveOptionsData({
                         saveFormat: value,
                         fileName: "Out/TestPostDocumentSaveAs." + value,
@@ -69,15 +67,15 @@ describe("convert document", () => {
                 request.folder = remotePath;
 
                 // Act
-                return wordsApi.postDocumentSaveAs(request)
+                return wordsApi.saveAs(request)
                     .then((result) => {
                         // Assert
-                        expect(result.body.code).to.equal(200);
                         expect(result.response.statusCode).to.equal(200);
 
                         expect(result.body.saveResult).to.exist.and.not.equal(null);
                     });
             }
+            // tslint:enable:completed-docs
 
             testWithTestCases({
                 name: "convert from 'docx' to {value} should return response with code 200",
@@ -87,24 +85,26 @@ describe("convert document", () => {
         });
 
         describe("putConvertDocument function", () => {
+            // tslint:disable:completed-docs
             /**
              * Test runner
-             * @param value destination fromat
+             * @param value destination format
              */
             function runner(value) {
-                const request = new PutConvertDocumentRequest({
+                const request = new ConvertDocumentRequest({
                     format: value,
-                    document: fs.readFileSync(localPath),
+                    document: fs.createReadStream(localPath),
                 });
 
                 // Act
-                return wordsApi.putConvertDocument(request)
+                return wordsApi.convertDocument(request)
                     .then((result) => {
                         // Assert                
                         expect(result.response.statusCode).to.equal(200);
                         expect(result.body.byteLength).to.greaterThan(0);
                     });
             }
+            // tslint:enable:completed-docs
 
             testWithTestCases({
                 name: "convert from 'docx' to {value} should return response with code 200",
@@ -116,7 +116,7 @@ describe("convert document", () => {
         describe("putDocumentSaveAsTiff function", () => {
             it("should return response with code 200", () => {
 
-                const request = new PutDocumentSaveAsTiffRequest({
+                const request = new SaveAsTiffRequest({
                     saveOptions: new TiffSaveOptionsData({
                         saveFormat: "tiff",
                         fileName: "Out/TestPostDocumentSaveAsTiff.tiff",
@@ -127,10 +127,9 @@ describe("convert document", () => {
                 request.folder = remotePath;
 
                 // Act
-                return wordsApi.putDocumentSaveAsTiff(request)
+                return wordsApi.saveAsTiff(request)
                     .then((result) => {
                         // Assert
-                        expect(result.body.code).to.equal(200);
                         expect(result.response.statusCode).to.equal(200);
 
                         expect(result.body.saveResult).to.exist.and.not.equal(null);
@@ -140,9 +139,10 @@ describe("convert document", () => {
         });
 
         describe("getDocumentWithFormat function", () => {
+            // tslint:disable:completed-docs
             /**
              * Test runner
-             * @param value destination fromat
+             * @param value destination format
              */
             function runner(value) {
                 const request = new GetDocumentWithFormatRequest();
@@ -158,6 +158,7 @@ describe("convert document", () => {
                         expect(result.body.byteLength).to.greaterThan(0);
                     });
             }
+            // tslint:enable:completed-docs
 
             testWithTestCases({
                 name: "convert from 'docx' to {value} should return response with code 200",
@@ -175,10 +176,10 @@ describe("convert document", () => {
 
                     // Act
                     return wordsApi.getDocumentWithFormat(request)
-                        .then((result) => {
+                        .then((result1) => {
                             // Assert
-                            expect(result.response.statusCode).to.equal(200);
-                            expect(result.response.statusCode).to.equal(200);
+                            expect(result1.response.statusCode).to.equal(200);
+                            expect(result1.response.statusCode).to.equal(200);
                         });
                 });
 
@@ -193,14 +194,10 @@ describe("convert document", () => {
             const remoteFileName = "TestPostDocumentSaveAsFromPdfToDoc.pdf";
             const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
-            return new Promise((resolve) => {
-                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                    expect(responseMessage.status).to.equal("OK");
-                    resolve();
-                });
-            })
-                .then(() => {
-                    const request = new PostDocumentSaveAsRequest({
+            return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
+                    const request = new SaveAsRequest({
                         saveOptionsData: new SaveOptionsData({
                             saveFormat: "docx",
                             fileName: "Out/TestPostDocumentSavePdfAsDocx.docx",
@@ -211,13 +208,12 @@ describe("convert document", () => {
                     request.folder = remotePath;
 
                     // Act
-                    return wordsApi.postDocumentSaveAs(request)
-                        .then((result) => {
+                    return wordsApi.saveAs(request)
+                        .then((result1) => {
                             // Assert
-                            expect(result.body.code).to.equal(200);
-                            expect(result.response.statusCode).to.equal(200);
+                            expect(result1.response.statusCode).to.equal(200);
 
-                            expect(result.body.saveResult).to.exist.and.not.equal(null);
+                            expect(result1.body.saveResult).to.exist.and.not.equal(null);
                         });
                 });
         });

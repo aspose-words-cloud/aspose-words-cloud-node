@@ -59,6 +59,14 @@ export class Configuration {
             this.baseUrl = baseUrl;
         }
 
+        if (!appKey || !appKey.trim()) {
+            throw new Error("appKey parameter must be non-empty string");
+        }
+
+        if (!appSID || !appSID.trim()) {
+            throw new Error("appSID parameter must be non-empty string");
+        }
+
         this.appSID = appSID;
         this.appKey = appKey;
         this.debugMode = debugMode;

@@ -1,6 +1,9 @@
 # Aspose.Words Cloud SDK for Node.js [![npm](https://badge.fury.io/js/asposewordscloud.svg)](https://www.npmjs.com/package/asposewordscloud)
 This repository contains Aspose.Words Cloud SDK for Node.js source code. This SDK allows you to work with Aspose.Words Cloud REST APIs in your nodejs applications quickly and easily, with zero initial cost.
 
+[Aspose.Words Cloud](https://products.aspose.cloud/words/family "Aspose.Words Cloud")  
+[API Reference](https://apireference.aspose.cloud/words/)  
+
 # Key Features
 * Conversion between various document-related formats (20+ formats supported), including PDF<->Word conversion
 * Mail merge and reports generation 
@@ -9,8 +12,6 @@ This repository contains Aspose.Words Cloud SDK for Node.js source code. This SD
 * Find and replace
 * Watermarks and protection
 * Full read & write access to Document Object Model, including sections, paragraphs, text, images, tables, headers/footers and many others
-
-See [API Reference](https://apireference.aspose.cloud/words/) for full API specification.
 
 ## How to use the SDK?
 The complete source code is available in this repository folder. You can either directly use it in your project via source code or get [nmpjs distribution](https://www.npmjs.com/package/asposewordscloud) (recommended). For more details, please visit our [documentation website](https://docs.aspose.cloud/display/wordscloud/Available+SDKs).
@@ -73,44 +74,34 @@ Every method returns a chainable promise.
 }
 ```
 
-# Release notes
-## 19.2
-+ TxtSaveOptions.ExportHeadersFooters was removed
-## 18.9
-+ Added SaveOptions (HtmlFixedSaveOptions.SaveFontFaceCssSeparately, MtmlSaveOption.ExportCidUrlsForMhtmlResources)
-+ Added "paragraph format" resource (It provides access to the paragraph formatting properties)
-## 18.8
-+ Added "HeaderFooterBookmarksExportMode" option to PdfSaveOptions
-+ Added "OutlineOptions.CreateOutlinesForHeadingsInTable" option
-+ Added "taxonomy" parameter to document classification
-## 18.7
-+ Added new resource "availableFonts"
-+ Added "EscapeUri" option to PdfSaveOptions
-+ Added "OutlineOptions.CreateMissingOutlineLevels" option
-+ Added "MetafileRenderingOptions.EmulateRasterOperations" option
-## 18.6
-+ Added property SaveOptions.UpdateLastSavedTime
-+ Added property OdtSaveOptions.MeasureUnit
-+ Added property HtmlSaveOptions.CssClassNamePrefix    
+For other examples, check the product [Developer Guide](https://docs.aspose.cloud/display/wordscloud/Developer+Guide).
 
-## 18.5
-+ Added support of new "Classification" api
-+ Added "documentFileName" parameter for PUT methods
+## Dependencies
+* [@types/request|https://www.npmjs.com/package/@types/request] (version 2.48.3+)  
+* [lodash|https://www.npmjs.com/package/lodash] (version 4.17.15+)  
+* [lodash.template|https://www.npmjs.com/package/lodash.template] (version 4.5.0+)  
+* [request|https://www.npmjs.com/package/request] (version 2.88.0+)  
+* [request-debug|https://www.npmjs.com/package/request-debug] (version 0.2.0+)  
 
-## 18.3
-+ Added support of differrent api version (v1 is used by default)
-+ Swf format was removed
-+ Some obsolete properties were removed from the PdfSaveOptionsData (see https://docs.aspose.cloud/display/wordscloud/Aspose.Words+for+Cloud+18.3+Release+Notes)
+## Licensing
+ 
+All Aspose.Words Cloud SDKs, helper scripts and templates are licensed under [MIT License](https://github.com/aspose-words-cloud/aspose-words-cloud-node/blob/master/LICENSE). 
 
-## 18.2
-New SDK has the following advantages over the [previous version](https://github.com/aspose-words/Aspose.Words-for-Cloud):
-+ SDK is fully in sync with the API, all missing methods are added
-+ Classes, methods and properties have comments and are IDE-friendly
-+ Better security
-+ Usage of Request/Response classes to represent long lists of parameters. This allows for cleaner code and easier backwards-compatibility going forward
-+ Chainable promise support
-
-New SDK is not backwards compatible with previous generation because of the last item. It should be straightforward to convert your code to using Request/Response objects, if you need any help on migration please ask at [Free Support Forums](https://forum.aspose.cloud/c/words).
+### Dependencies licenses
+Request package is under [Apache ver. 2.0 license|https://www.apache.org/licenses/LICENSE-2.0]. Rest of dependencies are under [MIT license|https://processwire.com/about/license/mit/].
 
 ## Contact Us
 Your feedback is very important to us. Please feel free to contact us using our [Support Forums](https://forum.aspose.cloud/c/words).
+
+## Resources
+ 
+[Website](https://www.aspose.cloud/)  
+[Product Home](https://products.aspose.cloud/words/family)  
+[API Reference](https://apireference.aspose.cloud/words/)  
+[Documentation](https://docs.aspose.cloud/display/wordscloud/Home)  
+[Blog](https://blog.aspose.cloud/category/words/)  
+ 
+## Other languages
+We generate our SDKs in different languages so you may check if yours is available in our [list](https://github.com/aspose-words-cloud).
+ 
+If you don't find your language in the list, feel free to request it from us, or use raw REST API requests as you can find it [here](https://products.aspose.cloud/words/curl).

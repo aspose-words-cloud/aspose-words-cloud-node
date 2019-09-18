@@ -88,7 +88,7 @@ For other examples, check the product [Developer Guide](https://docs.aspose.clou
 All Aspose.Words Cloud SDKs, helper scripts and templates are licensed under [MIT License](https://github.com/aspose-words-cloud/aspose-words-cloud-node/blob/master/LICENSE). 
 
 ### Dependencies licenses
-Request package is under [Apache ver. 2.0 license|https://www.apache.org/licenses/LICENSE-2.0]. Rest of dependencies are under [MIT license|https://processwire.com/about/license/mit/].
+Request package is under [Apache ver. 2.0 license](https://www.apache.org/licenses/LICENSE-2.0). Rest of dependencies are under [MIT license](https://processwire.com/about/license/mit/).
 
 ## Contact Us
 Your feedback is very important to us. Please feel free to contact us using our [Support Forums](https://forum.aspose.cloud/c/words).

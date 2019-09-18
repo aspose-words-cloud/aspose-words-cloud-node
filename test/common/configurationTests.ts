@@ -27,9 +27,9 @@ import "mocha";
 import "mocha-sinon";
 import * as sinon from "sinon";
 
+import { WordsApi } from "../../src/api";
 import { GetDocumentRequest } from "../../src/model/model";
 import * as BaseTest from "../baseTest";
-import { WordsApi } from "../../src/api";
 
 const testFolder = "Commont/Configuration";
 
@@ -42,12 +42,12 @@ describe("configuration tests", () => {
         const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
         return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, localPath)
-        .then((result) => {
+            .then((result) => {
                 expect(result.response.statusMessage).to.equal("OK");
 
                 const request = new GetDocumentRequest();
                 request.documentName = remoteFileName;
-                request.folder = remotePath;                
+                request.folder = remotePath;
                 const log = sinon.spy(console, "log");
                 return wordsApi.getDocument(request)
                     .then(() => {
@@ -68,7 +68,7 @@ describe("configuration tests", () => {
         const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
         return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, localPath)
-        .then((result) => {
+            .then((result) => {
                 expect(result.response.statusMessage).to.equal("OK");
                 const request = new GetDocumentRequest();
                 request.documentName = remoteFileName;
@@ -96,7 +96,7 @@ describe("configuration tests", () => {
         const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
         return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, localPath)
-        .then((result) => {
+            .then((result) => {
                 expect(result.response.statusMessage).to.equal("OK");
                 const request = new GetDocumentRequest();
                 request.documentName = remoteFileName;
@@ -113,26 +113,26 @@ describe("configuration tests", () => {
             });
     });
 
-    it("should set both appSID and appKey in WordsApi constructor", () => {
+    // read configuration
+    const config = require("../../testConfig.json");
 
-        // read configuration
-        const config = require("../../testConfig.json");
+    // all test cases
+    const invalidConfigValues = [undefined, null, "", " "];
 
-        // create API without appSID
-        const appSidError = "appSID parameter must be non-empty string";
-        expect(() => new WordsApi(undefined, config.AppKey)).to.throw(appSidError);
-        expect(() => new WordsApi(null, config.AppKey)).to.throw(appSidError);
-        expect(() => new WordsApi("", config.AppKey)).to.throw(appSidError);
-        expect(() => new WordsApi("  ", config.AppKey)).to.throw(appSidError);
-
-        // create API without appKey
-        const appKeyError = "appKey parameter must be non-empty string";
-        expect(() => new WordsApi(config.AppSID, undefined)).to.throw(appKeyError);
-        expect(() => new WordsApi(config.AppSID, null)).to.throw(appKeyError);
-        expect(() => new WordsApi(config.AppSID, "")).to.throw(appKeyError);
-        expect(() => new WordsApi(config.AppSID, " ")).to.throw(appKeyError);
-
-        // create API without any trouble
-        expect(() => BaseTest.initializeWordsApi()).to.not.throw();
+    invalidConfigValues.forEach((paramValue) => {
+        it("appSID must not [" + paramValue + "] in WordsApi constructor", () => {
+            // create API without appSID
+            const appSidError = "appSID parameter must be non-empty string";
+            expect(() => new WordsApi(paramValue, config.AppKey)).to.throw(appSidError);
+        });
     });
+
+    invalidConfigValues.forEach((paramValue) => {
+        it("appKey must not [" + paramValue + "] in WordsApi constructor", () => {
+            // create API without appSID
+            const appSidError = "appKey parameter must be non-empty string";
+            expect(() => new WordsApi(config.AppSID, paramValue)).to.throw(appSidError);
+        });
+    });
+
 });

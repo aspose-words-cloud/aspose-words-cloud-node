@@ -29,6 +29,7 @@ import * as sinon from "sinon";
 
 import { GetDocumentRequest } from "../../src/model/model";
 import * as BaseTest from "../baseTest";
+import { WordsApi } from "../../src/api";
 
 const testFolder = "Commont/Configuration";
 
@@ -110,5 +111,28 @@ describe("configuration tests", () => {
                         sinon.assert.notCalled(log);
                     });
             });
+    });
+
+    it("should set both appSID and appKey in WordsApi constructor", () => {
+
+        // read configuration
+        const config = require("../../testConfig.json");
+
+        // create API without appSID
+        const appSidError = "appSID parameter must be non-empty string";
+        expect(() => new WordsApi(undefined, config.AppKey)).to.throw(appSidError);
+        expect(() => new WordsApi(null, config.AppKey)).to.throw(appSidError);
+        expect(() => new WordsApi("", config.AppKey)).to.throw(appSidError);
+        expect(() => new WordsApi("  ", config.AppKey)).to.throw(appSidError);
+
+        // create API without appKey
+        const appKeyError = "appKey parameter must be non-empty string";
+        expect(() => new WordsApi(config.AppSID, undefined)).to.throw(appKeyError);
+        expect(() => new WordsApi(config.AppSID, null)).to.throw(appKeyError);
+        expect(() => new WordsApi(config.AppSID, "")).to.throw(appKeyError);
+        expect(() => new WordsApi(config.AppSID, " ")).to.throw(appKeyError);
+
+        // create API without any trouble
+        expect(() => BaseTest.initializeWordsApi()).to.not.throw();
     });
 });

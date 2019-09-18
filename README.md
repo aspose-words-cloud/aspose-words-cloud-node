@@ -77,11 +77,11 @@ Every method returns a chainable promise.
 For other examples, check the product [Developer Guide](https://docs.aspose.cloud/display/wordscloud/Developer+Guide).
 
 ## Dependencies
-* [@types/request|https://www.npmjs.com/package/@types/request] (version 2.48.3+)  
-* [lodash|https://www.npmjs.com/package/lodash] (version 4.17.15+)  
-* [lodash.template|https://www.npmjs.com/package/lodash.template] (version 4.5.0+)  
-* [request|https://www.npmjs.com/package/request] (version 2.88.0+)  
-* [request-debug|https://www.npmjs.com/package/request-debug] (version 0.2.0+)  
+* [@types/request](https://www.npmjs.com/package/@types/request) (version 2.48.3+)  
+* [lodash](https://www.npmjs.com/package/lodash) (version 4.17.15+)  
+* [lodash.template](https://www.npmjs.com/package/lodash.template) (version 4.5.0+)  
+* [request](https://www.npmjs.com/package/request) (version 2.88.0+)  
+* [request-debug](https://www.npmjs.com/package/request-debug) (version 0.2.0+)  
 
 ## Licensing
  

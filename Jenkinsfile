@@ -1,9 +1,8 @@
-properties(
-[
-	parameters([
-		string(defaultValue: 'WORDSCLOUD-727', name: 'branch')
-		])
-]
+properties([
+  parameters([
+    string(defaultValue: 'WORDSCLOUD-727', name: 'branch', description: 'branch to build')
+  ])
+])
 
 def runtests(dockerImageVersion)
 {

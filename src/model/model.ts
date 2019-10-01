@@ -1195,6 +1195,11 @@ export class MetafileRenderingOptionsData {
             name: "useEmfEmbeddedToWmf",
             baseName: "UseEmfEmbeddedToWmf",
             type: "boolean",
+        },        
+        {
+            name: "scaleWmfFontsToMetafileSize",
+            baseName: "ScaleWmfFontsToMetafileSize",
+            type: "boolean",
         }    ];
 
     /**
@@ -1223,6 +1228,11 @@ export class MetafileRenderingOptionsData {
      * Gets or sets determines how WMF metafiles with embedded EMF metafiles should be rendered.
      */
     public useEmfEmbeddedToWmf: boolean;
+    
+    /**
+     * Gets or sets a value determining whether or not to scale fonts in WMF metafile according to metafile size on the page. The default value is true.
+     */
+    public scaleWmfFontsToMetafileSize: boolean;
     
     public constructor(init?: Partial<MetafileRenderingOptionsData>) {
         
@@ -3342,6 +3352,11 @@ export class DocSaveOptionsData extends SaveOptionsData {
             type: "string",
         },        
         {
+            name: "savePictureBullet",
+            baseName: "SavePictureBullet",
+            type: "boolean",
+        },        
+        {
             name: "saveRoutingSlip",
             baseName: "SaveRoutingSlip",
             type: "boolean",
@@ -3358,6 +3373,11 @@ export class DocSaveOptionsData extends SaveOptionsData {
      * Gets or sets password.
      */
     public password: string;
+    
+    /**
+     * Gets or sets When false, PictureBullet data is not saved to output document. Default value is true.
+     */
+    public savePictureBullet: boolean;
     
     /**
      * Gets or sets determine whether or not save RoutingSlip data saved to output document.
@@ -5320,6 +5340,11 @@ export class HtmlSaveOptionsData extends SaveOptionsData {
             type: "boolean",
         },        
         {
+            name: "resolveFontNames",
+            baseName: "ResolveFontNames",
+            type: "boolean",
+        },        
+        {
             name: "resourceFolder",
             baseName: "ResourceFolder",
             type: "string",
@@ -5516,6 +5541,11 @@ export class HtmlSaveOptionsData extends SaveOptionsData {
      * Gets or sets specifies whether or not use pretty formats output.
      */
     public prettyFormat: boolean;
+    
+    /**
+     * Gets or sets specifies whether font family names used in the document are resolved and substituted according to FontSettings when being written into HTML-based formats. default value is false.
+     */
+    public resolveFontNames: boolean;
     
     /**
      * Gets or sets specifies a physical folder where all resources like images, fonts, and external CSS are saved when a document is exported to HTML. Default is an empty string.
@@ -9034,7 +9064,7 @@ export class TextSaveOptionsData extends SaveOptionsData {
         {
             name: "exportHeadersFootersMode",
             baseName: "ExportHeadersFootersMode",
-            type: "number",
+            type: "TextSaveOptionsData.ExportHeadersFootersModeEnum",
         },        
         {
             name: "forcePageBreaks",
@@ -9075,9 +9105,9 @@ export class TextSaveOptionsData extends SaveOptionsData {
     public encoding: string;
     
     /**
-     * Gets or sets specifies whether to output headers and footers when exporting in plain text format.
+     * Gets or sets specifies whether to output headers and footers when exporting in plain text format. default value is TxtExportHeadersFootersMode.PrimaryOnly.
      */
-    public exportHeadersFootersMode: number;
+    public exportHeadersFootersMode: TextSaveOptionsData.ExportHeadersFootersModeEnum;
     
     /**
      * Gets or sets allows to specify whether the page breaks should be preserved during export. The default value is false.
@@ -9105,6 +9135,19 @@ export class TextSaveOptionsData extends SaveOptionsData {
     }        
 }
 
+/**
+ * Enums for TextSaveOptionsData
+ */
+// tslint:disable:quotemark
+// tslint:disable-next-line:no-namespace
+export namespace TextSaveOptionsData {
+    export enum ExportHeadersFootersModeEnum {
+        None = 'None' as any,
+        PrimaryOnly = 'PrimaryOnly' as any,
+        AllAtEnd = 'AllAtEnd' as any,
+    }
+}
+// tslint:enable:quotemark
 /**
  * container class for wml save options.
  */
@@ -11505,6 +11548,11 @@ export class TiffSaveOptionsData extends ImageSaveOptionsData {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
+            name: "thresholdForFloydSteinbergDithering",
+            baseName: "ThresholdForFloydSteinbergDithering",
+            type: "number",
+        },        
+        {
             name: "tiffBinarizationMethod",
             baseName: "TiffBinarizationMethod",
             type: "string",
@@ -11522,6 +11570,11 @@ export class TiffSaveOptionsData extends ImageSaveOptionsData {
         return super.getAttributeTypeMap().concat(TiffSaveOptionsData.attributeTypeMap);
     }
 
+    /**
+     * Gets or sets the threshold that determines the value of the binarization error in the Floyd-Steinberg method. when ImageBinarizationMethod is ImageBinarizationMethod.FloydSteinbergDithering. Default value is 128.
+     */
+    public thresholdForFloydSteinbergDithering: number;
+    
     /**
      * Gets or sets specifies method used while converting images to 1 bpp format.
      */
@@ -11583,6 +11636,7 @@ const enumsMap = {
     "TableProperties.StyleOptionsEnum": TableProperties.StyleOptionsEnum,
     "TableProperties.TextWrappingEnum": TableProperties.TextWrappingEnum,
     "TableRowFormat.HeightRuleEnum": TableRowFormat.HeightRuleEnum,
+    "TextSaveOptionsData.ExportHeadersFootersModeEnum": TextSaveOptionsData.ExportHeadersFootersModeEnum,
     "PdfSaveOptionsData.HeaderFooterBookmarksExportModeEnum": PdfSaveOptionsData.HeaderFooterBookmarksExportModeEnum,
     "DrawingObject.RelativeHorizontalPositionEnum": DrawingObject.RelativeHorizontalPositionEnum,
     "DrawingObject.RelativeVerticalPositionEnum": DrawingObject.RelativeVerticalPositionEnum,

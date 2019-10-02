@@ -46,8 +46,8 @@ describe("range", () => {
                     const request = new GetRangeTextRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
-                    request.rangeStartIdentifier = "id0.0";
-                    request.rangeEndIdentifier = "id0.1";
+                    request.rangeStartIdentifier = "id0.0.0";
+                    request.rangeEndIdentifier = "id0.0.1";
 
                     // Act
                     return wordsApi.getRangeText(request)
@@ -75,8 +75,8 @@ describe("range", () => {
                     const request = new RemoveRangeRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
-                    request.rangeStartIdentifier = "id0.0";
-                    request.rangeEndIdentifier = "id0.1";
+                    request.rangeStartIdentifier = "id0.0.0";
+                    request.rangeEndIdentifier = "id0.0.1";
 
                     // Act
                     return wordsApi.removeRange(request)
@@ -103,8 +103,8 @@ describe("range", () => {
                     const request = new ReplaceWithTextRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
-                    request.rangeStartIdentifier = "id0.0";
-                    request.rangeEndIdentifier = "id0.1";
+                    request.rangeStartIdentifier = "id0.0.0";
+                    request.rangeEndIdentifier = "id0.0.1";
                     request.rangeText = new ReplaceRange({text: "Replaced header"});
 
                     // Act
@@ -132,8 +132,8 @@ describe("range", () => {
                     const request = new SaveAsRangeRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
-                    request.rangeStartIdentifier = "id0.0";
-                    request.rangeEndIdentifier = "id0.1";
+                    request.rangeStartIdentifier = "id0.0.0";
+                    request.rangeEndIdentifier = "id0.0.1";
                     request.documentParameters = new RangeDocument({documentName: remotePath + "/newDoc.docx"});
 
                     // Act

@@ -1,9 +1,9 @@
-node('billing-qa-ubuntu-16.04.4') {         
+node('words-linux') {         
     try {
        stage('checkout'){
-           checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '9d6c4dfa-042c-4ed1-81c7-9175179dddda', url: 'https://github.com/aspose-words-cloud/aspose-words-cloud-node.git/']]])
+           checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '361885ba-9425-4230-950e-0af201d90547', url: 'https://git.auckland.dynabic.com/words-cloud/words-cloud-node.git']]])
            withCredentials([usernamePassword(credentialsId: '6839cbe8-39fa-40c0-86ce-90706f0bae5d', passwordVariable: 'AppKey', usernameVariable: 'AppSid')]) {
-               sh 'echo "{\\"AppSid\\": \\"$AppSid\\",\\"AppKey\\": \\"$AppKey\\", \\"BaseUrl\\": \\"https://auckland-words-cloud-staging.dynabic.com\\"}" > testConfig.json'
+               sh 'echo "{\\"AppSid\\": \\"$AppSid\\",\\"AppKey\\": \\"$AppKey\\"}" > testConfig.json'
            }
 		
 		sh "git config user.email \"jenkins.aspose@gmail.com\""
@@ -38,8 +38,8 @@ node('billing-qa-ubuntu-16.04.4') {
 	    	sh "git diff --name-status"			
 	    	sh 'git commit -am "Merged master branch to testPackage" || exit 0'
 	    	
-	    	withCredentials([usernamePassword(credentialsId: '9d6c4dfa-042c-4ed1-81c7-9175179dddda', passwordVariable: 'gitPass', usernameVariable: 'gitUsername')]) {
-	    		sh "git push https://WordsCloud:$gitPass@github.com/aspose-words-cloud/aspose-words-cloud-node testPackage"
+	    	withCredentials([usernamePassword(credentialsId: '361885ba-9425-4230-950e-0af201d90547', passwordVariable: 'gitPass', usernameVariable: 'gitUsername')]) {
+	    		sh "git push https://$gitUsername:$gitPass@git.auckland.dynabic.com/words-cloud/words-cloud-node.git testPackage"
 	    	}
 	    }
 	
@@ -64,8 +64,8 @@ node('billing-qa-ubuntu-16.04.4') {
 			sh "git ls-files --others --exclude-standard"
 			sh "git add -A"
 	    	sh 'git commit -am "new version of package added to repository" || exit 0'
-	    	withCredentials([usernamePassword(credentialsId: '9d6c4dfa-042c-4ed1-81c7-9175179dddda', passwordVariable: 'gitPass', usernameVariable: 'gitUsername')]) {
-	    		sh "git push https://WordsCloud:$gitPass@github.com/aspose-words-cloud/aspose-words-cloud-node testPackage"
+	    	withCredentials([usernamePassword(credentialsId: '361885ba-9425-4230-950e-0af201d90547', passwordVariable: 'gitPass', usernameVariable: 'gitUsername')]) {
+	    		sh "git push https://$gitUsername:$gitPass@git.auckland.dynabic.com/words-cloud/words-cloud-node.git testPackage"
 	    	}
 	    }
 		    			                
@@ -75,10 +75,9 @@ node('billing-qa-ubuntu-16.04.4') {
 }
 
 stage('test package'){
-	build job: 'words-sdk-nodejs', 
+	build job: 'words-node-sdk', 
 	   parameters: [
-		string(name: 'branch', value: 'testPackage'), 
-		string(name: 'testServerUrl', value: 'https://api.aspose.cloud')						
+		string(name: 'branch', value: 'testPackage')						
 	   ]
 }   
 
@@ -88,10 +87,10 @@ stage('wait for publish confirmation'){
 	}
 }
 
-node('billing-qa-ubuntu-16.04.4') {         
+node('words-linux') {         
     try {
         stage('checkout again'){
-           checkout([$class: 'GitSCM', branches: [[name: '*/testPackage']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '9d6c4dfa-042c-4ed1-81c7-9175179dddda', url: 'https://github.com/aspose-words-cloud/aspose-words-cloud-node.git/']]])          
+           checkout([$class: 'GitSCM', branches: [[name: '*/testPackage']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '361885ba-9425-4230-950e-0af201d90547', url: 'https://git.auckland.dynabic.com/words-cloud/words-cloud-node.git']]])          
 					
 			sh "git checkout testPackage"
 	    	sh "git reset --hard origin/testPackage"
@@ -108,8 +107,8 @@ node('billing-qa-ubuntu-16.04.4') {
 					*/
 				'HOME=.',
 				]) {
-				withCredentials([usernamePassword(credentialsId: '19f0eab9-c600-4746-a4bd-724efd2102c8', passwordVariable: 'npmPass', usernameVariable: 'npmLogin')]) {
-					sh "echo //registry.npmjs.org/:_authToken=${npmPass} > .npmrc"
+				withCredentials([string(credentialsId: '19f0eab9-c600-4746-a4bd-724efd2102c8', variable: 'npmToken')]) {
+					sh "echo //registry.npmjs.org/:_authToken=$npmToken > .npmrc"
 					sh "npm publish ${packageName}"
 				}
 				}
@@ -134,9 +133,18 @@ node('billing-qa-ubuntu-16.04.4') {
 
 			sh "git diff --name-status"
 	    	sh 'git commit -am "reference changed to published package" || exit 0'
-	    	withCredentials([usernamePassword(credentialsId: '9d6c4dfa-042c-4ed1-81c7-9175179dddda', passwordVariable: 'gitPass', usernameVariable: 'gitUsername')]) {
-	    		sh "git push https://WordsCloud:$gitPass@github.com/aspose-words-cloud/aspose-words-cloud-node testPackage"
+	    	withCredentials([usernamePassword(credentialsId: '361885ba-9425-4230-950e-0af201d90547', passwordVariable: 'gitPass', usernameVariable: 'gitUsername')]) {
+	    		sh "git push https://$gitUsername:$gitPass@git.auckland.dynabic.com/words-cloud/words-cloud-node.git testPackage"
 	    	}			
+		}
+		
+		stage('add version tag') {
+			fullVersion = sh(returnStdout: true, script:'echo $packageName | cut -d @ -f2`)
+			version = sh(returnStdout: true, script:'echo ${fullVersion%.*}')
+
+			sh "git tag -a $version -m 'version $version'" 
+	    	withCredentials([usernamePassword(credentialsId: '361885ba-9425-4230-950e-0af201d90547', passwordVariable: 'gitPass', usernameVariable: 'gitUsername')]) {
+	    		sh "git push https://$gitUsername:$gitPass@git.auckland.dynabic.com/words-cloud/words-cloud-node.git $version"
 		}
 		
     } finally {                       
@@ -145,9 +153,8 @@ node('billing-qa-ubuntu-16.04.4') {
 }
 
 stage('test published package'){
-	build job: 'words-sdk-nodejs', 
+	build job: 'words-node-sdk', 
 	   parameters: [
-		string(name: 'branch', value: 'testPackage'), 
-		string(name: 'testServerUrl', value: 'https://api.aspose.cloud')						
+		string(name: 'branch', value: 'testPackage')					
 	   ]
 }   

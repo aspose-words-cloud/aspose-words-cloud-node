@@ -139,7 +139,7 @@ node('words-linux') {
 		}
 		
 		stage('add version tag') {
-			fullVersion = sh(returnStdout: true, script:'echo $packageName | cut -d @ -f2`)
+			fullVersion = sh(returnStdout: true, script:'echo $packageName | cut -d @ -f2')
 			version = sh(returnStdout: true, script:'echo ${fullVersion%.*}')
 
 			sh "git tag -a $version -m 'version $version'" 

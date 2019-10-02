@@ -61,7 +61,7 @@ node('words-linux') {
 			sh "git ls-files --others --exclude-standard"
 			sh "git add -A"
 	    	sh 'git commit -am "new version of package added to repository" || exit 0'
-	    	withCredentials([usernamePassword(credentialsId: '361885ba-9425-4230-950e-0af201d90547', usernameVariable: 'gitUsername', passwordVariable: 'gitPass']) {
+	    	withCredentials([usernamePassword(credentialsId: '361885ba-9425-4230-950e-0af201d90547', usernameVariable: 'gitUsername', passwordVariable: 'gitPass')]) {
 	    		sh "git push https://${gitUsername}:${gitPass}@git.auckland.dynabic.com/words-cloud/words-cloud-node.git testPackage"
 	    	}
 	    }
@@ -130,7 +130,7 @@ node('words-linux') {
 
 			sh "git diff --name-status"
 	    	sh 'git commit -am "reference changed to published package" || exit 0'
-	    	withCredentials([usernamePassword(credentialsId: '361885ba-9425-4230-950e-0af201d90547', usernameVariable: 'gitUsername', passwordVariable: 'gitPass']) {
+	    	withCredentials([usernamePassword(credentialsId: '361885ba-9425-4230-950e-0af201d90547', usernameVariable: 'gitUsername', passwordVariable: 'gitPass')]) {
 	    		sh "git push https://${gitUsername}:${gitPass}@git.auckland.dynabic.com/words-cloud/words-cloud-node.git testPackage"
 	    	}			
 		}
@@ -140,7 +140,7 @@ node('words-linux') {
 			version = sh(returnStdout: true, script:'echo ${fullVersion%.*}')
 
 			sh "git tag -a ${version} -m 'version ${version}'" 
-	    	withCredentials([usernamePassword(credentialsId: '361885ba-9425-4230-950e-0af201d90547', usernameVariable: 'gitUsername', passwordVariable: 'gitPass']) {
+	    	withCredentials([usernamePassword(credentialsId: '361885ba-9425-4230-950e-0af201d90547', usernameVariable: 'gitUsername', passwordVariable: 'gitPass')]) {
 	    		sh "git push https://${gitUsername}:${gitPass}@git.auckland.dynabic.com/words-cloud/words-cloud-node.git $version"\
 			}
 		}

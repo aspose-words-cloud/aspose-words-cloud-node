@@ -7,11 +7,7 @@ node('words-linux') {
 			sh "git config user.name \"jenkins\""
 			
 			withCredentials([usernamePassword(credentialsId: '361885ba-9425-4230-950e-0af201d90547', usernameVariable: 'gitUsername', passwordVariable: 'gitPass')]) {
-				script {
-					env.username=URLEncoder.encode(gitUsername, "UTF-8")
-					env.password=URLEncoder.encode(gitPass, "UTF-8")
-				}
-				gitRepoUrl = 'https://${username}:${password}@git.auckland.dynabic.com/words-cloud/words-cloud-node.git'
+				gitRepoUrl = "https://${gitUsername}:${gitPass}@git.auckland.dynabic.com/words-cloud/words-cloud-node.git"
 			}
        }
        

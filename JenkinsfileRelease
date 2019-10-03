@@ -1,10 +1,18 @@
 node('words-linux') {         
     try {
        stage('checkout'){
-           checkout([$class: 'GitSCM', branches: [[name: '*/WORDSCLOUD-893']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '361885ba-9425-4230-950e-0af201d90547', url: 'https://git.auckland.dynabic.com/words-cloud/words-cloud-node.git']]])
+			checkout([$class: 'GitSCM', branches: [[name: '*/WORDSCLOUD-893']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '361885ba-9425-4230-950e-0af201d90547', url: 'https://git.auckland.dynabic.com/words-cloud/words-cloud-node.git']]])
 		
-		sh "git config user.email \"jenkins.aspose@gmail.com\""
-		sh "git config user.name \"jenkins\""
+			sh "git config user.email \"jenkins.aspose@gmail.com\""
+			sh "git config user.name \"jenkins\""
+			
+			withCredentials([usernamePassword(credentialsId: '361885ba-9425-4230-950e-0af201d90547', usernameVariable: 'gitUsername', passwordVariable: 'gitPass')]) {
+				script {
+					env.username=URLEncoder.encode(gitUsername, "UTF-8")
+					env.password=URLEncoder.encode(gitPass, "UTF-8")
+				}
+				gitRepoUrl = 'https://${username}:${password}@git.auckland.dynabic.com/words-cloud/words-cloud-node.git'
+			}
        }
        
        docker.image('node:latest').inside{
@@ -34,10 +42,7 @@ node('words-linux') {
 	    	sh "git merge --no-ff --allow-unrelated-histories origin/WORDSCLOUD-893"
 	    	sh "git diff --name-status"			
 	    	sh 'git commit -am "Merged master branch to testPackage" || exit 0'
-	    	
-	    	withCredentials([usernamePassword(credentialsId: '361885ba-9425-4230-950e-0af201d90547', usernameVariable: 'gitUsername', passwordVariable: 'gitPass')]) {
-	    		sh "git push https://${gitUsername}:${gitPass}@git.auckland.dynabic.com/words-cloud/words-cloud-node.git testPackage"
-	    	}
+	    	sh "git push ${gitRepoUrl} testPackage"
 	    }
 	
 	    stage('add reference to new package'){
@@ -61,9 +66,7 @@ node('words-linux') {
 			sh "git ls-files --others --exclude-standard"
 			sh "git add -A"
 	    	sh 'git commit -am "new version of package added to repository" || exit 0'
-	    	withCredentials([usernamePassword(credentialsId: '361885ba-9425-4230-950e-0af201d90547', usernameVariable: 'gitUsername', passwordVariable: 'gitPass')]) {
-	    		sh "git push https://${gitUsername}:${gitPass}@git.auckland.dynabic.com/words-cloud/words-cloud-node.git testPackage"
-	    	}
+			sh "git push ${gitRepoUrl} testPackage"		
 	    }
 		    			                
     } finally {                       
@@ -91,6 +94,14 @@ node('words-linux') {
 					
 			sh "git checkout testPackage"
 	    	sh "git reset --hard origin/testPackage"
+			
+			withCredentials([usernamePassword(credentialsId: '361885ba-9425-4230-950e-0af201d90547', usernameVariable: 'gitUsername', passwordVariable: 'gitPass')]) {
+				script {
+					env.username=URLEncoder.encode(gitUsername, "UTF-8")
+					env.password=URLEncoder.encode(gitPass, "UTF-8")
+				}
+				gitRepoUrl = 'https://${username}:${password}@git.auckland.dynabic.com/words-cloud/words-cloud-node.git'
+			}
         }
 		
 	    stage('publish package'){
@@ -130,19 +141,15 @@ node('words-linux') {
 
 			sh "git diff --name-status"
 	    	sh 'git commit -am "reference changed to published package" || exit 0'
-	    	withCredentials([usernamePassword(credentialsId: '361885ba-9425-4230-950e-0af201d90547', usernameVariable: 'gitUsername', passwordVariable: 'gitPass')]) {
-	    		sh "git push https://${gitUsername}:${gitPass}@git.auckland.dynabic.com/words-cloud/words-cloud-node.git testPackage"
-	    	}			
+			sh "git push ${gitRepoUrl} testPackage"						
 		}
 		
 		stage('add version tag') {
-			fullVersion = sh(returnStdout: true, script:'echo ${packageName} | cut -d @ -f2')
-			version = sh(returnStdout: true, script:'echo ${fullVersion%.*}')
+			final fullVersion = packageName.substring(packageName.lastIndexOf('@') + 1, packageName.length())
+			final version = fullVersion.substring(0, fullVersion.lastIndexOf('.'))
 
-			sh "git tag -a ${version} -m 'version ${version}'" 
-	    	withCredentials([usernamePassword(credentialsId: '361885ba-9425-4230-950e-0af201d90547', usernameVariable: 'gitUsername', passwordVariable: 'gitPass')]) {
-	    		sh "git push https://${gitUsername}:${gitPass}@git.auckland.dynabic.com/words-cloud/words-cloud-node.git $version"\
-			}
+			sh "git tag -a ${version} -m \"version ${version}\"" 
+			sh "git push ${gitRepoUrl} ${version}"
 		}
 		
     } finally {                       

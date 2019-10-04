@@ -30,8 +30,8 @@
     "gulp": "gulp"
   },
   "dependencies": {
-    "asposewordscloud": "^18.7.0",
     "@types/request": "^2.48.3",
+    "asposewordscloud": "file:asposewordscloud-19.9.0.tgz",
     "lodash": "^4.17.15",
     "lodash.template": "^4.5.0",
     "request": "^2.88.0",

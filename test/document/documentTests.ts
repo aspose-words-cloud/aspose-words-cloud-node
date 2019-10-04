@@ -1,7 +1,7 @@
 /*
 * MIT License
 
-* Copyright (c) 2018 Aspose Pty Ltd
+* Copyright (c) 2019 Aspose Pty Ltd
 
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -25,7 +25,7 @@
 import { expect } from "chai";
 import "mocha";
 
-import { GetDocumentRequest, PutCreateDocumentRequest } from "asposewordscloud";
+import { CreateDocumentRequest, GetDocumentRequest } from "asposewordscloud";
 import * as BaseTest from "../baseTest";
 
 const testFolder = "document";
@@ -34,56 +34,50 @@ describe("getDocument function", () => {
 
   it("should return response with code 200", () => {
 
-    const storageApi = BaseTest.initializeStorageApi();
     const wordsApi = BaseTest.initializeWordsApi();
 
     const localPath = BaseTest.localCommonTestDataFolder;
     const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
     const filename = "test_doc.docx";
 
-    return new Promise((resolve) => {
-      storageApi.PutCreate(remotePath + "/" + filename, null, null, localPath + "/" + filename, (responseMessage) => {
-        expect(responseMessage.status).to.equal("OK");
-        resolve();
-      });
-    })
-      .then(() => {
+    return wordsApi.uploadFileToStorage(remotePath + "/" + filename, localPath + filename)
+      .then((result) => {
+        expect(result.response.statusMessage).to.equal("OK");
+
         const request = new GetDocumentRequest();
         request.documentName = filename;
         request.folder = remotePath;
-        
+
         // Act
         return wordsApi.getDocument(request)
-          .then((result) => {
+          .then((result1) => {
             // Assert
-            expect(result.body.code).to.equal(200);
-            expect(result.response.statusCode).to.equal(200);
-            
+            expect(result1.response.statusCode).to.equal(200);
+
             // Check document is not signed
-            expect(result.body.document.isSigned).to.equal(false);
+            expect(result1.body.document.isSigned).to.equal(false);
           });
       });
   });
 });
 
-describe("putCreateDocument function", () => {
+describe("createDocument function", () => {
 
   it("should return response with code 200", () => {
 
     const wordsApi = BaseTest.initializeWordsApi();
-    
+
     const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
     const filename = "TestPutCreateDocument.doc";
 
-    const request = new PutCreateDocumentRequest();
+    const request = new CreateDocumentRequest();
     request.fileName = filename;
     request.folder = remotePath;
 
     // Act
-    return wordsApi.putCreateDocument(request)
+    return wordsApi.createDocument(request)
       .then((result) => {
         // Assert
-        expect(result.body.code).to.equal(200);
         expect(result.response.statusCode).to.equal(200);
 
         expect(result.body.document.fileName).to.equal(filename);

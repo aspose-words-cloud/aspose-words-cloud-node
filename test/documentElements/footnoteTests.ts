@@ -1,7 +1,7 @@
 /*
 * MIT License
 
-* Copyright (c) 2018 Aspose Pty Ltd
+* Copyright (c) 2019 Aspose Pty Ltd
 
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -25,7 +25,8 @@
 import { expect } from "chai";
 import "mocha";
 
-import { DeleteFootnoteRequest, Footnote, GetFootnoteRequest, GetFootnotesRequest, PostFootnoteRequest, PutFootnoteRequest } from "asposewordscloud";
+import { DeleteFootnoteRequest, Footnote, GetFootnoteRequest, GetFootnotesRequest, InsertFootnoteRequest, UpdateFootnoteRequest } from "asposewordscloud";
+import { DeleteFootnoteWithoutNodePathRequest, GetFootnotesWithoutNodePathRequest, GetFootnoteWithoutNodePathRequest, InsertFootnoteWithoutNodePathRequest, UpdateFootnoteWithoutNodePathRequest } from "asposewordscloud";
 import * as BaseTest from "../baseTest";
 
 const testFolder = "DocumentElements/Footnotes";
@@ -34,32 +35,27 @@ describe("footnotes", () => {
     describe("getFootnotes function", () => {
         it("should return response with code 200", () => {
 
-            const storageApi = BaseTest.initializeStorageApi();
             const wordsApi = BaseTest.initializeWordsApi();
 
             const localPath = BaseTest.localBaseTestDataFolder + testFolder + "/Footnote.doc";
             const remoteFileName = "TestGetFootnotes.docx";
             const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
-            return new Promise((resolve) => {
-                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                    expect(responseMessage.status).to.equal("OK");
-                    resolve();
-                });
-            })
-                .then(() => {
+            return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
                     const request = new GetFootnotesRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
+                    request.nodePath = null;
 
                     // Act
                     return wordsApi.getFootnotes(request)
-                        .then((result) => {
+                        .then((result1) => {
                             // Assert
-                            expect(result.body.code).to.equal(200);
-                            expect(result.response.statusCode).to.equal(200);
+                            expect(result1.response.statusCode).to.equal(200);
 
-                            expect(result.body.footnotes).to.exist.and.not.equal(null);
+                            expect(result1.body.footnotes).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -68,107 +64,92 @@ describe("footnotes", () => {
     describe("getFootnote function", () => {
         it("should return response with code 200", () => {
 
-            const storageApi = BaseTest.initializeStorageApi();
             const wordsApi = BaseTest.initializeWordsApi();
 
             const localPath = BaseTest.localBaseTestDataFolder + testFolder + "/Footnote.doc";
             const remoteFileName = "TestGetFootnote.docx";
             const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
-            return new Promise((resolve) => {
-                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                    expect(responseMessage.status).to.equal("OK");
-                    resolve();
-                });
-            })
-                .then(() => {
+            return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
                     const request = new GetFootnoteRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
+                    request.nodePath = null;
                     request.index = 0;
 
                     // Act
                     return wordsApi.getFootnote(request)
-                        .then((result) => {
+                        .then((result1) => {
                             // Assert
-                            expect(result.body.code).to.equal(200);
-                            expect(result.response.statusCode).to.equal(200);
+                            expect(result1.response.statusCode).to.equal(200);
 
-                            expect(result.body.footnote).to.exist.and.not.equal(null);
+                            expect(result1.body.footnote).to.exist.and.not.equal(null);
                         });
                 });
         });
     });
 
-    describe("putFootnote function", () => {
+    describe("insertFootnote function", () => {
         it("should return response with code 200", () => {
 
-            const storageApi = BaseTest.initializeStorageApi();
             const wordsApi = BaseTest.initializeWordsApi();
 
             const localPath = BaseTest.localBaseTestDataFolder + testFolder + "/Footnote.doc";
             const remoteFileName = "TestPutFootnote.docx";
             const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
-            return new Promise((resolve) => {
-                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                    expect(responseMessage.status).to.equal("OK");
-                    resolve();
-                });
-            })
-                .then(() => {
-                    const request = new PutFootnoteRequest();
+            return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
+                    const request = new InsertFootnoteRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
+                    request.nodePath = null;
                     request.footnoteDto = new Footnote({
                         footnoteType: Footnote.FootnoteTypeEnum.Endnote,
                         text: "test endnote",                        
                     });
 
                     // Act
-                    return wordsApi.putFootnote(request)
-                        .then((result) => {
+                    return wordsApi.insertFootnote(request)
+                        .then((result1) => {
                             // Assert
-                            expect(result.body.code).to.equal(200);
-                            expect(result.response.statusCode).to.equal(200);
+                            expect(result1.response.statusCode).to.equal(200);
 
-                            expect(result.body.footnote).to.exist.and.not.equal(null);
+                            expect(result1.body.footnote).to.exist.and.not.equal(null);
                         });
                 });
         });
     });
 
-    describe("postFootnote function", () => {
+    describe("updateFootnote function", () => {
         it("should return response with code 200", () => {
 
-            const storageApi = BaseTest.initializeStorageApi();
             const wordsApi = BaseTest.initializeWordsApi();
 
             const localPath = BaseTest.localBaseTestDataFolder + testFolder + "/Footnote.doc";
             const remoteFileName = "TestPostFootnote.docx";
             const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
-            return new Promise((resolve) => {
-                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                    expect(responseMessage.status).to.equal("OK");
-                    resolve();
-                });
-            })
-                .then(() => {
-                    const request = new PostFootnoteRequest();
+            return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
+                    const request = new UpdateFootnoteRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
+                    request.nodePath = null;
                     request.index = 0;
                     request.footnoteDto = new Footnote({ text: "new text" });
 
                     // Act
-                    return wordsApi.postFootnote(request)
-                        .then((result) => {
+                    return wordsApi.updateFootnote(request)
+                        .then((result1) => {
                             // Assert
-                            expect(result.body.code).to.equal(200);
-                            expect(result.response.statusCode).to.equal(200);
+                            expect(result1.response.statusCode).to.equal(200);
 
-                            expect(result.body.footnote).to.exist.and.not.equal(null);
+                            expect(result1.body.footnote).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -177,31 +158,172 @@ describe("footnotes", () => {
     describe("deleteFootnote function", () => {
         it("should return response with code 200", () => {
 
-            const storageApi = BaseTest.initializeStorageApi();
             const wordsApi = BaseTest.initializeWordsApi();
 
             const localPath = BaseTest.localBaseTestDataFolder + testFolder + "/Footnote.doc";
             const remoteFileName = "TestDeleteFootnote.docx";
             const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
-            return new Promise((resolve) => {
-                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                    expect(responseMessage.status).to.equal("OK");
-                    resolve();
-                });
-            })
-                .then(() => {
+            return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
                     const request = new DeleteFootnoteRequest();
+                    request.name = remoteFileName;
+                    request.folder = remotePath;
+                    request.nodePath = null;
+                    request.index = 0;
+
+                    // Act
+                    return wordsApi.deleteFootnote(request)
+                        .then((result1) => {
+                            // Assert
+                            expect(result1.statusCode).to.equal(200);
+                        });
+                });
+        });
+    });
+
+    describe("getFootnotesWithoutNodePath function", () => {
+        it("should return response with code 200", () => {
+
+            const wordsApi = BaseTest.initializeWordsApi();
+
+            const localPath = BaseTest.localBaseTestDataFolder + testFolder + "/Footnote.doc";
+            const remoteFileName = "TestGetFootnotesWithoutNodePath.docx";
+            const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
+
+            return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
+                    const request = new GetFootnotesWithoutNodePathRequest();
+                    request.name = remoteFileName;
+                    request.folder = remotePath;
+
+                    // Act
+                    return wordsApi.getFootnotesWithoutNodePath(request)
+                        .then((result1) => {
+                            // Assert
+                            expect(result1.response.statusCode).to.equal(200);
+
+                            expect(result1.body.footnotes).to.exist.and.not.equal(null);
+                        });
+                });
+        });
+    });
+
+    describe("getFootnoteWithoutNodePath function", () => {
+        it("should return response with code 200", () => {
+
+            const wordsApi = BaseTest.initializeWordsApi();
+
+            const localPath = BaseTest.localBaseTestDataFolder + testFolder + "/Footnote.doc";
+            const remoteFileName = "TestGetFootnoteWithoutNodePath.docx";
+            const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
+
+            return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
+                    const request = new GetFootnoteWithoutNodePathRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
                     request.index = 0;
 
                     // Act
-                    return wordsApi.deleteFootnote(request)
-                        .then((result) => {
+                    return wordsApi.getFootnoteWithoutNodePath(request)
+                        .then((result1) => {
                             // Assert
-                            expect(result.body.code).to.equal(200);
-                            expect(result.response.statusCode).to.equal(200);
+                            expect(result1.response.statusCode).to.equal(200);
+
+                            expect(result1.body.footnote).to.exist.and.not.equal(null);
+                        });
+                });
+        });
+    });
+
+    describe("insertFootnoteWithoutNodePath function", () => {
+        it("should return response with code 200", () => {
+
+            const wordsApi = BaseTest.initializeWordsApi();
+
+            const localPath = BaseTest.localBaseTestDataFolder + testFolder + "/Footnote.doc";
+            const remoteFileName = "TestPutFootnoteWithoutNodePath.docx";
+            const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
+
+            return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
+                    const request = new InsertFootnoteWithoutNodePathRequest();
+                    request.name = remoteFileName;
+                    request.folder = remotePath;
+                    request.footnoteDto = new Footnote({
+                        footnoteType: Footnote.FootnoteTypeEnum.Endnote,
+                        text: "test endnote",                        
+                    });
+
+                    // Act
+                    return wordsApi.insertFootnoteWithoutNodePath(request)
+                        .then((result1) => {
+                            // Assert
+                            expect(result1.response.statusCode).to.equal(200);
+
+                            expect(result1.body.footnote).to.exist.and.not.equal(null);
+                        });
+                });
+        });
+    });
+
+    describe("updateFootnoteWithoutNodePath function", () => {
+        it("should return response with code 200", () => {
+
+            const wordsApi = BaseTest.initializeWordsApi();
+
+            const localPath = BaseTest.localBaseTestDataFolder + testFolder + "/Footnote.doc";
+            const remoteFileName = "TestPostFootnoteWithoutNodePath.docx";
+            const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
+
+            return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
+                    const request = new UpdateFootnoteWithoutNodePathRequest();
+                    request.name = remoteFileName;
+                    request.folder = remotePath;
+                    request.index = 0;
+                    request.footnoteDto = new Footnote({ text: "new text" });
+
+                    // Act
+                    return wordsApi.updateFootnoteWithoutNodePath(request)
+                        .then((result1) => {
+                            // Assert
+                            expect(result1.response.statusCode).to.equal(200);
+
+                            expect(result1.body.footnote).to.exist.and.not.equal(null);
+                        });
+                });
+        });
+    });
+
+    describe("deleteFootnoteWithoutNodePath function", () => {
+        it("should return response with code 200", () => {
+
+            const wordsApi = BaseTest.initializeWordsApi();
+
+            const localPath = BaseTest.localBaseTestDataFolder + testFolder + "/Footnote.doc";
+            const remoteFileName = "TestDeleteFootnoteWithoutNodePath.docx";
+            const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
+
+            return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
+                    const request = new DeleteFootnoteWithoutNodePathRequest();
+                    request.name = remoteFileName;
+                    request.folder = remotePath;
+                    request.index = 0;
+
+                    // Act
+                    return wordsApi.deleteFootnoteWithoutNodePath(request)
+                        .then((result1) => {
+                            // Assert
+                            expect(result1.statusCode).to.equal(200);
                         });
                 });
         });

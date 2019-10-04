@@ -1,7 +1,7 @@
 /*
 * MIT License
 
-* Copyright (c) 2018 Aspose Pty Ltd
+* Copyright (c) 2019 Aspose Pty Ltd
 
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -39,20 +39,15 @@ describe("oauth tests", () => {
         // Ignored because we use local server to test this feature (access token is expired in 1s)
         this.skip();
 
-        const storageApi = BaseTest.initializeStorageApi();
         const wordsApi = BaseTest.initializeWordsApi();
 
         const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
         const remoteFileName = "TesOauth.docx";
         const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
-        return new Promise((resolve) => {
-            storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                expect(responseMessage.status).to.equal("OK");
-                resolve();
-            });
-        })
-            .then(async () => {
+        return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, localPath)
+        .then(async (result) => {
+                expect(result.response.statusMessage).to.equal("OK");
                 this.timeout(30000);
                 
                 wordsApi.configuration.baseUrl = "http://localhost:8081";

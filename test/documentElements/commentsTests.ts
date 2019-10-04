@@ -1,7 +1,7 @@
 /*
 * MIT License
 
-* Copyright (c) 2018 Aspose Pty Ltd
+* Copyright (c) 2019 Aspose Pty Ltd
 
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -25,7 +25,7 @@
 import { expect } from "chai";
 import "mocha";
 
-import { Comment, DeleteCommentRequest, DocumentPosition, GetCommentRequest, GetCommentsRequest, NodeLink, PostCommentRequest, PutCommentRequest } from "asposewordscloud";
+import { Comment, DeleteCommentRequest, DocumentPosition, GetCommentRequest, GetCommentsRequest, InsertCommentRequest, NodeLink, UpdateCommentRequest } from "asposewordscloud";
 import * as BaseTest from "../baseTest";
 
 const testFolder = "DocumentElements/Comments";
@@ -35,20 +35,15 @@ describe("comments", () => {
 
         it("should return response with code 200", () => {
 
-            const storageApi = BaseTest.initializeStorageApi();
             const wordsApi = BaseTest.initializeWordsApi();
 
             const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
             const remoteFileName = "TestGetComment.docx";
             const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
-            return new Promise((resolve) => {
-                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                    expect(responseMessage.status).to.equal("OK");
-                    resolve();
-                });
-            })
-                .then(() => {
+            return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
                     const request = new GetCommentRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
@@ -56,12 +51,11 @@ describe("comments", () => {
 
                     // Act
                     return wordsApi.getComment(request)
-                        .then((result) => {
+                        .then((result1) => {
                             // Assert
-                            expect(result.body.code).to.equal(200);
-                            expect(result.response.statusCode).to.equal(200);
+                            expect(result1.response.statusCode).to.equal(200);
 
-                            expect(result.body.comment).to.exist.and.not.equal(null);
+                            expect(result1.body.comment).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -71,61 +65,50 @@ describe("comments", () => {
 
         it("should return response with code 200", () => {
 
-            const storageApi = BaseTest.initializeStorageApi();
             const wordsApi = BaseTest.initializeWordsApi();
 
             const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
             const remoteFileName = "TestGetComments.docx";
             const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
-            return new Promise((resolve) => {
-                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                    expect(responseMessage.status).to.equal("OK");
-                    resolve();
-                });
-            })
-                .then(() => {
+            return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
                     const request = new GetCommentsRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
 
                     // Act
                     return wordsApi.getComments(request)
-                        .then((result) => {
+                        .then((result1) => {
                             // Assert
-                            expect(result.body.code).to.equal(200);
-                            expect(result.response.statusCode).to.equal(200);
+                            expect(result1.response.statusCode).to.equal(200);
 
-                            expect(result.body.comments).to.exist.and.not.equal(null);
+                            expect(result1.body.comments).to.exist.and.not.equal(null);
                         });
                 });
         });
     });
 
-    describe("putComment function", () => {
+    describe("insertComment function", () => {
 
         it("should return response with code 200", () => {
 
-            const storageApi = BaseTest.initializeStorageApi();
             const wordsApi = BaseTest.initializeWordsApi();
 
             const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
             const remoteFileName = "TestPutComment.docx";
             const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
-            return new Promise((resolve) => {
-                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                    expect(responseMessage.status).to.equal("OK");
-                    resolve();
-                });
-            })
-                .then(() => {
-                    const request = new PutCommentRequest();
+            return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
+                    const request = new InsertCommentRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
 
                     const nodeLink = new NodeLink();
-                    nodeLink.nodeId = "0.0.3";
+                    nodeLink.nodeId = "0.3.0.3";
                     const documentPosition = new DocumentPosition();
                     documentPosition.node = nodeLink;
                     documentPosition.offset = 0;
@@ -137,43 +120,37 @@ describe("comments", () => {
                     request.comment.text = "A new Comment";
 
                     // Act
-                    return wordsApi.putComment(request)
-                        .then((result) => {
+                    return wordsApi.insertComment(request)
+                        .then((result1) => {
                             // Assert
-                            expect(result.body.code).to.equal(200);
-                            expect(result.response.statusCode).to.equal(200);
+                            expect(result1.response.statusCode).to.equal(200);
 
-                            expect(result.body.comment).to.exist.and.not.equal(null);
+                            expect(result1.body.comment).to.exist.and.not.equal(null);
                         });
                 });
         });
     });
 
-    describe("postComment function", () => {
+    describe("updateComment function", () => {
 
         it("should return response with code 200", () => {
 
-            const storageApi = BaseTest.initializeStorageApi();
             const wordsApi = BaseTest.initializeWordsApi();
 
             const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
             const remoteFileName = "TestPostComment.docx";
             const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
-            return new Promise((resolve) => {
-                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                    expect(responseMessage.status).to.equal("OK");
-                    resolve();
-                });
-            })
-                .then(() => {
-                    const request = new PostCommentRequest();
+            return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
+                    const request = new UpdateCommentRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
 
                     request.commentIndex = 0;
                     const nodeLink = new NodeLink();
-                    nodeLink.nodeId = "0.0.3";
+                    nodeLink.nodeId = "0.3.0";
                     const documentPosition = new DocumentPosition();
                     documentPosition.node = nodeLink;
                     documentPosition.offset = 0;
@@ -185,13 +162,12 @@ describe("comments", () => {
                     request.comment.text = "A new Comment";
 
                     // Act
-                    return wordsApi.postComment(request)
-                        .then((result) => {
+                    return wordsApi.updateComment(request)
+                        .then((result1) => {
                             // Assert
-                            expect(result.body.code).to.equal(200);
-                            expect(result.response.statusCode).to.equal(200);
+                            expect(result1.response.statusCode).to.equal(200);
 
-                            expect(result.body.comment).to.exist.and.not.equal(null);
+                            expect(result1.body.comment).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -201,20 +177,15 @@ describe("comments", () => {
 
         it("should return response with code 200", () => {
 
-            const storageApi = BaseTest.initializeStorageApi();
             const wordsApi = BaseTest.initializeWordsApi();
 
             const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
             const remoteFileName = "TestDeleteComment.docx";
             const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
-            return new Promise((resolve) => {
-                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                    expect(responseMessage.status).to.equal("OK");
-                    resolve();
-                });
-            })
-                .then(() => {
+            return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
                     const request = new DeleteCommentRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
@@ -222,10 +193,9 @@ describe("comments", () => {
 
                     // Act
                     return wordsApi.deleteComment(request)
-                        .then((result) => {
+                        .then((result1) => {
                             // Assert
-                            expect(result.body.code).to.equal(200);
-                            expect(result.response.statusCode).to.equal(200);
+                            expect(result1.statusCode).to.equal(200);
                         });
                 });
         });

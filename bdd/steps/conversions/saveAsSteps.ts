@@ -1,7 +1,7 @@
 /*
 * MIT License
 
-* Copyright (c) 2018 Aspose Pty Ltd
+* Copyright (c) 2019 Aspose Pty Ltd
 
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -22,7 +22,7 @@
 * SOFTWARE.
 */
 
-import { GetDocumentTextItemsRequest } from "asposewordscloud";
+import { GetRunsRequest } from "asposewordscloud";
 import { expect } from "chai";
 import { Before, Given, Then, When } from "cucumber";
 import * as BaseTest from "../../../test/baseTest";
@@ -43,7 +43,7 @@ When(/^I execute conversion from storage \(POST SaveAs\)$/, function() {
     const wordsApi = BaseTest.initializeWordsApi();
     const request = this.request;
 
-    return wordsApi.postDocumentSaveAs(request)
+    return wordsApi.saveAs(request)
         .then((result) => {
             this.response = result;            
         });
@@ -51,12 +51,13 @@ When(/^I execute conversion from storage \(POST SaveAs\)$/, function() {
 
 Then(/^symbols are encoded properly$/, function() {    
     const wordsApi = BaseTest.initializeWordsApi();
-    const request = new GetDocumentTextItemsRequest({
+    const request = new GetRunsRequest({
         folder: BaseTest.remoteBaseFolder + "DocumentActions/ConvertDocument/out/saveas",
         name: "TableDocumentDoc.doc",
+        paragraphPath: null
     });
 
-    wordsApi.getDocumentTextItems(request).then((result) => {
-        expect(result.body.textItems.list[0].text).to.equal("строка");        
+    wordsApi.getRuns(request).then((result) => {
+        expect(result.body.runs.list[0].text).to.equal("строка");        
     });
 });

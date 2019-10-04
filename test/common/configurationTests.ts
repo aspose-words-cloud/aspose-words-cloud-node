@@ -1,7 +1,7 @@
 /*
 * MIT License
 
-* Copyright (c) 2018 Aspose Pty Ltd
+* Copyright (c) 2019 Aspose Pty Ltd
 
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -27,38 +27,33 @@ import "mocha";
 import "mocha-sinon";
 import * as sinon from "sinon";
 
+import { WordsApi } from "../../src/api";
 import { GetDocumentRequest } from "asposewordscloud";
-import { WordsApiAvailiableVersions } from "asposewordscloud";
 import * as BaseTest from "../baseTest";
 
 const testFolder = "Commont/Configuration";
 
 describe("configuration tests", () => {
     it("should write request to console if debugMode is setted to true in constructor", () => {
-
-        const storageApi = BaseTest.initializeStorageApi();
         const wordsApi = BaseTest.initializeWordsApi(true);
 
         const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
         const remoteFileName = "TesConfiguration.docx";
         const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
-        return new Promise((resolve) => {
-            storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                expect(responseMessage.status).to.equal("OK");
-                resolve();
-            });
-        })
-            .then(() => {
+        return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, localPath)
+            .then((result) => {
+                expect(result.response.statusMessage).to.equal("OK");
+
                 const request = new GetDocumentRequest();
                 request.documentName = remoteFileName;
-                request.folder = remotePath;                
+                request.folder = remotePath;
                 const log = sinon.spy(console, "log");
                 return wordsApi.getDocument(request)
                     .then(() => {
                         log.restore();
                         sinon.assert.calledWith(log,
-                            sinon.match('"uri": "https://api.aspose.cloud/v1/words/TesConfiguration.docx?folder=Temp%2FSdkTests%2Fnode%2FTestData%2FCommont%2FConfiguration"')
+                            sinon.match('"uri": "https://api.aspose.cloud/v4.0/words/TesConfiguration.docx?folder=Temp%2FSdkTests%2Fnode%2FTestData%2FCommont%2FConfiguration"')
                                 .and(sinon.match('"method": "GET"')));
                     });
             });
@@ -66,20 +61,15 @@ describe("configuration tests", () => {
 
     it("should write request to console if debugMode is setted to true in runtime", () => {
 
-        const storageApi = BaseTest.initializeStorageApi();
         const wordsApi = BaseTest.initializeWordsApi();
 
         const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
         const remoteFileName = "TesConfiguration.docx";
         const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
-        return new Promise((resolve) => {
-            storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                expect(responseMessage.status).to.equal("OK");
-                resolve();
-            });
-        })
-            .then(() => {
+        return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, localPath)
+            .then((result) => {
+                expect(result.response.statusMessage).to.equal("OK");
                 const request = new GetDocumentRequest();
                 request.documentName = remoteFileName;
                 request.folder = remotePath;
@@ -91,27 +81,23 @@ describe("configuration tests", () => {
                     .then(() => {
                         log.restore();
                         sinon.assert.calledWith(log,
-                            sinon.match('"uri": "https://api.aspose.cloud/v1/words/TesConfiguration.docx?folder=Temp%2FSdkTests%2Fnode%2FTestData%2FCommont%2FConfiguration"')
+                            sinon.match('"uri": "https://api.aspose.cloud/v4.0/words/TesConfiguration.docx?folder=Temp%2FSdkTests%2Fnode%2FTestData%2FCommont%2FConfiguration"')
                                 .and(sinon.match('"method": "GET"')));
                     });
             });
     });
 
     it("should not write to console if debugMode is setted to false", () => {
-        const storageApi = BaseTest.initializeStorageApi();
+
         const wordsApi = BaseTest.initializeWordsApi();
 
         const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
         const remoteFileName = "TesConfiguration.docx";
         const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
-        return new Promise((resolve) => {
-            storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                expect(responseMessage.status).to.equal("OK");
-                resolve();
-            });
-        })
-            .then(() => {
+        return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, localPath)
+            .then((result) => {
+                expect(result.response.statusMessage).to.equal("OK");
                 const request = new GetDocumentRequest();
                 request.documentName = remoteFileName;
                 request.folder = remotePath;
@@ -127,33 +113,26 @@ describe("configuration tests", () => {
             });
     });
 
-    it("request should be invoked with correct url if version is setted", () => {
+    // read configuration
+    const config = require("../../testConfig.json");
 
-        const storageApi = BaseTest.initializeStorageApi();
-        const wordsApi = BaseTest.initializeWordsApi(true, WordsApiAvailiableVersions.v2);
+    // all test cases
+    const invalidConfigValues = [undefined, null, "", " "];
 
-        const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
-        const remoteFileName = "TesConfiguration.docx";
-        const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
-
-        return new Promise((resolve) => {
-            storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                expect(responseMessage.status).to.equal("OK");
-                resolve();
-            });
-        })
-            .then(() => {
-                const request = new GetDocumentRequest();
-                request.documentName = remoteFileName;
-                request.folder = remotePath;                
-                const log = sinon.spy(console, "log");
-                return wordsApi.getDocument(request)
-                    .then(() => {
-                        log.restore();
-                        sinon.assert.calledWith(log,
-                            sinon.match('"uri": "https://api.aspose.cloud/v2/words/TesConfiguration.docx?folder=Temp%2FSdkTests%2Fnode%2FTestData%2FCommont%2FConfiguration"')
-                                .and(sinon.match('"method": "GET"')));
-                    });
-            });
+    invalidConfigValues.forEach((paramValue) => {
+        it("appSID must not [" + paramValue + "] in WordsApi constructor", () => {
+            // create API without appSID
+            const appSidError = "appSID parameter must be non-empty string";
+            expect(() => new WordsApi(paramValue, config.AppKey)).to.throw(appSidError);
+        });
     });
+
+    invalidConfigValues.forEach((paramValue) => {
+        it("appKey must not [" + paramValue + "] in WordsApi constructor", () => {
+            // create API without appSID
+            const appSidError = "appKey parameter must be non-empty string";
+            expect(() => new WordsApi(config.AppSID, paramValue)).to.throw(appSidError);
+        });
+    });
+
 });

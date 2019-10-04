@@ -1,7 +1,7 @@
 /*
 * MIT License
 
-* Copyright (c) 2018 Aspose Pty Ltd
+* Copyright (c) 2019 Aspose Pty Ltd
 
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -22,32 +22,46 @@
 * SOFTWARE.
 */
 
+import { createReadStream } from "fs";
 import { WordsApi } from "asposewordscloud";
-import { WordsApiAvailiableVersions } from "asposewordscloud";
-
-let storageApi;
+import { FilesUploadResult, UploadFileRequest, WordsIncomingMessage } from "asposewordscloud";
 
 /**
  * Initialize WordsApi
  */
-export function initializeWordsApi(debugMode?: boolean, version?: WordsApiAvailiableVersions) {
+export function initializeWordsApi(debugMode?: boolean) {
     const config = require("../testConfig.json");
-    const wordsApi = new WordsApi(config.AppSid, config.AppKey, config.BaseUrl, debugMode, version);
+    const wordsApi = new TestWordsApi(config.AppSid, config.AppKey, config.BaseUrl, debugMode);
     return wordsApi;
 }
 
 /**
- * Initialize StorageApi
+ * WordsApi class with simplified file uploading
  */
-export function initializeStorageApi() {
-    if (!storageApi) {
-        const config = require("../testConfig.json");
-        const StorageApi = require("asposestoragecloud");
-
-        storageApi = new StorageApi({ appSid: config.AppSid, apiKey: config.AppKey, baseURI: config.BaseUrl + "/v1.1" });
+export class TestWordsApi extends WordsApi {
+    /**
+     * @param appSID App SID.
+     * @param appKey App key.
+     * @param baseUrl Base api Url.
+     * @param debugMode A value indicating whether debug mode. In debug mode all requests and responses are logged to console.
+     */
+    constructor(appSID: string, appKey: string, baseUrl?: string, debugMode?: boolean) {
+        super(appSID, appKey, baseUrl, debugMode);
     }
 
-    return storageApi;
+    /**
+     * Uploads file to storage.
+     * @param remotePath Path in storage.
+     * @param localPath Path to file
+     */
+    public async uploadFileToStorage(remotePath: string, localPath: string): Promise<WordsIncomingMessage<FilesUploadResult>> {
+
+        const request = new UploadFileRequest();
+        request.path = remotePath;
+        request.file = createReadStream(localPath);
+
+        return super.uploadFile(request);
+    }
 }
 
 export const remoteBaseFolder = "Temp/SdkTests/node/";

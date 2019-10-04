@@ -1,7 +1,7 @@
 /*
 * MIT License
 
-* Copyright (c) 2018 Aspose Pty Ltd
+* Copyright (c) 2019 Aspose Pty Ltd
 
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -25,7 +25,7 @@
 import { expect } from "chai";
 import "mocha";
 
-import { DeleteUnprotectDocumentRequest, GetDocumentProtectionRequest, PostChangeDocumentProtectionRequest, ProtectionRequest, PutProtectDocumentRequest } from "asposewordscloud";
+import { GetDocumentProtectionRequest, ProtectDocumentRequest, ProtectionRequest, UnprotectDocumentRequest } from "asposewordscloud";
 import * as BaseTest from "../baseTest";
 
 const testFolder = "DocumentActions/DocumentProtection";
@@ -33,34 +33,28 @@ const testFolder = "DocumentActions/DocumentProtection";
 describe("document protection", () => {
     describe("putProtectDocument function", () => {
         it("should return response with code 200", () => {
-            const storageApi = BaseTest.initializeStorageApi();
             const wordsApi = BaseTest.initializeWordsApi();
 
             const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
             const remoteFileName = "TestPutProtectDocument.docx";
             const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
-            return new Promise((resolve) => {
-                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                    expect(responseMessage.status).to.equal("OK");
-                    resolve();
-                });
-            })
-                .then(() => {
-                    const request = new PutProtectDocumentRequest();
+            return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
+                    const request = new ProtectDocumentRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
                     request.protectionRequest = new ProtectionRequest({ newPassword: "123" });
                     request.destFileName = "Out/" + remoteFileName;
 
                     // Act
-                    return wordsApi.putProtectDocument(request)
-                        .then((result) => {
+                    return wordsApi.protectDocument(request)
+                        .then((result1) => {
                             // Assert
-                            expect(result.body.code).to.equal(200);
-                            expect(result.response.statusCode).to.equal(200);
+                            expect(result1.response.statusCode).to.equal(200);
 
-                            expect(result.body.protectionData).to.exist.and.not.equal(null);
+                            expect(result1.body.protectionData).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -70,32 +64,26 @@ describe("document protection", () => {
 
         it("should return response with code 200", () => {
 
-            const storageApi = BaseTest.initializeStorageApi();
             const wordsApi = BaseTest.initializeWordsApi();
 
             const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
             const remoteFileName = "TestGetDocumentProtection.docx";
             const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
-            return new Promise((resolve) => {
-                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                    expect(responseMessage.status).to.equal("OK");
-                    resolve();
-                });
-            })
-                .then(() => {
+            return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
                     const request = new GetDocumentProtectionRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
 
                     // Act
                     return wordsApi.getDocumentProtection(request)
-                        .then((result) => {
+                        .then((result1) => {
                             // Assert
-                            expect(result.body.code).to.equal(200);
-                            expect(result.response.statusCode).to.equal(200);
+                            expect(result1.response.statusCode).to.equal(200);
 
-                            expect(result.body.protectionData).to.exist.and.not.equal(null);
+                            expect(result1.body.protectionData).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -105,33 +93,27 @@ describe("document protection", () => {
 
         it("should return response with code 200", () => {
 
-            const storageApi = BaseTest.initializeStorageApi();
             const wordsApi = BaseTest.initializeWordsApi();
 
             const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
             const remoteFileName = "TestPostChangeDocumentProtection.docx";
             const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
-            return new Promise((resolve) => {
-                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                    expect(responseMessage.status).to.equal("OK");
-                    resolve();
-                });
-            })
-                .then(() => {
-                    const request = new PostChangeDocumentProtectionRequest();
+            return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
+                    const request = new ProtectDocumentRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
                     request.protectionRequest = new ProtectionRequest({ newPassword: "" });
 
                     // Act
-                    return wordsApi.postChangeDocumentProtection(request)
-                        .then((result) => {
+                    return wordsApi.protectDocument(request)
+                        .then((result1) => {
                             // Assert
-                            expect(result.body.code).to.equal(200);
-                            expect(result.response.statusCode).to.equal(200);
+                            expect(result1.response.statusCode).to.equal(200);
 
-                            expect(result.body.protectionData).to.exist.and.not.equal(null);
+                            expect(result1.body.protectionData).to.exist.and.not.equal(null);
                         });
                 });
         });
@@ -141,33 +123,27 @@ describe("document protection", () => {
 
         it("should return response with code 200", () => {
 
-            const storageApi = BaseTest.initializeStorageApi();
             const wordsApi = BaseTest.initializeWordsApi();
 
             const localPath = BaseTest.localBaseTestDataFolder + testFolder + "/SampleProtectedBlankWordDocument.docx";
             const remoteFileName = "TestDeleteUnprotectDocument.docx";
             const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
-            return new Promise((resolve) => {
-                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                    expect(responseMessage.status).to.equal("OK");
-                    resolve();
-                });
-            })
-                .then(() => {
-                    const request = new DeleteUnprotectDocumentRequest();
+            return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
+                    const request = new UnprotectDocumentRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
                     request.protectionRequest = new ProtectionRequest({ password: "aspose" });
 
                     // Act
-                    return wordsApi.deleteUnprotectDocument(request)
-                        .then((result) => {
+                    return wordsApi.unprotectDocument(request)
+                        .then((result1) => {
                             // Assert
-                            expect(result.body.code).to.equal(200);
-                            expect(result.response.statusCode).to.equal(200);
+                            expect(result1.response.statusCode).to.equal(200);
 
-                            expect(result.body.protectionData).to.exist.and.not.equal(null);
+                            expect(result1.body.protectionData).to.exist.and.not.equal(null);
                         });
                 });
         });

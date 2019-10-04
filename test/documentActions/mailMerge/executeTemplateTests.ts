@@ -1,7 +1,7 @@
 /*
 * MIT License
 
-* Copyright (c) 2018 Aspose Pty Ltd
+* Copyright (c) 2019 Aspose Pty Ltd
 
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -22,10 +22,10 @@
 * SOFTWARE.
 */
 
-import { PostExecuteTemplateRequest, PutExecuteTemplateOnlineRequest } from "asposewordscloud";
 import { expect } from "chai";
 import * as fs from "fs";
 import "mocha";
+import { ExecuteMailMergeOnlineRequest, ExecuteMailMergeRequest } from "../asposewordscloud";
 import * as BaseTest from "../../baseTest";
 
 const testFolder = "DocumentActions/MailMerge";
@@ -38,13 +38,13 @@ describe("executeTemplate", () => {
             const templateLocalPath = BaseTest.localBaseTestDataFolder + testFolder + "/SampleExecuteTemplate.docx";
             const dataLocalPath = BaseTest.localBaseTestDataFolder + testFolder + "/SampleExecuteTemplateData.txt";
 
-            const request = new PutExecuteTemplateOnlineRequest({
-                data: fs.readFileSync(dataLocalPath),
-                template: fs.readFileSync(templateLocalPath),
+            const request = new ExecuteMailMergeOnlineRequest({
+                data: fs.createReadStream(dataLocalPath),
+                template: fs.createReadStream(templateLocalPath),
             });
 
             // Act
-            return wordsApi.putExecuteTemplateOnline(request)
+            return wordsApi.executeMailMergeOnline(request)
                 .then((result) => {
                     // Assert                
                     expect(result.response.statusCode).to.equal(200);
@@ -58,7 +58,6 @@ describe("executeTemplate", () => {
         describe("without regions", () => {
             it("should return response with code 200", () => {
 
-                const storageApi = BaseTest.initializeStorageApi();
                 const wordsApi = BaseTest.initializeWordsApi();
 
                 const templateLocalPath = BaseTest.localBaseTestDataFolder + testFolder + "/ExecuteTemplateWithoutRegions.doc";
@@ -66,27 +65,22 @@ describe("executeTemplate", () => {
                 const remoteFileName = "ExecuteTemplateWithoutRegions.doc";
                 const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
-                return new Promise((resolve) => {
-                    storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, templateLocalPath, (responseMessage) => {
-                        expect(responseMessage.status).to.equal("OK");
-                        resolve();
-                    });
-                })
-                    .then(() => {
-                        const request = new PostExecuteTemplateRequest();
+                return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, templateLocalPath)
+                .then((result) => {
+                        expect(result.response.statusMessage).to.equal("OK");
+                        const request = new ExecuteMailMergeRequest();
                         request.name = remoteFileName;
                         request.folder = remotePath;
                         request.data = fs.readFileSync(dataLocalPath, "utf8");
                         request.withRegions = false;
 
                         // Act
-                        return wordsApi.postExecuteTemplate(request)
-                            .then((result) => {
+                        return wordsApi.executeMailMerge(request)
+                            .then((result1) => {
                                 // Assert
-                                expect(result.body.code).to.equal(200);
-                                expect(result.response.statusCode).to.equal(200);
+                                expect(result1.response.statusCode).to.equal(200);
 
-                                expect(result.body.document.isEncrypted).to.equal(false);
+                                expect(result1.body.document.isEncrypted).to.equal(false);
                             });
                     });
             });
@@ -95,7 +89,6 @@ describe("executeTemplate", () => {
         describe("with regions", () => {
             it("should return response with code 200", () => {
 
-                const storageApi = BaseTest.initializeStorageApi();
                 const wordsApi = BaseTest.initializeWordsApi();
 
                 const templateLocalPath = BaseTest.localBaseTestDataFolder + testFolder + "/SampleExecuteTemplate.docx";
@@ -103,27 +96,22 @@ describe("executeTemplate", () => {
                 const remoteFileName = "ExecuteTemplateWithRegions.docx";
                 const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
-                return new Promise((resolve) => {
-                    storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, templateLocalPath, (responseMessage) => {
-                        expect(responseMessage.status).to.equal("OK");
-                        resolve();
-                    });
-                })
-                    .then(() => {
-                        const request = new PostExecuteTemplateRequest();
+                return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, templateLocalPath)
+                .then((result) => {
+                        expect(result.response.statusMessage).to.equal("OK");
+                        const request = new ExecuteMailMergeRequest();
                         request.name = remoteFileName;
                         request.folder = remotePath;
                         request.data = fs.readFileSync(dataLocalPath, "utf8");
                         request.withRegions = true;
 
                         // Act
-                        return wordsApi.postExecuteTemplate(request)
-                            .then((result) => {
+                        return wordsApi.executeMailMerge(request)
+                            .then((result1) => {
                                 // Assert
-                                expect(result.body.code).to.equal(200);
-                                expect(result.response.statusCode).to.equal(200);
+                                expect(result1.response.statusCode).to.equal(200);
 
-                                expect(result.body.document.isEncrypted).to.equal(false);
+                                expect(result1.body.document.isEncrypted).to.equal(false);
                             });
                     });
             });
@@ -132,7 +120,6 @@ describe("executeTemplate", () => {
         describe("with images", () => {
             it("should return response with code 200", () => {
 
-                const storageApi = BaseTest.initializeStorageApi();
                 const wordsApi = BaseTest.initializeWordsApi();
 
                 const templateLocalPath = BaseTest.localBaseTestDataFolder + testFolder + "/TestExecuteTemplateWithImages.doc";
@@ -140,27 +127,22 @@ describe("executeTemplate", () => {
                 const remoteFileName = "TestExecuteTemplateWithImagesTemplate.doc";
                 const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
-                return new Promise((resolve) => {
-                    storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, templateLocalPath, (responseMessage) => {
-                        expect(responseMessage.status).to.equal("OK");
-                        resolve();
-                    });
-                })
-                    .then(() => {
-                        const request = new PostExecuteTemplateRequest();
+                return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, templateLocalPath)
+                .then((result) => {
+                        expect(result.response.statusMessage).to.equal("OK");
+                        const request = new ExecuteMailMergeRequest();
                         request.name = remoteFileName;
                         request.folder = remotePath;
                         request.data = fs.readFileSync(dataLocalPath, "utf8");
                         // request.withRegions = false;
 
                         // Act
-                        return wordsApi.postExecuteTemplate(request)
-                            .then((result) => {
+                        return wordsApi.executeMailMerge(request)
+                            .then((result1) => {
                                 // Assert
-                                expect(result.body.code).to.equal(200);
-                                expect(result.response.statusCode).to.equal(200);
+                                expect(result1.response.statusCode).to.equal(200);
 
-                                expect(result.body.document.isEncrypted).to.equal(false);
+                                expect(result1.body.document.isEncrypted).to.equal(false);
                             });
                     });
             });

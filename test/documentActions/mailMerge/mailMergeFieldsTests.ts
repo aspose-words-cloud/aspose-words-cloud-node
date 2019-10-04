@@ -1,7 +1,7 @@
 /*
 * MIT License
 
-* Copyright (c) 2018 Aspose Pty Ltd
+* Copyright (c) 2019 Aspose Pty Ltd
 
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -22,44 +22,38 @@
 * SOFTWARE.
 */
 
-import { GetDocumentFieldNamesRequest, PutDocumentFieldNamesRequest } from "asposewordscloud";
 import { expect } from "chai";
 import * as fs from "fs";
 import "mocha";
+import { GetDocumentFieldNamesOnlineRequest, GetDocumentFieldNamesRequest } from "../asposewordscloud";
 import * as BaseTest from "../../baseTest";
 
 const testFolder = "DocumentActions/MailMerge";
 
 describe("mailMerge fields", () => {
-    describe("getDocumentStatistics function", () => {
+    describe("getDocumentFieldNames function", () => {
         it("should return response with code 200", () => {
 
-            const storageApi = BaseTest.initializeStorageApi();
             const wordsApi = BaseTest.initializeWordsApi();
 
             const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
             const remoteFileName = "TestGetDocumentFieldNames.docx";
             const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
-            return new Promise((resolve) => {
-                storageApi.PutCreate(remotePath + "/" + remoteFileName, null, null, localPath, (responseMessage) => {
-                    expect(responseMessage.status).to.equal("OK");
-                    resolve();
-                });
-            })
-                .then(() => {
+            return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
                     const request = new GetDocumentFieldNamesRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
 
                     // Act
                     return wordsApi.getDocumentFieldNames(request)
-                        .then((result) => {
+                        .then((result1) => {
                             // Assert
-                            expect(result.body.code).to.equal(200);
-                            expect(result.response.statusCode).to.equal(200);
+                            expect(result1.response.statusCode).to.equal(200);
 
-                            expect(result.body.fieldNames.names.length).to.equal(0);
+                            expect(result1.body.fieldNames.names.length).to.equal(0);
                         });
                 });
         });
@@ -72,18 +66,16 @@ describe("mailMerge fields", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const localPath = BaseTest.localBaseTestDataFolder + testFolder + "/SampleExecuteTemplate.docx";
 
-            const request = new PutDocumentFieldNamesRequest({
-                template: fs.readFileSync(localPath),
+            const request = new GetDocumentFieldNamesOnlineRequest({
+                template: fs.createReadStream(localPath),
                 useNonMergeFields: true,                                
             });
 
             // Act
-            return wordsApi.putDocumentFieldNames(request)
+            return wordsApi.getDocumentFieldNamesOnline(request)
                 .then((result) => {
                     // Assert                
                     expect(result.response.statusCode).to.equal(200);
-                    expect(result.response.statusCode).to.equal(200);
-
                     expect(result.body.fieldNames.names.length).to.equal(15);
                 });
 

@@ -1,0 +1,37 @@
+// For complete examples and data files, please go to https://github.com/aspose-words-cloud/aspose-words-cloud-node
+
+const {WordsApi, PostDocumentParagraphRunFontRequest, Font } = require("asposewordscloud");
+
+var AppSid = "" // Get App Key and App SID from https://dashboard.aspose.cloud/
+var AppKey = "" // Get App Key and App SID from https://dashboard.aspose.cloud/
+var BaseUrl = "https://api.aspose.cloud"
+var debugMode = false
+var version = "v1.1"
+
+wordsApi = new WordsApi(AppSid, AppKey, BaseUrl, debugMode, version);
+
+var StorageApi = require("asposestoragecloud")
+var config = {'appSid':AppSid, 'apiKey':AppKey};
+var storageApi = new StorageApi(config);
+
+var fileName = "test_multi_pages.docx";
+var dataPath = '../../TestData/Common/';
+
+storageApi.PutCreate(fileName, versionId=null, storage=null, file= dataPath + fileName , function(responseMessage) {
+	console.log('status:', responseMessage.status);
+	console.log('body:', responseMessage.body);
+});
+
+var request = new PostDocumentParagraphRunFontRequest();
+request.name = fileName;
+request.folder = "";
+request.paragraphPath = "sections/0/paragraphs/0";
+request.index = 0;
+request.fontDto = new Font({ bold: true });
+
+wordsApi.postDocumentParagraphRunFont(request).then((result) => {
+	console.log('API Response:', result.body);
+}).catch(function(err) {
+    // Deal with an error
+    console.log('Error:', err);
+});

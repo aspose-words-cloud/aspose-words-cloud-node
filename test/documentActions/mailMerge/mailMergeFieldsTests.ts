@@ -25,7 +25,7 @@
 import { expect } from "chai";
 import * as fs from "fs";
 import "mocha";
-import { GetDocumentFieldNamesOnlineRequest, GetDocumentFieldNamesRequest } from "../asposewordscloud";
+import { GetDocumentFieldNamesOnlineRequest, GetDocumentFieldNamesRequest } from "asposewordscloud";
 import * as BaseTest from "../../baseTest";
 
 const testFolder = "DocumentActions/MailMerge";

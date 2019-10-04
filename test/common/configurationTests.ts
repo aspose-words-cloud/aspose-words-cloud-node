@@ -27,7 +27,7 @@ import "mocha";
 import "mocha-sinon";
 import * as sinon from "sinon";
 
-import { WordsApi } from "../../src/api";
+import { WordsApi } from "asposewordscloud";
 import { GetDocumentRequest } from "asposewordscloud";
 import * as BaseTest from "../baseTest";
 

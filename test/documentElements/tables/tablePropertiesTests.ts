@@ -25,8 +25,8 @@
 import { expect } from "chai";
 import "mocha";
 
-import { GetTablePropertiesRequest, TableProperties, UpdateTablePropertiesRequest } from "../asposewordscloud";
-import { GetTablePropertiesWithoutNodePathRequest, UpdateTablePropertiesWithoutNodePathRequest } from "../asposewordscloud";
+import { GetTablePropertiesRequest, TableProperties, UpdateTablePropertiesRequest } from "asposewordscloud";
+import { GetTablePropertiesWithoutNodePathRequest, UpdateTablePropertiesWithoutNodePathRequest } from "asposewordscloud";
 import * as BaseTest from "../../baseTest";
 
 const testFolder = "DocumentElements/Tables";

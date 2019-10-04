@@ -25,8 +25,8 @@
 import { expect } from "chai";
 import "mocha";
 
-import { DeleteTableRequest, GetTableRequest, GetTablesRequest, InsertTableRequest, RenderTableRequest, TableInsert } from "../asposewordscloud";
-import { DeleteTableWithoutNodePathRequest, GetTablesWithoutNodePathRequest, GetTableWithoutNodePathRequest, InsertTableWithoutNodePathRequest, RenderTableWithoutNodePathRequest } from "../asposewordscloud";
+import { DeleteTableRequest, GetTableRequest, GetTablesRequest, InsertTableRequest, RenderTableRequest, TableInsert } from "asposewordscloud";
+import { DeleteTableWithoutNodePathRequest, GetTablesWithoutNodePathRequest, GetTableWithoutNodePathRequest, InsertTableWithoutNodePathRequest, RenderTableWithoutNodePathRequest } from "asposewordscloud";
 import * as BaseTest from "../../baseTest";
 
 const testFolder = "DocumentElements/Tables";

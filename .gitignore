@@ -4,6 +4,7 @@
 # node packages
 package-lock.json
 node_modules/
+npm-cache/
 
 # credentials
 testConfig.json

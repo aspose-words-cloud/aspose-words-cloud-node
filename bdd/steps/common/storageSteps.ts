@@ -25,7 +25,7 @@
 import { expect } from "chai";
 import { Given, Then } from "cucumber";
 import * as BaseTest from "../../../test/baseTest";
-import { DeleteFileRequest, DownloadFileRequest } from "../../../src/api";
+import { DeleteFileRequest, DownloadFileRequest } from "asposewordscloud";
 
 Given(/^I have uploaded document with name (.*) and subfolder is (.*) to storage$/, function (documentName, folder, callback) {
 

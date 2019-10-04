@@ -25,7 +25,7 @@
 import { expect } from "chai";
 import * as fs from "fs";
 import "mocha";
-import { ExecuteMailMergeOnlineRequest, ExecuteMailMergeRequest } from "../asposewordscloud";
+import { ExecuteMailMergeOnlineRequest, ExecuteMailMergeRequest } from "asposewordscloud";
 import * as BaseTest from "../../baseTest";
 
 const testFolder = "DocumentActions/MailMerge";

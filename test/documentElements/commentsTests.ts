@@ -90,7 +90,7 @@ describe("comments", () => {
         });
     });
 
-    describe("putComment function", () => {
+    describe("insertComment function", () => {
 
         it("should return response with code 200", () => {
 
@@ -108,7 +108,7 @@ describe("comments", () => {
                     request.folder = remotePath;
 
                     const nodeLink = new NodeLink();
-                    nodeLink.nodeId = "0.0.3";
+                    nodeLink.nodeId = "0.3.0.3";
                     const documentPosition = new DocumentPosition();
                     documentPosition.node = nodeLink;
                     documentPosition.offset = 0;
@@ -131,7 +131,7 @@ describe("comments", () => {
         });
     });
 
-    describe("postComment function", () => {
+    describe("updateComment function", () => {
 
         it("should return response with code 200", () => {
 
@@ -150,7 +150,7 @@ describe("comments", () => {
 
                     request.commentIndex = 0;
                     const nodeLink = new NodeLink();
-                    nodeLink.nodeId = "0.0.3";
+                    nodeLink.nodeId = "0.3.0";
                     const documentPosition = new DocumentPosition();
                     documentPosition.node = nodeLink;
                     documentPosition.offset = 0;

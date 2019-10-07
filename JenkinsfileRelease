@@ -151,11 +151,4 @@ node('words-linux') {
     } finally {                       
         deleteDir()
     }
-}
-
-stage('test published package'){
-	build job: 'words-node-sdk', 
-	   parameters: [
-		string(name: 'branch', value: 'testPackage')					
-	   ]
-}   
+} 

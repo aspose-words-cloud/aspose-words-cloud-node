@@ -55,6 +55,7 @@ def runtests(dockerImageVersion)
     }
 }
 
-node('words-linux') {        
+node('words-linux') {
+    sh "echo ok"
     runtests("latest")   
 }

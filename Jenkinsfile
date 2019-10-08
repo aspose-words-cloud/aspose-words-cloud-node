@@ -56,5 +56,6 @@ def runtests(dockerImageVersion)
 }
 
 node('words-linux') {
+	sh "echo With ref parameter"
     runtests("latest")   
 }

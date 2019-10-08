@@ -7,7 +7,9 @@ def runtests(dockerImageVersion)
     dir(dockerImageVersion){
         try {
             stage('checkout'){
-                checkout([$class: 'GitSCM', branches: [[name: params.branch]], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '361885ba-9425-4230-950e-0af201d90547', url: 'https://git.auckland.dynabic.com/words-cloud/words-cloud-node.git']]])
+				final localBranch = packageName.substring(params.branch.lastIndexOf('/') + 1, params.branch.length())
+			
+                checkout([$class: 'GitSCM', branches: [[name: localBranch]], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '361885ba-9425-4230-950e-0af201d90547', url: 'https://git.auckland.dynabic.com/words-cloud/words-cloud-node.git']]])
                 withCredentials([usernamePassword(credentialsId: '6839cbe8-39fa-40c0-86ce-90706f0bae5d', passwordVariable: 'AppKey', usernameVariable: 'AppSid')]) {
                     sh 'echo "{\\"AppSid\\": \\"$AppSid\\",\\"AppKey\\": \\"$AppKey\\"}" > testConfig.json'
                 }
@@ -27,7 +29,7 @@ def runtests(dockerImageVersion)
                         sh "npm install"
 												
                         sh "npm run gulp build"
-                        if (params.branch == 'refs/heads/master'){
+                        if (localBranch == 'master'){
                             sh "npm run lint"
                         }
                     }

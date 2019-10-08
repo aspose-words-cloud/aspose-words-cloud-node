@@ -1,5 +1,5 @@
 properties([
-	parameters([string(defaultValue: 'master', description: 'the branch to build', name: 'branch', trim: true)])
+	parameters([string(defaultValue: 'master', description: 'the branch to build', name: 'ref', trim: true)])
 ])
 
 def runtests(dockerImageVersion)
@@ -7,7 +7,7 @@ def runtests(dockerImageVersion)
     dir(dockerImageVersion){
         try {
             stage('checkout'){
-                checkout([$class: 'GitSCM', branches: [[name: '*/' + params.branch]], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '361885ba-9425-4230-950e-0af201d90547', url: 'https://git.auckland.dynabic.com/words-cloud/words-cloud-node.git']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/' + params.ref]], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '361885ba-9425-4230-950e-0af201d90547', url: 'https://git.auckland.dynabic.com/words-cloud/words-cloud-node.git']]])
                 withCredentials([usernamePassword(credentialsId: '6839cbe8-39fa-40c0-86ce-90706f0bae5d', passwordVariable: 'AppKey', usernameVariable: 'AppSid')]) {
                     sh 'echo "{\\"AppSid\\": \\"$AppSid\\",\\"AppKey\\": \\"$AppKey\\"}" > testConfig.json'
                 }
@@ -27,7 +27,7 @@ def runtests(dockerImageVersion)
                         sh "npm install"
 												
                         sh "npm run gulp build"
-                        if (params.branch == 'master'){
+                        if (params.ref == 'master'){
                             sh "npm run lint"
                         }
                     }
@@ -56,6 +56,5 @@ def runtests(dockerImageVersion)
 }
 
 node('words-linux') {
-    sh "echo my ${GIT_LOCAL_BRANCH}"
     runtests("latest")   
 }

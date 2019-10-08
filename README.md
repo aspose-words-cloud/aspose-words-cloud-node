@@ -20,7 +20,7 @@ The complete source code is available in this repository folder. You can either 
 
 To use Aspose Words for Cloud SDK you need to register an account with [Aspose Cloud](https://www.aspose.cloud/) and lookup/create App Key and SID at [Cloud Dashboard](https://dashboard.aspose.cloud/#/apps). There is free quota available. For more details, see [Aspose Cloud Pricing](https://purchase.aspose.cloud/pricing).
 
-Required version of Node.js is 4.8.7 or higher.
+Required version of Node.js is 8.16 or higher.
 
 ### Installation
 

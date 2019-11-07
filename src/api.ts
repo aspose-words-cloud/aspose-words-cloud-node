@@ -541,7 +541,7 @@ export class WordsApi {
     }
 
     /**
-     * Resets border properties to default values.              'nodePath' should refer to node with cell or row.
+     * Resets border properties to default values.              'nodePath' should refer to paragraph, cell or row.
      * @param requestObj contains request parameters
      */
     public async deleteBorder(requestObj: model.DeleteBorderRequest): Promise<model.WordsIncomingMessage<model.BorderResponse>> {
@@ -601,7 +601,7 @@ export class WordsApi {
     }
 
     /**
-     * Resets borders properties to default values.              'nodePath' should refer to node with cell or row.
+     * Resets borders properties to default values.              'nodePath' should refer to paragraph, cell or row.
      * @param requestObj contains request parameters
      */
     public async deleteBorders(requestObj: model.DeleteBordersRequest): Promise<model.WordsIncomingMessage<model.BordersResponse>> {
@@ -1779,6 +1779,58 @@ export class WordsApi {
     }
 
     /**
+     * Removes section from document.
+     * @param requestObj contains request parameters
+     */
+    public async deleteSection(requestObj: model.DeleteSectionRequest): Promise<http.IncomingMessage> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling deleteSection.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/sections/{sectionIndex}"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "sectionIndex" + "}", (requestObj.sectionIndex !== null) ? "/" + String(requestObj.sectionIndex) : "");
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling deleteSection.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling deleteSection.');
+        }
+
+        // verify required parameter 'requestObj.sectionIndex' is not undefined
+        if (requestObj.sectionIndex === undefined) {
+            throw new Error('Required parameter "requestObj.sectionIndex" was undefined when calling deleteSection.');
+        }
+
+        // verify required parameter 'requestObj.sectionIndex' is not null
+        if (requestObj.sectionIndex === null) {
+            throw new Error('Required parameter "requestObj.sectionIndex" was null when calling deleteSection.');
+        }
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        const requestOptions: request.Options = {
+            method: "DELETE",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve(response);
+    }
+
+    /**
      * Deletes a table.
      * @param requestObj contains request parameters
      */
@@ -2312,7 +2364,7 @@ export class WordsApi {
     }
 
     /**
-     * Returns a border. 'nodePath' should refer to node with cell or row.
+     * Returns a border. 'nodePath' should refer to paragraph, cell or row.
      * @param requestObj contains request parameters
      */
     public async getBorder(requestObj: model.GetBorderRequest): Promise<model.WordsIncomingMessage<model.BorderResponse>> {
@@ -2369,7 +2421,7 @@ export class WordsApi {
     }
 
     /**
-     * Returns a collection of borders. 'nodePath' should refer to node with cell or row.
+     * Returns a collection of borders. 'nodePath' should refer to paragraph, cell or row.
      * @param requestObj contains request parameters
      */
     public async getBorders(requestObj: model.GetBordersRequest): Promise<model.WordsIncomingMessage<model.BordersResponse>> {
@@ -7968,7 +8020,7 @@ export class WordsApi {
     }
 
     /**
-     * Updates border properties.              'nodePath' should refer to node with cell or row.
+     * Updates border properties.              'nodePath' should refer to paragraph, cell or row.
      * @param requestObj contains request parameters
      */
     public async updateBorder(requestObj: model.UpdateBorderRequest): Promise<model.WordsIncomingMessage<model.BorderResponse>> {

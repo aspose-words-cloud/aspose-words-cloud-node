@@ -1849,6 +1849,11 @@ export class ReplaceRange {
             name: "text",
             baseName: "Text",
             type: "string",
+        },        
+        {
+            name: "textType",
+            baseName: "TextType",
+            type: "ReplaceRange.TextTypeEnum",
         }    ];
 
     /**
@@ -1863,12 +1868,29 @@ export class ReplaceRange {
      */
     public text: string;
     
+    /**
+     * Gets or sets range's text type.
+     */
+    public textType: ReplaceRange.TextTypeEnum;
+    
     public constructor(init?: Partial<ReplaceRange>) {
         
         Object.assign(this, init);
     }        
 }
 
+/**
+ * Enums for ReplaceRange
+ */
+// tslint:disable:quotemark
+// tslint:disable-next-line:no-namespace
+export namespace ReplaceRange {
+    export enum TextTypeEnum {
+        Text = 'Text' as any,
+        Html = 'Html' as any,
+    }
+}
+// tslint:enable:quotemark
 /**
  * Class for document replace text request building.
  */
@@ -3347,6 +3369,11 @@ export class DocSaveOptionsData extends SaveOptionsData {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
+            name: "alwaysCompressMetafiles",
+            baseName: "AlwaysCompressMetafiles",
+            type: "boolean",
+        },        
+        {
             name: "password",
             baseName: "Password",
             type: "string",
@@ -3369,6 +3396,11 @@ export class DocSaveOptionsData extends SaveOptionsData {
         return super.getAttributeTypeMap().concat(DocSaveOptionsData.attributeTypeMap);
     }
 
+    /**
+     * Gets or sets When false, small metafiles are not compressed for performance reason. Default value is true, all metafiles are compressed regardless of its size.
+     */
+    public alwaysCompressMetafiles: boolean;
+    
     /**
      * Gets or sets password.
      */
@@ -6462,6 +6494,11 @@ export class ParagraphFormat extends LinkElement {
             type: "number",
         },        
         {
+            name: "isListItem",
+            baseName: "IsListItem",
+            type: "boolean",
+        },        
+        {
             name: "keepTogether",
             baseName: "KeepTogether",
             type: "boolean",
@@ -6593,6 +6630,11 @@ export class ParagraphFormat extends LinkElement {
      * Gets or sets the value (in points) for a first line or hanging indent. Use a positive value to set a first-line indent, and use a negative value to set a hanging indent.             
      */
     public firstLineIndent: number;
+    
+    /**
+     * Gets or sets True when the paragraph is an item in a bulleted or numbered list.
+     */
+    public isListItem: boolean;
     
     /**
      * Gets or sets true if all lines in the paragraph are to remain on the same page.             
@@ -7724,30 +7766,6 @@ export class Section extends LinkElement {
     public tables: LinkElement;
     
     public constructor(init?: Partial<Section>) {
-        super(init);
-        Object.assign(this, init);
-    }        
-}
-
-/**
- * Section link element.
- */
-export class SectionLink extends LinkElement {
-
-    /**
-     * Attribute type map
-     */
-    public static attributeTypeMap: Array<AttributeInfo> = [
-    ];
-
-    /**
-     * Returns attribute type map
-     */
-    public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(SectionLink.attributeTypeMap);
-    }
-
-    public constructor(init?: Partial<SectionLink>) {
         super(init);
         Object.assign(this, init);
     }        
@@ -9619,6 +9637,11 @@ export class HeaderFooter extends HeaderFooterLink {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
+            name: "childNodes",
+            baseName: "ChildNodes",
+            type: "Array<NodeLink>",
+        },        
+        {
             name: "drawingObjects",
             baseName: "DrawingObjects",
             type: "LinkElement",
@@ -9636,6 +9659,11 @@ export class HeaderFooter extends HeaderFooterLink {
         return super.getAttributeTypeMap().concat(HeaderFooter.attributeTypeMap);
     }
 
+    /**
+     * Gets or sets child nodes.
+     */
+    public childNodes: Array<NodeLink>;
+    
     /**
      * Gets or sets link to DrawingObjects resource.
      */
@@ -10477,6 +10505,30 @@ export class RunLink extends NodeLink {
     public text: string;
     
     public constructor(init?: Partial<RunLink>) {
+        super(init);
+        Object.assign(this, init);
+    }        
+}
+
+/**
+ * Section link element.
+ */
+export class SectionLink extends NodeLink {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<AttributeInfo> = [
+    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return super.getAttributeTypeMap().concat(SectionLink.attributeTypeMap);
+    }
+
+    public constructor(init?: Partial<SectionLink>) {
         super(init);
         Object.assign(this, init);
     }        
@@ -11599,6 +11651,7 @@ const enumsMap = {
     "GraphicsQualityOptionsData.SmoothingModeEnum": GraphicsQualityOptionsData.SmoothingModeEnum,
     "GraphicsQualityOptionsData.TextRenderingHintEnum": GraphicsQualityOptionsData.TextRenderingHintEnum,
     "PreferredWidth.TypeEnum": PreferredWidth.TypeEnum,
+    "ReplaceRange.TextTypeEnum": ReplaceRange.TextTypeEnum,
     "StringFormatData.AlignmentEnum": StringFormatData.AlignmentEnum,
     "StringFormatData.FormatFlagsEnum": StringFormatData.FormatFlagsEnum,
     "StringFormatData.HotkeyPrefixEnum": StringFormatData.HotkeyPrefixEnum,
@@ -11768,7 +11821,6 @@ const typeMap = {
             SearchResponse,
             SearchResultsCollection,
             Section,
-            SectionLink,
             SectionLinkCollection,
             SectionLinkCollectionResponse,
             SectionPageSetupResponse,
@@ -11808,6 +11860,7 @@ const typeMap = {
             PdfSaveOptionsData,
             PsSaveOptionsData,
             RunLink,
+            SectionLink,
             SvgSaveOptionsData,
             Table,
             TableCell,
@@ -12247,7 +12300,7 @@ export class DeleteBorderRequest {
     public name: string;
 
     /**
-     * Path to the node with border(node should be cell or row).
+     * Path to the node with border(node should be paragraph, cell or row).
      */
     public nodePath: string;
 
@@ -12306,7 +12359,7 @@ export class DeleteBordersRequest {
     public name: string;
 
     /**
-     * Path to the node with borders(node should be cell or row).
+     * Path to the node with borders(node should be paragraph, cell or row).
      */
     public nodePath: string;
 
@@ -13514,6 +13567,60 @@ export class DeleteRunRequest {
 }
 
 /**
+ * Request model for DeleteSection operation.
+ */
+export class DeleteSectionRequest {
+    /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * Section index.
+     */
+    public sectionIndex: number;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+    
+    public constructor(init?: Partial<DeleteSectionRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
  * Request model for DeleteTable operation.
  */
 export class DeleteTableRequest {
@@ -14012,7 +14119,7 @@ export class GetBorderRequest {
     public name: string;
 
     /**
-     * Path to the node with border(node should be cell or row).
+     * Path to the node with border(node should be paragraph, cell or row).
      */
     public nodePath: string;
 
@@ -14056,7 +14163,7 @@ export class GetBordersRequest {
     public name: string;
 
     /**
-     * Path to the node with borders (node should be cell or row).
+     * Path to the node with borders (node should be paragraph, cell or row).
      */
     public nodePath: string;
 
@@ -15879,7 +15986,7 @@ export class GetRangeTextRequest {
     public name: string;
 
     /**
-     * The range start identifier. Identifier is the value of the \"nodeId\" field, which every document node has, extended with the prefix \"id\". It looks like \"id0.7\". Also values like \"image5\" and \"table3\" can be used as an identifier for images and tables, where the number is an index of the image/table.
+     * The range start identifier. Identifier is the value of the \"nodeId\" field, which every document node has, extended with the prefix \"id\". It looks like \"id0.0.7\". Also values like \"image5\" and \"table3\" can be used as an identifier for images and tables, where the number is an index of the image/table.
      */
     public rangeStartIdentifier: string;
 
@@ -17868,7 +17975,7 @@ export class RemoveRangeRequest {
     public name: string;
 
     /**
-     * The range start identifier. Identifier is the value of the \"nodeId\" field, which every document node has, extended with the prefix \"id\". It looks like \"id0.7\". Also values like \"image5\" and \"table3\" can be used as an identifier for images and tables, where the number is an index of the image/table.
+     * The range start identifier. Identifier is the value of the \"nodeId\" field, which every document node has, extended with the prefix \"id\". It looks like \"id0.0.7\". Also values like \"image5\" and \"table3\" can be used as an identifier for images and tables, where the number is an index of the image/table.
      */
     public rangeStartIdentifier: string;
 
@@ -18432,7 +18539,7 @@ export class ReplaceWithTextRequest {
     public name: string;
 
     /**
-     * The range start identifier. Identifier is the value of the \"nodeId\" field, which every document node has, extended with the prefix \"id\". It looks like \"id0.7\". Also values like \"image5\" and \"table3\" can be used as an identifier for images and tables, where the number is an index of the image/table.
+     * The range start identifier. Identifier is the value of the \"nodeId\" field, which every document node has, extended with the prefix \"id\". It looks like \"id0.0.7\". Also values like \"image5\" and \"table3\" can be used as an identifier for images and tables, where the number is an index of the image/table.
      */
     public rangeStartIdentifier: string;
 
@@ -18540,7 +18647,7 @@ export class SaveAsRangeRequest {
     public name: string;
 
     /**
-     * The range start identifier. Identifier is the value of the \"nodeId\" field, which every document node has, extended with the prefix \"id\". It looks like \"id0.7\". Also values like \"image5\" and \"table3\" can be used as an identifier for images and tables, where the number is an index of the image/table.
+     * The range start identifier. Identifier is the value of the \"nodeId\" field, which every document node has, extended with the prefix \"id\". It looks like \"id0.0.7\". Also values like \"image5\" and \"table3\" can be used as an identifier for images and tables, where the number is an index of the image/table.
      */
     public rangeStartIdentifier: string;
 
@@ -18929,7 +19036,7 @@ export class UpdateBorderRequest {
     public borderProperties: Border;
 
     /**
-     * Path to the node with border(node should be cell or row).
+     * Path to the node with border(node should be paragraph, cell or row).
      */
     public nodePath: string;
 

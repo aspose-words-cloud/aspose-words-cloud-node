@@ -25,7 +25,7 @@
 import { expect } from "chai";
 import "mocha";
 
-import { GetSectionPageSetupRequest, GetSectionRequest, GetSectionsRequest, PageSetup, UpdateSectionPageSetupRequest } from "../../src/model/model";
+import { DeleteSectionRequest, GetSectionPageSetupRequest, GetSectionRequest, GetSectionsRequest, PageSetup, UpdateSectionPageSetupRequest } from "../../src/model/model";
 import * as BaseTest from "../baseTest";
 
 const testFolder = "DocumentElements/Sections";
@@ -151,5 +151,32 @@ describe("sections", () => {
                         });
                 });
         });
-    });    
+    });
+
+    describe("deleteSection function", () => {
+        it("should return response with code 200", () => {
+
+            const wordsApi = BaseTest.initializeWordsApi();
+
+            const localPath = BaseTest.localCommonTestDataFolder + "/test_doc.docx";
+            const remoteFileName = "TestDeleteSection.docx";
+            const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
+
+            return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
+                    const request = new DeleteSectionRequest();
+                    request.name = remoteFileName;
+                    request.folder = remotePath;
+                    request.sectionIndex = 0;
+
+                    // Act
+                    return wordsApi.deleteSection(request)
+                        .then((result1) => {
+                            // Assert
+                            expect(result1.statusCode).to.equal(200);
+                        });
+                });
+        });
+    }); 
 });

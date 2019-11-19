@@ -146,6 +146,147 @@ export class WordsApi {
     }
 
     /**
+     * Executes document \"build report\" operation.
+     * @param requestObj contains request parameters
+     */
+    public async buildReport(requestObj: model.BuildReportRequest): Promise<model.WordsIncomingMessage<model.DocumentResponse>> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling buildReport.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{template}/buildReport"
+            .replace("/{" + "template" + "}", (requestObj.template !== null) ? "/" + String(requestObj.template) : "");
+        const queryParameters: any = {};
+        const formParams: any = {};
+
+        // verify required parameter 'requestObj.template' is not undefined
+        if (requestObj.template === undefined) {
+            throw new Error('Required parameter "requestObj.template" was undefined when calling buildReport.');
+        }
+
+        // verify required parameter 'requestObj.template' is not null
+        if (requestObj.template === null) {
+            throw new Error('Required parameter "requestObj.template" was null when calling buildReport.');
+        }
+
+        // verify required parameter 'requestObj.data' is not undefined
+        if (requestObj.data === undefined) {
+            throw new Error('Required parameter "requestObj.data" was undefined when calling buildReport.');
+        }
+
+        // verify required parameter 'requestObj.data' is not null
+        if (requestObj.data === null) {
+            throw new Error('Required parameter "requestObj.data" was null when calling buildReport.');
+        }
+
+        // verify required parameter 'requestObj.reportEngineSettings' is not undefined
+        if (requestObj.reportEngineSettings === undefined) {
+            throw new Error('Required parameter "requestObj.reportEngineSettings" was undefined when calling buildReport.');
+        }
+
+        // verify required parameter 'requestObj.reportEngineSettings' is not null
+        if (requestObj.reportEngineSettings === null) {
+            throw new Error('Required parameter "requestObj.reportEngineSettings" was null when calling buildReport.');
+        }
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        if (requestObj.data !== undefined) {
+            formParams.Data = ObjectSerializer.serialize(requestObj.data, "string");
+        }
+
+        if (requestObj.reportEngineSettings !== undefined) {
+            formParams.ReportEngineSettings = ObjectSerializer.serialize(requestObj.reportEngineSettings, "{ [key: string]: string; }");
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        requestOptions.formData = formParams;        
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
+        const result: model.WordsIncomingMessage<model.DocumentResponse> = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Executes document \"build report\" online operation.
+     * @param requestObj contains request parameters
+     */
+    public async buildReportOnline(requestObj: model.BuildReportOnlineRequest): Promise<model.WordsIncomingMessage<Buffer>> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling buildReportOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/buildReport";
+        const queryParameters: any = {};
+        const formParams: any = {};
+
+        // verify required parameter 'requestObj.template' is not undefined
+        if (requestObj.template === undefined) {
+            throw new Error('Required parameter "requestObj.template" was undefined when calling buildReportOnline.');
+        }
+
+        // verify required parameter 'requestObj.template' is not null
+        if (requestObj.template === null) {
+            throw new Error('Required parameter "requestObj.template" was null when calling buildReportOnline.');
+        }
+
+        // verify required parameter 'requestObj.data' is not undefined
+        if (requestObj.data === undefined) {
+            throw new Error('Required parameter "requestObj.data" was undefined when calling buildReportOnline.');
+        }
+
+        // verify required parameter 'requestObj.data' is not null
+        if (requestObj.data === null) {
+            throw new Error('Required parameter "requestObj.data" was null when calling buildReportOnline.');
+        }
+
+        // verify required parameter 'requestObj.reportEngineSettings' is not undefined
+        if (requestObj.reportEngineSettings === undefined) {
+            throw new Error('Required parameter "requestObj.reportEngineSettings" was undefined when calling buildReportOnline.');
+        }
+
+        // verify required parameter 'requestObj.reportEngineSettings' is not null
+        if (requestObj.reportEngineSettings === null) {
+            throw new Error('Required parameter "requestObj.reportEngineSettings" was null when calling buildReportOnline.');
+        }
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "documentFileName", requestObj.documentFileName);
+        if (requestObj.template !== undefined) {
+            formParams.Template = requestObj.template;
+        }
+
+        if (requestObj.data !== undefined) {
+            formParams.Data = ObjectSerializer.serialize(requestObj.data, "string");
+        }
+
+        if (requestObj.reportEngineSettings !== undefined) {
+            formParams.ReportEngineSettings = ObjectSerializer.serialize(requestObj.reportEngineSettings, "{ [key: string]: string; }");
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+
+        requestOptions.formData = formParams;        
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const result: model.WordsIncomingMessage<Buffer> = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Classifies raw text.
      * @param requestObj contains request parameters
      */
@@ -2151,19 +2292,19 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling executeMailMerge.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/MailMerge"
-            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{template}/MailMerge"
+            .replace("/{" + "template" + "}", (requestObj.template !== null) ? "/" + String(requestObj.template) : "");
         const queryParameters: any = {};
         const formParams: any = {};
 
-        // verify required parameter 'requestObj.name' is not undefined
-        if (requestObj.name === undefined) {
-            throw new Error('Required parameter "requestObj.name" was undefined when calling executeMailMerge.');
+        // verify required parameter 'requestObj.template' is not undefined
+        if (requestObj.template === undefined) {
+            throw new Error('Required parameter "requestObj.template" was undefined when calling executeMailMerge.');
         }
 
-        // verify required parameter 'requestObj.name' is not null
-        if (requestObj.name === null) {
-            throw new Error('Required parameter "requestObj.name" was null when calling executeMailMerge.');
+        // verify required parameter 'requestObj.template' is not null
+        if (requestObj.template === null) {
+            throw new Error('Required parameter "requestObj.template" was null when calling executeMailMerge.');
         }
         
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);

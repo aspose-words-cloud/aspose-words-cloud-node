@@ -199,7 +199,7 @@ export class WordsApi {
         }
 
         if (requestObj.reportEngineSettings !== undefined) {
-            formParams.ReportEngineSettings = ObjectSerializer.serialize(requestObj.reportEngineSettings, "string");
+            formParams.ReportEngineSettings = ObjectSerializer.serialize(requestObj.reportEngineSettings, "{ [key: string]: string; }");
         }
 
         const requestOptions: request.Options = {
@@ -2292,19 +2292,19 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling executeMailMerge.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{template}/MailMerge"
-            .replace("/{" + "template" + "}", (requestObj.template !== null) ? "/" + String(requestObj.template) : "");
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/MailMerge"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
         const queryParameters: any = {};
         const formParams: any = {};
 
-        // verify required parameter 'requestObj.template' is not undefined
-        if (requestObj.template === undefined) {
-            throw new Error('Required parameter "requestObj.template" was undefined when calling executeMailMerge.');
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling executeMailMerge.');
         }
 
-        // verify required parameter 'requestObj.template' is not null
-        if (requestObj.template === null) {
-            throw new Error('Required parameter "requestObj.template" was null when calling executeMailMerge.');
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling executeMailMerge.');
         }
         
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);

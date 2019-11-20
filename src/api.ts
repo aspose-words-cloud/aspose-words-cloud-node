@@ -199,7 +199,7 @@ export class WordsApi {
         }
 
         if (requestObj.reportEngineSettings !== undefined) {
-            formParams.ReportEngineSettings = ObjectSerializer.serialize(requestObj.reportEngineSettings, "{ [key: string]: string; }");
+            formParams.ReportEngineSettings = ObjectSerializer.serialize(requestObj.reportEngineSettings, "string");
         }
 
         const requestOptions: request.Options = {

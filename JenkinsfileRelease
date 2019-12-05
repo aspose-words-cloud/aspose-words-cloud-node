@@ -14,81 +14,75 @@ node('words-linux') {
 				withCredentials([usernamePassword(credentialsId: '361885ba-9425-4230-950e-0af201d90547', usernameVariable: 'gitUsername', passwordVariable: 'gitPass')]) {
 					gitRepoUrl = "https://${gitUsername}:${gitPass}@git.auckland.dynabic.com/words-cloud/words-cloud-node.git"
 				}
+				
+				withCredentials([usernamePassword(credentialsId: '6839cbe8-39fa-40c0-86ce-90706f0bae5d', passwordVariable: 'AppKey', usernameVariable: 'AppSid')]) {
+					sh 'echo "{\\"AppSid\\": \\"$AppSid\\",\\"AppKey\\": \\"$AppKey\\"}" > testConfig.json'
+				}
 		   }
 		}
        
         docker.image('node:latest').inside{
-			gitlabCommitStatus("build package") {	   
-				stage('build package'){
-				   withEnv([
-				   /* Override the npm cache directory to avoid: EACCES: permission denied, mkdir '/.npm' */
-				   'npm_config_cache=npm-cache',
-				   /* set home to our current directory because other bower
-					* nonsense breaks with HOME=/, e.g.:
-					* EACCES: permission denied, mkdir '/.config'
-					*/
-				   'HOME=.',
-				   ]) {
-					   sh "npm install"
-					   sh "npm run gulp buildRelease"
-					   packageName = sh(returnStdout: true, script: 'npm pack').trim()
-					   
-					}
+			withEnv(['npm_config_cache=npm-cache', 'HOME=.']) 
+			{
+				gitlabCommitStatus("build the package") {	   
+					stage('build package')
+					{
+						sh "npm install"
+						sh "npm run gulp buildRelease"
+						packageName = sh(returnStdout: true, script: 'npm pack').trim()
+						
+						stash name: "newPackage", includes: "${packageName}" 
+					}			
+				}
 				
-					stash name: "newPackage", includes: "${packageName}"					
-			    }
-			}
-		}
-	
-		gitlabCommitStatus("Merge master to testPackage") {
-			stage('Merge master to testPackage'){			
-				sh "git checkout --merge testPackage"
-				sh "git reset --hard origin/testPackage"
-				sh "git merge --no-ff --allow-unrelated-histories origin/master"
-				sh "git diff --name-status"			
-				sh 'git commit -am "Merged master branch to testPackage" || exit 0'
-				sh "git push ${gitRepoUrl} testPackage"
-			}
-		}
-	
-		gitlabCommitStatus("Merge master to testPackage") {
-			stage('add reference to new package'){
-				unstash 'newPackage'	
-				docker.image('node:latest').inside{
-					 withEnv([
-					   /* Override the npm cache directory to avoid: EACCES: permission denied, mkdir '/.npm' */
-					   'npm_config_cache=npm-cache',
-					   /* set home to our current directory because other bower
-						* nonsense breaks with HOME=/, e.g.:
-						* EACCES: permission denied, mkdir '/.config'
-						*/
-					   'HOME=.',
-					   ]) {
+				gitlabCommitStatus("replace references") {
+					stage('replace references'){
+						sh "sed -i 's/asposewordscloud/asposewordscloudtest/g' package.json"
+					
 						sh "npm uninstall asposewordscloud"
 						sh "npm install ${packageName}"
+						
+						sh "find test -type f -name \"*.ts\" -exec sed -i 's+\".*/src/.*\"+\"asposewordscloud\"+g' {} +"
+						sh "find bdd -type f -name \"*.ts\" -exec sed -i 's+\".*/src/.*\"+\"asposewordscloud\"+g' {} +"
 					}
 				}
 				
-				sh "git diff --name-status"
-				sh "git ls-files --others --exclude-standard"
-				sh "git add -A"
-				sh 'git commit -am "new version of package added to repository" || exit 0'
-				sh "git push ${gitRepoUrl} testPackage"		
+				gitlabCommitStatus("rebuild with the package") {
+					stage('rebuild with the package'){												
+						sh "npm run gulp build"
+						
+						if (params.branch == 'refs/heads/master'){
+							sh "npm run lint"
+						}
+					}
+				}
+				
+				gitlabCommitStatus("package tests") {
+					stage('package tests'){   
+						try {
+							sh "npm run test-jenkins"
+						} finally {
+							junit 'reports/**.xml'
+						}
+					}
+				}
+				
+				gitlabCommitStatus("bdd package tests") {
+					stage('bdd package tests'){
+						try {
+							sh "npm run gulp cucumber"
+						} finally {
+							cucumber 'reports/**.json'
+						}
+					}
+				}
 			}
-		}
-		    			                
+		}			                
     } finally {                       
         deleteDir()
 		sh 'docker system prune -f'
     }
-}
-
-stage('test package'){
-	build job: 'words-node-sdk', 
-	   parameters: [
-		string(name: 'branch', value: 'testPackage')						
-	   ]
-}   
+} 
 
 stage('wait for publish confirmation'){
 	timeout(time:1, unit:'DAYS') {
@@ -100,7 +94,7 @@ node('words-linux') {
     try {
 		gitlabCommitStatus("checkout again") {
 			stage('checkout again'){
-			   checkout([$class: 'GitSCM', branches: [[name: '*/testPackage']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '361885ba-9425-4230-950e-0af201d90547', url: 'https://git.auckland.dynabic.com/words-cloud/words-cloud-node.git']]])          
+			   checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '361885ba-9425-4230-950e-0af201d90547', url: 'https://git.auckland.dynabic.com/words-cloud/words-cloud-node.git']]])          
 						
 				sh "git config user.email \"jenkins.aspose@gmail.com\""
 				sh "git config user.name \"jenkins\""
@@ -108,53 +102,22 @@ node('words-linux') {
 				withCredentials([usernamePassword(credentialsId: '361885ba-9425-4230-950e-0af201d90547', usernameVariable: 'gitUsername', passwordVariable: 'gitPass')]) {
 					gitRepoUrl = "https://${gitUsername}:${gitPass}@git.auckland.dynabic.com/words-cloud/words-cloud-node.git"
 				}
-
-				sh "git checkout testPackage"
-				sh "git reset --hard origin/testPackage"
+				
+				unstash 'newPackage'
 			}
 		}
 		
 		gitlabCommitStatus("publish package") {
 			stage('publish package'){
 				docker.image('node:latest').inside{
-					withEnv([
-					/* Override the npm cache directory to avoid: EACCES: permission denied, mkdir '/.npm' */
-					'npm_config_cache=npm-cache',
-						/* set home to our current directory because other bower
-						* nonsense breaks with HOME=/, e.g.:
-						* EACCES: permission denied, mkdir '/.config'
-						*/
-					'HOME=.',
-					]) {
-					withCredentials([string(credentialsId: '19f0eab9-c600-4746-a4bd-724efd2102c8', variable: 'npmToken')]) {
-						sh "echo //registry.npmjs.org/:_authToken=${npmToken} > .npmrc"
-						sh "npm publish ${packageName}"
-					}
+					withEnv(['npm_config_cache=npm-cache', 'HOME=.']) { 
+						withCredentials([string(credentialsId: '19f0eab9-c600-4746-a4bd-724efd2102c8', variable: 'npmToken')]) 
+						{
+							sh "echo //registry.npmjs.org/:_authToken=${npmToken} > .npmrc"
+							sh "npm publish ${packageName}"
+						}
 					}
 				}				
-			}
-		}
-		
-		gitlabCommitStatus("change reference to published package") {
-			stage('change reference to published package'){
-				docker.image('node:latest').inside{           
-					withEnv([
-					/* Override the npm cache directory to avoid: EACCES: permission denied, mkdir '/.npm' */
-					'npm_config_cache=npm-cache',
-						/* set home to our current directory because other bower
-						* nonsense breaks with HOME=/, e.g.:
-						* EACCES: permission denied, mkdir '/.config'
-						*/
-					'HOME=.',
-					]) {
-						sh "npm uninstall asposewordscloud"
-						sh "npm install asposewordscloud"              
-					}				
-				}
-
-				sh "git diff --name-status"
-				sh 'git commit -am "reference changed to published package" || exit 0'
-				sh "git push ${gitRepoUrl} testPackage"						
 			}
 		}
 		
@@ -163,7 +126,9 @@ node('words-linux') {
 				final fullVersion = packageName.substring(packageName.lastIndexOf('@') + 1, packageName.length())
 				final version = fullVersion.substring(0, fullVersion.lastIndexOf('.'))
 
-				sh "git tag -a ${version} -m \"version ${version}\"" 
+				sh "git clean -fdx"
+				sh "git checkout ."
+				sh "git tag -a ${version} -m \"version ${version}\""
 				sh "git push ${gitRepoUrl} ${version}"
 			}
 		}

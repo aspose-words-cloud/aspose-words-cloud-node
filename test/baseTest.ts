@@ -58,7 +58,7 @@ export class TestWordsApi extends WordsApi {
 
         const request = new UploadFileRequest();
         request.path = remotePath;
-        request.file = createReadStream(localPath);
+        request.fileContent = createReadStream(localPath);
 
         return super.uploadFile(request);
     }

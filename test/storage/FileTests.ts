@@ -42,7 +42,7 @@ describe("Storage file operations", () => {
             const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
             const request: UploadFileRequest = {
-                file: fs.createReadStream(localPath),
+                fileContent: fs.createReadStream(localPath),
                 path: remotePath + "/" + remoteFileName,
                 storageName: undefined,
             };
@@ -161,7 +161,7 @@ describe("Storage file operations", () => {
             const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
             const request: UploadFileRequest = {
-                file: fs.createReadStream(localPath),
+                fileContent: fs.createReadStream(localPath),
                 path: remotePath + "/" + remoteFileName,
                 storageName: undefined,
             };

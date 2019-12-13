@@ -9243,14 +9243,14 @@ export class WordsApi {
         const queryParameters: any = {};
         const formParams: any = {};
 
-        // verify required parameter 'requestObj.file' is not undefined
-        if (requestObj.file === undefined) {
-            throw new Error('Required parameter "requestObj.file" was undefined when calling uploadFile.');
+        // verify required parameter 'requestObj.fileContent' is not undefined
+        if (requestObj.fileContent === undefined) {
+            throw new Error('Required parameter "requestObj.fileContent" was undefined when calling uploadFile.');
         }
 
-        // verify required parameter 'requestObj.file' is not null
-        if (requestObj.file === null) {
-            throw new Error('Required parameter "requestObj.file" was null when calling uploadFile.');
+        // verify required parameter 'requestObj.fileContent' is not null
+        if (requestObj.fileContent === null) {
+            throw new Error('Required parameter "requestObj.fileContent" was null when calling uploadFile.');
         }
 
         // verify required parameter 'requestObj.path' is not undefined
@@ -9264,8 +9264,8 @@ export class WordsApi {
         }
         
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storageName", requestObj.storageName);
-        if (requestObj.file !== undefined) {
-            formParams.File = requestObj.file;
+        if (requestObj.fileContent !== undefined) {
+            formParams.FileContent = requestObj.fileContent;
         }
 
         const requestOptions: request.Options = {

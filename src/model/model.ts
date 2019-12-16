@@ -688,8 +688,8 @@ export class ErrorDetails {
             type: "string",
         },        
         {
-            name: "errorDateTime",
-            baseName: "ErrorDateTime",
+            name: "date",
+            baseName: "Date",
             type: "Date",
         }    ];
 
@@ -701,14 +701,14 @@ export class ErrorDetails {
     }
 
     /**
-     * The request id.
+     * The request id
      */
     public requestId: string;
     
     /**
-     * Error datetime.
+     * Date
      */
-    public errorDateTime: Date;
+    public date: Date;
     
     public constructor(init?: Partial<ErrorDetails>) {
         

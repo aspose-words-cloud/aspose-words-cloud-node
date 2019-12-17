@@ -76,7 +76,7 @@ describe("tableBorders", () => {
                     request.name = remoteFileName;
                     request.folder = remotePath;
                     request.nodePath = "tables/1/rows/0/cells/0";
-                    request.index = 0;
+                    request.borderType = "left";
 
                     // Act
                     return wordsApi.getBorder(request)
@@ -135,7 +135,7 @@ describe("tableBorders", () => {
                     request.name = remoteFileName;
                     request.folder = remotePath;
                     request.nodePath = "sections/0/tables/2/rows/0";
-                    request.index = 0;
+                    request.borderType = "left";
 
                     // Act
                     return wordsApi.deleteBorder(request)
@@ -165,7 +165,8 @@ describe("tableBorders", () => {
                     request.name = remoteFileName;
                     request.folder = remotePath;
                     request.nodePath = "sections/0/tables/2/rows/0";
-                    request.index = 0;
+                    request.borderType = "left";
+
                     request.borderProperties = new Border({
                         borderType: Border.BorderTypeEnum.Left,
                         color: new XmlColor({ alpha: 2 }),

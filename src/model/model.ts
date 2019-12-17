@@ -12305,9 +12305,9 @@ export class DeleteBorderRequest {
     public nodePath: string;
 
     /**
-     * Object index.
+     * Border type.
      */
-    public index: number;
+    public borderType: string;
 
     /**
      * Original document folder.
@@ -14124,9 +14124,9 @@ export class GetBorderRequest {
     public nodePath: string;
 
     /**
-     * Object index.
+     * Border type.
      */
-    public index: number;
+    public borderType: string;
 
     /**
      * Original document folder.
@@ -19041,9 +19041,9 @@ export class UpdateBorderRequest {
     public nodePath: string;
 
     /**
-     * Object index.
+     * Border type.
      */
-    public index: number;
+    public borderType: string;
 
     /**
      * Original document folder.

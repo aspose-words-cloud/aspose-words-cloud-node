@@ -549,10 +549,10 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteBorder.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/borders/{index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/borders/{borderType}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "borderType" + "}", (requestObj.borderType !== null) ? "/" + String(requestObj.borderType) : "");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -570,14 +570,14 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj.nodePath" was undefined when calling deleteBorder.');
         }
 
-        // verify required parameter 'requestObj.index' is not undefined
-        if (requestObj.index === undefined) {
-            throw new Error('Required parameter "requestObj.index" was undefined when calling deleteBorder.');
+        // verify required parameter 'requestObj.borderType' is not undefined
+        if (requestObj.borderType === undefined) {
+            throw new Error('Required parameter "requestObj.borderType" was undefined when calling deleteBorder.');
         }
 
-        // verify required parameter 'requestObj.index' is not null
-        if (requestObj.index === null) {
-            throw new Error('Required parameter "requestObj.index" was null when calling deleteBorder.');
+        // verify required parameter 'requestObj.borderType' is not null
+        if (requestObj.borderType === null) {
+            throw new Error('Required parameter "requestObj.borderType" was null when calling deleteBorder.');
         }
         
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -2372,10 +2372,10 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getBorder.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/borders/{index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/borders/{borderType}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "borderType" + "}", (requestObj.borderType !== null) ? "/" + String(requestObj.borderType) : "");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -2393,14 +2393,14 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj.nodePath" was undefined when calling getBorder.');
         }
 
-        // verify required parameter 'requestObj.index' is not undefined
-        if (requestObj.index === undefined) {
-            throw new Error('Required parameter "requestObj.index" was undefined when calling getBorder.');
+        // verify required parameter 'requestObj.borderType' is not undefined
+        if (requestObj.borderType === undefined) {
+            throw new Error('Required parameter "requestObj.borderType" was undefined when calling getBorder.');
         }
 
-        // verify required parameter 'requestObj.index' is not null
-        if (requestObj.index === null) {
-            throw new Error('Required parameter "requestObj.index" was null when calling getBorder.');
+        // verify required parameter 'requestObj.borderType' is not null
+        if (requestObj.borderType === null) {
+            throw new Error('Required parameter "requestObj.borderType" was null when calling getBorder.');
         }
         
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -8028,10 +8028,10 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling updateBorder.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/borders/{index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/borders/{borderType}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "borderType" + "}", (requestObj.borderType !== null) ? "/" + String(requestObj.borderType) : "");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -8059,14 +8059,14 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj.nodePath" was undefined when calling updateBorder.');
         }
 
-        // verify required parameter 'requestObj.index' is not undefined
-        if (requestObj.index === undefined) {
-            throw new Error('Required parameter "requestObj.index" was undefined when calling updateBorder.');
+        // verify required parameter 'requestObj.borderType' is not undefined
+        if (requestObj.borderType === undefined) {
+            throw new Error('Required parameter "requestObj.borderType" was undefined when calling updateBorder.');
         }
 
-        // verify required parameter 'requestObj.index' is not null
-        if (requestObj.index === null) {
-            throw new Error('Required parameter "requestObj.index" was null when calling updateBorder.');
+        // verify required parameter 'requestObj.borderType' is not null
+        if (requestObj.borderType === null) {
+            throw new Error('Required parameter "requestObj.borderType" was null when calling updateBorder.');
         }
         
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);

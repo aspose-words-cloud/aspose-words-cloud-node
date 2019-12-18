@@ -12307,7 +12307,7 @@ export class DeleteBorderRequest {
     /**
      * Border type.
      */
-    public borderType: string;
+    public borderType: 'Bottom' | 'Left' | 'Right' | 'Top' | 'Horizontal' | 'Vertical' | 'DiagonalDown' | 'DiagonalUp' | 'None';
 
     /**
      * Original document folder.
@@ -14126,7 +14126,7 @@ export class GetBorderRequest {
     /**
      * Border type.
      */
-    public borderType: string;
+    public borderType: 'Bottom' | 'Left' | 'Right' | 'Top' | 'Horizontal' | 'Vertical' | 'DiagonalDown' | 'DiagonalUp' | 'None';
 
     /**
      * Original document folder.
@@ -19043,7 +19043,7 @@ export class UpdateBorderRequest {
     /**
      * Border type.
      */
-    public borderType: string;
+    public borderType: 'Bottom' | 'Left' | 'Right' | 'Top' | 'Horizontal' | 'Vertical' | 'DiagonalDown' | 'DiagonalUp' | 'None';
 
     /**
      * Original document folder.

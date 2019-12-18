@@ -34,7 +34,8 @@
         "file-header": true,
         "only-arrow-functions": false,
         "object-literal-sort-keys": false,
-        "no-unused-expression": false
+        "no-unused-expression": false,
+        "quotemark":false
     },
     "rulesDirectory": []
 }

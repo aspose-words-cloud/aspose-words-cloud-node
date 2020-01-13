@@ -70,27 +70,27 @@ export class ApiError {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "code",
-            baseName: "code",
+            baseName: "Code",
             type: "string",
         },        
         {
             name: "message",
-            baseName: "message",
+            baseName: "Message",
             type: "string",
         },        
         {
             name: "description",
-            baseName: "description",
+            baseName: "Description",
             type: "string",
         },        
         {
             name: "dateTime",
-            baseName: "dateTime",
+            baseName: "DateTime",
             type: "Date",
         },        
         {
             name: "innerError",
-            baseName: "innerError",
+            baseName: "InnerError",
             type: "ApiError",
         }    ];
 
@@ -143,12 +143,12 @@ export class BookmarkData {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "name",
-            baseName: "name",
+            baseName: "Name",
             type: "string",
         },        
         {
             name: "text",
-            baseName: "text",
+            baseName: "Text",
             type: "string",
         }    ];
 
@@ -186,12 +186,12 @@ export class BookmarksOutlineLevelData {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "name",
-            baseName: "name",
+            baseName: "Name",
             type: "string",
         },        
         {
             name: "bookmarksOutlineLevel",
-            baseName: "bookmarksOutlineLevel",
+            baseName: "BookmarksOutlineLevel",
             type: "number",
         }    ];
 
@@ -229,12 +229,12 @@ export class ClassificationResult {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "className",
-            baseName: "className",
+            baseName: "ClassName",
             type: "string",
         },        
         {
             name: "classProbability",
-            baseName: "classProbability",
+            baseName: "ClassProbability",
             type: "number",
         }    ];
 
@@ -272,17 +272,17 @@ export class CompareData {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "comparingWithDocument",
-            baseName: "comparingWithDocument",
+            baseName: "ComparingWithDocument",
             type: "string",
         },        
         {
             name: "author",
-            baseName: "author",
+            baseName: "Author",
             type: "string",
         },        
         {
             name: "dateTime",
-            baseName: "dateTime",
+            baseName: "DateTime",
             type: "Date",
         }    ];
 
@@ -325,32 +325,32 @@ export class Document {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "links",
-            baseName: "links",
+            baseName: "Links",
             type: "Array<Link>",
         },        
         {
             name: "fileName",
-            baseName: "fileName",
+            baseName: "FileName",
             type: "string",
         },        
         {
             name: "sourceFormat",
-            baseName: "sourceFormat",
+            baseName: "SourceFormat",
             type: "Document.SourceFormatEnum",
         },        
         {
             name: "isEncrypted",
-            baseName: "isEncrypted",
+            baseName: "IsEncrypted",
             type: "boolean",
         },        
         {
             name: "isSigned",
-            baseName: "isSigned",
+            baseName: "IsSigned",
             type: "boolean",
         },        
         {
             name: "documentProperties",
-            baseName: "documentProperties",
+            baseName: "DocumentProperties",
             type: "DocumentProperties",
         }    ];
 
@@ -439,12 +439,12 @@ export class DocumentEntry {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "href",
-            baseName: "href",
+            baseName: "Href",
             type: "string",
         },        
         {
             name: "importFormatMode",
-            baseName: "importFormatMode",
+            baseName: "ImportFormatMode",
             type: "string",
         }    ];
 
@@ -482,7 +482,7 @@ export class DocumentEntryList {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "documentEntries",
-            baseName: "documentEntries",
+            baseName: "DocumentEntries",
             type: "Array<DocumentEntry>",
         }    ];
 
@@ -515,12 +515,12 @@ export class DocumentPosition {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "node",
-            baseName: "node",
+            baseName: "Node",
             type: "NodeLink",
         },        
         {
             name: "offset",
-            baseName: "offset",
+            baseName: "Offset",
             type: "number",
         }    ];
 
@@ -558,27 +558,27 @@ export class DocumentStatData {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "wordCount",
-            baseName: "wordCount",
+            baseName: "WordCount",
             type: "number",
         },        
         {
             name: "paragraphCount",
-            baseName: "paragraphCount",
+            baseName: "ParagraphCount",
             type: "number",
         },        
         {
             name: "pageCount",
-            baseName: "pageCount",
+            baseName: "PageCount",
             type: "number",
         },        
         {
             name: "footnotesStatData",
-            baseName: "footnotesStatData",
+            baseName: "FootnotesStatData",
             type: "FootnotesStatData",
         },        
         {
             name: "pageStatData",
-            baseName: "pageStatData",
+            baseName: "PageStatData",
             type: "Array<PageStatData>",
         }    ];
 
@@ -631,17 +631,17 @@ export class DownsampleOptionsData {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "downsampleImages",
-            baseName: "downsampleImages",
+            baseName: "DownsampleImages",
             type: "boolean",
         },        
         {
             name: "resolution",
-            baseName: "resolution",
+            baseName: "Resolution",
             type: "number",
         },        
         {
             name: "resolutionThreshold",
-            baseName: "resolutionThreshold",
+            baseName: "ResolutionThreshold",
             type: "number",
         }    ];
 
@@ -684,12 +684,12 @@ export class ErrorDetails {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "requestId",
-            baseName: "requestId",
+            baseName: "RequestId",
             type: "string",
         },        
         {
             name: "errorDateTime",
-            baseName: "errorDateTime",
+            baseName: "ErrorDateTime",
             type: "Date",
         }    ];
 
@@ -727,7 +727,7 @@ export class FilesList {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "value",
-            baseName: "value",
+            baseName: "Value",
             type: "Array<StorageFile>",
         }    ];
 
@@ -760,12 +760,12 @@ export class FilesUploadResult {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "uploaded",
-            baseName: "uploaded",
+            baseName: "Uploaded",
             type: "Array<string>",
         },        
         {
             name: "errors",
-            baseName: "errors",
+            baseName: "Errors",
             type: "Array<StorageApiError>",
         }    ];
 
@@ -803,22 +803,22 @@ export class FontInfo {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "fontFamilyName",
-            baseName: "fontFamilyName",
+            baseName: "FontFamilyName",
             type: "string",
         },        
         {
             name: "fullFontName",
-            baseName: "fullFontName",
+            baseName: "FullFontName",
             type: "string",
         },        
         {
             name: "version",
-            baseName: "version",
+            baseName: "Version",
             type: "string",
         },        
         {
             name: "filePath",
-            baseName: "filePath",
+            baseName: "FilePath",
             type: "string",
         }    ];
 
@@ -866,12 +866,12 @@ export class FootnotesStatData {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "wordCount",
-            baseName: "wordCount",
+            baseName: "WordCount",
             type: "number",
         },        
         {
             name: "paragraphCount",
-            baseName: "paragraphCount",
+            baseName: "ParagraphCount",
             type: "number",
         }    ];
 
@@ -909,32 +909,32 @@ export class GraphicsQualityOptionsData {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "compositingMode",
-            baseName: "compositingMode",
+            baseName: "CompositingMode",
             type: "GraphicsQualityOptionsData.CompositingModeEnum",
         },        
         {
             name: "compositingQuality",
-            baseName: "compositingQuality",
+            baseName: "CompositingQuality",
             type: "GraphicsQualityOptionsData.CompositingQualityEnum",
         },        
         {
             name: "interpolationMode",
-            baseName: "interpolationMode",
+            baseName: "InterpolationMode",
             type: "GraphicsQualityOptionsData.InterpolationModeEnum",
         },        
         {
             name: "smoothingMode",
-            baseName: "smoothingMode",
+            baseName: "SmoothingMode",
             type: "GraphicsQualityOptionsData.SmoothingModeEnum",
         },        
         {
             name: "stringFormat",
-            baseName: "stringFormat",
+            baseName: "StringFormat",
             type: "StringFormatData",
         },        
         {
             name: "textRenderingHint",
-            baseName: "textRenderingHint",
+            baseName: "TextRenderingHint",
             type: "GraphicsQualityOptionsData.TextRenderingHintEnum",
         }    ];
 
@@ -1039,22 +1039,22 @@ export class Link {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "href",
-            baseName: "href",
+            baseName: "Href",
             type: "string",
         },        
         {
             name: "rel",
-            baseName: "rel",
+            baseName: "Rel",
             type: "string",
         },        
         {
             name: "type",
-            baseName: "type",
+            baseName: "Type",
             type: "string",
         },        
         {
             name: "title",
-            baseName: "title",
+            baseName: "Title",
             type: "string",
         }    ];
 
@@ -1135,12 +1135,12 @@ export class LoadWebDocumentData {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "loadingDocumentUrl",
-            baseName: "loadingDocumentUrl",
+            baseName: "LoadingDocumentUrl",
             type: "string",
         },        
         {
             name: "saveOptions",
-            baseName: "saveOptions",
+            baseName: "SaveOptions",
             type: "SaveOptionsData",
         }    ];
 
@@ -1178,27 +1178,27 @@ export class MetafileRenderingOptionsData {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "emfPlusDualRenderingMode",
-            baseName: "emfPlusDualRenderingMode",
+            baseName: "EmfPlusDualRenderingMode",
             type: "string",
         },        
         {
             name: "emulateRasterOperations",
-            baseName: "emulateRasterOperations",
+            baseName: "EmulateRasterOperations",
             type: "boolean",
         },        
         {
             name: "renderingMode",
-            baseName: "renderingMode",
+            baseName: "RenderingMode",
             type: "string",
         },        
         {
             name: "useEmfEmbeddedToWmf",
-            baseName: "useEmfEmbeddedToWmf",
+            baseName: "UseEmfEmbeddedToWmf",
             type: "boolean",
         },        
         {
             name: "scaleWmfFontsToMetafileSize",
-            baseName: "scaleWmfFontsToMetafileSize",
+            baseName: "ScaleWmfFontsToMetafileSize",
             type: "boolean",
         }    ];
 
@@ -1251,12 +1251,12 @@ export class ModificationOperationResult {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "source",
-            baseName: "source",
+            baseName: "Source",
             type: "FileLink",
         },        
         {
             name: "dest",
-            baseName: "dest",
+            baseName: "Dest",
             type: "FileLink",
         }    ];
 
@@ -1294,32 +1294,32 @@ export class OutlineOptionsData {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "bookmarksOutlineLevels",
-            baseName: "bookmarksOutlineLevels",
+            baseName: "BookmarksOutlineLevels",
             type: "Array<BookmarksOutlineLevelData>",
         },        
         {
             name: "defaultBookmarksOutlineLevel",
-            baseName: "defaultBookmarksOutlineLevel",
+            baseName: "DefaultBookmarksOutlineLevel",
             type: "number",
         },        
         {
             name: "createMissingOutlineLevels",
-            baseName: "createMissingOutlineLevels",
+            baseName: "CreateMissingOutlineLevels",
             type: "boolean",
         },        
         {
             name: "createOutlinesForHeadingsInTables",
-            baseName: "createOutlinesForHeadingsInTables",
+            baseName: "CreateOutlinesForHeadingsInTables",
             type: "boolean",
         },        
         {
             name: "expandedOutlineLevels",
-            baseName: "expandedOutlineLevels",
+            baseName: "ExpandedOutlineLevels",
             type: "number",
         },        
         {
             name: "headingsOutlineLevels",
-            baseName: "headingsOutlineLevels",
+            baseName: "HeadingsOutlineLevels",
             type: "number",
         }    ];
 
@@ -1377,22 +1377,22 @@ export class PageNumber {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "format",
-            baseName: "format",
+            baseName: "Format",
             type: "string",
         },        
         {
             name: "alignment",
-            baseName: "alignment",
+            baseName: "Alignment",
             type: "string",
         },        
         {
             name: "isTop",
-            baseName: "isTop",
+            baseName: "IsTop",
             type: "boolean",
         },        
         {
             name: "setPageNumberOnFirstPage",
-            baseName: "setPageNumberOnFirstPage",
+            baseName: "SetPageNumberOnFirstPage",
             type: "boolean",
         }    ];
 
@@ -1440,22 +1440,22 @@ export class PageStatData {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "pageNumber",
-            baseName: "pageNumber",
+            baseName: "PageNumber",
             type: "number",
         },        
         {
             name: "wordCount",
-            baseName: "wordCount",
+            baseName: "WordCount",
             type: "number",
         },        
         {
             name: "paragraphCount",
-            baseName: "paragraphCount",
+            baseName: "ParagraphCount",
             type: "number",
         },        
         {
             name: "footnotesStatData",
-            baseName: "footnotesStatData",
+            baseName: "FootnotesStatData",
             type: "FootnotesStatData",
         }    ];
 
@@ -1503,7 +1503,7 @@ export class ParagraphInsert {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "text",
-            baseName: "text",
+            baseName: "Text",
             type: "string",
         }    ];
 
@@ -1536,27 +1536,27 @@ export class PdfDigitalSignatureDetailsData {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "certificateFilename",
-            baseName: "certificateFilename",
+            baseName: "CertificateFilename",
             type: "string",
         },        
         {
             name: "hashAlgorithm",
-            baseName: "hashAlgorithm",
+            baseName: "HashAlgorithm",
             type: "string",
         },        
         {
             name: "location",
-            baseName: "location",
+            baseName: "Location",
             type: "string",
         },        
         {
             name: "reason",
-            baseName: "reason",
+            baseName: "Reason",
             type: "string",
         },        
         {
             name: "signatureDate",
-            baseName: "signatureDate",
+            baseName: "SignatureDate",
             type: "Date",
         }    ];
 
@@ -1609,22 +1609,22 @@ export class PdfEncryptionDetailsData {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "encryptionAlgorithm",
-            baseName: "encryptionAlgorithm",
+            baseName: "EncryptionAlgorithm",
             type: "string",
         },        
         {
             name: "ownerPassword",
-            baseName: "ownerPassword",
+            baseName: "OwnerPassword",
             type: "string",
         },        
         {
             name: "permissions",
-            baseName: "permissions",
+            baseName: "Permissions",
             type: "string",
         },        
         {
             name: "userPassword",
-            baseName: "userPassword",
+            baseName: "UserPassword",
             type: "string",
         }    ];
 
@@ -1672,12 +1672,12 @@ export class PreferredWidth {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "type",
-            baseName: "type",
+            baseName: "Type",
             type: "PreferredWidth.TypeEnum",
         },        
         {
             name: "value",
-            baseName: "value",
+            baseName: "Value",
             type: "number",
         }    ];
 
@@ -1728,7 +1728,7 @@ export class ProtectionData {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "protectionType",
-            baseName: "protectionType",
+            baseName: "ProtectionType",
             type: "string",
         }    ];
 
@@ -1761,17 +1761,17 @@ export class ProtectionRequest {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "password",
-            baseName: "password",
+            baseName: "Password",
             type: "string",
         },        
         {
             name: "newPassword",
-            baseName: "newPassword",
+            baseName: "NewPassword",
             type: "string",
         },        
         {
             name: "protectionType",
-            baseName: "protectionType",
+            baseName: "ProtectionType",
             type: "string",
         }    ];
 
@@ -1814,7 +1814,7 @@ export class RangeDocument {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "documentName",
-            baseName: "documentName",
+            baseName: "DocumentName",
             type: "string",
         }    ];
 
@@ -1847,12 +1847,12 @@ export class ReplaceRange {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "text",
-            baseName: "text",
+            baseName: "Text",
             type: "string",
         },        
         {
             name: "textType",
-            baseName: "textType",
+            baseName: "TextType",
             type: "ReplaceRange.TextTypeEnum",
         }    ];
 
@@ -1902,27 +1902,27 @@ export class ReplaceTextParameters {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "oldValue",
-            baseName: "oldValue",
+            baseName: "OldValue",
             type: "string",
         },        
         {
             name: "newValue",
-            baseName: "newValue",
+            baseName: "NewValue",
             type: "string",
         },        
         {
             name: "isMatchCase",
-            baseName: "isMatchCase",
+            baseName: "IsMatchCase",
             type: "boolean",
         },        
         {
             name: "isMatchWholeWord",
-            baseName: "isMatchWholeWord",
+            baseName: "IsMatchWholeWord",
             type: "boolean",
         },        
         {
             name: "isOldValueRegex",
-            baseName: "isOldValueRegex",
+            baseName: "IsOldValueRegex",
             type: "boolean",
         }    ];
 
@@ -1975,47 +1975,47 @@ export class SaveOptionsData {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "colorMode",
-            baseName: "colorMode",
+            baseName: "ColorMode",
             type: "string",
         },        
         {
             name: "saveFormat",
-            baseName: "saveFormat",
+            baseName: "SaveFormat",
             type: "string",
         },        
         {
             name: "fileName",
-            baseName: "fileName",
+            baseName: "FileName",
             type: "string",
         },        
         {
             name: "dmlRenderingMode",
-            baseName: "dmlRenderingMode",
+            baseName: "DmlRenderingMode",
             type: "string",
         },        
         {
             name: "dmlEffectsRenderingMode",
-            baseName: "dmlEffectsRenderingMode",
+            baseName: "DmlEffectsRenderingMode",
             type: "string",
         },        
         {
             name: "zipOutput",
-            baseName: "zipOutput",
+            baseName: "ZipOutput",
             type: "boolean",
         },        
         {
             name: "updateLastSavedTimeProperty",
-            baseName: "updateLastSavedTimeProperty",
+            baseName: "UpdateLastSavedTimeProperty",
             type: "boolean",
         },        
         {
             name: "updateSdtContent",
-            baseName: "updateSdtContent",
+            baseName: "UpdateSdtContent",
             type: "boolean",
         },        
         {
             name: "updateFields",
-            baseName: "updateFields",
+            baseName: "UpdateFields",
             type: "boolean",
         }    ];
 
@@ -2088,17 +2088,17 @@ export class SaveResult {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "sourceDocument",
-            baseName: "sourceDocument",
+            baseName: "SourceDocument",
             type: "FileLink",
         },        
         {
             name: "destDocument",
-            baseName: "destDocument",
+            baseName: "DestDocument",
             type: "FileLink",
         },        
         {
             name: "additionalItems",
-            baseName: "additionalItems",
+            baseName: "AdditionalItems",
             type: "Array<FileLink>",
         }    ];
 
@@ -2141,12 +2141,12 @@ export class SearchResult {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "rangeStart",
-            baseName: "rangeStart",
+            baseName: "RangeStart",
             type: "DocumentPosition",
         },        
         {
             name: "rangeEnd",
-            baseName: "rangeEnd",
+            baseName: "RangeEnd",
             type: "DocumentPosition",
         }    ];
 
@@ -2184,17 +2184,17 @@ export class SplitDocumentResult {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "sourceDocument",
-            baseName: "sourceDocument",
+            baseName: "SourceDocument",
             type: "FileLink",
         },        
         {
             name: "pages",
-            baseName: "pages",
+            baseName: "Pages",
             type: "Array<FileLink>",
         },        
         {
             name: "zippedPages",
-            baseName: "zippedPages",
+            baseName: "ZippedPages",
             type: "FileLink",
         }    ];
 
@@ -2237,22 +2237,22 @@ export class StorageApiError {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "code",
-            baseName: "code",
+            baseName: "Code",
             type: "string",
         },        
         {
             name: "message",
-            baseName: "message",
+            baseName: "Message",
             type: "string",
         },        
         {
             name: "description",
-            baseName: "description",
+            baseName: "Description",
             type: "string",
         },        
         {
             name: "innerError",
-            baseName: "innerError",
+            baseName: "InnerError",
             type: "ErrorDetails",
         }    ];
 
@@ -2300,27 +2300,27 @@ export class StorageFile {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "name",
-            baseName: "name",
+            baseName: "Name",
             type: "string",
         },        
         {
             name: "isFolder",
-            baseName: "isFolder",
+            baseName: "IsFolder",
             type: "boolean",
         },        
         {
             name: "modifiedDate",
-            baseName: "modifiedDate",
+            baseName: "ModifiedDate",
             type: "Date",
         },        
         {
             name: "size",
-            baseName: "size",
+            baseName: "Size",
             type: "number",
         },        
         {
             name: "path",
-            baseName: "path",
+            baseName: "Path",
             type: "string",
         }    ];
 
@@ -2373,7 +2373,7 @@ export class StoryChildNodes {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "childNodes",
-            baseName: "childNodes",
+            baseName: "ChildNodes",
             type: "Array<NodeLink>",
         }    ];
 
@@ -2406,27 +2406,27 @@ export class StringFormatData {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "alignment",
-            baseName: "alignment",
+            baseName: "Alignment",
             type: "StringFormatData.AlignmentEnum",
         },        
         {
             name: "formatFlags",
-            baseName: "formatFlags",
+            baseName: "FormatFlags",
             type: "StringFormatData.FormatFlagsEnum",
         },        
         {
             name: "hotkeyPrefix",
-            baseName: "hotkeyPrefix",
+            baseName: "HotkeyPrefix",
             type: "StringFormatData.HotkeyPrefixEnum",
         },        
         {
             name: "lineAlignment",
-            baseName: "lineAlignment",
+            baseName: "LineAlignment",
             type: "StringFormatData.LineAlignmentEnum",
         },        
         {
             name: "trimming",
-            baseName: "trimming",
+            baseName: "Trimming",
             type: "StringFormatData.TrimmingEnum",
         }    ];
 
@@ -2521,7 +2521,7 @@ export class TableCellInsert {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "insertAfter",
-            baseName: "insertAfter",
+            baseName: "InsertAfter",
             type: "number",
         }    ];
 
@@ -2554,17 +2554,17 @@ export class TableInsert {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "position",
-            baseName: "position",
+            baseName: "Position",
             type: "DocumentPosition",
         },        
         {
             name: "columnsCount",
-            baseName: "columnsCount",
+            baseName: "ColumnsCount",
             type: "number",
         },        
         {
             name: "rowsCount",
-            baseName: "rowsCount",
+            baseName: "RowsCount",
             type: "number",
         }    ];
 
@@ -2607,12 +2607,12 @@ export class TableRowInsert {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "insertAfter",
-            baseName: "insertAfter",
+            baseName: "InsertAfter",
             type: "number",
         },        
         {
             name: "columnsCount",
-            baseName: "columnsCount",
+            baseName: "ColumnsCount",
             type: "number",
         }    ];
 
@@ -2650,12 +2650,12 @@ export class WatermarkText {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "text",
-            baseName: "text",
+            baseName: "Text",
             type: "string",
         },        
         {
             name: "rotationAngle",
-            baseName: "rotationAngle",
+            baseName: "RotationAngle",
             type: "number",
         }    ];
 
@@ -2693,7 +2693,7 @@ export class WordsResponse {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "requestId",
-            baseName: "requestId",
+            baseName: "RequestId",
             type: "string",
         }    ];
 
@@ -2726,12 +2726,12 @@ export class XmlColor {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "web",
-            baseName: "web",
+            baseName: "Web",
             type: "string",
         },        
         {
             name: "alpha",
-            baseName: "alpha",
+            baseName: "Alpha",
             type: "number",
         }    ];
 
@@ -2769,17 +2769,17 @@ export class AvailableFontsResponse extends WordsResponse {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "additionalFonts",
-            baseName: "additionalFonts",
+            baseName: "AdditionalFonts",
             type: "Array<FontInfo>",
         },        
         {
             name: "customFonts",
-            baseName: "customFonts",
+            baseName: "CustomFonts",
             type: "Array<FontInfo>",
         },        
         {
             name: "systemFonts",
-            baseName: "systemFonts",
+            baseName: "SystemFonts",
             type: "Array<FontInfo>",
         }    ];
 
@@ -2822,12 +2822,12 @@ export class Bookmark extends LinkElement {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "name",
-            baseName: "name",
+            baseName: "Name",
             type: "string",
         },        
         {
             name: "text",
-            baseName: "text",
+            baseName: "Text",
             type: "string",
         }    ];
 
@@ -2865,7 +2865,7 @@ export class BookmarkResponse extends WordsResponse {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "bookmark",
-            baseName: "bookmark",
+            baseName: "Bookmark",
             type: "Bookmark",
         }    ];
 
@@ -2898,7 +2898,7 @@ export class Bookmarks extends LinkElement {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "bookmarkList",
-            baseName: "bookmarkList",
+            baseName: "BookmarkList",
             type: "Array<Bookmark>",
         }    ];
 
@@ -2931,7 +2931,7 @@ export class BookmarksResponse extends WordsResponse {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "bookmarks",
-            baseName: "bookmarks",
+            baseName: "Bookmarks",
             type: "Bookmarks",
         }    ];
 
@@ -2964,32 +2964,32 @@ export class Border extends LinkElement {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "borderType",
-            baseName: "borderType",
+            baseName: "BorderType",
             type: "Border.BorderTypeEnum",
         },        
         {
             name: "color",
-            baseName: "color",
+            baseName: "Color",
             type: "XmlColor",
         },        
         {
             name: "distanceFromText",
-            baseName: "distanceFromText",
+            baseName: "DistanceFromText",
             type: "number",
         },        
         {
             name: "lineStyle",
-            baseName: "lineStyle",
+            baseName: "LineStyle",
             type: "Border.LineStyleEnum",
         },        
         {
             name: "lineWidth",
-            baseName: "lineWidth",
+            baseName: "LineWidth",
             type: "number",
         },        
         {
             name: "shadow",
-            baseName: "shadow",
+            baseName: "Shadow",
             type: "boolean",
         }    ];
 
@@ -3095,7 +3095,7 @@ export class BorderResponse extends WordsResponse {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "border",
-            baseName: "border",
+            baseName: "Border",
             type: "Border",
         }    ];
 
@@ -3128,7 +3128,7 @@ export class BordersCollection extends LinkElement {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "list",
-            baseName: "list",
+            baseName: "List",
             type: "Array<Border>",
         }    ];
 
@@ -3161,7 +3161,7 @@ export class BordersResponse extends WordsResponse {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "borders",
-            baseName: "borders",
+            baseName: "Borders",
             type: "BordersCollection",
         }    ];
 
@@ -3194,17 +3194,17 @@ export class ClassificationResponse extends WordsResponse {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "bestClassName",
-            baseName: "bestClassName",
+            baseName: "BestClassName",
             type: "string",
         },        
         {
             name: "bestClassProbability",
-            baseName: "bestClassProbability",
+            baseName: "BestClassProbability",
             type: "number",
         },        
         {
             name: "bestResults",
-            baseName: "bestResults",
+            baseName: "BestResults",
             type: "Array<ClassificationResult>",
         }    ];
 
@@ -3271,7 +3271,7 @@ export class CommentResponse extends WordsResponse {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "comment",
-            baseName: "comment",
+            baseName: "Comment",
             type: "Comment",
         }    ];
 
@@ -3304,7 +3304,7 @@ export class CommentsCollection extends LinkElement {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "commentList",
-            baseName: "commentList",
+            baseName: "CommentList",
             type: "Array<Comment>",
         }    ];
 
@@ -3337,7 +3337,7 @@ export class CommentsResponse extends WordsResponse {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "comments",
-            baseName: "comments",
+            baseName: "Comments",
             type: "CommentsCollection",
         }    ];
 
@@ -3370,22 +3370,22 @@ export class DocSaveOptionsData extends SaveOptionsData {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "alwaysCompressMetafiles",
-            baseName: "alwaysCompressMetafiles",
+            baseName: "AlwaysCompressMetafiles",
             type: "boolean",
         },        
         {
             name: "password",
-            baseName: "password",
+            baseName: "Password",
             type: "string",
         },        
         {
             name: "savePictureBullet",
-            baseName: "savePictureBullet",
+            baseName: "SavePictureBullet",
             type: "boolean",
         },        
         {
             name: "saveRoutingSlip",
-            baseName: "saveRoutingSlip",
+            baseName: "SaveRoutingSlip",
             type: "boolean",
         }    ];
 
@@ -3433,7 +3433,7 @@ export class DocumentProperties extends LinkElement {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "list",
-            baseName: "list",
+            baseName: "List",
             type: "Array<DocumentProperty>",
         }    ];
 
@@ -3466,7 +3466,7 @@ export class DocumentPropertiesResponse extends WordsResponse {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "documentProperties",
-            baseName: "documentProperties",
+            baseName: "DocumentProperties",
             type: "DocumentProperties",
         }    ];
 
@@ -3499,17 +3499,17 @@ export class DocumentProperty extends LinkElement {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "builtIn",
-            baseName: "builtIn",
+            baseName: "BuiltIn",
             type: "boolean",
         },        
         {
             name: "name",
-            baseName: "name",
+            baseName: "Name",
             type: "string",
         },        
         {
             name: "value",
-            baseName: "value",
+            baseName: "Value",
             type: "string",
         }    ];
 
@@ -3552,7 +3552,7 @@ export class DocumentPropertyResponse extends WordsResponse {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "documentProperty",
-            baseName: "documentProperty",
+            baseName: "DocumentProperty",
             type: "DocumentProperty",
         }    ];
 
@@ -3585,7 +3585,7 @@ export class DocumentResponse extends WordsResponse {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "document",
-            baseName: "document",
+            baseName: "Document",
             type: "Document",
         }    ];
 
@@ -3618,7 +3618,7 @@ export class DrawingObjectCollection extends LinkElement {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "list",
-            baseName: "list",
+            baseName: "List",
             type: "Array<LinkElement>",
         }    ];
 
@@ -3651,7 +3651,7 @@ export class DrawingObjectResponse extends WordsResponse {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "drawingObject",
-            baseName: "drawingObject",
+            baseName: "DrawingObject",
             type: "DrawingObject",
         }    ];
 
@@ -3684,7 +3684,7 @@ export class DrawingObjectsResponse extends WordsResponse {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "drawingObjects",
-            baseName: "drawingObjects",
+            baseName: "DrawingObjects",
             type: "DrawingObjectCollection",
         }    ];
 
@@ -3717,7 +3717,7 @@ export class FieldCollection extends LinkElement {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "list",
-            baseName: "list",
+            baseName: "List",
             type: "Array<Field>",
         }    ];
 
@@ -3750,7 +3750,7 @@ export class FieldNames extends LinkElement {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "names",
-            baseName: "names",
+            baseName: "Names",
             type: "Array<string>",
         }    ];
 
@@ -3783,7 +3783,7 @@ export class FieldNamesResponse extends WordsResponse {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "fieldNames",
-            baseName: "fieldNames",
+            baseName: "FieldNames",
             type: "FieldNames",
         }    ];
 
@@ -3816,7 +3816,7 @@ export class FieldResponse extends WordsResponse {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "field",
-            baseName: "field",
+            baseName: "Field",
             type: "Field",
         }    ];
 
@@ -3849,7 +3849,7 @@ export class FieldsResponse extends WordsResponse {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "fields",
-            baseName: "fields",
+            baseName: "Fields",
             type: "FieldCollection",
         }    ];
 
@@ -3906,32 +3906,32 @@ export class FixedPageSaveOptionsData extends SaveOptionsData {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "jpegQuality",
-            baseName: "jpegQuality",
+            baseName: "JpegQuality",
             type: "number",
         },        
         {
             name: "metafileRenderingOptions",
-            baseName: "metafileRenderingOptions",
+            baseName: "MetafileRenderingOptions",
             type: "MetafileRenderingOptionsData",
         },        
         {
             name: "numeralFormat",
-            baseName: "numeralFormat",
+            baseName: "NumeralFormat",
             type: "string",
         },        
         {
             name: "optimizeOutput",
-            baseName: "optimizeOutput",
+            baseName: "OptimizeOutput",
             type: "boolean",
         },        
         {
             name: "pageCount",
-            baseName: "pageCount",
+            baseName: "PageCount",
             type: "number",
         },        
         {
             name: "pageIndex",
-            baseName: "pageIndex",
+            baseName: "PageIndex",
             type: "number",
         }    ];
 
@@ -3989,202 +3989,202 @@ export class Font extends LinkElement {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "allCaps",
-            baseName: "allCaps",
+            baseName: "AllCaps",
             type: "boolean",
         },        
         {
             name: "bidi",
-            baseName: "bidi",
+            baseName: "Bidi",
             type: "boolean",
         },        
         {
             name: "bold",
-            baseName: "bold",
+            baseName: "Bold",
             type: "boolean",
         },        
         {
             name: "boldBi",
-            baseName: "boldBi",
+            baseName: "BoldBi",
             type: "boolean",
         },        
         {
             name: "border",
-            baseName: "border",
+            baseName: "Border",
             type: "Border",
         },        
         {
             name: "color",
-            baseName: "color",
+            baseName: "Color",
             type: "XmlColor",
         },        
         {
             name: "complexScript",
-            baseName: "complexScript",
+            baseName: "ComplexScript",
             type: "boolean",
         },        
         {
             name: "doubleStrikeThrough",
-            baseName: "doubleStrikeThrough",
+            baseName: "DoubleStrikeThrough",
             type: "boolean",
         },        
         {
             name: "emboss",
-            baseName: "emboss",
+            baseName: "Emboss",
             type: "boolean",
         },        
         {
             name: "engrave",
-            baseName: "engrave",
+            baseName: "Engrave",
             type: "boolean",
         },        
         {
             name: "hidden",
-            baseName: "hidden",
+            baseName: "Hidden",
             type: "boolean",
         },        
         {
             name: "highlightColor",
-            baseName: "highlightColor",
+            baseName: "HighlightColor",
             type: "XmlColor",
         },        
         {
             name: "italic",
-            baseName: "italic",
+            baseName: "Italic",
             type: "boolean",
         },        
         {
             name: "italicBi",
-            baseName: "italicBi",
+            baseName: "ItalicBi",
             type: "boolean",
         },        
         {
             name: "kerning",
-            baseName: "kerning",
+            baseName: "Kerning",
             type: "number",
         },        
         {
             name: "localeId",
-            baseName: "localeId",
+            baseName: "LocaleId",
             type: "number",
         },        
         {
             name: "localeIdBi",
-            baseName: "localeIdBi",
+            baseName: "LocaleIdBi",
             type: "number",
         },        
         {
             name: "localeIdFarEast",
-            baseName: "localeIdFarEast",
+            baseName: "LocaleIdFarEast",
             type: "number",
         },        
         {
             name: "name",
-            baseName: "name",
+            baseName: "Name",
             type: "string",
         },        
         {
             name: "nameAscii",
-            baseName: "nameAscii",
+            baseName: "NameAscii",
             type: "string",
         },        
         {
             name: "nameBi",
-            baseName: "nameBi",
+            baseName: "NameBi",
             type: "string",
         },        
         {
             name: "nameFarEast",
-            baseName: "nameFarEast",
+            baseName: "NameFarEast",
             type: "string",
         },        
         {
             name: "nameOther",
-            baseName: "nameOther",
+            baseName: "NameOther",
             type: "string",
         },        
         {
             name: "noProofing",
-            baseName: "noProofing",
+            baseName: "NoProofing",
             type: "boolean",
         },        
         {
             name: "outline",
-            baseName: "outline",
+            baseName: "Outline",
             type: "boolean",
         },        
         {
             name: "position",
-            baseName: "position",
+            baseName: "Position",
             type: "number",
         },        
         {
             name: "scaling",
-            baseName: "scaling",
+            baseName: "Scaling",
             type: "number",
         },        
         {
             name: "shadow",
-            baseName: "shadow",
+            baseName: "Shadow",
             type: "boolean",
         },        
         {
             name: "size",
-            baseName: "size",
+            baseName: "Size",
             type: "number",
         },        
         {
             name: "sizeBi",
-            baseName: "sizeBi",
+            baseName: "SizeBi",
             type: "number",
         },        
         {
             name: "smallCaps",
-            baseName: "smallCaps",
+            baseName: "SmallCaps",
             type: "boolean",
         },        
         {
             name: "spacing",
-            baseName: "spacing",
+            baseName: "Spacing",
             type: "number",
         },        
         {
             name: "strikeThrough",
-            baseName: "strikeThrough",
+            baseName: "StrikeThrough",
             type: "boolean",
         },        
         {
             name: "styleIdentifier",
-            baseName: "styleIdentifier",
+            baseName: "StyleIdentifier",
             type: "Font.StyleIdentifierEnum",
         },        
         {
             name: "styleName",
-            baseName: "styleName",
+            baseName: "StyleName",
             type: "string",
         },        
         {
             name: "subscript",
-            baseName: "subscript",
+            baseName: "Subscript",
             type: "boolean",
         },        
         {
             name: "superscript",
-            baseName: "superscript",
+            baseName: "Superscript",
             type: "boolean",
         },        
         {
             name: "textEffect",
-            baseName: "textEffect",
+            baseName: "TextEffect",
             type: "Font.TextEffectEnum",
         },        
         {
             name: "underline",
-            baseName: "underline",
+            baseName: "Underline",
             type: "Font.UnderlineEnum",
         },        
         {
             name: "underlineColor",
-            baseName: "underlineColor",
+            baseName: "UnderlineColor",
             type: "XmlColor",
         }    ];
 
@@ -4824,7 +4824,7 @@ export class FontResponse extends WordsResponse {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "font",
-            baseName: "font",
+            baseName: "Font",
             type: "Font",
         }    ];
 
@@ -4857,7 +4857,7 @@ export class FootnoteCollection extends LinkElement {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "list",
-            baseName: "list",
+            baseName: "List",
             type: "Array<Footnote>",
         }    ];
 
@@ -4890,7 +4890,7 @@ export class FootnoteResponse extends WordsResponse {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "footnote",
-            baseName: "footnote",
+            baseName: "Footnote",
             type: "Footnote",
         }    ];
 
@@ -4923,7 +4923,7 @@ export class FootnotesResponse extends WordsResponse {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "footnotes",
-            baseName: "footnotes",
+            baseName: "Footnotes",
             type: "FootnoteCollection",
         }    ];
 
@@ -4956,7 +4956,7 @@ export class FormFieldCollection extends LinkElement {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "list",
-            baseName: "list",
+            baseName: "List",
             type: "Array<FormField>",
         }    ];
 
@@ -4989,7 +4989,7 @@ export class FormFieldResponse extends WordsResponse {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "formField",
-            baseName: "formField",
+            baseName: "FormField",
             type: "FormField",
         }    ];
 
@@ -5022,7 +5022,7 @@ export class FormFieldsResponse extends WordsResponse {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "formFields",
-            baseName: "formFields",
+            baseName: "FormFields",
             type: "FormFieldCollection",
         }    ];
 
@@ -5055,7 +5055,7 @@ export class HeaderFooterLink extends LinkElement {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "type",
-            baseName: "type",
+            baseName: "Type",
             type: "HeaderFooterLink.TypeEnum",
         }    ];
 
@@ -5104,7 +5104,7 @@ export class HeaderFooterLinkCollection extends LinkElement {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "list",
-            baseName: "list",
+            baseName: "List",
             type: "Array<HeaderFooterLink>",
         }    ];
 
@@ -5137,7 +5137,7 @@ export class HeaderFooterResponse extends WordsResponse {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "headerFooter",
-            baseName: "headerFooter",
+            baseName: "HeaderFooter",
             type: "HeaderFooter",
         }    ];
 
@@ -5170,7 +5170,7 @@ export class HeaderFootersResponse extends WordsResponse {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "headerFooters",
-            baseName: "headerFooters",
+            baseName: "HeaderFooters",
             type: "HeaderFooterLinkCollection",
         }    ];
 
@@ -5203,197 +5203,197 @@ export class HtmlSaveOptionsData extends SaveOptionsData {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "allowNegativeIndent",
-            baseName: "allowNegativeIndent",
+            baseName: "AllowNegativeIndent",
             type: "boolean",
         },        
         {
             name: "cssClassNamePrefix",
-            baseName: "cssClassNamePrefix",
+            baseName: "CssClassNamePrefix",
             type: "string",
         },        
         {
             name: "cssStyleSheetFileName",
-            baseName: "cssStyleSheetFileName",
+            baseName: "CssStyleSheetFileName",
             type: "string",
         },        
         {
             name: "cssStyleSheetType",
-            baseName: "cssStyleSheetType",
+            baseName: "CssStyleSheetType",
             type: "string",
         },        
         {
             name: "documentSplitCriteria",
-            baseName: "documentSplitCriteria",
+            baseName: "DocumentSplitCriteria",
             type: "string",
         },        
         {
             name: "documentSplitHeadingLevel",
-            baseName: "documentSplitHeadingLevel",
+            baseName: "DocumentSplitHeadingLevel",
             type: "number",
         },        
         {
             name: "encoding",
-            baseName: "encoding",
+            baseName: "Encoding",
             type: "string",
         },        
         {
             name: "exportDocumentProperties",
-            baseName: "exportDocumentProperties",
+            baseName: "ExportDocumentProperties",
             type: "boolean",
         },        
         {
             name: "exportDropDownFormFieldAsText",
-            baseName: "exportDropDownFormFieldAsText",
+            baseName: "ExportDropDownFormFieldAsText",
             type: "boolean",
         },        
         {
             name: "exportFontResources",
-            baseName: "exportFontResources",
+            baseName: "ExportFontResources",
             type: "boolean",
         },        
         {
             name: "exportFontsAsBase64",
-            baseName: "exportFontsAsBase64",
+            baseName: "ExportFontsAsBase64",
             type: "boolean",
         },        
         {
             name: "exportHeadersFootersMode",
-            baseName: "exportHeadersFootersMode",
+            baseName: "ExportHeadersFootersMode",
             type: "string",
         },        
         {
             name: "exportImagesAsBase64",
-            baseName: "exportImagesAsBase64",
+            baseName: "ExportImagesAsBase64",
             type: "boolean",
         },        
         {
             name: "exportLanguageInformation",
-            baseName: "exportLanguageInformation",
+            baseName: "ExportLanguageInformation",
             type: "boolean",
         },        
         {
             name: "exportListLabels",
-            baseName: "exportListLabels",
+            baseName: "ExportListLabels",
             type: "string",
         },        
         {
             name: "exportOriginalUrlForLinkedImages",
-            baseName: "exportOriginalUrlForLinkedImages",
+            baseName: "ExportOriginalUrlForLinkedImages",
             type: "boolean",
         },        
         {
             name: "exportPageMargins",
-            baseName: "exportPageMargins",
+            baseName: "ExportPageMargins",
             type: "boolean",
         },        
         {
             name: "exportPageSetup",
-            baseName: "exportPageSetup",
+            baseName: "ExportPageSetup",
             type: "boolean",
         },        
         {
             name: "exportRelativeFontSize",
-            baseName: "exportRelativeFontSize",
+            baseName: "ExportRelativeFontSize",
             type: "boolean",
         },        
         {
             name: "exportRoundtripInformation",
-            baseName: "exportRoundtripInformation",
+            baseName: "ExportRoundtripInformation",
             type: "boolean",
         },        
         {
             name: "exportTextBoxAsSvg",
-            baseName: "exportTextBoxAsSvg",
+            baseName: "ExportTextBoxAsSvg",
             type: "boolean",
         },        
         {
             name: "exportTextInputFormFieldAsText",
-            baseName: "exportTextInputFormFieldAsText",
+            baseName: "ExportTextInputFormFieldAsText",
             type: "boolean",
         },        
         {
             name: "exportTocPageNumbers",
-            baseName: "exportTocPageNumbers",
+            baseName: "ExportTocPageNumbers",
             type: "boolean",
         },        
         {
             name: "exportXhtmlTransitional",
-            baseName: "exportXhtmlTransitional",
+            baseName: "ExportXhtmlTransitional",
             type: "boolean",
         },        
         {
             name: "fontResourcesSubsettingSizeThreshold",
-            baseName: "fontResourcesSubsettingSizeThreshold",
+            baseName: "FontResourcesSubsettingSizeThreshold",
             type: "number",
         },        
         {
             name: "fontsFolder",
-            baseName: "fontsFolder",
+            baseName: "FontsFolder",
             type: "string",
         },        
         {
             name: "fontsFolderAlias",
-            baseName: "fontsFolderAlias",
+            baseName: "FontsFolderAlias",
             type: "string",
         },        
         {
             name: "htmlVersion",
-            baseName: "htmlVersion",
+            baseName: "HtmlVersion",
             type: "HtmlSaveOptionsData.HtmlVersionEnum",
         },        
         {
             name: "imageResolution",
-            baseName: "imageResolution",
+            baseName: "ImageResolution",
             type: "number",
         },        
         {
             name: "imagesFolder",
-            baseName: "imagesFolder",
+            baseName: "ImagesFolder",
             type: "string",
         },        
         {
             name: "imagesFolderAlias",
-            baseName: "imagesFolderAlias",
+            baseName: "ImagesFolderAlias",
             type: "string",
         },        
         {
             name: "metafileFormat",
-            baseName: "metafileFormat",
+            baseName: "MetafileFormat",
             type: "HtmlSaveOptionsData.MetafileFormatEnum",
         },        
         {
             name: "officeMathOutputMode",
-            baseName: "officeMathOutputMode",
+            baseName: "OfficeMathOutputMode",
             type: "HtmlSaveOptionsData.OfficeMathOutputModeEnum",
         },        
         {
             name: "prettyFormat",
-            baseName: "prettyFormat",
+            baseName: "PrettyFormat",
             type: "boolean",
         },        
         {
             name: "resolveFontNames",
-            baseName: "resolveFontNames",
+            baseName: "ResolveFontNames",
             type: "boolean",
         },        
         {
             name: "resourceFolder",
-            baseName: "resourceFolder",
+            baseName: "ResourceFolder",
             type: "string",
         },        
         {
             name: "resourceFolderAlias",
-            baseName: "resourceFolderAlias",
+            baseName: "ResourceFolderAlias",
             type: "string",
         },        
         {
             name: "scaleImageToShapeSize",
-            baseName: "scaleImageToShapeSize",
+            baseName: "ScaleImageToShapeSize",
             type: "boolean",
         },        
         {
             name: "tableWidthOutputMode",
-            baseName: "tableWidthOutputMode",
+            baseName: "TableWidthOutputMode",
             type: "string",
         }    ];
 
@@ -5638,12 +5638,12 @@ export class Hyperlink extends LinkElement {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "displayText",
-            baseName: "displayText",
+            baseName: "DisplayText",
             type: "string",
         },        
         {
             name: "value",
-            baseName: "value",
+            baseName: "Value",
             type: "string",
         }    ];
 
@@ -5681,7 +5681,7 @@ export class HyperlinkResponse extends WordsResponse {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "hyperlink",
-            baseName: "hyperlink",
+            baseName: "Hyperlink",
             type: "Hyperlink",
         }    ];
 
@@ -5714,7 +5714,7 @@ export class Hyperlinks extends LinkElement {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "hyperlinkList",
-            baseName: "hyperlinkList",
+            baseName: "HyperlinkList",
             type: "Array<Hyperlink>",
         }    ];
 
@@ -5747,7 +5747,7 @@ export class HyperlinksResponse extends WordsResponse {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "hyperlinks",
-            baseName: "hyperlinks",
+            baseName: "Hyperlinks",
             type: "Hyperlinks",
         }    ];
 
@@ -5780,7 +5780,7 @@ export class NodeLink extends LinkElement {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "nodeId",
-            baseName: "nodeId",
+            baseName: "NodeId",
             type: "string",
         }    ];
 
@@ -5813,17 +5813,17 @@ export class OdtSaveOptionsData extends SaveOptionsData {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "isStrictSchema11",
-            baseName: "isStrictSchema11",
+            baseName: "IsStrictSchema11",
             type: "boolean",
         },        
         {
             name: "measureUnit",
-            baseName: "measureUnit",
+            baseName: "MeasureUnit",
             type: "OdtSaveOptionsData.MeasureUnitEnum",
         },        
         {
             name: "prettyFormat",
-            baseName: "prettyFormat",
+            baseName: "PrettyFormat",
             type: "boolean",
         }    ];
 
@@ -5878,7 +5878,7 @@ export class OfficeMathObjectResponse extends WordsResponse {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "officeMathObject",
-            baseName: "officeMathObject",
+            baseName: "OfficeMathObject",
             type: "OfficeMathObject",
         }    ];
 
@@ -5911,7 +5911,7 @@ export class OfficeMathObjectsCollection extends LinkElement {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "list",
-            baseName: "list",
+            baseName: "List",
             type: "Array<OfficeMathObject>",
         }    ];
 
@@ -5944,7 +5944,7 @@ export class OfficeMathObjectsResponse extends WordsResponse {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "officeMathObjects",
-            baseName: "officeMathObjects",
+            baseName: "OfficeMathObjects",
             type: "OfficeMathObjectsCollection",
         }    ];
 
@@ -5977,17 +5977,17 @@ export class OoxmlSaveOptionsData extends SaveOptionsData {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "compliance",
-            baseName: "compliance",
+            baseName: "Compliance",
             type: "string",
         },        
         {
             name: "password",
-            baseName: "password",
+            baseName: "Password",
             type: "string",
         },        
         {
             name: "prettyFormat",
-            baseName: "prettyFormat",
+            baseName: "PrettyFormat",
             type: "boolean",
         }    ];
 
@@ -6030,147 +6030,147 @@ export class PageSetup extends LinkElement {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "bidi",
-            baseName: "bidi",
+            baseName: "Bidi",
             type: "boolean",
         },        
         {
             name: "borderAlwaysInFront",
-            baseName: "borderAlwaysInFront",
+            baseName: "BorderAlwaysInFront",
             type: "boolean",
         },        
         {
             name: "borderAppliesTo",
-            baseName: "borderAppliesTo",
+            baseName: "BorderAppliesTo",
             type: "PageSetup.BorderAppliesToEnum",
         },        
         {
             name: "borderDistanceFrom",
-            baseName: "borderDistanceFrom",
+            baseName: "BorderDistanceFrom",
             type: "PageSetup.BorderDistanceFromEnum",
         },        
         {
             name: "bottomMargin",
-            baseName: "bottomMargin",
+            baseName: "BottomMargin",
             type: "number",
         },        
         {
             name: "differentFirstPageHeaderFooter",
-            baseName: "differentFirstPageHeaderFooter",
+            baseName: "DifferentFirstPageHeaderFooter",
             type: "boolean",
         },        
         {
             name: "firstPageTray",
-            baseName: "firstPageTray",
+            baseName: "FirstPageTray",
             type: "number",
         },        
         {
             name: "footerDistance",
-            baseName: "footerDistance",
+            baseName: "FooterDistance",
             type: "number",
         },        
         {
             name: "gutter",
-            baseName: "gutter",
+            baseName: "Gutter",
             type: "number",
         },        
         {
             name: "headerDistance",
-            baseName: "headerDistance",
+            baseName: "HeaderDistance",
             type: "number",
         },        
         {
             name: "leftMargin",
-            baseName: "leftMargin",
+            baseName: "LeftMargin",
             type: "number",
         },        
         {
             name: "lineNumberCountBy",
-            baseName: "lineNumberCountBy",
+            baseName: "LineNumberCountBy",
             type: "number",
         },        
         {
             name: "lineNumberDistanceFromText",
-            baseName: "lineNumberDistanceFromText",
+            baseName: "LineNumberDistanceFromText",
             type: "number",
         },        
         {
             name: "lineNumberRestartMode",
-            baseName: "lineNumberRestartMode",
+            baseName: "LineNumberRestartMode",
             type: "PageSetup.LineNumberRestartModeEnum",
         },        
         {
             name: "lineStartingNumber",
-            baseName: "lineStartingNumber",
+            baseName: "LineStartingNumber",
             type: "number",
         },        
         {
             name: "orientation",
-            baseName: "orientation",
+            baseName: "Orientation",
             type: "PageSetup.OrientationEnum",
         },        
         {
             name: "otherPagesTray",
-            baseName: "otherPagesTray",
+            baseName: "OtherPagesTray",
             type: "number",
         },        
         {
             name: "pageHeight",
-            baseName: "pageHeight",
+            baseName: "PageHeight",
             type: "number",
         },        
         {
             name: "pageNumberStyle",
-            baseName: "pageNumberStyle",
+            baseName: "PageNumberStyle",
             type: "PageSetup.PageNumberStyleEnum",
         },        
         {
             name: "pageStartingNumber",
-            baseName: "pageStartingNumber",
+            baseName: "PageStartingNumber",
             type: "number",
         },        
         {
             name: "pageWidth",
-            baseName: "pageWidth",
+            baseName: "PageWidth",
             type: "number",
         },        
         {
             name: "paperSize",
-            baseName: "paperSize",
+            baseName: "PaperSize",
             type: "PageSetup.PaperSizeEnum",
         },        
         {
             name: "restartPageNumbering",
-            baseName: "restartPageNumbering",
+            baseName: "RestartPageNumbering",
             type: "boolean",
         },        
         {
             name: "rightMargin",
-            baseName: "rightMargin",
+            baseName: "RightMargin",
             type: "number",
         },        
         {
             name: "rtlGutter",
-            baseName: "rtlGutter",
+            baseName: "RtlGutter",
             type: "boolean",
         },        
         {
             name: "sectionStart",
-            baseName: "sectionStart",
+            baseName: "SectionStart",
             type: "PageSetup.SectionStartEnum",
         },        
         {
             name: "suppressEndnotes",
-            baseName: "suppressEndnotes",
+            baseName: "SuppressEndnotes",
             type: "boolean",
         },        
         {
             name: "topMargin",
-            baseName: "topMargin",
+            baseName: "TopMargin",
             type: "number",
         },        
         {
             name: "verticalAlignment",
-            baseName: "verticalAlignment",
+            baseName: "VerticalAlignment",
             type: "PageSetup.VerticalAlignmentEnum",
         }    ];
 
@@ -6465,132 +6465,132 @@ export class ParagraphFormat extends LinkElement {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "addSpaceBetweenFarEastAndAlpha",
-            baseName: "addSpaceBetweenFarEastAndAlpha",
+            baseName: "AddSpaceBetweenFarEastAndAlpha",
             type: "boolean",
         },        
         {
             name: "addSpaceBetweenFarEastAndDigit",
-            baseName: "addSpaceBetweenFarEastAndDigit",
+            baseName: "AddSpaceBetweenFarEastAndDigit",
             type: "boolean",
         },        
         {
             name: "alignment",
-            baseName: "alignment",
+            baseName: "Alignment",
             type: "ParagraphFormat.AlignmentEnum",
         },        
         {
             name: "bidi",
-            baseName: "bidi",
+            baseName: "Bidi",
             type: "boolean",
         },        
         {
             name: "dropCapPosition",
-            baseName: "dropCapPosition",
+            baseName: "DropCapPosition",
             type: "ParagraphFormat.DropCapPositionEnum",
         },        
         {
             name: "firstLineIndent",
-            baseName: "firstLineIndent",
+            baseName: "FirstLineIndent",
             type: "number",
         },        
         {
             name: "isListItem",
-            baseName: "isListItem",
+            baseName: "IsListItem",
             type: "boolean",
         },        
         {
             name: "keepTogether",
-            baseName: "keepTogether",
+            baseName: "KeepTogether",
             type: "boolean",
         },        
         {
             name: "keepWithNext",
-            baseName: "keepWithNext",
+            baseName: "KeepWithNext",
             type: "boolean",
         },        
         {
             name: "leftIndent",
-            baseName: "leftIndent",
+            baseName: "LeftIndent",
             type: "number",
         },        
         {
             name: "lineSpacing",
-            baseName: "lineSpacing",
+            baseName: "LineSpacing",
             type: "number",
         },        
         {
             name: "lineSpacingRule",
-            baseName: "lineSpacingRule",
+            baseName: "LineSpacingRule",
             type: "ParagraphFormat.LineSpacingRuleEnum",
         },        
         {
             name: "linesToDrop",
-            baseName: "linesToDrop",
+            baseName: "LinesToDrop",
             type: "number",
         },        
         {
             name: "noSpaceBetweenParagraphsOfSameStyle",
-            baseName: "noSpaceBetweenParagraphsOfSameStyle",
+            baseName: "NoSpaceBetweenParagraphsOfSameStyle",
             type: "boolean",
         },        
         {
             name: "outlineLevel",
-            baseName: "outlineLevel",
+            baseName: "OutlineLevel",
             type: "ParagraphFormat.OutlineLevelEnum",
         },        
         {
             name: "pageBreakBefore",
-            baseName: "pageBreakBefore",
+            baseName: "PageBreakBefore",
             type: "boolean",
         },        
         {
             name: "rightIndent",
-            baseName: "rightIndent",
+            baseName: "RightIndent",
             type: "number",
         },        
         {
             name: "spaceAfter",
-            baseName: "spaceAfter",
+            baseName: "SpaceAfter",
             type: "number",
         },        
         {
             name: "spaceAfterAuto",
-            baseName: "spaceAfterAuto",
+            baseName: "SpaceAfterAuto",
             type: "boolean",
         },        
         {
             name: "spaceBefore",
-            baseName: "spaceBefore",
+            baseName: "SpaceBefore",
             type: "number",
         },        
         {
             name: "spaceBeforeAuto",
-            baseName: "spaceBeforeAuto",
+            baseName: "SpaceBeforeAuto",
             type: "boolean",
         },        
         {
             name: "styleIdentifier",
-            baseName: "styleIdentifier",
+            baseName: "StyleIdentifier",
             type: "ParagraphFormat.StyleIdentifierEnum",
         },        
         {
             name: "styleName",
-            baseName: "styleName",
+            baseName: "StyleName",
             type: "string",
         },        
         {
             name: "suppressAutoHyphens",
-            baseName: "suppressAutoHyphens",
+            baseName: "SuppressAutoHyphens",
             type: "boolean",
         },        
         {
             name: "suppressLineNumbers",
-            baseName: "suppressLineNumbers",
+            baseName: "SuppressLineNumbers",
             type: "boolean",
         },        
         {
             name: "widowControl",
-            baseName: "widowControl",
+            baseName: "WidowControl",
             type: "boolean",
         }    ];
 
@@ -7164,7 +7164,7 @@ export class ParagraphFormatResponse extends WordsResponse {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "paragraphFormat",
-            baseName: "paragraphFormat",
+            baseName: "ParagraphFormat",
             type: "ParagraphFormat",
         }    ];
 
@@ -7197,7 +7197,7 @@ export class ParagraphLinkCollection extends LinkElement {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "paragraphLinkList",
-            baseName: "paragraphLinkList",
+            baseName: "ParagraphLinkList",
             type: "Array<ParagraphLink>",
         }    ];
 
@@ -7230,7 +7230,7 @@ export class ParagraphLinkCollectionResponse extends WordsResponse {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "paragraphs",
-            baseName: "paragraphs",
+            baseName: "Paragraphs",
             type: "ParagraphLinkCollection",
         }    ];
 
@@ -7263,7 +7263,7 @@ export class ParagraphResponse extends WordsResponse {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "paragraph",
-            baseName: "paragraph",
+            baseName: "Paragraph",
             type: "Paragraph",
         }    ];
 
@@ -7296,12 +7296,12 @@ export class ProtectionDataResponse extends WordsResponse {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "documentLink",
-            baseName: "documentLink",
+            baseName: "DocumentLink",
             type: "FileLink",
         },        
         {
             name: "protectionData",
-            baseName: "protectionData",
+            baseName: "ProtectionData",
             type: "ProtectionData",
         }    ];
 
@@ -7339,7 +7339,7 @@ export class RangeTextResponse extends WordsResponse {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "text",
-            baseName: "text",
+            baseName: "Text",
             type: "string",
         }    ];
 
@@ -7372,12 +7372,12 @@ export class ReplaceTextResponse extends WordsResponse {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "documentLink",
-            baseName: "documentLink",
+            baseName: "DocumentLink",
             type: "FileLink",
         },        
         {
             name: "matches",
-            baseName: "matches",
+            baseName: "Matches",
             type: "number",
         }    ];
 
@@ -7415,7 +7415,7 @@ export class RevisionsModificationResponse extends WordsResponse {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "result",
-            baseName: "result",
+            baseName: "Result",
             type: "ModificationOperationResult",
         }    ];
 
@@ -7448,17 +7448,17 @@ export class RtfSaveOptionsData extends SaveOptionsData {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "exportCompactSize",
-            baseName: "exportCompactSize",
+            baseName: "ExportCompactSize",
             type: "boolean",
         },        
         {
             name: "exportImagesForOldReaders",
-            baseName: "exportImagesForOldReaders",
+            baseName: "ExportImagesForOldReaders",
             type: "boolean",
         },        
         {
             name: "prettyFormat",
-            baseName: "prettyFormat",
+            baseName: "PrettyFormat",
             type: "boolean",
         }    ];
 
@@ -7501,7 +7501,7 @@ export class RunResponse extends WordsResponse {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "run",
-            baseName: "run",
+            baseName: "Run",
             type: "Run",
         }    ];
 
@@ -7534,7 +7534,7 @@ export class Runs extends LinkElement {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "list",
-            baseName: "list",
+            baseName: "List",
             type: "Array<Run>",
         }    ];
 
@@ -7567,7 +7567,7 @@ export class RunsResponse extends WordsResponse {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "runs",
-            baseName: "runs",
+            baseName: "Runs",
             type: "Runs",
         }    ];
 
@@ -7600,7 +7600,7 @@ export class SaveResponse extends WordsResponse {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "saveResult",
-            baseName: "saveResult",
+            baseName: "SaveResult",
             type: "SaveResult",
         }    ];
 
@@ -7633,12 +7633,12 @@ export class SearchResponse extends WordsResponse {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "searchingPattern",
-            baseName: "searchingPattern",
+            baseName: "SearchingPattern",
             type: "string",
         },        
         {
             name: "searchResults",
-            baseName: "searchResults",
+            baseName: "SearchResults",
             type: "SearchResultsCollection",
         }    ];
 
@@ -7676,7 +7676,7 @@ export class SearchResultsCollection extends LinkElement {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "resultsList",
-            baseName: "resultsList",
+            baseName: "ResultsList",
             type: "Array<SearchResult>",
         }    ];
 
@@ -7709,27 +7709,27 @@ export class Section extends LinkElement {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "childNodes",
-            baseName: "childNodes",
+            baseName: "ChildNodes",
             type: "Array<NodeLink>",
         },        
         {
             name: "headerFooters",
-            baseName: "headerFooters",
+            baseName: "HeaderFooters",
             type: "LinkElement",
         },        
         {
             name: "pageSetup",
-            baseName: "pageSetup",
+            baseName: "PageSetup",
             type: "LinkElement",
         },        
         {
             name: "paragraphs",
-            baseName: "paragraphs",
+            baseName: "Paragraphs",
             type: "LinkElement",
         },        
         {
             name: "tables",
-            baseName: "tables",
+            baseName: "Tables",
             type: "LinkElement",
         }    ];
 
@@ -7782,7 +7782,7 @@ export class SectionLinkCollection extends LinkElement {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "sectionLinkList",
-            baseName: "sectionLinkList",
+            baseName: "SectionLinkList",
             type: "Array<SectionLink>",
         }    ];
 
@@ -7815,7 +7815,7 @@ export class SectionLinkCollectionResponse extends WordsResponse {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "sections",
-            baseName: "sections",
+            baseName: "Sections",
             type: "SectionLinkCollection",
         }    ];
 
@@ -7848,7 +7848,7 @@ export class SectionPageSetupResponse extends WordsResponse {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "pageSetup",
-            baseName: "pageSetup",
+            baseName: "PageSetup",
             type: "PageSetup",
         }    ];
 
@@ -7881,7 +7881,7 @@ export class SectionResponse extends WordsResponse {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "section",
-            baseName: "section",
+            baseName: "Section",
             type: "Section",
         }    ];
 
@@ -7914,7 +7914,7 @@ export class SplitDocumentResponse extends WordsResponse {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "splitResult",
-            baseName: "splitResult",
+            baseName: "SplitResult",
             type: "SplitDocumentResult",
         }    ];
 
@@ -7947,12 +7947,12 @@ export class StatDataResponse extends WordsResponse {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "documentLink",
-            baseName: "documentLink",
+            baseName: "DocumentLink",
             type: "FileLink",
         },        
         {
             name: "statData",
-            baseName: "statData",
+            baseName: "StatData",
             type: "DocumentStatData",
         }    ];
 
@@ -7990,62 +7990,62 @@ export class TableCellFormat extends LinkElement {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "bottomPadding",
-            baseName: "bottomPadding",
+            baseName: "BottomPadding",
             type: "number",
         },        
         {
             name: "fitText",
-            baseName: "fitText",
+            baseName: "FitText",
             type: "boolean",
         },        
         {
             name: "horizontalMerge",
-            baseName: "horizontalMerge",
+            baseName: "HorizontalMerge",
             type: "TableCellFormat.HorizontalMergeEnum",
         },        
         {
             name: "leftPadding",
-            baseName: "leftPadding",
+            baseName: "LeftPadding",
             type: "number",
         },        
         {
             name: "orientation",
-            baseName: "orientation",
+            baseName: "Orientation",
             type: "TableCellFormat.OrientationEnum",
         },        
         {
             name: "preferredWidth",
-            baseName: "preferredWidth",
+            baseName: "PreferredWidth",
             type: "PreferredWidth",
         },        
         {
             name: "rightPadding",
-            baseName: "rightPadding",
+            baseName: "RightPadding",
             type: "number",
         },        
         {
             name: "topPadding",
-            baseName: "topPadding",
+            baseName: "TopPadding",
             type: "number",
         },        
         {
             name: "verticalAlignment",
-            baseName: "verticalAlignment",
+            baseName: "VerticalAlignment",
             type: "TableCellFormat.VerticalAlignmentEnum",
         },        
         {
             name: "verticalMerge",
-            baseName: "verticalMerge",
+            baseName: "VerticalMerge",
             type: "TableCellFormat.VerticalMergeEnum",
         },        
         {
             name: "width",
-            baseName: "width",
+            baseName: "Width",
             type: "number",
         },        
         {
             name: "wrapText",
-            baseName: "wrapText",
+            baseName: "WrapText",
             type: "boolean",
         }    ];
 
@@ -8164,7 +8164,7 @@ export class TableCellFormatResponse extends WordsResponse {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "cellFormat",
-            baseName: "cellFormat",
+            baseName: "CellFormat",
             type: "TableCellFormat",
         }    ];
 
@@ -8197,7 +8197,7 @@ export class TableCellResponse extends WordsResponse {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "cell",
-            baseName: "cell",
+            baseName: "Cell",
             type: "TableCell",
         }    ];
 
@@ -8230,7 +8230,7 @@ export class TableLinkCollection extends LinkElement {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "tableLinkList",
-            baseName: "tableLinkList",
+            baseName: "TableLinkList",
             type: "Array<TableLink>",
         }    ];
 
@@ -8263,7 +8263,7 @@ export class TableLinkCollectionResponse extends WordsResponse {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "tables",
-            baseName: "tables",
+            baseName: "Tables",
             type: "TableLinkCollection",
         }    ];
 
@@ -8296,72 +8296,72 @@ export class TableProperties extends LinkElement {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "alignment",
-            baseName: "alignment",
+            baseName: "Alignment",
             type: "TableProperties.AlignmentEnum",
         },        
         {
             name: "allowAutoFit",
-            baseName: "allowAutoFit",
+            baseName: "AllowAutoFit",
             type: "boolean",
         },        
         {
             name: "bidi",
-            baseName: "bidi",
+            baseName: "Bidi",
             type: "boolean",
         },        
         {
             name: "bottomPadding",
-            baseName: "bottomPadding",
+            baseName: "BottomPadding",
             type: "number",
         },        
         {
             name: "cellSpacing",
-            baseName: "cellSpacing",
+            baseName: "CellSpacing",
             type: "number",
         },        
         {
             name: "leftIndent",
-            baseName: "leftIndent",
+            baseName: "LeftIndent",
             type: "number",
         },        
         {
             name: "leftPadding",
-            baseName: "leftPadding",
+            baseName: "LeftPadding",
             type: "number",
         },        
         {
             name: "preferredWidth",
-            baseName: "preferredWidth",
+            baseName: "PreferredWidth",
             type: "PreferredWidth",
         },        
         {
             name: "rightPadding",
-            baseName: "rightPadding",
+            baseName: "RightPadding",
             type: "number",
         },        
         {
             name: "styleIdentifier",
-            baseName: "styleIdentifier",
+            baseName: "StyleIdentifier",
             type: "TableProperties.StyleIdentifierEnum",
         },        
         {
             name: "styleName",
-            baseName: "styleName",
+            baseName: "StyleName",
             type: "string",
         },        
         {
             name: "styleOptions",
-            baseName: "styleOptions",
+            baseName: "StyleOptions",
             type: "TableProperties.StyleOptionsEnum",
         },        
         {
             name: "textWrapping",
-            baseName: "textWrapping",
+            baseName: "TextWrapping",
             type: "TableProperties.TextWrappingEnum",
         },        
         {
             name: "topPadding",
-            baseName: "topPadding",
+            baseName: "TopPadding",
             type: "number",
         }    ];
 
@@ -8863,7 +8863,7 @@ export class TablePropertiesResponse extends WordsResponse {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "properties",
-            baseName: "properties",
+            baseName: "Properties",
             type: "TableProperties",
         }    ];
 
@@ -8896,7 +8896,7 @@ export class TableResponse extends WordsResponse {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "table",
-            baseName: "table",
+            baseName: "Table",
             type: "Table",
         }    ];
 
@@ -8929,22 +8929,22 @@ export class TableRowFormat extends LinkElement {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "allowBreakAcrossPages",
-            baseName: "allowBreakAcrossPages",
+            baseName: "AllowBreakAcrossPages",
             type: "boolean",
         },        
         {
             name: "headingFormat",
-            baseName: "headingFormat",
+            baseName: "HeadingFormat",
             type: "boolean",
         },        
         {
             name: "height",
-            baseName: "height",
+            baseName: "Height",
             type: "number",
         },        
         {
             name: "heightRule",
-            baseName: "heightRule",
+            baseName: "HeightRule",
             type: "TableRowFormat.HeightRuleEnum",
         }    ];
 
@@ -9005,7 +9005,7 @@ export class TableRowFormatResponse extends WordsResponse {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "rowFormat",
-            baseName: "rowFormat",
+            baseName: "RowFormat",
             type: "TableRowFormat",
         }    ];
 
@@ -9038,7 +9038,7 @@ export class TableRowResponse extends WordsResponse {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "row",
-            baseName: "row",
+            baseName: "Row",
             type: "TableRow",
         }    ];
 
@@ -9071,37 +9071,37 @@ export class TextSaveOptionsData extends SaveOptionsData {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "addBidiMarks",
-            baseName: "addBidiMarks",
+            baseName: "AddBidiMarks",
             type: "boolean",
         },        
         {
             name: "encoding",
-            baseName: "encoding",
+            baseName: "Encoding",
             type: "string",
         },        
         {
             name: "exportHeadersFootersMode",
-            baseName: "exportHeadersFootersMode",
+            baseName: "ExportHeadersFootersMode",
             type: "TextSaveOptionsData.ExportHeadersFootersModeEnum",
         },        
         {
             name: "forcePageBreaks",
-            baseName: "forcePageBreaks",
+            baseName: "ForcePageBreaks",
             type: "boolean",
         },        
         {
             name: "paragraphBreak",
-            baseName: "paragraphBreak",
+            baseName: "ParagraphBreak",
             type: "string",
         },        
         {
             name: "preserveTableLayout",
-            baseName: "preserveTableLayout",
+            baseName: "PreserveTableLayout",
             type: "boolean",
         },        
         {
             name: "simplifyListLabels",
-            baseName: "simplifyListLabels",
+            baseName: "SimplifyListLabels",
             type: "boolean",
         }    ];
 
@@ -9177,7 +9177,7 @@ export class WordMLSaveOptionsData extends SaveOptionsData {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "prettyFormat",
-            baseName: "prettyFormat",
+            baseName: "PrettyFormat",
             type: "boolean",
         }    ];
 
@@ -9210,7 +9210,7 @@ export class WordsApiErrorResponse extends WordsResponse {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "error",
-            baseName: "error",
+            baseName: "Error",
             type: "ApiError",
         }    ];
 
@@ -9267,12 +9267,12 @@ export class XamlFlowSaveOptionsData extends SaveOptionsData {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "imagesFolder",
-            baseName: "imagesFolder",
+            baseName: "ImagesFolder",
             type: "string",
         },        
         {
             name: "imagesFolderAlias",
-            baseName: "imagesFolderAlias",
+            baseName: "ImagesFolderAlias",
             type: "string",
         }    ];
 
@@ -9310,37 +9310,37 @@ export class Comment extends CommentLink {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "author",
-            baseName: "author",
+            baseName: "Author",
             type: "string",
         },        
         {
             name: "content",
-            baseName: "content",
+            baseName: "Content",
             type: "StoryChildNodes",
         },        
         {
             name: "dateTime",
-            baseName: "dateTime",
+            baseName: "DateTime",
             type: "Date",
         },        
         {
             name: "initial",
-            baseName: "initial",
+            baseName: "Initial",
             type: "string",
         },        
         {
             name: "rangeEnd",
-            baseName: "rangeEnd",
+            baseName: "RangeEnd",
             type: "DocumentPosition",
         },        
         {
             name: "rangeStart",
-            baseName: "rangeStart",
+            baseName: "RangeStart",
             type: "DocumentPosition",
         },        
         {
             name: "text",
-            baseName: "text",
+            baseName: "Text",
             type: "string",
         }    ];
 
@@ -9427,7 +9427,7 @@ export class EpubSaveOptionsData extends HtmlSaveOptionsData {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "epubNavigationMapLevel",
-            baseName: "epubNavigationMapLevel",
+            baseName: "EpubNavigationMapLevel",
             type: "number",
         }    ];
 
@@ -9468,7 +9468,7 @@ export class FieldLink extends NodeLink {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "fieldCode",
-            baseName: "fieldCode",
+            baseName: "FieldCode",
             type: "string",
         }    ];
 
@@ -9525,47 +9525,47 @@ export class FormField extends NodeLink {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "calculateOnExit",
-            baseName: "calculateOnExit",
+            baseName: "CalculateOnExit",
             type: "boolean",
         },        
         {
             name: "enabled",
-            baseName: "enabled",
+            baseName: "Enabled",
             type: "boolean",
         },        
         {
             name: "entryMacro",
-            baseName: "entryMacro",
+            baseName: "EntryMacro",
             type: "string",
         },        
         {
             name: "exitMacro",
-            baseName: "exitMacro",
+            baseName: "ExitMacro",
             type: "string",
         },        
         {
             name: "helpText",
-            baseName: "helpText",
+            baseName: "HelpText",
             type: "string",
         },        
         {
             name: "name",
-            baseName: "name",
+            baseName: "Name",
             type: "string",
         },        
         {
             name: "ownHelp",
-            baseName: "ownHelp",
+            baseName: "OwnHelp",
             type: "boolean",
         },        
         {
             name: "ownStatus",
-            baseName: "ownStatus",
+            baseName: "OwnStatus",
             type: "boolean",
         },        
         {
             name: "statusText",
-            baseName: "statusText",
+            baseName: "StatusText",
             type: "string",
         }    ];
 
@@ -9638,17 +9638,17 @@ export class HeaderFooter extends HeaderFooterLink {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "childNodes",
-            baseName: "childNodes",
+            baseName: "ChildNodes",
             type: "Array<NodeLink>",
         },        
         {
             name: "drawingObjects",
-            baseName: "drawingObjects",
+            baseName: "DrawingObjects",
             type: "LinkElement",
         },        
         {
             name: "paragraphs",
-            baseName: "paragraphs",
+            baseName: "Paragraphs",
             type: "LinkElement",
         }    ];
 
@@ -9699,67 +9699,67 @@ export class HtmlFixedSaveOptionsData extends FixedPageSaveOptionsData {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "cssClassNamesPrefix",
-            baseName: "cssClassNamesPrefix",
+            baseName: "CssClassNamesPrefix",
             type: "string",
         },        
         {
             name: "encoding",
-            baseName: "encoding",
+            baseName: "Encoding",
             type: "string",
         },        
         {
             name: "exportEmbeddedCss",
-            baseName: "exportEmbeddedCss",
+            baseName: "ExportEmbeddedCss",
             type: "boolean",
         },        
         {
             name: "exportEmbeddedFonts",
-            baseName: "exportEmbeddedFonts",
+            baseName: "ExportEmbeddedFonts",
             type: "boolean",
         },        
         {
             name: "exportEmbeddedImages",
-            baseName: "exportEmbeddedImages",
+            baseName: "ExportEmbeddedImages",
             type: "boolean",
         },        
         {
             name: "exportFormFields",
-            baseName: "exportFormFields",
+            baseName: "ExportFormFields",
             type: "boolean",
         },        
         {
             name: "fontFormat",
-            baseName: "fontFormat",
+            baseName: "FontFormat",
             type: "string",
         },        
         {
             name: "pageHorizontalAlignment",
-            baseName: "pageHorizontalAlignment",
+            baseName: "PageHorizontalAlignment",
             type: "string",
         },        
         {
             name: "pageMargins",
-            baseName: "pageMargins",
+            baseName: "PageMargins",
             type: "number",
         },        
         {
             name: "resourcesFolder",
-            baseName: "resourcesFolder",
+            baseName: "ResourcesFolder",
             type: "string",
         },        
         {
             name: "resourcesFolderAlias",
-            baseName: "resourcesFolderAlias",
+            baseName: "ResourcesFolderAlias",
             type: "string",
         },        
         {
             name: "saveFontFaceCssSeparately",
-            baseName: "saveFontFaceCssSeparately",
+            baseName: "SaveFontFaceCssSeparately",
             type: "boolean",
         },        
         {
             name: "showPageBorder",
-            baseName: "showPageBorder",
+            baseName: "ShowPageBorder",
             type: "boolean",
         }    ];
 
@@ -9852,67 +9852,67 @@ export class ImageSaveOptionsData extends FixedPageSaveOptionsData {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "graphicsQualityOptions",
-            baseName: "graphicsQualityOptions",
+            baseName: "GraphicsQualityOptions",
             type: "GraphicsQualityOptionsData",
         },        
         {
             name: "horizontalResolution",
-            baseName: "horizontalResolution",
+            baseName: "HorizontalResolution",
             type: "number",
         },        
         {
             name: "imageBrightness",
-            baseName: "imageBrightness",
+            baseName: "ImageBrightness",
             type: "number",
         },        
         {
             name: "imageColorMode",
-            baseName: "imageColorMode",
+            baseName: "ImageColorMode",
             type: "string",
         },        
         {
             name: "imageContrast",
-            baseName: "imageContrast",
+            baseName: "ImageContrast",
             type: "number",
         },        
         {
             name: "paperColor",
-            baseName: "paperColor",
+            baseName: "PaperColor",
             type: "string",
         },        
         {
             name: "pixelFormat",
-            baseName: "pixelFormat",
+            baseName: "PixelFormat",
             type: "string",
         },        
         {
             name: "resolution",
-            baseName: "resolution",
+            baseName: "Resolution",
             type: "number",
         },        
         {
             name: "scale",
-            baseName: "scale",
+            baseName: "Scale",
             type: "number",
         },        
         {
             name: "useAntiAliasing",
-            baseName: "useAntiAliasing",
+            baseName: "UseAntiAliasing",
             type: "boolean",
         },        
         {
             name: "useGdiEmfRenderer",
-            baseName: "useGdiEmfRenderer",
+            baseName: "UseGdiEmfRenderer",
             type: "boolean",
         },        
         {
             name: "useHighQualityRendering",
-            baseName: "useHighQualityRendering",
+            baseName: "UseHighQualityRendering",
             type: "boolean",
         },        
         {
             name: "verticalResolution",
-            baseName: "verticalResolution",
+            baseName: "VerticalResolution",
             type: "number",
         }    ];
 
@@ -10005,7 +10005,7 @@ export class MhtmlSaveOptionsData extends HtmlSaveOptionsData {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "exportCidUrlsForMhtmlResources",
-            baseName: "exportCidUrlsForMhtmlResources",
+            baseName: "ExportCidUrlsForMhtmlResources",
             type: "boolean",
         }    ];
 
@@ -10070,7 +10070,7 @@ export class Paragraph extends NodeLink {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "childNodes",
-            baseName: "childNodes",
+            baseName: "ChildNodes",
             type: "Array<NodeLink>",
         }    ];
 
@@ -10103,7 +10103,7 @@ export class ParagraphLink extends NodeLink {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "text",
-            baseName: "text",
+            baseName: "Text",
             type: "string",
         }    ];
 
@@ -10136,12 +10136,12 @@ export class PclSaveOptionsData extends FixedPageSaveOptionsData {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "falllbackFontName",
-            baseName: "falllbackFontName",
+            baseName: "FalllbackFontName",
             type: "string",
         },        
         {
             name: "rasterizeTransformedElements",
-            baseName: "rasterizeTransformedElements",
+            baseName: "RasterizeTransformedElements",
             type: "boolean",
         }    ];
 
@@ -10179,122 +10179,122 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "compliance",
-            baseName: "compliance",
+            baseName: "Compliance",
             type: "string",
         },        
         {
             name: "createNoteHyperlinks",
-            baseName: "createNoteHyperlinks",
+            baseName: "CreateNoteHyperlinks",
             type: "boolean",
         },        
         {
             name: "customPropertiesExport",
-            baseName: "customPropertiesExport",
+            baseName: "CustomPropertiesExport",
             type: "string",
         },        
         {
             name: "digitalSignatureDetails",
-            baseName: "digitalSignatureDetails",
+            baseName: "DigitalSignatureDetails",
             type: "PdfDigitalSignatureDetailsData",
         },        
         {
             name: "displayDocTitle",
-            baseName: "displayDocTitle",
+            baseName: "DisplayDocTitle",
             type: "boolean",
         },        
         {
             name: "downsampleOptions",
-            baseName: "downsampleOptions",
+            baseName: "DownsampleOptions",
             type: "DownsampleOptionsData",
         },        
         {
             name: "embedFullFonts",
-            baseName: "embedFullFonts",
+            baseName: "EmbedFullFonts",
             type: "boolean",
         },        
         {
             name: "encryptionDetails",
-            baseName: "encryptionDetails",
+            baseName: "EncryptionDetails",
             type: "PdfEncryptionDetailsData",
         },        
         {
             name: "escapeUri",
-            baseName: "escapeUri",
+            baseName: "EscapeUri",
             type: "boolean",
         },        
         {
             name: "exportDocumentStructure",
-            baseName: "exportDocumentStructure",
+            baseName: "ExportDocumentStructure",
             type: "boolean",
         },        
         {
             name: "fontEmbeddingMode",
-            baseName: "fontEmbeddingMode",
+            baseName: "FontEmbeddingMode",
             type: "string",
         },        
         {
             name: "headerFooterBookmarksExportMode",
-            baseName: "headerFooterBookmarksExportMode",
+            baseName: "HeaderFooterBookmarksExportMode",
             type: "PdfSaveOptionsData.HeaderFooterBookmarksExportModeEnum",
         },        
         {
             name: "imageColorSpaceExportMode",
-            baseName: "imageColorSpaceExportMode",
+            baseName: "ImageColorSpaceExportMode",
             type: "string",
         },        
         {
             name: "imageCompression",
-            baseName: "imageCompression",
+            baseName: "ImageCompression",
             type: "string",
         },        
         {
             name: "openHyperlinksInNewWindow",
-            baseName: "openHyperlinksInNewWindow",
+            baseName: "OpenHyperlinksInNewWindow",
             type: "boolean",
         },        
         {
             name: "outlineOptions",
-            baseName: "outlineOptions",
+            baseName: "OutlineOptions",
             type: "OutlineOptionsData",
         },        
         {
             name: "pageMode",
-            baseName: "pageMode",
+            baseName: "PageMode",
             type: "string",
         },        
         {
             name: "preblendImages",
-            baseName: "preblendImages",
+            baseName: "PreblendImages",
             type: "boolean",
         },        
         {
             name: "preserveFormFields",
-            baseName: "preserveFormFields",
+            baseName: "PreserveFormFields",
             type: "boolean",
         },        
         {
             name: "textCompression",
-            baseName: "textCompression",
+            baseName: "TextCompression",
             type: "string",
         },        
         {
             name: "useBookFoldPrintingSettings",
-            baseName: "useBookFoldPrintingSettings",
+            baseName: "UseBookFoldPrintingSettings",
             type: "boolean",
         },        
         {
             name: "useCoreFonts",
-            baseName: "useCoreFonts",
+            baseName: "UseCoreFonts",
             type: "boolean",
         },        
         {
             name: "zoomBehavior",
-            baseName: "zoomBehavior",
+            baseName: "ZoomBehavior",
             type: "string",
         },        
         {
             name: "zoomFactor",
-            baseName: "zoomFactor",
+            baseName: "ZoomFactor",
             type: "number",
         }    ];
 
@@ -10455,7 +10455,7 @@ export class PsSaveOptionsData extends FixedPageSaveOptionsData {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "useBookFoldPrintingSettings",
-            baseName: "useBookFoldPrintingSettings",
+            baseName: "UseBookFoldPrintingSettings",
             type: "boolean",
         }    ];
 
@@ -10488,7 +10488,7 @@ export class RunLink extends NodeLink {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "text",
-            baseName: "text",
+            baseName: "Text",
             type: "string",
         }    ];
 
@@ -10545,32 +10545,32 @@ export class SvgSaveOptionsData extends FixedPageSaveOptionsData {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "exportEmbeddedImages",
-            baseName: "exportEmbeddedImages",
+            baseName: "ExportEmbeddedImages",
             type: "boolean",
         },        
         {
             name: "fitToViewPort",
-            baseName: "fitToViewPort",
+            baseName: "FitToViewPort",
             type: "boolean",
         },        
         {
             name: "resourcesFolder",
-            baseName: "resourcesFolder",
+            baseName: "ResourcesFolder",
             type: "string",
         },        
         {
             name: "resourcesFolderAlias",
-            baseName: "resourcesFolderAlias",
+            baseName: "ResourcesFolderAlias",
             type: "string",
         },        
         {
             name: "showPageBorder",
-            baseName: "showPageBorder",
+            baseName: "ShowPageBorder",
             type: "boolean",
         },        
         {
             name: "textOutputMode",
-            baseName: "textOutputMode",
+            baseName: "TextOutputMode",
             type: "string",
         }    ];
 
@@ -10628,12 +10628,12 @@ export class Table extends NodeLink {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "tableProperties",
-            baseName: "tableProperties",
+            baseName: "TableProperties",
             type: "TableProperties",
         },        
         {
             name: "tableRowList",
-            baseName: "tableRowList",
+            baseName: "TableRowList",
             type: "Array<TableRow>",
         }    ];
 
@@ -10671,7 +10671,7 @@ export class TableCell extends NodeLink {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "childNodes",
-            baseName: "childNodes",
+            baseName: "ChildNodes",
             type: "Array<NodeLink>",
         }    ];
 
@@ -10728,12 +10728,12 @@ export class TableRow extends NodeLink {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "rowFormat",
-            baseName: "rowFormat",
+            baseName: "RowFormat",
             type: "TableRowFormat",
         },        
         {
             name: "tableCellList",
-            baseName: "tableCellList",
+            baseName: "TableCellList",
             type: "Array<TableCell>",
         }    ];
 
@@ -10771,12 +10771,12 @@ export class XamlFixedSaveOptionsData extends FixedPageSaveOptionsData {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "resourcesFolder",
-            baseName: "resourcesFolder",
+            baseName: "ResourcesFolder",
             type: "string",
         },        
         {
             name: "resourcesFolderAlias",
-            baseName: "resourcesFolderAlias",
+            baseName: "ResourcesFolderAlias",
             type: "string",
         }    ];
 
@@ -10814,22 +10814,22 @@ export class XpsSaveOptionsData extends FixedPageSaveOptionsData {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "bookmarksOutlineLevel",
-            baseName: "bookmarksOutlineLevel",
+            baseName: "BookmarksOutlineLevel",
             type: "number",
         },        
         {
             name: "headingsOutlineLevels",
-            baseName: "headingsOutlineLevels",
+            baseName: "HeadingsOutlineLevels",
             type: "number",
         },        
         {
             name: "outlineOptions",
-            baseName: "outlineOptions",
+            baseName: "OutlineOptions",
             type: "OutlineOptionsData",
         },        
         {
             name: "useBookFoldPrintingSettings",
-            baseName: "useBookFoldPrintingSettings",
+            baseName: "UseBookFoldPrintingSettings",
             type: "boolean",
         }    ];
 
@@ -10901,52 +10901,52 @@ export class DrawingObject extends DrawingObjectLink {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "height",
-            baseName: "height",
+            baseName: "Height",
             type: "number",
         },        
         {
             name: "imageDataLink",
-            baseName: "imageDataLink",
+            baseName: "ImageDataLink",
             type: "WordsApiLink",
         },        
         {
             name: "left",
-            baseName: "left",
+            baseName: "Left",
             type: "number",
         },        
         {
             name: "oleDataLink",
-            baseName: "oleDataLink",
+            baseName: "OleDataLink",
             type: "WordsApiLink",
         },        
         {
             name: "relativeHorizontalPosition",
-            baseName: "relativeHorizontalPosition",
+            baseName: "RelativeHorizontalPosition",
             type: "DrawingObject.RelativeHorizontalPositionEnum",
         },        
         {
             name: "relativeVerticalPosition",
-            baseName: "relativeVerticalPosition",
+            baseName: "RelativeVerticalPosition",
             type: "DrawingObject.RelativeVerticalPositionEnum",
         },        
         {
             name: "renderLinks",
-            baseName: "renderLinks",
+            baseName: "RenderLinks",
             type: "Array<WordsApiLink>",
         },        
         {
             name: "top",
-            baseName: "top",
+            baseName: "Top",
             type: "number",
         },        
         {
             name: "width",
-            baseName: "width",
+            baseName: "Width",
             type: "number",
         },        
         {
             name: "wrapType",
-            baseName: "wrapType",
+            baseName: "WrapType",
             type: "DrawingObject.WrapTypeEnum",
         }    ];
 
@@ -11087,12 +11087,12 @@ export class Field extends FieldLink {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "localeId",
-            baseName: "localeId",
+            baseName: "LocaleId",
             type: "string",
         },        
         {
             name: "result",
-            baseName: "result",
+            baseName: "Result",
             type: "string",
         }    ];
 
@@ -11130,27 +11130,27 @@ export class Footnote extends FootnoteLink {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "content",
-            baseName: "content",
+            baseName: "Content",
             type: "StoryChildNodes",
         },        
         {
             name: "footnoteType",
-            baseName: "footnoteType",
+            baseName: "FootnoteType",
             type: "Footnote.FootnoteTypeEnum",
         },        
         {
             name: "position",
-            baseName: "position",
+            baseName: "Position",
             type: "DocumentPosition",
         },        
         {
             name: "referenceMark",
-            baseName: "referenceMark",
+            baseName: "ReferenceMark",
             type: "string",
         },        
         {
             name: "text",
-            baseName: "text",
+            baseName: "Text",
             type: "string",
         }    ];
 
@@ -11215,17 +11215,17 @@ export class FormFieldCheckbox extends FormField {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "checkBoxSize",
-            baseName: "checkBoxSize",
+            baseName: "CheckBoxSize",
             type: "number",
         },        
         {
             name: "checked",
-            baseName: "checked",
+            baseName: "Checked",
             type: "boolean",
         },        
         {
             name: "isCheckBoxExactSize",
-            baseName: "isCheckBoxExactSize",
+            baseName: "IsCheckBoxExactSize",
             type: "boolean",
         }    ];
 
@@ -11268,12 +11268,12 @@ export class FormFieldDropDown extends FormField {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "dropDownItems",
-            baseName: "dropDownItems",
+            baseName: "DropDownItems",
             type: "Array<string>",
         },        
         {
             name: "dropDownSelectedIndex",
-            baseName: "dropDownSelectedIndex",
+            baseName: "DropDownSelectedIndex",
             type: "number",
         }    ];
 
@@ -11311,22 +11311,22 @@ export class FormFieldTextInput extends FormField {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "maxLength",
-            baseName: "maxLength",
+            baseName: "MaxLength",
             type: "number",
         },        
         {
             name: "textInputDefault",
-            baseName: "textInputDefault",
+            baseName: "TextInputDefault",
             type: "string",
         },        
         {
             name: "textInputFormat",
-            baseName: "textInputFormat",
+            baseName: "TextInputFormat",
             type: "string",
         },        
         {
             name: "textInputType",
-            baseName: "textInputType",
+            baseName: "TextInputType",
             type: "FormFieldTextInput.TextInputTypeEnum",
         }    ];
 
@@ -11438,22 +11438,22 @@ export class OfficeMathObject extends OfficeMathLink {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "content",
-            baseName: "content",
+            baseName: "Content",
             type: "StoryChildNodes",
         },        
         {
             name: "displayType",
-            baseName: "displayType",
+            baseName: "DisplayType",
             type: "OfficeMathObject.DisplayTypeEnum",
         },        
         {
             name: "justification",
-            baseName: "justification",
+            baseName: "Justification",
             type: "OfficeMathObject.JustificationEnum",
         },        
         {
             name: "mathObjectType",
-            baseName: "mathObjectType",
+            baseName: "MathObjectType",
             type: "OfficeMathObject.MathObjectTypeEnum",
         }    ];
 
@@ -11601,17 +11601,17 @@ export class TiffSaveOptionsData extends ImageSaveOptionsData {
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
             name: "thresholdForFloydSteinbergDithering",
-            baseName: "thresholdForFloydSteinbergDithering",
+            baseName: "ThresholdForFloydSteinbergDithering",
             type: "number",
         },        
         {
             name: "tiffBinarizationMethod",
-            baseName: "tiffBinarizationMethod",
+            baseName: "TiffBinarizationMethod",
             type: "string",
         },        
         {
             name: "tiffCompression",
-            baseName: "tiffCompression",
+            baseName: "TiffCompression",
             type: "string",
         }    ];
 

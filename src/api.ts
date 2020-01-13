@@ -59,7 +59,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling acceptAllRevisions.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/revisions/acceptAll"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/revisions/acceptAll"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
         const queryParameters: any = {};
 
@@ -100,7 +100,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling appendDocument.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/appendDocument"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/appendDocument"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
         const queryParameters: any = {};
 
@@ -191,7 +191,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling classifyDocument.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{DocumentName}/classify"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{documentName}/classify"
             .replace("/{" + "documentName" + "}", (requestObj.documentName !== null) ? "/" + String(requestObj.documentName) : "");
         const queryParameters: any = {};
 
@@ -233,7 +233,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling compareDocument.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/compareDocument"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/compareDocument"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
         const queryParameters: any = {};
 
@@ -336,7 +336,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling copyFile.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/storage/file/copy/{SrcPath}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/storage/file/copy/{srcPath}"
             .replace("/{" + "srcPath" + "}", (requestObj.srcPath !== null) ? "/" + String(requestObj.srcPath) : "");
         const queryParameters: any = {};
 
@@ -379,7 +379,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling copyFolder.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/storage/folder/copy/{SrcPath}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/storage/folder/copy/{srcPath}"
             .replace("/{" + "srcPath" + "}", (requestObj.srcPath !== null) ? "/" + String(requestObj.srcPath) : "");
         const queryParameters: any = {};
 
@@ -449,7 +449,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling createFolder.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/storage/folder/{Path}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/storage/folder/{path}"
             .replace("/{" + "path" + "}", (requestObj.path !== null) ? "/" + String(requestObj.path) : "");
         const queryParameters: any = {};
 
@@ -484,7 +484,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling createOrUpdateDocumentProperty.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/documentProperties/{PropertyName}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/documentProperties/{propertyName}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "propertyName" + "}", (requestObj.propertyName !== null) ? "/" + String(requestObj.propertyName) : "");
         const queryParameters: any = {};
@@ -549,7 +549,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteBorder.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{NodePath}/borders/{BorderType}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/borders/{borderType}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
             .replace("/{" + "borderType" + "}", (requestObj.borderType !== null) ? "/" + String(requestObj.borderType) : "");
@@ -609,7 +609,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteBorders.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{NodePath}/borders"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/borders"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "");
         const queryParameters: any = {};
@@ -658,7 +658,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteComment.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/comments/{CommentIndex}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/comments/{commentIndex}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "commentIndex" + "}", (requestObj.commentIndex !== null) ? "/" + String(requestObj.commentIndex) : "");
         const queryParameters: any = {};
@@ -710,7 +710,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteDocumentProperty.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/documentProperties/{PropertyName}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/documentProperties/{propertyName}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "propertyName" + "}", (requestObj.propertyName !== null) ? "/" + String(requestObj.propertyName) : "");
         const queryParameters: any = {};
@@ -762,7 +762,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteDrawingObject.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{NodePath}/drawingObjects/{Index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
@@ -820,7 +820,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteDrawingObjectWithoutNodePath.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/drawingObjects/{Index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/drawingObjects/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
         const queryParameters: any = {};
@@ -872,7 +872,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteField.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{NodePath}/fields/{Index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/fields/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
@@ -930,7 +930,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteFieldWithoutNodePath.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/fields/{Index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/fields/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
         const queryParameters: any = {};
@@ -982,7 +982,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteFields.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{NodePath}/fields"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/fields"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "");
         const queryParameters: any = {};
@@ -1029,7 +1029,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteFieldsWithoutNodePath.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/fields"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/fields"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
         const queryParameters: any = {};
 
@@ -1070,7 +1070,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteFile.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/storage/file/{Path}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/storage/file/{path}"
             .replace("/{" + "path" + "}", (requestObj.path !== null) ? "/" + String(requestObj.path) : "");
         const queryParameters: any = {};
 
@@ -1106,7 +1106,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteFolder.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/storage/folder/{Path}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/storage/folder/{path}"
             .replace("/{" + "path" + "}", (requestObj.path !== null) ? "/" + String(requestObj.path) : "");
         const queryParameters: any = {};
 
@@ -1142,7 +1142,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteFootnote.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{NodePath}/footnotes/{Index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/footnotes/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
@@ -1200,7 +1200,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteFootnoteWithoutNodePath.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/footnotes/{Index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/footnotes/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
         const queryParameters: any = {};
@@ -1252,7 +1252,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteFormField.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{NodePath}/formfields/{Index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/formfields/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
@@ -1310,7 +1310,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteFormFieldWithoutNodePath.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/formfields/{Index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/formfields/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
         const queryParameters: any = {};
@@ -1362,7 +1362,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteHeaderFooter.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{SectionPath}/headersfooters/{Index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{sectionPath}/headersfooters/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "sectionPath" + "}", (requestObj.sectionPath !== null) ? "/" + String(requestObj.sectionPath) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
@@ -1420,7 +1420,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteHeadersFooters.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{SectionPath}/headersfooters"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{sectionPath}/headersfooters"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "sectionPath" + "}", (requestObj.sectionPath !== null) ? "/" + String(requestObj.sectionPath) : "");
         const queryParameters: any = {};
@@ -1468,7 +1468,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteMacros.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/macros"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/macros"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
         const queryParameters: any = {};
 
@@ -1509,7 +1509,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteOfficeMathObject.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{NodePath}/OfficeMathObjects/{Index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/OfficeMathObjects/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
@@ -1567,7 +1567,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteOfficeMathObjectWithoutNodePath.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/OfficeMathObjects/{Index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/OfficeMathObjects/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
         const queryParameters: any = {};
@@ -1619,7 +1619,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteParagraph.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{NodePath}/paragraphs/{Index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
@@ -1677,7 +1677,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteParagraphWithoutNodePath.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/paragraphs/{Index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/paragraphs/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
         const queryParameters: any = {};
@@ -1729,7 +1729,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteRun.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{ParagraphPath}/runs/{Index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{paragraphPath}/runs/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "paragraphPath" + "}", (requestObj.paragraphPath !== null) ? "/" + String(requestObj.paragraphPath) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
@@ -1787,7 +1787,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteSection.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/sections/{SectionIndex}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/sections/{sectionIndex}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "sectionIndex" + "}", (requestObj.sectionIndex !== null) ? "/" + String(requestObj.sectionIndex) : "");
         const queryParameters: any = {};
@@ -1839,7 +1839,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteTable.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{NodePath}/tables/{Index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/tables/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
@@ -1897,7 +1897,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteTableCell.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{TableRowPath}/cells/{Index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{tableRowPath}/cells/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "tableRowPath" + "}", (requestObj.tableRowPath !== null) ? "/" + String(requestObj.tableRowPath) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
@@ -1955,7 +1955,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteTableRow.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{TablePath}/rows/{Index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{tablePath}/rows/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "tablePath" + "}", (requestObj.tablePath !== null) ? "/" + String(requestObj.tablePath) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
@@ -2013,7 +2013,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteTableWithoutNodePath.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/tables/{Index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/tables/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
         const queryParameters: any = {};
@@ -2065,7 +2065,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteWatermark.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/watermarks/deleteLast"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/watermarks/deleteLast"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
         const queryParameters: any = {};
 
@@ -2108,7 +2108,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling downloadFile.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/storage/file/{Path}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/storage/file/{path}"
             .replace("/{" + "path" + "}", (requestObj.path !== null) ? "/" + String(requestObj.path) : "");
         const queryParameters: any = {};
 
@@ -2146,7 +2146,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling executeMailMerge.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/MailMerge"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/MailMerge"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
         const queryParameters: any = {};
         const formParams: any = {};
@@ -2281,7 +2281,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getBookmarkByName.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/bookmarks/{BookmarkName}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/bookmarks/{bookmarkName}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "bookmarkName" + "}", (requestObj.bookmarkName !== null) ? "/" + String(requestObj.bookmarkName) : "");
         const queryParameters: any = {};
@@ -2332,7 +2332,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getBookmarks.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/bookmarks"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/bookmarks"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
         const queryParameters: any = {};
 
@@ -2372,7 +2372,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getBorder.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{NodePath}/borders/{BorderType}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/borders/{borderType}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
             .replace("/{" + "borderType" + "}", (requestObj.borderType !== null) ? "/" + String(requestObj.borderType) : "");
@@ -2429,7 +2429,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getBorders.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{NodePath}/borders"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/borders"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "");
         const queryParameters: any = {};
@@ -2475,7 +2475,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getComment.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/comments/{CommentIndex}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/comments/{commentIndex}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "commentIndex" + "}", (requestObj.commentIndex !== null) ? "/" + String(requestObj.commentIndex) : "");
         const queryParameters: any = {};
@@ -2526,7 +2526,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getComments.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/comments"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/comments"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
         const queryParameters: any = {};
 
@@ -2566,7 +2566,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocument.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{DocumentName}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{documentName}"
             .replace("/{" + "documentName" + "}", (requestObj.documentName !== null) ? "/" + String(requestObj.documentName) : "");
         const queryParameters: any = {};
 
@@ -2606,7 +2606,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentDrawingObjectByIndex.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{NodePath}/drawingObjects/{Index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
@@ -2663,7 +2663,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentDrawingObjectByIndexWithoutNodePath.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/drawingObjects/{Index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/drawingObjects/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
         const queryParameters: any = {};
@@ -2714,7 +2714,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentDrawingObjectImageData.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{NodePath}/drawingObjects/{Index}/imageData"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects/{index}/imageData"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
@@ -2771,7 +2771,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentDrawingObjectImageDataWithoutNodePath.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/drawingObjects/{Index}/imageData"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/drawingObjects/{index}/imageData"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
         const queryParameters: any = {};
@@ -2822,7 +2822,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentDrawingObjectOleData.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{NodePath}/drawingObjects/{Index}/oleData"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects/{index}/oleData"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
@@ -2879,7 +2879,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentDrawingObjectOleDataWithoutNodePath.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/drawingObjects/{Index}/oleData"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/drawingObjects/{index}/oleData"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
         const queryParameters: any = {};
@@ -2930,7 +2930,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentDrawingObjects.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{NodePath}/drawingObjects"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "");
         const queryParameters: any = {};
@@ -2976,7 +2976,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentDrawingObjectsWithoutNodePath.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/drawingObjects"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/drawingObjects"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
         const queryParameters: any = {};
 
@@ -3016,7 +3016,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentFieldNames.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/mailMerge/FieldNames"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/mailMerge/FieldNames"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
         const queryParameters: any = {};
 
@@ -3099,7 +3099,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentHyperlinkByIndex.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/hyperlinks/{HyperlinkIndex}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/hyperlinks/{hyperlinkIndex}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "hyperlinkIndex" + "}", (requestObj.hyperlinkIndex !== null) ? "/" + String(requestObj.hyperlinkIndex) : "");
         const queryParameters: any = {};
@@ -3150,7 +3150,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentHyperlinks.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/hyperlinks"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/hyperlinks"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
         const queryParameters: any = {};
 
@@ -3190,7 +3190,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentProperties.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/documentProperties"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/documentProperties"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
         const queryParameters: any = {};
 
@@ -3230,7 +3230,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentProperty.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/documentProperties/{PropertyName}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/documentProperties/{propertyName}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "propertyName" + "}", (requestObj.propertyName !== null) ? "/" + String(requestObj.propertyName) : "");
         const queryParameters: any = {};
@@ -3281,7 +3281,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentProtection.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/protection"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/protection"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
         const queryParameters: any = {};
 
@@ -3321,7 +3321,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentStatistics.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/statistics"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/statistics"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
         const queryParameters: any = {};
 
@@ -3364,7 +3364,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentWithFormat.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
         const queryParameters: any = {};
 
@@ -3412,7 +3412,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getField.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{NodePath}/fields/{Index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/fields/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
@@ -3469,7 +3469,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getFieldWithoutNodePath.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/fields/{Index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/fields/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
         const queryParameters: any = {};
@@ -3520,7 +3520,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getFields.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{NodePath}/fields"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/fields"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "");
         const queryParameters: any = {};
@@ -3566,7 +3566,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getFieldsWithoutNodePath.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/fields"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/fields"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
         const queryParameters: any = {};
 
@@ -3606,7 +3606,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getFilesList.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/storage/folder/{Path}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/storage/folder/{path}"
             .replace("/{" + "path" + "}", (requestObj.path !== null) ? "/" + String(requestObj.path) : "");
         const queryParameters: any = {};
 
@@ -3643,7 +3643,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getFootnote.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{NodePath}/footnotes/{Index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/footnotes/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
@@ -3700,7 +3700,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getFootnoteWithoutNodePath.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/footnotes/{Index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/footnotes/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
         const queryParameters: any = {};
@@ -3751,7 +3751,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getFootnotes.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{NodePath}/footnotes"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/footnotes"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "");
         const queryParameters: any = {};
@@ -3797,7 +3797,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getFootnotesWithoutNodePath.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/footnotes"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/footnotes"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
         const queryParameters: any = {};
 
@@ -3837,7 +3837,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getFormField.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{NodePath}/formfields/{Index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/formfields/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
@@ -3894,7 +3894,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getFormFieldWithoutNodePath.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/formfields/{Index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/formfields/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
         const queryParameters: any = {};
@@ -3945,7 +3945,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getFormFields.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{NodePath}/formfields"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/formfields"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "");
         const queryParameters: any = {};
@@ -3991,7 +3991,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getFormFieldsWithoutNodePath.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/formfields"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/formfields"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
         const queryParameters: any = {};
 
@@ -4031,7 +4031,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getHeaderFooter.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/headersfooters/{HeaderFooterIndex}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/headersfooters/{headerFooterIndex}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "headerFooterIndex" + "}", (requestObj.headerFooterIndex !== null) ? "/" + String(requestObj.headerFooterIndex) : "");
         const queryParameters: any = {};
@@ -4083,7 +4083,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getHeaderFooterOfSection.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/sections/{SectionIndex}/headersfooters/{HeaderFooterIndex}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/sections/{sectionIndex}/headersfooters/{headerFooterIndex}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "headerFooterIndex" + "}", (requestObj.headerFooterIndex !== null) ? "/" + String(requestObj.headerFooterIndex) : "")
             .replace("/{" + "sectionIndex" + "}", (requestObj.sectionIndex !== null) ? "/" + String(requestObj.sectionIndex) : "");
@@ -4146,7 +4146,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getHeaderFooters.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{SectionPath}/headersfooters"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{sectionPath}/headersfooters"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "sectionPath" + "}", (requestObj.sectionPath !== null) ? "/" + String(requestObj.sectionPath) : "");
         const queryParameters: any = {};
@@ -4193,7 +4193,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getOfficeMathObject.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{NodePath}/OfficeMathObjects/{Index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/OfficeMathObjects/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
@@ -4250,7 +4250,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getOfficeMathObjectWithoutNodePath.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/OfficeMathObjects/{Index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/OfficeMathObjects/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
         const queryParameters: any = {};
@@ -4301,7 +4301,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getOfficeMathObjects.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{NodePath}/OfficeMathObjects"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/OfficeMathObjects"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "");
         const queryParameters: any = {};
@@ -4347,7 +4347,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getOfficeMathObjectsWithoutNodePath.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/OfficeMathObjects"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/OfficeMathObjects"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
         const queryParameters: any = {};
 
@@ -4387,7 +4387,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getParagraph.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{NodePath}/paragraphs/{Index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
@@ -4444,7 +4444,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getParagraphFormat.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{NodePath}/paragraphs/{Index}/format"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}/format"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
@@ -4501,7 +4501,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getParagraphFormatWithoutNodePath.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/paragraphs/{Index}/format"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/paragraphs/{index}/format"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
         const queryParameters: any = {};
@@ -4552,7 +4552,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getParagraphWithoutNodePath.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/paragraphs/{Index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/paragraphs/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
         const queryParameters: any = {};
@@ -4603,7 +4603,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getParagraphs.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{NodePath}/paragraphs"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "");
         const queryParameters: any = {};
@@ -4649,7 +4649,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getParagraphsWithoutNodePath.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/paragraphs"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/paragraphs"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
         const queryParameters: any = {};
 
@@ -4689,7 +4689,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getRangeText.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/range/{RangeStartIdentifier}/{RangeEndIdentifier}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/range/{rangeStartIdentifier}/{rangeEndIdentifier}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "rangeStartIdentifier" + "}", (requestObj.rangeStartIdentifier !== null) ? "/" + String(requestObj.rangeStartIdentifier) : "")
             .replace("/{" + "rangeEndIdentifier" + "}", (requestObj.rangeEndIdentifier !== null) ? "/" + String(requestObj.rangeEndIdentifier) : "");
@@ -4746,7 +4746,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getRun.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{ParagraphPath}/runs/{Index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{paragraphPath}/runs/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "paragraphPath" + "}", (requestObj.paragraphPath !== null) ? "/" + String(requestObj.paragraphPath) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
@@ -4803,7 +4803,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getRunFont.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{ParagraphPath}/runs/{Index}/font"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{paragraphPath}/runs/{index}/font"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "paragraphPath" + "}", (requestObj.paragraphPath !== null) ? "/" + String(requestObj.paragraphPath) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
@@ -4860,7 +4860,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getRuns.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{ParagraphPath}/runs"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{paragraphPath}/runs"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "paragraphPath" + "}", (requestObj.paragraphPath !== null) ? "/" + String(requestObj.paragraphPath) : "");
         const queryParameters: any = {};
@@ -4906,7 +4906,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getSection.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/sections/{SectionIndex}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/sections/{sectionIndex}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "sectionIndex" + "}", (requestObj.sectionIndex !== null) ? "/" + String(requestObj.sectionIndex) : "");
         const queryParameters: any = {};
@@ -4957,7 +4957,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getSectionPageSetup.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/sections/{SectionIndex}/pageSetup"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/sections/{sectionIndex}/pageSetup"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "sectionIndex" + "}", (requestObj.sectionIndex !== null) ? "/" + String(requestObj.sectionIndex) : "");
         const queryParameters: any = {};
@@ -5008,7 +5008,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getSections.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/sections"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/sections"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
         const queryParameters: any = {};
 
@@ -5048,7 +5048,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getTable.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{NodePath}/tables/{Index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/tables/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
@@ -5105,7 +5105,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getTableCell.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{TableRowPath}/cells/{Index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{tableRowPath}/cells/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "tableRowPath" + "}", (requestObj.tableRowPath !== null) ? "/" + String(requestObj.tableRowPath) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
@@ -5162,7 +5162,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getTableCellFormat.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{TableRowPath}/cells/{Index}/cellformat"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{tableRowPath}/cells/{index}/cellformat"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "tableRowPath" + "}", (requestObj.tableRowPath !== null) ? "/" + String(requestObj.tableRowPath) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
@@ -5219,7 +5219,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getTableProperties.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{NodePath}/tables/{Index}/properties"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/tables/{index}/properties"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
@@ -5276,7 +5276,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getTablePropertiesWithoutNodePath.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/tables/{Index}/properties"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/tables/{index}/properties"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
         const queryParameters: any = {};
@@ -5327,7 +5327,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getTableRow.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{TablePath}/rows/{Index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{tablePath}/rows/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "tablePath" + "}", (requestObj.tablePath !== null) ? "/" + String(requestObj.tablePath) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
@@ -5384,7 +5384,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getTableRowFormat.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{TablePath}/rows/{Index}/rowformat"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{tablePath}/rows/{index}/rowformat"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "tablePath" + "}", (requestObj.tablePath !== null) ? "/" + String(requestObj.tablePath) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
@@ -5441,7 +5441,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getTableWithoutNodePath.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/tables/{Index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/tables/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
         const queryParameters: any = {};
@@ -5492,7 +5492,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getTables.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{NodePath}/tables"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/tables"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "");
         const queryParameters: any = {};
@@ -5538,7 +5538,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getTablesWithoutNodePath.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/tables"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/tables"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
         const queryParameters: any = {};
 
@@ -5578,7 +5578,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling insertComment.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/comments"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/comments"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
         const queryParameters: any = {};
 
@@ -5632,7 +5632,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling insertDrawingObject.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{NodePath}/drawingObjects"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "");
         const queryParameters: any = {};
@@ -5711,7 +5711,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling insertDrawingObjectWithoutNodePath.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/drawingObjects"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/drawingObjects"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
         const queryParameters: any = {};
         const formParams: any = {};
@@ -5784,7 +5784,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling insertField.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{NodePath}/fields"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/fields"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "");
         const queryParameters: any = {};
@@ -5845,7 +5845,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling insertFieldWithoutNodePath.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/fields"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/fields"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
         const queryParameters: any = {};
 
@@ -5900,7 +5900,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling insertFootnote.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{NodePath}/footnotes"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/footnotes"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "");
         const queryParameters: any = {};
@@ -5960,7 +5960,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling insertFootnoteWithoutNodePath.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/footnotes"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/footnotes"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
         const queryParameters: any = {};
 
@@ -6014,7 +6014,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling insertFormField.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{NodePath}/formfields"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/formfields"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "");
         const queryParameters: any = {};
@@ -6075,7 +6075,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling insertFormFieldWithoutNodePath.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/formfields"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/formfields"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
         const queryParameters: any = {};
 
@@ -6130,7 +6130,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling insertHeaderFooter.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{SectionPath}/headersfooters"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{sectionPath}/headersfooters"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "sectionPath" + "}", (requestObj.sectionPath !== null) ? "/" + String(requestObj.sectionPath) : "");
         const queryParameters: any = {};
@@ -6190,7 +6190,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling insertPageNumbers.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/PageNumbers"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/PageNumbers"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
         const queryParameters: any = {};
 
@@ -6244,7 +6244,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling insertParagraph.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{NodePath}/paragraphs"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "");
         const queryParameters: any = {};
@@ -6305,7 +6305,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling insertRun.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{ParagraphPath}/runs"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{paragraphPath}/runs"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "paragraphPath" + "}", (requestObj.paragraphPath !== null) ? "/" + String(requestObj.paragraphPath) : "");
         const queryParameters: any = {};
@@ -6366,7 +6366,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling insertTable.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{NodePath}/tables"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/tables"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "");
         const queryParameters: any = {};
@@ -6426,7 +6426,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling insertTableCell.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{TableRowPath}/cells"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{tableRowPath}/cells"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "tableRowPath" + "}", (requestObj.tableRowPath !== null) ? "/" + String(requestObj.tableRowPath) : "");
         const queryParameters: any = {};
@@ -6486,7 +6486,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling insertTableRow.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{TablePath}/rows"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{tablePath}/rows"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "tablePath" + "}", (requestObj.tablePath !== null) ? "/" + String(requestObj.tablePath) : "");
         const queryParameters: any = {};
@@ -6546,7 +6546,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling insertTableWithoutNodePath.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/tables"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/tables"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
         const queryParameters: any = {};
 
@@ -6600,7 +6600,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling insertWatermarkImage.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/watermarks/images"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/watermarks/images"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
         const queryParameters: any = {};
         const formParams: any = {};
@@ -6651,7 +6651,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling insertWatermarkText.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/watermarks/texts"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/watermarks/texts"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
         const queryParameters: any = {};
 
@@ -6742,7 +6742,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling moveFile.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/storage/file/move/{SrcPath}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/storage/file/move/{srcPath}"
             .replace("/{" + "srcPath" + "}", (requestObj.srcPath !== null) ? "/" + String(requestObj.srcPath) : "");
         const queryParameters: any = {};
 
@@ -6785,7 +6785,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling moveFolder.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/storage/folder/move/{SrcPath}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/storage/folder/move/{srcPath}"
             .replace("/{" + "srcPath" + "}", (requestObj.srcPath !== null) ? "/" + String(requestObj.srcPath) : "");
         const queryParameters: any = {};
 
@@ -6827,7 +6827,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling protectDocument.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/protection"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/protection"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
         const queryParameters: any = {};
 
@@ -6879,7 +6879,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling rejectAllRevisions.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/revisions/rejectAll"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/revisions/rejectAll"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
         const queryParameters: any = {};
 
@@ -6920,7 +6920,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling removeRange.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/range/{RangeStartIdentifier}/{RangeEndIdentifier}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/range/{rangeStartIdentifier}/{rangeEndIdentifier}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "rangeStartIdentifier" + "}", (requestObj.rangeStartIdentifier !== null) ? "/" + String(requestObj.rangeStartIdentifier) : "")
             .replace("/{" + "rangeEndIdentifier" + "}", (requestObj.rangeEndIdentifier !== null) ? "/" + String(requestObj.rangeEndIdentifier) : "");
@@ -6978,7 +6978,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling renderDrawingObject.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{NodePath}/drawingObjects/{Index}/render"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects/{index}/render"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
@@ -7042,7 +7042,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling renderDrawingObjectWithoutNodePath.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/drawingObjects/{Index}/render"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/drawingObjects/{index}/render"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
         const queryParameters: any = {};
@@ -7100,7 +7100,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling renderMathObject.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{NodePath}/OfficeMathObjects/{Index}/render"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/OfficeMathObjects/{index}/render"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
@@ -7164,7 +7164,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling renderMathObjectWithoutNodePath.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/OfficeMathObjects/{Index}/render"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/OfficeMathObjects/{index}/render"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
         const queryParameters: any = {};
@@ -7222,7 +7222,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling renderPage.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/pages/{PageIndex}/render"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/pages/{pageIndex}/render"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "pageIndex" + "}", (requestObj.pageIndex !== null) ? "/" + String(requestObj.pageIndex) : "");
         const queryParameters: any = {};
@@ -7280,7 +7280,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling renderParagraph.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{NodePath}/paragraphs/{Index}/render"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}/render"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
@@ -7344,7 +7344,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling renderParagraphWithoutNodePath.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/paragraphs/{Index}/render"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/paragraphs/{index}/render"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
         const queryParameters: any = {};
@@ -7402,7 +7402,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling renderTable.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{NodePath}/tables/{Index}/render"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/tables/{index}/render"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
@@ -7466,7 +7466,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling renderTableWithoutNodePath.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/tables/{Index}/render"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/tables/{index}/render"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
         const queryParameters: any = {};
@@ -7524,7 +7524,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling replaceText.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/replaceText"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/replaceText"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
         const queryParameters: any = {};
 
@@ -7578,7 +7578,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling replaceWithText.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/range/{RangeStartIdentifier}/{RangeEndIdentifier}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/range/{rangeStartIdentifier}/{rangeEndIdentifier}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "rangeStartIdentifier" + "}", (requestObj.rangeStartIdentifier !== null) ? "/" + String(requestObj.rangeStartIdentifier) : "")
             .replace("/{" + "rangeEndIdentifier" + "}", (requestObj.rangeEndIdentifier !== null) ? "/" + String(requestObj.rangeEndIdentifier) : "");
@@ -7670,7 +7670,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling saveAs.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/saveAs"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/saveAs"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
         const queryParameters: any = {};
 
@@ -7722,7 +7722,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling saveAsRange.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/range/{RangeStartIdentifier}/{RangeEndIdentifier}/SaveAs"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/range/{rangeStartIdentifier}/{rangeEndIdentifier}/SaveAs"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "rangeStartIdentifier" + "}", (requestObj.rangeStartIdentifier !== null) ? "/" + String(requestObj.rangeStartIdentifier) : "")
             .replace("/{" + "rangeEndIdentifier" + "}", (requestObj.rangeEndIdentifier !== null) ? "/" + String(requestObj.rangeEndIdentifier) : "");
@@ -7790,7 +7790,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling saveAsTiff.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/saveAs/tiff"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/saveAs/tiff"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
         const queryParameters: any = {};
 
@@ -7859,7 +7859,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling search.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/search"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/search"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
         const queryParameters: any = {};
 
@@ -7905,7 +7905,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling splitDocument.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/split"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/split"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
         const queryParameters: any = {};
 
@@ -7951,7 +7951,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling unprotectDocument.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/protection"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/protection"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
         const queryParameters: any = {};
 
@@ -8003,7 +8003,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling updateBookmark.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/bookmarks/{BookmarkName}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/bookmarks/{bookmarkName}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "bookmarkName" + "}", (requestObj.bookmarkName !== null) ? "/" + String(requestObj.bookmarkName) : "");
         const queryParameters: any = {};
@@ -8068,7 +8068,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling updateBorder.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{NodePath}/borders/{BorderType}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/borders/{borderType}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
             .replace("/{" + "borderType" + "}", (requestObj.borderType !== null) ? "/" + String(requestObj.borderType) : "");
@@ -8139,7 +8139,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling updateComment.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/comments/{CommentIndex}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/comments/{commentIndex}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "commentIndex" + "}", (requestObj.commentIndex !== null) ? "/" + String(requestObj.commentIndex) : "");
         const queryParameters: any = {};
@@ -8204,7 +8204,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling updateDrawingObject.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{NodePath}/drawingObjects/{Index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
@@ -8294,7 +8294,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling updateDrawingObjectWithoutNodePath.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/drawingObjects/{Index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/drawingObjects/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
         const queryParameters: any = {};
@@ -8378,7 +8378,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling updateField.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{NodePath}/fields/{Index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/fields/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
@@ -8449,7 +8449,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling updateFields.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/updateFields"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/updateFields"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
         const queryParameters: any = {};
 
@@ -8490,7 +8490,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling updateFootnote.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{NodePath}/footnotes/{Index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/footnotes/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
@@ -8561,7 +8561,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling updateFootnoteWithoutNodePath.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/footnotes/{Index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/footnotes/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
         const queryParameters: any = {};
@@ -8626,7 +8626,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling updateFormField.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{NodePath}/formfields/{Index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/formfields/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
@@ -8697,7 +8697,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling updateFormFieldWithoutNodePath.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/formfields/{Index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/formfields/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
         const queryParameters: any = {};
@@ -8762,7 +8762,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling updateParagraphFormat.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{NodePath}/paragraphs/{Index}/format"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}/format"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
@@ -8833,7 +8833,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling updateRun.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{ParagraphPath}/runs/{Index}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{paragraphPath}/runs/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "paragraphPath" + "}", (requestObj.paragraphPath !== null) ? "/" + String(requestObj.paragraphPath) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
@@ -8904,7 +8904,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling updateRunFont.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{ParagraphPath}/runs/{Index}/font"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{paragraphPath}/runs/{index}/font"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "paragraphPath" + "}", (requestObj.paragraphPath !== null) ? "/" + String(requestObj.paragraphPath) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
@@ -8975,7 +8975,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling updateSectionPageSetup.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/sections/{SectionIndex}/pageSetup"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/sections/{sectionIndex}/pageSetup"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "sectionIndex" + "}", (requestObj.sectionIndex !== null) ? "/" + String(requestObj.sectionIndex) : "");
         const queryParameters: any = {};
@@ -9040,7 +9040,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling updateTableCellFormat.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{TableRowPath}/cells/{Index}/cellformat"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{tableRowPath}/cells/{index}/cellformat"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "tableRowPath" + "}", (requestObj.tableRowPath !== null) ? "/" + String(requestObj.tableRowPath) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
@@ -9111,7 +9111,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling updateTableProperties.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{NodePath}/tables/{Index}/properties"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/tables/{index}/properties"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
@@ -9182,7 +9182,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling updateTablePropertiesWithoutNodePath.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/tables/{Index}/properties"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/tables/{index}/properties"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
         const queryParameters: any = {};
@@ -9247,7 +9247,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling updateTableRowFormat.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{Name}/{TablePath}/rows/{Index}/rowformat"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{tablePath}/rows/{index}/rowformat"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "tablePath" + "}", (requestObj.tablePath !== null) ? "/" + String(requestObj.tablePath) : "")
             .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
@@ -9318,7 +9318,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling uploadFile.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/storage/file/{Path}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/storage/file/{path}"
             .replace("/{" + "path" + "}", (requestObj.path !== null) ? "/" + String(requestObj.path) : "");
         const queryParameters: any = {};
         const formParams: any = {};

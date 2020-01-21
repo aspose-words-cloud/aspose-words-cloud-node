@@ -37,9 +37,8 @@ describe("postLoadWebDocument function", () => {
         const body = new LoadWebDocumentData();
         const saveOptions = new SaveOptionsData(
             {
-                fileName: "Temp/google.doc",                
+                fileName: "Temp/google.doc",
                 saveFormat: "doc",
-                colorMode: "Normal",
                 dmlEffectsRenderingMode: "Simplified",
                 dmlRenderingMode: "Fallback",
                 updateSdtContent: false,

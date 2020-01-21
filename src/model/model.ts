@@ -1974,11 +1974,6 @@ export class SaveOptionsData {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "colorMode",
-            baseName: "ColorMode",
-            type: "string",
-        },        
-        {
             name: "saveFormat",
             baseName: "SaveFormat",
             type: "string",
@@ -2026,11 +2021,6 @@ export class SaveOptionsData {
         return SaveOptionsData.attributeTypeMap;
     }
 
-    /**
-     * Gets or sets a value determining how colors are rendered. { Normal | Grayscale}.
-     */
-    public colorMode: string;
-    
     /**
      * Gets or sets format of save.
      */
@@ -3905,6 +3895,11 @@ export class FixedPageSaveOptionsData extends SaveOptionsData {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
+            name: "colorMode",
+            baseName: "ColorMode",
+            type: "string",
+        },        
+        {
             name: "jpegQuality",
             baseName: "JpegQuality",
             type: "number",
@@ -3942,6 +3937,11 @@ export class FixedPageSaveOptionsData extends SaveOptionsData {
         return super.getAttributeTypeMap().concat(FixedPageSaveOptionsData.attributeTypeMap);
     }
 
+    /**
+     * Gets or sets a value determining how colors are rendered. { Normal | Grayscale}.
+     */
+    public colorMode: string;
+    
     /**
      * Gets or sets determines the quality of the JPEG images inside PDF document.
      */

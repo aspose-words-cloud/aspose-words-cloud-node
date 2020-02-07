@@ -39,26 +39,39 @@ const { WordsApi, PostDocumentSaveAsRequest, SaveOptionsData } = require("aspose
 
 wordsApi = new WordsApi(AppSid, AppKey);
 
-var request = new PostDocumentSaveAsRequest({
-    name: "fileStoredInCloud.doc",
-    saveOptionsData: new SaveOptionsData(
-        {
-            saveFormat: "pdf",
-            fileName: "destination.pdf"
-        })
+var uploadRequest = new UploadFileRequest({
+    path = "fileStoredInCloud.doc",
+    fileContent = createReadStream(localPathToDoc)
 });
 
-wordsApi.postDocumentSaveAs(request)
+var request = new SaveAsRequest({
+	name: "fileStoredInCloud.doc",
+	saveOptionsData: new SaveOptionsData(
+		{
+			saveFormat: "pdf",
+			fileName: "destination.pdf"
+		})
+});
+
+wordsApi.uploadFile(uploadRequest)
     .then((result) => {
-        // Deal with a result
-        console.log(result.response.statusCode);
-        console.log(result.body);
+		wordsApi.saveAs(request)
+			.then((result) => {
+				// Deal with a result
+				console.log(result.response.statusCode);
+				console.log(result.body);
+			})
+			.catch(function(err) {
+				// Deal with an error
+				console.log(err.reponse.statusCode);
+				console.log(err.body);
+			});
     })
-    .catch(function(err) {
-        // Deal with an error
-        console.log(err.reponse.statusCode);
-        console.log(err.body);
-    });
+	.catch(function(err) {
+		// Deal with an error
+		console.log(err.reponse.statusCode);
+		console.log(err.body);
+	});	
 
 ```
 

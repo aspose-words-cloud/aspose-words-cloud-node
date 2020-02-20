@@ -3174,7 +3174,7 @@ export class BordersResponse extends WordsResponse {
 }
 
 /**
- * This response should be returned by the service when handling: PUT http://api.aspose.com/v4.0/words/classify.
+ * This response should be returned by the service when handling: PUT https://api.aspose.cloud/v4.0/words/classify.
  */
 export class ClassificationResponse extends WordsResponse {
 
@@ -3251,7 +3251,7 @@ export class CommentLink extends LinkElement {
 }
 
 /**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v4.0/words/Test.doc/comments/0.
+ * This response should be returned by the service when handling: GET https://api.aspose.cloud/v4.0/words/Test.doc/comments/0.
  */
 export class CommentResponse extends WordsResponse {
 
@@ -3317,7 +3317,7 @@ export class CommentsCollection extends LinkElement {
 }
 
 /**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v4.0/words/Test.doc/comments.
+ * This response should be returned by the service when handling: GET https://api.aspose.cloud/v4.0/words/Test.doc/comments.
  */
 export class CommentsResponse extends WordsResponse {
 
@@ -3796,7 +3796,7 @@ export class FieldNamesResponse extends WordsResponse {
 }
 
 /**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v4.0/words/Test.doc/paragraphs/{0}/fields/{1}.
+ * This response should be returned by the service when handling: GET https://api.aspose.cloud/v4.0/words/Test.doc/paragraphs/{0}/fields/{1}.
  */
 export class FieldResponse extends WordsResponse {
 
@@ -3829,7 +3829,7 @@ export class FieldResponse extends WordsResponse {
 }
 
 /**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v4.0/words/Test.doc/{nodePath}/fields.
+ * This response should be returned by the service when handling: GET https://api.aspose.cloud/v4.0/words/Test.doc/{nodePath}/fields.
  */
 export class FieldsResponse extends WordsResponse {
 
@@ -4814,7 +4814,7 @@ export namespace Font {
 }
 // tslint:enable:quotemark
 /**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v4.0/words/Test.doc/paragraphs/{0}/runs/{1}/font.
+ * This response should be returned by the service when handling: GET https://api.aspose.cloud/v4.0/words/Test.doc/paragraphs/{0}/runs/{1}/font.
  */
 export class FontResponse extends WordsResponse {
 
@@ -4880,7 +4880,7 @@ export class FootnoteCollection extends LinkElement {
 }
 
 /**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v4.0/words/Test.doc/footnote/0.
+ * This response should be returned by the service when handling: GET https://api.aspose.cloud/v4.0/words/Test.doc/footnote/0.
  */
 export class FootnoteResponse extends WordsResponse {
 
@@ -4913,7 +4913,7 @@ export class FootnoteResponse extends WordsResponse {
 }
 
 /**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v4.0/words/Test.doc/footnotes.
+ * This response should be returned by the service when handling: GET https://api.aspose.cloud/v4.0/words/Test.doc/footnotes.
  */
 export class FootnotesResponse extends WordsResponse {
 
@@ -4979,7 +4979,7 @@ export class FormFieldCollection extends LinkElement {
 }
 
 /**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v4.0/words/Test.doc/paragraphs/{0}/formfields/{1}.
+ * This response should be returned by the service when handling: GET https://api.aspose.cloud/v4.0/words/Test.doc/paragraphs/{0}/formfields/{1}.
  */
 export class FormFieldResponse extends WordsResponse {
 
@@ -5012,7 +5012,7 @@ export class FormFieldResponse extends WordsResponse {
 }
 
 /**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v4.0/words/Test.doc/{nodePath}/formfields.
+ * This response should be returned by the service when handling: GET https://api.aspose.cloud/v4.0/words/Test.doc/{nodePath}/formfields.
  */
 export class FormFieldsResponse extends WordsResponse {
 
@@ -5127,7 +5127,7 @@ export class HeaderFooterLinkCollection extends LinkElement {
 }
 
 /**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v4.0/words/Test.doc/headersfooters/{0}.
+ * This response should be returned by the service when handling: GET https://api.aspose.cloud/v4.0/words/Test.doc/headersfooters/{0}.
  */
 export class HeaderFooterResponse extends WordsResponse {
 
@@ -5160,7 +5160,7 @@ export class HeaderFooterResponse extends WordsResponse {
 }
 
 /**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v4.0/words/Test.doc/headersfooters.
+ * This response should be returned by the service when handling: GET https://api.aspose.cloud/v4.0/words/Test.doc/headersfooters.
  */
 export class HeaderFootersResponse extends WordsResponse {
 
@@ -5868,7 +5868,7 @@ export namespace OdtSaveOptionsData {
 }
 // tslint:enable:quotemark
 /**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v4.0/words/Test.doc/officeMathObjects/0.
+ * This response should be returned by the service when handling: GET https://api.aspose.cloud/v4.0/words/Test.doc/officeMathObjects/0.
  */
 export class OfficeMathObjectResponse extends WordsResponse {
 
@@ -5934,7 +5934,7 @@ export class OfficeMathObjectsCollection extends LinkElement {
 }
 
 /**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v4.0/words/Test.doc/OfficeMathObjects.
+ * This response should be returned by the service when handling: GET https://api.aspose.cloud/v4.0/words/Test.doc/OfficeMathObjects.
  */
 export class OfficeMathObjectsResponse extends WordsResponse {
 
@@ -7154,7 +7154,7 @@ export namespace ParagraphFormat {
 }
 // tslint:enable:quotemark
 /**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v4.0/words/Test.doc/paragraphs/{0}/format.
+ * This response should be returned by the service when handling: GET https://api.aspose.cloud/v4.0/words/Test.doc/paragraphs/{0}/format.
  */
 export class ParagraphFormatResponse extends WordsResponse {
 
@@ -7220,7 +7220,7 @@ export class ParagraphLinkCollection extends LinkElement {
 }
 
 /**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v4.0/words/Test.doc/paragraphs.
+ * This response should be returned by the service when handling: GET https://api.aspose.cloud/v4.0/words/Test.doc/paragraphs.
  */
 export class ParagraphLinkCollectionResponse extends WordsResponse {
 
@@ -7253,7 +7253,7 @@ export class ParagraphLinkCollectionResponse extends WordsResponse {
 }
 
 /**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v4.0/words/Test.doc/paragraphs/{0}.
+ * This response should be returned by the service when handling: GET https://api.aspose.cloud/v4.0/words/Test.doc/paragraphs/{0}.
  */
 export class ParagraphResponse extends WordsResponse {
 
@@ -7329,7 +7329,7 @@ export class ProtectionDataResponse extends WordsResponse {
 }
 
 /**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v4.0/words/Test.doc/range/{0}/{1}/.
+ * This response should be returned by the service when handling: GET https://api.aspose.cloud/v4.0/words/Test.doc/range/{0}/{1}/.
  */
 export class RangeTextResponse extends WordsResponse {
 
@@ -7501,7 +7501,7 @@ export class RtfSaveOptionsData extends SaveOptionsData {
 }
 
 /**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v4.0/words/Test.doc/paragraphs/{0}/runs/{1}.
+ * This response should be returned by the service when handling: GET https://api.aspose.cloud/v4.0/words/Test.doc/paragraphs/{0}/runs/{1}.
  */
 export class RunResponse extends WordsResponse {
 
@@ -7567,7 +7567,7 @@ export class Runs extends LinkElement {
 }
 
 /**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v4.0/words/Test.doc/{paragraphPath}/runs.
+ * This response should be returned by the service when handling: GET https://api.aspose.cloud/v4.0/words/Test.doc/{paragraphPath}/runs.
  */
 export class RunsResponse extends WordsResponse {
 
@@ -7633,7 +7633,7 @@ export class SaveResponse extends WordsResponse {
 }
 
 /**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v4.0/words/Test.doc/search.
+ * This response should be returned by the service when handling: GET https://api.aspose.cloud/v4.0/words/Test.doc/search.
  */
 export class SearchResponse extends WordsResponse {
 
@@ -7815,7 +7815,7 @@ export class SectionLinkCollection extends LinkElement {
 }
 
 /**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v4.0/words/Test.doc/sections.
+ * This response should be returned by the service when handling: GET https://api.aspose.cloud/v4.0/words/Test.doc/sections.
  */
 export class SectionLinkCollectionResponse extends WordsResponse {
 
@@ -7848,7 +7848,7 @@ export class SectionLinkCollectionResponse extends WordsResponse {
 }
 
 /**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v4.0/words/Test.doc/sections/{0}/PageSetup.
+ * This response should be returned by the service when handling: GET https://api.aspose.cloud/v4.0/words/Test.doc/sections/{0}/PageSetup.
  */
 export class SectionPageSetupResponse extends WordsResponse {
 
@@ -7881,7 +7881,7 @@ export class SectionPageSetupResponse extends WordsResponse {
 }
 
 /**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v4.0/words/Test.doc/sections/{0}.
+ * This response should be returned by the service when handling: GET https://api.aspose.cloud/v4.0/words/Test.doc/sections/{0}.
  */
 export class SectionResponse extends WordsResponse {
 
@@ -8164,7 +8164,7 @@ export namespace TableCellFormat {
 }
 // tslint:enable:quotemark
 /**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v4.0/words/Test.doc/tables/{0}/rows/{1}/cells/{2}/cellformat.
+ * This response should be returned by the service when handling: GET https://api.aspose.cloud/v4.0/words/Test.doc/tables/{0}/rows/{1}/cells/{2}/cellformat.
  */
 export class TableCellFormatResponse extends WordsResponse {
 
@@ -8197,7 +8197,7 @@ export class TableCellFormatResponse extends WordsResponse {
 }
 
 /**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v4.0/words/Test.doc/tables/{0}.
+ * This response should be returned by the service when handling: GET https://api.aspose.cloud/v4.0/words/Test.doc/tables/{0}.
  */
 export class TableCellResponse extends WordsResponse {
 
@@ -8263,7 +8263,7 @@ export class TableLinkCollection extends LinkElement {
 }
 
 /**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v4.0/words/Test.doc/tables.
+ * This response should be returned by the service when handling: GET https://api.aspose.cloud/v4.0/words/Test.doc/tables.
  */
 export class TableLinkCollectionResponse extends WordsResponse {
 
@@ -8863,7 +8863,7 @@ export namespace TableProperties {
 }
 // tslint:enable:quotemark
 /**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v4.0/words/Test.doc/tables/{0}/properties.
+ * This response should be returned by the service when handling: GET https://api.aspose.cloud/v4.0/words/Test.doc/tables/{0}/properties.
  */
 export class TablePropertiesResponse extends WordsResponse {
 
@@ -8896,7 +8896,7 @@ export class TablePropertiesResponse extends WordsResponse {
 }
 
 /**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v4.0/words/Test.doc/tables/{0}.
+ * This response should be returned by the service when handling: GET https://api.aspose.cloud/v4.0/words/Test.doc/tables/{0}.
  */
 export class TableResponse extends WordsResponse {
 
@@ -9005,7 +9005,7 @@ export namespace TableRowFormat {
 }
 // tslint:enable:quotemark
 /**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v4.0/words/Test.doc/tables/{0}/rows/{1}/rowformat.
+ * This response should be returned by the service when handling: GET https://api.aspose.cloud/v4.0/words/Test.doc/tables/{0}/rows/{1}/rowformat.
  */
 export class TableRowFormatResponse extends WordsResponse {
 
@@ -9038,7 +9038,7 @@ export class TableRowFormatResponse extends WordsResponse {
 }
 
 /**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v4.0/words/Test.doc/tables/{0}.
+ * This response should be returned by the service when handling: GET https://api.aspose.cloud/v4.0/words/Test.doc/tables/{0}.
  */
 export class TableRowResponse extends WordsResponse {
 

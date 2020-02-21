@@ -53,7 +53,7 @@ describe("configuration tests", () => {
                     .then(() => {
                         log.restore();
                         sinon.assert.calledWith(log,
-                            sinon.match('"uri": "https://api.aspose.cloud/v4.0/words/TesConfiguration.docx?folder=Temp%2FSdkTests%2Fnode%2FTestData%2FCommont%2FConfiguration"')
+                            sinon.match('/v4.0/words/TesConfiguration.docx?folder=Temp%2FSdkTests%2Fnode%2FTestData%2FCommont%2FConfiguration')
                                 .and(sinon.match('"method": "GET"')));
                     });
             });
@@ -81,7 +81,7 @@ describe("configuration tests", () => {
                     .then(() => {
                         log.restore();
                         sinon.assert.calledWith(log,
-                            sinon.match('"uri": "https://api.aspose.cloud/v4.0/words/TesConfiguration.docx?folder=Temp%2FSdkTests%2Fnode%2FTestData%2FCommont%2FConfiguration"')
+                            sinon.match('/v4.0/words/TesConfiguration.docx?folder=Temp%2FSdkTests%2Fnode%2FTestData%2FCommont%2FConfiguration')
                                 .and(sinon.match('"method": "GET"')));
                     });
             });

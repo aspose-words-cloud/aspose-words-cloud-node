@@ -39,7 +39,6 @@ describe("postLoadWebDocument function", () => {
             {
                 fileName: "Temp/google.doc",                
                 saveFormat: "doc",
-                colorMode: "Normal",
                 dmlEffectsRenderingMode: "Simplified",
                 dmlRenderingMode: "Fallback",
                 updateSdtContent: false,

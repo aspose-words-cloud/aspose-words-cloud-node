@@ -136,7 +136,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.documentList, requestObj.documentList.constructor.name === "Object" ? "DocumentEntryList" : requestObj.documentList.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.documentList, requestObj.documentList.constructor.name === "Object" ? "importedDocumentEntryList.DocumentEntryList" : requestObj.documentList.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -267,7 +267,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.compareData, requestObj.compareData.constructor.name === "Object" ? "CompareData" : requestObj.compareData.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.compareData, requestObj.compareData.constructor.name === "Object" ? "importedCompareData.CompareData" : requestObj.compareData.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -531,7 +531,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.property, requestObj.property.constructor.name === "Object" ? "DocumentProperty" : requestObj.property.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.property, requestObj.property.constructor.name === "Object" ? "importedDocumentProperty.DocumentProperty" : requestObj.property.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -4714,11 +4714,6 @@ export class WordsApi {
         if (requestObj.rangeStartIdentifier === null) {
             throw new Error('Required parameter "requestObj.rangeStartIdentifier" was null when calling getRangeText.');
         }
-
-        // verify required parameter 'requestObj.rangeEndIdentifier' is not undefined
-        if (requestObj.rangeEndIdentifier === undefined) {
-            throw new Error('Required parameter "requestObj.rangeEndIdentifier" was undefined when calling getRangeText.');
-        }
         
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
@@ -5614,7 +5609,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.comment, requestObj.comment.constructor.name === "Object" ? "Comment" : requestObj.comment.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.comment, requestObj.comment.constructor.name === "Object" ? "importedComment.Comment" : requestObj.comment.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -5827,7 +5822,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.field, requestObj.field.constructor.name === "Object" ? "Field" : requestObj.field.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.field, requestObj.field.constructor.name === "Object" ? "importedField.Field" : requestObj.field.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -5882,7 +5877,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.field, requestObj.field.constructor.name === "Object" ? "Field" : requestObj.field.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.field, requestObj.field.constructor.name === "Object" ? "importedField.Field" : requestObj.field.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -5942,7 +5937,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.footnoteDto, requestObj.footnoteDto.constructor.name === "Object" ? "Footnote" : requestObj.footnoteDto.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.footnoteDto, requestObj.footnoteDto.constructor.name === "Object" ? "importedFootnote.Footnote" : requestObj.footnoteDto.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -5996,7 +5991,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.footnoteDto, requestObj.footnoteDto.constructor.name === "Object" ? "Footnote" : requestObj.footnoteDto.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.footnoteDto, requestObj.footnoteDto.constructor.name === "Object" ? "importedFootnote.Footnote" : requestObj.footnoteDto.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -6057,7 +6052,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.formField, requestObj.formField.constructor.name === "Object" ? "FormField" : requestObj.formField.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.formField, requestObj.formField.constructor.name === "Object" ? "importedFormField.FormField" : requestObj.formField.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -6112,7 +6107,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.formField, requestObj.formField.constructor.name === "Object" ? "FormField" : requestObj.formField.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.formField, requestObj.formField.constructor.name === "Object" ? "importedFormField.FormField" : requestObj.formField.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -6226,7 +6221,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.pageNumber, requestObj.pageNumber.constructor.name === "Object" ? "PageNumber" : requestObj.pageNumber.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.pageNumber, requestObj.pageNumber.constructor.name === "Object" ? "importedPageNumber.PageNumber" : requestObj.pageNumber.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -6287,7 +6282,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.paragraph, requestObj.paragraph.constructor.name === "Object" ? "ParagraphInsert" : requestObj.paragraph.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.paragraph, requestObj.paragraph.constructor.name === "Object" ? "importedParagraphInsert.ParagraphInsert" : requestObj.paragraph.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -6348,7 +6343,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.run, requestObj.run.constructor.name === "Object" ? "Run" : requestObj.run.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.run, requestObj.run.constructor.name === "Object" ? "importedRun.Run" : requestObj.run.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -6381,6 +6376,11 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj.name" was null when calling insertTable.');
         }
 
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling insertTable.');
+        }
+
         // verify required parameter 'requestObj.table' is not undefined
         if (requestObj.table === undefined) {
             throw new Error('Required parameter "requestObj.table" was undefined when calling insertTable.');
@@ -6389,11 +6389,6 @@ export class WordsApi {
         // verify required parameter 'requestObj.table' is not null
         if (requestObj.table === null) {
             throw new Error('Required parameter "requestObj.table" was null when calling insertTable.');
-        }
-
-        // verify required parameter 'requestObj.nodePath' is not undefined
-        if (requestObj.nodePath === undefined) {
-            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling insertTable.');
         }
         
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -6408,7 +6403,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.table, requestObj.table.constructor.name === "Object" ? "TableInsert" : requestObj.table.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.table, requestObj.table.constructor.name === "Object" ? "importedTableInsert.TableInsert" : requestObj.table.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -6441,6 +6436,11 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj.name" was null when calling insertTableCell.');
         }
 
+        // verify required parameter 'requestObj.tableRowPath' is not undefined
+        if (requestObj.tableRowPath === undefined) {
+            throw new Error('Required parameter "requestObj.tableRowPath" was undefined when calling insertTableCell.');
+        }
+
         // verify required parameter 'requestObj.cell' is not undefined
         if (requestObj.cell === undefined) {
             throw new Error('Required parameter "requestObj.cell" was undefined when calling insertTableCell.');
@@ -6449,11 +6449,6 @@ export class WordsApi {
         // verify required parameter 'requestObj.cell' is not null
         if (requestObj.cell === null) {
             throw new Error('Required parameter "requestObj.cell" was null when calling insertTableCell.');
-        }
-
-        // verify required parameter 'requestObj.tableRowPath' is not undefined
-        if (requestObj.tableRowPath === undefined) {
-            throw new Error('Required parameter "requestObj.tableRowPath" was undefined when calling insertTableCell.');
         }
         
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -6468,7 +6463,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.cell, requestObj.cell.constructor.name === "Object" ? "TableCellInsert" : requestObj.cell.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.cell, requestObj.cell.constructor.name === "Object" ? "importedTableCellInsert.TableCellInsert" : requestObj.cell.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -6501,6 +6496,11 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj.name" was null when calling insertTableRow.');
         }
 
+        // verify required parameter 'requestObj.tablePath' is not undefined
+        if (requestObj.tablePath === undefined) {
+            throw new Error('Required parameter "requestObj.tablePath" was undefined when calling insertTableRow.');
+        }
+
         // verify required parameter 'requestObj.row' is not undefined
         if (requestObj.row === undefined) {
             throw new Error('Required parameter "requestObj.row" was undefined when calling insertTableRow.');
@@ -6509,11 +6509,6 @@ export class WordsApi {
         // verify required parameter 'requestObj.row' is not null
         if (requestObj.row === null) {
             throw new Error('Required parameter "requestObj.row" was null when calling insertTableRow.');
-        }
-
-        // verify required parameter 'requestObj.tablePath' is not undefined
-        if (requestObj.tablePath === undefined) {
-            throw new Error('Required parameter "requestObj.tablePath" was undefined when calling insertTableRow.');
         }
         
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -6528,7 +6523,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.row, requestObj.row.constructor.name === "Object" ? "TableRowInsert" : requestObj.row.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.row, requestObj.row.constructor.name === "Object" ? "importedTableRowInsert.TableRowInsert" : requestObj.row.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -6582,7 +6577,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.table, requestObj.table.constructor.name === "Object" ? "TableInsert" : requestObj.table.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.table, requestObj.table.constructor.name === "Object" ? "importedTableInsert.TableInsert" : requestObj.table.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -6687,7 +6682,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.watermarkText, requestObj.watermarkText.constructor.name === "Object" ? "WatermarkText" : requestObj.watermarkText.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.watermarkText, requestObj.watermarkText.constructor.name === "Object" ? "importedWatermarkText.WatermarkText" : requestObj.watermarkText.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -6724,7 +6719,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.data, requestObj.data.constructor.name === "Object" ? "LoadWebDocumentData" : requestObj.data.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.data, requestObj.data.constructor.name === "Object" ? "importedLoadWebDocumentData.LoadWebDocumentData" : requestObj.data.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -6861,7 +6856,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.protectionRequest, requestObj.protectionRequest.constructor.name === "Object" ? "ProtectionRequest" : requestObj.protectionRequest.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.protectionRequest, requestObj.protectionRequest.constructor.name === "Object" ? "importedProtectionRequest.ProtectionRequest" : requestObj.protectionRequest.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -6944,11 +6939,6 @@ export class WordsApi {
         // verify required parameter 'requestObj.rangeStartIdentifier' is not null
         if (requestObj.rangeStartIdentifier === null) {
             throw new Error('Required parameter "requestObj.rangeStartIdentifier" was null when calling removeRange.');
-        }
-
-        // verify required parameter 'requestObj.rangeEndIdentifier' is not undefined
-        if (requestObj.rangeEndIdentifier === undefined) {
-            throw new Error('Required parameter "requestObj.rangeEndIdentifier" was undefined when calling removeRange.');
         }
         
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -7560,7 +7550,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.replaceText, requestObj.replaceText.constructor.name === "Object" ? "ReplaceTextParameters" : requestObj.replaceText.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.replaceText, requestObj.replaceText.constructor.name === "Object" ? "importedReplaceTextParameters.ReplaceTextParameters" : requestObj.replaceText.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -7613,11 +7603,6 @@ export class WordsApi {
         if (requestObj.rangeText === null) {
             throw new Error('Required parameter "requestObj.rangeText" was null when calling replaceWithText.');
         }
-
-        // verify required parameter 'requestObj.rangeEndIdentifier' is not undefined
-        if (requestObj.rangeEndIdentifier === undefined) {
-            throw new Error('Required parameter "requestObj.rangeEndIdentifier" was undefined when calling replaceWithText.');
-        }
         
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
@@ -7629,7 +7614,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.rangeText, requestObj.rangeText.constructor.name === "Object" ? "ReplaceRange" : requestObj.rangeText.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.rangeText, requestObj.rangeText.constructor.name === "Object" ? "importedReplaceRange.ReplaceRange" : requestObj.rangeText.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -7704,7 +7689,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.saveOptionsData, requestObj.saveOptionsData.constructor.name === "Object" ? "SaveOptionsData" : requestObj.saveOptionsData.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.saveOptionsData, requestObj.saveOptionsData.constructor.name === "Object" ? "importedSaveOptionsData.SaveOptionsData" : requestObj.saveOptionsData.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -7757,11 +7742,6 @@ export class WordsApi {
         if (requestObj.documentParameters === null) {
             throw new Error('Required parameter "requestObj.documentParameters" was null when calling saveAsRange.');
         }
-
-        // verify required parameter 'requestObj.rangeEndIdentifier' is not undefined
-        if (requestObj.rangeEndIdentifier === undefined) {
-            throw new Error('Required parameter "requestObj.rangeEndIdentifier" was undefined when calling saveAsRange.');
-        }
         
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
@@ -7772,7 +7752,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.documentParameters, requestObj.documentParameters.constructor.name === "Object" ? "RangeDocument" : requestObj.documentParameters.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.documentParameters, requestObj.documentParameters.constructor.name === "Object" ? "importedRangeDocument.RangeDocument" : requestObj.documentParameters.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -7841,7 +7821,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.saveOptions, requestObj.saveOptions.constructor.name === "Object" ? "TiffSaveOptionsData" : requestObj.saveOptions.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.saveOptions, requestObj.saveOptions.constructor.name === "Object" ? "importedTiffSaveOptionsData.TiffSaveOptionsData" : requestObj.saveOptions.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -7985,7 +7965,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.protectionRequest, requestObj.protectionRequest.constructor.name === "Object" ? "ProtectionRequest" : requestObj.protectionRequest.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.protectionRequest, requestObj.protectionRequest.constructor.name === "Object" ? "importedProtectionRequest.ProtectionRequest" : requestObj.protectionRequest.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -8050,7 +8030,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.bookmarkData, requestObj.bookmarkData.constructor.name === "Object" ? "BookmarkData" : requestObj.bookmarkData.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.bookmarkData, requestObj.bookmarkData.constructor.name === "Object" ? "importedBookmarkData.BookmarkData" : requestObj.bookmarkData.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -8121,7 +8101,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.borderProperties, requestObj.borderProperties.constructor.name === "Object" ? "Border" : requestObj.borderProperties.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.borderProperties, requestObj.borderProperties.constructor.name === "Object" ? "importedBorder.Border" : requestObj.borderProperties.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -8186,7 +8166,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.comment, requestObj.comment.constructor.name === "Object" ? "Comment" : requestObj.comment.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.comment, requestObj.comment.constructor.name === "Object" ? "importedComment.Comment" : requestObj.comment.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -8431,7 +8411,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.field, requestObj.field.constructor.name === "Object" ? "Field" : requestObj.field.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.field, requestObj.field.constructor.name === "Object" ? "importedField.Field" : requestObj.field.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -8543,7 +8523,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.footnoteDto, requestObj.footnoteDto.constructor.name === "Object" ? "Footnote" : requestObj.footnoteDto.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.footnoteDto, requestObj.footnoteDto.constructor.name === "Object" ? "importedFootnote.Footnote" : requestObj.footnoteDto.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -8608,7 +8588,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.footnoteDto, requestObj.footnoteDto.constructor.name === "Object" ? "Footnote" : requestObj.footnoteDto.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.footnoteDto, requestObj.footnoteDto.constructor.name === "Object" ? "importedFootnote.Footnote" : requestObj.footnoteDto.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -8679,7 +8659,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.formField, requestObj.formField.constructor.name === "Object" ? "FormField" : requestObj.formField.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.formField, requestObj.formField.constructor.name === "Object" ? "importedFormField.FormField" : requestObj.formField.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -8744,7 +8724,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.formField, requestObj.formField.constructor.name === "Object" ? "FormField" : requestObj.formField.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.formField, requestObj.formField.constructor.name === "Object" ? "importedFormField.FormField" : requestObj.formField.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -8815,7 +8795,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.dto, requestObj.dto.constructor.name === "Object" ? "ParagraphFormat" : requestObj.dto.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.dto, requestObj.dto.constructor.name === "Object" ? "importedParagraphFormat.ParagraphFormat" : requestObj.dto.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -8886,7 +8866,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.run, requestObj.run.constructor.name === "Object" ? "Run" : requestObj.run.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.run, requestObj.run.constructor.name === "Object" ? "importedRun.Run" : requestObj.run.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -8957,7 +8937,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.fontDto, requestObj.fontDto.constructor.name === "Object" ? "Font" : requestObj.fontDto.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.fontDto, requestObj.fontDto.constructor.name === "Object" ? "importedFont.Font" : requestObj.fontDto.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -9022,7 +9002,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.pageSetup, requestObj.pageSetup.constructor.name === "Object" ? "PageSetup" : requestObj.pageSetup.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.pageSetup, requestObj.pageSetup.constructor.name === "Object" ? "importedPageSetup.PageSetup" : requestObj.pageSetup.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -9056,16 +9036,6 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj.name" was null when calling updateTableCellFormat.');
         }
 
-        // verify required parameter 'requestObj.format' is not undefined
-        if (requestObj.format === undefined) {
-            throw new Error('Required parameter "requestObj.format" was undefined when calling updateTableCellFormat.');
-        }
-
-        // verify required parameter 'requestObj.format' is not null
-        if (requestObj.format === null) {
-            throw new Error('Required parameter "requestObj.format" was null when calling updateTableCellFormat.');
-        }
-
         // verify required parameter 'requestObj.tableRowPath' is not undefined
         if (requestObj.tableRowPath === undefined) {
             throw new Error('Required parameter "requestObj.tableRowPath" was undefined when calling updateTableCellFormat.');
@@ -9080,6 +9050,11 @@ export class WordsApi {
         if (requestObj.index === null) {
             throw new Error('Required parameter "requestObj.index" was null when calling updateTableCellFormat.');
         }
+
+        // verify required parameter 'requestObj.format' is not undefined
+        if (requestObj.format === undefined) {
+            throw new Error('Required parameter "requestObj.format" was undefined when calling updateTableCellFormat.');
+        }
         
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
@@ -9093,7 +9068,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.format, requestObj.format.constructor.name === "Object" ? "TableCellFormat" : requestObj.format.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.format, requestObj.format.constructor.name === "Object" ? "importedTableCellFormat.TableCellFormat" : requestObj.format.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -9127,16 +9102,6 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj.name" was null when calling updateTableProperties.');
         }
 
-        // verify required parameter 'requestObj.properties' is not undefined
-        if (requestObj.properties === undefined) {
-            throw new Error('Required parameter "requestObj.properties" was undefined when calling updateTableProperties.');
-        }
-
-        // verify required parameter 'requestObj.properties' is not null
-        if (requestObj.properties === null) {
-            throw new Error('Required parameter "requestObj.properties" was null when calling updateTableProperties.');
-        }
-
         // verify required parameter 'requestObj.nodePath' is not undefined
         if (requestObj.nodePath === undefined) {
             throw new Error('Required parameter "requestObj.nodePath" was undefined when calling updateTableProperties.');
@@ -9151,6 +9116,16 @@ export class WordsApi {
         if (requestObj.index === null) {
             throw new Error('Required parameter "requestObj.index" was null when calling updateTableProperties.');
         }
+
+        // verify required parameter 'requestObj.properties' is not undefined
+        if (requestObj.properties === undefined) {
+            throw new Error('Required parameter "requestObj.properties" was undefined when calling updateTableProperties.');
+        }
+
+        // verify required parameter 'requestObj.properties' is not null
+        if (requestObj.properties === null) {
+            throw new Error('Required parameter "requestObj.properties" was null when calling updateTableProperties.');
+        }
         
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
@@ -9164,7 +9139,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.properties, requestObj.properties.constructor.name === "Object" ? "TableProperties" : requestObj.properties.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.properties, requestObj.properties.constructor.name === "Object" ? "importedTableProperties.TableProperties" : requestObj.properties.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -9197,16 +9172,6 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj.name" was null when calling updateTablePropertiesWithoutNodePath.');
         }
 
-        // verify required parameter 'requestObj.properties' is not undefined
-        if (requestObj.properties === undefined) {
-            throw new Error('Required parameter "requestObj.properties" was undefined when calling updateTablePropertiesWithoutNodePath.');
-        }
-
-        // verify required parameter 'requestObj.properties' is not null
-        if (requestObj.properties === null) {
-            throw new Error('Required parameter "requestObj.properties" was null when calling updateTablePropertiesWithoutNodePath.');
-        }
-
         // verify required parameter 'requestObj.index' is not undefined
         if (requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was undefined when calling updateTablePropertiesWithoutNodePath.');
@@ -9215,6 +9180,16 @@ export class WordsApi {
         // verify required parameter 'requestObj.index' is not null
         if (requestObj.index === null) {
             throw new Error('Required parameter "requestObj.index" was null when calling updateTablePropertiesWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.properties' is not undefined
+        if (requestObj.properties === undefined) {
+            throw new Error('Required parameter "requestObj.properties" was undefined when calling updateTablePropertiesWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.properties' is not null
+        if (requestObj.properties === null) {
+            throw new Error('Required parameter "requestObj.properties" was null when calling updateTablePropertiesWithoutNodePath.');
         }
         
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -9229,7 +9204,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.properties, requestObj.properties.constructor.name === "Object" ? "TableProperties" : requestObj.properties.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.properties, requestObj.properties.constructor.name === "Object" ? "importedTableProperties.TableProperties" : requestObj.properties.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -9263,16 +9238,6 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj.name" was null when calling updateTableRowFormat.');
         }
 
-        // verify required parameter 'requestObj.format' is not undefined
-        if (requestObj.format === undefined) {
-            throw new Error('Required parameter "requestObj.format" was undefined when calling updateTableRowFormat.');
-        }
-
-        // verify required parameter 'requestObj.format' is not null
-        if (requestObj.format === null) {
-            throw new Error('Required parameter "requestObj.format" was null when calling updateTableRowFormat.');
-        }
-
         // verify required parameter 'requestObj.tablePath' is not undefined
         if (requestObj.tablePath === undefined) {
             throw new Error('Required parameter "requestObj.tablePath" was undefined when calling updateTableRowFormat.');
@@ -9287,6 +9252,11 @@ export class WordsApi {
         if (requestObj.index === null) {
             throw new Error('Required parameter "requestObj.index" was null when calling updateTableRowFormat.');
         }
+
+        // verify required parameter 'requestObj.format' is not undefined
+        if (requestObj.format === undefined) {
+            throw new Error('Required parameter "requestObj.format" was undefined when calling updateTableRowFormat.');
+        }
         
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
@@ -9300,7 +9270,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.format, requestObj.format.constructor.name === "Object" ? "TableRowFormat" : requestObj.format.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.format, requestObj.format.constructor.name === "Object" ? "importedTableRowFormat.TableRowFormat" : requestObj.format.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);

@@ -35,7 +35,8 @@
         "only-arrow-functions": false,
         "object-literal-sort-keys": false,
         "no-unused-expression": false,
-        "quotemark":false
+        "quotemark":false,
+        "ordered-imports": false
     },
     "rulesDirectory": []
 }

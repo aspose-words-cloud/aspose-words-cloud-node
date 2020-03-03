@@ -42,7 +42,7 @@ describe("errorHandling tests", () => {
                 expect(errorResponse.response instanceof IncomingMessage).to.be.true;
                 expect(errorResponse.body instanceof WordsApiErrorResponse).to.be.true;
                 expect(errorResponse.response.statusCode).to.equal(404);
-                expect(errorResponse.body.error.message.startsWith("Error while loading file 'noFileWithThisName.docx' from storage: AmazonS3 Storage exception:")).to.be.true;               
+                expect(errorResponse.body.error.message.startsWith("Error while loading file 'noFileWithThisName.docx' from storage")).to.be.true;               
             });
     });    
 });

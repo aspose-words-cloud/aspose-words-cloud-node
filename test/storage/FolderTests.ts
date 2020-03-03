@@ -24,6 +24,7 @@
 
 import { expect } from "chai";
 import "mocha";
+import { v4 as uuidv4 } from 'uuid';
 
 import { CopyFolderRequest, CreateFolderRequest, DeleteFolderRequest, GetFilesListRequest, MoveFolderRequest } from "../../src/model/model";
 import * as BaseTest from "../baseTest";
@@ -129,7 +130,7 @@ describe("Storage folder operations", () => {
                         .then((result2) => {
                             expect(result2.response.statusCode).to.equal(200);
                             
-                            expect(result2.body.value.some((file) => file.path === "/" + dest + "/")).to.be.true;
+                            expect(result2.body.value.some((file) => ("/" + dest + "/").indexOf(file.path) > -1)).to.be.true;
                         });
                     });
                 });
@@ -141,7 +142,7 @@ describe("Storage folder operations", () => {
             const wordsApi = BaseTest.initializeWordsApi();
 
             const src = storageFolder + "/TestMoveFolderSrc";
-            const dest = storageFolder + "/TestMoveFolderDest";
+            const dest = storageFolder + "/TestMoveFolderDest" + uuidv4();
 
             const request: CreateFolderRequest = {
                 path: src,
@@ -172,8 +173,8 @@ describe("Storage folder operations", () => {
                         .then((result2) => {
                             expect(result2.response.statusCode).to.equal(200);
                             
-                            expect(result2.body.value.some((file) => file.path === "/" + dest + "/")).to.be.true;
-                            expect(result2.body.value.some((file) => file.path === "/" + src + "/")).to.be.false;
+                            expect(result2.body.value.some((file) => ("/" + dest + "/").indexOf(file.path) > -1)).to.be.true;
+                            expect(result2.body.value.some((file) => ("/" + src + "/").indexOf(file.path) > -1)).to.be.false;
                         });
                     });
                 });

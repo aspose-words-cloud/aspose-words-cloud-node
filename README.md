@@ -2,7 +2,7 @@ Node.js Cloud SDK wraps Aspose.Words REST API so you could seamlessly integrate 
 
 # Word Document Processing in the Cloud
 
-[Aspose.Words Cloud SDK for Node.js](https://products.aspose.cloud/slides/nodejs) allows to work with document headers, footers, page numbering, tables, sections, document comments, drawing objects, FormFields, fonts, hyperlinks, ranges, paragraphs, math objects, watermarks, track changes and document protection. It also assists in appending documents, splitting documents as well as converting document to other supported file formats. 
+[Aspose.Words Cloud SDK for Node.js](https://products.aspose.cloud/words/nodejs) allows to work with document headers, footers, page numbering, tables, sections, document comments, drawing objects, FormFields, fonts, hyperlinks, ranges, paragraphs, math objects, watermarks, track changes and document protection. It also assists in appending documents, splitting documents as well as converting document to other supported file formats. 
 
 Feel free to explore the [Developer's Guide](https://docs.aspose.cloud/display/wordscloud/Developer+Guide) & [API Reference](https://apireference.aspose.cloud/words/) to know all about Aspose.Words Cloud API. 
 

@@ -50,6 +50,11 @@ export class RtfSaveOptionsData extends SaveOptionsData {
             name: "prettyFormat",
             baseName: "PrettyFormat",
             type: "boolean",
+        },        
+        {
+            name: "saveImagesAsWmf",
+            baseName: "SaveImagesAsWmf",
+            type: "boolean",
         }    ];
 
     /**
@@ -73,6 +78,11 @@ export class RtfSaveOptionsData extends SaveOptionsData {
      * Gets or sets specifies whether or not use pretty formats output.
      */
     public prettyFormat: boolean;
+    
+    /**
+     * Gets or sets a value indicating whether when true all images will be saved as WMF. This option might help to avoid WordPad warning messages.
+     */
+    public saveImagesAsWmf: boolean;
     
     public constructor(init?: Partial<RtfSaveOptionsData>) {
         super(init);

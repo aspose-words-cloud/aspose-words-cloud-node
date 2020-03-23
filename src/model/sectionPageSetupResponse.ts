@@ -31,7 +31,7 @@ export const importsMapSectionPageSetupResponse = {
 };
 
 /**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v4.0/words/Test.doc/sections/{0}/PageSetup.
+ * This response should be returned by the service when handling: GET https://api.aspose.cloud/v4.0/words/Test.doc/sections/{0}/PageSetup.
  */
 export class SectionPageSetupResponse extends WordsResponse {
     /**

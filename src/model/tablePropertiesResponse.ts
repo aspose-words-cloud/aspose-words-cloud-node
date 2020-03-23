@@ -31,7 +31,7 @@ export const importsMapTablePropertiesResponse = {
 };
 
 /**
- * This response should be returned by the service when handling: GET http://api.aspose.com/v4.0/words/Test.doc/tables/{0}/properties.
+ * This response should be returned by the service when handling: GET https://api.aspose.cloud/v4.0/words/Test.doc/tables/{0}/properties.
  */
 export class TablePropertiesResponse extends WordsResponse {
     /**

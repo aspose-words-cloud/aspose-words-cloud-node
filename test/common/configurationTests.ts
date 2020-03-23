@@ -35,6 +35,7 @@ const testFolder = "Commont/Configuration";
 
 describe("configuration tests", () => {
     it("should write request to console if debugMode is setted to true in constructor", () => {
+        const cfg = require("../../testConfig.json");
         const wordsApi = BaseTest.initializeWordsApi(true);
 
         const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
@@ -53,7 +54,7 @@ describe("configuration tests", () => {
                     .then(() => {
                         log.restore();
                         sinon.assert.calledWith(log,
-                            sinon.match('"uri": "https://api.aspose.cloud/v4.0/words/TesConfiguration.docx?folder=Temp%2FSdkTests%2Fnode%2FTestData%2FCommont%2FConfiguration"')
+                            sinon.match('"uri": "' + cfg.BaseUrl + "/v4.0/words/TesConfiguration.docx?folder=Temp%2FSdkTests%2Fnode%2FTestData%2FCommont%2FConfiguration" + '"')
                                 .and(sinon.match('"method": "GET"')));
                     });
             });
@@ -61,6 +62,7 @@ describe("configuration tests", () => {
 
     it("should write request to console if debugMode is setted to true in runtime", () => {
 
+        const cfg = require("../../testConfig.json");
         const wordsApi = BaseTest.initializeWordsApi();
 
         const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
@@ -81,7 +83,7 @@ describe("configuration tests", () => {
                     .then(() => {
                         log.restore();
                         sinon.assert.calledWith(log,
-                            sinon.match('"uri": "https://api.aspose.cloud/v4.0/words/TesConfiguration.docx?folder=Temp%2FSdkTests%2Fnode%2FTestData%2FCommont%2FConfiguration"')
+                            sinon.match('"uri": "' + cfg.BaseUrl + "/v4.0/words/TesConfiguration.docx?folder=Temp%2FSdkTests%2Fnode%2FTestData%2FCommont%2FConfiguration" + '"')
                                 .and(sinon.match('"method": "GET"')));
                     });
             });

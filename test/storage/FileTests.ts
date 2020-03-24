@@ -24,6 +24,7 @@
 
 import fs = require("fs");
 import "mocha";
+import { v4 as uuidv4 } from 'uuid';
 
 import { expect } from "chai";
 import { CopyFileRequest, DeleteFileRequest, DownloadFileRequest, MoveFileRequest, UploadFileRequest } from "../../src/model/model";
@@ -111,7 +112,7 @@ describe("Storage file operations", () => {
 
             const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
             const remoteBasePathSrc = BaseTest.remoteBaseTestDataFolder + "TestMoveFileSrc.docx";
-            const remoteBasePathDest = BaseTest.remoteBaseTestDataFolder + "TestMoveFileDest.docx";
+            const remoteBasePathDest = BaseTest.remoteBaseTestDataFolder + "TestMoveFileDest" + uuidv4() + ".docx";
 
             return wordsApi.uploadFileToStorage(remoteBasePathSrc, localPath)
                 .then((result) => {

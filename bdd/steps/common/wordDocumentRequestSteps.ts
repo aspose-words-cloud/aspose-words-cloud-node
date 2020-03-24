@@ -25,6 +25,8 @@
 import { Given } from "cucumber";
 import * as BaseTest from "../../../test/baseTest";
 
+const testFolder = "DocumentActions/MailMerge/";
+
 Given(/^I have specified document (.*) with folder (.*) in URL$/, function(documentName, folder) {
     this.request.name = documentName;
     this.request.folder = BaseTest.remoteBaseFolder + folder;
@@ -38,5 +40,6 @@ Given(/^I have specified encoding (.*)$/, function(encoding) {
 });
 
 Given(/^I have specified a destFileName (.*)$/, function(destFileName) {
-    this.request.destFileName = destFileName;
+    const remotePath = BaseTest.remoteBaseFolder + testFolder;
+    this.request.destFileName = remotePath + destFileName;
 });

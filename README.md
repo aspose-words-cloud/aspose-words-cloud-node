@@ -1,44 +1,70 @@
-# Aspose.Words Cloud SDK for Node.js [![npm](https://badge.fury.io/js/asposewordscloud.svg)](https://www.npmjs.com/package/asposewordscloud)
-This repository contains Aspose.Words Cloud SDK for Node.js source code. This SDK allows you to work with Aspose.Words Cloud REST APIs in your nodejs applications quickly and easily, with zero initial cost.
+Node.js Cloud SDK wraps Aspose.Words REST API so you could seamlessly integrate Microsoft Word® document generation, manipulation, conversion & inspection features into your own Node.js applications.
 
-[Aspose.Words Cloud](https://products.aspose.cloud/words/family "Aspose.Words Cloud")  
-[API Reference](https://apireference.aspose.cloud/words/)  
+# Word Document Processing in the Cloud
 
-# Key Features
-* Conversion between various document-related formats (20+ formats supported), including PDF<->Word conversion
-* Mail merge and reports generation 
-* Splitting Word documents
-* Accessing Word document metadata and statistics
-* Find and replace
-* Watermarks and protection
-* Full read & write access to Document Object Model, including sections, paragraphs, text, images, tables, headers/footers and many others
+[Aspose.Words Cloud SDK for Node.js](https://products.aspose.cloud/words/nodejs) allows to work with document headers, footers, page numbering, tables, sections, document comments, drawing objects, FormFields, fonts, hyperlinks, ranges, paragraphs, math objects, watermarks, track changes and document protection. It also assists in appending documents, splitting documents as well as converting document to other supported file formats. 
 
-## How to use the SDK?
-The complete source code is available in this repository folder. You can either directly use it in your project via source code or get [nmpjs distribution](https://www.npmjs.com/package/asposewordscloud) (recommended). For more details, please visit our [documentation website](https://docs.aspose.cloud/display/wordscloud/Available+SDKs).
+Feel free to explore the [Developer's Guide](https://docs.aspose.cloud/display/wordscloud/Developer+Guide) & [API Reference](https://apireference.aspose.cloud/words/) to know all about Aspose.Words Cloud API. 
 
-### Prerequisites
+## Document Processing Features
 
-To use Aspose Words for Cloud SDK you need to register an account with [Aspose Cloud](https://www.aspose.cloud/) and lookup/create App Key and SID at [Cloud Dashboard](https://dashboard.aspose.cloud/#/apps). There is free quota available. For more details, see [Aspose Cloud Pricing](https://purchase.aspose.cloud/pricing).
+- Convert between various document-related formats, including Word to PDF & vice versa.
+- Mail merge and report generation in the Cloud.
+- Split & merge Word documents.
+- Access Word document metadata.
+- Find and replace text.
+- Add & remove watermarks and protection.
+- Read & write access to Document Object Model.
 
-Required version of Node.js is 8.16 or higher.
+## Enhancements in Version 20.3
 
-### Installation
+- XmlColor.Alpha isn't a required property
+- RtfSaveOptionsData.SaveImageAsWmf property is added
 
-#### Install Aspose.Words-Cloud via NPM
+## Enhancements in Version 20.1
 
-From the command line:
+- Moved property `ColorMode` from `SaveOptionsData` to `FixedPageSaveOptionsData`.
+- Replaced `MemoryStream` and `byte[]` with `SixLabors.ImageSharp.IImage` for image processing.
+- Included support of `ICC` profiles and implement `ICCBased` color space.
 
-	npm install asposewordscloud --save
+For the detailed notes, please visit [Aspose.Words Cloud 20.1 Release Notes](https://docs.aspose.cloud/display/wordscloud/Aspose.Words+Cloud+20.1+Release+Notes).
 
+## Read & Write Document Formats
 
-### Sample usage
+**Microsoft Word:** DOC, DOCX, RTF, DOT, DOTX, DOTM, FlatOPC (XML)
+**OpenOffice:** ODT, OTT
+**WordprocessingML:** XML
+**Web:** HTML, MHTML, HtmlFixed
+**Text:** TXT
+**Fixed Layout:** PDF
 
-The examples below show how your application have to initiate and convert "doc" file to "pdf" using asposewordscloud library:
-``` js
+## Save Document As
+
+**Fixed Layout:** PDF/A, XPS, OpenXPS, PS
+**Images:** JPEG, PNG, BMP, SVG, TIFF, EMF
+**Others:** PCL
+
+## Getting Started with Aspose.Words Cloud SDK for Node.js
+
+Firstly, create an account at [Aspose for Cloud](https://dashboard.aspose.cloud/#/apps) to get your application information and free quota to use the API. Now execute `npm install asposewordscloud --save` from the command line to install Aspose.Words Cloud SDK for Node.js via NPM.
+
+The complete source code is available at [GitHub Repository](https://github.com/aspose-words-cloud/aspose-words-cloud-node).
+
+### SDK Dependencies
+
+- [@types/request](https://www.npmjs.com/package/@types/request) (version 2.48.3+)
+- [lodash](https://www.npmjs.com/package/lodash) (version 4.17.15+)
+- [lodash.template](https://www.npmjs.com/package/lodash.template) (version 4.5.0+)
+- [request](https://www.npmjs.com/package/request) (version 2.88.0+)
+- [request-debug](https://www.npmjs.com/package/request-debug) (version 0.2.0+)
+
+## Convert DOC to PDF via Node.js
+
+```js
 const { WordsApi, PostDocumentSaveAsRequest, SaveOptionsData } = require("asposewordscloud");
-
+ 
 wordsApi = new WordsApi(AppSid, AppKey);
-
+ 
 var request = new PostDocumentSaveAsRequest({
     name: "fileStoredInCloud.doc",
     saveOptionsData: new SaveOptionsData(
@@ -47,7 +73,7 @@ var request = new PostDocumentSaveAsRequest({
             fileName: "destination.pdf"
         })
 });
-
+ 
 wordsApi.postDocumentSaveAs(request)
     .then((result) => {
         // Deal with a result
@@ -55,53 +81,9 @@ wordsApi.postDocumentSaveAs(request)
         console.log(result.body);
     })
     .catch(function(err) {
-        // Deal with an error
         console.log(err.reponse.statusCode);
         console.log(err.body);
     });
-
 ```
 
-Every method returns a chainable promise.
-
-[Tests](test) contain various examples of using the SDK. You have to create "testConfig.json" file in project root to run them.
-"testConfig.json" has the following structure
-``` json
-{
-    "AppSid": "Youre AppSid here",
-    "AppKey": "Youre AppKey here",
-    "BaseUrl": "http://api.aspose.cloud"
-}
-```
-
-For other examples, check the product [Developer Guide](https://docs.aspose.cloud/display/wordscloud/Developer+Guide).
-
-## Dependencies
-* [@types/request](https://www.npmjs.com/package/@types/request) (version 2.48.3+)  
-* [lodash](https://www.npmjs.com/package/lodash) (version 4.17.15+)  
-* [lodash.template](https://www.npmjs.com/package/lodash.template) (version 4.5.0+)  
-* [request](https://www.npmjs.com/package/request) (version 2.88.0+)  
-* [request-debug](https://www.npmjs.com/package/request-debug) (version 0.2.0+)  
-
-## Licensing
- 
-All Aspose.Words Cloud SDKs, helper scripts and templates are licensed under [MIT License](https://github.com/aspose-words-cloud/aspose-words-cloud-node/blob/master/LICENSE). 
-
-### Dependencies licenses
-Request package is under [Apache ver. 2.0 license](https://www.apache.org/licenses/LICENSE-2.0). Rest of dependencies are under [MIT license](https://processwire.com/about/license/mit/).
-
-## Contact Us
-Your feedback is very important to us. Please feel free to contact us using our [Support Forums](https://forum.aspose.cloud/c/words).
-
-## Resources
- 
-[Website](https://www.aspose.cloud/)  
-[Product Home](https://products.aspose.cloud/words/family)  
-[API Reference](https://apireference.aspose.cloud/words/)  
-[Documentation](https://docs.aspose.cloud/display/wordscloud/Home)  
-[Blog](https://blog.aspose.cloud/category/words/)  
- 
-## Other languages
-We generate our SDKs in different languages so you may check if yours is available in our [list](https://github.com/aspose-words-cloud).
- 
-If you don't find your language in the list, feel free to request it from us, or use raw REST API requests as you can find it [here](https://products.aspose.cloud/words/curl).
+[Product Page](https://products.aspose.cloud/words/nodejs) | [Documentation](https://docs.aspose.cloud/display/wordscloud/Home) | [API Reference](https://apireference.aspose.cloud/words/) | [Code Samples](https://github.com/aspose-words-cloud/aspose-words-cloud-node) | [Blog](https://blog.aspose.cloud/category/words/) | [Free Support](https://forum.aspose.cloud/c/words) | [Free Trial](https://dashboard.aspose.cloud/#/apps)

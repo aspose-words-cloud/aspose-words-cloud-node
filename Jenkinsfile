@@ -8,6 +8,7 @@ properties([
 	]
 ])
 
+
 def runtests(dockerImageVersion)
 {
     dir(dockerImageVersion){

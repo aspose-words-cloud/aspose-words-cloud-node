@@ -23,9 +23,11 @@
 */
 import { AttributeInfo } from '../internal/attributeInfo';
 import { CsvDataLoadOptions } from './csvDataLoadOptions';
+import { ReportBuildOptions } from './reportBuildOptions';
 
 export const importsMapReportEngineSettings = {
     CsvDataLoadOptions,
+    ReportBuildOptions,
 };
 
 /**
@@ -44,7 +46,7 @@ export class ReportEngineSettings {
         {
             name: "reportBuildOptions",
             baseName: "ReportBuildOptions",
-            type: "ReportEngineSettings.ReportBuildOptionsEnum",
+            type: "Array<ReportBuildOptions>",
         },        
         {
             name: "dataSourceName",
@@ -72,7 +74,7 @@ export class ReportEngineSettings {
     /**
      * Gets or sets type of options to build report.
      */
-    public reportBuildOptions: ReportEngineSettings.ReportBuildOptionsEnum;
+    public reportBuildOptions: Array<ReportBuildOptions>;
     
     /**
      * Gets or sets a name to reference the data source object in the template.
@@ -100,12 +102,6 @@ export namespace ReportEngineSettings {
         Xml = 'Xml' as any,
         Json = 'Json' as any,
         Csv = 'Csv' as any,
-    }
-    export enum ReportBuildOptionsEnum {
-        None = 'None' as any,
-        AllowMissingMembers = 'AllowMissingMembers' as any,
-        RemoveEmptyParagraphs = 'RemoveEmptyParagraphs' as any,
-        InlineErrorMessages = 'InlineErrorMessages' as any,
     }
 }
 // tslint:enable:quotemark

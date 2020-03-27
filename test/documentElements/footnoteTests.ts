@@ -107,8 +107,8 @@ describe("footnotes", () => {
                     request.name = remoteFileName;
                     request.folder = remotePath;
                     request.nodePath = null;
-                    request.footnoteDto = new Footnote({
-                        footnoteType: Footnote.FootnoteTypeEnum.Endnote,
+                    request.footnoteDto = new FootnoteInsert({
+                        footnoteType: FootnoteInsert.FootnoteTypeEnum.Endnote,
                         text: "test endnote",                        
                     });
 
@@ -141,7 +141,7 @@ describe("footnotes", () => {
                     request.folder = remotePath;
                     request.nodePath = null;
                     request.index = 0;
-                    request.footnoteDto = new Footnote({ text: "new text" });
+                    request.footnoteDto = new FootnoteUpdate({ text: "new text" });
 
                     // Act
                     return wordsApi.updateFootnote(request)
@@ -255,8 +255,8 @@ describe("footnotes", () => {
                     const request = new InsertFootnoteWithoutNodePathRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
-                    request.footnoteDto = new Footnote({
-                        footnoteType: Footnote.FootnoteTypeEnum.Endnote,
+                    request.footnoteDto = new FootnoteInsert({
+                        footnoteType: FootnoteInsert.FootnoteTypeEnum.Endnote,
                         text: "test endnote",                        
                     });
 
@@ -288,7 +288,7 @@ describe("footnotes", () => {
                     request.name = remoteFileName;
                     request.folder = remotePath;
                     request.index = 0;
-                    request.footnoteDto = new Footnote({ text: "new text" });
+                    request.footnoteDto = new FootnoteUpdate({ text: "new text" });
 
                     // Act
                     return wordsApi.updateFootnoteWithoutNodePath(request)

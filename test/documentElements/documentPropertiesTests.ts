@@ -107,7 +107,7 @@ describe("documentProperties", () => {
                     request.name = remoteFileName;
                     request.folder = remotePath;
                     request.propertyName = "Author";
-                    request.property = new DocumentProperty({name: "Author", value: "AuthorValue"});
+                    request.property = new DocumentPropertyCreateOrUpdate({value: "AuthorValue"});
                    
                     // Act
                     return wordsApi.createOrUpdateDocumentProperty(request)

@@ -106,7 +106,7 @@ describe("runs", () => {
                     request.name = remoteFileName;
                     request.folder = remotePath;
                     request.paragraphPath = "sections/0/paragraphs/0";
-                    request.run = new Run({ text: "new" });
+                    request.run = new RunInsert({ text: "new" });
 
                     // Act
                     return wordsApi.insertRun(request)
@@ -137,7 +137,7 @@ describe("runs", () => {
                     request.folder = remotePath;
                     request.paragraphPath = "sections/0/paragraphs/0";
                     request.index = 0;
-                    request.run = new Run({ text: "new" });
+                    request.run = new RunUpdate({ text: "new" });
 
                     // Act
                     return wordsApi.updateRun(request)

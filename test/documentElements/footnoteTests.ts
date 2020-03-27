@@ -25,7 +25,7 @@
 import { expect } from "chai";
 import "mocha";
 
-import { DeleteFootnoteRequest, Footnote, GetFootnoteRequest, GetFootnotesRequest, InsertFootnoteRequest, UpdateFootnoteRequest } from "../../src/model/model";
+import { DeleteFootnoteRequest, FootnoteInsert, FootnoteUpdate, GetFootnoteRequest, GetFootnotesRequest, InsertFootnoteRequest, UpdateFootnoteRequest } from "../../src/model/model";
 import { DeleteFootnoteWithoutNodePathRequest, GetFootnotesWithoutNodePathRequest, GetFootnoteWithoutNodePathRequest, InsertFootnoteWithoutNodePathRequest, UpdateFootnoteWithoutNodePathRequest } from "../../src/model/model";
 import * as BaseTest from "../baseTest";
 

@@ -25,7 +25,7 @@
 import { expect } from "chai";
 import "mocha";
 
-import { DeleteFieldRequest, DeleteFieldsRequest, Field, GetFieldRequest, GetFieldsRequest, InsertFieldRequest, InsertPageNumbersRequest, PageNumber, UpdateFieldRequest, UpdateFieldsRequest } from "../../src/model/model";
+import { DeleteFieldRequest, DeleteFieldsRequest, FieldInsert, FieldUpdate, GetFieldRequest, GetFieldsRequest, InsertFieldRequest, InsertPageNumbersRequest, PageNumber, UpdateFieldRequest, UpdateFieldsRequest } from "../../src/model/model";
 import { DeleteFieldsWithoutNodePathRequest, DeleteFieldWithoutNodePathRequest, GetFieldsWithoutNodePathRequest, GetFieldWithoutNodePathRequest, InsertFieldWithoutNodePathRequest } from "../../src/model/model";
 import * as BaseTest from "../baseTest";
 

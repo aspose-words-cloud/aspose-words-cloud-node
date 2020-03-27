@@ -25,7 +25,7 @@
 import { expect } from "chai";
 import "mocha";
 
-import { DeleteRunRequest, Font, GetRunFontRequest, GetRunRequest, GetRunsRequest, InsertRunRequest, Run, UpdateRunFontRequest, UpdateRunRequest } from "../../src/model/model";
+import { DeleteRunRequest, Font, GetRunFontRequest, GetRunRequest, GetRunsRequest, InsertRunRequest, RunInsert, RunUpdate, UpdateRunFontRequest, UpdateRunRequest } from "../../src/model/model";
 import * as BaseTest from "../baseTest";
 
 const testFolder = "DocumentElements/Runs";

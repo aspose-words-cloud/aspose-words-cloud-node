@@ -25,7 +25,7 @@
 import { expect } from "chai";
 import "mocha";
 
-import { Comment, DeleteCommentRequest, DocumentPosition, GetCommentRequest, GetCommentsRequest, InsertCommentRequest, NodeLink, UpdateCommentRequest } from "../../src/model/model";
+import { CommentInsert, CommentUpdate, DeleteCommentRequest, DocumentPosition, GetCommentRequest, GetCommentsRequest, InsertCommentRequest, NodeLink, UpdateCommentRequest } from "../../src/model/model";
 import * as BaseTest from "../baseTest";
 
 const testFolder = "DocumentElements/Comments";

@@ -54,6 +54,7 @@ import * as importedCommentResponse from './commentResponse';
 import * as importedCommentsCollection from './commentsCollection';
 import * as importedCommentsResponse from './commentsResponse';
 import * as importedCompareData from './compareData';
+import * as importedCompareOptions from './compareOptions';
 import * as importedDocSaveOptionsData from './docSaveOptionsData';
 import * as importedDocument from './document';
 import * as importedDocumentEntry from './documentEntry';
@@ -246,6 +247,7 @@ export * from './commentResponse';
 export * from './commentsCollection';
 export * from './commentsResponse';
 export * from './compareData';
+export * from './compareOptions';
 export * from './docSaveOptionsData';
 export * from './document';
 export * from './documentEntry';
@@ -424,6 +426,7 @@ export class WordsIncomingMessage<T> {
 const enumsMap = {
     "Border.BorderTypeEnum": importedBorder.Border.BorderTypeEnum,
     "Border.LineStyleEnum": importedBorder.Border.LineStyleEnum,
+    "CompareOptions.TargetEnum": importedCompareOptions.CompareOptions.TargetEnum,
     "Document.SourceFormatEnum": importedDocument.Document.SourceFormatEnum,
     "DrawingObject.RelativeHorizontalPositionEnum": importedDrawingObject.DrawingObject.RelativeHorizontalPositionEnum,
     "DrawingObject.RelativeVerticalPositionEnum": importedDrawingObject.DrawingObject.RelativeVerticalPositionEnum,
@@ -511,6 +514,7 @@ const typeMap = {
     CommentsCollection: importedCommentsCollection.CommentsCollection,
     CommentsResponse: importedCommentsResponse.CommentsResponse,
     CompareData: importedCompareData.CompareData,
+    CompareOptions: importedCompareOptions.CompareOptions,
     DocSaveOptionsData: importedDocSaveOptionsData.DocSaveOptionsData,
     Document: importedDocument.Document,
     DocumentEntry: importedDocumentEntry.DocumentEntry,

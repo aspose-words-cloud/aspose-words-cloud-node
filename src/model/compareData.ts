@@ -22,8 +22,10 @@
 * SOFTWARE.
 */
 import { AttributeInfo } from '../internal/attributeInfo';
+import { CompareOptions } from './compareOptions';
 
 export const importsMapCompareData = {
+    CompareOptions,
 };
 
 /**
@@ -48,6 +50,11 @@ export class CompareData {
             name: "dateTime",
             baseName: "DateTime",
             type: "Date",
+        },        
+        {
+            name: "compareOptions",
+            baseName: "CompareOptions",
+            type: "CompareOptions",
         }    ];
 
     /**
@@ -71,6 +78,11 @@ export class CompareData {
      * Gets or sets the date and time to use for revisions.             
      */
     public dateTime: Date;
+    
+    /**
+     * Gets or sets compareOptions.
+     */
+    public compareOptions: CompareOptions;
     
     public constructor(init?: Partial<CompareData>) {
         

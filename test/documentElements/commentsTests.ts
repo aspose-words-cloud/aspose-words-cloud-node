@@ -25,7 +25,7 @@
 import { expect } from "chai";
 import "mocha";
 
-import { Comment, DeleteCommentRequest, DocumentPosition, GetCommentRequest, GetCommentsRequest, InsertCommentRequest, NodeLink, UpdateCommentRequest } from "../../src/model/model";
+import { CommentInsert, CommentUpdate, DeleteCommentRequest, DocumentPosition, GetCommentRequest, GetCommentsRequest, InsertCommentRequest, NodeLink, UpdateCommentRequest } from "../../src/model/model";
 import * as BaseTest from "../baseTest";
 
 const testFolder = "DocumentElements/Comments";
@@ -112,7 +112,7 @@ describe("comments", () => {
                     const documentPosition = new DocumentPosition();
                     documentPosition.node = nodeLink;
                     documentPosition.offset = 0;
-                    request.comment = new Comment();
+                    request.comment = new CommentInsert();
                     request.comment.rangeStart = documentPosition;
                     request.comment.rangeEnd = documentPosition;
                     request.comment.initial = "IA";
@@ -154,7 +154,7 @@ describe("comments", () => {
                     const documentPosition = new DocumentPosition();
                     documentPosition.node = nodeLink;
                     documentPosition.offset = 0;
-                    request.comment = new Comment();
+                    request.comment = new CommentUpdate();
                     request.comment.rangeStart = documentPosition;
                     request.comment.rangeEnd = documentPosition;
                     request.comment.initial = "IA";

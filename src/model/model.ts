@@ -49,8 +49,11 @@ import * as importedBordersResponse from './bordersResponse';
 import * as importedClassificationResponse from './classificationResponse';
 import * as importedClassificationResult from './classificationResult';
 import * as importedComment from './comment';
+import * as importedCommentBase from './commentBase';
+import * as importedCommentInsert from './commentInsert';
 import * as importedCommentLink from './commentLink';
 import * as importedCommentResponse from './commentResponse';
+import * as importedCommentUpdate from './commentUpdate';
 import * as importedCommentsCollection from './commentsCollection';
 import * as importedCommentsResponse from './commentsResponse';
 import * as importedCompareData from './compareData';
@@ -63,6 +66,8 @@ import * as importedDocumentPosition from './documentPosition';
 import * as importedDocumentProperties from './documentProperties';
 import * as importedDocumentPropertiesResponse from './documentPropertiesResponse';
 import * as importedDocumentProperty from './documentProperty';
+import * as importedDocumentPropertyBase from './documentPropertyBase';
+import * as importedDocumentPropertyCreateOrUpdate from './documentPropertyCreateOrUpdate';
 import * as importedDocumentPropertyResponse from './documentPropertyResponse';
 import * as importedDocumentResponse from './documentResponse';
 import * as importedDocumentStatData from './documentStatData';
@@ -76,11 +81,14 @@ import * as importedEmfSaveOptionsData from './emfSaveOptionsData';
 import * as importedEpubSaveOptionsData from './epubSaveOptionsData';
 import * as importedErrorDetails from './errorDetails';
 import * as importedField from './field';
+import * as importedFieldBase from './fieldBase';
 import * as importedFieldCollection from './fieldCollection';
+import * as importedFieldInsert from './fieldInsert';
 import * as importedFieldLink from './fieldLink';
 import * as importedFieldNames from './fieldNames';
 import * as importedFieldNamesResponse from './fieldNamesResponse';
 import * as importedFieldResponse from './fieldResponse';
+import * as importedFieldUpdate from './fieldUpdate';
 import * as importedFieldsResponse from './fieldsResponse';
 import * as importedFileLink from './fileLink';
 import * as importedFilesList from './filesList';
@@ -90,9 +98,12 @@ import * as importedFont from './font';
 import * as importedFontInfo from './fontInfo';
 import * as importedFontResponse from './fontResponse';
 import * as importedFootnote from './footnote';
+import * as importedFootnoteBase from './footnoteBase';
 import * as importedFootnoteCollection from './footnoteCollection';
+import * as importedFootnoteInsert from './footnoteInsert';
 import * as importedFootnoteLink from './footnoteLink';
 import * as importedFootnoteResponse from './footnoteResponse';
+import * as importedFootnoteUpdate from './footnoteUpdate';
 import * as importedFootnotesResponse from './footnotesResponse';
 import * as importedFootnotesStatData from './footnotesStatData';
 import * as importedFormField from './formField';
@@ -162,8 +173,11 @@ import * as importedReplaceTextResponse from './replaceTextResponse';
 import * as importedRevisionsModificationResponse from './revisionsModificationResponse';
 import * as importedRtfSaveOptionsData from './rtfSaveOptionsData';
 import * as importedRun from './run';
+import * as importedRunBase from './runBase';
+import * as importedRunInsert from './runInsert';
 import * as importedRunLink from './runLink';
 import * as importedRunResponse from './runResponse';
+import * as importedRunUpdate from './runUpdate';
 import * as importedRuns from './runs';
 import * as importedRunsResponse from './runsResponse';
 import * as importedSaveOptionsData from './saveOptionsData';
@@ -242,8 +256,11 @@ export * from './bordersResponse';
 export * from './classificationResponse';
 export * from './classificationResult';
 export * from './comment';
+export * from './commentBase';
+export * from './commentInsert';
 export * from './commentLink';
 export * from './commentResponse';
+export * from './commentUpdate';
 export * from './commentsCollection';
 export * from './commentsResponse';
 export * from './compareData';
@@ -256,6 +273,8 @@ export * from './documentPosition';
 export * from './documentProperties';
 export * from './documentPropertiesResponse';
 export * from './documentProperty';
+export * from './documentPropertyBase';
+export * from './documentPropertyCreateOrUpdate';
 export * from './documentPropertyResponse';
 export * from './documentResponse';
 export * from './documentStatData';
@@ -269,11 +288,14 @@ export * from './emfSaveOptionsData';
 export * from './epubSaveOptionsData';
 export * from './errorDetails';
 export * from './field';
+export * from './fieldBase';
 export * from './fieldCollection';
+export * from './fieldInsert';
 export * from './fieldLink';
 export * from './fieldNames';
 export * from './fieldNamesResponse';
 export * from './fieldResponse';
+export * from './fieldUpdate';
 export * from './fieldsResponse';
 export * from './fileLink';
 export * from './filesList';
@@ -283,9 +305,12 @@ export * from './font';
 export * from './fontInfo';
 export * from './fontResponse';
 export * from './footnote';
+export * from './footnoteBase';
 export * from './footnoteCollection';
+export * from './footnoteInsert';
 export * from './footnoteLink';
 export * from './footnoteResponse';
+export * from './footnoteUpdate';
 export * from './footnotesResponse';
 export * from './footnotesStatData';
 export * from './formField';
@@ -355,8 +380,11 @@ export * from './replaceTextResponse';
 export * from './revisionsModificationResponse';
 export * from './rtfSaveOptionsData';
 export * from './run';
+export * from './runBase';
+export * from './runInsert';
 export * from './runLink';
 export * from './runResponse';
+export * from './runUpdate';
 export * from './runs';
 export * from './runsResponse';
 export * from './saveOptionsData';
@@ -435,6 +463,7 @@ const enumsMap = {
     "Font.TextEffectEnum": importedFont.Font.TextEffectEnum,
     "Font.UnderlineEnum": importedFont.Font.UnderlineEnum,
     "Footnote.FootnoteTypeEnum": importedFootnote.Footnote.FootnoteTypeEnum,
+    "FootnoteBase.FootnoteTypeEnum": importedFootnoteBase.FootnoteBase.FootnoteTypeEnum,
     "FormFieldTextInput.TextInputTypeEnum": importedFormFieldTextInput.FormFieldTextInput.TextInputTypeEnum,
     "GraphicsQualityOptionsData.CompositingModeEnum": importedGraphicsQualityOptionsData.GraphicsQualityOptionsData.CompositingModeEnum,
     "GraphicsQualityOptionsData.CompositingQualityEnum": importedGraphicsQualityOptionsData.GraphicsQualityOptionsData.CompositingQualityEnum,
@@ -509,8 +538,11 @@ const typeMap = {
     ClassificationResponse: importedClassificationResponse.ClassificationResponse,
     ClassificationResult: importedClassificationResult.ClassificationResult,
     Comment: importedComment.Comment,
+    CommentBase: importedCommentBase.CommentBase,
+    CommentInsert: importedCommentInsert.CommentInsert,
     CommentLink: importedCommentLink.CommentLink,
     CommentResponse: importedCommentResponse.CommentResponse,
+    CommentUpdate: importedCommentUpdate.CommentUpdate,
     CommentsCollection: importedCommentsCollection.CommentsCollection,
     CommentsResponse: importedCommentsResponse.CommentsResponse,
     CompareData: importedCompareData.CompareData,
@@ -523,6 +555,8 @@ const typeMap = {
     DocumentProperties: importedDocumentProperties.DocumentProperties,
     DocumentPropertiesResponse: importedDocumentPropertiesResponse.DocumentPropertiesResponse,
     DocumentProperty: importedDocumentProperty.DocumentProperty,
+    DocumentPropertyBase: importedDocumentPropertyBase.DocumentPropertyBase,
+    DocumentPropertyCreateOrUpdate: importedDocumentPropertyCreateOrUpdate.DocumentPropertyCreateOrUpdate,
     DocumentPropertyResponse: importedDocumentPropertyResponse.DocumentPropertyResponse,
     DocumentResponse: importedDocumentResponse.DocumentResponse,
     DocumentStatData: importedDocumentStatData.DocumentStatData,
@@ -536,11 +570,14 @@ const typeMap = {
     EpubSaveOptionsData: importedEpubSaveOptionsData.EpubSaveOptionsData,
     ErrorDetails: importedErrorDetails.ErrorDetails,
     Field: importedField.Field,
+    FieldBase: importedFieldBase.FieldBase,
     FieldCollection: importedFieldCollection.FieldCollection,
+    FieldInsert: importedFieldInsert.FieldInsert,
     FieldLink: importedFieldLink.FieldLink,
     FieldNames: importedFieldNames.FieldNames,
     FieldNamesResponse: importedFieldNamesResponse.FieldNamesResponse,
     FieldResponse: importedFieldResponse.FieldResponse,
+    FieldUpdate: importedFieldUpdate.FieldUpdate,
     FieldsResponse: importedFieldsResponse.FieldsResponse,
     FileLink: importedFileLink.FileLink,
     FilesList: importedFilesList.FilesList,
@@ -550,9 +587,12 @@ const typeMap = {
     FontInfo: importedFontInfo.FontInfo,
     FontResponse: importedFontResponse.FontResponse,
     Footnote: importedFootnote.Footnote,
+    FootnoteBase: importedFootnoteBase.FootnoteBase,
     FootnoteCollection: importedFootnoteCollection.FootnoteCollection,
+    FootnoteInsert: importedFootnoteInsert.FootnoteInsert,
     FootnoteLink: importedFootnoteLink.FootnoteLink,
     FootnoteResponse: importedFootnoteResponse.FootnoteResponse,
+    FootnoteUpdate: importedFootnoteUpdate.FootnoteUpdate,
     FootnotesResponse: importedFootnotesResponse.FootnotesResponse,
     FootnotesStatData: importedFootnotesStatData.FootnotesStatData,
     FormField: importedFormField.FormField,
@@ -622,8 +662,11 @@ const typeMap = {
     RevisionsModificationResponse: importedRevisionsModificationResponse.RevisionsModificationResponse,
     RtfSaveOptionsData: importedRtfSaveOptionsData.RtfSaveOptionsData,
     Run: importedRun.Run,
+    RunBase: importedRunBase.RunBase,
+    RunInsert: importedRunInsert.RunInsert,
     RunLink: importedRunLink.RunLink,
     RunResponse: importedRunResponse.RunResponse,
+    RunUpdate: importedRunUpdate.RunUpdate,
     Runs: importedRuns.Runs,
     RunsResponse: importedRunsResponse.RunsResponse,
     SaveOptionsData: importedSaveOptionsData.SaveOptionsData,
@@ -1040,7 +1083,7 @@ export class CreateOrUpdateDocumentPropertyRequest {
     /**
      * The property with new value.
      */
-    public property: importedDocumentProperty.DocumentProperty;
+    public property: importedDocumentPropertyCreateOrUpdate.DocumentPropertyCreateOrUpdate;
 
     /**
      * Original document folder.
@@ -5478,7 +5521,7 @@ export class InsertCommentRequest {
     /**
      * The comment data.
      */
-    public comment: importedComment.Comment;
+    public comment: importedCommentInsert.CommentInsert;
 
     /**
      * Original document folder.
@@ -5655,7 +5698,7 @@ export class InsertFieldRequest {
     /**
      * Field data.
      */
-    public field: importedField.Field;
+    public field: importedFieldInsert.FieldInsert;
 
     /**
      * Path to the node, which contains collection of fields.
@@ -5719,7 +5762,7 @@ export class InsertFieldWithoutNodePathRequest {
     /**
      * Field data.
      */
-    public field: importedField.Field;
+    public field: importedFieldInsert.FieldInsert;
 
     /**
      * Original document folder.
@@ -5778,7 +5821,7 @@ export class InsertFootnoteRequest {
     /**
      * Footnote data.
      */
-    public footnoteDto: importedFootnote.Footnote;
+    public footnoteDto: importedFootnoteInsert.FootnoteInsert;
 
     /**
      * Path to the node, which contains collection of footnotes.
@@ -5837,7 +5880,7 @@ export class InsertFootnoteWithoutNodePathRequest {
     /**
      * Footnote data.
      */
-    public footnoteDto: importedFootnote.Footnote;
+    public footnoteDto: importedFootnoteInsert.FootnoteInsert;
 
     /**
      * Original document folder.
@@ -6196,7 +6239,7 @@ export class InsertRunRequest {
     /**
      * Run data.
      */
-    public run: importedRun.Run;
+    public run: importedRunInsert.RunInsert;
 
     /**
      * Original document folder.
@@ -7894,7 +7937,7 @@ export class UpdateCommentRequest {
     /**
      * The comment data.
      */
-    public comment: importedComment.Comment;
+    public comment: importedCommentUpdate.CommentUpdate;
 
     /**
      * Original document folder.
@@ -8081,7 +8124,7 @@ export class UpdateFieldRequest {
     /**
      * Field data.
      */
-    public field: importedField.Field;
+    public field: importedFieldUpdate.FieldUpdate;
 
     /**
      * Path to the node, which contains collection of fields.
@@ -8184,7 +8227,7 @@ export class UpdateFootnoteRequest {
     /**
      * Footnote data.
      */
-    public footnoteDto: importedFootnote.Footnote;
+    public footnoteDto: importedFootnoteUpdate.FootnoteUpdate;
 
     /**
      * Path to the node, which contains collection of footnotes.
@@ -8248,7 +8291,7 @@ export class UpdateFootnoteWithoutNodePathRequest {
     /**
      * Footnote data.
      */
-    public footnoteDto: importedFootnote.Footnote;
+    public footnoteDto: importedFootnoteUpdate.FootnoteUpdate;
 
     /**
      * Object index.
@@ -8494,7 +8537,7 @@ export class UpdateRunRequest {
     /**
      * Run data.
      */
-    public run: importedRun.Run;
+    public run: importedRunUpdate.RunUpdate;
 
     /**
      * Path to parent paragraph.

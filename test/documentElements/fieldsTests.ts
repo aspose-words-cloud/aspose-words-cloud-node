@@ -25,7 +25,7 @@
 import { expect } from "chai";
 import "mocha";
 
-import { DeleteFieldRequest, DeleteFieldsRequest, Field, GetFieldRequest, GetFieldsRequest, InsertFieldRequest, InsertPageNumbersRequest, PageNumber, UpdateFieldRequest, UpdateFieldsRequest } from "../../src/model/model";
+import { DeleteFieldRequest, DeleteFieldsRequest, FieldInsert, FieldUpdate, GetFieldRequest, GetFieldsRequest, InsertFieldRequest, InsertPageNumbersRequest, PageNumber, UpdateFieldRequest, UpdateFieldsRequest } from "../../src/model/model";
 import { DeleteFieldsWithoutNodePathRequest, DeleteFieldWithoutNodePathRequest, GetFieldsWithoutNodePathRequest, GetFieldWithoutNodePathRequest, InsertFieldWithoutNodePathRequest } from "../../src/model/model";
 import * as BaseTest from "../baseTest";
 
@@ -106,7 +106,7 @@ describe("fields", () => {
                     const request = new InsertFieldRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
-                    request.field = new Field({ fieldCode: "{ NUMPAGES }", nodeId: "0.0.3" });
+                    request.field = new FieldInsert({ fieldCode: "{ NUMPAGES }" });
                     request.nodePath = "sections/0/paragraphs/0";
 
                     // Act
@@ -138,7 +138,7 @@ describe("fields", () => {
                     request.folder = remotePath;
                     request.nodePath = "sections/0/paragraphs/0";
                     request.index = 0;
-                    request.field = new Field({ fieldCode: "{ NUMPAGES }" });
+                    request.field = new FieldUpdate({ fieldCode: "{ NUMPAGES }" });
 
                     // Act
                     return wordsApi.updateField(request)
@@ -336,7 +336,7 @@ describe("fields", () => {
                     const request = new InsertFieldWithoutNodePathRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
-                    request.field = new Field({ fieldCode: "{ NUMPAGES }", nodeId: "0.0.3" });
+                    request.field = new FieldInsert({ fieldCode: "{ NUMPAGES }" });
 
                     // Act
                     return wordsApi.insertFieldWithoutNodePath(request)

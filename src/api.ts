@@ -531,7 +531,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.property, requestObj.property.constructor.name === "Object" ? "importedDocumentProperty.DocumentProperty" : requestObj.property.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.property, requestObj.property.constructor.name === "Object" ? "importedDocumentPropertyCreateOrUpdate.DocumentPropertyCreateOrUpdate" : requestObj.property.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -5609,7 +5609,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.comment, requestObj.comment.constructor.name === "Object" ? "importedComment.Comment" : requestObj.comment.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.comment, requestObj.comment.constructor.name === "Object" ? "importedCommentInsert.CommentInsert" : requestObj.comment.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -5822,7 +5822,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.field, requestObj.field.constructor.name === "Object" ? "importedField.Field" : requestObj.field.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.field, requestObj.field.constructor.name === "Object" ? "importedFieldInsert.FieldInsert" : requestObj.field.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -5877,7 +5877,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.field, requestObj.field.constructor.name === "Object" ? "importedField.Field" : requestObj.field.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.field, requestObj.field.constructor.name === "Object" ? "importedFieldInsert.FieldInsert" : requestObj.field.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -5937,7 +5937,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.footnoteDto, requestObj.footnoteDto.constructor.name === "Object" ? "importedFootnote.Footnote" : requestObj.footnoteDto.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.footnoteDto, requestObj.footnoteDto.constructor.name === "Object" ? "importedFootnoteInsert.FootnoteInsert" : requestObj.footnoteDto.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -5991,7 +5991,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.footnoteDto, requestObj.footnoteDto.constructor.name === "Object" ? "importedFootnote.Footnote" : requestObj.footnoteDto.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.footnoteDto, requestObj.footnoteDto.constructor.name === "Object" ? "importedFootnoteInsert.FootnoteInsert" : requestObj.footnoteDto.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -6343,7 +6343,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.run, requestObj.run.constructor.name === "Object" ? "importedRun.Run" : requestObj.run.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.run, requestObj.run.constructor.name === "Object" ? "importedRunInsert.RunInsert" : requestObj.run.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -8166,7 +8166,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.comment, requestObj.comment.constructor.name === "Object" ? "importedComment.Comment" : requestObj.comment.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.comment, requestObj.comment.constructor.name === "Object" ? "importedCommentUpdate.CommentUpdate" : requestObj.comment.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -8411,7 +8411,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.field, requestObj.field.constructor.name === "Object" ? "importedField.Field" : requestObj.field.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.field, requestObj.field.constructor.name === "Object" ? "importedFieldUpdate.FieldUpdate" : requestObj.field.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -8523,7 +8523,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.footnoteDto, requestObj.footnoteDto.constructor.name === "Object" ? "importedFootnote.Footnote" : requestObj.footnoteDto.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.footnoteDto, requestObj.footnoteDto.constructor.name === "Object" ? "importedFootnoteUpdate.FootnoteUpdate" : requestObj.footnoteDto.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -8588,7 +8588,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.footnoteDto, requestObj.footnoteDto.constructor.name === "Object" ? "importedFootnote.Footnote" : requestObj.footnoteDto.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.footnoteDto, requestObj.footnoteDto.constructor.name === "Object" ? "importedFootnoteUpdate.FootnoteUpdate" : requestObj.footnoteDto.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -8866,7 +8866,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.run, requestObj.run.constructor.name === "Object" ? "importedRun.Run" : requestObj.run.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.run, requestObj.run.constructor.name === "Object" ? "importedRunUpdate.RunUpdate" : requestObj.run.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);

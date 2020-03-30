@@ -25,7 +25,7 @@
 import { expect } from "chai";
 import "mocha";
 
-import { CreateOrUpdateDocumentPropertyRequest, DeleteDocumentPropertyRequest, DocumentProperty, GetDocumentPropertiesRequest, GetDocumentPropertyRequest } from "../../src/model/model";
+import { CreateOrUpdateDocumentPropertyRequest, DeleteDocumentPropertyRequest, DocumentPropertyCreateOrUpdate, GetDocumentPropertiesRequest, GetDocumentPropertyRequest } from "../../src/model/model";
 import * as BaseTest from "../baseTest";
 
 const testFolder = "DocumentElements/DocumentProperties";
@@ -107,7 +107,7 @@ describe("documentProperties", () => {
                     request.name = remoteFileName;
                     request.folder = remotePath;
                     request.propertyName = "Author";
-                    request.property = new DocumentProperty({name: "Author", value: "AuthorValue"});
+                    request.property = new DocumentPropertyCreateOrUpdate({value: "AuthorValue"});
                    
                     // Act
                     return wordsApi.createOrUpdateDocumentProperty(request)

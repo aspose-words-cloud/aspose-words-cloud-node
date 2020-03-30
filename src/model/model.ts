@@ -946,7 +946,7 @@ export class ConvertDocumentRequest {
     public outPath: string;
 
     /**
-     * This file name will be used when resulting document has dynamic field for document file name {filename}. If it is not set, "sourceFilename" will be used instead. 
+     * This file name will be used when resulting document has dynamic field for document file name {filename}. If it is not set, "sourceFilename" will be used instead.
      */
     public fileNameFieldValue: string;
 
@@ -2809,7 +2809,7 @@ export class ExecuteMailMergeRequest {
     public cleanup: string;
 
     /**
-     * Gets or sets a value indicating whether paragraph with TableStart or             TableEnd field should be fully included into mail merge region or particular range between TableStart and TableEnd fields.             The default value is true.
+     * Gets or sets a value indicating whether paragraph with TableStart or.             TableEnd field should be fully included into mail merge region or particular range between TableStart and TableEnd fields.             The default value is true.
      */
     public useWholeParagraphAsRegion: boolean;
 
@@ -2848,7 +2848,7 @@ export class ExecuteMailMergeOnlineRequest {
     public cleanup: string;
 
     /**
-     * This file name will be used when resulting document has dynamic field for document file name {filename}. If it is not setted, "template" will be used instead. 
+     * This file name will be used when resulting document has dynamic field for document file name {filename}. If it is not setted, "template" will be used instead.
      */
     public documentFileName: string;
     
@@ -7699,6 +7699,11 @@ export class SplitDocumentRequest {
     public name: string;
 
     /**
+     * Format to split.
+     */
+    public format: string;
+
+    /**
      * Original document folder.
      */
     public folder: string;
@@ -7722,11 +7727,6 @@ export class SplitDocumentRequest {
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
-
-    /**
-     * Format to split.
-     */
-    public format: string;
 
     /**
      * Start page.

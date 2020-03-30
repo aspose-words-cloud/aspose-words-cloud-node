@@ -277,7 +277,7 @@ export class WordsApi {
     }
 
     /**
-     * Converts document from the request's content to the specified format .
+     * Converts document from the request's content to the specified format.
      * @param requestObj contains request parameters
      */
     public async convertDocument(requestObj: model.ConvertDocumentRequest): Promise<model.WordsIncomingMessage<Buffer>> {
@@ -302,6 +302,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.format' is not undefined
         if (requestObj.format === undefined) {
             throw new Error('Required parameter "requestObj.format" was undefined when calling convertDocument.');
+        }
+
+        // verify required parameter 'requestObj.format' is not null
+        if (requestObj.format === null) {
+            throw new Error('Required parameter "requestObj.format" was null when calling convertDocument.');
         }
         
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
@@ -3381,6 +3386,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.format' is not undefined
         if (requestObj.format === undefined) {
             throw new Error('Required parameter "requestObj.format" was undefined when calling getDocumentWithFormat.');
+        }
+
+        // verify required parameter 'requestObj.format' is not null
+        if (requestObj.format === null) {
+            throw new Error('Required parameter "requestObj.format" was null when calling getDocumentWithFormat.');
         }
         
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
@@ -6989,6 +6999,11 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj.format" was undefined when calling renderDrawingObject.');
         }
 
+        // verify required parameter 'requestObj.format' is not null
+        if (requestObj.format === null) {
+            throw new Error('Required parameter "requestObj.format" was null when calling renderDrawingObject.');
+        }
+
         // verify required parameter 'requestObj.nodePath' is not undefined
         if (requestObj.nodePath === undefined) {
             throw new Error('Required parameter "requestObj.nodePath" was undefined when calling renderDrawingObject.');
@@ -7052,6 +7067,11 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj.format" was undefined when calling renderDrawingObjectWithoutNodePath.');
         }
 
+        // verify required parameter 'requestObj.format' is not null
+        if (requestObj.format === null) {
+            throw new Error('Required parameter "requestObj.format" was null when calling renderDrawingObjectWithoutNodePath.');
+        }
+
         // verify required parameter 'requestObj.index' is not undefined
         if (requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was undefined when calling renderDrawingObjectWithoutNodePath.');
@@ -7109,6 +7129,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.format' is not undefined
         if (requestObj.format === undefined) {
             throw new Error('Required parameter "requestObj.format" was undefined when calling renderMathObject.');
+        }
+
+        // verify required parameter 'requestObj.format' is not null
+        if (requestObj.format === null) {
+            throw new Error('Required parameter "requestObj.format" was null when calling renderMathObject.');
         }
 
         // verify required parameter 'requestObj.nodePath' is not undefined
@@ -7172,6 +7197,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.format' is not undefined
         if (requestObj.format === undefined) {
             throw new Error('Required parameter "requestObj.format" was undefined when calling renderMathObjectWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.format' is not null
+        if (requestObj.format === null) {
+            throw new Error('Required parameter "requestObj.format" was null when calling renderMathObjectWithoutNodePath.');
         }
 
         // verify required parameter 'requestObj.index' is not undefined
@@ -7241,6 +7271,11 @@ export class WordsApi {
         if (requestObj.format === undefined) {
             throw new Error('Required parameter "requestObj.format" was undefined when calling renderPage.');
         }
+
+        // verify required parameter 'requestObj.format' is not null
+        if (requestObj.format === null) {
+            throw new Error('Required parameter "requestObj.format" was null when calling renderPage.');
+        }
         
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -7289,6 +7324,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.format' is not undefined
         if (requestObj.format === undefined) {
             throw new Error('Required parameter "requestObj.format" was undefined when calling renderParagraph.');
+        }
+
+        // verify required parameter 'requestObj.format' is not null
+        if (requestObj.format === null) {
+            throw new Error('Required parameter "requestObj.format" was null when calling renderParagraph.');
         }
 
         // verify required parameter 'requestObj.nodePath' is not undefined
@@ -7354,6 +7394,11 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj.format" was undefined when calling renderParagraphWithoutNodePath.');
         }
 
+        // verify required parameter 'requestObj.format' is not null
+        if (requestObj.format === null) {
+            throw new Error('Required parameter "requestObj.format" was null when calling renderParagraphWithoutNodePath.');
+        }
+
         // verify required parameter 'requestObj.index' is not undefined
         if (requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was undefined when calling renderParagraphWithoutNodePath.');
@@ -7411,6 +7456,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.format' is not undefined
         if (requestObj.format === undefined) {
             throw new Error('Required parameter "requestObj.format" was undefined when calling renderTable.');
+        }
+
+        // verify required parameter 'requestObj.format' is not null
+        if (requestObj.format === null) {
+            throw new Error('Required parameter "requestObj.format" was null when calling renderTable.');
         }
 
         // verify required parameter 'requestObj.nodePath' is not undefined
@@ -7474,6 +7524,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.format' is not undefined
         if (requestObj.format === undefined) {
             throw new Error('Required parameter "requestObj.format" was undefined when calling renderTableWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.format' is not null
+        if (requestObj.format === null) {
+            throw new Error('Required parameter "requestObj.format" was null when calling renderTableWithoutNodePath.');
         }
 
         // verify required parameter 'requestObj.index' is not undefined
@@ -7898,13 +7953,23 @@ export class WordsApi {
         if (requestObj.name === null) {
             throw new Error('Required parameter "requestObj.name" was null when calling splitDocument.');
         }
+
+        // verify required parameter 'requestObj.format' is not undefined
+        if (requestObj.format === undefined) {
+            throw new Error('Required parameter "requestObj.format" was undefined when calling splitDocument.');
+        }
+
+        // verify required parameter 'requestObj.format' is not null
+        if (requestObj.format === null) {
+            throw new Error('Required parameter "requestObj.format" was null when calling splitDocument.');
+        }
         
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "from", requestObj.from);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "to", requestObj.to);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "zipOutput", requestObj.zipOutput);
@@ -9055,6 +9120,11 @@ export class WordsApi {
         if (requestObj.format === undefined) {
             throw new Error('Required parameter "requestObj.format" was undefined when calling updateTableCellFormat.');
         }
+
+        // verify required parameter 'requestObj.format' is not null
+        if (requestObj.format === null) {
+            throw new Error('Required parameter "requestObj.format" was null when calling updateTableCellFormat.');
+        }
         
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
@@ -9256,6 +9326,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.format' is not undefined
         if (requestObj.format === undefined) {
             throw new Error('Required parameter "requestObj.format" was undefined when calling updateTableRowFormat.');
+        }
+
+        // verify required parameter 'requestObj.format' is not null
+        if (requestObj.format === null) {
+            throw new Error('Required parameter "requestObj.format" was null when calling updateTableRowFormat.');
         }
         
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);

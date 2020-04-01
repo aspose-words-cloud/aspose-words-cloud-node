@@ -35,11 +35,6 @@ export class Body9 {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "drawingObject",
-            baseName: "drawingObject",
-            type: "string",
-        },        
-        {
             name: "imageFile",
             baseName: "imageFile",
             type: "Blob",
@@ -52,11 +47,6 @@ export class Body9 {
         return Body9.attributeTypeMap;
     }
 
-    /**
-     * Drawing object parameters
-     */
-    public drawingObject: string;
-    
     /**
      * File with image
      */

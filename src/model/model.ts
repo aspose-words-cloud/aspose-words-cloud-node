@@ -28,6 +28,8 @@ import * as importedAvailableFontsResponse from './availableFontsResponse';
 import * as importedBmpSaveOptionsData from './bmpSaveOptionsData';
 import * as importedBody from './body';
 import * as importedBody1 from './body1';
+import * as importedBody10 from './body10';
+import * as importedBody11 from './body11';
 import * as importedBody2 from './body2';
 import * as importedBody3 from './body3';
 import * as importedBody4 from './body4';
@@ -58,6 +60,7 @@ import * as importedCommentsCollection from './commentsCollection';
 import * as importedCommentsResponse from './commentsResponse';
 import * as importedCompareData from './compareData';
 import * as importedCompareOptions from './compareOptions';
+import * as importedCsvDataLoadOptions from './csvDataLoadOptions';
 import * as importedDocSaveOptionsData from './docSaveOptionsData';
 import * as importedDocument from './document';
 import * as importedDocumentEntry from './documentEntry';
@@ -170,6 +173,8 @@ import * as importedRangeTextResponse from './rangeTextResponse';
 import * as importedReplaceRange from './replaceRange';
 import * as importedReplaceTextParameters from './replaceTextParameters';
 import * as importedReplaceTextResponse from './replaceTextResponse';
+import * as importedReportBuildOptions from './reportBuildOptions';
+import * as importedReportEngineSettings from './reportEngineSettings';
 import * as importedRevisionsModificationResponse from './revisionsModificationResponse';
 import * as importedRtfSaveOptionsData from './rtfSaveOptionsData';
 import * as importedRun from './run';
@@ -235,6 +240,8 @@ export * from './availableFontsResponse';
 export * from './bmpSaveOptionsData';
 export * from './body';
 export * from './body1';
+export * from './body10';
+export * from './body11';
 export * from './body2';
 export * from './body3';
 export * from './body4';
@@ -265,6 +272,7 @@ export * from './commentsCollection';
 export * from './commentsResponse';
 export * from './compareData';
 export * from './compareOptions';
+export * from './csvDataLoadOptions';
 export * from './docSaveOptionsData';
 export * from './document';
 export * from './documentEntry';
@@ -377,6 +385,8 @@ export * from './rangeTextResponse';
 export * from './replaceRange';
 export * from './replaceTextParameters';
 export * from './replaceTextResponse';
+export * from './reportBuildOptions';
+export * from './reportEngineSettings';
 export * from './revisionsModificationResponse';
 export * from './rtfSaveOptionsData';
 export * from './run';
@@ -494,6 +504,7 @@ const enumsMap = {
     "PdfSaveOptionsData.HeaderFooterBookmarksExportModeEnum": importedPdfSaveOptionsData.PdfSaveOptionsData.HeaderFooterBookmarksExportModeEnum,
     "PreferredWidth.TypeEnum": importedPreferredWidth.PreferredWidth.TypeEnum,
     "ReplaceRange.TextTypeEnum": importedReplaceRange.ReplaceRange.TextTypeEnum,
+    "ReportEngineSettings.DataSourceTypeEnum": importedReportEngineSettings.ReportEngineSettings.DataSourceTypeEnum,
     "StringFormatData.AlignmentEnum": importedStringFormatData.StringFormatData.AlignmentEnum,
     "StringFormatData.FormatFlagsEnum": importedStringFormatData.StringFormatData.FormatFlagsEnum,
     "StringFormatData.HotkeyPrefixEnum": importedStringFormatData.StringFormatData.HotkeyPrefixEnum,
@@ -517,6 +528,8 @@ const typeMap = {
     BmpSaveOptionsData: importedBmpSaveOptionsData.BmpSaveOptionsData,
     Body: importedBody.Body,
     Body1: importedBody1.Body1,
+    Body10: importedBody10.Body10,
+    Body11: importedBody11.Body11,
     Body2: importedBody2.Body2,
     Body3: importedBody3.Body3,
     Body4: importedBody4.Body4,
@@ -547,6 +560,7 @@ const typeMap = {
     CommentsResponse: importedCommentsResponse.CommentsResponse,
     CompareData: importedCompareData.CompareData,
     CompareOptions: importedCompareOptions.CompareOptions,
+    CsvDataLoadOptions: importedCsvDataLoadOptions.CsvDataLoadOptions,
     DocSaveOptionsData: importedDocSaveOptionsData.DocSaveOptionsData,
     Document: importedDocument.Document,
     DocumentEntry: importedDocumentEntry.DocumentEntry,
@@ -659,6 +673,8 @@ const typeMap = {
     ReplaceRange: importedReplaceRange.ReplaceRange,
     ReplaceTextParameters: importedReplaceTextParameters.ReplaceTextParameters,
     ReplaceTextResponse: importedReplaceTextResponse.ReplaceTextResponse,
+    ReportBuildOptions: importedReportBuildOptions.ReportBuildOptions,
+    ReportEngineSettings: importedReportEngineSettings.ReportEngineSettings,
     RevisionsModificationResponse: importedRevisionsModificationResponse.RevisionsModificationResponse,
     RtfSaveOptionsData: importedRtfSaveOptionsData.RtfSaveOptionsData,
     Run: importedRun.Run,
@@ -810,6 +826,84 @@ export class AppendDocumentRequest {
     public revisionDateTime: string;
     
     public constructor(init?: Partial<AppendDocumentRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for BuildReport operation.
+ */
+export class BuildReportRequest {
+    /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * A string providing a data to populate the specified template. The string must be of one of the following types: xml, json, csv
+     */
+    public data: string;
+
+    /**
+     * An object providing a settings of report engine.
+     */
+    public reportEngineSettings: importedReportEngineSettings.ReportEngineSettings;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved with autogenerated name.
+     */
+    public destFileName: string;
+    
+    public constructor(init?: Partial<BuildReportRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for BuildReportOnline operation.
+ */
+export class BuildReportOnlineRequest {
+    /**
+     * File with template
+     */
+    public template: Readable;
+
+    /**
+     * A string providing a data to populate the specified template. The string must be of one of the following types: xml, json, csv
+     */
+    public data: string;
+
+    /**
+     * An object providing a settings of report engine.
+     */
+    public reportEngineSettings: importedReportEngineSettings.ReportEngineSettings;
+
+    /**
+     * This file name will be used when resulting document has dynamic field for document file name {filename}. If it is not set, "template" will be used instead. 
+     */
+    public documentFileName: string;
+    
+    public constructor(init?: Partial<BuildReportOnlineRequest>) {        
         Object.assign(this, init);
     } 
 }
@@ -2848,7 +2942,7 @@ export class ExecuteMailMergeOnlineRequest {
     public cleanup: string;
 
     /**
-     * This file name will be used when resulting document has dynamic field for document file name {filename}. If it is not setted, "template" will be used instead.
+     * This file name will be used when resulting document has dynamic field for document file name {filename}. If it is not set, "template" will be used instead.
      */
     public documentFileName: string;
     

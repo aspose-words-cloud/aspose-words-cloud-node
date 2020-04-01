@@ -22,8 +22,10 @@
 * SOFTWARE.
 */
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ReportEngineSettings } from './reportEngineSettings';
 
 export const importsMapBody7 = {
+    ReportEngineSettings,
 };
 
 /**
@@ -35,9 +37,14 @@ export class Body7 {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "imageFile",
-            baseName: "imageFile",
-            type: "Blob",
+            name: "data",
+            baseName: "data",
+            type: "string",
+        },        
+        {
+            name: "reportEngineSettings",
+            baseName: "reportEngineSettings",
+            type: "ReportEngineSettings",
         }    ];
 
     /**
@@ -48,9 +55,14 @@ export class Body7 {
     }
 
     /**
-     * File with image
+     * A string providing a data to populate the specified template. The string must be of one of the following types: xml, json, csv
      */
-    public imageFile: Blob;
+    public data: string;
+    
+    /**
+     * Gets or sets reportEngineSettings.
+     */
+    public reportEngineSettings: ReportEngineSettings;
     
     public constructor(init?: Partial<Body7>) {
         

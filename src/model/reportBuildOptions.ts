@@ -21,30 +21,9 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
 */
-import { AttributeInfo } from '../internal/attributeInfo';
-
-export const importsMapReportBuildOptions = {
-};
-
-/**
- * Specifies options controlling behavior of ReportingEngine while building a report.
- */
-export class ReportBuildOptions {
-    /**
-     * Attribute type map
-     */
-    public static attributeTypeMap: Array<AttributeInfo> = [
-    ];
-
-    /**
-     * Returns attribute type map
-     */
-    public static getAttributeTypeMap() {
-        return ReportBuildOptions.attributeTypeMap;
-    }
-
-    public constructor(init?: Partial<ReportBuildOptions>) {
-        
-        Object.assign(this, init);
-    }        
+export enum ReportBuildOptions {
+    None = 'None' as any,
+    AllowMissingMembers = 'AllowMissingMembers' as any,
+    RemoveEmptyParagraphs = 'RemoveEmptyParagraphs' as any,
+    InlineErrorMessages = 'InlineErrorMessages' as any,
 }

@@ -30,23 +30,14 @@ import { BuildReportOnlineRequest, BuildReportRequest, ReportEngineSettings, Rep
 import * as BaseTest from "../baseTest";
 
 const testFolder = "DocumentActions/Reporting";
+const wordsApi = BaseTest.initializeWordsApi();
+const localPath = BaseTest.localBaseTestDataFolder + testFolder + "/ReportTemplate.docx";
+const dataPath = BaseTest.localBaseTestDataFolder + testFolder + "/ReportData.json";
+const remoteFileName = "TestBuildReport.docx";
+const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
 
-describe("build report", () => {
-    const wordsApi = BaseTest.initializeWordsApi();
-    const localPath = BaseTest.localBaseTestDataFolder + testFolder + "/ReportTemplate.docx";
-    const dataPath = BaseTest.localBaseTestDataFolder + testFolder + "/ReportData.json";
-    const remoteFileName = "TestBuildReport.docx";
-    const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
-
-    before(() => {
-        return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, localPath)
-        .then((result) => {
-                expect(result.response.statusMessage).to.equal("OK");
-        });
-    });
-
-    describe("buildReportOnline function", () => {
-        // tslint:disable:completed-docs
+describe("buildReportOnline function", () => {
+    it("should return response with code 200", () => {
         const request = new BuildReportOnlineRequest({
             template: fs.createReadStream(localPath),
             data: fs.readFileSync(dataPath, "utf8"),
@@ -61,11 +52,11 @@ describe("build report", () => {
                 // Assert
                 expect(result.response.statusCode).to.equal(200);
             });
-        // tslint:enable:completed-docs
     });
+});
 
-    describe("buildReport function", () => {
-        // tslint:disable:completed-docs
+describe("buildReport function", () => {
+    it("should return response with code 200", () => {
         const request = new BuildReportRequest({
             name: remoteFileName,
             data: fs.readFileSync(dataPath, "utf8"),
@@ -75,12 +66,15 @@ describe("build report", () => {
             }),
         });
 
-        // Act
-        return wordsApi.buildReport(request)
+        return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, localPath)
             .then((result) => {
-                // Assert
-                expect(result.response.statusCode).to.equal(200);
+                expect(result.response.statusMessage).to.equal("OK");
+                // Act
+                return wordsApi.buildReport(request)
+                    .then((result2) => {
+                        // Assert
+                        expect(result2.response.statusCode).to.equal(200);
+                    });
             });
-        // tslint:enable:completed-docs
     });
 });

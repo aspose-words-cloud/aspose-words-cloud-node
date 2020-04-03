@@ -43,6 +43,7 @@ describe("buildReportOnline function", () => {
             data: fs.readFileSync(dataPath, "utf8"),
             reportEngineSettings: new ReportEngineSettings({
                 dataSourceType: ReportEngineSettings.DataSourceTypeEnum.Json,
+                dataSourceName: "persons",
             }),
         });
 

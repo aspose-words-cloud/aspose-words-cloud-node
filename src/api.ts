@@ -154,19 +154,19 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling buildReport.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{template}/buildReport"
-            .replace("/{" + "template" + "}", (requestObj.template !== null) ? "/" + String(requestObj.template) : "");
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/buildReport"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
         const queryParameters: any = {};
         const formParams: any = {};
 
-        // verify required parameter 'requestObj.template' is not undefined
-        if (requestObj.template === undefined) {
-            throw new Error('Required parameter "requestObj.template" was undefined when calling buildReport.');
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling buildReport.');
         }
 
-        // verify required parameter 'requestObj.template' is not null
-        if (requestObj.template === null) {
-            throw new Error('Required parameter "requestObj.template" was null when calling buildReport.');
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling buildReport.');
         }
 
         // verify required parameter 'requestObj.data' is not undefined
@@ -199,7 +199,7 @@ export class WordsApi {
         }
 
         if (requestObj.reportEngineSettings !== undefined) {
-            formParams.ReportEngineSettings = ObjectSerializer.serialize(requestObj.reportEngineSettings, "{ [key: string]: string; }");
+            formParams.ReportEngineSettings = JSON.stringify(requestObj.reportEngineSettings);
         }
 
         const requestOptions: request.Options = {
@@ -269,7 +269,7 @@ export class WordsApi {
         }
 
         if (requestObj.reportEngineSettings !== undefined) {
-            formParams.ReportEngineSettings = ObjectSerializer.serialize(requestObj.reportEngineSettings, "{ [key: string]: string; }");
+            formParams.ReportEngineSettings = JSON.stringify(requestObj.reportEngineSettings);
         }
 
         const requestOptions: request.Options = {

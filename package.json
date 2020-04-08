@@ -1,6 +1,6 @@
 {
   "name": "asposewordscloud",
-  "version": "20.3.0",
+  "version": "20.4.0",
   "description": "Aspose.Words Cloud SDK for Node.js",
   "homepage": "https://products.aspose.cloud/words/cloud",
   "author": {
@@ -30,32 +30,32 @@
     "gulp": "gulp"
   },
   "dependencies": {
-    "@types/request": "^2.48.3",
+    "@types/request": "^2.48.4",
     "lodash": "^4.17.15",
     "lodash.template": "^4.5.0",
-    "request": "^2.88.0",
+    "request": "^2.88.2",
     "request-debug": "^0.2.0",
-    "uuid": "^7.0.1"
+    "uuid": "^7.0.3"
   },
   "devDependencies": {
-    "@types/chai": "^4.2.2",
-    "@types/mocha": "^5.2.7",
+    "@types/chai": "^4.2.11",
+    "@types/mocha": "^7.0.2",
     "asposestoragecloud": "^1.0.5",
     "chai": "^4.2.0",
-    "cross-env": "^5.2.1",
-    "cucumber": "^5.1.0",
+    "cross-env": "^7.0.2",
+    "cucumber": "^6.0.5",
     "del": "^5.1.0",
     "gulp": "^4.0.2",
-    "gulp-cucumber": "0.0.23",
+    "gulp-cucumber": "0.0.24",
     "gulp-typescript": "^5.0.1",
     "gulp-util": "^3.0.8",
-    "mocha": "^6.2.0",
+    "mocha": "^7.1.1",
     "mocha-cases": "^0.3.0",
     "mocha-jenkins-reporter": "^0.4.2",
-    "mocha-sinon": "^2.1.0",
-    "sinon": "^7.4.2",
-    "ts-node": "^8.3.0",
-    "tslint": "5.20.0",
-    "typescript": "^3.6.3"
+    "mocha-sinon": "^2.1.2",
+    "sinon": "^9.0.1",
+    "ts-node": "^8.8.2",
+    "tslint": "6.1.1",
+    "typescript": "^3.8.3"
   }
 }

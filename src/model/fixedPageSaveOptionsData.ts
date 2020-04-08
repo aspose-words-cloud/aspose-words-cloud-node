@@ -121,12 +121,3 @@ export class FixedPageSaveOptionsData extends SaveOptionsData {
         Object.assign(this, init);
     }        
 }
-
-/**
- * Enums for FixedPageSaveOptionsData
- */
-// tslint:disable:quotemark
-// tslint:disable-next-line:no-namespace
-export namespace FixedPageSaveOptionsData {
-}
-// tslint:enable:quotemark

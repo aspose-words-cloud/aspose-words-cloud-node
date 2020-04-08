@@ -47,11 +47,6 @@ export class OdtSaveOptionsData extends SaveOptionsData {
             type: "OdtSaveOptionsData.MeasureUnitEnum",
         },        
         {
-            name: "password",
-            baseName: "Password",
-            type: "string",
-        },        
-        {
             name: "prettyFormat",
             baseName: "PrettyFormat",
             type: "boolean",
@@ -73,11 +68,6 @@ export class OdtSaveOptionsData extends SaveOptionsData {
      * Gets or sets allows to specify units of measure to apply to document content. The default value is Aspose.Words.Saving.OdtSaveMeasureUnit.Centimeters.  Open Office uses centimeters when specifying lengths, widths and other measurable formatting and content properties in documents whereas MS Office uses inches.
      */
     public measureUnit: OdtSaveOptionsData.MeasureUnitEnum;
-    
-    /**
-     * Gets or sets a password to encrypt document.
-     */
-    public password: string;
     
     /**
      * Gets or sets specifies whether or not use pretty formats output.

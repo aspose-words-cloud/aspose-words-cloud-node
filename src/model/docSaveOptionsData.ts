@@ -89,12 +89,3 @@ export class DocSaveOptionsData extends SaveOptionsData {
         Object.assign(this, init);
     }        
 }
-
-/**
- * Enums for DocSaveOptionsData
- */
-// tslint:disable:quotemark
-// tslint:disable-next-line:no-namespace
-export namespace DocSaveOptionsData {
-}
-// tslint:enable:quotemark

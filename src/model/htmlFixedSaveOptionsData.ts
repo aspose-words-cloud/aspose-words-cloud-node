@@ -102,11 +102,6 @@ export class HtmlFixedSaveOptionsData extends FixedPageSaveOptionsData {
             name: "showPageBorder",
             baseName: "ShowPageBorder",
             type: "boolean",
-        },        
-        {
-            name: "useTargetMachineFonts",
-            baseName: "UseTargetMachineFonts",
-            type: "boolean",
         }    ];
 
     /**
@@ -180,11 +175,6 @@ export class HtmlFixedSaveOptionsData extends FixedPageSaveOptionsData {
      * Gets or sets specifies whether border around pages should be shown.
      */
     public showPageBorder: boolean;
-    
-    /**
-     * Gets or sets flag indicates whether fonts from target machine must be used to display the document. If this flag is set to true, Aspose.Words.Saving.HtmlFixedSaveOptions.FontFormat and Aspose.Words.Saving.HtmlFixedSaveOptions.ExportEmbeddedFonts properties do not have effect, also Aspose.Words.Saving.HtmlFixedSaveOptions.ResourceSavingCallback is not fired for fonts. Default is false.
-     */
-    public useTargetMachineFonts: boolean;
     
     public constructor(init?: Partial<HtmlFixedSaveOptionsData>) {
         super(init);

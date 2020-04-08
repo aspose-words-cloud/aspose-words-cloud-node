@@ -117,11 +117,6 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
             type: "string",
         },        
         {
-            name: "interpolateImages",
-            baseName: "InterpolateImages",
-            type: "boolean",
-        },        
-        {
             name: "openHyperlinksInNewWindow",
             baseName: "OpenHyperlinksInNewWindow",
             type: "boolean",
@@ -248,11 +243,6 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
      * Gets or sets specifies compression type to be used for all images in the document.
      */
     public imageCompression: string;
-    
-    /**
-     * Gets or sets a flag indicating whether image interpolation shall be performed by a conforming reader. When false is specified, the flag is not written to the output document and the default behaviour of reader is used instead.
-     */
-    public interpolateImages: boolean;
     
     /**
      * Gets or sets determines whether hyperlinks in the output Pdf document are forced to be opened in a new window (or tab) of a browser.

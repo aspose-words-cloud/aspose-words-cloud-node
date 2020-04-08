@@ -89,12 +89,3 @@ export class RtfSaveOptionsData extends SaveOptionsData {
         Object.assign(this, init);
     }        
 }
-
-/**
- * Enums for RtfSaveOptionsData
- */
-// tslint:disable:quotemark
-// tslint:disable-next-line:no-namespace
-export namespace RtfSaveOptionsData {
-}
-// tslint:enable:quotemark

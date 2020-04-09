@@ -45,6 +45,7 @@ describe("lists", () => {
                     expect(result.response.statusMessage).to.equal("OK");
                     const request = new GetListsRequest();
                     request.name = remoteFileName;
+                    request.folder = remotePath;
 
                     // Act
                     return wordsApi.getLists(request)
@@ -71,6 +72,7 @@ describe("lists", () => {
                     const request = new GetListRequest();
                     request.name = remoteFileName;
                     request.listId = 1;
+                    request.folder = remotePath;
 
                     // Act
                     return wordsApi.getList(request)
@@ -101,6 +103,7 @@ describe("lists", () => {
                     request.name = remoteFileName;
                     request.listUpdate = data;
                     request.listId = 1;
+                    request.folder = remotePath;
 
                     // Act
                     return wordsApi.updateList(request)
@@ -131,6 +134,7 @@ describe("lists", () => {
                     request.name = remoteFileName;
                     request.listUpdate = data;
                     request.listId = 1;
+                    request.folder = remotePath;
 
                     // Act
                     return wordsApi.updateListLevel(request)
@@ -160,6 +164,7 @@ describe("lists", () => {
                     const request = new InsertListRequest();
                     request.name = remoteFileName;
                     request.listInsert = data;
+                    request.folder = remotePath;
 
                     // Act
                     return wordsApi.insertList(request)

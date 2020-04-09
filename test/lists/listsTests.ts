@@ -134,6 +134,7 @@ describe("lists", () => {
                     request.name = remoteFileName;
                     request.listUpdate = data;
                     request.listId = 1;
+                    request.listLevel = 1;
                     request.folder = remotePath;
 
                     // Act

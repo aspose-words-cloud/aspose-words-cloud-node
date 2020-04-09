@@ -4195,6 +4195,97 @@ export class WordsApi {
     }
 
     /**
+     * This resource represents one of the lists contained in the document.
+     * @param requestObj contains request parameters
+     */
+    public async getList(requestObj: model.GetListRequest): Promise<model.WordsIncomingMessage<model.ListResponse>> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getList.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/lists/{listId}"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "listId" + "}", (requestObj.listId !== null) ? "/" + String(requestObj.listId) : "");
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling getList.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling getList.');
+        }
+
+        // verify required parameter 'requestObj.listId' is not undefined
+        if (requestObj.listId === undefined) {
+            throw new Error('Required parameter "requestObj.listId" was undefined when calling getList.');
+        }
+
+        // verify required parameter 'requestObj.listId' is not null
+        if (requestObj.listId === null) {
+            throw new Error('Required parameter "requestObj.listId" was null when calling getList.');
+        }
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "ListResponse");
+        const result: model.WordsIncomingMessage<model.ListResponse> = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Returns a list of lists that are contained in the document.
+     * @param requestObj contains request parameters
+     */
+    public async getLists(requestObj: model.GetListsRequest): Promise<model.WordsIncomingMessage<model.ListsResponse>> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getLists.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/lists"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling getLists.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling getLists.');
+        }
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "ListsResponse");
+        const result: model.WordsIncomingMessage<model.ListsResponse> = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Reads OfficeMath object by index.
      * @param requestObj contains request parameters
      */
@@ -6183,6 +6274,60 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "HeaderFooterResponse");
         const result: model.WordsIncomingMessage<model.HeaderFooterResponse> = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Adds list to document, returns added list's data.
+     * @param requestObj contains request parameters
+     */
+    public async insertList(requestObj: model.InsertListRequest): Promise<model.WordsIncomingMessage<model.ListResponse>> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling insertList.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/lists"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling insertList.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling insertList.');
+        }
+
+        // verify required parameter 'requestObj.listInsert' is not undefined
+        if (requestObj.listInsert === undefined) {
+            throw new Error('Required parameter "requestObj.listInsert" was undefined when calling insertList.');
+        }
+
+        // verify required parameter 'requestObj.listInsert' is not null
+        if (requestObj.listInsert === null) {
+            throw new Error('Required parameter "requestObj.listInsert" was null when calling insertList.');
+        }
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+            body: ObjectSerializer.serialize(requestObj.listInsert, requestObj.listInsert.constructor.name === "Object" ? "importedListInsert.ListInsert" : requestObj.listInsert.constructor.name),
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "ListResponse");
+        const result: model.WordsIncomingMessage<model.ListResponse> = {body, response};
         return Promise.resolve(result);
     }
 
@@ -8795,6 +8940,147 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "FormFieldResponse");
         const result: model.WordsIncomingMessage<model.FormFieldResponse> = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Updates list properties, returns updated list.
+     * @param requestObj contains request parameters
+     */
+    public async updateList(requestObj: model.UpdateListRequest): Promise<model.WordsIncomingMessage<model.ListResponse>> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling updateList.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/lists/{listId}"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "listId" + "}", (requestObj.listId !== null) ? "/" + String(requestObj.listId) : "");
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling updateList.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling updateList.');
+        }
+
+        // verify required parameter 'requestObj.listUpdate' is not undefined
+        if (requestObj.listUpdate === undefined) {
+            throw new Error('Required parameter "requestObj.listUpdate" was undefined when calling updateList.');
+        }
+
+        // verify required parameter 'requestObj.listUpdate' is not null
+        if (requestObj.listUpdate === null) {
+            throw new Error('Required parameter "requestObj.listUpdate" was null when calling updateList.');
+        }
+
+        // verify required parameter 'requestObj.listId' is not undefined
+        if (requestObj.listId === undefined) {
+            throw new Error('Required parameter "requestObj.listId" was undefined when calling updateList.');
+        }
+
+        // verify required parameter 'requestObj.listId' is not null
+        if (requestObj.listId === null) {
+            throw new Error('Required parameter "requestObj.listId" was null when calling updateList.');
+        }
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+            body: ObjectSerializer.serialize(requestObj.listUpdate, requestObj.listUpdate.constructor.name === "Object" ? "importedListUpdate.ListUpdate" : requestObj.listUpdate.constructor.name),
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "ListResponse");
+        const result: model.WordsIncomingMessage<model.ListResponse> = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Updates list level in document list, returns updated list.
+     * @param requestObj contains request parameters
+     */
+    public async updateListLevel(requestObj: model.UpdateListLevelRequest): Promise<model.WordsIncomingMessage<model.ListResponse>> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling updateListLevel.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/lists/{listId}/{listLevel}"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "listId" + "}", (requestObj.listId !== null) ? "/" + String(requestObj.listId) : "")
+            .replace("/{" + "listLevel" + "}", (requestObj.listLevel !== null) ? "/" + String(requestObj.listLevel) : "");
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling updateListLevel.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling updateListLevel.');
+        }
+
+        // verify required parameter 'requestObj.listUpdate' is not undefined
+        if (requestObj.listUpdate === undefined) {
+            throw new Error('Required parameter "requestObj.listUpdate" was undefined when calling updateListLevel.');
+        }
+
+        // verify required parameter 'requestObj.listUpdate' is not null
+        if (requestObj.listUpdate === null) {
+            throw new Error('Required parameter "requestObj.listUpdate" was null when calling updateListLevel.');
+        }
+
+        // verify required parameter 'requestObj.listId' is not undefined
+        if (requestObj.listId === undefined) {
+            throw new Error('Required parameter "requestObj.listId" was undefined when calling updateListLevel.');
+        }
+
+        // verify required parameter 'requestObj.listId' is not null
+        if (requestObj.listId === null) {
+            throw new Error('Required parameter "requestObj.listId" was null when calling updateListLevel.');
+        }
+
+        // verify required parameter 'requestObj.listLevel' is not undefined
+        if (requestObj.listLevel === undefined) {
+            throw new Error('Required parameter "requestObj.listLevel" was undefined when calling updateListLevel.');
+        }
+
+        // verify required parameter 'requestObj.listLevel' is not null
+        if (requestObj.listLevel === null) {
+            throw new Error('Required parameter "requestObj.listLevel" was null when calling updateListLevel.');
+        }
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+            body: ObjectSerializer.serialize(requestObj.listUpdate, requestObj.listUpdate.constructor.name === "Object" ? "importedListLevelUpdate.ListLevelUpdate" : requestObj.listUpdate.constructor.name),
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "ListResponse");
+        const result: model.WordsIncomingMessage<model.ListResponse> = {body, response};
         return Promise.resolve(result);
     }
 

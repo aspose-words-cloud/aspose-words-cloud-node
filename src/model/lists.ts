@@ -22,69 +22,40 @@
 * SOFTWARE.
 */
 import { AttributeInfo } from '../internal/attributeInfo';
-import { SaveOptionsData } from './saveOptionsData';
+import { ListInfo } from './listInfo';
 
-export const importsMapOoxmlSaveOptionsData = {
-    SaveOptionsData,
+export const importsMapLists = {
+    ListInfo,
 };
 
 /**
- * container class for docx/docm/dotx/dotm/flatopc save options.
+ * Represents an array of document lists.
  */
-export class OoxmlSaveOptionsData extends SaveOptionsData {
+export class Lists {
     /**
      * Attribute type map
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "compliance",
-            baseName: "Compliance",
-            type: "string",
-        },        
-        {
-            name: "password",
-            baseName: "Password",
-            type: "string",
-        },        
-        {
-            name: "prettyFormat",
-            baseName: "PrettyFormat",
-            type: "boolean",
+            name: "listCollection",
+            baseName: "ListCollection",
+            type: "Array<ListInfo>",
         }    ];
 
     /**
      * Returns attribute type map
      */
     public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(OoxmlSaveOptionsData.attributeTypeMap);
+        return Lists.attributeTypeMap;
     }
 
     /**
-     * Gets or sets specifies the OOXML version for the output document.
+     * Gets or sets array of document lists.
      */
-    public compliance: string;
+    public listCollection: Array<ListInfo>;
     
-    /**
-     * Gets or sets specifies a password to encrypt document using ECMA376 Standard encryption algorithm.
-     */
-    public password: string;
-    
-    /**
-     * Gets or sets specifies whether or not use pretty formats output.
-     */
-    public prettyFormat: boolean;
-    
-    public constructor(init?: Partial<OoxmlSaveOptionsData>) {
-        super(init);
+    public constructor(init?: Partial<Lists>) {
+        
         Object.assign(this, init);
     }        
 }
-
-/**
- * Enums for OoxmlSaveOptionsData
- */
-// tslint:disable:quotemark
-// tslint:disable-next-line:no-namespace
-export namespace OoxmlSaveOptionsData {
-}
-// tslint:enable:quotemark

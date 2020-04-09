@@ -22,69 +22,42 @@
 * SOFTWARE.
 */
 import { AttributeInfo } from '../internal/attributeInfo';
-import { SaveOptionsData } from './saveOptionsData';
+import { ListInfo } from './listInfo';
+import { WordsResponse } from './wordsResponse';
 
-export const importsMapOoxmlSaveOptionsData = {
-    SaveOptionsData,
+export const importsMapListResponse = {
+    ListInfo,
+    WordsResponse,
 };
 
 /**
- * container class for docx/docm/dotx/dotm/flatopc save options.
+ * This response should be returned by the service when handling: GET https://api.aspose.cloud/v4.0/words/Test.doc/lists/{n}.
  */
-export class OoxmlSaveOptionsData extends SaveOptionsData {
+export class ListResponse extends WordsResponse {
     /**
      * Attribute type map
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "compliance",
-            baseName: "Compliance",
-            type: "string",
-        },        
-        {
-            name: "password",
-            baseName: "Password",
-            type: "string",
-        },        
-        {
-            name: "prettyFormat",
-            baseName: "PrettyFormat",
-            type: "boolean",
+            name: "list",
+            baseName: "List",
+            type: "ListInfo",
         }    ];
 
     /**
      * Returns attribute type map
      */
     public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(OoxmlSaveOptionsData.attributeTypeMap);
+        return super.getAttributeTypeMap().concat(ListResponse.attributeTypeMap);
     }
 
     /**
-     * Gets or sets specifies the OOXML version for the output document.
+     * Gets or sets list.
      */
-    public compliance: string;
+    public list: ListInfo;
     
-    /**
-     * Gets or sets specifies a password to encrypt document using ECMA376 Standard encryption algorithm.
-     */
-    public password: string;
-    
-    /**
-     * Gets or sets specifies whether or not use pretty formats output.
-     */
-    public prettyFormat: boolean;
-    
-    public constructor(init?: Partial<OoxmlSaveOptionsData>) {
+    public constructor(init?: Partial<ListResponse>) {
         super(init);
         Object.assign(this, init);
     }        
 }
-
-/**
- * Enums for OoxmlSaveOptionsData
- */
-// tslint:disable:quotemark
-// tslint:disable-next-line:no-namespace
-export namespace OoxmlSaveOptionsData {
-}
-// tslint:enable:quotemark

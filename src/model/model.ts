@@ -130,6 +130,14 @@ import * as importedImageSaveOptionsData from './imageSaveOptionsData';
 import * as importedJpegSaveOptionsData from './jpegSaveOptionsData';
 import * as importedLink from './link';
 import * as importedLinkElement from './linkElement';
+import * as importedListInfo from './listInfo';
+import * as importedListInsert from './listInsert';
+import * as importedListLevel from './listLevel';
+import * as importedListLevelUpdate from './listLevelUpdate';
+import * as importedListResponse from './listResponse';
+import * as importedListUpdate from './listUpdate';
+import * as importedLists from './lists';
+import * as importedListsResponse from './listsResponse';
 import * as importedLoadWebDocumentData from './loadWebDocumentData';
 import * as importedMetafileRenderingOptionsData from './metafileRenderingOptionsData';
 import * as importedMhtmlSaveOptionsData from './mhtmlSaveOptionsData';
@@ -198,6 +206,7 @@ import * as importedStatDataResponse from './statDataResponse';
 import * as importedStorageFile from './storageFile';
 import * as importedStoryChildNodes from './storyChildNodes';
 import * as importedStringFormatData from './stringFormatData';
+import * as importedStyle from './style';
 import * as importedSvgSaveOptionsData from './svgSaveOptionsData';
 import * as importedTable from './table';
 import * as importedTableCell from './tableCell';
@@ -337,6 +346,14 @@ export * from './imageSaveOptionsData';
 export * from './jpegSaveOptionsData';
 export * from './link';
 export * from './linkElement';
+export * from './listInfo';
+export * from './listInsert';
+export * from './listLevel';
+export * from './listLevelUpdate';
+export * from './listResponse';
+export * from './listUpdate';
+export * from './lists';
+export * from './listsResponse';
 export * from './loadWebDocumentData';
 export * from './metafileRenderingOptionsData';
 export * from './mhtmlSaveOptionsData';
@@ -405,6 +422,7 @@ export * from './statDataResponse';
 export * from './storageFile';
 export * from './storyChildNodes';
 export * from './stringFormatData';
+export * from './style';
 export * from './svgSaveOptionsData';
 export * from './table';
 export * from './tableCell';
@@ -474,6 +492,13 @@ const enumsMap = {
     "HtmlSaveOptionsData.HtmlVersionEnum": importedHtmlSaveOptionsData.HtmlSaveOptionsData.HtmlVersionEnum,
     "HtmlSaveOptionsData.MetafileFormatEnum": importedHtmlSaveOptionsData.HtmlSaveOptionsData.MetafileFormatEnum,
     "HtmlSaveOptionsData.OfficeMathOutputModeEnum": importedHtmlSaveOptionsData.HtmlSaveOptionsData.OfficeMathOutputModeEnum,
+    "ListInsert.TemplateEnum": importedListInsert.ListInsert.TemplateEnum,
+    "ListLevel.NumberStyleEnum": importedListLevel.ListLevel.NumberStyleEnum,
+    "ListLevel.AlignmentEnum": importedListLevel.ListLevel.AlignmentEnum,
+    "ListLevel.TrailingCharacterEnum": importedListLevel.ListLevel.TrailingCharacterEnum,
+    "ListLevelUpdate.NumberStyleEnum": importedListLevelUpdate.ListLevelUpdate.NumberStyleEnum,
+    "ListLevelUpdate.AlignmentEnum": importedListLevelUpdate.ListLevelUpdate.AlignmentEnum,
+    "ListLevelUpdate.TrailingCharacterEnum": importedListLevelUpdate.ListLevelUpdate.TrailingCharacterEnum,
     "OdtSaveOptionsData.MeasureUnitEnum": importedOdtSaveOptionsData.OdtSaveOptionsData.MeasureUnitEnum,
     "OfficeMathObject.DisplayTypeEnum": importedOfficeMathObject.OfficeMathObject.DisplayTypeEnum,
     "OfficeMathObject.JustificationEnum": importedOfficeMathObject.OfficeMathObject.JustificationEnum,
@@ -494,11 +519,14 @@ const enumsMap = {
     "PdfSaveOptionsData.HeaderFooterBookmarksExportModeEnum": importedPdfSaveOptionsData.PdfSaveOptionsData.HeaderFooterBookmarksExportModeEnum,
     "PreferredWidth.TypeEnum": importedPreferredWidth.PreferredWidth.TypeEnum,
     "ReplaceRange.TextTypeEnum": importedReplaceRange.ReplaceRange.TextTypeEnum,
+    "SaveOptionsData.Dml3DEffectsRenderingModeEnum": importedSaveOptionsData.SaveOptionsData.Dml3DEffectsRenderingModeEnum,
     "StringFormatData.AlignmentEnum": importedStringFormatData.StringFormatData.AlignmentEnum,
     "StringFormatData.FormatFlagsEnum": importedStringFormatData.StringFormatData.FormatFlagsEnum,
     "StringFormatData.HotkeyPrefixEnum": importedStringFormatData.StringFormatData.HotkeyPrefixEnum,
     "StringFormatData.LineAlignmentEnum": importedStringFormatData.StringFormatData.LineAlignmentEnum,
     "StringFormatData.TrimmingEnum": importedStringFormatData.StringFormatData.TrimmingEnum,
+    "Style.TypeEnum": importedStyle.Style.TypeEnum,
+    "Style.StyleIdentifierEnum": importedStyle.Style.StyleIdentifierEnum,
     "TableCellFormat.HorizontalMergeEnum": importedTableCellFormat.TableCellFormat.HorizontalMergeEnum,
     "TableCellFormat.OrientationEnum": importedTableCellFormat.TableCellFormat.OrientationEnum,
     "TableCellFormat.VerticalAlignmentEnum": importedTableCellFormat.TableCellFormat.VerticalAlignmentEnum,
@@ -619,6 +647,14 @@ const typeMap = {
     JpegSaveOptionsData: importedJpegSaveOptionsData.JpegSaveOptionsData,
     Link: importedLink.Link,
     LinkElement: importedLinkElement.LinkElement,
+    ListInfo: importedListInfo.ListInfo,
+    ListInsert: importedListInsert.ListInsert,
+    ListLevel: importedListLevel.ListLevel,
+    ListLevelUpdate: importedListLevelUpdate.ListLevelUpdate,
+    ListResponse: importedListResponse.ListResponse,
+    ListUpdate: importedListUpdate.ListUpdate,
+    Lists: importedLists.Lists,
+    ListsResponse: importedListsResponse.ListsResponse,
     LoadWebDocumentData: importedLoadWebDocumentData.LoadWebDocumentData,
     MetafileRenderingOptionsData: importedMetafileRenderingOptionsData.MetafileRenderingOptionsData,
     MhtmlSaveOptionsData: importedMhtmlSaveOptionsData.MhtmlSaveOptionsData,
@@ -687,6 +723,7 @@ const typeMap = {
     StorageFile: importedStorageFile.StorageFile,
     StoryChildNodes: importedStoryChildNodes.StoryChildNodes,
     StringFormatData: importedStringFormatData.StringFormatData,
+    Style: importedStyle.Style,
     SvgSaveOptionsData: importedSvgSaveOptionsData.SvgSaveOptionsData,
     Table: importedTable.Table,
     TableCell: importedTableCell.TableCell,
@@ -4417,6 +4454,79 @@ export class GetHeaderFootersRequest {
 }
 
 /**
+ * Request model for GetList operation.
+ */
+export class GetListRequest {
+    /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * List unique identifier.
+     */
+    public listId: number;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+    
+    public constructor(init?: Partial<GetListRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for GetLists operation.
+ */
+export class GetListsRequest {
+    /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+    
+    public constructor(init?: Partial<GetListsRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
  * Request model for GetOfficeMathObject operation.
  */
 export class GetOfficeMathObjectRequest {
@@ -6100,6 +6210,60 @@ export class InsertHeaderFooterRequest {
     public revisionDateTime: string;
     
     public constructor(init?: Partial<InsertHeaderFooterRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for InsertList operation.
+ */
+export class InsertListRequest {
+    /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * List to insert.
+     */
+    public listInsert: importedListInsert.ListInsert;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+    
+    public constructor(init?: Partial<InsertListRequest>) {        
         Object.assign(this, init);
     } 
 }
@@ -8457,6 +8621,129 @@ export class UpdateFormFieldWithoutNodePathRequest {
     public revisionDateTime: string;
     
     public constructor(init?: Partial<UpdateFormFieldWithoutNodePathRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for UpdateList operation.
+ */
+export class UpdateListRequest {
+    /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * List object.
+     */
+    public listUpdate: importedListUpdate.ListUpdate;
+
+    /**
+     * List unique identifier.
+     */
+    public listId: number;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+    
+    public constructor(init?: Partial<UpdateListRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for UpdateListLevel operation.
+ */
+export class UpdateListLevelRequest {
+    /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * List object.
+     */
+    public listUpdate: importedListLevelUpdate.ListLevelUpdate;
+
+    /**
+     * List unique identifier.
+     */
+    public listId: number;
+
+    /**
+     * List level identifier.
+     */
+    public listLevel: number;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+    
+    public constructor(init?: Partial<UpdateListLevelRequest>) {        
         Object.assign(this, init);
     } 
 }

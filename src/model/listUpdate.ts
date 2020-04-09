@@ -22,33 +22,21 @@
 * SOFTWARE.
 */
 import { AttributeInfo } from '../internal/attributeInfo';
-import { SaveOptionsData } from './saveOptionsData';
 
-export const importsMapOoxmlSaveOptionsData = {
-    SaveOptionsData,
+export const importsMapListUpdate = {
 };
 
 /**
- * container class for docx/docm/dotx/dotm/flatopc save options.
+ * Update document properties if document list.
  */
-export class OoxmlSaveOptionsData extends SaveOptionsData {
+export class ListUpdate {
     /**
      * Attribute type map
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "compliance",
-            baseName: "Compliance",
-            type: "string",
-        },        
-        {
-            name: "password",
-            baseName: "Password",
-            type: "string",
-        },        
-        {
-            name: "prettyFormat",
-            baseName: "PrettyFormat",
+            name: "isRestartAtEachSection",
+            baseName: "IsRestartAtEachSection",
             type: "boolean",
         }    ];
 
@@ -56,35 +44,16 @@ export class OoxmlSaveOptionsData extends SaveOptionsData {
      * Returns attribute type map
      */
     public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(OoxmlSaveOptionsData.attributeTypeMap);
+        return ListUpdate.attributeTypeMap;
     }
 
     /**
-     * Gets or sets specifies the OOXML version for the output document.
+     * Gets or sets a value indicating whether specifies whether list should be restarted at each section. Default value is false.
      */
-    public compliance: string;
+    public isRestartAtEachSection: boolean;
     
-    /**
-     * Gets or sets specifies a password to encrypt document using ECMA376 Standard encryption algorithm.
-     */
-    public password: string;
-    
-    /**
-     * Gets or sets specifies whether or not use pretty formats output.
-     */
-    public prettyFormat: boolean;
-    
-    public constructor(init?: Partial<OoxmlSaveOptionsData>) {
-        super(init);
+    public constructor(init?: Partial<ListUpdate>) {
+        
         Object.assign(this, init);
     }        
 }
-
-/**
- * Enums for OoxmlSaveOptionsData
- */
-// tslint:disable:quotemark
-// tslint:disable-next-line:no-namespace
-export namespace OoxmlSaveOptionsData {
-}
-// tslint:enable:quotemark

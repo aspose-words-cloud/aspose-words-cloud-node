@@ -16,6 +16,21 @@ Feel free to explore the [Developer's Guide](https://docs.aspose.cloud/display/w
 - Add & remove watermarks and protection.
 - Read & write access to Document Object Model.
 
+## Enhancements in Version 20.4
+
+- Added CompareOptions property to CompareData class
+- Added Password property to OdtSaveOptions class
+- Added Dml3DEffectsRenderingMode property to SaveOptions class
+- Added UpdateLastPrintedProperty property to SaveOptions class
+- Added InterpolateImages property to PdfSaveOptions class
+- Added UseTargetMachineFonts property to HtmlFixedSaveOptions class
+- Added some request data classes:
+  - RunUpdate and RunInsert
+  - FootnoteUpdate and FootnoteInsert
+  - FieldUpdate and FieldInsert
+  - CommentUpdate and CommentInsert
+  - DocumentPropertyCreateOrUpdate
+
 ## Enhancements in Version 20.3
 
 - XmlColor.Alpha isn't a required property

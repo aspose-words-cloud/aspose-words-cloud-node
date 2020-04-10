@@ -31,6 +31,7 @@
   },
   "dependencies": {
     "@types/request": "^2.48.4",
+    "blob": "^0.1.0",
     "lodash": "^4.17.15",
     "lodash.template": "^4.5.0",
     "request": "^2.88.2",
@@ -51,9 +52,9 @@
     "gulp-util": "^3.0.8",
     "mocha": "^7.1.1",
     "mocha-cases": "^0.3.0",
-    "mocha-jenkins-reporter": "^0.4.2",
+    "mocha-jenkins-reporter": "^0.4.3",
     "mocha-sinon": "^2.1.2",
-    "sinon": "^9.0.1",
+    "sinon": "^9.0.2",
     "ts-node": "^8.8.2",
     "tslint": "6.1.1",
     "typescript": "^3.8.3"

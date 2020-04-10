@@ -79,3 +79,12 @@ export class OoxmlSaveOptionsData extends SaveOptionsData {
         Object.assign(this, init);
     }        
 }
+
+/**
+ * Enums for OoxmlSaveOptionsData
+ */
+// tslint:disable:quotemark
+// tslint:disable-next-line:no-namespace
+export namespace OoxmlSaveOptionsData {
+}
+// tslint:enable:quotemark

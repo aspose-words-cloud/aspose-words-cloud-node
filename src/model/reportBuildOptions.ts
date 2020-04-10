@@ -21,39 +21,9 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
 */
-import { AttributeInfo } from '../internal/attributeInfo';
-
-export const importsMapBody9 = {
-};
-
-/**
- * Class Body9
- */
-export class Body9 {
-    /**
-     * Attribute type map
-     */
-    public static attributeTypeMap: Array<AttributeInfo> = [
-        {
-            name: "imageFile",
-            baseName: "imageFile",
-            type: "Blob",
-        }    ];
-
-    /**
-     * Returns attribute type map
-     */
-    public static getAttributeTypeMap() {
-        return Body9.attributeTypeMap;
-    }
-
-    /**
-     * File with image
-     */
-    public imageFile: Blob;
-    
-    public constructor(init?: Partial<Body9>) {
-        
-        Object.assign(this, init);
-    }        
+export enum ReportBuildOptions {
+    None = 'None' as any,
+    AllowMissingMembers = 'AllowMissingMembers' as any,
+    RemoveEmptyParagraphs = 'RemoveEmptyParagraphs' as any,
+    InlineErrorMessages = 'InlineErrorMessages' as any,
 }

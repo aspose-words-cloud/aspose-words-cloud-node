@@ -22,8 +22,10 @@
 * SOFTWARE.
 */
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ReportEngineSettings } from './reportEngineSettings';
 
 export const importsMapBody8 = {
+    ReportEngineSettings,
 };
 
 /**
@@ -35,14 +37,19 @@ export class Body8 {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "drawingObject",
-            baseName: "drawingObject",
+            name: "template",
+            baseName: "template",
+            type: "Blob",
+        },        
+        {
+            name: "data",
+            baseName: "data",
             type: "string",
         },        
         {
-            name: "imageFile",
-            baseName: "imageFile",
-            type: "Blob",
+            name: "reportEngineSettings",
+            baseName: "reportEngineSettings",
+            type: "ReportEngineSettings",
         }    ];
 
     /**
@@ -53,14 +60,19 @@ export class Body8 {
     }
 
     /**
-     * Drawing object parameters
+     * File with template
      */
-    public drawingObject: string;
+    public template: Blob;
     
     /**
-     * File with image
+     * A string providing a data to populate the specified template. The string must be of one of the following types: xml, json, csv
      */
-    public imageFile: Blob;
+    public data: string;
+    
+    /**
+     * Gets or sets reportEngineSettings.
+     */
+    public reportEngineSettings: ReportEngineSettings;
     
     public constructor(init?: Partial<Body8>) {
         

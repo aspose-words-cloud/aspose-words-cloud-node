@@ -23,36 +23,66 @@
 */
 import { AttributeInfo } from '../internal/attributeInfo';
 
-export const importsMapBody9 = {
+export const importsMapCsvDataLoadOptions = {
 };
 
 /**
- * Class Body9
+ * Represents options for parsing CSV data.
  */
-export class Body9 {
+export class CsvDataLoadOptions {
     /**
      * Attribute type map
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "imageFile",
-            baseName: "imageFile",
-            type: "Blob",
+            name: "hasHeaders",
+            baseName: "HasHeaders",
+            type: "boolean",
+        },        
+        {
+            name: "delimiter",
+            baseName: "Delimiter",
+            type: "string",
+        },        
+        {
+            name: "quoteChar",
+            baseName: "QuoteChar",
+            type: "string",
+        },        
+        {
+            name: "commentChar",
+            baseName: "CommentChar",
+            type: "string",
         }    ];
 
     /**
      * Returns attribute type map
      */
     public static getAttributeTypeMap() {
-        return Body9.attributeTypeMap;
+        return CsvDataLoadOptions.attributeTypeMap;
     }
 
     /**
-     * File with image
+     * Gets or sets a value indicating whether the first record of CSV data contains column names.
      */
-    public imageFile: Blob;
+    public hasHeaders: boolean;
     
-    public constructor(init?: Partial<Body9>) {
+    /**
+     * Gets or sets the character to be used as a column delimiter.
+     */
+    public delimiter: string;
+    
+    /**
+     * Gets or sets the character that is used to quote field values.
+     */
+    public quoteChar: string;
+    
+    /**
+     * Gets or sets the character that is used to comment lines of CSV data.
+     */
+    public commentChar: string;
+    
+    public constructor(init?: Partial<CsvDataLoadOptions>) {
         
         Object.assign(this, init);
     }        

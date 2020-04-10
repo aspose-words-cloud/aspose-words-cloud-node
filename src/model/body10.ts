@@ -23,17 +23,22 @@
 */
 import { AttributeInfo } from '../internal/attributeInfo';
 
-export const importsMapBody9 = {
+export const importsMapBody10 = {
 };
 
 /**
- * Class Body9
+ * Class Body10
  */
-export class Body9 {
+export class Body10 {
     /**
      * Attribute type map
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
+        {
+            name: "drawingObject",
+            baseName: "drawingObject",
+            type: "string",
+        },        
         {
             name: "imageFile",
             baseName: "imageFile",
@@ -44,15 +49,20 @@ export class Body9 {
      * Returns attribute type map
      */
     public static getAttributeTypeMap() {
-        return Body9.attributeTypeMap;
+        return Body10.attributeTypeMap;
     }
 
+    /**
+     * Drawing object parameters
+     */
+    public drawingObject: string;
+    
     /**
      * File with image
      */
     public imageFile: Blob;
     
-    public constructor(init?: Partial<Body9>) {
+    public constructor(init?: Partial<Body10>) {
         
         Object.assign(this, init);
     }        

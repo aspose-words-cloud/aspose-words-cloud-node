@@ -59,3 +59,12 @@ export class WordMLSaveOptionsData extends SaveOptionsData {
         Object.assign(this, init);
     }        
 }
+
+/**
+ * Enums for WordMLSaveOptionsData
+ */
+// tslint:disable:quotemark
+// tslint:disable-next-line:no-namespace
+export namespace WordMLSaveOptionsData {
+}
+// tslint:enable:quotemark

@@ -24,11 +24,11 @@
 
 import { expect } from "chai";
 import { Before, Given, Then, When } from "cucumber";
-import { GetRunsRequest } from "../../../src/api";
+import { GetRunsRequest, SaveOptionsData } from "../../../src/api";
 import * as BaseTest from "../../../test/baseTest";
 
 Before({ tags: "@saveAs" }, function() {
-    this.request.saveOptionsData = {};
+    this.request.saveOptionsData = new SaveOptionsData() 
 });
 
 Given(/^I have specified save format (.*) document to be converted$/, function(saveFormat) {

@@ -505,6 +505,7 @@ const enumsMap = {
     "PreferredWidth.TypeEnum": importedPreferredWidth.PreferredWidth.TypeEnum,
     "ReplaceRange.TextTypeEnum": importedReplaceRange.ReplaceRange.TextTypeEnum,
     "ReportEngineSettings.DataSourceTypeEnum": importedReportEngineSettings.ReportEngineSettings.DataSourceTypeEnum,
+    "SaveOptionsData.Dml3DEffectsRenderingModeEnum": importedSaveOptionsData.SaveOptionsData.Dml3DEffectsRenderingModeEnum,
     "StringFormatData.AlignmentEnum": importedStringFormatData.StringFormatData.AlignmentEnum,
     "StringFormatData.FormatFlagsEnum": importedStringFormatData.StringFormatData.FormatFlagsEnum,
     "StringFormatData.HotkeyPrefixEnum": importedStringFormatData.StringFormatData.HotkeyPrefixEnum,

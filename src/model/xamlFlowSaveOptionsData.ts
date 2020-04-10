@@ -69,3 +69,12 @@ export class XamlFlowSaveOptionsData extends SaveOptionsData {
         Object.assign(this, init);
     }        
 }
+
+/**
+ * Enums for XamlFlowSaveOptionsData
+ */
+// tslint:disable:quotemark
+// tslint:disable-next-line:no-namespace
+export namespace XamlFlowSaveOptionsData {
+}
+// tslint:enable:quotemark

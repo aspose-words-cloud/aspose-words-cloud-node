@@ -73,6 +73,16 @@ export class SaveOptionsData {
             name: "updateFields",
             baseName: "UpdateFields",
             type: "boolean",
+        },        
+        {
+            name: "dml3DEffectsRenderingMode",
+            baseName: "Dml3DEffectsRenderingMode",
+            type: "SaveOptionsData.Dml3DEffectsRenderingModeEnum",
+        },        
+        {
+            name: "updateLastPrintedProperty",
+            baseName: "UpdateLastPrintedProperty",
+            type: "boolean",
         }    ];
 
     /**
@@ -122,8 +132,31 @@ export class SaveOptionsData {
      */
     public updateFields: boolean;
     
+    /**
+     * Gets or sets a value determining how 3D effects are rendered.
+     */
+    public dml3DEffectsRenderingMode: SaveOptionsData.Dml3DEffectsRenderingModeEnum;
+    
+    /**
+     * Gets or sets a value determining whether the Aspose.Words.Properties.BuiltInDocumentProperties.LastPrinted property is updated before saving.
+     */
+    public updateLastPrintedProperty: boolean;
+    
     public constructor(init?: Partial<SaveOptionsData>) {
         
         Object.assign(this, init);
     }        
 }
+
+/**
+ * Enums for SaveOptionsData
+ */
+// tslint:disable:quotemark
+// tslint:disable-next-line:no-namespace
+export namespace SaveOptionsData {
+    export enum Dml3DEffectsRenderingModeEnum {
+        Basic = 'Basic' as any,
+        Advanced = 'Advanced' as any,
+    }
+}
+// tslint:enable:quotemark

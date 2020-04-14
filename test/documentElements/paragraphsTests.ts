@@ -27,7 +27,7 @@ import "mocha";
 
 import { DeleteParagraphRequest, GetParagraphFormatRequest, GetParagraphRequest, GetParagraphsRequest, InsertParagraphRequest, ParagraphFormat, ParagraphInsert, RenderParagraphRequest, UpdateParagraphFormatRequest } from "../../src/model/model";
 import { DeleteParagraphWithoutNodePathRequest, GetParagraphFormatWithoutNodePathRequest, GetParagraphsWithoutNodePathRequest, GetParagraphWithoutNodePathRequest, RenderParagraphWithoutNodePathRequest } from "../../src/model/model";
-import { GetParagraphListFormatRequest, UpdateParagraphListFormatRequest, DeleteParagraphListFormatRequest, ListFormatUpdate } from "../../src/model/model";
+import { GetParagraphListFormatRequest, GetParagraphListFormatRequestWithoutNodePath, UpdateParagraphListFormatRequest, DeleteParagraphListFormatRequest, ListFormatUpdate } from "../../src/model/model";
 import * as BaseTest from "../baseTest";
 
 const testFolder = "DocumentElements/Paragraphs";
@@ -412,7 +412,33 @@ describe("paragraphs", () => {
                         });
                 });
         });
-    });   
+    }); 
+
+    describe("getParagraphFormatListWithoutNodePath function", () => {
+        it("should return response with code 200", () => {
+
+            const wordsApi = BaseTest.initializeWordsApi();
+            const filename = "ParagraphGetListFormat.doc";
+            const localPath = BaseTest.localBaseTestDataFolder + testListFolder + "/" + filename;
+            const remotePath = BaseTest.remoteBaseTestDataFolder + testListFolder;
+
+            return wordsApi.uploadFileToStorage(remotePath + "/" + filename, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
+                    const request = new GetParagraphListFormatWithoutNodePathRequest();
+                    request.name = filename;
+                    request.folder = remotePath;
+                    request.index = 0;
+
+                    // Act
+                    return wordsApi.getParagraphListFormatWithoutNodePath(request)
+                        .then((result1) => {
+                            // Assert
+                            expect(result1.response.statusCode).to.equal(200);
+                        });
+                });
+        });
+    });     
     
     describe("updateParagraphFormatList function", () => {
         it("should return response with code 200", () => {

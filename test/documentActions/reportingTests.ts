@@ -60,6 +60,7 @@ describe("buildReport function", () => {
     it("should return response with code 200", () => {
         const request = new BuildReportRequest({
             name: remoteFileName,
+            folder: remotePath,
             data: fs.readFileSync(dataPath, "utf8"),
             reportEngineSettings: new ReportEngineSettings({
                 dataSourceType: ReportEngineSettings.DataSourceTypeEnum.Json,

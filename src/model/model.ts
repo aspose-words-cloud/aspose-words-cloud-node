@@ -133,6 +133,8 @@ import * as importedImageSaveOptionsData from './imageSaveOptionsData';
 import * as importedJpegSaveOptionsData from './jpegSaveOptionsData';
 import * as importedLink from './link';
 import * as importedLinkElement from './linkElement';
+import * as importedListFormat from './listFormat';
+import * as importedListFormatUpdate from './listFormatUpdate';
 import * as importedListInfo from './listInfo';
 import * as importedListInsert from './listInsert';
 import * as importedListLevel from './listLevel';
@@ -166,6 +168,7 @@ import * as importedParagraphInsert from './paragraphInsert';
 import * as importedParagraphLink from './paragraphLink';
 import * as importedParagraphLinkCollection from './paragraphLinkCollection';
 import * as importedParagraphLinkCollectionResponse from './paragraphLinkCollectionResponse';
+import * as importedParagraphListFormatResponse from './paragraphListFormatResponse';
 import * as importedParagraphResponse from './paragraphResponse';
 import * as importedPclSaveOptionsData from './pclSaveOptionsData';
 import * as importedPdfDigitalSignatureDetailsData from './pdfDigitalSignatureDetailsData';
@@ -355,6 +358,8 @@ export * from './imageSaveOptionsData';
 export * from './jpegSaveOptionsData';
 export * from './link';
 export * from './linkElement';
+export * from './listFormat';
+export * from './listFormatUpdate';
 export * from './listInfo';
 export * from './listInsert';
 export * from './listLevel';
@@ -388,6 +393,7 @@ export * from './paragraphInsert';
 export * from './paragraphLink';
 export * from './paragraphLinkCollection';
 export * from './paragraphLinkCollectionResponse';
+export * from './paragraphListFormatResponse';
 export * from './paragraphResponse';
 export * from './pclSaveOptionsData';
 export * from './pdfDigitalSignatureDetailsData';
@@ -663,6 +669,8 @@ const typeMap = {
     JpegSaveOptionsData: importedJpegSaveOptionsData.JpegSaveOptionsData,
     Link: importedLink.Link,
     LinkElement: importedLinkElement.LinkElement,
+    ListFormat: importedListFormat.ListFormat,
+    ListFormatUpdate: importedListFormatUpdate.ListFormatUpdate,
     ListInfo: importedListInfo.ListInfo,
     ListInsert: importedListInsert.ListInsert,
     ListLevel: importedListLevel.ListLevel,
@@ -696,6 +704,7 @@ const typeMap = {
     ParagraphLink: importedParagraphLink.ParagraphLink,
     ParagraphLinkCollection: importedParagraphLinkCollection.ParagraphLinkCollection,
     ParagraphLinkCollectionResponse: importedParagraphLinkCollectionResponse.ParagraphLinkCollectionResponse,
+    ParagraphListFormatResponse: importedParagraphListFormatResponse.ParagraphListFormatResponse,
     ParagraphResponse: importedParagraphResponse.ParagraphResponse,
     PclSaveOptionsData: importedPclSaveOptionsData.PclSaveOptionsData,
     PdfDigitalSignatureDetailsData: importedPdfDigitalSignatureDetailsData.PdfDigitalSignatureDetailsData,
@@ -2418,6 +2427,65 @@ export class DeleteParagraphRequest {
     public revisionDateTime: string;
     
     public constructor(init?: Partial<DeleteParagraphRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for DeleteParagraphListFormat operation.
+ */
+export class DeleteParagraphListFormatRequest {
+    /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * Path to the node which contains paragraphs.
+     */
+    public nodePath: string;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+    
+    public constructor(init?: Partial<DeleteParagraphListFormatRequest>) {        
         Object.assign(this, init);
     } 
 }
@@ -4902,6 +4970,89 @@ export class GetParagraphFormatWithoutNodePathRequest {
     public password: string;
     
     public constructor(init?: Partial<GetParagraphFormatWithoutNodePathRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for GetParagraphListFormat operation.
+ */
+export class GetParagraphListFormatRequest {
+    /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * Path to the node which contains paragraphs.
+     */
+    public nodePath: string;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+    
+    public constructor(init?: Partial<GetParagraphListFormatRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for GetParagraphListFormatWithoutNodePath operation.
+ */
+export class GetParagraphListFormatWithoutNodePathRequest {
+    /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+    
+    public constructor(init?: Partial<GetParagraphListFormatWithoutNodePathRequest>) {        
         Object.assign(this, init);
     } 
 }
@@ -8905,6 +9056,70 @@ export class UpdateParagraphFormatRequest {
     public revisionDateTime: string;
     
     public constructor(init?: Partial<UpdateParagraphFormatRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for UpdateParagraphListFormat operation.
+ */
+export class UpdateParagraphListFormatRequest {
+    /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * Paragraph format object.
+     */
+    public dto: importedListFormatUpdate.ListFormatUpdate;
+
+    /**
+     * Path to the node which contains paragraphs.
+     */
+    public nodePath: string;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+    
+    public constructor(init?: Partial<UpdateParagraphListFormatRequest>) {        
         Object.assign(this, init);
     } 
 }

@@ -27,9 +27,11 @@ import "mocha";
 
 import { DeleteParagraphRequest, GetParagraphFormatRequest, GetParagraphRequest, GetParagraphsRequest, InsertParagraphRequest, ParagraphFormat, ParagraphInsert, RenderParagraphRequest, UpdateParagraphFormatRequest } from "../../src/model/model";
 import { DeleteParagraphWithoutNodePathRequest, GetParagraphFormatWithoutNodePathRequest, GetParagraphsWithoutNodePathRequest, GetParagraphWithoutNodePathRequest, RenderParagraphWithoutNodePathRequest } from "../../src/model/model";
+import { GetParagraphListFormatRequest, GetParagraphListFormatWithoutNodePathRequest, UpdateParagraphListFormatRequest, DeleteParagraphListFormatRequest, ListFormatUpdate } from "../../src/model/model";
 import * as BaseTest from "../baseTest";
 
 const testFolder = "DocumentElements/Paragraphs";
+const testListFolder = "DocumentElements/ParagraphListFormat";
 
 describe("paragraphs", () => {
     describe("getParagraphs function", () => {
@@ -383,5 +385,113 @@ describe("paragraphs", () => {
                         });
                 });
         });
-    });  
+    }); 
+
+    describe("getParagraphFormatList function", () => {
+        it("should return response with code 200", () => {
+
+            const wordsApi = BaseTest.initializeWordsApi();
+            const filename = "ParagraphGetListFormat.doc";
+            const localPath = BaseTest.localBaseTestDataFolder + testListFolder + "/" + filename;
+            const remotePath = BaseTest.remoteBaseTestDataFolder + testListFolder;
+
+            return wordsApi.uploadFileToStorage(remotePath + "/" + filename, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
+                    const request = new GetParagraphListFormatRequest();
+                    request.name = filename;
+                    request.folder = remotePath;
+                    request.nodePath = "";
+                    request.index = 0;
+
+                    // Act
+                    return wordsApi.getParagraphListFormat(request)
+                        .then((result1) => {
+                            // Assert
+                            expect(result1.response.statusCode).to.equal(200);
+                        });
+                });
+        });
+    }); 
+
+    describe("getParagraphFormatListWithoutNodePath function", () => {
+        it("should return response with code 200", () => {
+
+            const wordsApi = BaseTest.initializeWordsApi();
+            const filename = "ParagraphGetListFormat.doc";
+            const localPath = BaseTest.localBaseTestDataFolder + testListFolder + "/" + filename;
+            const remotePath = BaseTest.remoteBaseTestDataFolder + testListFolder;
+
+            return wordsApi.uploadFileToStorage(remotePath + "/" + filename, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
+                    const request = new GetParagraphListFormatWithoutNodePathRequest();
+                    request.name = filename;
+                    request.folder = remotePath;
+                    request.index = 0;
+
+                    // Act
+                    return wordsApi.getParagraphListFormatWithoutNodePath(request)
+                        .then((result1) => {
+                            // Assert
+                            expect(result1.response.statusCode).to.equal(200);
+                        });
+                });
+        });
+    });     
+    
+    describe("updateParagraphFormatList function", () => {
+        it("should return response with code 200", () => {
+
+            const wordsApi = BaseTest.initializeWordsApi();
+            const filename = "ParagraphUpdateListFormat.doc";
+            const localPath = BaseTest.localBaseTestDataFolder + testListFolder + "/" + filename;
+            const remotePath = BaseTest.remoteBaseTestDataFolder + testListFolder;
+
+            return wordsApi.uploadFileToStorage(remotePath + "/" + filename, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
+                    const request = new UpdateParagraphListFormatRequest();
+                    request.name = filename;
+                    request.dto = new ListFormatUpdate({ listId: 2 });
+                    request.folder = remotePath;
+                    request.nodePath = "";
+                    request.index = 0;
+
+                    // Act
+                    return wordsApi.updateParagraphListFormat(request)
+                        .then((result1) => {
+                            // Assert
+                            expect(result1.response.statusCode).to.equal(200);
+                        });
+                });
+        });
+    });
+    
+    describe("deleteParagraphFormatList function", () => {
+        it("should return response with code 200", () => {
+
+            const wordsApi = BaseTest.initializeWordsApi();
+            const filename = "ParagraphGetListFormat.doc";
+            const localPath = BaseTest.localBaseTestDataFolder + testListFolder + "/" + filename;
+            const remotePath = BaseTest.remoteBaseTestDataFolder + testListFolder;
+
+            return wordsApi.uploadFileToStorage(remotePath + "/" + filename, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
+                    const request = new DeleteParagraphListFormatRequest();
+                    request.name = filename;
+                    request.folder = remotePath;
+                    request.nodePath = "";
+                    request.index = 0;
+
+                    // Act
+                    return wordsApi.deleteParagraphListFormat(request)
+                        .then((result1) => {
+                            // Assert
+                            expect(result1.response.statusCode).to.equal(200);
+                        });
+                });
+        });
+    });
 });

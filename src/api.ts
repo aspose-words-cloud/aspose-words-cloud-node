@@ -60,7 +60,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/revisions/acceptAll"
-            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -101,7 +102,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/appendDocument"
-            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -155,7 +157,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/buildReport"
-            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
         const formParams: any = {};
 
@@ -225,7 +228,8 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling buildReportOnline.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/buildReport";
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/buildReport"
+			.replace("//", "/");
         const queryParameters: any = {};
         const formParams: any = {};
 
@@ -295,7 +299,8 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling classify.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/classify";
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/classify"
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.text' is not undefined
@@ -333,7 +338,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{documentName}/classify"
-            .replace("/{" + "documentName" + "}", (requestObj.documentName !== null) ? "/" + String(requestObj.documentName) : "");
+            .replace("/{" + "documentName" + "}", (requestObj.documentName !== null) ? "/" + String(requestObj.documentName) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.documentName' is not undefined
@@ -375,7 +381,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/compareDocument"
-            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -426,7 +433,8 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling convertDocument.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/convert";
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/convert"
+			.replace("//", "/");
         const queryParameters: any = {};
         const formParams: any = {};
 
@@ -483,7 +491,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/storage/file/copy/{srcPath}"
-            .replace("/{" + "srcPath" + "}", (requestObj.srcPath !== null) ? "/" + String(requestObj.srcPath) : "");
+            .replace("/{" + "srcPath" + "}", (requestObj.srcPath !== null) ? "/" + String(requestObj.srcPath) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.destPath' is not undefined
@@ -526,7 +535,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/storage/folder/copy/{srcPath}"
-            .replace("/{" + "srcPath" + "}", (requestObj.srcPath !== null) ? "/" + String(requestObj.srcPath) : "");
+            .replace("/{" + "srcPath" + "}", (requestObj.srcPath !== null) ? "/" + String(requestObj.srcPath) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.destPath' is not undefined
@@ -567,7 +577,8 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling createDocument.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/create";
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/create"
+			.replace("//", "/");
         const queryParameters: any = {};
         
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
@@ -596,7 +607,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/storage/folder/{path}"
-            .replace("/{" + "path" + "}", (requestObj.path !== null) ? "/" + String(requestObj.path) : "");
+            .replace("/{" + "path" + "}", (requestObj.path !== null) ? "/" + String(requestObj.path) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.path' is not undefined
@@ -632,7 +644,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/documentProperties/{propertyName}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "propertyName" + "}", (requestObj.propertyName !== null) ? "/" + String(requestObj.propertyName) : "");
+            .replace("/{" + "propertyName" + "}", (requestObj.propertyName !== null) ? "/" + String(requestObj.propertyName) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -698,7 +711,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/borders/{borderType}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
-            .replace("/{" + "borderType" + "}", (requestObj.borderType !== null) ? "/" + String(requestObj.borderType) : "");
+            .replace("/{" + "borderType" + "}", (requestObj.borderType !== null) ? "/" + String(requestObj.borderType) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -757,7 +771,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/borders"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "");
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -806,7 +821,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/comments/{commentIndex}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "commentIndex" + "}", (requestObj.commentIndex !== null) ? "/" + String(requestObj.commentIndex) : "");
+            .replace("/{" + "commentIndex" + "}", (requestObj.commentIndex !== null) ? "/" + String(requestObj.commentIndex) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -858,7 +874,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/documentProperties/{propertyName}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "propertyName" + "}", (requestObj.propertyName !== null) ? "/" + String(requestObj.propertyName) : "");
+            .replace("/{" + "propertyName" + "}", (requestObj.propertyName !== null) ? "/" + String(requestObj.propertyName) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -911,7 +928,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -968,7 +986,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/drawingObjects/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -1021,7 +1040,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/fields/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -1078,7 +1098,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/fields/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -1130,7 +1151,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/fields"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "");
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -1176,7 +1198,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/fields"
-            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -1217,7 +1240,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/storage/file/{path}"
-            .replace("/{" + "path" + "}", (requestObj.path !== null) ? "/" + String(requestObj.path) : "");
+            .replace("/{" + "path" + "}", (requestObj.path !== null) ? "/" + String(requestObj.path) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.path' is not undefined
@@ -1253,7 +1277,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/storage/folder/{path}"
-            .replace("/{" + "path" + "}", (requestObj.path !== null) ? "/" + String(requestObj.path) : "");
+            .replace("/{" + "path" + "}", (requestObj.path !== null) ? "/" + String(requestObj.path) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.path' is not undefined
@@ -1291,7 +1316,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/footnotes/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -1348,7 +1374,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/footnotes/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -1401,7 +1428,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/formfields/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -1458,7 +1486,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/formfields/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -1511,7 +1540,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{sectionPath}/headersfooters/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "sectionPath" + "}", (requestObj.sectionPath !== null) ? "/" + String(requestObj.sectionPath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -1568,7 +1598,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{sectionPath}/headersfooters"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "sectionPath" + "}", (requestObj.sectionPath !== null) ? "/" + String(requestObj.sectionPath) : "");
+            .replace("/{" + "sectionPath" + "}", (requestObj.sectionPath !== null) ? "/" + String(requestObj.sectionPath) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -1615,7 +1646,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/macros"
-            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -1658,7 +1690,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/OfficeMathObjects/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -1715,7 +1748,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/OfficeMathObjects/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -1768,7 +1802,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -1826,7 +1861,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}/listFormat"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -1885,7 +1921,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/paragraphs/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -1938,7 +1975,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{paragraphPath}/runs/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "paragraphPath" + "}", (requestObj.paragraphPath !== null) ? "/" + String(requestObj.paragraphPath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -1995,7 +2033,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/sections/{sectionIndex}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "sectionIndex" + "}", (requestObj.sectionIndex !== null) ? "/" + String(requestObj.sectionIndex) : "");
+            .replace("/{" + "sectionIndex" + "}", (requestObj.sectionIndex !== null) ? "/" + String(requestObj.sectionIndex) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -2048,7 +2087,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/tables/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -2106,7 +2146,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{tableRowPath}/cells/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "tableRowPath" + "}", (requestObj.tableRowPath !== null) ? "/" + String(requestObj.tableRowPath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -2164,7 +2205,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{tablePath}/rows/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "tablePath" + "}", (requestObj.tablePath !== null) ? "/" + String(requestObj.tablePath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -2221,7 +2263,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/tables/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -2272,7 +2315,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/watermarks/deleteLast"
-            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -2315,7 +2359,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/storage/file/{path}"
-            .replace("/{" + "path" + "}", (requestObj.path !== null) ? "/" + String(requestObj.path) : "");
+            .replace("/{" + "path" + "}", (requestObj.path !== null) ? "/" + String(requestObj.path) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.path' is not undefined
@@ -2353,7 +2398,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/MailMerge"
-            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
         const formParams: any = {};
 
@@ -2403,7 +2449,8 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling executeMailMergeOnline.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/MailMerge";
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/MailMerge"
+			.replace("//", "/");
         const queryParameters: any = {};
         const formParams: any = {};
 
@@ -2461,7 +2508,8 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getAvailableFonts.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/fonts/available";
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/fonts/available"
+			.replace("//", "/");
         const queryParameters: any = {};
         
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", requestObj.fontsLocation);
@@ -2489,7 +2537,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/bookmarks/{bookmarkName}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "bookmarkName" + "}", (requestObj.bookmarkName !== null) ? "/" + String(requestObj.bookmarkName) : "");
+            .replace("/{" + "bookmarkName" + "}", (requestObj.bookmarkName !== null) ? "/" + String(requestObj.bookmarkName) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -2539,7 +2588,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/bookmarks"
-            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -2581,7 +2631,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/borders/{borderType}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
-            .replace("/{" + "borderType" + "}", (requestObj.borderType !== null) ? "/" + String(requestObj.borderType) : "");
+            .replace("/{" + "borderType" + "}", (requestObj.borderType !== null) ? "/" + String(requestObj.borderType) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -2637,7 +2688,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/borders"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "");
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -2683,7 +2735,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/comments/{commentIndex}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "commentIndex" + "}", (requestObj.commentIndex !== null) ? "/" + String(requestObj.commentIndex) : "");
+            .replace("/{" + "commentIndex" + "}", (requestObj.commentIndex !== null) ? "/" + String(requestObj.commentIndex) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -2733,7 +2786,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/comments"
-            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -2773,7 +2827,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{documentName}"
-            .replace("/{" + "documentName" + "}", (requestObj.documentName !== null) ? "/" + String(requestObj.documentName) : "");
+            .replace("/{" + "documentName" + "}", (requestObj.documentName !== null) ? "/" + String(requestObj.documentName) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.documentName' is not undefined
@@ -2815,7 +2870,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -2871,7 +2927,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/drawingObjects/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -2923,7 +2980,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects/{index}/imageData"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -2979,7 +3037,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/drawingObjects/{index}/imageData"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -3031,7 +3090,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects/{index}/oleData"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -3087,7 +3147,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/drawingObjects/{index}/oleData"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -3138,7 +3199,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "");
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -3183,7 +3245,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/drawingObjects"
-            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -3223,7 +3286,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/mailMerge/FieldNames"
-            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -3263,7 +3327,8 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentFieldNamesOnline.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/mailMerge/FieldNames";
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/mailMerge/FieldNames"
+			.replace("//", "/");
         const queryParameters: any = {};
         const formParams: any = {};
 
@@ -3307,7 +3372,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/hyperlinks/{hyperlinkIndex}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "hyperlinkIndex" + "}", (requestObj.hyperlinkIndex !== null) ? "/" + String(requestObj.hyperlinkIndex) : "");
+            .replace("/{" + "hyperlinkIndex" + "}", (requestObj.hyperlinkIndex !== null) ? "/" + String(requestObj.hyperlinkIndex) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -3357,7 +3423,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/hyperlinks"
-            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -3397,7 +3464,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/documentProperties"
-            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -3438,7 +3506,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/documentProperties/{propertyName}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "propertyName" + "}", (requestObj.propertyName !== null) ? "/" + String(requestObj.propertyName) : "");
+            .replace("/{" + "propertyName" + "}", (requestObj.propertyName !== null) ? "/" + String(requestObj.propertyName) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -3488,7 +3557,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/protection"
-            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -3528,7 +3598,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/statistics"
-            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -3571,7 +3642,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}"
-            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -3626,7 +3698,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/fields/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -3682,7 +3755,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/fields/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -3733,7 +3807,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/fields"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "");
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -3778,7 +3853,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/fields"
-            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -3818,7 +3894,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/storage/folder/{path}"
-            .replace("/{" + "path" + "}", (requestObj.path !== null) ? "/" + String(requestObj.path) : "");
+            .replace("/{" + "path" + "}", (requestObj.path !== null) ? "/" + String(requestObj.path) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.path' is not undefined
@@ -3857,7 +3934,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/footnotes/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -3913,7 +3991,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/footnotes/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -3964,7 +4043,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/footnotes"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "");
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -4009,7 +4089,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/footnotes"
-            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -4051,7 +4132,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/formfields/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -4107,7 +4189,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/formfields/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -4158,7 +4241,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/formfields"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "");
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -4203,7 +4287,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/formfields"
-            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -4244,7 +4329,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/headersfooters/{headerFooterIndex}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "headerFooterIndex" + "}", (requestObj.headerFooterIndex !== null) ? "/" + String(requestObj.headerFooterIndex) : "");
+            .replace("/{" + "headerFooterIndex" + "}", (requestObj.headerFooterIndex !== null) ? "/" + String(requestObj.headerFooterIndex) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -4297,7 +4383,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/sections/{sectionIndex}/headersfooters/{headerFooterIndex}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "headerFooterIndex" + "}", (requestObj.headerFooterIndex !== null) ? "/" + String(requestObj.headerFooterIndex) : "")
-            .replace("/{" + "sectionIndex" + "}", (requestObj.sectionIndex !== null) ? "/" + String(requestObj.sectionIndex) : "");
+            .replace("/{" + "sectionIndex" + "}", (requestObj.sectionIndex !== null) ? "/" + String(requestObj.sectionIndex) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -4359,7 +4446,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{sectionPath}/headersfooters"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "sectionPath" + "}", (requestObj.sectionPath !== null) ? "/" + String(requestObj.sectionPath) : "");
+            .replace("/{" + "sectionPath" + "}", (requestObj.sectionPath !== null) ? "/" + String(requestObj.sectionPath) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -4406,7 +4494,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/lists/{listId}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "listId" + "}", (requestObj.listId !== null) ? "/" + String(requestObj.listId) : "");
+            .replace("/{" + "listId" + "}", (requestObj.listId !== null) ? "/" + String(requestObj.listId) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -4456,7 +4545,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/lists"
-            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -4498,7 +4588,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/OfficeMathObjects/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -4554,7 +4645,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/OfficeMathObjects/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -4605,7 +4697,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/OfficeMathObjects"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "");
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -4650,7 +4743,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/OfficeMathObjects"
-            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -4692,7 +4786,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -4749,7 +4844,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}/format"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -4805,7 +4901,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/paragraphs/{index}/format"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -4857,7 +4954,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}/listFormat"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -4913,7 +5011,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/paragraphs/{index}/listFormat"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -4964,7 +5063,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/paragraphs/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -5015,7 +5115,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "");
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -5060,7 +5161,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/paragraphs"
-            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -5102,7 +5204,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/range/{rangeStartIdentifier}/{rangeEndIdentifier}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "rangeStartIdentifier" + "}", (requestObj.rangeStartIdentifier !== null) ? "/" + String(requestObj.rangeStartIdentifier) : "")
-            .replace("/{" + "rangeEndIdentifier" + "}", (requestObj.rangeEndIdentifier !== null) ? "/" + String(requestObj.rangeEndIdentifier) : "");
+            .replace("/{" + "rangeEndIdentifier" + "}", (requestObj.rangeEndIdentifier !== null) ? "/" + String(requestObj.rangeEndIdentifier) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -5154,7 +5257,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{paragraphPath}/runs/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "paragraphPath" + "}", (requestObj.paragraphPath !== null) ? "/" + String(requestObj.paragraphPath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -5211,7 +5315,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{paragraphPath}/runs/{index}/font"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "paragraphPath" + "}", (requestObj.paragraphPath !== null) ? "/" + String(requestObj.paragraphPath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -5267,7 +5372,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{paragraphPath}/runs"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "paragraphPath" + "}", (requestObj.paragraphPath !== null) ? "/" + String(requestObj.paragraphPath) : "");
+            .replace("/{" + "paragraphPath" + "}", (requestObj.paragraphPath !== null) ? "/" + String(requestObj.paragraphPath) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -5313,7 +5419,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/sections/{sectionIndex}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "sectionIndex" + "}", (requestObj.sectionIndex !== null) ? "/" + String(requestObj.sectionIndex) : "");
+            .replace("/{" + "sectionIndex" + "}", (requestObj.sectionIndex !== null) ? "/" + String(requestObj.sectionIndex) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -5364,7 +5471,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/sections/{sectionIndex}/pageSetup"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "sectionIndex" + "}", (requestObj.sectionIndex !== null) ? "/" + String(requestObj.sectionIndex) : "");
+            .replace("/{" + "sectionIndex" + "}", (requestObj.sectionIndex !== null) ? "/" + String(requestObj.sectionIndex) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -5414,7 +5522,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/sections"
-            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -5456,7 +5565,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/tables/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -5513,7 +5623,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{tableRowPath}/cells/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "tableRowPath" + "}", (requestObj.tableRowPath !== null) ? "/" + String(requestObj.tableRowPath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -5570,7 +5681,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{tableRowPath}/cells/{index}/cellformat"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "tableRowPath" + "}", (requestObj.tableRowPath !== null) ? "/" + String(requestObj.tableRowPath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -5627,7 +5739,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/tables/{index}/properties"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -5683,7 +5796,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/tables/{index}/properties"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -5735,7 +5849,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{tablePath}/rows/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "tablePath" + "}", (requestObj.tablePath !== null) ? "/" + String(requestObj.tablePath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -5792,7 +5907,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{tablePath}/rows/{index}/rowformat"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "tablePath" + "}", (requestObj.tablePath !== null) ? "/" + String(requestObj.tablePath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -5848,7 +5964,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/tables/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -5899,7 +6016,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/tables"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "");
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -5944,7 +6062,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/tables"
-            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -5984,7 +6103,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/comments"
-            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -6039,7 +6159,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "");
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
         const formParams: any = {};
 
@@ -6117,7 +6238,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/drawingObjects"
-            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
         const formParams: any = {};
 
@@ -6191,7 +6313,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/fields"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "");
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -6251,7 +6374,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/fields"
-            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -6307,7 +6431,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/footnotes"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "");
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -6366,7 +6491,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/footnotes"
-            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -6421,7 +6547,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/formfields"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "");
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -6481,7 +6608,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/formfields"
-            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -6537,7 +6665,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{sectionPath}/headersfooters"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "sectionPath" + "}", (requestObj.sectionPath !== null) ? "/" + String(requestObj.sectionPath) : "");
+            .replace("/{" + "sectionPath" + "}", (requestObj.sectionPath !== null) ? "/" + String(requestObj.sectionPath) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -6596,7 +6725,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/lists"
-            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -6650,7 +6780,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/PageNumbers"
-            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -6705,7 +6836,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "");
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -6766,7 +6898,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{paragraphPath}/runs"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "paragraphPath" + "}", (requestObj.paragraphPath !== null) ? "/" + String(requestObj.paragraphPath) : "");
+            .replace("/{" + "paragraphPath" + "}", (requestObj.paragraphPath !== null) ? "/" + String(requestObj.paragraphPath) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -6827,7 +6960,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/tables"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "");
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -6887,7 +7021,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{tableRowPath}/cells"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "tableRowPath" + "}", (requestObj.tableRowPath !== null) ? "/" + String(requestObj.tableRowPath) : "");
+            .replace("/{" + "tableRowPath" + "}", (requestObj.tableRowPath !== null) ? "/" + String(requestObj.tableRowPath) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -6947,7 +7082,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{tablePath}/rows"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "tablePath" + "}", (requestObj.tablePath !== null) ? "/" + String(requestObj.tablePath) : "");
+            .replace("/{" + "tablePath" + "}", (requestObj.tablePath !== null) ? "/" + String(requestObj.tablePath) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -7006,7 +7142,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/tables"
-            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -7060,7 +7197,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/watermarks/images"
-            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
         const formParams: any = {};
 
@@ -7111,7 +7249,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/watermarks/texts"
-            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -7164,7 +7303,8 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling loadWebDocument.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/loadWebDocument";
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/loadWebDocument"
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.data' is not undefined
@@ -7202,7 +7342,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/storage/file/move/{srcPath}"
-            .replace("/{" + "srcPath" + "}", (requestObj.srcPath !== null) ? "/" + String(requestObj.srcPath) : "");
+            .replace("/{" + "srcPath" + "}", (requestObj.srcPath !== null) ? "/" + String(requestObj.srcPath) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.destPath' is not undefined
@@ -7245,7 +7386,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/storage/folder/move/{srcPath}"
-            .replace("/{" + "srcPath" + "}", (requestObj.srcPath !== null) ? "/" + String(requestObj.srcPath) : "");
+            .replace("/{" + "srcPath" + "}", (requestObj.srcPath !== null) ? "/" + String(requestObj.srcPath) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.destPath' is not undefined
@@ -7287,7 +7429,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/protection"
-            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -7339,7 +7482,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/revisions/rejectAll"
-            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -7382,7 +7526,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/range/{rangeStartIdentifier}/{rangeEndIdentifier}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "rangeStartIdentifier" + "}", (requestObj.rangeStartIdentifier !== null) ? "/" + String(requestObj.rangeStartIdentifier) : "")
-            .replace("/{" + "rangeEndIdentifier" + "}", (requestObj.rangeEndIdentifier !== null) ? "/" + String(requestObj.rangeEndIdentifier) : "");
+            .replace("/{" + "rangeEndIdentifier" + "}", (requestObj.rangeEndIdentifier !== null) ? "/" + String(requestObj.rangeEndIdentifier) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -7435,7 +7580,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects/{index}/render"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -7503,7 +7649,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/drawingObjects/{index}/render"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -7567,7 +7714,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/OfficeMathObjects/{index}/render"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -7635,7 +7783,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/OfficeMathObjects/{index}/render"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -7698,7 +7847,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/pages/{pageIndex}/render"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "pageIndex" + "}", (requestObj.pageIndex !== null) ? "/" + String(requestObj.pageIndex) : "");
+            .replace("/{" + "pageIndex" + "}", (requestObj.pageIndex !== null) ? "/" + String(requestObj.pageIndex) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -7762,7 +7912,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}/render"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -7830,7 +7981,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/paragraphs/{index}/render"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -7894,7 +8046,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/tables/{index}/render"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -7962,7 +8115,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/tables/{index}/render"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -8024,7 +8178,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/replaceText"
-            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -8080,7 +8235,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/range/{rangeStartIdentifier}/{rangeEndIdentifier}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "rangeStartIdentifier" + "}", (requestObj.rangeStartIdentifier !== null) ? "/" + String(requestObj.rangeStartIdentifier) : "")
-            .replace("/{" + "rangeEndIdentifier" + "}", (requestObj.rangeEndIdentifier !== null) ? "/" + String(requestObj.rangeEndIdentifier) : "");
+            .replace("/{" + "rangeEndIdentifier" + "}", (requestObj.rangeEndIdentifier !== null) ? "/" + String(requestObj.rangeEndIdentifier) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -8141,7 +8297,8 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling resetCache.');
         }
 
-        const localVarPath = this.configuration.getApiBaseUrl() + "/words/fonts/cache";
+        const localVarPath = this.configuration.getApiBaseUrl() + "/words/fonts/cache"
+			.replace("//", "/");
         const queryParameters: any = {};
         
         const requestOptions: request.Options = {
@@ -8165,7 +8322,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/saveAs"
-            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -8219,7 +8377,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/range/{rangeStartIdentifier}/{rangeEndIdentifier}/SaveAs"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "rangeStartIdentifier" + "}", (requestObj.rangeStartIdentifier !== null) ? "/" + String(requestObj.rangeStartIdentifier) : "")
-            .replace("/{" + "rangeEndIdentifier" + "}", (requestObj.rangeEndIdentifier !== null) ? "/" + String(requestObj.rangeEndIdentifier) : "");
+            .replace("/{" + "rangeEndIdentifier" + "}", (requestObj.rangeEndIdentifier !== null) ? "/" + String(requestObj.rangeEndIdentifier) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -8280,7 +8439,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/saveAs/tiff"
-            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -8349,7 +8509,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/search"
-            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -8395,7 +8556,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/split"
-            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -8451,7 +8613,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/protection"
-            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -8504,7 +8667,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/bookmarks/{bookmarkName}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "bookmarkName" + "}", (requestObj.bookmarkName !== null) ? "/" + String(requestObj.bookmarkName) : "");
+            .replace("/{" + "bookmarkName" + "}", (requestObj.bookmarkName !== null) ? "/" + String(requestObj.bookmarkName) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -8570,7 +8734,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/borders/{borderType}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
-            .replace("/{" + "borderType" + "}", (requestObj.borderType !== null) ? "/" + String(requestObj.borderType) : "");
+            .replace("/{" + "borderType" + "}", (requestObj.borderType !== null) ? "/" + String(requestObj.borderType) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -8640,7 +8805,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/comments/{commentIndex}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "commentIndex" + "}", (requestObj.commentIndex !== null) ? "/" + String(requestObj.commentIndex) : "");
+            .replace("/{" + "commentIndex" + "}", (requestObj.commentIndex !== null) ? "/" + String(requestObj.commentIndex) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -8706,7 +8872,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
         const formParams: any = {};
 
@@ -8795,7 +8962,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/drawingObjects/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
         const formParams: any = {};
 
@@ -8880,7 +9048,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/fields/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -8949,7 +9118,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/updateFields"
-            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "");
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -8992,7 +9162,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/footnotes/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -9062,7 +9233,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/footnotes/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -9128,7 +9300,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/formfields/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -9198,7 +9371,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/formfields/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -9263,7 +9437,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/lists/{listId}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "listId" + "}", (requestObj.listId !== null) ? "/" + String(requestObj.listId) : "");
+            .replace("/{" + "listId" + "}", (requestObj.listId !== null) ? "/" + String(requestObj.listId) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -9329,7 +9504,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/lists/{listId}/{listLevel}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "listId" + "}", (requestObj.listId !== null) ? "/" + String(requestObj.listId) : "")
-            .replace("/{" + "listLevel" + "}", (requestObj.listLevel !== null) ? "/" + String(requestObj.listLevel) : "");
+            .replace("/{" + "listLevel" + "}", (requestObj.listLevel !== null) ? "/" + String(requestObj.listLevel) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -9405,7 +9581,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}/format"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -9476,7 +9653,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}/listFormat"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -9547,7 +9725,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{paragraphPath}/runs/{index}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "paragraphPath" + "}", (requestObj.paragraphPath !== null) ? "/" + String(requestObj.paragraphPath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -9618,7 +9797,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{paragraphPath}/runs/{index}/font"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "paragraphPath" + "}", (requestObj.paragraphPath !== null) ? "/" + String(requestObj.paragraphPath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -9688,7 +9868,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/sections/{sectionIndex}/pageSetup"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "sectionIndex" + "}", (requestObj.sectionIndex !== null) ? "/" + String(requestObj.sectionIndex) : "");
+            .replace("/{" + "sectionIndex" + "}", (requestObj.sectionIndex !== null) ? "/" + String(requestObj.sectionIndex) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -9754,7 +9935,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{tableRowPath}/cells/{index}/cellformat"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "tableRowPath" + "}", (requestObj.tableRowPath !== null) ? "/" + String(requestObj.tableRowPath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -9825,7 +10007,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/tables/{index}/properties"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -9895,7 +10078,8 @@ export class WordsApi {
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/tables/{index}/properties"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -9961,7 +10145,8 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{tablePath}/rows/{index}/rowformat"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "tablePath" + "}", (requestObj.tablePath !== null) ? "/" + String(requestObj.tablePath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "");
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
 
         // verify required parameter 'requestObj.name' is not undefined
@@ -10030,7 +10215,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/storage/file/{path}"
-            .replace("/{" + "path" + "}", (requestObj.path !== null) ? "/" + String(requestObj.path) : "");
+            .replace("/{" + "path" + "}", (requestObj.path !== null) ? "/" + String(requestObj.path) : "")
+			.replace("//", "/");
         const queryParameters: any = {};
         const formParams: any = {};
 

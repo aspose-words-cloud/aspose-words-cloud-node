@@ -23,23 +23,32 @@
 */
 import { AttributeInfo } from '../internal/attributeInfo';
 import { Font } from './font';
+import { LinkElement } from './linkElement';
+import { WordsApiLink } from './wordsApiLink';
 
 export const importsMapStyle = {
     Font,
+    LinkElement,
+    WordsApiLink,
 };
 
 /**
- * Represents a single document list.
+ * Represents a single document style.
  */
-export class Style {
+export class Style extends LinkElement {
     /**
      * Attribute type map
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "font",
-            baseName: "Font",
-            type: "Font",
+            name: "aliases",
+            baseName: "Aliases",
+            type: "Array<string>",
+        },        
+        {
+            name: "baseStyleName",
+            baseName: "BaseStyleName",
+            type: "string",
         },        
         {
             name: "builtIn",
@@ -47,14 +56,14 @@ export class Style {
             type: "boolean",
         },        
         {
-            name: "nextParagraphStyleName",
-            baseName: "NextParagraphStyleName",
-            type: "string",
+            name: "font",
+            baseName: "Font",
+            type: "Font",
         },        
         {
-            name: "baseStyleName",
-            baseName: "BaseStyleName",
-            type: "string",
+            name: "isHeading",
+            baseName: "IsHeading",
+            type: "boolean",
         },        
         {
             name: "isQuickStyle",
@@ -67,19 +76,14 @@ export class Style {
             type: "string",
         },        
         {
-            name: "type",
-            baseName: "Type",
-            type: "Style.TypeEnum",
+            name: "name",
+            baseName: "Name",
+            type: "string",
         },        
         {
-            name: "isHeading",
-            baseName: "IsHeading",
-            type: "boolean",
-        },        
-        {
-            name: "aliases",
-            baseName: "Aliases",
-            type: "Array<string>",
+            name: "nextParagraphStyleName",
+            baseName: "NextParagraphStyleName",
+            type: "string",
         },        
         {
             name: "styleIdentifier",
@@ -87,22 +91,27 @@ export class Style {
             type: "Style.StyleIdentifierEnum",
         },        
         {
-            name: "name",
-            baseName: "Name",
-            type: "string",
+            name: "type",
+            baseName: "Type",
+            type: "Style.TypeEnum",
         }    ];
 
     /**
      * Returns attribute type map
      */
     public static getAttributeTypeMap() {
-        return Style.attributeTypeMap;
+        return super.getAttributeTypeMap().concat(Style.attributeTypeMap);
     }
 
     /**
-     * Gets or sets font.
+     * Gets or sets all aliases of this style. If style has no aliases then empty array of string is returned.
      */
-    public font: Font;
+    public aliases: Array<string>;
+    
+    /**
+     * Gets or sets /sets the name of the style this style is based on.
+     */
+    public baseStyleName: string;
     
     /**
      * Gets or sets a value indicating whether true if this style is one of the built-in styles in MS Word.
@@ -110,14 +119,14 @@ export class Style {
     public builtIn: boolean;
     
     /**
-     * Gets or sets /sets the name of the style to be applied automatically to a new paragraph inserted after a paragraph formatted with the specified style.
+     * Gets or sets font.
      */
-    public nextParagraphStyleName: string;
+    public font: Font;
     
     /**
-     * Gets or sets /sets the name of the style this style is based on.
+     * Gets or sets a value indicating whether true when the style is one of the built-in Heading styles.
      */
-    public baseStyleName: string;
+    public isHeading: boolean;
     
     /**
      * Gets or sets a value indicating whether specifies whether this style is shown in the Quick Style gallery inside MS Word UI.
@@ -130,19 +139,14 @@ export class Style {
     public linkedStyleName: string;
     
     /**
-     * Gets or sets the style type (paragraph or character).
+     * Gets or sets the name of the style.
      */
-    public type: Style.TypeEnum;
+    public name: string;
     
     /**
-     * Gets or sets a value indicating whether true when the style is one of the built-in Heading styles.
+     * Gets or sets /sets the name of the style to be applied automatically to a new paragraph inserted after a paragraph formatted with the specified style.
      */
-    public isHeading: boolean;
-    
-    /**
-     * Gets or sets all aliases of this style. If style has no aliases then empty array of string is returned.
-     */
-    public aliases: Array<string>;
+    public nextParagraphStyleName: string;
     
     /**
      * Gets or sets the locale independent style identifier for a built-in style.
@@ -150,12 +154,12 @@ export class Style {
     public styleIdentifier: Style.StyleIdentifierEnum;
     
     /**
-     * Gets or sets the name of the style.
+     * Gets or sets the style type (paragraph or character).
      */
-    public name: string;
+    public type: Style.TypeEnum;
     
     public constructor(init?: Partial<Style>) {
-        
+        super(init);
         Object.assign(this, init);
     }        
 }
@@ -166,12 +170,6 @@ export class Style {
 // tslint:disable:quotemark
 // tslint:disable-next-line:no-namespace
 export namespace Style {
-    export enum TypeEnum {
-        Paragraph = 'Paragraph' as any,
-        Character = 'Character' as any,
-        Table = 'Table' as any,
-        List = 'List' as any,
-    }
     export enum StyleIdentifierEnum {
         Normal = 'Normal' as any,
         Heading1 = 'Heading1' as any,
@@ -546,6 +544,12 @@ export namespace Style {
         ListTable7ColorfulAccent6 = 'ListTable7ColorfulAccent6' as any,
         User = 'User' as any,
         Nil = 'Nil' as any,
+    }
+    export enum TypeEnum {
+        Paragraph = 'Paragraph' as any,
+        Character = 'Character' as any,
+        Table = 'Table' as any,
+        List = 'List' as any,
     }
 }
 // tslint:enable:quotemark

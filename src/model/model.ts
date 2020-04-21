@@ -216,6 +216,12 @@ import * as importedStorageFile from './storageFile';
 import * as importedStoryChildNodes from './storyChildNodes';
 import * as importedStringFormatData from './stringFormatData';
 import * as importedStyle from './style';
+import * as importedStyleCopy from './styleCopy';
+import * as importedStyleInsert from './styleInsert';
+import * as importedStyleResponse from './styleResponse';
+import * as importedStyleUpdate from './styleUpdate';
+import * as importedStyles from './styles';
+import * as importedStylesResponse from './stylesResponse';
 import * as importedSvgSaveOptionsData from './svgSaveOptionsData';
 import * as importedTable from './table';
 import * as importedTableCell from './tableCell';
@@ -441,6 +447,12 @@ export * from './storageFile';
 export * from './storyChildNodes';
 export * from './stringFormatData';
 export * from './style';
+export * from './styleCopy';
+export * from './styleInsert';
+export * from './styleResponse';
+export * from './styleUpdate';
+export * from './styles';
+export * from './stylesResponse';
 export * from './svgSaveOptionsData';
 export * from './table';
 export * from './tableCell';
@@ -544,8 +556,9 @@ const enumsMap = {
     "StringFormatData.HotkeyPrefixEnum": importedStringFormatData.StringFormatData.HotkeyPrefixEnum,
     "StringFormatData.LineAlignmentEnum": importedStringFormatData.StringFormatData.LineAlignmentEnum,
     "StringFormatData.TrimmingEnum": importedStringFormatData.StringFormatData.TrimmingEnum,
-    "Style.TypeEnum": importedStyle.Style.TypeEnum,
     "Style.StyleIdentifierEnum": importedStyle.Style.StyleIdentifierEnum,
+    "Style.TypeEnum": importedStyle.Style.TypeEnum,
+    "StyleInsert.StyleTypeEnum": importedStyleInsert.StyleInsert.StyleTypeEnum,
     "TableCellFormat.HorizontalMergeEnum": importedTableCellFormat.TableCellFormat.HorizontalMergeEnum,
     "TableCellFormat.OrientationEnum": importedTableCellFormat.TableCellFormat.OrientationEnum,
     "TableCellFormat.VerticalAlignmentEnum": importedTableCellFormat.TableCellFormat.VerticalAlignmentEnum,
@@ -752,6 +765,12 @@ const typeMap = {
     StoryChildNodes: importedStoryChildNodes.StoryChildNodes,
     StringFormatData: importedStringFormatData.StringFormatData,
     Style: importedStyle.Style,
+    StyleCopy: importedStyleCopy.StyleCopy,
+    StyleInsert: importedStyleInsert.StyleInsert,
+    StyleResponse: importedStyleResponse.StyleResponse,
+    StyleUpdate: importedStyleUpdate.StyleUpdate,
+    Styles: importedStyles.Styles,
+    StylesResponse: importedStylesResponse.StylesResponse,
     SvgSaveOptionsData: importedSvgSaveOptionsData.SvgSaveOptionsData,
     Table: importedTable.Table,
     TableCell: importedTableCell.TableCell,
@@ -1162,6 +1181,60 @@ export class CopyFolderRequest {
     public destStorageName: string;
     
     public constructor(init?: Partial<CopyFolderRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for CopyStyle operation.
+ */
+export class CopyStyleRequest {
+    /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * Style to copy.
+     */
+    public styleCopy: importedStyleCopy.StyleCopy;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+    
+    public constructor(init?: Partial<CopyStyleRequest>) {        
         Object.assign(this, init);
     } 
 }
@@ -5453,6 +5526,79 @@ export class GetSectionsRequest {
 }
 
 /**
+ * Request model for GetStyle operation.
+ */
+export class GetStyleRequest {
+    /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * Style name.
+     */
+    public styleName: string;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+    
+    public constructor(init?: Partial<GetStyleRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for GetStyles operation.
+ */
+export class GetStylesRequest {
+    /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+    
+    public constructor(init?: Partial<GetStylesRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
  * Request model for GetTable operation.
  */
 export class GetTableRequest {
@@ -6694,6 +6840,60 @@ export class InsertRunRequest {
     public insertBeforeNode: string;
     
     public constructor(init?: Partial<InsertRunRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for InsertStyle operation.
+ */
+export class InsertStyleRequest {
+    /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * Style to insert.
+     */
+    public styleInsert: importedStyleInsert.StyleInsert;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+    
+    public constructor(init?: Partial<InsertStyleRequest>) {        
         Object.assign(this, init);
     } 
 }
@@ -9307,6 +9507,65 @@ export class UpdateSectionPageSetupRequest {
     public revisionDateTime: string;
     
     public constructor(init?: Partial<UpdateSectionPageSetupRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for UpdateStyle operation.
+ */
+export class UpdateStyleRequest {
+    /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * Style properties to update.
+     */
+    public styleUpdate: importedStyleUpdate.StyleUpdate;
+
+    /**
+     * Style name.
+     */
+    public styleName: string;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+    
+    public constructor(init?: Partial<UpdateStyleRequest>) {        
         Object.assign(this, init);
     } 
 }

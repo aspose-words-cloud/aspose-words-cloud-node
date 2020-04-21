@@ -569,6 +569,61 @@ export class WordsApi {
     }
 
     /**
+     * Copy and insert new style to document, returns copied style.
+     * @param requestObj contains request parameters
+     */
+    public async copyStyle(requestObj: model.CopyStyleRequest): Promise<model.WordsIncomingMessage<model.StyleResponse>> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling copyStyle.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/styles/copy"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+			.replace("//", "/");
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling copyStyle.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling copyStyle.');
+        }
+
+        // verify required parameter 'requestObj.styleCopy' is not undefined
+        if (requestObj.styleCopy === undefined) {
+            throw new Error('Required parameter "requestObj.styleCopy" was undefined when calling copyStyle.');
+        }
+
+        // verify required parameter 'requestObj.styleCopy' is not null
+        if (requestObj.styleCopy === null) {
+            throw new Error('Required parameter "requestObj.styleCopy" was null when calling copyStyle.');
+        }
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+            body: ObjectSerializer.serialize(requestObj.styleCopy, requestObj.styleCopy.constructor.name === "Object" ? "importedStyleCopy.StyleCopy" : requestObj.styleCopy.constructor.name),
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "StyleResponse");
+        const result: model.WordsIncomingMessage<model.StyleResponse> = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Creates new document. Document is created with format which is recognized from file extensions. Supported extensions: \".doc\", \".docx\", \".docm\", \".dot\", \".dotm\", \".dotx\", \".flatopc\", \".fopc\", \".flatopc_macro\", \".fopc_macro\", \".flatopc_template\", \".fopc_template\", \".flatopc_template_macro\", \".fopc_template_macro\", \".wordml\", \".wml\", \".rtf\".
      * @param requestObj contains request parameters
      */
@@ -5554,6 +5609,99 @@ export class WordsApi {
     }
 
     /**
+     * This resource represents one of the styles contained in the document.
+     * @param requestObj contains request parameters
+     */
+    public async getStyle(requestObj: model.GetStyleRequest): Promise<model.WordsIncomingMessage<model.StyleResponse>> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getStyle.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/styles/{styleName}"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "styleName" + "}", (requestObj.styleName !== null) ? "/" + String(requestObj.styleName) : "")
+			.replace("//", "/");
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling getStyle.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling getStyle.');
+        }
+
+        // verify required parameter 'requestObj.styleName' is not undefined
+        if (requestObj.styleName === undefined) {
+            throw new Error('Required parameter "requestObj.styleName" was undefined when calling getStyle.');
+        }
+
+        // verify required parameter 'requestObj.styleName' is not null
+        if (requestObj.styleName === null) {
+            throw new Error('Required parameter "requestObj.styleName" was null when calling getStyle.');
+        }
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "StyleResponse");
+        const result: model.WordsIncomingMessage<model.StyleResponse> = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Returns a list of styles that are contained in the document.
+     * @param requestObj contains request parameters
+     */
+    public async getStyles(requestObj: model.GetStylesRequest): Promise<model.WordsIncomingMessage<model.StylesResponse>> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getStyles.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/styles"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+			.replace("//", "/");
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling getStyles.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling getStyles.');
+        }
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "StylesResponse");
+        const result: model.WordsIncomingMessage<model.StylesResponse> = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Returns a table.
      * @param requestObj contains request parameters
      */
@@ -6946,6 +7094,61 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "RunResponse");
         const result: model.WordsIncomingMessage<model.RunResponse> = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Adds style to document, returns added style.
+     * @param requestObj contains request parameters
+     */
+    public async insertStyle(requestObj: model.InsertStyleRequest): Promise<model.WordsIncomingMessage<model.StyleResponse>> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling insertStyle.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/styles/insert"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+			.replace("//", "/");
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling insertStyle.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling insertStyle.');
+        }
+
+        // verify required parameter 'requestObj.styleInsert' is not undefined
+        if (requestObj.styleInsert === undefined) {
+            throw new Error('Required parameter "requestObj.styleInsert" was undefined when calling insertStyle.');
+        }
+
+        // verify required parameter 'requestObj.styleInsert' is not null
+        if (requestObj.styleInsert === null) {
+            throw new Error('Required parameter "requestObj.styleInsert" was null when calling insertStyle.');
+        }
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+            body: ObjectSerializer.serialize(requestObj.styleInsert, requestObj.styleInsert.constructor.name === "Object" ? "importedStyleInsert.StyleInsert" : requestObj.styleInsert.constructor.name),
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "StyleResponse");
+        const result: model.WordsIncomingMessage<model.StyleResponse> = {body, response};
         return Promise.resolve(result);
     }
 
@@ -9920,6 +10123,72 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "SectionPageSetupResponse");
         const result: model.WordsIncomingMessage<model.SectionPageSetupResponse> = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Updates style properties, returns updated style.
+     * @param requestObj contains request parameters
+     */
+    public async updateStyle(requestObj: model.UpdateStyleRequest): Promise<model.WordsIncomingMessage<model.StyleResponse>> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling updateStyle.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/styles/{styleName}/update"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "styleName" + "}", (requestObj.styleName !== null) ? "/" + String(requestObj.styleName) : "")
+			.replace("//", "/");
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling updateStyle.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling updateStyle.');
+        }
+
+        // verify required parameter 'requestObj.styleUpdate' is not undefined
+        if (requestObj.styleUpdate === undefined) {
+            throw new Error('Required parameter "requestObj.styleUpdate" was undefined when calling updateStyle.');
+        }
+
+        // verify required parameter 'requestObj.styleUpdate' is not null
+        if (requestObj.styleUpdate === null) {
+            throw new Error('Required parameter "requestObj.styleUpdate" was null when calling updateStyle.');
+        }
+
+        // verify required parameter 'requestObj.styleName' is not undefined
+        if (requestObj.styleName === undefined) {
+            throw new Error('Required parameter "requestObj.styleName" was undefined when calling updateStyle.');
+        }
+
+        // verify required parameter 'requestObj.styleName' is not null
+        if (requestObj.styleName === null) {
+            throw new Error('Required parameter "requestObj.styleName" was null when calling updateStyle.');
+        }
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+            body: ObjectSerializer.serialize(requestObj.styleUpdate, requestObj.styleUpdate.constructor.name === "Object" ? "importedStyleUpdate.StyleUpdate" : requestObj.styleUpdate.constructor.name),
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "StyleResponse");
+        const result: model.WordsIncomingMessage<model.StyleResponse> = {body, response};
         return Promise.resolve(result);
     }
 

@@ -26,6 +26,7 @@ import { expect } from "chai";
 import "mocha";
 
 import { GetStylesRequest, GetStyleRequest, UpdateStyleRequest, InsertStyleRequest, CopyStyleRequest, StyleUpdate, StyleCopy, StyleInsert } from "../../src/model/model";
+import { GetStyleFromDocumentElementRequest, ApplyStyleToDocumentElementRequest, StyleApply } from "../../src/model/model";
 import * as BaseTest from "../baseTest";
 
 const dataFolder = "DocumentElements/Styles/";
@@ -168,6 +169,64 @@ describe("styles", () => {
 
                     // Act
                     return wordsApi.copyStyle(request)
+                        .then((result1) => {
+                            // Assert
+                            expect(result1.response.statusCode).to.equal(200);
+                        });
+                });
+        });
+    });
+
+    describe("getStyleFromDocumentElement function", () => {
+        it("should return response with code 200", () => {
+
+            const wordsApi = BaseTest.initializeWordsApi();
+
+            const localPath = BaseTest.localBaseTestDataFolder + dataFolder + "GetStyles.docx";
+            const remoteFileName = "TestGetStyleFromDocumentElement.docx";
+            const remotePath = BaseTest.remoteBaseTestDataFolder + dataFolder;
+
+            return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
+                    const request = new GetStyleFromDocumentElementRequest();
+                    request.name = remoteFileName;
+                    request.styledNodePath = "paragraphs/1/paragraphFormat";
+                    request.folder = remotePath;
+
+                    // Act
+                    return wordsApi.getStyleFromDocumentElement(request)
+                        .then((result1) => {
+                            // Assert
+                            expect(result1.response.statusCode).to.equal(200);
+                        });
+                });
+        });
+    }); 
+
+    describe("applyStyleToDocumentElement function", () => {
+        it("should return response with code 200", () => {
+
+            const wordsApi = BaseTest.initializeWordsApi();
+
+            const localPath = BaseTest.localBaseTestDataFolder + dataFolder + "GetStyles.docx";
+            const remoteFileName = "TestApplyStyleToDocumentElement.docx";
+            const remotePath = BaseTest.remoteBaseTestDataFolder + dataFolder;
+
+            return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
+                    const data = new StyleApply();
+                    data.styleName = "Heading 1";
+                    
+                    const request = new ApplyStyleToDocumentElementRequest();
+                    request.name = remoteFileName;
+                    request.styleApply = data;
+                    request.styledNodePath = "paragraphs/1/paragraphFormat";
+                    request.folder = remotePath;
+
+                    // Act
+                    return wordsApi.applyStyleToDocumentElement(request)
                         .then((result1) => {
                             // Assert
                             expect(result1.response.statusCode).to.equal(200);

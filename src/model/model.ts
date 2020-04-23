@@ -216,6 +216,7 @@ import * as importedStorageFile from './storageFile';
 import * as importedStoryChildNodes from './storyChildNodes';
 import * as importedStringFormatData from './stringFormatData';
 import * as importedStyle from './style';
+import * as importedStyleApply from './styleApply';
 import * as importedStyleCopy from './styleCopy';
 import * as importedStyleInsert from './styleInsert';
 import * as importedStyleResponse from './styleResponse';
@@ -447,6 +448,7 @@ export * from './storageFile';
 export * from './storyChildNodes';
 export * from './stringFormatData';
 export * from './style';
+export * from './styleApply';
 export * from './styleCopy';
 export * from './styleInsert';
 export * from './styleResponse';
@@ -765,6 +767,7 @@ const typeMap = {
     StoryChildNodes: importedStoryChildNodes.StoryChildNodes,
     StringFormatData: importedStringFormatData.StringFormatData,
     Style: importedStyle.Style,
+    StyleApply: importedStyleApply.StyleApply,
     StyleCopy: importedStyleCopy.StyleCopy,
     StyleInsert: importedStyleInsert.StyleInsert,
     StyleResponse: importedStyleResponse.StyleResponse,
@@ -894,6 +897,65 @@ export class AppendDocumentRequest {
     public revisionDateTime: string;
     
     public constructor(init?: Partial<AppendDocumentRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for ApplyStyleToDocmentElement operation.
+ */
+export class ApplyStyleToDocmentElementRequest {
+    /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * Style to apply.
+     */
+    public styleApply: importedStyleApply.StyleApply;
+
+    /**
+     * Path to the node of IStyledDocumentElement.
+     */
+    public styledNodePath: string;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+    
+    public constructor(init?: Partial<ApplyStyleToDocmentElementRequest>) {        
         Object.assign(this, init);
     } 
 }
@@ -5560,6 +5622,45 @@ export class GetStyleRequest {
     public password: string;
     
     public constructor(init?: Partial<GetStyleRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for GetStyleFromDocumentElement operation.
+ */
+export class GetStyleFromDocumentElementRequest {
+    /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * Path to the node of IStyledDocumentElement.
+     */
+    public styledNodePath: string;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+    
+    public constructor(init?: Partial<GetStyleFromDocumentElementRequest>) {        
         Object.assign(this, init);
     } 
 }

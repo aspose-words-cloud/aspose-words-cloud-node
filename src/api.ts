@@ -9704,7 +9704,7 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling updateListLevel.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/lists/{listId}/{listLevel}"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/lists/{listId}/listLevels/{listLevel}"
             .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("/{" + "listId" + "}", (requestObj.listId !== null) ? "/" + String(requestObj.listId) : "")
             .replace("/{" + "listLevel" + "}", (requestObj.listLevel !== null) ? "/" + String(requestObj.listLevel) : "")

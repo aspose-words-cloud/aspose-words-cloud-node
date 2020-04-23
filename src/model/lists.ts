@@ -22,16 +22,20 @@
 * SOFTWARE.
 */
 import { AttributeInfo } from '../internal/attributeInfo';
+import { LinkElement } from './linkElement';
 import { ListInfo } from './listInfo';
+import { WordsApiLink } from './wordsApiLink';
 
 export const importsMapLists = {
+    LinkElement,
     ListInfo,
+    WordsApiLink,
 };
 
 /**
  * Represents an array of document lists.
  */
-export class Lists {
+export class Lists extends LinkElement {
     /**
      * Attribute type map
      */
@@ -46,7 +50,7 @@ export class Lists {
      * Returns attribute type map
      */
     public static getAttributeTypeMap() {
-        return Lists.attributeTypeMap;
+        return super.getAttributeTypeMap().concat(Lists.attributeTypeMap);
     }
 
     /**
@@ -55,7 +59,7 @@ export class Lists {
     public listInfo: Array<ListInfo>;
     
     public constructor(init?: Partial<Lists>) {
-        
+        super(init);
         Object.assign(this, init);
     }        
 }

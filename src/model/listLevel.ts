@@ -23,24 +23,53 @@
 */
 import { AttributeInfo } from '../internal/attributeInfo';
 import { Font } from './font';
+import { LinkElement } from './linkElement';
 import { Style } from './style';
+import { WordsApiLink } from './wordsApiLink';
 
 export const importsMapListLevel = {
     Font,
+    LinkElement,
     Style,
+    WordsApiLink,
 };
 
 /**
  * Represents a document list levels.
  */
-export class ListLevel {
+export class ListLevel extends LinkElement {
     /**
      * Attribute type map
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "startAt",
-            baseName: "StartAt",
+            name: "alignment",
+            baseName: "Alignment",
+            type: "ListLevel.AlignmentEnum",
+        },        
+        {
+            name: "font",
+            baseName: "Font",
+            type: "Font",
+        },        
+        {
+            name: "isLegal",
+            baseName: "IsLegal",
+            type: "boolean",
+        },        
+        {
+            name: "linkedStyle",
+            baseName: "LinkedStyle",
+            type: "Style",
+        },        
+        {
+            name: "numberFormat",
+            baseName: "NumberFormat",
+            type: "string",
+        },        
+        {
+            name: "numberPosition",
+            baseName: "NumberPosition",
             type: "number",
         },        
         {
@@ -49,43 +78,18 @@ export class ListLevel {
             type: "ListLevel.NumberStyleEnum",
         },        
         {
-            name: "numberFormat",
-            baseName: "NumberFormat",
-            type: "string",
-        },        
-        {
-            name: "alignment",
-            baseName: "Alignment",
-            type: "ListLevel.AlignmentEnum",
-        },        
-        {
-            name: "isLegal",
-            baseName: "IsLegal",
-            type: "boolean",
-        },        
-        {
             name: "restartAfterLevel",
             baseName: "RestartAfterLevel",
             type: "number",
         },        
         {
-            name: "trailingCharacter",
-            baseName: "TrailingCharacter",
-            type: "ListLevel.TrailingCharacterEnum",
-        },        
-        {
-            name: "font",
-            baseName: "Font",
-            type: "Font",
+            name: "startAt",
+            baseName: "StartAt",
+            type: "number",
         },        
         {
             name: "tabPosition",
             baseName: "TabPosition",
-            type: "number",
-        },        
-        {
-            name: "numberPosition",
-            baseName: "NumberPosition",
             type: "number",
         },        
         {
@@ -94,52 +98,22 @@ export class ListLevel {
             type: "number",
         },        
         {
-            name: "linkedStyle",
-            baseName: "LinkedStyle",
-            type: "Style",
+            name: "trailingCharacter",
+            baseName: "TrailingCharacter",
+            type: "ListLevel.TrailingCharacterEnum",
         }    ];
 
     /**
      * Returns attribute type map
      */
     public static getAttributeTypeMap() {
-        return ListLevel.attributeTypeMap;
+        return super.getAttributeTypeMap().concat(ListLevel.attributeTypeMap);
     }
 
-    /**
-     * Gets or sets returns or sets the starting number for this list level.
-     */
-    public startAt: number;
-    
-    /**
-     * Gets or sets returns or sets the number style for this list level.
-     */
-    public numberStyle: ListLevel.NumberStyleEnum;
-    
-    /**
-     * Gets or sets returns or sets the number format for the list level.
-     */
-    public numberFormat: string;
-    
     /**
      * Gets or sets the justification of the actual number of the list item.
      */
     public alignment: ListLevel.AlignmentEnum;
-    
-    /**
-     * Gets or sets a value indicating whether true if the level turns all inherited numbers to Arabic, false if it preserves their number style.
-     */
-    public isLegal: boolean;
-    
-    /**
-     * Gets or sets or returns the list level that must appear before the specified list level restarts numbering.
-     */
-    public restartAfterLevel: number;
-    
-    /**
-     * Gets or sets returns or sets the character inserted after the number for the list level.
-     */
-    public trailingCharacter: ListLevel.TrailingCharacterEnum;
     
     /**
      * Gets or sets font.
@@ -147,9 +121,19 @@ export class ListLevel {
     public font: Font;
     
     /**
-     * Gets or sets returns or sets the tab position (in points) for the list level.
+     * Gets or sets a value indicating whether true if the level turns all inherited numbers to Arabic, false if it preserves their number style.
      */
-    public tabPosition: number;
+    public isLegal: boolean;
+    
+    /**
+     * Gets or sets linkedStyle.
+     */
+    public linkedStyle: Style;
+    
+    /**
+     * Gets or sets returns or sets the number format for the list level.
+     */
+    public numberFormat: string;
     
     /**
      * Gets or sets returns or sets the position (in points) of the number or bullet for the list level.
@@ -157,17 +141,37 @@ export class ListLevel {
     public numberPosition: number;
     
     /**
+     * Gets or sets returns or sets the number style for this list level.
+     */
+    public numberStyle: ListLevel.NumberStyleEnum;
+    
+    /**
+     * Gets or sets or returns the list level that must appear before the specified list level restarts numbering.
+     */
+    public restartAfterLevel: number;
+    
+    /**
+     * Gets or sets returns or sets the starting number for this list level.
+     */
+    public startAt: number;
+    
+    /**
+     * Gets or sets returns or sets the tab position (in points) for the list level.
+     */
+    public tabPosition: number;
+    
+    /**
      * Gets or sets returns or sets the position (in points) for the second line of wrapping text for the list level.
      */
     public textPosition: number;
     
     /**
-     * Gets or sets linkedStyle.
+     * Gets or sets returns or sets the character inserted after the number for the list level.
      */
-    public linkedStyle: Style;
+    public trailingCharacter: ListLevel.TrailingCharacterEnum;
     
     public constructor(init?: Partial<ListLevel>) {
-        
+        super(init);
         Object.assign(this, init);
     }        
 }
@@ -178,6 +182,11 @@ export class ListLevel {
 // tslint:disable:quotemark
 // tslint:disable-next-line:no-namespace
 export namespace ListLevel {
+    export enum AlignmentEnum {
+        Left = 'Left' as any,
+        Center = 'Center' as any,
+        Right = 'Right' as any,
+    }
     export enum NumberStyleEnum {
         Arabic = 'Arabic' as any,
         UppercaseRoman = 'UppercaseRoman' as any,
@@ -241,11 +250,6 @@ export namespace ListLevel {
         UppercaseRussian = 'UppercaseRussian' as any,
         None = 'None' as any,
         Custom = 'Custom' as any,
-    }
-    export enum AlignmentEnum {
-        Left = 'Left' as any,
-        Center = 'Center' as any,
-        Right = 'Right' as any,
     }
     export enum TrailingCharacterEnum {
         Tab = 'Tab' as any,

@@ -22,16 +22,20 @@
 * SOFTWARE.
 */
 import { AttributeInfo } from '../internal/attributeInfo';
+import { LinkElement } from './linkElement';
 import { ListLevel } from './listLevel';
+import { WordsApiLink } from './wordsApiLink';
 
 export const importsMapListLevels = {
+    LinkElement,
     ListLevel,
+    WordsApiLink,
 };
 
 /**
  * Represents a single document list.
  */
-export class ListLevels {
+export class ListLevels extends LinkElement {
     /**
      * Attribute type map
      */
@@ -46,7 +50,7 @@ export class ListLevels {
      * Returns attribute type map
      */
     public static getAttributeTypeMap() {
-        return ListLevels.attributeTypeMap;
+        return super.getAttributeTypeMap().concat(ListLevels.attributeTypeMap);
     }
 
     /**
@@ -55,7 +59,7 @@ export class ListLevels {
     public listLevel: Array<ListLevel>;
     
     public constructor(init?: Partial<ListLevels>) {
-        
+        super(init);
         Object.assign(this, init);
     }        
 }

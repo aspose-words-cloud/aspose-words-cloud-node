@@ -22,26 +22,35 @@
 * SOFTWARE.
 */
 import { AttributeInfo } from '../internal/attributeInfo';
+import { LinkElement } from './linkElement';
 import { ListLevels } from './listLevels';
 import { Style } from './style';
+import { WordsApiLink } from './wordsApiLink';
 
 export const importsMapListInfo = {
+    LinkElement,
     ListLevels,
     Style,
+    WordsApiLink,
 };
 
 /**
  * Represents a single document list.
  */
-export class ListInfo {
+export class ListInfo extends LinkElement {
     /**
      * Attribute type map
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "listId",
-            baseName: "ListId",
-            type: "number",
+            name: "isListStyleDefinition",
+            baseName: "IsListStyleDefinition",
+            type: "boolean",
+        },        
+        {
+            name: "isListStyleReference",
+            baseName: "IsListStyleReference",
+            type: "boolean",
         },        
         {
             name: "isMultiLevel",
@@ -54,37 +63,37 @@ export class ListInfo {
             type: "boolean",
         },        
         {
-            name: "isListStyleDefinition",
-            baseName: "IsListStyleDefinition",
-            type: "boolean",
-        },        
-        {
-            name: "isListStyleReference",
-            baseName: "IsListStyleReference",
-            type: "boolean",
-        },        
-        {
-            name: "style",
-            baseName: "Style",
-            type: "Style",
+            name: "listId",
+            baseName: "ListId",
+            type: "number",
         },        
         {
             name: "listLevels",
             baseName: "ListLevels",
             type: "ListLevels",
+        },        
+        {
+            name: "style",
+            baseName: "Style",
+            type: "Style",
         }    ];
 
     /**
      * Returns attribute type map
      */
     public static getAttributeTypeMap() {
-        return ListInfo.attributeTypeMap;
+        return super.getAttributeTypeMap().concat(ListInfo.attributeTypeMap);
     }
 
     /**
-     * Gets or sets the unique identifier of the list.
+     * Gets or sets a value indicating whether returns true if this list is a definition of a list style.
      */
-    public listId: number;
+    public isListStyleDefinition: boolean;
+    
+    /**
+     * Gets or sets a value indicating whether returns true if this list is a reference to a list style.
+     */
+    public isListStyleReference: boolean;
     
     /**
      * Gets or sets a value indicating whether returns true when the list contains 9 levels; false when 1 level.
@@ -97,27 +106,22 @@ export class ListInfo {
     public isRestartAtEachSection: boolean;
     
     /**
-     * Gets or sets a value indicating whether returns true if this list is a definition of a list style.
+     * Gets or sets the unique identifier of the list.
      */
-    public isListStyleDefinition: boolean;
-    
-    /**
-     * Gets or sets a value indicating whether returns true if this list is a reference to a list style.
-     */
-    public isListStyleReference: boolean;
-    
-    /**
-     * Gets or sets style.
-     */
-    public style: Style;
+    public listId: number;
     
     /**
      * Gets or sets listLevels.
      */
     public listLevels: ListLevels;
     
+    /**
+     * Gets or sets style.
+     */
+    public style: Style;
+    
     public constructor(init?: Partial<ListInfo>) {
-        
+        super(init);
         Object.assign(this, init);
     }        
 }

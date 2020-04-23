@@ -151,9 +151,9 @@ export class WordsApi {
      * Apply style to document node.
      * @param requestObj contains request parameters
      */
-    public async applyStyleToDocmentElement(requestObj: model.ApplyStyleToDocmentElementRequest): Promise<model.WordsIncomingMessage<model.WordsResponse>> {
+    public async applyStyleToDocumentElement(requestObj: model.ApplyStyleToDocumentElementRequest): Promise<model.WordsIncomingMessage<model.WordsResponse>> {
         if (requestObj === null || requestObj === undefined) {
-            throw new Error('Required parameter "requestObj" was null or undefined when calling applyStyleToDocmentElement.');
+            throw new Error('Required parameter "requestObj" was null or undefined when calling applyStyleToDocumentElement.');
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{styledNodePath}/style"
@@ -164,32 +164,32 @@ export class WordsApi {
 
         // verify required parameter 'requestObj.name' is not undefined
         if (requestObj.name === undefined) {
-            throw new Error('Required parameter "requestObj.name" was undefined when calling applyStyleToDocmentElement.');
+            throw new Error('Required parameter "requestObj.name" was undefined when calling applyStyleToDocumentElement.');
         }
 
         // verify required parameter 'requestObj.name' is not null
         if (requestObj.name === null) {
-            throw new Error('Required parameter "requestObj.name" was null when calling applyStyleToDocmentElement.');
+            throw new Error('Required parameter "requestObj.name" was null when calling applyStyleToDocumentElement.');
         }
 
         // verify required parameter 'requestObj.styleApply' is not undefined
         if (requestObj.styleApply === undefined) {
-            throw new Error('Required parameter "requestObj.styleApply" was undefined when calling applyStyleToDocmentElement.');
+            throw new Error('Required parameter "requestObj.styleApply" was undefined when calling applyStyleToDocumentElement.');
         }
 
         // verify required parameter 'requestObj.styleApply' is not null
         if (requestObj.styleApply === null) {
-            throw new Error('Required parameter "requestObj.styleApply" was null when calling applyStyleToDocmentElement.');
+            throw new Error('Required parameter "requestObj.styleApply" was null when calling applyStyleToDocumentElement.');
         }
 
         // verify required parameter 'requestObj.styledNodePath' is not undefined
         if (requestObj.styledNodePath === undefined) {
-            throw new Error('Required parameter "requestObj.styledNodePath" was undefined when calling applyStyleToDocmentElement.');
+            throw new Error('Required parameter "requestObj.styledNodePath" was undefined when calling applyStyleToDocumentElement.');
         }
 
         // verify required parameter 'requestObj.styledNodePath' is not null
         if (requestObj.styledNodePath === null) {
-            throw new Error('Required parameter "requestObj.styledNodePath" was null when calling applyStyleToDocmentElement.');
+            throw new Error('Required parameter "requestObj.styledNodePath" was null when calling applyStyleToDocumentElement.');
         }
         
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);

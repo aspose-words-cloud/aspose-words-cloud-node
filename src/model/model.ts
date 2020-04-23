@@ -902,9 +902,9 @@ export class AppendDocumentRequest {
 }
 
 /**
- * Request model for ApplyStyleToDocmentElement operation.
+ * Request model for ApplyStyleToDocumentElement operation.
  */
-export class ApplyStyleToDocmentElementRequest {
+export class ApplyStyleToDocumentElementRequest {
     /**
      * The document name.
      */
@@ -955,7 +955,7 @@ export class ApplyStyleToDocmentElementRequest {
      */
     public revisionDateTime: string;
     
-    public constructor(init?: Partial<ApplyStyleToDocmentElementRequest>) {        
+    public constructor(init?: Partial<ApplyStyleToDocumentElementRequest>) {        
         Object.assign(this, init);
     } 
 }

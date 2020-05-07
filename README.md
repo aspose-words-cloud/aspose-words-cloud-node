@@ -73,27 +73,46 @@ The complete source code is available at [GitHub Repository](https://github.com/
 - [request](https://www.npmjs.com/package/request) (version 2.88.0+)
 - [request-debug](https://www.npmjs.com/package/request-debug) (version 0.2.0+)
 
-## Convert DOC to PDF via Node.js
+## Convert DOCX to PDF via Node.js
 
 ```js
-const { WordsApi, PostDocumentSaveAsRequest, SaveOptionsData } = require("asposewordscloud");
- 
-wordsApi = new WordsApi(AppSid, AppKey);
- 
-var request = new PostDocumentSaveAsRequest({
-    name: "fileStoredInCloud.doc",
-    saveOptionsData: new SaveOptionsData(
-        {
-            saveFormat: "pdf",
-            fileName: "destination.pdf"
-        })
-});
- 
-wordsApi.postDocumentSaveAs(request)
-    .then((result) => {
-        // Deal with a result
-        console.log(result.response.statusCode);
-        console.log(result.body);
+import { createReadStream } from "fs";
+import { WordsApi, SaveAsRequest, UploadFileRequest, SaveOptionsData, WordsApiErrorResponse } from "asposewordscloud";
+
+// set your credentials here
+const AppSid = "...";
+const AppKey = "...";
+
+// path to the docx file to convert
+const localPath = "...";
+
+var wordsApi = new WordsApi(AppSid, AppKey);
+
+// upload file to the Aspose cloud
+const uploadRequest = new UploadFileRequest();
+uploadRequest.path = "uploaded.docx";
+uploadRequest.fileContent = createReadStream(localPath);
+
+wordsApi.uploadFile(uploadRequest)
+    .then((uploadResult) => {
+        // save the file as pdf in the cloud
+        var request = new SaveAsRequest({
+            name: "uploaded.docx",
+            saveOptionsData: new SaveOptionsData(
+                {
+                    saveFormat: "pdf",
+                    fileName: "destination.pdf"
+                })
+        });
+         
+        wordsApi.saveAs(request)
+            .then((result) => {
+                // deal with the pdf file
+            })
+            .catch(function(err) {
+                console.log(err.reponse.statusCode);
+                console.log(err.body);
+            });
     })
     .catch(function(err) {
         console.log(err.reponse.statusCode);

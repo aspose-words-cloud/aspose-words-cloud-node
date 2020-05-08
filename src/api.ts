@@ -148,7 +148,7 @@ export class WordsApi {
     }
 
     /**
-     * Apply style to document node.
+     * Apply a style to the document node.
      * @param requestObj contains request parameters
      */
     public async applyStyleToDocumentElement(requestObj: model.ApplyStyleToDocumentElementRequest): Promise<model.WordsIncomingMessage<model.WordsResponse>> {
@@ -635,7 +635,7 @@ export class WordsApi {
     }
 
     /**
-     * Copy and insert new style to document, returns copied style.
+     * Copy and insert a new style to the document, returns an copied style.
      * @param requestObj contains request parameters
      */
     public async copyStyle(requestObj: model.CopyStyleRequest): Promise<model.WordsIncomingMessage<model.StyleResponse>> {
@@ -5727,7 +5727,7 @@ export class WordsApi {
     }
 
     /**
-     * Gets style from document node.
+     * Gets a style from the document node.
      * @param requestObj contains request parameters
      */
     public async getStyleFromDocumentElement(requestObj: model.GetStyleFromDocumentElementRequest): Promise<model.WordsIncomingMessage<model.StyleResponse>> {
@@ -5779,7 +5779,7 @@ export class WordsApi {
     }
 
     /**
-     * Returns a list of styles that are contained in the document.
+     * Returns a list of styles contained in the document.
      * @param requestObj contains request parameters
      */
     public async getStyles(requestObj: model.GetStylesRequest): Promise<model.WordsIncomingMessage<model.StylesResponse>> {
@@ -7216,7 +7216,7 @@ export class WordsApi {
     }
 
     /**
-     * Adds style to document, returns added style.
+     * Adds a style to the document, returns an added style.
      * @param requestObj contains request parameters
      */
     public async insertStyle(requestObj: model.InsertStyleRequest): Promise<model.WordsIncomingMessage<model.StyleResponse>> {
@@ -10245,7 +10245,7 @@ export class WordsApi {
     }
 
     /**
-     * Updates style properties, returns updated style.
+     * Updates a style properties, returns an updated style.
      * @param requestObj contains request parameters
      */
     public async updateStyle(requestObj: model.UpdateStyleRequest): Promise<model.WordsIncomingMessage<model.StyleResponse>> {

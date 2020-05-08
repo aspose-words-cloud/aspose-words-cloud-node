@@ -41,8 +41,8 @@ export class Styles extends LinkElement {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "style",
-            baseName: "Style",
+            name: "styleList",
+            baseName: "StyleList",
             type: "Array<Style>",
         }    ];
 
@@ -56,7 +56,7 @@ export class Styles extends LinkElement {
     /**
      * Gets or sets array of document styles.
      */
-    public style: Array<Style>;
+    public styleList: Array<Style>;
     
     public constructor(init?: Partial<Styles>) {
         super(init);

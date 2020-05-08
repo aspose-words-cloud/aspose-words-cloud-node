@@ -965,7 +965,7 @@ export class ApplyStyleToDocumentElementRequest {
  */
 export class BuildReportRequest {
     /**
-     * The document name.
+     * The template name.
      */
     public name: string;
 

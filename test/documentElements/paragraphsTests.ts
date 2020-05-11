@@ -28,10 +28,12 @@ import "mocha";
 import { DeleteParagraphRequest, GetParagraphFormatRequest, GetParagraphRequest, GetParagraphsRequest, InsertParagraphRequest, ParagraphFormat, ParagraphInsert, RenderParagraphRequest, UpdateParagraphFormatRequest } from "../../src/model/model";
 import { DeleteParagraphWithoutNodePathRequest, GetParagraphFormatWithoutNodePathRequest, GetParagraphsWithoutNodePathRequest, GetParagraphWithoutNodePathRequest, RenderParagraphWithoutNodePathRequest } from "../../src/model/model";
 import { GetParagraphListFormatRequest, GetParagraphListFormatWithoutNodePathRequest, UpdateParagraphListFormatRequest, DeleteParagraphListFormatRequest, ListFormatUpdate } from "../../src/model/model";
+import {GetParagraphTabStopsRequest, InsertOrUpdateParagraphTabStopRequest, TabStopInsert, TabStopBase, DeleteAllParagraphTabStopsRequest, DeleteParagraphTabStopRequest}  from "../../src/model/model";
 import * as BaseTest from "../baseTest";
 
 const testFolder = "DocumentElements/Paragraphs";
 const testListFolder = "DocumentElements/ParagraphListFormat";
+const tabStopFolder = "DocumentElements/Paragraphs";
 
 describe("paragraphs", () => {
     describe("getParagraphs function", () => {
@@ -494,4 +496,119 @@ describe("paragraphs", () => {
                 });
         });
     });
+
+    describe("getParagraphTabStops function", () => {
+        it("should return response with code 200", () => {
+
+            const wordsApi = BaseTest.initializeWordsApi();
+            const filename = "ParagraphTabStops.docx";
+            const localPath = BaseTest.localBaseTestDataFolder + tabStopFolder + "/" + filename;
+            const remotePath = BaseTest.remoteBaseTestDataFolder + tabStopFolder;
+
+            return wordsApi.uploadFileToStorage(remotePath + "/" + filename, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
+                    const request = new GetParagraphTabStopsRequest();
+                    request.name = filename;
+                    request.nodePath = "";
+                    request.folder = remotePath;
+                    request.index = 0;
+
+                    // Act
+                    return wordsApi.getParagraphTabStops(request)
+                        .then((result1) => {
+                            // Assert
+                            expect(result1.response.statusCode).to.equal(200);
+                        });
+                });
+        });
+    }); 
+
+    describe("insertOrUpdateParagraphTabStop function", () => {
+        it("should return response with code 200", () => {
+
+            const wordsApi = BaseTest.initializeWordsApi();
+            const filename = "ParagraphTabStops.docx";
+            const localPath = BaseTest.localBaseTestDataFolder + tabStopFolder + "/" + filename;
+            const remotePath = BaseTest.remoteBaseTestDataFolder + tabStopFolder;
+
+            return wordsApi.uploadFileToStorage(remotePath + "/" + filename, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
+                    const request = new InsertOrUpdateParagraphTabStopRequest();
+                    request.name = filename;
+                    request.nodePath = "";
+                    request.folder = remotePath;
+                    request.index = 0;
+
+                    const dto =  new TabStopInsert();
+                    dto.alignment = TabStopBase.AlignmentEnum.Left;
+                    dto.leader = TabStopBase.LeaderEnum.None;
+                    dto.position = 72;
+                    request.dto = dto;
+
+                    // Act
+                    return wordsApi.insertOrUpdateParagraphTabStop(request)
+                        .then((result1) => {
+                            // Assert
+                            expect(result1.response.statusCode).to.equal(200);
+                        });
+                });
+        });
+    }); 
+
+    describe("deleteAllParagraphTabStops function", () => {
+        it("should return response with code 200", () => {
+
+            const wordsApi = BaseTest.initializeWordsApi();
+            const filename = "ParagraphTabStops.docx";
+            const localPath = BaseTest.localBaseTestDataFolder + tabStopFolder + "/" + filename;
+            const remotePath = BaseTest.remoteBaseTestDataFolder + tabStopFolder;
+
+            return wordsApi.uploadFileToStorage(remotePath + "/" + filename, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
+                    const request = new DeleteAllParagraphTabStopsRequest();
+                    request.name = filename;
+                    request.nodePath = "";
+                    request.folder = remotePath;
+                    request.index = 0;
+
+                    // Act
+                    return wordsApi.deleteAllParagraphTabStops(request)
+                        .then((result1) => {
+                            // Assert
+                            expect(result1.response.statusCode).to.equal(200);
+                        });
+                });
+        });
+    }); 
+
+    describe("deleteParagraphTabStop function", () => {
+        it("should return response with code 200", () => {
+
+            const wordsApi = BaseTest.initializeWordsApi();
+            const filename = "ParagraphTabStops.docx";
+            const localPath = BaseTest.localBaseTestDataFolder + tabStopFolder + "/" + filename;
+            const remotePath = BaseTest.remoteBaseTestDataFolder + tabStopFolder;
+
+            return wordsApi.uploadFileToStorage(remotePath + "/" + filename, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
+                    const request = new DeleteParagraphTabStopRequest();
+                    request.name = filename;
+                    request.nodePath = "";
+                    request.folder = remotePath;
+                    request.index = 0;
+                    request.position = 72;
+
+                    // Act
+                    return wordsApi.deleteParagraphTabStop(request)
+                        .then((result1) => {
+                            // Assert
+                            expect(result1.response.statusCode).to.equal(200);
+                        });
+                });
+        });
+    }); 
 });

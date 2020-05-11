@@ -209,6 +209,7 @@ import * as importedSectionLinkCollection from './sectionLinkCollection';
 import * as importedSectionLinkCollectionResponse from './sectionLinkCollectionResponse';
 import * as importedSectionPageSetupResponse from './sectionPageSetupResponse';
 import * as importedSectionResponse from './sectionResponse';
+import * as importedShading from './shading';
 import * as importedSplitDocumentResponse from './splitDocumentResponse';
 import * as importedSplitDocumentResult from './splitDocumentResult';
 import * as importedStatDataResponse from './statDataResponse';
@@ -224,6 +225,10 @@ import * as importedStyleUpdate from './styleUpdate';
 import * as importedStyles from './styles';
 import * as importedStylesResponse from './stylesResponse';
 import * as importedSvgSaveOptionsData from './svgSaveOptionsData';
+import * as importedTabStop from './tabStop';
+import * as importedTabStopBase from './tabStopBase';
+import * as importedTabStopInsert from './tabStopInsert';
+import * as importedTabStopsResponse from './tabStopsResponse';
 import * as importedTable from './table';
 import * as importedTableCell from './tableCell';
 import * as importedTableCellFormat from './tableCellFormat';
@@ -441,6 +446,7 @@ export * from './sectionLinkCollection';
 export * from './sectionLinkCollectionResponse';
 export * from './sectionPageSetupResponse';
 export * from './sectionResponse';
+export * from './shading';
 export * from './splitDocumentResponse';
 export * from './splitDocumentResult';
 export * from './statDataResponse';
@@ -456,6 +462,10 @@ export * from './styleUpdate';
 export * from './styles';
 export * from './stylesResponse';
 export * from './svgSaveOptionsData';
+export * from './tabStop';
+export * from './tabStopBase';
+export * from './tabStopInsert';
+export * from './tabStopsResponse';
 export * from './table';
 export * from './tableCell';
 export * from './tableCellFormat';
@@ -553,6 +563,7 @@ const enumsMap = {
     "ReplaceRange.TextTypeEnum": importedReplaceRange.ReplaceRange.TextTypeEnum,
     "ReportEngineSettings.DataSourceTypeEnum": importedReportEngineSettings.ReportEngineSettings.DataSourceTypeEnum,
     "SaveOptionsData.Dml3DEffectsRenderingModeEnum": importedSaveOptionsData.SaveOptionsData.Dml3DEffectsRenderingModeEnum,
+    "Shading.TextureEnum": importedShading.Shading.TextureEnum,
     "StringFormatData.AlignmentEnum": importedStringFormatData.StringFormatData.AlignmentEnum,
     "StringFormatData.FormatFlagsEnum": importedStringFormatData.StringFormatData.FormatFlagsEnum,
     "StringFormatData.HotkeyPrefixEnum": importedStringFormatData.StringFormatData.HotkeyPrefixEnum,
@@ -561,6 +572,8 @@ const enumsMap = {
     "Style.StyleIdentifierEnum": importedStyle.Style.StyleIdentifierEnum,
     "Style.TypeEnum": importedStyle.Style.TypeEnum,
     "StyleInsert.StyleTypeEnum": importedStyleInsert.StyleInsert.StyleTypeEnum,
+    "TabStopBase.AlignmentEnum": importedTabStopBase.TabStopBase.AlignmentEnum,
+    "TabStopBase.LeaderEnum": importedTabStopBase.TabStopBase.LeaderEnum,
     "TableCellFormat.HorizontalMergeEnum": importedTableCellFormat.TableCellFormat.HorizontalMergeEnum,
     "TableCellFormat.OrientationEnum": importedTableCellFormat.TableCellFormat.OrientationEnum,
     "TableCellFormat.VerticalAlignmentEnum": importedTableCellFormat.TableCellFormat.VerticalAlignmentEnum,
@@ -760,6 +773,7 @@ const typeMap = {
     SectionLinkCollectionResponse: importedSectionLinkCollectionResponse.SectionLinkCollectionResponse,
     SectionPageSetupResponse: importedSectionPageSetupResponse.SectionPageSetupResponse,
     SectionResponse: importedSectionResponse.SectionResponse,
+    Shading: importedShading.Shading,
     SplitDocumentResponse: importedSplitDocumentResponse.SplitDocumentResponse,
     SplitDocumentResult: importedSplitDocumentResult.SplitDocumentResult,
     StatDataResponse: importedStatDataResponse.StatDataResponse,
@@ -775,6 +789,10 @@ const typeMap = {
     Styles: importedStyles.Styles,
     StylesResponse: importedStylesResponse.StylesResponse,
     SvgSaveOptionsData: importedSvgSaveOptionsData.SvgSaveOptionsData,
+    TabStop: importedTabStop.TabStop,
+    TabStopBase: importedTabStopBase.TabStopBase,
+    TabStopInsert: importedTabStopInsert.TabStopInsert,
+    TabStopsResponse: importedTabStopsResponse.TabStopsResponse,
     Table: importedTable.Table,
     TableCell: importedTableCell.TableCell,
     TableCellFormat: importedTableCellFormat.TableCellFormat,
@@ -2788,6 +2806,109 @@ export class DeleteSectionRequest {
     public revisionDateTime: string;
     
     public constructor(init?: Partial<DeleteSectionRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for DeleteTabStop operation.
+ */
+export class DeleteTabStopRequest {
+    /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * Path to the node which contains paragraph.
+     */
+    public nodePath: string;
+
+    /**
+     * a tab stop position to remove.
+     */
+    public position: number;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+    
+    public constructor(init?: Partial<DeleteTabStopRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for DeleteTabStops operation.
+ */
+export class DeleteTabStopsRequest {
+    /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * Path to the node which contains paragraph.
+     */
+    public nodePath: string;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+    
+    public constructor(init?: Partial<DeleteTabStopsRequest>) {        
         Object.assign(this, init);
     } 
 }
@@ -5193,6 +5314,50 @@ export class GetParagraphListFormatWithoutNodePathRequest {
 }
 
 /**
+ * Request model for GetParagraphTabStops operation.
+ */
+export class GetParagraphTabStopsRequest {
+    /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * Path to the node which contains paragraph.
+     */
+    public nodePath: string;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+    
+    public constructor(init?: Partial<GetParagraphTabStopsRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
  * Request model for GetParagraphWithoutNodePath operation.
  */
 export class GetParagraphWithoutNodePathRequest {
@@ -6759,6 +6924,60 @@ export class InsertListRequest {
     public revisionDateTime: string;
     
     public constructor(init?: Partial<InsertListRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for InsertOrUpdateTabStop operation.
+ */
+export class InsertOrUpdateTabStopRequest {
+    /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * Path to the node which contains paragraph.
+     */
+    public nodePath: string;
+
+    /**
+     * Paragraph tab stop.
+     */
+    public dto: importedTabStopInsert.TabStopInsert;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+    
+    public constructor(init?: Partial<InsertOrUpdateTabStopRequest>) {        
         Object.assign(this, init);
     } 
 }

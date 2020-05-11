@@ -23,10 +23,12 @@
 */
 import { AttributeInfo } from '../internal/attributeInfo';
 import { LinkElement } from './linkElement';
+import { Shading } from './shading';
 import { WordsApiLink } from './wordsApiLink';
 
 export const importsMapParagraphFormat = {
     LinkElement,
+    Shading,
     WordsApiLink,
 };
 
@@ -122,6 +124,11 @@ export class ParagraphFormat extends LinkElement {
             name: "rightIndent",
             baseName: "RightIndent",
             type: "number",
+        },        
+        {
+            name: "shading",
+            baseName: "Shading",
+            type: "Shading",
         },        
         {
             name: "spaceAfter",
@@ -260,6 +267,11 @@ export class ParagraphFormat extends LinkElement {
      * Gets or sets the value (in points) that represents the right indent for paragraph.             
      */
     public rightIndent: number;
+    
+    /**
+     * Gets or sets shading.
+     */
+    public shading: Shading;
     
     /**
      * Gets or sets the amount of spacing (in points) after the paragraph.             

@@ -821,6 +821,65 @@ export class WordsApi {
     }
 
     /**
+     * Remove all tab stops.
+     * @param requestObj contains request parameters
+     */
+    public async deleteAllParagraphTabStops(requestObj: model.DeleteAllParagraphTabStopsRequest): Promise<model.WordsIncomingMessage<model.TabStopsResponse>> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling deleteAllParagraphTabStops.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}/tabstops"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling deleteAllParagraphTabStops.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling deleteAllParagraphTabStops.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling deleteAllParagraphTabStops.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling deleteAllParagraphTabStops.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling deleteAllParagraphTabStops.');
+        }
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        const requestOptions: request.Options = {
+            method: "DELETE",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "TabStopsResponse");
+        const result: model.WordsIncomingMessage<model.TabStopsResponse> = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Resets border properties to default values.              'nodePath' should refer to paragraph, cell or row.
      * @param requestObj contains request parameters
      */
@@ -2032,6 +2091,76 @@ export class WordsApi {
     }
 
     /**
+     * Remove the i-th tab stop.
+     * @param requestObj contains request parameters
+     */
+    public async deleteParagraphTabStop(requestObj: model.DeleteParagraphTabStopRequest): Promise<model.WordsIncomingMessage<model.TabStopsResponse>> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling deleteParagraphTabStop.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}/tabstop"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling deleteParagraphTabStop.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling deleteParagraphTabStop.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling deleteParagraphTabStop.');
+        }
+
+        // verify required parameter 'requestObj.position' is not undefined
+        if (requestObj.position === undefined) {
+            throw new Error('Required parameter "requestObj.position" was undefined when calling deleteParagraphTabStop.');
+        }
+
+        // verify required parameter 'requestObj.position' is not null
+        if (requestObj.position === null) {
+            throw new Error('Required parameter "requestObj.position" was null when calling deleteParagraphTabStop.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling deleteParagraphTabStop.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling deleteParagraphTabStop.');
+        }
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "position", requestObj.position);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        const requestOptions: request.Options = {
+            method: "DELETE",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "TabStopsResponse");
+        const result: model.WordsIncomingMessage<model.TabStopsResponse> = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Removes paragraph from section.
      * @param requestObj contains request parameters
      */
@@ -2194,135 +2323,6 @@ export class WordsApi {
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         return Promise.resolve(response);
-    }
-
-    /**
-     * Remove the i-th tab stop.
-     * @param requestObj contains request parameters
-     */
-    public async deleteTabStop(requestObj: model.DeleteTabStopRequest): Promise<model.WordsIncomingMessage<model.TabStopsResponse>> {
-        if (requestObj === null || requestObj === undefined) {
-            throw new Error('Required parameter "requestObj" was null or undefined when calling deleteTabStop.');
-        }
-
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}/tabstop"
-            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
-			.replace("//", "/");
-        const queryParameters: any = {};
-
-        // verify required parameter 'requestObj.name' is not undefined
-        if (requestObj.name === undefined) {
-            throw new Error('Required parameter "requestObj.name" was undefined when calling deleteTabStop.');
-        }
-
-        // verify required parameter 'requestObj.name' is not null
-        if (requestObj.name === null) {
-            throw new Error('Required parameter "requestObj.name" was null when calling deleteTabStop.');
-        }
-
-        // verify required parameter 'requestObj.nodePath' is not undefined
-        if (requestObj.nodePath === undefined) {
-            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling deleteTabStop.');
-        }
-
-        // verify required parameter 'requestObj.position' is not undefined
-        if (requestObj.position === undefined) {
-            throw new Error('Required parameter "requestObj.position" was undefined when calling deleteTabStop.');
-        }
-
-        // verify required parameter 'requestObj.position' is not null
-        if (requestObj.position === null) {
-            throw new Error('Required parameter "requestObj.position" was null when calling deleteTabStop.');
-        }
-
-        // verify required parameter 'requestObj.index' is not undefined
-        if (requestObj.index === undefined) {
-            throw new Error('Required parameter "requestObj.index" was undefined when calling deleteTabStop.');
-        }
-
-        // verify required parameter 'requestObj.index' is not null
-        if (requestObj.index === null) {
-            throw new Error('Required parameter "requestObj.index" was null when calling deleteTabStop.');
-        }
-        
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "position", requestObj.position);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
-        const requestOptions: request.Options = {
-            method: "DELETE",
-            qs: queryParameters,
-            uri: localVarPath,
-            json: true,
-        };
-
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "TabStopsResponse");
-        const result: model.WordsIncomingMessage<model.TabStopsResponse> = {body, response};
-        return Promise.resolve(result);
-    }
-
-    /**
-     * Remove all tab stops.
-     * @param requestObj contains request parameters
-     */
-    public async deleteTabStops(requestObj: model.DeleteTabStopsRequest): Promise<model.WordsIncomingMessage<model.TabStopsResponse>> {
-        if (requestObj === null || requestObj === undefined) {
-            throw new Error('Required parameter "requestObj" was null or undefined when calling deleteTabStops.');
-        }
-
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}/tabstops"
-            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
-			.replace("//", "/");
-        const queryParameters: any = {};
-
-        // verify required parameter 'requestObj.name' is not undefined
-        if (requestObj.name === undefined) {
-            throw new Error('Required parameter "requestObj.name" was undefined when calling deleteTabStops.');
-        }
-
-        // verify required parameter 'requestObj.name' is not null
-        if (requestObj.name === null) {
-            throw new Error('Required parameter "requestObj.name" was null when calling deleteTabStops.');
-        }
-
-        // verify required parameter 'requestObj.nodePath' is not undefined
-        if (requestObj.nodePath === undefined) {
-            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling deleteTabStops.');
-        }
-
-        // verify required parameter 'requestObj.index' is not undefined
-        if (requestObj.index === undefined) {
-            throw new Error('Required parameter "requestObj.index" was undefined when calling deleteTabStops.');
-        }
-
-        // verify required parameter 'requestObj.index' is not null
-        if (requestObj.index === null) {
-            throw new Error('Required parameter "requestObj.index" was null when calling deleteTabStops.');
-        }
-        
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
-        const requestOptions: request.Options = {
-            method: "DELETE",
-            qs: queryParameters,
-            uri: localVarPath,
-            json: true,
-        };
-
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "TabStopsResponse");
-        const result: model.WordsIncomingMessage<model.TabStopsResponse> = {body, response};
-        return Promise.resolve(result);
     }
 
     /**
@@ -7227,9 +7227,9 @@ export class WordsApi {
      * Insert or resplace tab stop if a tab stop with the position exists.
      * @param requestObj contains request parameters
      */
-    public async insertOrUpdateTabStop(requestObj: model.InsertOrUpdateTabStopRequest): Promise<model.WordsIncomingMessage<model.TabStopsResponse>> {
+    public async insertOrUpdateParagraphTabStop(requestObj: model.InsertOrUpdateParagraphTabStopRequest): Promise<model.WordsIncomingMessage<model.TabStopsResponse>> {
         if (requestObj === null || requestObj === undefined) {
-            throw new Error('Required parameter "requestObj" was null or undefined when calling insertOrUpdateTabStop.');
+            throw new Error('Required parameter "requestObj" was null or undefined when calling insertOrUpdateParagraphTabStop.');
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}/tabstops"
@@ -7241,37 +7241,37 @@ export class WordsApi {
 
         // verify required parameter 'requestObj.name' is not undefined
         if (requestObj.name === undefined) {
-            throw new Error('Required parameter "requestObj.name" was undefined when calling insertOrUpdateTabStop.');
+            throw new Error('Required parameter "requestObj.name" was undefined when calling insertOrUpdateParagraphTabStop.');
         }
 
         // verify required parameter 'requestObj.name' is not null
         if (requestObj.name === null) {
-            throw new Error('Required parameter "requestObj.name" was null when calling insertOrUpdateTabStop.');
+            throw new Error('Required parameter "requestObj.name" was null when calling insertOrUpdateParagraphTabStop.');
         }
 
         // verify required parameter 'requestObj.nodePath' is not undefined
         if (requestObj.nodePath === undefined) {
-            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling insertOrUpdateTabStop.');
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling insertOrUpdateParagraphTabStop.');
         }
 
         // verify required parameter 'requestObj.dto' is not undefined
         if (requestObj.dto === undefined) {
-            throw new Error('Required parameter "requestObj.dto" was undefined when calling insertOrUpdateTabStop.');
+            throw new Error('Required parameter "requestObj.dto" was undefined when calling insertOrUpdateParagraphTabStop.');
         }
 
         // verify required parameter 'requestObj.dto' is not null
         if (requestObj.dto === null) {
-            throw new Error('Required parameter "requestObj.dto" was null when calling insertOrUpdateTabStop.');
+            throw new Error('Required parameter "requestObj.dto" was null when calling insertOrUpdateParagraphTabStop.');
         }
 
         // verify required parameter 'requestObj.index' is not undefined
         if (requestObj.index === undefined) {
-            throw new Error('Required parameter "requestObj.index" was undefined when calling insertOrUpdateTabStop.');
+            throw new Error('Required parameter "requestObj.index" was undefined when calling insertOrUpdateParagraphTabStop.');
         }
 
         // verify required parameter 'requestObj.index' is not null
         if (requestObj.index === null) {
-            throw new Error('Required parameter "requestObj.index" was null when calling insertOrUpdateTabStop.');
+            throw new Error('Required parameter "requestObj.index" was null when calling insertOrUpdateParagraphTabStop.');
         }
         
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);

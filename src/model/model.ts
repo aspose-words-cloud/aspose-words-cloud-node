@@ -1422,6 +1422,55 @@ export class CreateOrUpdateDocumentPropertyRequest {
 }
 
 /**
+ * Request model for DeleteAllParagraphTabStops operation.
+ */
+export class DeleteAllParagraphTabStopsRequest {
+    /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * Path to the node which contains paragraph.
+     */
+    public nodePath: string;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+    
+    public constructor(init?: Partial<DeleteAllParagraphTabStopsRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
  * Request model for DeleteBorder operation.
  */
 export class DeleteBorderRequest {
@@ -2644,6 +2693,60 @@ export class DeleteParagraphListFormatRequest {
 }
 
 /**
+ * Request model for DeleteParagraphTabStop operation.
+ */
+export class DeleteParagraphTabStopRequest {
+    /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * Path to the node which contains paragraph.
+     */
+    public nodePath: string;
+
+    /**
+     * a tab stop position to remove.
+     */
+    public position: number;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+    
+    public constructor(init?: Partial<DeleteParagraphTabStopRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
  * Request model for DeleteParagraphWithoutNodePath operation.
  */
 export class DeleteParagraphWithoutNodePathRequest {
@@ -2806,109 +2909,6 @@ export class DeleteSectionRequest {
     public revisionDateTime: string;
     
     public constructor(init?: Partial<DeleteSectionRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for DeleteTabStop operation.
- */
-export class DeleteTabStopRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * Path to the node which contains paragraph.
-     */
-    public nodePath: string;
-
-    /**
-     * a tab stop position to remove.
-     */
-    public position: number;
-
-    /**
-     * Object index.
-     */
-    public index: number;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    /**
-     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-    
-    public constructor(init?: Partial<DeleteTabStopRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for DeleteTabStops operation.
- */
-export class DeleteTabStopsRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * Path to the node which contains paragraph.
-     */
-    public nodePath: string;
-
-    /**
-     * Object index.
-     */
-    public index: number;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    /**
-     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-    
-    public constructor(init?: Partial<DeleteTabStopsRequest>) {        
         Object.assign(this, init);
     } 
 }
@@ -6929,9 +6929,9 @@ export class InsertListRequest {
 }
 
 /**
- * Request model for InsertOrUpdateTabStop operation.
+ * Request model for InsertOrUpdateParagraphTabStop operation.
  */
-export class InsertOrUpdateTabStopRequest {
+export class InsertOrUpdateParagraphTabStopRequest {
     /**
      * The document name.
      */
@@ -6977,7 +6977,7 @@ export class InsertOrUpdateTabStopRequest {
      */
     public destFileName: string;
     
-    public constructor(init?: Partial<InsertOrUpdateTabStopRequest>) {        
+    public constructor(init?: Partial<InsertOrUpdateParagraphTabStopRequest>) {        
         Object.assign(this, init);
     } 
 }

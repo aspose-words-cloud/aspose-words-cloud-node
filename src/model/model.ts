@@ -3222,7 +3222,7 @@ export class DownloadFileRequest {
  */
 export class ExecuteMailMergeRequest {
     /**
-     * The document name.
+     * The template name.
      */
     public name: string;
 
@@ -3919,7 +3919,7 @@ export class GetDocumentDrawingObjectsWithoutNodePathRequest {
  */
 export class GetDocumentFieldNamesRequest {
     /**
-     * The document name.
+     * The template name.
      */
     public name: string;
 

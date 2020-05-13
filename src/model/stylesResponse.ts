@@ -22,11 +22,11 @@
 * SOFTWARE.
 */
 import { AttributeInfo } from '../internal/attributeInfo';
-import { Styles } from './styles';
+import { Style } from './style';
 import { WordsResponse } from './wordsResponse';
 
 export const importsMapStylesResponse = {
-    Styles,
+    Style,
     WordsResponse,
 };
 
@@ -41,7 +41,7 @@ export class StylesResponse extends WordsResponse {
         {
             name: "styles",
             baseName: "Styles",
-            type: "Styles",
+            type: "Array<Style>",
         }    ];
 
     /**
@@ -52,9 +52,9 @@ export class StylesResponse extends WordsResponse {
     }
 
     /**
-     * Gets or sets styles.
+     * Gets or sets styles which are contained in document.
      */
-    public styles: Styles;
+    public styles: Array<Style>;
     
     public constructor(init?: Partial<StylesResponse>) {
         super(init);

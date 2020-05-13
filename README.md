@@ -16,6 +16,36 @@ Feel free to explore the [Developer's Guide](https://docs.aspose.cloud/display/w
 - Add & remove watermarks and protection.
 - Read & write access to Document Object Model.
 
+## Enhancements in Version 20.5
+
+- Added methods to work with Word document lists
+  - getLists
+  - getList
+  - insertList
+  - updateList
+  - updateListLevel
+- Added methods to work with styles
+  - getStyles
+  - updateStyle
+  - insertStyle
+  - copyStyle
+  - getStyleFromDocumentElement
+  - applyStyleToDocumentElement
+- Added methods to work with paragraph list format
+  - getParagraphListFormat
+  - getParagraphListFormatWithoutNodePath
+  - updateParagraphListFormat
+  - deleteParagraphListFormat
+- Added methods to work with paragraph tab stops
+  - g1etParagraphTabStops
+  - insertOrUpdateParagraphTabStop
+  - deleteAllParagraphTabStops
+  - deleteParagraphTabStop
+- Added methods to build reports
+  - buildReport
+  - buildReportOnline
+- Added Shading property to ParagraphFormat
+
 ## Enhancements in Version 20.4
 
 - Added CompareOptions property to CompareData class

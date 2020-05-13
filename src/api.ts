@@ -148,7 +148,7 @@ export class WordsApi {
     }
 
     /**
-     * Apply a style to the document node.
+     * Apply a style to the document node. Supported node types: ParagraphFormat, List, ListLevel, Table.
      * @param requestObj contains request parameters
      */
     public async applyStyleToDocumentElement(requestObj: model.ApplyStyleToDocumentElementRequest): Promise<model.WordsIncomingMessage<model.WordsResponse>> {
@@ -635,7 +635,7 @@ export class WordsApi {
     }
 
     /**
-     * Copy and insert a new style to the document, returns a copied style.
+     * Copy and insert a new style to the document, returns an copied style.
      * @param requestObj contains request parameters
      */
     public async copyStyle(requestObj: model.CopyStyleRequest): Promise<model.WordsIncomingMessage<model.StyleResponse>> {
@@ -5914,7 +5914,7 @@ export class WordsApi {
     }
 
     /**
-     * Gets a style from the document node.
+     * Gets a style from the document node. Supported node types: ParagraphFormat, List, ListLevel, Table.
      * @param requestObj contains request parameters
      */
     public async getStyleFromDocumentElement(requestObj: model.GetStyleFromDocumentElementRequest): Promise<model.WordsIncomingMessage<model.StyleResponse>> {
@@ -10502,7 +10502,7 @@ export class WordsApi {
     }
 
     /**
-     * Updates style properties, returns an updated style.
+     * Updates a style properties, returns an updated style.
      * @param requestObj contains request parameters
      */
     public async updateStyle(requestObj: model.UpdateStyleRequest): Promise<model.WordsIncomingMessage<model.StyleResponse>> {

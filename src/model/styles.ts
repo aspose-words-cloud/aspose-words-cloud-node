@@ -22,41 +22,43 @@
 * SOFTWARE.
 */
 import { AttributeInfo } from '../internal/attributeInfo';
-import { Styles } from './styles';
-import { WordsResponse } from './wordsResponse';
+import { LinkElement } from './linkElement';
+import { Style } from './style';
+import { WordsApiLink } from './wordsApiLink';
 
-export const importsMapStylesResponse = {
-    Styles,
-    WordsResponse,
+export const importsMapStyles = {
+    LinkElement,
+    Style,
+    WordsApiLink,
 };
 
 /**
- * This response should be returned by the service when handling: GET https://api.aspose.cloud/v4.0/words/Test.doc/styles.
+ * Represents an array of styles list.
  */
-export class StylesResponse extends WordsResponse {
+export class Styles extends LinkElement {
     /**
      * Attribute type map
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "styles",
-            baseName: "Styles",
-            type: "Styles",
+            name: "styleList",
+            baseName: "StyleList",
+            type: "Array<Style>",
         }    ];
 
     /**
      * Returns attribute type map
      */
     public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(StylesResponse.attributeTypeMap);
+        return super.getAttributeTypeMap().concat(Styles.attributeTypeMap);
     }
 
     /**
-     * Gets or sets styles.
+     * Gets or sets array of document styles.
      */
-    public styles: Styles;
+    public styleList: Array<Style>;
     
-    public constructor(init?: Partial<StylesResponse>) {
+    public constructor(init?: Partial<Styles>) {
         super(init);
         Object.assign(this, init);
     }        

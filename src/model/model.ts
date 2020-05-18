@@ -222,7 +222,6 @@ import * as importedStyleCopy from './styleCopy';
 import * as importedStyleInsert from './styleInsert';
 import * as importedStyleResponse from './styleResponse';
 import * as importedStyleUpdate from './styleUpdate';
-import * as importedStyles from './styles';
 import * as importedStylesResponse from './stylesResponse';
 import * as importedSvgSaveOptionsData from './svgSaveOptionsData';
 import * as importedTabStop from './tabStop';
@@ -459,7 +458,6 @@ export * from './styleCopy';
 export * from './styleInsert';
 export * from './styleResponse';
 export * from './styleUpdate';
-export * from './styles';
 export * from './stylesResponse';
 export * from './svgSaveOptionsData';
 export * from './tabStop';
@@ -786,7 +784,6 @@ const typeMap = {
     StyleInsert: importedStyleInsert.StyleInsert,
     StyleResponse: importedStyleResponse.StyleResponse,
     StyleUpdate: importedStyleUpdate.StyleUpdate,
-    Styles: importedStyles.Styles,
     StylesResponse: importedStylesResponse.StylesResponse,
     SvgSaveOptionsData: importedSvgSaveOptionsData.SvgSaveOptionsData,
     TabStop: importedTabStop.TabStop,
@@ -934,7 +931,7 @@ export class ApplyStyleToDocumentElementRequest {
     public styleApply: importedStyleApply.StyleApply;
 
     /**
-     * Path to the node of IStyledDocumentElement.
+     * The path to the node that supports a style. Supported node types: ParagraphFormat, List, ListLevel, Table.
      */
     public styledNodePath: string;
 
@@ -5801,7 +5798,7 @@ export class GetStyleFromDocumentElementRequest {
     public name: string;
 
     /**
-     * Path to the node of IStyledDocumentElement.
+     * The path to the node that supports a style. Supported node types: ParagraphFormat, List, ListLevel, Table.
      */
     public styledNodePath: string;
 

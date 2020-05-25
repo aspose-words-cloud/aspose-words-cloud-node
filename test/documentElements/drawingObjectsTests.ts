@@ -26,7 +26,7 @@ import { expect } from "chai";
 import * as fs from "fs";
 import "mocha";
 
-import { DeleteDrawingObjectRequest, GetDocumentDrawingObjectByIndexRequest, GetDocumentDrawingObjectImageDataRequest, GetDocumentDrawingObjectOleDataRequest, GetDocumentDrawingObjectsRequest, InsertDrawingObjectRequest, RenderDrawingObjectRequest, UpdateDrawingObjectRequest } from "../../src/model/model";
+import { DeleteDrawingObjectRequest, GetDocumentDrawingObjectByIndexRequest, GetDocumentDrawingObjectImageDataRequest, GetDocumentDrawingObjectOleDataRequest, GetDocumentDrawingObjectsRequest, InsertDrawingObjectRequest, RenderDrawingObjectRequest, UpdateDrawingObjectRequest, DrawingObjectInsert, DrawingObjectUpdate } from "../../src/model/model";
 import { DeleteDrawingObjectWithoutNodePathRequest, GetDocumentDrawingObjectByIndexWithoutNodePathRequest, GetDocumentDrawingObjectImageDataWithoutNodePathRequest, GetDocumentDrawingObjectOleDataWithoutNodePathRequest, GetDocumentDrawingObjectsWithoutNodePathRequest, InsertDrawingObjectWithoutNodePathRequest, RenderDrawingObjectWithoutNodePathRequest, UpdateDrawingObjectWithoutNodePathRequest } from "../../src/model/model";
 import * as BaseTest from "../baseTest";
 
@@ -197,7 +197,7 @@ describe("drawingObjects", () => {
                     request.name = remoteFileName;
                     request.folder = remotePath;
                     request.nodePath = null;
-                    request.drawingObject = "{\"Left\": 0}";
+                    request.drawingObject = new DrawingObjectInsert();
                     request.imageFile = fs.createReadStream(imagePath);
                    
                     // Act
@@ -231,7 +231,7 @@ describe("drawingObjects", () => {
                     request.folder = remotePath;
                     request.nodePath = "sections/0";  
                     request.index = 0;
-                    request.drawingObject = "{\"Left\": 0}";
+                    request.drawingObject = new DrawingObjectInsert();
                     request.imageFile = fs.createReadStream(imagePath);
                     
                     // Act
@@ -433,7 +433,7 @@ describe("drawingObjects", () => {
                     const request = new InsertDrawingObjectWithoutNodePathRequest();
                     request.name = remoteFileName;
                     request.folder = remotePath;
-                    request.drawingObject = "{\"Left\": 0}";
+                    request.drawingObject = new DrawingObjectInsert();
                     request.imageFile = fs.createReadStream(imagePath);
                    
                     // Act
@@ -466,7 +466,7 @@ describe("drawingObjects", () => {
                     request.name = remoteFileName;
                     request.folder = remotePath;
                     request.index = 0;
-                    request.drawingObject = "{\"Left\": 0}";
+                    request.drawingObject = new DrawingObjectUpdate();
                     request.imageFile = fs.createReadStream(imagePath);
                     
                     // Act

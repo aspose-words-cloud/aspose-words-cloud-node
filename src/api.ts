@@ -6660,7 +6660,7 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
         if (requestObj.drawingObject !== undefined) {
-            formParams.DrawingObject = ObjectSerializer.serialize(requestObj.drawingObject, "string");
+            formParams.DrawingObject = JSON.stringify(requestObj.drawingObject);
         }
 
         if (requestObj.imageFile !== undefined) {
@@ -6734,7 +6734,7 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
         if (requestObj.drawingObject !== undefined) {
-            formParams.DrawingObject = ObjectSerializer.serialize(requestObj.drawingObject, "string");
+            formParams.DrawingObject = JSON.stringify(requestObj.drawingObject);
         }
 
         if (requestObj.imageFile !== undefined) {
@@ -9508,7 +9508,7 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
         if (requestObj.drawingObject !== undefined) {
-            formParams.DrawingObject = ObjectSerializer.serialize(requestObj.drawingObject, "string");
+            formParams.DrawingObject = JSON.stringify(requestObj.drawingObject);
         }
 
         if (requestObj.imageFile !== undefined) {
@@ -9593,7 +9593,7 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
         if (requestObj.drawingObject !== undefined) {
-            formParams.DrawingObject = ObjectSerializer.serialize(requestObj.drawingObject, "string");
+            formParams.DrawingObject = JSON.stringify(requestObj.drawingObject);
         }
 
         if (requestObj.imageFile !== undefined) {

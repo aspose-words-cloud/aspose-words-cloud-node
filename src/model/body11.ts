@@ -22,8 +22,10 @@
 * SOFTWARE.
 */
 import { AttributeInfo } from '../internal/attributeInfo';
+import { DrawingObjectUpdate } from './drawingObjectUpdate';
 
 export const importsMapBody11 = {
+    DrawingObjectUpdate,
 };
 
 /**
@@ -37,7 +39,7 @@ export class Body11 {
         {
             name: "drawingObject",
             baseName: "drawingObject",
-            type: "string",
+            type: "DrawingObjectUpdate",
         },        
         {
             name: "imageFile",
@@ -53,9 +55,9 @@ export class Body11 {
     }
 
     /**
-     * Drawing object parameters
+     * Gets or sets drawingObject.
      */
-    public drawingObject: string;
+    public drawingObject: DrawingObjectUpdate;
     
     /**
      * File with image

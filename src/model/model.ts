@@ -77,8 +77,10 @@ import * as importedDocumentStatData from './documentStatData';
 import * as importedDownsampleOptionsData from './downsampleOptionsData';
 import * as importedDrawingObject from './drawingObject';
 import * as importedDrawingObjectCollection from './drawingObjectCollection';
+import * as importedDrawingObjectInsert from './drawingObjectInsert';
 import * as importedDrawingObjectLink from './drawingObjectLink';
 import * as importedDrawingObjectResponse from './drawingObjectResponse';
+import * as importedDrawingObjectUpdate from './drawingObjectUpdate';
 import * as importedDrawingObjectsResponse from './drawingObjectsResponse';
 import * as importedEmfSaveOptionsData from './emfSaveOptionsData';
 import * as importedEpubSaveOptionsData from './epubSaveOptionsData';
@@ -313,8 +315,10 @@ export * from './documentStatData';
 export * from './downsampleOptionsData';
 export * from './drawingObject';
 export * from './drawingObjectCollection';
+export * from './drawingObjectInsert';
 export * from './drawingObjectLink';
 export * from './drawingObjectResponse';
+export * from './drawingObjectUpdate';
 export * from './drawingObjectsResponse';
 export * from './emfSaveOptionsData';
 export * from './epubSaveOptionsData';
@@ -517,6 +521,12 @@ const enumsMap = {
     "DrawingObject.RelativeHorizontalPositionEnum": importedDrawingObject.DrawingObject.RelativeHorizontalPositionEnum,
     "DrawingObject.RelativeVerticalPositionEnum": importedDrawingObject.DrawingObject.RelativeVerticalPositionEnum,
     "DrawingObject.WrapTypeEnum": importedDrawingObject.DrawingObject.WrapTypeEnum,
+    "DrawingObjectInsert.RelativeHorizontalPositionEnum": importedDrawingObjectInsert.DrawingObjectInsert.RelativeHorizontalPositionEnum,
+    "DrawingObjectInsert.RelativeVerticalPositionEnum": importedDrawingObjectInsert.DrawingObjectInsert.RelativeVerticalPositionEnum,
+    "DrawingObjectInsert.WrapTypeEnum": importedDrawingObjectInsert.DrawingObjectInsert.WrapTypeEnum,
+    "DrawingObjectUpdate.RelativeHorizontalPositionEnum": importedDrawingObjectUpdate.DrawingObjectUpdate.RelativeHorizontalPositionEnum,
+    "DrawingObjectUpdate.RelativeVerticalPositionEnum": importedDrawingObjectUpdate.DrawingObjectUpdate.RelativeVerticalPositionEnum,
+    "DrawingObjectUpdate.WrapTypeEnum": importedDrawingObjectUpdate.DrawingObjectUpdate.WrapTypeEnum,
     "Font.StyleIdentifierEnum": importedFont.Font.StyleIdentifierEnum,
     "Font.TextEffectEnum": importedFont.Font.TextEffectEnum,
     "Font.UnderlineEnum": importedFont.Font.UnderlineEnum,
@@ -639,8 +649,10 @@ const typeMap = {
     DownsampleOptionsData: importedDownsampleOptionsData.DownsampleOptionsData,
     DrawingObject: importedDrawingObject.DrawingObject,
     DrawingObjectCollection: importedDrawingObjectCollection.DrawingObjectCollection,
+    DrawingObjectInsert: importedDrawingObjectInsert.DrawingObjectInsert,
     DrawingObjectLink: importedDrawingObjectLink.DrawingObjectLink,
     DrawingObjectResponse: importedDrawingObjectResponse.DrawingObjectResponse,
+    DrawingObjectUpdate: importedDrawingObjectUpdate.DrawingObjectUpdate,
     DrawingObjectsResponse: importedDrawingObjectsResponse.DrawingObjectsResponse,
     EmfSaveOptionsData: importedEmfSaveOptionsData.EmfSaveOptionsData,
     EpubSaveOptionsData: importedEpubSaveOptionsData.EpubSaveOptionsData,
@@ -6340,9 +6352,9 @@ export class InsertDrawingObjectRequest {
     public name: string;
 
     /**
-     * Drawing object parameters
+     * Drawing object parameters.
      */
-    public drawingObject: string;
+    public drawingObject: importedDrawingObjectInsert.DrawingObjectInsert;
 
     /**
      * File with image
@@ -6404,9 +6416,9 @@ export class InsertDrawingObjectWithoutNodePathRequest {
     public name: string;
 
     /**
-     * Drawing object parameters
+     * Drawing object parameters.
      */
-    public drawingObject: string;
+    public drawingObject: importedDrawingObjectInsert.DrawingObjectInsert;
 
     /**
      * File with image
@@ -8920,7 +8932,7 @@ export class UpdateDrawingObjectRequest {
     /**
      * Drawing object parameters
      */
-    public drawingObject: string;
+    public drawingObject: importedDrawingObjectUpdate.DrawingObjectUpdate;
 
     /**
      * File with image
@@ -8989,7 +9001,7 @@ export class UpdateDrawingObjectWithoutNodePathRequest {
     /**
      * Drawing object parameters
      */
-    public drawingObject: string;
+    public drawingObject: importedDrawingObjectUpdate.DrawingObjectUpdate;
 
     /**
      * File with image

@@ -1480,6 +1480,50 @@ export class DeleteAllParagraphTabStopsRequest {
 }
 
 /**
+ * Request model for DeleteAllParagraphTabStopsWithoutNodePath operation.
+ */
+export class DeleteAllParagraphTabStopsWithoutNodePathRequest {
+    /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+    
+    public constructor(init?: Partial<DeleteAllParagraphTabStopsWithoutNodePathRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
  * Request model for DeleteBorder operation.
  */
 export class DeleteBorderRequest {
@@ -2702,6 +2746,60 @@ export class DeleteParagraphListFormatRequest {
 }
 
 /**
+ * Request model for DeleteParagraphListFormatWithoutNodePath operation.
+ */
+export class DeleteParagraphListFormatWithoutNodePathRequest {
+    /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+    
+    public constructor(init?: Partial<DeleteParagraphListFormatWithoutNodePathRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
  * Request model for DeleteParagraphTabStop operation.
  */
 export class DeleteParagraphTabStopRequest {
@@ -2711,9 +2809,58 @@ export class DeleteParagraphTabStopRequest {
     public name: string;
 
     /**
+     * a tab stop position to remove.
+     */
+    public position: number;
+
+    /**
      * Path to the node which contains paragraph.
      */
     public nodePath: string;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+    
+    public constructor(init?: Partial<DeleteParagraphTabStopRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for DeleteParagraphTabStopWithoutNodePath operation.
+ */
+export class DeleteParagraphTabStopWithoutNodePathRequest {
+    /**
+     * The document name.
+     */
+    public name: string;
 
     /**
      * a tab stop position to remove.
@@ -2750,7 +2897,7 @@ export class DeleteParagraphTabStopRequest {
      */
     public destFileName: string;
     
-    public constructor(init?: Partial<DeleteParagraphTabStopRequest>) {        
+    public constructor(init?: Partial<DeleteParagraphTabStopWithoutNodePathRequest>) {        
         Object.assign(this, init);
     } 
 }
@@ -5367,6 +5514,45 @@ export class GetParagraphTabStopsRequest {
 }
 
 /**
+ * Request model for GetParagraphTabStopsWithoutNodePath operation.
+ */
+export class GetParagraphTabStopsWithoutNodePathRequest {
+    /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+    
+    public constructor(init?: Partial<GetParagraphTabStopsWithoutNodePathRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
  * Request model for GetParagraphWithoutNodePath operation.
  */
 export class GetParagraphWithoutNodePathRequest {
@@ -6947,9 +7133,58 @@ export class InsertOrUpdateParagraphTabStopRequest {
     public name: string;
 
     /**
+     * Paragraph tab stop.
+     */
+    public dto: importedTabStopInsert.TabStopInsert;
+
+    /**
      * Path to the node which contains paragraph.
      */
     public nodePath: string;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+    
+    public constructor(init?: Partial<InsertOrUpdateParagraphTabStopRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for InsertOrUpdateParagraphTabStopWithoutNodePath operation.
+ */
+export class InsertOrUpdateParagraphTabStopWithoutNodePathRequest {
+    /**
+     * The document name.
+     */
+    public name: string;
 
     /**
      * Paragraph tab stop.
@@ -6986,7 +7221,7 @@ export class InsertOrUpdateParagraphTabStopRequest {
      */
     public destFileName: string;
     
-    public constructor(init?: Partial<InsertOrUpdateParagraphTabStopRequest>) {        
+    public constructor(init?: Partial<InsertOrUpdateParagraphTabStopWithoutNodePathRequest>) {        
         Object.assign(this, init);
     } 
 }
@@ -7105,6 +7340,65 @@ export class InsertParagraphRequest {
     public insertBeforeNode: string;
     
     public constructor(init?: Partial<InsertParagraphRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for InsertParagraphWithoutNodePath operation.
+ */
+export class InsertParagraphWithoutNodePathRequest {
+    /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * Paragraph data.
+     */
+    public paragraph: importedParagraphInsert.ParagraphInsert;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    /**
+     * Paragraph will be inserted before node with index.
+     */
+    public insertBeforeNode: string;
+    
+    public constructor(init?: Partial<InsertParagraphWithoutNodePathRequest>) {        
         Object.assign(this, init);
     } 
 }
@@ -9590,6 +9884,65 @@ export class UpdateParagraphFormatRequest {
 }
 
 /**
+ * Request model for UpdateParagraphFormatWithoutNodePath operation.
+ */
+export class UpdateParagraphFormatWithoutNodePathRequest {
+    /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * Paragraph format object.
+     */
+    public dto: importedParagraphFormat.ParagraphFormat;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+    
+    public constructor(init?: Partial<UpdateParagraphFormatWithoutNodePathRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
  * Request model for UpdateParagraphListFormat operation.
  */
 export class UpdateParagraphListFormatRequest {
@@ -9649,6 +10002,65 @@ export class UpdateParagraphListFormatRequest {
     public revisionDateTime: string;
     
     public constructor(init?: Partial<UpdateParagraphListFormatRequest>) {        
+        Object.assign(this, init);
+    } 
+}
+
+/**
+ * Request model for UpdateParagraphListFormatWithoutNodePath operation.
+ */
+export class UpdateParagraphListFormatWithoutNodePathRequest {
+    /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * Paragraph format object.
+     */
+    public dto: importedListFormatUpdate.ListFormatUpdate;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+    
+    public constructor(init?: Partial<UpdateParagraphListFormatWithoutNodePathRequest>) {        
         Object.assign(this, init);
     } 
 }

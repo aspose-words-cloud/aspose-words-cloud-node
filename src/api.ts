@@ -880,6 +880,59 @@ export class WordsApi {
     }
 
     /**
+     * Remove all tab stops.
+     * @param requestObj contains request parameters
+     */
+    public async deleteAllParagraphTabStopsWithoutNodePath(requestObj: model.DeleteAllParagraphTabStopsWithoutNodePathRequest): Promise<model.WordsIncomingMessage<model.TabStopsResponse>> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling deleteAllParagraphTabStopsWithoutNodePath.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/paragraphs/{index}/tabstops"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling deleteAllParagraphTabStopsWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling deleteAllParagraphTabStopsWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling deleteAllParagraphTabStopsWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling deleteAllParagraphTabStopsWithoutNodePath.');
+        }
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        const requestOptions: request.Options = {
+            method: "DELETE",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "TabStopsResponse");
+        const result: model.WordsIncomingMessage<model.TabStopsResponse> = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Resets border properties to default values.              'nodePath' should refer to paragraph, cell or row.
      * @param requestObj contains request parameters
      */
@@ -2091,6 +2144,61 @@ export class WordsApi {
     }
 
     /**
+     * Delete paragraph list format, returns updated list format properties.
+     * @param requestObj contains request parameters
+     */
+    public async deleteParagraphListFormatWithoutNodePath(requestObj: model.DeleteParagraphListFormatWithoutNodePathRequest): Promise<model.WordsIncomingMessage<model.ParagraphListFormatResponse>> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling deleteParagraphListFormatWithoutNodePath.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/paragraphs/{index}/listFormat"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling deleteParagraphListFormatWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling deleteParagraphListFormatWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling deleteParagraphListFormatWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling deleteParagraphListFormatWithoutNodePath.');
+        }
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        const requestOptions: request.Options = {
+            method: "DELETE",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "ParagraphListFormatResponse");
+        const result: model.WordsIncomingMessage<model.ParagraphListFormatResponse> = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Remove the i-th tab stop.
      * @param requestObj contains request parameters
      */
@@ -2116,11 +2224,6 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj.name" was null when calling deleteParagraphTabStop.');
         }
 
-        // verify required parameter 'requestObj.nodePath' is not undefined
-        if (requestObj.nodePath === undefined) {
-            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling deleteParagraphTabStop.');
-        }
-
         // verify required parameter 'requestObj.position' is not undefined
         if (requestObj.position === undefined) {
             throw new Error('Required parameter "requestObj.position" was undefined when calling deleteParagraphTabStop.');
@@ -2131,6 +2234,11 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj.position" was null when calling deleteParagraphTabStop.');
         }
 
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling deleteParagraphTabStop.');
+        }
+
         // verify required parameter 'requestObj.index' is not undefined
         if (requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was undefined when calling deleteParagraphTabStop.');
@@ -2139,6 +2247,70 @@ export class WordsApi {
         // verify required parameter 'requestObj.index' is not null
         if (requestObj.index === null) {
             throw new Error('Required parameter "requestObj.index" was null when calling deleteParagraphTabStop.');
+        }
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "position", requestObj.position);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        const requestOptions: request.Options = {
+            method: "DELETE",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "TabStopsResponse");
+        const result: model.WordsIncomingMessage<model.TabStopsResponse> = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Remove the i-th tab stop.
+     * @param requestObj contains request parameters
+     */
+    public async deleteParagraphTabStopWithoutNodePath(requestObj: model.DeleteParagraphTabStopWithoutNodePathRequest): Promise<model.WordsIncomingMessage<model.TabStopsResponse>> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling deleteParagraphTabStopWithoutNodePath.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/paragraphs/{index}/tabstop"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling deleteParagraphTabStopWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling deleteParagraphTabStopWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.position' is not undefined
+        if (requestObj.position === undefined) {
+            throw new Error('Required parameter "requestObj.position" was undefined when calling deleteParagraphTabStopWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.position' is not null
+        if (requestObj.position === null) {
+            throw new Error('Required parameter "requestObj.position" was null when calling deleteParagraphTabStopWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling deleteParagraphTabStopWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling deleteParagraphTabStopWithoutNodePath.');
         }
         
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "position", requestObj.position);
@@ -5361,6 +5533,58 @@ export class WordsApi {
     }
 
     /**
+     * Get all tab stops for the paragraph.
+     * @param requestObj contains request parameters
+     */
+    public async getParagraphTabStopsWithoutNodePath(requestObj: model.GetParagraphTabStopsWithoutNodePathRequest): Promise<model.WordsIncomingMessage<model.TabStopsResponse>> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getParagraphTabStopsWithoutNodePath.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/paragraphs/{index}/tabstops"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling getParagraphTabStopsWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling getParagraphTabStopsWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling getParagraphTabStopsWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling getParagraphTabStopsWithoutNodePath.');
+        }
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "TabStopsResponse");
+        const result: model.WordsIncomingMessage<model.TabStopsResponse> = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * This resource represents one of the paragraphs contained in the document.
      * @param requestObj contains request parameters
      */
@@ -7249,11 +7473,6 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj.name" was null when calling insertOrUpdateParagraphTabStop.');
         }
 
-        // verify required parameter 'requestObj.nodePath' is not undefined
-        if (requestObj.nodePath === undefined) {
-            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling insertOrUpdateParagraphTabStop.');
-        }
-
         // verify required parameter 'requestObj.dto' is not undefined
         if (requestObj.dto === undefined) {
             throw new Error('Required parameter "requestObj.dto" was undefined when calling insertOrUpdateParagraphTabStop.');
@@ -7264,6 +7483,11 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj.dto" was null when calling insertOrUpdateParagraphTabStop.');
         }
 
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling insertOrUpdateParagraphTabStop.');
+        }
+
         // verify required parameter 'requestObj.index' is not undefined
         if (requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was undefined when calling insertOrUpdateParagraphTabStop.');
@@ -7272,6 +7496,70 @@ export class WordsApi {
         // verify required parameter 'requestObj.index' is not null
         if (requestObj.index === null) {
             throw new Error('Required parameter "requestObj.index" was null when calling insertOrUpdateParagraphTabStop.');
+        }
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+            body: ObjectSerializer.serialize(requestObj.dto, requestObj.dto.constructor.name === "Object" ? "importedTabStopInsert.TabStopInsert" : requestObj.dto.constructor.name),
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "TabStopsResponse");
+        const result: model.WordsIncomingMessage<model.TabStopsResponse> = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Insert or resplace tab stop if a tab stop with the position exists.
+     * @param requestObj contains request parameters
+     */
+    public async insertOrUpdateParagraphTabStopWithoutNodePath(requestObj: model.InsertOrUpdateParagraphTabStopWithoutNodePathRequest): Promise<model.WordsIncomingMessage<model.TabStopsResponse>> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling insertOrUpdateParagraphTabStopWithoutNodePath.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/paragraphs/{index}/tabstops"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling insertOrUpdateParagraphTabStopWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling insertOrUpdateParagraphTabStopWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.dto' is not undefined
+        if (requestObj.dto === undefined) {
+            throw new Error('Required parameter "requestObj.dto" was undefined when calling insertOrUpdateParagraphTabStopWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.dto' is not null
+        if (requestObj.dto === null) {
+            throw new Error('Required parameter "requestObj.dto" was null when calling insertOrUpdateParagraphTabStopWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling insertOrUpdateParagraphTabStopWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling insertOrUpdateParagraphTabStopWithoutNodePath.');
         }
         
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -7386,6 +7674,62 @@ export class WordsApi {
         // verify required parameter 'requestObj.nodePath' is not undefined
         if (requestObj.nodePath === undefined) {
             throw new Error('Required parameter "requestObj.nodePath" was undefined when calling insertParagraph.');
+        }
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", requestObj.insertBeforeNode);
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+            body: ObjectSerializer.serialize(requestObj.paragraph, requestObj.paragraph.constructor.name === "Object" ? "importedParagraphInsert.ParagraphInsert" : requestObj.paragraph.constructor.name),
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "ParagraphResponse");
+        const result: model.WordsIncomingMessage<model.ParagraphResponse> = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Adds paragraph to document, returns added paragraph's data.
+     * @param requestObj contains request parameters
+     */
+    public async insertParagraphWithoutNodePath(requestObj: model.InsertParagraphWithoutNodePathRequest): Promise<model.WordsIncomingMessage<model.ParagraphResponse>> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling insertParagraphWithoutNodePath.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/paragraphs"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+			.replace("//", "/");
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling insertParagraphWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling insertParagraphWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.paragraph' is not undefined
+        if (requestObj.paragraph === undefined) {
+            throw new Error('Required parameter "requestObj.paragraph" was undefined when calling insertParagraphWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.paragraph' is not null
+        if (requestObj.paragraph === null) {
+            throw new Error('Required parameter "requestObj.paragraph" was null when calling insertParagraphWithoutNodePath.');
         }
         
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -10220,6 +10564,72 @@ export class WordsApi {
     }
 
     /**
+     * Updates paragraph format properties, returns updated format properties.
+     * @param requestObj contains request parameters
+     */
+    public async updateParagraphFormatWithoutNodePath(requestObj: model.UpdateParagraphFormatWithoutNodePathRequest): Promise<model.WordsIncomingMessage<model.ParagraphFormatResponse>> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling updateParagraphFormatWithoutNodePath.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/paragraphs/{index}/format"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling updateParagraphFormatWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling updateParagraphFormatWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.dto' is not undefined
+        if (requestObj.dto === undefined) {
+            throw new Error('Required parameter "requestObj.dto" was undefined when calling updateParagraphFormatWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.dto' is not null
+        if (requestObj.dto === null) {
+            throw new Error('Required parameter "requestObj.dto" was null when calling updateParagraphFormatWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling updateParagraphFormatWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling updateParagraphFormatWithoutNodePath.');
+        }
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+            body: ObjectSerializer.serialize(requestObj.dto, requestObj.dto.constructor.name === "Object" ? "importedParagraphFormat.ParagraphFormat" : requestObj.dto.constructor.name),
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "ParagraphFormatResponse");
+        const result: model.WordsIncomingMessage<model.ParagraphFormatResponse> = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Updates paragraph list format properties, returns updated list format properties.
      * @param requestObj contains request parameters
      */
@@ -10268,6 +10678,72 @@ export class WordsApi {
         // verify required parameter 'requestObj.index' is not null
         if (requestObj.index === null) {
             throw new Error('Required parameter "requestObj.index" was null when calling updateParagraphListFormat.');
+        }
+        
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+            body: ObjectSerializer.serialize(requestObj.dto, requestObj.dto.constructor.name === "Object" ? "importedListFormatUpdate.ListFormatUpdate" : requestObj.dto.constructor.name),
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "ParagraphListFormatResponse");
+        const result: model.WordsIncomingMessage<model.ParagraphListFormatResponse> = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Updates paragraph list format properties, returns updated list format properties.
+     * @param requestObj contains request parameters
+     */
+    public async updateParagraphListFormatWithoutNodePath(requestObj: model.UpdateParagraphListFormatWithoutNodePathRequest): Promise<model.WordsIncomingMessage<model.ParagraphListFormatResponse>> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling updateParagraphListFormatWithoutNodePath.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/paragraphs/{index}/listFormat"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+			.replace("//", "/");
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling updateParagraphListFormatWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling updateParagraphListFormatWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.dto' is not undefined
+        if (requestObj.dto === undefined) {
+            throw new Error('Required parameter "requestObj.dto" was undefined when calling updateParagraphListFormatWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.dto' is not null
+        if (requestObj.dto === null) {
+            throw new Error('Required parameter "requestObj.dto" was null when calling updateParagraphListFormatWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling updateParagraphListFormatWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling updateParagraphListFormatWithoutNodePath.');
         }
         
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);

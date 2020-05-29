@@ -29,6 +29,8 @@ import { DeleteParagraphRequest, GetParagraphFormatRequest, GetParagraphRequest,
 import { DeleteParagraphWithoutNodePathRequest, GetParagraphFormatWithoutNodePathRequest, GetParagraphsWithoutNodePathRequest, GetParagraphWithoutNodePathRequest, RenderParagraphWithoutNodePathRequest } from "../../src/model/model";
 import { GetParagraphListFormatRequest, GetParagraphListFormatWithoutNodePathRequest, UpdateParagraphListFormatRequest, DeleteParagraphListFormatRequest, ListFormatUpdate } from "../../src/model/model";
 import {GetParagraphTabStopsRequest, InsertOrUpdateParagraphTabStopRequest, TabStopInsert, TabStopBase, DeleteAllParagraphTabStopsRequest, DeleteParagraphTabStopRequest}  from "../../src/model/model";
+import {DeleteAllParagraphTabStopsWithoutNodePathRequest, DeleteParagraphListFormatWithoutNodePathRequest, DeleteParagraphTabStopWithoutNodePathRequest, GetParagraphTabStopsWithoutNodePathRequest, InsertOrUpdateParagraphTabStopWithoutNodePathRequest}  from "../../src/model/model";
+import {InsertParagraphWithoutNodePathRequest, UpdateParagraphFormatWithoutNodePathRequest, UpdateParagraphListFormatWithoutNodePathRequest}  from "../../src/model/model";
 import * as BaseTest from "../baseTest";
 
 const testFolder = "DocumentElements/Paragraphs";
@@ -124,6 +126,35 @@ describe("paragraphs", () => {
                 });
         });
     });   
+
+    describe("insertParagraphWithoutNodePath function", () => {
+        it("should return response with code 200", () => {
+
+            const wordsApi = BaseTest.initializeWordsApi();
+
+            const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
+            const remoteFileName = "TestPutParagraph.docx";
+            const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
+
+            return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
+                    const request = new InsertParagraphWithoutNodePathRequest();
+                    request.name = remoteFileName;
+                    request.folder = remotePath;
+                    request.paragraph =  new ParagraphInsert ({ text: "This is a new paragraph for your document" });
+
+                    // Act
+                    return wordsApi.insertParagraphWithoutNodePath(request)
+                        .then((result1) => {
+                            // Assert
+                            expect(result1.response.statusCode).to.equal(200);
+
+                            expect(result1.body.paragraph).to.exist.and.not.equal(null);
+                        });
+                });
+        });
+    }); 
 
     describe("deleteParagraph function", () => {
         it("should return response with code 200", () => {
@@ -237,6 +268,39 @@ describe("paragraphs", () => {
 
                     // Act
                     return wordsApi.updateParagraphFormat(request)
+                        .then((result1) => {
+                            // Assert
+                            expect(result1.response.statusCode).to.equal(200);
+
+                            expect(result1.body.paragraphFormat).to.exist.and.not.equal(null);
+                        });
+                });
+        });
+    });
+
+    describe("updateParagraphFormatWithoutNodePath function", () => {
+        it("should return response with code 200", () => {
+
+            const wordsApi = BaseTest.initializeWordsApi();
+
+            const localPath = BaseTest.localCommonTestDataFolder + "/test_doc.docx";
+            const remoteFileName = "TestUpdateParagraphFormat.docx";
+            const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
+
+            return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
+                    const request = new UpdateParagraphFormatWithoutNodePathRequest();
+                    request.name = remoteFileName;
+                    request.folder = remotePath;
+                    request.index = 0;
+                    request.dto = new ParagraphFormat(
+                    {
+                        alignment: ParagraphFormat.AlignmentEnum.Right,
+                    });
+
+                    // Act
+                    return wordsApi.updateParagraphFormatWithoutNodePath(request)
                         .then((result1) => {
                             // Assert
                             expect(result1.response.statusCode).to.equal(200);
@@ -469,8 +533,35 @@ describe("paragraphs", () => {
                 });
         });
     });
+
+    describe("updateParagraphFormatListWithoutNodePath function", () => {
+        it("should return response with code 200", () => {
+
+            const wordsApi = BaseTest.initializeWordsApi();
+            const filename = "ParagraphUpdateListFormat.doc";
+            const localPath = BaseTest.localBaseTestDataFolder + testListFolder + "/" + filename;
+            const remotePath = BaseTest.remoteBaseTestDataFolder + testListFolder;
+
+            return wordsApi.uploadFileToStorage(remotePath + "/" + filename, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
+                    const request = new UpdateParagraphListFormatWithoutNodePathRequest();
+                    request.name = filename;
+                    request.dto = new ListFormatUpdate({ listId: 2 });
+                    request.folder = remotePath;
+                    request.index = 0;
+
+                    // Act
+                    return wordsApi.updateParagraphListFormatWithoutNodePath(request)
+                        .then((result1) => {
+                            // Assert
+                            expect(result1.response.statusCode).to.equal(200);
+                        });
+                });
+        });
+    });
     
-    describe("deleteParagraphFormatList function", () => {
+    describe("deleteParagraphListFormat function", () => {
         it("should return response with code 200", () => {
 
             const wordsApi = BaseTest.initializeWordsApi();
@@ -489,6 +580,32 @@ describe("paragraphs", () => {
 
                     // Act
                     return wordsApi.deleteParagraphListFormat(request)
+                        .then((result1) => {
+                            // Assert
+                            expect(result1.response.statusCode).to.equal(200);
+                        });
+                });
+        });
+    });
+
+    describe("deleteParagraphListFormatWithoutNodePath function", () => {
+        it("should return response with code 200", () => {
+
+            const wordsApi = BaseTest.initializeWordsApi();
+            const filename = "ParagraphGetListFormat.doc";
+            const localPath = BaseTest.localBaseTestDataFolder + testListFolder + "/" + filename;
+            const remotePath = BaseTest.remoteBaseTestDataFolder + testListFolder;
+
+            return wordsApi.uploadFileToStorage(remotePath + "/" + filename, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
+                    const request = new DeleteParagraphListFormatWithoutNodePathRequest();
+                    request.name = filename;
+                    request.folder = remotePath;
+                    request.index = 0;
+
+                    // Act
+                    return wordsApi.deleteParagraphListFormatWithoutNodePath(request)
                         .then((result1) => {
                             // Assert
                             expect(result1.response.statusCode).to.equal(200);
@@ -516,6 +633,32 @@ describe("paragraphs", () => {
 
                     // Act
                     return wordsApi.getParagraphTabStops(request)
+                        .then((result1) => {
+                            // Assert
+                            expect(result1.response.statusCode).to.equal(200);
+                        });
+                });
+        });
+    }); 
+
+    describe("getParagraphTabStopsWithoutNodePath function", () => {
+        it("should return response with code 200", () => {
+
+            const wordsApi = BaseTest.initializeWordsApi();
+            const filename = "ParagraphTabStops.docx";
+            const localPath = BaseTest.localBaseTestDataFolder + tabStopFolder + "/" + filename;
+            const remotePath = BaseTest.remoteBaseTestDataFolder + tabStopFolder;
+
+            return wordsApi.uploadFileToStorage(remotePath + "/" + filename, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
+                    const request = new GetParagraphTabStopsWithoutNodePathRequest();
+                    request.name = filename;
+                    request.folder = remotePath;
+                    request.index = 0;
+
+                    // Act
+                    return wordsApi.getParagraphTabStopsWithoutNodePath(request)
                         .then((result1) => {
                             // Assert
                             expect(result1.response.statusCode).to.equal(200);
@@ -557,6 +700,38 @@ describe("paragraphs", () => {
         });
     }); 
 
+    describe("insertOrUpdateParagraphTabStopWithoutNodePath function", () => {
+        it("should return response with code 200", () => {
+
+            const wordsApi = BaseTest.initializeWordsApi();
+            const filename = "ParagraphTabStops.docx";
+            const localPath = BaseTest.localBaseTestDataFolder + tabStopFolder + "/" + filename;
+            const remotePath = BaseTest.remoteBaseTestDataFolder + tabStopFolder;
+
+            return wordsApi.uploadFileToStorage(remotePath + "/" + filename, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
+                    const request = new InsertOrUpdateParagraphTabStopWithoutNodePathRequest();
+                    request.name = filename;
+                    request.folder = remotePath;
+                    request.index = 0;
+
+                    const dto =  new TabStopInsert();
+                    dto.alignment = TabStopBase.AlignmentEnum.Left;
+                    dto.leader = TabStopBase.LeaderEnum.None;
+                    dto.position = 72;
+                    request.dto = dto;
+
+                    // Act
+                    return wordsApi.insertOrUpdateParagraphTabStopWithoutNodePath(request)
+                        .then((result1) => {
+                            // Assert
+                            expect(result1.response.statusCode).to.equal(200);
+                        });
+                });
+        });
+    }); 
+
     describe("deleteAllParagraphTabStops function", () => {
         it("should return response with code 200", () => {
 
@@ -576,6 +751,32 @@ describe("paragraphs", () => {
 
                     // Act
                     return wordsApi.deleteAllParagraphTabStops(request)
+                        .then((result1) => {
+                            // Assert
+                            expect(result1.response.statusCode).to.equal(200);
+                        });
+                });
+        });
+    }); 
+
+    describe("deleteAllParagraphTabStopsWithoutNodePath function", () => {
+        it("should return response with code 200", () => {
+
+            const wordsApi = BaseTest.initializeWordsApi();
+            const filename = "ParagraphTabStops.docx";
+            const localPath = BaseTest.localBaseTestDataFolder + tabStopFolder + "/" + filename;
+            const remotePath = BaseTest.remoteBaseTestDataFolder + tabStopFolder;
+
+            return wordsApi.uploadFileToStorage(remotePath + "/" + filename, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
+                    const request = new DeleteAllParagraphTabStopsWithoutNodePathRequest();
+                    request.name = filename;
+                    request.folder = remotePath;
+                    request.index = 0;
+
+                    // Act
+                    return wordsApi.deleteAllParagraphTabStopsWithoutNodePath(request)
                         .then((result1) => {
                             // Assert
                             expect(result1.response.statusCode).to.equal(200);
@@ -604,6 +805,33 @@ describe("paragraphs", () => {
 
                     // Act
                     return wordsApi.deleteParagraphTabStop(request)
+                        .then((result1) => {
+                            // Assert
+                            expect(result1.response.statusCode).to.equal(200);
+                        });
+                });
+        });
+    }); 
+
+    describe("deleteParagraphTabStopWithoutNodePath function", () => {
+        it("should return response with code 200", () => {
+
+            const wordsApi = BaseTest.initializeWordsApi();
+            const filename = "ParagraphTabStops.docx";
+            const localPath = BaseTest.localBaseTestDataFolder + tabStopFolder + "/" + filename;
+            const remotePath = BaseTest.remoteBaseTestDataFolder + tabStopFolder;
+
+            return wordsApi.uploadFileToStorage(remotePath + "/" + filename, localPath)
+            .then((result) => {
+                    expect(result.response.statusMessage).to.equal("OK");
+                    const request = new DeleteParagraphTabStopWithoutNodePathRequest();
+                    request.name = filename;
+                    request.folder = remotePath;
+                    request.index = 0;
+                    request.position = 72;
+
+                    // Act
+                    return wordsApi.deleteParagraphTabStopWithoutNodePath(request)
                         .then((result1) => {
                             // Assert
                             expect(result1.response.statusCode).to.equal(200);

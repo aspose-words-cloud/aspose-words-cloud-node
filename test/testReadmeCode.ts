@@ -27,7 +27,7 @@ import { WordsApi, UploadFileRequest, SaveAsRequest, SaveOptionsData } from "../
 import { createReadStream } from "fs";
 import * as BaseTest from "./baseTest";
 import { fail } from "assert";
-var fs = require('fs');
+import fs = require('fs');
 
 describe("Readme code tests", () => {
     it("Readme code should run without errors'", () => {
@@ -43,7 +43,7 @@ describe("Readme code tests", () => {
         // Start README example
         
         // create API instance (baseUrl is optional)
-        var wordsApi = new WordsApi(appSid, appKey, baseUrl);
+        const wordsApi = new WordsApi(appSid, appKey, baseUrl);
         
         // upload file to the Aspose cloud
         const uploadRequest = new UploadFileRequest();
@@ -53,7 +53,7 @@ describe("Readme code tests", () => {
         wordsApi.uploadFile(uploadRequest)
             .then((_uploadResult) => {
                 // save the file as pdf in the cloud
-                var request = new SaveAsRequest({
+                const request = new SaveAsRequest({
                     name: "uploaded.docx",
                     saveOptionsData: new SaveOptionsData(
                         {
@@ -66,14 +66,12 @@ describe("Readme code tests", () => {
                     .then((_result) => {
                         // deal with the pdf file
                     })
-                    .catch(function(err) {
-                        console.log(err.reponse.statusCode);
-                        console.log(err.body);
+                    .catch(function(_err) {
+                        // handle saveAs request error
                     });
             })
-            .catch(function(err) {
-                console.log(err.reponse.statusCode);
-                console.log(err.body);
+            .catch(function(_err) {
+                // handle uploadFile request error
             });
 
         // End README example
@@ -96,9 +94,9 @@ const writeToReadme = () => {
 
     // extract readme code
     const readmeCode = new Array();
-    var skipMode = true;
+    let skipMode = true;
 
-	for (let line of codeLines) {
+	for (const line of codeLines) {
 		if (skipMode)
 		{
 			skipMode = !startPatern.test(line);
@@ -120,9 +118,9 @@ const writeToReadme = () => {
 
     // replace readme code
     const newReadmeLines = new Array();
-    var codeMode = false;
+    let codeMode = false;
 
-    for (let line of readmeLines)
+    for (const line of readmeLines)
 	{
 		if (!codeMode)
 		{
@@ -130,7 +128,7 @@ const writeToReadme = () => {
 
 			if (codeMode)
 			{
-				for (let codeLine of readmeCode) newReadmeLines.push(codeLine);
+				for (const codeLine of readmeCode) newReadmeLines.push(codeLine);
 			}
 		}
 

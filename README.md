@@ -106,48 +106,43 @@ The complete source code is available at [GitHub Repository](https://github.com/
 ## Convert DOCX to PDF via Node.js
 
 ```js
-import { createReadStream } from "fs";
-import { WordsApi, SaveAsRequest, UploadFileRequest, SaveOptionsData, WordsApiErrorResponse } from "asposewordscloud";
-
-// set your credentials here
-const AppSid = "...";
-const AppKey = "...";
-
-// path to the docx file to convert
-const localPath = "...";
-
-var wordsApi = new WordsApi(AppSid, AppKey);
-
-// upload file to the Aspose cloud
-const uploadRequest = new UploadFileRequest();
-uploadRequest.path = "uploaded.docx";
-uploadRequest.fileContent = createReadStream(localPath);
-
-wordsApi.uploadFile(uploadRequest)
-    .then((uploadResult) => {
-        // save the file as pdf in the cloud
-        var request = new SaveAsRequest({
-            name: "uploaded.docx",
-            saveOptionsData: new SaveOptionsData(
-                {
-                    saveFormat: "pdf",
-                    fileName: "destination.pdf"
-                })
-        });
-         
-        wordsApi.saveAs(request)
-            .then((result) => {
-                // deal with the pdf file
+        // Start README example
+        
+        // create API instance (baseUrl is optional)
+        var wordsApi = new WordsApi(appSid, appKey, baseUrl);
+        
+        // upload file to the Aspose cloud
+        const uploadRequest = new UploadFileRequest();
+        uploadRequest.path = "uploaded.docx";
+        uploadRequest.fileContent = createReadStream(localPath);
+        
+        wordsApi.uploadFile(uploadRequest)
+            .then((_uploadResult) => {
+                // save the file as pdf in the cloud
+                var request = new SaveAsRequest({
+                    name: "uploaded.docx",
+                    saveOptionsData: new SaveOptionsData(
+                        {
+                            saveFormat: "pdf",
+                            fileName: "destination.pdf"
+                        })
+                });
+                 
+                wordsApi.saveAs(request)
+                    .then((_result) => {
+                        // deal with the pdf file
+                    })
+                    .catch(function(err) {
+                        console.log(err.reponse.statusCode);
+                        console.log(err.body);
+                    });
             })
             .catch(function(err) {
                 console.log(err.reponse.statusCode);
                 console.log(err.body);
             });
-    })
-    .catch(function(err) {
-        console.log(err.reponse.statusCode);
-        console.log(err.body);
-    });
+
+        // End README example
 ```
 
-[Product Page](https://products.aspose.cloud/words/nodejs) | [Documentation](https://docs.aspose.cloud/display/wordscloud/Home) | [API Reference](https://apireference.aspose.cloud/words/) | [Code Samples](https://github.com/aspose-words-cloud/aspose-words-cloud-node) | [Blog](https://blog.aspose.cloud/category/words/) | [Free Support](https://forum.aspose.cloud/c/words) | [Free Trial](https://dashboard.aspose.cloud/#/apps)
+[Product Page](https://products.aspose.cloud/words/nodejs) | [Documentation](https://docs.aspose.cloud/display/wordscloud/Home) | [API Reference](https://apireference.aspose.cloud/words/) | [Code Samples](https://github.com/aspose-words-cloud/aspose-words-cloud-node) | [Blog](https://blog.aspose.cloud/category/words/) | [Free Support](https://forum.aspose.cloud/c/words) | [Free Trial](https://dashboard.aspose.cloud/#/apps) 

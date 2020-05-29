@@ -42,6 +42,11 @@ export class OoxmlSaveOptionsData extends SaveOptionsData {
             type: "string",
         },        
         {
+            name: "compressionLevel",
+            baseName: "CompressionLevel",
+            type: "OoxmlSaveOptionsData.CompressionLevelEnum",
+        },        
+        {
             name: "password",
             baseName: "Password",
             type: "string",
@@ -65,6 +70,11 @@ export class OoxmlSaveOptionsData extends SaveOptionsData {
     public compliance: string;
     
     /**
+     * Gets or sets compression level.
+     */
+    public compressionLevel: OoxmlSaveOptionsData.CompressionLevelEnum;
+    
+    /**
      * Gets or sets specifies a password to encrypt document using ECMA376 Standard encryption algorithm.
      */
     public password: string;
@@ -86,5 +96,11 @@ export class OoxmlSaveOptionsData extends SaveOptionsData {
 // tslint:disable:quotemark
 // tslint:disable-next-line:no-namespace
 export namespace OoxmlSaveOptionsData {
+    export enum CompressionLevelEnum {
+        Normal = 'Normal' as any,
+        Maximum = 'Maximum' as any,
+        Fast = 'Fast' as any,
+        SuperFast = 'SuperFast' as any,
+    }
 }
 // tslint:enable:quotemark

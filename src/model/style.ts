@@ -1,35 +1,37 @@
 /*
-* MIT License
+ * --------------------------------------------------------------------------------
+ * <copyright company="Aspose" file="style.ts">
+ *   Copyright (c) 2020 Aspose.Words for Cloud
+ * </copyright>
+ * <summary>
+ *   Permission is hereby granted, free of charge, to any person obtaining a copy
+ *  of this software and associated documentation files (the "Software"), to deal
+ *  in the Software without restriction, including without limitation the rights
+ *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *  copies of the Software, and to permit persons to whom the Software is
+ *  furnished to do so, subject to the following conditions:
+ * 
+ *  The above copyright notice and this permission notice shall be included in all
+ *  copies or substantial portions of the Software.
+ * 
+ *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ *  SOFTWARE.
+ * </summary>
+ * --------------------------------------------------------------------------------
+ */
 
-* Copyright (c) 2019 Aspose Pty Ltd
-
-* Permission is hereby granted, free of charge, to any person obtaining a copy
-* of this software and associated documentation files (the "Software"), to deal
-* in the Software without restriction, including without limitation the rights
-* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-* copies of the Software, and to permit persons to whom the Software is
-* furnished to do so, subject to the following conditions:
-
-* The above copyright notice and this permission notice shall be included in all
-* copies or substantial portions of the Software.
-
-* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-* SOFTWARE.
-*/
 import { AttributeInfo } from '../internal/attributeInfo';
 import { Font } from './font';
 import { LinkElement } from './linkElement';
-import { WordsApiLink } from './wordsApiLink';
 
 export const importsMapStyle = {
     Font,
     LinkElement,
-    WordsApiLink,
 };
 
 /**
@@ -44,57 +46,58 @@ export class Style extends LinkElement {
             name: "aliases",
             baseName: "Aliases",
             type: "Array<string>",
-        },        
+        },
         {
             name: "baseStyleName",
             baseName: "BaseStyleName",
             type: "string",
-        },        
+        },
         {
             name: "builtIn",
             baseName: "BuiltIn",
             type: "boolean",
-        },        
+        },
         {
             name: "font",
             baseName: "Font",
             type: "Font",
-        },        
+        },
         {
             name: "isHeading",
             baseName: "IsHeading",
             type: "boolean",
-        },        
+        },
         {
             name: "isQuickStyle",
             baseName: "IsQuickStyle",
             type: "boolean",
-        },        
+        },
         {
             name: "linkedStyleName",
             baseName: "LinkedStyleName",
             type: "string",
-        },        
+        },
         {
             name: "name",
             baseName: "Name",
             type: "string",
-        },        
+        },
         {
             name: "nextParagraphStyleName",
             baseName: "NextParagraphStyleName",
             type: "string",
-        },        
+        },
         {
             name: "styleIdentifier",
             baseName: "StyleIdentifier",
             type: "Style.StyleIdentifierEnum",
-        },        
+        },
         {
             name: "type",
             baseName: "Type",
             type: "Style.TypeEnum",
-        }    ];
+        }
+    ];
 
     /**
      * Returns attribute type map
@@ -104,64 +107,67 @@ export class Style extends LinkElement {
     }
 
     /**
-     * Gets or sets all aliases of this style. If style has no aliases then empty array of string is returned.
+     * Gets or sets all aliases of this style. If style has no aliases then empty array of string
+     * is returned.
      */
     public aliases: Array<string>;
-    
+
     /**
      * Gets or sets /sets the name of the style this style is based on.
      */
     public baseStyleName: string;
-    
+
     /**
      * Gets or sets a value indicating whether true if this style is one of the built-in styles in MS Word.
      */
     public builtIn: boolean;
-    
+
     /**
-     * Gets or sets font.
+     * Gets or sets the character formatting of the style.
      */
     public font: Font;
-    
+
     /**
      * Gets or sets a value indicating whether true when the style is one of the built-in Heading styles.
      */
     public isHeading: boolean;
-    
+
     /**
      * Gets or sets a value indicating whether specifies whether this style is shown in the Quick Style gallery inside MS Word UI.
      */
     public isQuickStyle: boolean;
-    
+
     /**
-     * Gets or sets the name of the Style linked to this one. Returns Empty string if no styles are linked.
+     * Gets or sets the name of the Style linked to this one. Returns Empty string if no styles
+     * are linked.
      */
     public linkedStyleName: string;
-    
+
     /**
      * Gets or sets the name of the style.
      */
     public name: string;
-    
+
     /**
-     * Gets or sets /sets the name of the style to be applied automatically to a new paragraph inserted after a paragraph formatted with the specified style.
+     * Gets or sets /sets the name of the style to be applied automatically to a new paragraph
+     * inserted after a paragraph formatted with the specified style.
      */
     public nextParagraphStyleName: string;
-    
+
     /**
      * Gets or sets the locale independent style identifier for a built-in style.
      */
     public styleIdentifier: Style.StyleIdentifierEnum;
-    
+
     /**
      * Gets or sets the style type (paragraph or character).
      */
     public type: Style.TypeEnum;
-    
-    public constructor(init?: Partial<Style>) {
+
+    public constructor(init?: Partial< Style >) {
         super(init);
         Object.assign(this, init);
-    }        
+    }
 }
 
 /**
@@ -543,13 +549,15 @@ export namespace Style {
         ListTable6ColorfulAccent6 = 'ListTable6ColorfulAccent6' as any,
         ListTable7ColorfulAccent6 = 'ListTable7ColorfulAccent6' as any,
         User = 'User' as any,
-        Nil = 'Nil' as any,
+        Nil = 'Nil' as any
     }
+
     export enum TypeEnum {
         Paragraph = 'Paragraph' as any,
         Character = 'Character' as any,
         Table = 'Table' as any,
-        List = 'List' as any,
+        List = 'List' as any
     }
 }
 // tslint:enable:quotemark
+

@@ -1,34 +1,36 @@
 /*
-* MIT License
+ * --------------------------------------------------------------------------------
+ * <copyright company="Aspose" file="border.ts">
+ *   Copyright (c) 2020 Aspose.Words for Cloud
+ * </copyright>
+ * <summary>
+ *   Permission is hereby granted, free of charge, to any person obtaining a copy
+ *  of this software and associated documentation files (the "Software"), to deal
+ *  in the Software without restriction, including without limitation the rights
+ *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *  copies of the Software, and to permit persons to whom the Software is
+ *  furnished to do so, subject to the following conditions:
+ * 
+ *  The above copyright notice and this permission notice shall be included in all
+ *  copies or substantial portions of the Software.
+ * 
+ *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ *  SOFTWARE.
+ * </summary>
+ * --------------------------------------------------------------------------------
+ */
 
-* Copyright (c) 2019 Aspose Pty Ltd
-
-* Permission is hereby granted, free of charge, to any person obtaining a copy
-* of this software and associated documentation files (the "Software"), to deal
-* in the Software without restriction, including without limitation the rights
-* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-* copies of the Software, and to permit persons to whom the Software is
-* furnished to do so, subject to the following conditions:
-
-* The above copyright notice and this permission notice shall be included in all
-* copies or substantial portions of the Software.
-
-* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-* SOFTWARE.
-*/
 import { AttributeInfo } from '../internal/attributeInfo';
 import { LinkElement } from './linkElement';
-import { WordsApiLink } from './wordsApiLink';
 import { XmlColor } from './xmlColor';
 
 export const importsMapBorder = {
     LinkElement,
-    WordsApiLink,
     XmlColor,
 };
 
@@ -44,32 +46,33 @@ export class Border extends LinkElement {
             name: "borderType",
             baseName: "BorderType",
             type: "Border.BorderTypeEnum",
-        },        
+        },
         {
             name: "color",
             baseName: "Color",
             type: "XmlColor",
-        },        
+        },
         {
             name: "distanceFromText",
             baseName: "DistanceFromText",
             type: "number",
-        },        
+        },
         {
             name: "lineStyle",
             baseName: "LineStyle",
             type: "Border.LineStyleEnum",
-        },        
+        },
         {
             name: "lineWidth",
             baseName: "LineWidth",
             type: "number",
-        },        
+        },
         {
             name: "shadow",
             baseName: "Shadow",
             type: "boolean",
-        }    ];
+        }
+    ];
 
     /**
      * Returns attribute type map
@@ -79,39 +82,39 @@ export class Border extends LinkElement {
     }
 
     /**
-     * Gets or sets the border type.             
+     * Gets or sets the border type.
      */
     public borderType: Border.BorderTypeEnum;
-    
+
     /**
-     * Gets or sets color.
+     * Gets or sets the border color.
      */
     public color: XmlColor;
-    
+
     /**
      * Gets or sets distance of the border from text or from the page edge in points.
      */
     public distanceFromText: number;
-    
+
     /**
      * Gets or sets the border style.
      */
     public lineStyle: Border.LineStyleEnum;
-    
+
     /**
      * Gets or sets the border width in points.
      */
     public lineWidth: number;
-    
+
     /**
      * Gets or sets a value indicating whether the border has a shadow.
      */
     public shadow: boolean;
-    
-    public constructor(init?: Partial<Border>) {
+
+    public constructor(init?: Partial< Border >) {
         super(init);
         Object.assign(this, init);
-    }        
+    }
 }
 
 /**
@@ -129,8 +132,9 @@ export namespace Border {
         Vertical = 'Vertical' as any,
         DiagonalDown = 'DiagonalDown' as any,
         DiagonalUp = 'DiagonalUp' as any,
-        None = 'None' as any,
+        None = 'None' as any
     }
+
     export enum LineStyleEnum {
         None = 'None' as any,
         Single = 'Single' as any,
@@ -158,7 +162,8 @@ export namespace Border {
         Emboss3D = 'Emboss3D' as any,
         Engrave3D = 'Engrave3D' as any,
         Outset = 'Outset' as any,
-        Inset = 'Inset' as any,
+        Inset = 'Inset' as any
     }
 }
 // tslint:enable:quotemark
+

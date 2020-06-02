@@ -1,41 +1,43 @@
 /*
-* MIT License
+ * --------------------------------------------------------------------------------
+ * <copyright company="Aspose" file="font.ts">
+ *   Copyright (c) 2020 Aspose.Words for Cloud
+ * </copyright>
+ * <summary>
+ *   Permission is hereby granted, free of charge, to any person obtaining a copy
+ *  of this software and associated documentation files (the "Software"), to deal
+ *  in the Software without restriction, including without limitation the rights
+ *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *  copies of the Software, and to permit persons to whom the Software is
+ *  furnished to do so, subject to the following conditions:
+ * 
+ *  The above copyright notice and this permission notice shall be included in all
+ *  copies or substantial portions of the Software.
+ * 
+ *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ *  SOFTWARE.
+ * </summary>
+ * --------------------------------------------------------------------------------
+ */
 
-* Copyright (c) 2019 Aspose Pty Ltd
-
-* Permission is hereby granted, free of charge, to any person obtaining a copy
-* of this software and associated documentation files (the "Software"), to deal
-* in the Software without restriction, including without limitation the rights
-* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-* copies of the Software, and to permit persons to whom the Software is
-* furnished to do so, subject to the following conditions:
-
-* The above copyright notice and this permission notice shall be included in all
-* copies or substantial portions of the Software.
-
-* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-* SOFTWARE.
-*/
 import { AttributeInfo } from '../internal/attributeInfo';
 import { Border } from './border';
 import { LinkElement } from './linkElement';
-import { WordsApiLink } from './wordsApiLink';
 import { XmlColor } from './xmlColor';
 
 export const importsMapFont = {
     Border,
     LinkElement,
-    WordsApiLink,
     XmlColor,
 };
 
 /**
- * Font element.             
+ * Font element.
  */
 export class Font extends LinkElement {
     /**
@@ -46,202 +48,203 @@ export class Font extends LinkElement {
             name: "allCaps",
             baseName: "AllCaps",
             type: "boolean",
-        },        
+        },
         {
             name: "bidi",
             baseName: "Bidi",
             type: "boolean",
-        },        
+        },
         {
             name: "bold",
             baseName: "Bold",
             type: "boolean",
-        },        
+        },
         {
             name: "boldBi",
             baseName: "BoldBi",
             type: "boolean",
-        },        
+        },
         {
             name: "border",
             baseName: "Border",
             type: "Border",
-        },        
+        },
         {
             name: "color",
             baseName: "Color",
             type: "XmlColor",
-        },        
+        },
         {
             name: "complexScript",
             baseName: "ComplexScript",
             type: "boolean",
-        },        
+        },
         {
             name: "doubleStrikeThrough",
             baseName: "DoubleStrikeThrough",
             type: "boolean",
-        },        
+        },
         {
             name: "emboss",
             baseName: "Emboss",
             type: "boolean",
-        },        
+        },
         {
             name: "engrave",
             baseName: "Engrave",
             type: "boolean",
-        },        
+        },
         {
             name: "hidden",
             baseName: "Hidden",
             type: "boolean",
-        },        
+        },
         {
             name: "highlightColor",
             baseName: "HighlightColor",
             type: "XmlColor",
-        },        
+        },
         {
             name: "italic",
             baseName: "Italic",
             type: "boolean",
-        },        
+        },
         {
             name: "italicBi",
             baseName: "ItalicBi",
             type: "boolean",
-        },        
+        },
         {
             name: "kerning",
             baseName: "Kerning",
             type: "number",
-        },        
+        },
         {
             name: "localeId",
             baseName: "LocaleId",
             type: "number",
-        },        
+        },
         {
             name: "localeIdBi",
             baseName: "LocaleIdBi",
             type: "number",
-        },        
+        },
         {
             name: "localeIdFarEast",
             baseName: "LocaleIdFarEast",
             type: "number",
-        },        
+        },
         {
             name: "name",
             baseName: "Name",
             type: "string",
-        },        
+        },
         {
             name: "nameAscii",
             baseName: "NameAscii",
             type: "string",
-        },        
+        },
         {
             name: "nameBi",
             baseName: "NameBi",
             type: "string",
-        },        
+        },
         {
             name: "nameFarEast",
             baseName: "NameFarEast",
             type: "string",
-        },        
+        },
         {
             name: "nameOther",
             baseName: "NameOther",
             type: "string",
-        },        
+        },
         {
             name: "noProofing",
             baseName: "NoProofing",
             type: "boolean",
-        },        
+        },
         {
             name: "outline",
             baseName: "Outline",
             type: "boolean",
-        },        
+        },
         {
             name: "position",
             baseName: "Position",
             type: "number",
-        },        
+        },
         {
             name: "scaling",
             baseName: "Scaling",
             type: "number",
-        },        
+        },
         {
             name: "shadow",
             baseName: "Shadow",
             type: "boolean",
-        },        
+        },
         {
             name: "size",
             baseName: "Size",
             type: "number",
-        },        
+        },
         {
             name: "sizeBi",
             baseName: "SizeBi",
             type: "number",
-        },        
+        },
         {
             name: "smallCaps",
             baseName: "SmallCaps",
             type: "boolean",
-        },        
+        },
         {
             name: "spacing",
             baseName: "Spacing",
             type: "number",
-        },        
+        },
         {
             name: "strikeThrough",
             baseName: "StrikeThrough",
             type: "boolean",
-        },        
+        },
         {
             name: "styleIdentifier",
             baseName: "StyleIdentifier",
             type: "Font.StyleIdentifierEnum",
-        },        
+        },
         {
             name: "styleName",
             baseName: "StyleName",
             type: "string",
-        },        
+        },
         {
             name: "subscript",
             baseName: "Subscript",
             type: "boolean",
-        },        
+        },
         {
             name: "superscript",
             baseName: "Superscript",
             type: "boolean",
-        },        
+        },
         {
             name: "textEffect",
             baseName: "TextEffect",
             type: "Font.TextEffectEnum",
-        },        
+        },
         {
             name: "underline",
             baseName: "Underline",
             type: "Font.UnderlineEnum",
-        },        
+        },
         {
             name: "underlineColor",
             baseName: "UnderlineColor",
             type: "XmlColor",
-        }    ];
+        }
+    ];
 
     /**
      * Returns attribute type map
@@ -251,209 +254,211 @@ export class Font extends LinkElement {
     }
 
     /**
-     * Gets or sets true if the font is formatted as all capital letters.             
+     * Gets or sets true if the font is formatted as all capital letters.
      */
     public allCaps: boolean;
-    
+
     /**
-     * Gets or sets specifies whether the contents of this run shall have right-to-left characteristics.             
+     * Gets or sets specifies whether the contents of this run shall have right-to-left characteristics.
      */
     public bidi: boolean;
-    
+
     /**
-     * Gets or sets true if the font is formatted as bold.             
+     * Gets or sets true if the font is formatted as bold.
      */
     public bold: boolean;
-    
+
     /**
-     * Gets or sets true if the right-to-left text is formatted as bold.             
+     * Gets or sets true if the right-to-left text is formatted as bold.
      */
     public boldBi: boolean;
-    
+
     /**
-     * Gets or sets border.
+     * Gets or sets border object that specifies border for the font.
      */
     public border: Border;
-    
+
     /**
-     * Gets or sets color.
+     * Gets or sets the color of the font.
      */
     public color: XmlColor;
-    
+
     /**
-     * Gets or sets specifies whether the contents of this run shall be treated as complex script text regardless of their Unicode character values when determining the formatting for this run.             
+     * Gets or sets specifies whether the contents of this run shall be treated as complex script text regardless
+     * of their Unicode character values when determining the formatting for this run.
      */
     public complexScript: boolean;
-    
+
     /**
-     * Gets or sets true if the font is formatted as double strikethrough text.             
+     * Gets or sets true if the font is formatted as double strikethrough text.
      */
     public doubleStrikeThrough: boolean;
-    
+
     /**
-     * Gets or sets true if the font is formatted as embossed.             
+     * Gets or sets true if the font is formatted as embossed.
      */
     public emboss: boolean;
-    
+
     /**
-     * Gets or sets true if the font is formatted as engraved.             
+     * Gets or sets true if the font is formatted as engraved.
      */
     public engrave: boolean;
-    
+
     /**
-     * Gets or sets true if the font is formatted as hidden text.             
+     * Gets or sets true if the font is formatted as hidden text.
      */
     public hidden: boolean;
-    
+
     /**
-     * Gets or sets highlightColor.
+     * Gets or sets the highlight (marker) color.
      */
     public highlightColor: XmlColor;
-    
+
     /**
-     * Gets or sets true if the font is formatted as italic.             
+     * Gets or sets true if the font is formatted as italic.
      */
     public italic: boolean;
-    
+
     /**
-     * Gets or sets true if the right-to-left text is formatted as italic.             
+     * Gets or sets true if the right-to-left text is formatted as italic.
      */
     public italicBi: boolean;
-    
+
     /**
-     * Gets or sets the font size at which kerning starts.             
+     * Gets or sets the font size at which kerning starts.
      */
     public kerning: number;
-    
+
     /**
-     * Gets or sets the locale identifier (language) of the formatted characters.             
+     * Gets or sets the locale identifier (language) of the formatted characters.
      */
     public localeId: number;
-    
+
     /**
-     * Gets or sets the locale identifier (language) of the formatted right-to-left characters.             
+     * Gets or sets the locale identifier (language) of the formatted right-to-left characters.
      */
     public localeIdBi: number;
-    
+
     /**
-     * Gets or sets the locale identifier (language) of the formatted Asian characters.             
+     * Gets or sets the locale identifier (language) of the formatted Asian characters.
      */
     public localeIdFarEast: number;
-    
+
     /**
-     * Gets or sets the name of the font.             
+     * Gets or sets the name of the font.
      */
     public name: string;
-    
+
     /**
-     * Gets or sets returns or sets the font used for Latin text (characters with character codes from 0 (zero) through 127).             
+     * Gets or sets returns or sets the font used for Latin text (characters with character codes from 0 (zero) through 127).
      */
     public nameAscii: string;
-    
+
     /**
-     * Gets or sets returns or sets the name of the font in a right-to-left language document.             
+     * Gets or sets returns or sets the name of the font in a right-to-left language document.
      */
     public nameBi: string;
-    
+
     /**
-     * Gets or sets returns or sets an East Asian font name.             
+     * Gets or sets returns or sets an East Asian font name.
      */
     public nameFarEast: string;
-    
+
     /**
-     * Gets or sets returns or sets the font used for characters with character codes from 128 through 255.             
+     * Gets or sets returns or sets the font used for characters with character codes from 128 through 255.
      */
     public nameOther: string;
-    
+
     /**
      * Gets or sets true when the formatted characters are not to be spell checked.
      */
     public noProofing: boolean;
-    
+
     /**
-     * Gets or sets true if the font is formatted as outline.             
+     * Gets or sets true if the font is formatted as outline.
      */
     public outline: boolean;
-    
+
     /**
-     * Gets or sets the position of text (in points) relative to the base line. A positive number raises the text, and a negative number lowers it.             
+     * Gets or sets the position of text (in points) relative to the base line.
+     * A positive number raises the text, and a negative number lowers it.
      */
     public position: number;
-    
+
     /**
-     * Gets or sets character width scaling in percent.             
+     * Gets or sets character width scaling in percent.
      */
     public scaling: number;
-    
+
     /**
-     * Gets or sets true if the font is formatted as shadowed.             
+     * Gets or sets true if the font is formatted as shadowed.
      */
     public shadow: boolean;
-    
+
     /**
-     * Gets or sets the font size in points.             
+     * Gets or sets the font size in points.
      */
     public size: number;
-    
+
     /**
-     * Gets or sets the font size in points used in a right-to-left document.             
+     * Gets or sets the font size in points used in a right-to-left document.
      */
     public sizeBi: number;
-    
+
     /**
-     * Gets or sets true if the font is formatted as small capital letters.             
+     * Gets or sets true if the font is formatted as small capital letters.
      */
     public smallCaps: boolean;
-    
+
     /**
-     * Gets or sets returns or sets the spacing (in points) between characters.             
+     * Gets or sets returns or sets the spacing (in points) between characters.
      */
     public spacing: number;
-    
+
     /**
-     * Gets or sets true if the font is formatted as strikethrough text.             
+     * Gets or sets true if the font is formatted as strikethrough text.
      */
     public strikeThrough: boolean;
-    
+
     /**
      * Gets or sets the locale independent style identifier of the character style applied to this formatting.
      */
     public styleIdentifier: Font.StyleIdentifierEnum;
-    
+
     /**
-     * Gets or sets the name of the character style applied to this formatting.             
+     * Gets or sets the name of the character style applied to this formatting.
      */
     public styleName: string;
-    
+
     /**
-     * Gets or sets true if the font is formatted as subscript.             
+     * Gets or sets true if the font is formatted as subscript.
      */
     public subscript: boolean;
-    
+
     /**
-     * Gets or sets true if the font is formatted as superscript.             
+     * Gets or sets true if the font is formatted as superscript.
      */
     public superscript: boolean;
-    
+
     /**
      * Gets or sets the font animation effect.
      */
     public textEffect: Font.TextEffectEnum;
-    
+
     /**
      * Gets or sets the type of underline applied to the font.
      */
     public underline: Font.UnderlineEnum;
-    
+
     /**
-     * Gets or sets underlineColor.
+     * Gets or sets the color of the underline applied to the font.
      */
     public underlineColor: XmlColor;
-    
-    public constructor(init?: Partial<Font>) {
+
+    public constructor(init?: Partial< Font >) {
         super(init);
         Object.assign(this, init);
-    }        
+    }
 }
 
 /**
@@ -835,8 +840,9 @@ export namespace Font {
         ListTable6ColorfulAccent6 = 'ListTable6ColorfulAccent6' as any,
         ListTable7ColorfulAccent6 = 'ListTable7ColorfulAccent6' as any,
         User = 'User' as any,
-        Nil = 'Nil' as any,
+        Nil = 'Nil' as any
     }
+
     export enum TextEffectEnum {
         None = 'None' as any,
         LasVegasLights = 'LasVegasLights' as any,
@@ -844,8 +850,9 @@ export namespace Font {
         SparkleText = 'SparkleText' as any,
         MarchingBlackAnts = 'MarchingBlackAnts' as any,
         MarchingRedAnts = 'MarchingRedAnts' as any,
-        Shimmer = 'Shimmer' as any,
+        Shimmer = 'Shimmer' as any
     }
+
     export enum UnderlineEnum {
         None = 'None' as any,
         Single = 'Single' as any,
@@ -864,7 +871,8 @@ export namespace Font {
         WavyHeavy = 'WavyHeavy' as any,
         DashLong = 'DashLong' as any,
         WavyDouble = 'WavyDouble' as any,
-        DashLongHeavy = 'DashLongHeavy' as any,
+        DashLongHeavy = 'DashLongHeavy' as any
     }
 }
 // tslint:enable:quotemark
+

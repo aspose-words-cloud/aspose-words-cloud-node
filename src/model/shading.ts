@@ -1,26 +1,30 @@
 /*
-* MIT License
+ * --------------------------------------------------------------------------------
+ * <copyright company="Aspose" file="shading.ts">
+ *   Copyright (c) 2020 Aspose.Words for Cloud
+ * </copyright>
+ * <summary>
+ *   Permission is hereby granted, free of charge, to any person obtaining a copy
+ *  of this software and associated documentation files (the "Software"), to deal
+ *  in the Software without restriction, including without limitation the rights
+ *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *  copies of the Software, and to permit persons to whom the Software is
+ *  furnished to do so, subject to the following conditions:
+ * 
+ *  The above copyright notice and this permission notice shall be included in all
+ *  copies or substantial portions of the Software.
+ * 
+ *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ *  SOFTWARE.
+ * </summary>
+ * --------------------------------------------------------------------------------
+ */
 
-* Copyright (c) 2019 Aspose Pty Ltd
-
-* Permission is hereby granted, free of charge, to any person obtaining a copy
-* of this software and associated documentation files (the "Software"), to deal
-* in the Software without restriction, including without limitation the rights
-* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-* copies of the Software, and to permit persons to whom the Software is
-* furnished to do so, subject to the following conditions:
-
-* The above copyright notice and this permission notice shall be included in all
-* copies or substantial portions of the Software.
-
-* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-* SOFTWARE.
-*/
 import { AttributeInfo } from '../internal/attributeInfo';
 import { XmlColor } from './xmlColor';
 
@@ -29,7 +33,7 @@ export const importsMapShading = {
 };
 
 /**
- * Paragraph format shading element.             
+ * Paragraph format shading element.
  */
 export class Shading {
     /**
@@ -40,17 +44,18 @@ export class Shading {
             name: "backgroundPatternColor",
             baseName: "BackgroundPatternColor",
             type: "XmlColor",
-        },        
+        },
         {
             name: "foregroundPatternColor",
             baseName: "ForegroundPatternColor",
             type: "XmlColor",
-        },        
+        },
         {
             name: "texture",
             baseName: "Texture",
             type: "Shading.TextureEnum",
-        }    ];
+        }
+    ];
 
     /**
      * Returns attribute type map
@@ -60,24 +65,23 @@ export class Shading {
     }
 
     /**
-     * Gets or sets backgroundPatternColor.
+     * Gets or sets the color that's applied to the background of the Shading object.
      */
     public backgroundPatternColor: XmlColor;
-    
+
     /**
-     * Gets or sets foregroundPatternColor.
+     * Gets or sets the color that's applied to the foreground of the Shading object.
      */
     public foregroundPatternColor: XmlColor;
-    
+
     /**
      * Gets or sets the shading texture.
      */
     public texture: Shading.TextureEnum;
-    
-    public constructor(init?: Partial<Shading>) {
-        
+
+    public constructor(init?: Partial< Shading >) {
         Object.assign(this, init);
-    }        
+    }
 }
 
 /**
@@ -140,7 +144,8 @@ export namespace Shading {
         Texture92Pt5Percent = 'Texture92Pt5Percent' as any,
         Texture95Percent = 'Texture95Percent' as any,
         Texture97Pt5Percent = 'Texture97Pt5Percent' as any,
-        TextureNil = 'TextureNil' as any,
+        TextureNil = 'TextureNil' as any
     }
 }
 // tslint:enable:quotemark
+

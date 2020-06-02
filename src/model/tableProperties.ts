@@ -1,39 +1,41 @@
 /*
-* MIT License
+ * --------------------------------------------------------------------------------
+ * <copyright company="Aspose" file="tableProperties.ts">
+ *   Copyright (c) 2020 Aspose.Words for Cloud
+ * </copyright>
+ * <summary>
+ *   Permission is hereby granted, free of charge, to any person obtaining a copy
+ *  of this software and associated documentation files (the "Software"), to deal
+ *  in the Software without restriction, including without limitation the rights
+ *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *  copies of the Software, and to permit persons to whom the Software is
+ *  furnished to do so, subject to the following conditions:
+ * 
+ *  The above copyright notice and this permission notice shall be included in all
+ *  copies or substantial portions of the Software.
+ * 
+ *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ *  SOFTWARE.
+ * </summary>
+ * --------------------------------------------------------------------------------
+ */
 
-* Copyright (c) 2019 Aspose Pty Ltd
-
-* Permission is hereby granted, free of charge, to any person obtaining a copy
-* of this software and associated documentation files (the "Software"), to deal
-* in the Software without restriction, including without limitation the rights
-* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-* copies of the Software, and to permit persons to whom the Software is
-* furnished to do so, subject to the following conditions:
-
-* The above copyright notice and this permission notice shall be included in all
-* copies or substantial portions of the Software.
-
-* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-* SOFTWARE.
-*/
 import { AttributeInfo } from '../internal/attributeInfo';
 import { LinkElement } from './linkElement';
 import { PreferredWidth } from './preferredWidth';
-import { WordsApiLink } from './wordsApiLink';
 
 export const importsMapTableProperties = {
     LinkElement,
     PreferredWidth,
-    WordsApiLink,
 };
 
 /**
- * Represents the table properties.             
+ * Represents the table properties.
  */
 export class TableProperties extends LinkElement {
     /**
@@ -44,72 +46,73 @@ export class TableProperties extends LinkElement {
             name: "alignment",
             baseName: "Alignment",
             type: "TableProperties.AlignmentEnum",
-        },        
+        },
         {
             name: "allowAutoFit",
             baseName: "AllowAutoFit",
             type: "boolean",
-        },        
+        },
         {
             name: "bidi",
             baseName: "Bidi",
             type: "boolean",
-        },        
+        },
         {
             name: "bottomPadding",
             baseName: "BottomPadding",
             type: "number",
-        },        
+        },
         {
             name: "cellSpacing",
             baseName: "CellSpacing",
             type: "number",
-        },        
+        },
         {
             name: "leftIndent",
             baseName: "LeftIndent",
             type: "number",
-        },        
+        },
         {
             name: "leftPadding",
             baseName: "LeftPadding",
             type: "number",
-        },        
+        },
         {
             name: "preferredWidth",
             baseName: "PreferredWidth",
             type: "PreferredWidth",
-        },        
+        },
         {
             name: "rightPadding",
             baseName: "RightPadding",
             type: "number",
-        },        
+        },
         {
             name: "styleIdentifier",
             baseName: "StyleIdentifier",
             type: "TableProperties.StyleIdentifierEnum",
-        },        
+        },
         {
             name: "styleName",
             baseName: "StyleName",
             type: "string",
-        },        
+        },
         {
             name: "styleOptions",
             baseName: "StyleOptions",
             type: "TableProperties.StyleOptionsEnum",
-        },        
+        },
         {
             name: "textWrapping",
             baseName: "TextWrapping",
             type: "TableProperties.TextWrappingEnum",
-        },        
+        },
         {
             name: "topPadding",
             baseName: "TopPadding",
             type: "number",
-        }    ];
+        }
+    ];
 
     /**
      * Returns attribute type map
@@ -122,76 +125,77 @@ export class TableProperties extends LinkElement {
      * Gets or sets specifies how an inline table is aligned in the document.
      */
     public alignment: TableProperties.AlignmentEnum;
-    
+
     /**
      * Gets or sets allows Microsoft Word and Aspose.Words to automatically resize cells in a table to fit their contents.
      */
     public allowAutoFit: boolean;
-    
+
     /**
      * Gets or sets whether this is a right-to-left table.
      */
     public bidi: boolean;
-    
+
     /**
      * Gets or sets the amount of space (in points) to add below the contents of cells.
      */
     public bottomPadding: number;
-    
+
     /**
      * Gets or sets the amount of space (in points) between the cells.
      */
     public cellSpacing: number;
-    
+
     /**
      * Gets or sets the value that represents the left indent of the table.
      */
     public leftIndent: number;
-    
+
     /**
      * Gets or sets the amount of space (in points) to add to the left of the contents of cells.
      */
     public leftPadding: number;
-    
+
     /**
-     * Gets or sets preferredWidth.
+     * Gets or sets the table preferred width.
+     * Preferred width can be specified as a percentage, number of points or a special "auto" value.
      */
     public preferredWidth: PreferredWidth;
-    
+
     /**
      * Gets or sets the amount of space (in points) to add to the right of the contents of cells.
      */
     public rightPadding: number;
-    
+
     /**
      * Gets or sets the locale independent style identifier of the table style applied to this table.
      */
     public styleIdentifier: TableProperties.StyleIdentifierEnum;
-    
+
     /**
      * Gets or sets the name of the table style applied to this table.
      */
     public styleName: string;
-    
+
     /**
      * Gets or sets bit flags that specify how a table style is applied to this table.
      */
     public styleOptions: TableProperties.StyleOptionsEnum;
-    
+
     /**
      * Gets or sets get or sets TextWrapping for table.
      */
     public textWrapping: TableProperties.TextWrappingEnum;
-    
+
     /**
      * Gets or sets the amount of space (in points) to add above the contents of cells.
      */
     public topPadding: number;
-    
-    public constructor(init?: Partial<TableProperties>) {
+
+    public constructor(init?: Partial< TableProperties >) {
         super(init);
         Object.assign(this, init);
-    }        
+    }
 }
 
 /**
@@ -203,8 +207,9 @@ export namespace TableProperties {
     export enum AlignmentEnum {
         Left = 'Left' as any,
         Center = 'Center' as any,
-        Right = 'Right' as any,
+        Right = 'Right' as any
     }
+
     export enum StyleIdentifierEnum {
         Normal = 'Normal' as any,
         Heading1 = 'Heading1' as any,
@@ -578,8 +583,9 @@ export namespace TableProperties {
         ListTable6ColorfulAccent6 = 'ListTable6ColorfulAccent6' as any,
         ListTable7ColorfulAccent6 = 'ListTable7ColorfulAccent6' as any,
         User = 'User' as any,
-        Nil = 'Nil' as any,
+        Nil = 'Nil' as any
     }
+
     export enum StyleOptionsEnum {
         None = 'None' as any,
         FirstRow = 'FirstRow' as any,
@@ -589,12 +595,14 @@ export namespace TableProperties {
         RowBands = 'RowBands' as any,
         Default = 'Default' as any,
         ColumnBands = 'ColumnBands' as any,
-        Default2003 = 'Default2003' as any,
+        Default2003 = 'Default2003' as any
     }
+
     export enum TextWrappingEnum {
         Default = 'Default' as any,
         None = 'None' as any,
-        Around = 'Around' as any,
+        Around = 'Around' as any
     }
 }
 // tslint:enable:quotemark
+

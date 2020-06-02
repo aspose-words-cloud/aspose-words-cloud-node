@@ -1,6 +1,6 @@
 /*
  * --------------------------------------------------------------------------------
- * <copyright company="Aspose" file="protectionRequest.ts">
+ * <copyright company="Aspose" file="error.ts">
  *   Copyright (c) 2020 Aspose.Words for Cloud
  * </copyright>
  * <summary>
@@ -26,31 +26,38 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ErrorDetails } from './errorDetails';
 
-export const importsMapProtectionRequest = {
+export const importsMapError = {
+    ErrorDetails,
 };
 
 /**
- * Request on changing of protection.
+ * Error.
  */
-export class ProtectionRequest {
+export class Error {
     /**
      * Attribute type map
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "newPassword",
-            baseName: "NewPassword",
+            name: "code",
+            baseName: "Code",
             type: "string",
         },
         {
-            name: "password",
-            baseName: "Password",
+            name: "description",
+            baseName: "Description",
             type: "string",
         },
         {
-            name: "protectionType",
-            baseName: "ProtectionType",
+            name: "innerError",
+            baseName: "InnerError",
+            type: "ErrorDetails",
+        },
+        {
+            name: "message",
+            baseName: "Message",
             type: "string",
         }
     ];
@@ -59,25 +66,30 @@ export class ProtectionRequest {
      * Returns attribute type map
      */
     public static getAttributeTypeMap() {
-        return ProtectionRequest.attributeTypeMap;
+        return Error.attributeTypeMap;
     }
 
     /**
-     * Gets or sets new password.
+     * Code.
      */
-    public newPassword: string;
+    public code: string;
 
     /**
-     * Gets or sets current password.
+     * Description.
      */
-    public password: string;
+    public description: string;
 
     /**
-     * Gets or sets new type of protection.
+     * Inner Error.
      */
-    public protectionType: string;
+    public innerError: ErrorDetails;
 
-    public constructor(init?: Partial< ProtectionRequest >) {
+    /**
+     * Message.
+     */
+    public message: string;
+
+    public constructor(init?: Partial< Error >) {
         Object.assign(this, init);
     }
 }

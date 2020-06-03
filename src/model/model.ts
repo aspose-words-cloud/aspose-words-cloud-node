@@ -69,9 +69,11 @@ import * as importedDocumentStatData from './documentStatData';
 import * as importedDownsampleOptionsData from './downsampleOptionsData';
 import * as importedDrawingObject from './drawingObject';
 import * as importedDrawingObjectCollection from './drawingObjectCollection';
+import * as importedDrawingObjectInsert from './drawingObjectInsert';
 import * as importedDrawingObjectLink from './drawingObjectLink';
 import * as importedDrawingObjectResponse from './drawingObjectResponse';
 import * as importedDrawingObjectsResponse from './drawingObjectsResponse';
+import * as importedDrawingObjectUpdate from './drawingObjectUpdate';
 import * as importedEmfSaveOptionsData from './emfSaveOptionsData';
 import * as importedEpubSaveOptionsData from './epubSaveOptionsData';
 import * as importedError from './error';
@@ -293,9 +295,11 @@ export * from './documentStatData';
 export * from './downsampleOptionsData';
 export * from './drawingObject';
 export * from './drawingObjectCollection';
+export * from './drawingObjectInsert';
 export * from './drawingObjectLink';
 export * from './drawingObjectResponse';
 export * from './drawingObjectsResponse';
+export * from './drawingObjectUpdate';
 export * from './emfSaveOptionsData';
 export * from './epubSaveOptionsData';
 export * from './error';
@@ -497,6 +501,12 @@ const enumsMap = {
     "DrawingObject.RelativeHorizontalPositionEnum": importedDrawingObject.DrawingObject.RelativeHorizontalPositionEnum,
     "DrawingObject.RelativeVerticalPositionEnum": importedDrawingObject.DrawingObject.RelativeVerticalPositionEnum,
     "DrawingObject.WrapTypeEnum": importedDrawingObject.DrawingObject.WrapTypeEnum,
+    "DrawingObjectInsert.RelativeHorizontalPositionEnum": importedDrawingObjectInsert.DrawingObjectInsert.RelativeHorizontalPositionEnum,
+    "DrawingObjectInsert.RelativeVerticalPositionEnum": importedDrawingObjectInsert.DrawingObjectInsert.RelativeVerticalPositionEnum,
+    "DrawingObjectInsert.WrapTypeEnum": importedDrawingObjectInsert.DrawingObjectInsert.WrapTypeEnum,
+    "DrawingObjectUpdate.RelativeHorizontalPositionEnum": importedDrawingObjectUpdate.DrawingObjectUpdate.RelativeHorizontalPositionEnum,
+    "DrawingObjectUpdate.RelativeVerticalPositionEnum": importedDrawingObjectUpdate.DrawingObjectUpdate.RelativeVerticalPositionEnum,
+    "DrawingObjectUpdate.WrapTypeEnum": importedDrawingObjectUpdate.DrawingObjectUpdate.WrapTypeEnum,
     "Font.StyleIdentifierEnum": importedFont.Font.StyleIdentifierEnum,
     "Font.TextEffectEnum": importedFont.Font.TextEffectEnum,
     "Font.UnderlineEnum": importedFont.Font.UnderlineEnum,
@@ -523,6 +533,7 @@ const enumsMap = {
     "OfficeMathObject.DisplayTypeEnum": importedOfficeMathObject.OfficeMathObject.DisplayTypeEnum,
     "OfficeMathObject.JustificationEnum": importedOfficeMathObject.OfficeMathObject.JustificationEnum,
     "OfficeMathObject.MathObjectTypeEnum": importedOfficeMathObject.OfficeMathObject.MathObjectTypeEnum,
+    "OoxmlSaveOptionsData.CompressionLevelEnum": importedOoxmlSaveOptionsData.OoxmlSaveOptionsData.CompressionLevelEnum,
     "PageSetup.BorderAppliesToEnum": importedPageSetup.PageSetup.BorderAppliesToEnum,
     "PageSetup.BorderDistanceFromEnum": importedPageSetup.PageSetup.BorderDistanceFromEnum,
     "PageSetup.LineNumberRestartModeEnum": importedPageSetup.PageSetup.LineNumberRestartModeEnum,
@@ -608,9 +619,11 @@ const typeMap = {
     DownsampleOptionsData: importedDownsampleOptionsData.DownsampleOptionsData,
     DrawingObject: importedDrawingObject.DrawingObject,
     DrawingObjectCollection: importedDrawingObjectCollection.DrawingObjectCollection,
+    DrawingObjectInsert: importedDrawingObjectInsert.DrawingObjectInsert,
     DrawingObjectLink: importedDrawingObjectLink.DrawingObjectLink,
     DrawingObjectResponse: importedDrawingObjectResponse.DrawingObjectResponse,
     DrawingObjectsResponse: importedDrawingObjectsResponse.DrawingObjectsResponse,
+    DrawingObjectUpdate: importedDrawingObjectUpdate.DrawingObjectUpdate,
     EmfSaveOptionsData: importedEmfSaveOptionsData.EmfSaveOptionsData,
     EpubSaveOptionsData: importedEpubSaveOptionsData.EpubSaveOptionsData,
     Error: importedError.Error,
@@ -1450,6 +1463,51 @@ export class DeleteAllParagraphTabStopsRequest {
     public destFileName: string;
 
     public constructor(init?: Partial< DeleteAllParagraphTabStopsRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
+ * Request model for DeleteAllParagraphTabStopsWithoutNodePath operation.
+ * Remove all tab stops.
+ */
+export class DeleteAllParagraphTabStopsWithoutNodePathRequest {
+    /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    public constructor(init?: Partial< DeleteAllParagraphTabStopsWithoutNodePathRequest >) {
         Object.assign(this, init);
     }
 }
@@ -2700,6 +2758,61 @@ export class DeleteParagraphListFormatRequest {
 }
 
 /**
+ * Request model for DeleteParagraphListFormatWithoutNodePath operation.
+ * Delete paragraph list format, returns updated list format properties.
+ */
+export class DeleteParagraphListFormatWithoutNodePathRequest {
+    /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< DeleteParagraphListFormatWithoutNodePathRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for DeleteParagraphTabStop operation.
  * Remove the i-th tab stop.
  */
@@ -2710,9 +2823,59 @@ export class DeleteParagraphTabStopRequest {
     public name: string;
 
     /**
+     * a tab stop position to remove.
+     */
+    public position: number;
+
+    /**
      * Path to the node which contains paragraph.
      */
     public nodePath: string;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    public constructor(init?: Partial< DeleteParagraphTabStopRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
+ * Request model for DeleteParagraphTabStopWithoutNodePath operation.
+ * Remove the i-th tab stop.
+ */
+export class DeleteParagraphTabStopWithoutNodePathRequest {
+    /**
+     * The document name.
+     */
+    public name: string;
 
     /**
      * a tab stop position to remove.
@@ -2749,7 +2912,7 @@ export class DeleteParagraphTabStopRequest {
      */
     public destFileName: string;
 
-    public constructor(init?: Partial< DeleteParagraphTabStopRequest >) {
+    public constructor(init?: Partial< DeleteParagraphTabStopWithoutNodePathRequest >) {
         Object.assign(this, init);
     }
 }
@@ -5507,6 +5670,46 @@ export class GetParagraphTabStopsRequest {
 }
 
 /**
+ * Request model for GetParagraphTabStopsWithoutNodePath operation.
+ * Get all tab stops for the paragraph.
+ */
+export class GetParagraphTabStopsWithoutNodePathRequest {
+    /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetParagraphTabStopsWithoutNodePathRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for GetParagraphWithoutNodePath operation.
  * This resource represents one of the paragraphs contained in the document.
  */
@@ -6446,7 +6649,7 @@ export class InsertDrawingObjectRequest {
     /**
      * Drawing object parameters.
      */
-    public drawingObject: string;
+    public drawingObject: importedDrawingObjectInsert.DrawingObjectInsert;
 
     /**
      * File with image.
@@ -6511,7 +6714,7 @@ export class InsertDrawingObjectWithoutNodePathRequest {
     /**
      * Drawing object parameters.
      */
-    public drawingObject: string;
+    public drawingObject: importedDrawingObjectInsert.DrawingObjectInsert;
 
     /**
      * File with image.
@@ -7049,9 +7252,59 @@ export class InsertOrUpdateParagraphTabStopRequest {
     public name: string;
 
     /**
+     * Paragraph tab stop.
+     */
+    public dto: importedTabStopInsert.TabStopInsert;
+
+    /**
      * Path to the node which contains paragraph.
      */
     public nodePath: string;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    public constructor(init?: Partial< InsertOrUpdateParagraphTabStopRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
+ * Request model for InsertOrUpdateParagraphTabStopWithoutNodePath operation.
+ * Insert or resplace tab stop if a tab stop with the position exists.
+ */
+export class InsertOrUpdateParagraphTabStopWithoutNodePathRequest {
+    /**
+     * The document name.
+     */
+    public name: string;
 
     /**
      * Paragraph tab stop.
@@ -7088,7 +7341,7 @@ export class InsertOrUpdateParagraphTabStopRequest {
      */
     public destFileName: string;
 
-    public constructor(init?: Partial< InsertOrUpdateParagraphTabStopRequest >) {
+    public constructor(init?: Partial< InsertOrUpdateParagraphTabStopWithoutNodePathRequest >) {
         Object.assign(this, init);
     }
 }
@@ -7209,6 +7462,66 @@ export class InsertParagraphRequest {
     public insertBeforeNode: string;
 
     public constructor(init?: Partial< InsertParagraphRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
+ * Request model for InsertParagraphWithoutNodePath operation.
+ * Adds paragraph to document, returns added paragraph's data.
+ */
+export class InsertParagraphWithoutNodePathRequest {
+    /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * Paragraph data.
+     */
+    public paragraph: importedParagraphInsert.ParagraphInsert;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    /**
+     * Paragraph will be inserted before node with index.
+     */
+    public insertBeforeNode: string;
+
+    public constructor(init?: Partial< InsertParagraphWithoutNodePathRequest >) {
         Object.assign(this, init);
     }
 }
@@ -9078,7 +9391,7 @@ export class UpdateDrawingObjectRequest {
     /**
      * Drawing object parameters.
      */
-    public drawingObject: string;
+    public drawingObject: importedDrawingObjectUpdate.DrawingObjectUpdate;
 
     /**
      * File with image.
@@ -9148,7 +9461,7 @@ export class UpdateDrawingObjectWithoutNodePathRequest {
     /**
      * Drawing object parameters.
      */
-    public drawingObject: string;
+    public drawingObject: importedDrawingObjectUpdate.DrawingObjectUpdate;
 
     /**
      * File with image.
@@ -9746,6 +10059,66 @@ export class UpdateParagraphFormatRequest {
 }
 
 /**
+ * Request model for UpdateParagraphFormatWithoutNodePath operation.
+ * Updates paragraph format properties, returns updated format properties.
+ */
+export class UpdateParagraphFormatWithoutNodePathRequest {
+    /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * Paragraph format object.
+     */
+    public dto: importedParagraphFormat.ParagraphFormat;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< UpdateParagraphFormatWithoutNodePathRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for UpdateParagraphListFormat operation.
  * Updates paragraph list format properties, returns updated list format properties.
  */
@@ -9806,6 +10179,66 @@ export class UpdateParagraphListFormatRequest {
     public revisionDateTime: string;
 
     public constructor(init?: Partial< UpdateParagraphListFormatRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
+ * Request model for UpdateParagraphListFormatWithoutNodePath operation.
+ * Updates paragraph list format properties, returns updated list format properties.
+ */
+export class UpdateParagraphListFormatWithoutNodePathRequest {
+    /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * Paragraph format object.
+     */
+    public dto: importedListFormatUpdate.ListFormatUpdate;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< UpdateParagraphListFormatWithoutNodePathRequest >) {
         Object.assign(this, init);
     }
 }

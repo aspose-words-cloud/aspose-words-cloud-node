@@ -16,6 +16,21 @@ Feel free to explore the [Developer's Guide](https://docs.aspose.cloud/display/w
 - Add & remove watermarks and protection.
 - Read & write access to Document Object Model.
 
+## Enhancements in Version 20.6
+
+- Added new methods:
+  - deleteAllParagraphTabStopsWithoutNodePath
+  - deleteParagraphTabStopWithoutNodePath
+  - getParagraphTabStopsWithoutNodePath
+  - insertOrUpdateParagraphTabStopWithoutNodePath
+  - insertParagraphWithoutNodePath
+  - updateParagraphFormatWithoutNodePath
+  - updateParagraphListFormatWithoutNodePath
+  - deleteParagraphListFormatWithoutNodePath
+- DrawingObject related methods have been changed body content. Special request classes are introduced instead of strings.
+- insertOrUpdateParagraphTabStop, deleteParagraphTabStop methods have been changed parameter order
+- OoxmlSaveOptionsData.CompressionLevel property has been added
+
 ## Enhancements in Version 20.5
 
 - Added methods to work with Word document lists
@@ -109,7 +124,7 @@ The complete source code is available at [GitHub Repository](https://github.com/
         // Start README example
         
         // create API instance (baseUrl is optional)
-        var wordsApi = new WordsApi(appSid, appKey, baseUrl);
+        const wordsApi = new WordsApi(appSid, appKey, baseUrl);
         
         // upload file to the Aspose cloud
         const uploadRequest = new UploadFileRequest();
@@ -119,7 +134,7 @@ The complete source code is available at [GitHub Repository](https://github.com/
         wordsApi.uploadFile(uploadRequest)
             .then((_uploadResult) => {
                 // save the file as pdf in the cloud
-                var request = new SaveAsRequest({
+                const request = new SaveAsRequest({
                     name: "uploaded.docx",
                     saveOptionsData: new SaveOptionsData(
                         {
@@ -132,14 +147,12 @@ The complete source code is available at [GitHub Repository](https://github.com/
                     .then((_result) => {
                         // deal with the pdf file
                     })
-                    .catch(function(err) {
-                        console.log(err.reponse.statusCode);
-                        console.log(err.body);
+                    .catch(function(_err) {
+                        // handle saveAs request error
                     });
             })
-            .catch(function(err) {
-                console.log(err.reponse.statusCode);
-                console.log(err.body);
+            .catch(function(_err) {
+                // handle uploadFile request error
             });
 
         // End README example

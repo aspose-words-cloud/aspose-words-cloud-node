@@ -1,43 +1,35 @@
 /*
-* MIT License
+ * --------------------------------------------------------------------------------
+ * <copyright company="Aspose" file="model.ts">
+ *   Copyright (c) 2020 Aspose.Words for Cloud
+ * </copyright>
+ * <summary>
+ *   Permission is hereby granted, free of charge, to any person obtaining a copy
+ *  of this software and associated documentation files (the "Software"), to deal
+ *  in the Software without restriction, including without limitation the rights
+ *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *  copies of the Software, and to permit persons to whom the Software is
+ *  furnished to do so, subject to the following conditions:
+ * 
+ *  The above copyright notice and this permission notice shall be included in all
+ *  copies or substantial portions of the Software.
+ * 
+ *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ *  SOFTWARE.
+ * </summary>
+ * --------------------------------------------------------------------------------
+ */
 
-* Copyright (c) 2019 Aspose Pty Ltd
-
-* Permission is hereby granted, free of charge, to any person obtaining a copy
-* of this software and associated documentation files (the "Software"), to deal
-* in the Software without restriction, including without limitation the rights
-* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-* copies of the Software, and to permit persons to whom the Software is
-* furnished to do so, subject to the following conditions:
-
-* The above copyright notice and this permission notice shall be included in all
-* copies or substantial portions of the Software.
-
-* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-* SOFTWARE.
-*/
 import { Readable } from "stream";
 import { IncomingMessage } from 'http';
 import * as importedApiError from './apiError';
 import * as importedAvailableFontsResponse from './availableFontsResponse';
 import * as importedBmpSaveOptionsData from './bmpSaveOptionsData';
-import * as importedBody from './body';
-import * as importedBody1 from './body1';
-import * as importedBody10 from './body10';
-import * as importedBody11 from './body11';
-import * as importedBody2 from './body2';
-import * as importedBody3 from './body3';
-import * as importedBody4 from './body4';
-import * as importedBody5 from './body5';
-import * as importedBody6 from './body6';
-import * as importedBody7 from './body7';
-import * as importedBody8 from './body8';
-import * as importedBody9 from './body9';
 import * as importedBookmark from './bookmark';
 import * as importedBookmarkData from './bookmarkData';
 import * as importedBookmarkResponse from './bookmarkResponse';
@@ -55,9 +47,9 @@ import * as importedCommentBase from './commentBase';
 import * as importedCommentInsert from './commentInsert';
 import * as importedCommentLink from './commentLink';
 import * as importedCommentResponse from './commentResponse';
-import * as importedCommentUpdate from './commentUpdate';
 import * as importedCommentsCollection from './commentsCollection';
 import * as importedCommentsResponse from './commentsResponse';
+import * as importedCommentUpdate from './commentUpdate';
 import * as importedCompareData from './compareData';
 import * as importedCompareOptions from './compareOptions';
 import * as importedCsvDataLoadOptions from './csvDataLoadOptions';
@@ -80,10 +72,11 @@ import * as importedDrawingObjectCollection from './drawingObjectCollection';
 import * as importedDrawingObjectInsert from './drawingObjectInsert';
 import * as importedDrawingObjectLink from './drawingObjectLink';
 import * as importedDrawingObjectResponse from './drawingObjectResponse';
-import * as importedDrawingObjectUpdate from './drawingObjectUpdate';
 import * as importedDrawingObjectsResponse from './drawingObjectsResponse';
+import * as importedDrawingObjectUpdate from './drawingObjectUpdate';
 import * as importedEmfSaveOptionsData from './emfSaveOptionsData';
 import * as importedEpubSaveOptionsData from './epubSaveOptionsData';
+import * as importedError from './error';
 import * as importedErrorDetails from './errorDetails';
 import * as importedField from './field';
 import * as importedFieldBase from './fieldBase';
@@ -93,8 +86,8 @@ import * as importedFieldLink from './fieldLink';
 import * as importedFieldNames from './fieldNames';
 import * as importedFieldNamesResponse from './fieldNamesResponse';
 import * as importedFieldResponse from './fieldResponse';
-import * as importedFieldUpdate from './fieldUpdate';
 import * as importedFieldsResponse from './fieldsResponse';
+import * as importedFieldUpdate from './fieldUpdate';
 import * as importedFileLink from './fileLink';
 import * as importedFilesList from './filesList';
 import * as importedFilesUploadResult from './filesUploadResult';
@@ -108,16 +101,16 @@ import * as importedFootnoteCollection from './footnoteCollection';
 import * as importedFootnoteInsert from './footnoteInsert';
 import * as importedFootnoteLink from './footnoteLink';
 import * as importedFootnoteResponse from './footnoteResponse';
-import * as importedFootnoteUpdate from './footnoteUpdate';
 import * as importedFootnotesResponse from './footnotesResponse';
 import * as importedFootnotesStatData from './footnotesStatData';
+import * as importedFootnoteUpdate from './footnoteUpdate';
 import * as importedFormField from './formField';
 import * as importedFormFieldCheckbox from './formFieldCheckbox';
 import * as importedFormFieldCollection from './formFieldCollection';
 import * as importedFormFieldDropDown from './formFieldDropDown';
 import * as importedFormFieldResponse from './formFieldResponse';
-import * as importedFormFieldTextInput from './formFieldTextInput';
 import * as importedFormFieldsResponse from './formFieldsResponse';
+import * as importedFormFieldTextInput from './formFieldTextInput';
 import * as importedGifSaveOptionsData from './gifSaveOptionsData';
 import * as importedGraphicsQualityOptionsData from './graphicsQualityOptionsData';
 import * as importedHeaderFooter from './headerFooter';
@@ -140,16 +133,15 @@ import * as importedListFormatUpdate from './listFormatUpdate';
 import * as importedListInfo from './listInfo';
 import * as importedListInsert from './listInsert';
 import * as importedListLevel from './listLevel';
-import * as importedListLevelUpdate from './listLevelUpdate';
 import * as importedListLevels from './listLevels';
+import * as importedListLevelUpdate from './listLevelUpdate';
 import * as importedListResponse from './listResponse';
-import * as importedListUpdate from './listUpdate';
 import * as importedLists from './lists';
 import * as importedListsResponse from './listsResponse';
+import * as importedListUpdate from './listUpdate';
 import * as importedLoadWebDocumentData from './loadWebDocumentData';
 import * as importedMetafileRenderingOptionsData from './metafileRenderingOptionsData';
 import * as importedMhtmlSaveOptionsData from './mhtmlSaveOptionsData';
-import * as importedModelError from './modelError';
 import * as importedModificationOperationResult from './modificationOperationResult';
 import * as importedNodeLink from './nodeLink';
 import * as importedOdtSaveOptionsData from './odtSaveOptionsData';
@@ -196,9 +188,9 @@ import * as importedRunBase from './runBase';
 import * as importedRunInsert from './runInsert';
 import * as importedRunLink from './runLink';
 import * as importedRunResponse from './runResponse';
-import * as importedRunUpdate from './runUpdate';
 import * as importedRuns from './runs';
 import * as importedRunsResponse from './runsResponse';
+import * as importedRunUpdate from './runUpdate';
 import * as importedSaveOptionsData from './saveOptionsData';
 import * as importedSaveResponse from './saveResponse';
 import * as importedSaveResult from './saveResult';
@@ -223,13 +215,9 @@ import * as importedStyleApply from './styleApply';
 import * as importedStyleCopy from './styleCopy';
 import * as importedStyleInsert from './styleInsert';
 import * as importedStyleResponse from './styleResponse';
-import * as importedStyleUpdate from './styleUpdate';
 import * as importedStylesResponse from './stylesResponse';
+import * as importedStyleUpdate from './styleUpdate';
 import * as importedSvgSaveOptionsData from './svgSaveOptionsData';
-import * as importedTabStop from './tabStop';
-import * as importedTabStopBase from './tabStopBase';
-import * as importedTabStopInsert from './tabStopInsert';
-import * as importedTabStopsResponse from './tabStopsResponse';
 import * as importedTable from './table';
 import * as importedTableCell from './tableCell';
 import * as importedTableCellFormat from './tableCellFormat';
@@ -248,6 +236,10 @@ import * as importedTableRowFormat from './tableRowFormat';
 import * as importedTableRowFormatResponse from './tableRowFormatResponse';
 import * as importedTableRowInsert from './tableRowInsert';
 import * as importedTableRowResponse from './tableRowResponse';
+import * as importedTabStop from './tabStop';
+import * as importedTabStopBase from './tabStopBase';
+import * as importedTabStopInsert from './tabStopInsert';
+import * as importedTabStopsResponse from './tabStopsResponse';
 import * as importedTextSaveOptionsData from './textSaveOptionsData';
 import * as importedTiffSaveOptionsData from './tiffSaveOptionsData';
 import * as importedWatermarkText from './watermarkText';
@@ -264,18 +256,6 @@ export { AttributeInfo } from '../internal/attributeInfo';
 export * from './apiError';
 export * from './availableFontsResponse';
 export * from './bmpSaveOptionsData';
-export * from './body';
-export * from './body1';
-export * from './body10';
-export * from './body11';
-export * from './body2';
-export * from './body3';
-export * from './body4';
-export * from './body5';
-export * from './body6';
-export * from './body7';
-export * from './body8';
-export * from './body9';
 export * from './bookmark';
 export * from './bookmarkData';
 export * from './bookmarkResponse';
@@ -293,9 +273,9 @@ export * from './commentBase';
 export * from './commentInsert';
 export * from './commentLink';
 export * from './commentResponse';
-export * from './commentUpdate';
 export * from './commentsCollection';
 export * from './commentsResponse';
+export * from './commentUpdate';
 export * from './compareData';
 export * from './compareOptions';
 export * from './csvDataLoadOptions';
@@ -318,10 +298,11 @@ export * from './drawingObjectCollection';
 export * from './drawingObjectInsert';
 export * from './drawingObjectLink';
 export * from './drawingObjectResponse';
-export * from './drawingObjectUpdate';
 export * from './drawingObjectsResponse';
+export * from './drawingObjectUpdate';
 export * from './emfSaveOptionsData';
 export * from './epubSaveOptionsData';
+export * from './error';
 export * from './errorDetails';
 export * from './field';
 export * from './fieldBase';
@@ -331,8 +312,8 @@ export * from './fieldLink';
 export * from './fieldNames';
 export * from './fieldNamesResponse';
 export * from './fieldResponse';
-export * from './fieldUpdate';
 export * from './fieldsResponse';
+export * from './fieldUpdate';
 export * from './fileLink';
 export * from './filesList';
 export * from './filesUploadResult';
@@ -346,16 +327,16 @@ export * from './footnoteCollection';
 export * from './footnoteInsert';
 export * from './footnoteLink';
 export * from './footnoteResponse';
-export * from './footnoteUpdate';
 export * from './footnotesResponse';
 export * from './footnotesStatData';
+export * from './footnoteUpdate';
 export * from './formField';
 export * from './formFieldCheckbox';
 export * from './formFieldCollection';
 export * from './formFieldDropDown';
 export * from './formFieldResponse';
-export * from './formFieldTextInput';
 export * from './formFieldsResponse';
+export * from './formFieldTextInput';
 export * from './gifSaveOptionsData';
 export * from './graphicsQualityOptionsData';
 export * from './headerFooter';
@@ -378,16 +359,15 @@ export * from './listFormatUpdate';
 export * from './listInfo';
 export * from './listInsert';
 export * from './listLevel';
-export * from './listLevelUpdate';
 export * from './listLevels';
+export * from './listLevelUpdate';
 export * from './listResponse';
-export * from './listUpdate';
 export * from './lists';
 export * from './listsResponse';
+export * from './listUpdate';
 export * from './loadWebDocumentData';
 export * from './metafileRenderingOptionsData';
 export * from './mhtmlSaveOptionsData';
-export * from './modelError';
 export * from './modificationOperationResult';
 export * from './nodeLink';
 export * from './odtSaveOptionsData';
@@ -434,9 +414,9 @@ export * from './runBase';
 export * from './runInsert';
 export * from './runLink';
 export * from './runResponse';
-export * from './runUpdate';
 export * from './runs';
 export * from './runsResponse';
+export * from './runUpdate';
 export * from './saveOptionsData';
 export * from './saveResponse';
 export * from './saveResult';
@@ -461,13 +441,9 @@ export * from './styleApply';
 export * from './styleCopy';
 export * from './styleInsert';
 export * from './styleResponse';
-export * from './styleUpdate';
 export * from './stylesResponse';
+export * from './styleUpdate';
 export * from './svgSaveOptionsData';
-export * from './tabStop';
-export * from './tabStopBase';
-export * from './tabStopInsert';
-export * from './tabStopsResponse';
 export * from './table';
 export * from './tableCell';
 export * from './tableCellFormat';
@@ -486,6 +462,10 @@ export * from './tableRowFormat';
 export * from './tableRowFormatResponse';
 export * from './tableRowInsert';
 export * from './tableRowResponse';
+export * from './tabStop';
+export * from './tabStopBase';
+export * from './tabStopInsert';
+export * from './tabStopsResponse';
 export * from './textSaveOptionsData';
 export * from './tiffSaveOptionsData';
 export * from './watermarkText';
@@ -506,7 +486,7 @@ export class WordsIncomingMessage<T> {
      * Gets or sets raw response
      */
     public response: IncomingMessage;
-    
+
     /**
      * Get or set parsed response
      */
@@ -546,8 +526,8 @@ const enumsMap = {
     "ListLevel.AlignmentEnum": importedListLevel.ListLevel.AlignmentEnum,
     "ListLevel.NumberStyleEnum": importedListLevel.ListLevel.NumberStyleEnum,
     "ListLevel.TrailingCharacterEnum": importedListLevel.ListLevel.TrailingCharacterEnum,
-    "ListLevelUpdate.NumberStyleEnum": importedListLevelUpdate.ListLevelUpdate.NumberStyleEnum,
     "ListLevelUpdate.AlignmentEnum": importedListLevelUpdate.ListLevelUpdate.AlignmentEnum,
+    "ListLevelUpdate.NumberStyleEnum": importedListLevelUpdate.ListLevelUpdate.NumberStyleEnum,
     "ListLevelUpdate.TrailingCharacterEnum": importedListLevelUpdate.ListLevelUpdate.TrailingCharacterEnum,
     "OdtSaveOptionsData.MeasureUnitEnum": importedOdtSaveOptionsData.OdtSaveOptionsData.MeasureUnitEnum,
     "OfficeMathObject.DisplayTypeEnum": importedOfficeMathObject.OfficeMathObject.DisplayTypeEnum,
@@ -581,8 +561,6 @@ const enumsMap = {
     "Style.StyleIdentifierEnum": importedStyle.Style.StyleIdentifierEnum,
     "Style.TypeEnum": importedStyle.Style.TypeEnum,
     "StyleInsert.StyleTypeEnum": importedStyleInsert.StyleInsert.StyleTypeEnum,
-    "TabStopBase.AlignmentEnum": importedTabStopBase.TabStopBase.AlignmentEnum,
-    "TabStopBase.LeaderEnum": importedTabStopBase.TabStopBase.LeaderEnum,
     "TableCellFormat.HorizontalMergeEnum": importedTableCellFormat.TableCellFormat.HorizontalMergeEnum,
     "TableCellFormat.OrientationEnum": importedTableCellFormat.TableCellFormat.OrientationEnum,
     "TableCellFormat.VerticalAlignmentEnum": importedTableCellFormat.TableCellFormat.VerticalAlignmentEnum,
@@ -592,25 +570,16 @@ const enumsMap = {
     "TableProperties.StyleOptionsEnum": importedTableProperties.TableProperties.StyleOptionsEnum,
     "TableProperties.TextWrappingEnum": importedTableProperties.TableProperties.TextWrappingEnum,
     "TableRowFormat.HeightRuleEnum": importedTableRowFormat.TableRowFormat.HeightRuleEnum,
+    "TabStopBase.AlignmentEnum": importedTabStopBase.TabStopBase.AlignmentEnum,
+    "TabStopBase.LeaderEnum": importedTabStopBase.TabStopBase.LeaderEnum,
     "TextSaveOptionsData.ExportHeadersFootersModeEnum": importedTextSaveOptionsData.TextSaveOptionsData.ExportHeadersFootersModeEnum,
+
 };
 
 const typeMap = {
     ApiError: importedApiError.ApiError,
     AvailableFontsResponse: importedAvailableFontsResponse.AvailableFontsResponse,
     BmpSaveOptionsData: importedBmpSaveOptionsData.BmpSaveOptionsData,
-    Body: importedBody.Body,
-    Body1: importedBody1.Body1,
-    Body10: importedBody10.Body10,
-    Body11: importedBody11.Body11,
-    Body2: importedBody2.Body2,
-    Body3: importedBody3.Body3,
-    Body4: importedBody4.Body4,
-    Body5: importedBody5.Body5,
-    Body6: importedBody6.Body6,
-    Body7: importedBody7.Body7,
-    Body8: importedBody8.Body8,
-    Body9: importedBody9.Body9,
     Bookmark: importedBookmark.Bookmark,
     BookmarkData: importedBookmarkData.BookmarkData,
     BookmarkResponse: importedBookmarkResponse.BookmarkResponse,
@@ -628,9 +597,9 @@ const typeMap = {
     CommentInsert: importedCommentInsert.CommentInsert,
     CommentLink: importedCommentLink.CommentLink,
     CommentResponse: importedCommentResponse.CommentResponse,
-    CommentUpdate: importedCommentUpdate.CommentUpdate,
     CommentsCollection: importedCommentsCollection.CommentsCollection,
     CommentsResponse: importedCommentsResponse.CommentsResponse,
+    CommentUpdate: importedCommentUpdate.CommentUpdate,
     CompareData: importedCompareData.CompareData,
     CompareOptions: importedCompareOptions.CompareOptions,
     CsvDataLoadOptions: importedCsvDataLoadOptions.CsvDataLoadOptions,
@@ -653,10 +622,11 @@ const typeMap = {
     DrawingObjectInsert: importedDrawingObjectInsert.DrawingObjectInsert,
     DrawingObjectLink: importedDrawingObjectLink.DrawingObjectLink,
     DrawingObjectResponse: importedDrawingObjectResponse.DrawingObjectResponse,
-    DrawingObjectUpdate: importedDrawingObjectUpdate.DrawingObjectUpdate,
     DrawingObjectsResponse: importedDrawingObjectsResponse.DrawingObjectsResponse,
+    DrawingObjectUpdate: importedDrawingObjectUpdate.DrawingObjectUpdate,
     EmfSaveOptionsData: importedEmfSaveOptionsData.EmfSaveOptionsData,
     EpubSaveOptionsData: importedEpubSaveOptionsData.EpubSaveOptionsData,
+    Error: importedError.Error,
     ErrorDetails: importedErrorDetails.ErrorDetails,
     Field: importedField.Field,
     FieldBase: importedFieldBase.FieldBase,
@@ -666,8 +636,8 @@ const typeMap = {
     FieldNames: importedFieldNames.FieldNames,
     FieldNamesResponse: importedFieldNamesResponse.FieldNamesResponse,
     FieldResponse: importedFieldResponse.FieldResponse,
-    FieldUpdate: importedFieldUpdate.FieldUpdate,
     FieldsResponse: importedFieldsResponse.FieldsResponse,
+    FieldUpdate: importedFieldUpdate.FieldUpdate,
     FileLink: importedFileLink.FileLink,
     FilesList: importedFilesList.FilesList,
     FilesUploadResult: importedFilesUploadResult.FilesUploadResult,
@@ -681,16 +651,16 @@ const typeMap = {
     FootnoteInsert: importedFootnoteInsert.FootnoteInsert,
     FootnoteLink: importedFootnoteLink.FootnoteLink,
     FootnoteResponse: importedFootnoteResponse.FootnoteResponse,
-    FootnoteUpdate: importedFootnoteUpdate.FootnoteUpdate,
     FootnotesResponse: importedFootnotesResponse.FootnotesResponse,
     FootnotesStatData: importedFootnotesStatData.FootnotesStatData,
+    FootnoteUpdate: importedFootnoteUpdate.FootnoteUpdate,
     FormField: importedFormField.FormField,
     FormFieldCheckbox: importedFormFieldCheckbox.FormFieldCheckbox,
     FormFieldCollection: importedFormFieldCollection.FormFieldCollection,
     FormFieldDropDown: importedFormFieldDropDown.FormFieldDropDown,
     FormFieldResponse: importedFormFieldResponse.FormFieldResponse,
-    FormFieldTextInput: importedFormFieldTextInput.FormFieldTextInput,
     FormFieldsResponse: importedFormFieldsResponse.FormFieldsResponse,
+    FormFieldTextInput: importedFormFieldTextInput.FormFieldTextInput,
     GifSaveOptionsData: importedGifSaveOptionsData.GifSaveOptionsData,
     GraphicsQualityOptionsData: importedGraphicsQualityOptionsData.GraphicsQualityOptionsData,
     HeaderFooter: importedHeaderFooter.HeaderFooter,
@@ -713,16 +683,15 @@ const typeMap = {
     ListInfo: importedListInfo.ListInfo,
     ListInsert: importedListInsert.ListInsert,
     ListLevel: importedListLevel.ListLevel,
-    ListLevelUpdate: importedListLevelUpdate.ListLevelUpdate,
     ListLevels: importedListLevels.ListLevels,
+    ListLevelUpdate: importedListLevelUpdate.ListLevelUpdate,
     ListResponse: importedListResponse.ListResponse,
-    ListUpdate: importedListUpdate.ListUpdate,
     Lists: importedLists.Lists,
     ListsResponse: importedListsResponse.ListsResponse,
+    ListUpdate: importedListUpdate.ListUpdate,
     LoadWebDocumentData: importedLoadWebDocumentData.LoadWebDocumentData,
     MetafileRenderingOptionsData: importedMetafileRenderingOptionsData.MetafileRenderingOptionsData,
     MhtmlSaveOptionsData: importedMhtmlSaveOptionsData.MhtmlSaveOptionsData,
-    ModelError: importedModelError.ModelError,
     ModificationOperationResult: importedModificationOperationResult.ModificationOperationResult,
     NodeLink: importedNodeLink.NodeLink,
     OdtSaveOptionsData: importedOdtSaveOptionsData.OdtSaveOptionsData,
@@ -769,9 +738,9 @@ const typeMap = {
     RunInsert: importedRunInsert.RunInsert,
     RunLink: importedRunLink.RunLink,
     RunResponse: importedRunResponse.RunResponse,
-    RunUpdate: importedRunUpdate.RunUpdate,
     Runs: importedRuns.Runs,
     RunsResponse: importedRunsResponse.RunsResponse,
+    RunUpdate: importedRunUpdate.RunUpdate,
     SaveOptionsData: importedSaveOptionsData.SaveOptionsData,
     SaveResponse: importedSaveResponse.SaveResponse,
     SaveResult: importedSaveResult.SaveResult,
@@ -796,13 +765,9 @@ const typeMap = {
     StyleCopy: importedStyleCopy.StyleCopy,
     StyleInsert: importedStyleInsert.StyleInsert,
     StyleResponse: importedStyleResponse.StyleResponse,
-    StyleUpdate: importedStyleUpdate.StyleUpdate,
     StylesResponse: importedStylesResponse.StylesResponse,
+    StyleUpdate: importedStyleUpdate.StyleUpdate,
     SvgSaveOptionsData: importedSvgSaveOptionsData.SvgSaveOptionsData,
-    TabStop: importedTabStop.TabStop,
-    TabStopBase: importedTabStopBase.TabStopBase,
-    TabStopInsert: importedTabStopInsert.TabStopInsert,
-    TabStopsResponse: importedTabStopsResponse.TabStopsResponse,
     Table: importedTable.Table,
     TableCell: importedTableCell.TableCell,
     TableCellFormat: importedTableCellFormat.TableCellFormat,
@@ -821,6 +786,10 @@ const typeMap = {
     TableRowFormatResponse: importedTableRowFormatResponse.TableRowFormatResponse,
     TableRowInsert: importedTableRowInsert.TableRowInsert,
     TableRowResponse: importedTableRowResponse.TableRowResponse,
+    TabStop: importedTabStop.TabStop,
+    TabStopBase: importedTabStopBase.TabStopBase,
+    TabStopInsert: importedTabStopInsert.TabStopInsert,
+    TabStopsResponse: importedTabStopsResponse.TabStopsResponse,
     TextSaveOptionsData: importedTextSaveOptionsData.TextSaveOptionsData,
     TiffSaveOptionsData: importedTiffSaveOptionsData.TiffSaveOptionsData,
     WatermarkText: importedWatermarkText.WatermarkText,
@@ -831,13 +800,14 @@ const typeMap = {
     XamlFixedSaveOptionsData: importedXamlFixedSaveOptionsData.XamlFixedSaveOptionsData,
     XamlFlowSaveOptionsData: importedXamlFlowSaveOptionsData.XamlFlowSaveOptionsData,
     XmlColor: importedXmlColor.XmlColor,
-    XpsSaveOptionsData: importedXpsSaveOptionsData.XpsSaveOptionsData,
+    XpsSaveOptionsData: importedXpsSaveOptionsData.XpsSaveOptionsData
 };
 
 export {enumsMap, typeMap};
 
 /**
  * Request model for AcceptAllRevisions operation.
+ * Accepts all revisions in document.
  */
 export class AcceptAllRevisionsRequest {
     /**
@@ -869,14 +839,15 @@ export class AcceptAllRevisionsRequest {
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
-    
-    public constructor(init?: Partial<AcceptAllRevisionsRequest>) {        
+
+    public constructor(init?: Partial< AcceptAllRevisionsRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for AppendDocument operation.
+ * Appends documents to original document.
  */
 export class AppendDocumentRequest {
     /**
@@ -923,14 +894,15 @@ export class AppendDocumentRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<AppendDocumentRequest>) {        
+
+    public constructor(init?: Partial< AppendDocumentRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for ApplyStyleToDocumentElement operation.
+ * Apply a style to the document node.
  */
 export class ApplyStyleToDocumentElementRequest {
     /**
@@ -982,14 +954,15 @@ export class ApplyStyleToDocumentElementRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<ApplyStyleToDocumentElementRequest>) {        
+
+    public constructor(init?: Partial< ApplyStyleToDocumentElementRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for BuildReport operation.
+ * Executes document "build report" operation.
  */
 export class BuildReportRequest {
     /**
@@ -998,7 +971,7 @@ export class BuildReportRequest {
     public name: string;
 
     /**
-     * A string providing a data to populate the specified template. The string must be of one of the following types: xml, json, csv
+     * A string providing a data to populate the specified template. The string must be of one of the following types: xml, json, csv.
      */
     public data: string;
 
@@ -1031,23 +1004,24 @@ export class BuildReportRequest {
      * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved with autogenerated name.
      */
     public destFileName: string;
-    
-    public constructor(init?: Partial<BuildReportRequest>) {        
+
+    public constructor(init?: Partial< BuildReportRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for BuildReportOnline operation.
+ * Executes document "build report" online operation.
  */
 export class BuildReportOnlineRequest {
     /**
-     * File with template
+     * File with template.
      */
     public template: Readable;
 
     /**
-     * A string providing a data to populate the specified template. The string must be of one of the following types: xml, json, csv
+     * A string providing a data to populate the specified template. The string must be of one of the following types: xml, json, csv.
      */
     public data: string;
 
@@ -1057,17 +1031,18 @@ export class BuildReportOnlineRequest {
     public reportEngineSettings: importedReportEngineSettings.ReportEngineSettings;
 
     /**
-     * This file name will be used when resulting document has dynamic field for document file name {filename}. If it is not set, "template" will be used instead. 
+     * This file name will be used when resulting document has dynamic field for document file name {filename}. If it is not set, "template" will be used instead.
      */
     public documentFileName: string;
-    
-    public constructor(init?: Partial<BuildReportOnlineRequest>) {        
+
+    public constructor(init?: Partial< BuildReportOnlineRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for Classify operation.
+ * Classifies raw text.
  */
 export class ClassifyRequest {
     /**
@@ -1079,14 +1054,15 @@ export class ClassifyRequest {
      * Number of the best classes to return.
      */
     public bestClassesCount: string;
-    
-    public constructor(init?: Partial<ClassifyRequest>) {        
+
+    public constructor(init?: Partial< ClassifyRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for ClassifyDocument operation.
+ * Classifies document.
  */
 export class ClassifyDocumentRequest {
     /**
@@ -1123,14 +1099,15 @@ export class ClassifyDocumentRequest {
      * Taxonomy to use for classification return.
      */
     public taxonomy: string;
-    
-    public constructor(init?: Partial<ClassifyDocumentRequest>) {        
+
+    public constructor(init?: Partial< ClassifyDocumentRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for CompareDocument operation.
+ * Compares document with original document.
  */
 export class CompareDocumentRequest {
     /**
@@ -1167,18 +1144,19 @@ export class CompareDocumentRequest {
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
-    
-    public constructor(init?: Partial<CompareDocumentRequest>) {        
+
+    public constructor(init?: Partial< CompareDocumentRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for ConvertDocument operation.
+ * Converts document from the request's content to the specified format.
  */
 export class ConvertDocumentRequest {
     /**
-     * Converting document
+     * Converting document.
      */
     public document: Readable;
 
@@ -1206,77 +1184,80 @@ export class ConvertDocumentRequest {
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
-    
-    public constructor(init?: Partial<ConvertDocumentRequest>) {        
+
+    public constructor(init?: Partial< ConvertDocumentRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for CopyFile operation.
+ * Copy file.
  */
 export class CopyFileRequest {
     /**
-     * Destination file path
+     * Destination file path.
      */
     public destPath: string;
 
     /**
-     * Source file's path e.g. '/Folder 1/file.ext' or '/Bucket/Folder 1/file.ext'
+     * Source file's path e.g. '/Folder 1/file.ext' or '/Bucket/Folder 1/file.ext'.
      */
     public srcPath: string;
 
     /**
-     * Source storage name
+     * Source storage name.
      */
     public srcStorageName: string;
 
     /**
-     * Destination storage name
+     * Destination storage name.
      */
     public destStorageName: string;
 
     /**
-     * File version ID to copy
+     * File version ID to copy.
      */
     public versionId: string;
-    
-    public constructor(init?: Partial<CopyFileRequest>) {        
+
+    public constructor(init?: Partial< CopyFileRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for CopyFolder operation.
+ * Copy folder.
  */
 export class CopyFolderRequest {
     /**
-     * Destination folder path e.g. '/dst'
+     * Destination folder path e.g. '/dst'.
      */
     public destPath: string;
 
     /**
-     * Source folder path e.g. /Folder1
+     * Source folder path e.g. /Folder1.
      */
     public srcPath: string;
 
     /**
-     * Source storage name
+     * Source storage name.
      */
     public srcStorageName: string;
 
     /**
-     * Destination storage name
+     * Destination storage name.
      */
     public destStorageName: string;
-    
-    public constructor(init?: Partial<CopyFolderRequest>) {        
+
+    public constructor(init?: Partial< CopyFolderRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for CopyStyle operation.
+ * Copy and insert a new style to the document, returns a copied style.
  */
 export class CopyStyleRequest {
     /**
@@ -1323,14 +1304,17 @@ export class CopyStyleRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<CopyStyleRequest>) {        
+
+    public constructor(init?: Partial< CopyStyleRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for CreateDocument operation.
+ * Creates new document.
+ * Document is created with format which is recognized from file extensions.
+ * Supported extensions: ".doc", ".docx", ".docm", ".dot", ".dotm", ".dotx", ".flatopc", ".fopc", ".flatopc_macro", ".fopc_macro", ".flatopc_template", ".fopc_template", ".flatopc_template_macro", ".fopc_template_macro", ".wordml", ".wml", ".rtf".
  */
 export class CreateDocumentRequest {
     /**
@@ -1347,33 +1331,35 @@ export class CreateDocumentRequest {
      * The document folder.
      */
     public folder: string;
-    
-    public constructor(init?: Partial<CreateDocumentRequest>) {        
+
+    public constructor(init?: Partial< CreateDocumentRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for CreateFolder operation.
+ * Create the folder.
  */
 export class CreateFolderRequest {
     /**
-     * Target folder's path e.g. Folder1/Folder2/. The folders will be created recursively
+     * Target folder's path e.g. Folder1/Folder2/. The folders will be created recursively.
      */
     public path: string;
 
     /**
-     * Storage name
+     * Storage name.
      */
     public storageName: string;
-    
-    public constructor(init?: Partial<CreateFolderRequest>) {        
+
+    public constructor(init?: Partial< CreateFolderRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for CreateOrUpdateDocumentProperty operation.
+ * Adds new or update existing document property.
  */
 export class CreateOrUpdateDocumentPropertyRequest {
     /**
@@ -1425,14 +1411,15 @@ export class CreateOrUpdateDocumentPropertyRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<CreateOrUpdateDocumentPropertyRequest>) {        
+
+    public constructor(init?: Partial< CreateOrUpdateDocumentPropertyRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for DeleteAllParagraphTabStops operation.
+ * Remove all tab stops.
  */
 export class DeleteAllParagraphTabStopsRequest {
     /**
@@ -1474,14 +1461,15 @@ export class DeleteAllParagraphTabStopsRequest {
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
-    
-    public constructor(init?: Partial<DeleteAllParagraphTabStopsRequest>) {        
+
+    public constructor(init?: Partial< DeleteAllParagraphTabStopsRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for DeleteAllParagraphTabStopsWithoutNodePath operation.
+ * Remove all tab stops.
  */
 export class DeleteAllParagraphTabStopsWithoutNodePathRequest {
     /**
@@ -1518,14 +1506,15 @@ export class DeleteAllParagraphTabStopsWithoutNodePathRequest {
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
-    
-    public constructor(init?: Partial<DeleteAllParagraphTabStopsWithoutNodePathRequest>) {        
+
+    public constructor(init?: Partial< DeleteAllParagraphTabStopsWithoutNodePathRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for DeleteBorder operation.
+ * 'nodePath' should refer to paragraph, cell or row.
  */
 export class DeleteBorderRequest {
     /**
@@ -1577,14 +1566,15 @@ export class DeleteBorderRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<DeleteBorderRequest>) {        
+
+    public constructor(init?: Partial< DeleteBorderRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for DeleteBorders operation.
+ * 'nodePath' should refer to paragraph, cell or row.
  */
 export class DeleteBordersRequest {
     /**
@@ -1631,14 +1621,15 @@ export class DeleteBordersRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<DeleteBordersRequest>) {        
+
+    public constructor(init?: Partial< DeleteBordersRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for DeleteComment operation.
+ * Removes comment from document.
  */
 export class DeleteCommentRequest {
     /**
@@ -1685,14 +1676,15 @@ export class DeleteCommentRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<DeleteCommentRequest>) {        
+
+    public constructor(init?: Partial< DeleteCommentRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for DeleteDocumentProperty operation.
+ * Deletes document property.
  */
 export class DeleteDocumentPropertyRequest {
     /**
@@ -1739,14 +1731,15 @@ export class DeleteDocumentPropertyRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<DeleteDocumentPropertyRequest>) {        
+
+    public constructor(init?: Partial< DeleteDocumentPropertyRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for DeleteDrawingObject operation.
+ * Removes drawing object from document.
  */
 export class DeleteDrawingObjectRequest {
     /**
@@ -1798,14 +1791,15 @@ export class DeleteDrawingObjectRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<DeleteDrawingObjectRequest>) {        
+
+    public constructor(init?: Partial< DeleteDrawingObjectRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for DeleteDrawingObjectWithoutNodePath operation.
+ * Removes drawing object from document.
  */
 export class DeleteDrawingObjectWithoutNodePathRequest {
     /**
@@ -1852,14 +1846,15 @@ export class DeleteDrawingObjectWithoutNodePathRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<DeleteDrawingObjectWithoutNodePathRequest>) {        
+
+    public constructor(init?: Partial< DeleteDrawingObjectWithoutNodePathRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for DeleteField operation.
+ * Deletes field from document.
  */
 export class DeleteFieldRequest {
     /**
@@ -1911,68 +1906,15 @@ export class DeleteFieldRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<DeleteFieldRequest>) {        
+
+    public constructor(init?: Partial< DeleteFieldRequest >) {
         Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for DeleteFieldWithoutNodePath operation.
- */
-export class DeleteFieldWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * Object index.
-     */
-    public index: number;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    /**
-     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
-     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-     */
-    public revisionAuthor: string;
-
-    /**
-     * The date and time to use for revisions.
-     */
-    public revisionDateTime: string;
-    
-    public constructor(init?: Partial<DeleteFieldWithoutNodePathRequest>) {        
-        Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for DeleteFields operation.
+ * Removes fields from section paragraph.
  */
 export class DeleteFieldsRequest {
     /**
@@ -2019,14 +1961,15 @@ export class DeleteFieldsRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<DeleteFieldsRequest>) {        
+
+    public constructor(init?: Partial< DeleteFieldsRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for DeleteFieldsWithoutNodePath operation.
+ * Removes fields from section paragraph.
  */
 export class DeleteFieldsWithoutNodePathRequest {
     /**
@@ -2068,62 +2011,120 @@ export class DeleteFieldsWithoutNodePathRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<DeleteFieldsWithoutNodePathRequest>) {        
+
+    public constructor(init?: Partial< DeleteFieldsWithoutNodePathRequest >) {
         Object.assign(this, init);
-    } 
+    }
+}
+
+/**
+ * Request model for DeleteFieldWithoutNodePath operation.
+ * Deletes field from document.
+ */
+export class DeleteFieldWithoutNodePathRequest {
+    /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< DeleteFieldWithoutNodePathRequest >) {
+        Object.assign(this, init);
+    }
 }
 
 /**
  * Request model for DeleteFile operation.
+ * Delete file.
  */
 export class DeleteFileRequest {
     /**
-     * Path of the file including file name and extension e.g. /Folder1/file.ext
+     * Path of the file including file name and extension e.g. /Folder1/file.ext.
      */
     public path: string;
 
     /**
-     * Storage name
+     * Storage name.
      */
     public storageName: string;
 
     /**
-     * File version ID to delete
+     * File version ID to delete.
      */
     public versionId: string;
-    
-    public constructor(init?: Partial<DeleteFileRequest>) {        
+
+    public constructor(init?: Partial< DeleteFileRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for DeleteFolder operation.
+ * Delete folder.
  */
 export class DeleteFolderRequest {
     /**
-     * Folder path e.g. /Folder1s
+     * Folder path e.g. /Folder1s.
      */
     public path: string;
 
     /**
-     * Storage name
+     * Storage name.
      */
     public storageName: string;
 
     /**
-     * Enable to delete folders, subfolders and files
+     * Enable to delete folders, subfolders and files.
      */
     public recursive: boolean;
-    
-    public constructor(init?: Partial<DeleteFolderRequest>) {        
+
+    public constructor(init?: Partial< DeleteFolderRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for DeleteFootnote operation.
+ * Removes footnote from document.
  */
 export class DeleteFootnoteRequest {
     /**
@@ -2175,14 +2176,15 @@ export class DeleteFootnoteRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<DeleteFootnoteRequest>) {        
+
+    public constructor(init?: Partial< DeleteFootnoteRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for DeleteFootnoteWithoutNodePath operation.
+ * Removes footnote from document.
  */
 export class DeleteFootnoteWithoutNodePathRequest {
     /**
@@ -2229,14 +2231,15 @@ export class DeleteFootnoteWithoutNodePathRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<DeleteFootnoteWithoutNodePathRequest>) {        
+
+    public constructor(init?: Partial< DeleteFootnoteWithoutNodePathRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for DeleteFormField operation.
+ * Removes form field from document.
  */
 export class DeleteFormFieldRequest {
     /**
@@ -2288,14 +2291,15 @@ export class DeleteFormFieldRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<DeleteFormFieldRequest>) {        
+
+    public constructor(init?: Partial< DeleteFormFieldRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for DeleteFormFieldWithoutNodePath operation.
+ * Removes form field from document.
  */
 export class DeleteFormFieldWithoutNodePathRequest {
     /**
@@ -2342,14 +2346,15 @@ export class DeleteFormFieldWithoutNodePathRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<DeleteFormFieldWithoutNodePathRequest>) {        
+
+    public constructor(init?: Partial< DeleteFormFieldWithoutNodePathRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for DeleteHeaderFooter operation.
+ * Deletes header/footer from document.
  */
 export class DeleteHeaderFooterRequest {
     /**
@@ -2401,14 +2406,15 @@ export class DeleteHeaderFooterRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<DeleteHeaderFooterRequest>) {        
+
+    public constructor(init?: Partial< DeleteHeaderFooterRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for DeleteHeadersFooters operation.
+ * Deletes document headers and footers.
  */
 export class DeleteHeadersFootersRequest {
     /**
@@ -2460,14 +2466,15 @@ export class DeleteHeadersFootersRequest {
      * List of types of headers and footers.
      */
     public headersFootersTypes: string;
-    
-    public constructor(init?: Partial<DeleteHeadersFootersRequest>) {        
+
+    public constructor(init?: Partial< DeleteHeadersFootersRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for DeleteMacros operation.
+ * Removes macros from document.
  */
 export class DeleteMacrosRequest {
     /**
@@ -2509,14 +2516,15 @@ export class DeleteMacrosRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<DeleteMacrosRequest>) {        
+
+    public constructor(init?: Partial< DeleteMacrosRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for DeleteOfficeMathObject operation.
+ * Removes OfficeMath object from document.
  */
 export class DeleteOfficeMathObjectRequest {
     /**
@@ -2568,14 +2576,15 @@ export class DeleteOfficeMathObjectRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<DeleteOfficeMathObjectRequest>) {        
+
+    public constructor(init?: Partial< DeleteOfficeMathObjectRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for DeleteOfficeMathObjectWithoutNodePath operation.
+ * Removes OfficeMath object from document.
  */
 export class DeleteOfficeMathObjectWithoutNodePathRequest {
     /**
@@ -2622,14 +2631,15 @@ export class DeleteOfficeMathObjectWithoutNodePathRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<DeleteOfficeMathObjectWithoutNodePathRequest>) {        
+
+    public constructor(init?: Partial< DeleteOfficeMathObjectWithoutNodePathRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for DeleteParagraph operation.
+ * Removes paragraph from section.
  */
 export class DeleteParagraphRequest {
     /**
@@ -2681,14 +2691,15 @@ export class DeleteParagraphRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<DeleteParagraphRequest>) {        
+
+    public constructor(init?: Partial< DeleteParagraphRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for DeleteParagraphListFormat operation.
+ * Delete paragraph list format, returns updated list format properties.
  */
 export class DeleteParagraphListFormatRequest {
     /**
@@ -2740,14 +2751,15 @@ export class DeleteParagraphListFormatRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<DeleteParagraphListFormatRequest>) {        
+
+    public constructor(init?: Partial< DeleteParagraphListFormatRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for DeleteParagraphListFormatWithoutNodePath operation.
+ * Delete paragraph list format, returns updated list format properties.
  */
 export class DeleteParagraphListFormatWithoutNodePathRequest {
     /**
@@ -2794,14 +2806,15 @@ export class DeleteParagraphListFormatWithoutNodePathRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<DeleteParagraphListFormatWithoutNodePathRequest>) {        
+
+    public constructor(init?: Partial< DeleteParagraphListFormatWithoutNodePathRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for DeleteParagraphTabStop operation.
+ * Remove the i-th tab stop.
  */
 export class DeleteParagraphTabStopRequest {
     /**
@@ -2848,14 +2861,15 @@ export class DeleteParagraphTabStopRequest {
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
-    
-    public constructor(init?: Partial<DeleteParagraphTabStopRequest>) {        
+
+    public constructor(init?: Partial< DeleteParagraphTabStopRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for DeleteParagraphTabStopWithoutNodePath operation.
+ * Remove the i-th tab stop.
  */
 export class DeleteParagraphTabStopWithoutNodePathRequest {
     /**
@@ -2897,14 +2911,15 @@ export class DeleteParagraphTabStopWithoutNodePathRequest {
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
-    
-    public constructor(init?: Partial<DeleteParagraphTabStopWithoutNodePathRequest>) {        
+
+    public constructor(init?: Partial< DeleteParagraphTabStopWithoutNodePathRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for DeleteParagraphWithoutNodePath operation.
+ * Removes paragraph from section.
  */
 export class DeleteParagraphWithoutNodePathRequest {
     /**
@@ -2951,14 +2966,15 @@ export class DeleteParagraphWithoutNodePathRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<DeleteParagraphWithoutNodePathRequest>) {        
+
+    public constructor(init?: Partial< DeleteParagraphWithoutNodePathRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for DeleteRun operation.
+ * Removes run from document.
  */
 export class DeleteRunRequest {
     /**
@@ -3010,14 +3026,15 @@ export class DeleteRunRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<DeleteRunRequest>) {        
+
+    public constructor(init?: Partial< DeleteRunRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for DeleteSection operation.
+ * Removes section from document.
  */
 export class DeleteSectionRequest {
     /**
@@ -3064,14 +3081,15 @@ export class DeleteSectionRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<DeleteSectionRequest>) {        
+
+    public constructor(init?: Partial< DeleteSectionRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for DeleteTable operation.
+ * Deletes a table.
  */
 export class DeleteTableRequest {
     /**
@@ -3123,14 +3141,15 @@ export class DeleteTableRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<DeleteTableRequest>) {        
+
+    public constructor(init?: Partial< DeleteTableRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for DeleteTableCell operation.
+ * Deletes a table cell.
  */
 export class DeleteTableCellRequest {
     /**
@@ -3182,14 +3201,15 @@ export class DeleteTableCellRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<DeleteTableCellRequest>) {        
+
+    public constructor(init?: Partial< DeleteTableCellRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for DeleteTableRow operation.
+ * Deletes a table row.
  */
 export class DeleteTableRowRequest {
     /**
@@ -3241,14 +3261,15 @@ export class DeleteTableRowRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<DeleteTableRowRequest>) {        
+
+    public constructor(init?: Partial< DeleteTableRowRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for DeleteTableWithoutNodePath operation.
+ * Deletes a table.
  */
 export class DeleteTableWithoutNodePathRequest {
     /**
@@ -3295,14 +3316,15 @@ export class DeleteTableWithoutNodePathRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<DeleteTableWithoutNodePathRequest>) {        
+
+    public constructor(init?: Partial< DeleteTableWithoutNodePathRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for DeleteWatermark operation.
+ * Deletes watermark (for deleting last watermark from the document).
  */
 export class DeleteWatermarkRequest {
     /**
@@ -3344,38 +3366,40 @@ export class DeleteWatermarkRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<DeleteWatermarkRequest>) {        
+
+    public constructor(init?: Partial< DeleteWatermarkRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for DownloadFile operation.
+ * Download file.
  */
 export class DownloadFileRequest {
     /**
-     * Path of the file including the file name and extension e.g. /folder1/file.ext
+     * Path of the file including the file name and extension e.g. /folder1/file.ext.
      */
     public path: string;
 
     /**
-     * Storage name
+     * Storage name.
      */
     public storageName: string;
 
     /**
-     * File version ID to download
+     * File version ID to download.
      */
     public versionId: string;
-    
-    public constructor(init?: Partial<DownloadFileRequest>) {        
+
+    public constructor(init?: Partial< DownloadFileRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for ExecuteMailMerge operation.
+ * Executes document mail merge operation.
  */
 export class ExecuteMailMergeRequest {
     /**
@@ -3384,7 +3408,7 @@ export class ExecuteMailMergeRequest {
     public name: string;
 
     /**
-     * Mail merge data
+     * Mail merge data.
      */
     public data: string;
 
@@ -3414,7 +3438,7 @@ export class ExecuteMailMergeRequest {
     public withRegions: boolean;
 
     /**
-     * Mail merge data.
+     * Mail merge data file.
      */
     public mailMergeDataFile: string;
 
@@ -3424,7 +3448,9 @@ export class ExecuteMailMergeRequest {
     public cleanup: string;
 
     /**
-     * Gets or sets a value indicating whether paragraph with TableStart or.             TableEnd field should be fully included into mail merge region or particular range between TableStart and TableEnd fields.             The default value is true.
+     * Gets or sets a value indicating whether paragraph with TableStart or.
+     * TableEnd field should be fully included into mail merge region or particular range between TableStart and TableEnd fields.
+     * The default value is true.
      */
     public useWholeParagraphAsRegion: boolean;
 
@@ -3432,23 +3458,24 @@ export class ExecuteMailMergeRequest {
      * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved with autogenerated name.
      */
     public destFileName: string;
-    
-    public constructor(init?: Partial<ExecuteMailMergeRequest>) {        
+
+    public constructor(init?: Partial< ExecuteMailMergeRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for ExecuteMailMergeOnline operation.
+ * Executes document mail merge online.
  */
 export class ExecuteMailMergeOnlineRequest {
     /**
-     * File with template
+     * File with template.
      */
     public template: Readable;
 
     /**
-     * File with mailmerge data
+     * File with mailmerge data.
      */
     public data: Readable;
 
@@ -3466,28 +3493,30 @@ export class ExecuteMailMergeOnlineRequest {
      * This file name will be used when resulting document has dynamic field for document file name {filename}. If it is not set, "template" will be used instead.
      */
     public documentFileName: string;
-    
-    public constructor(init?: Partial<ExecuteMailMergeOnlineRequest>) {        
+
+    public constructor(init?: Partial< ExecuteMailMergeOnlineRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetAvailableFonts operation.
+ * Gets the list of fonts, available for document processing.
  */
 export class GetAvailableFontsRequest {
     /**
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
-    
-    public constructor(init?: Partial<GetAvailableFontsRequest>) {        
+
+    public constructor(init?: Partial< GetAvailableFontsRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetBookmarkByName operation.
+ * Reads document bookmark data by its name.
  */
 export class GetBookmarkByNameRequest {
     /**
@@ -3519,14 +3548,15 @@ export class GetBookmarkByNameRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetBookmarkByNameRequest>) {        
+
+    public constructor(init?: Partial< GetBookmarkByNameRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetBookmarks operation.
+ * Reads document bookmarks common info.
  */
 export class GetBookmarksRequest {
     /**
@@ -3553,14 +3583,15 @@ export class GetBookmarksRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetBookmarksRequest>) {        
+
+    public constructor(init?: Partial< GetBookmarksRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetBorder operation.
+ * 'nodePath' should refer to paragraph, cell or row.
  */
 export class GetBorderRequest {
     /**
@@ -3597,14 +3628,15 @@ export class GetBorderRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetBorderRequest>) {        
+
+    public constructor(init?: Partial< GetBorderRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetBorders operation.
+ * 'nodePath' should refer to paragraph, cell or row.
  */
 export class GetBordersRequest {
     /**
@@ -3636,14 +3668,15 @@ export class GetBordersRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetBordersRequest>) {        
+
+    public constructor(init?: Partial< GetBordersRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetComment operation.
+ * Gets comment from document.
  */
 export class GetCommentRequest {
     /**
@@ -3675,14 +3708,15 @@ export class GetCommentRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetCommentRequest>) {        
+
+    public constructor(init?: Partial< GetCommentRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetComments operation.
+ * Gets comments from document.
  */
 export class GetCommentsRequest {
     /**
@@ -3709,14 +3743,15 @@ export class GetCommentsRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetCommentsRequest>) {        
+
+    public constructor(init?: Partial< GetCommentsRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetDocument operation.
+ * Reads document common info.
  */
 export class GetDocumentRequest {
     /**
@@ -3743,14 +3778,15 @@ export class GetDocumentRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetDocumentRequest>) {        
+
+    public constructor(init?: Partial< GetDocumentRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetDocumentDrawingObjectByIndex operation.
+ * Reads document drawing object common info by its index or convert to format specified.
  */
 export class GetDocumentDrawingObjectByIndexRequest {
     /**
@@ -3787,14 +3823,15 @@ export class GetDocumentDrawingObjectByIndexRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetDocumentDrawingObjectByIndexRequest>) {        
+
+    public constructor(init?: Partial< GetDocumentDrawingObjectByIndexRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetDocumentDrawingObjectByIndexWithoutNodePath operation.
+ * Reads document drawing object common info by its index or convert to format specified.
  */
 export class GetDocumentDrawingObjectByIndexWithoutNodePathRequest {
     /**
@@ -3826,14 +3863,15 @@ export class GetDocumentDrawingObjectByIndexWithoutNodePathRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetDocumentDrawingObjectByIndexWithoutNodePathRequest>) {        
+
+    public constructor(init?: Partial< GetDocumentDrawingObjectByIndexWithoutNodePathRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetDocumentDrawingObjectImageData operation.
+ * Reads drawing object image data.
  */
 export class GetDocumentDrawingObjectImageDataRequest {
     /**
@@ -3870,14 +3908,15 @@ export class GetDocumentDrawingObjectImageDataRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetDocumentDrawingObjectImageDataRequest>) {        
+
+    public constructor(init?: Partial< GetDocumentDrawingObjectImageDataRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetDocumentDrawingObjectImageDataWithoutNodePath operation.
+ * Reads drawing object image data.
  */
 export class GetDocumentDrawingObjectImageDataWithoutNodePathRequest {
     /**
@@ -3909,14 +3948,15 @@ export class GetDocumentDrawingObjectImageDataWithoutNodePathRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetDocumentDrawingObjectImageDataWithoutNodePathRequest>) {        
+
+    public constructor(init?: Partial< GetDocumentDrawingObjectImageDataWithoutNodePathRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetDocumentDrawingObjectOleData operation.
+ * Gets drawing object OLE data.
  */
 export class GetDocumentDrawingObjectOleDataRequest {
     /**
@@ -3953,14 +3993,15 @@ export class GetDocumentDrawingObjectOleDataRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetDocumentDrawingObjectOleDataRequest>) {        
+
+    public constructor(init?: Partial< GetDocumentDrawingObjectOleDataRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetDocumentDrawingObjectOleDataWithoutNodePath operation.
+ * Gets drawing object OLE data.
  */
 export class GetDocumentDrawingObjectOleDataWithoutNodePathRequest {
     /**
@@ -3992,14 +4033,15 @@ export class GetDocumentDrawingObjectOleDataWithoutNodePathRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetDocumentDrawingObjectOleDataWithoutNodePathRequest>) {        
+
+    public constructor(init?: Partial< GetDocumentDrawingObjectOleDataWithoutNodePathRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetDocumentDrawingObjects operation.
+ * Reads document drawing objects common info.
  */
 export class GetDocumentDrawingObjectsRequest {
     /**
@@ -4031,14 +4073,15 @@ export class GetDocumentDrawingObjectsRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetDocumentDrawingObjectsRequest>) {        
+
+    public constructor(init?: Partial< GetDocumentDrawingObjectsRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetDocumentDrawingObjectsWithoutNodePath operation.
+ * Reads document drawing objects common info.
  */
 export class GetDocumentDrawingObjectsWithoutNodePathRequest {
     /**
@@ -4065,14 +4108,15 @@ export class GetDocumentDrawingObjectsWithoutNodePathRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetDocumentDrawingObjectsWithoutNodePathRequest>) {        
+
+    public constructor(init?: Partial< GetDocumentDrawingObjectsWithoutNodePathRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetDocumentFieldNames operation.
+ * Reads document field names.
  */
 export class GetDocumentFieldNamesRequest {
     /**
@@ -4104,18 +4148,19 @@ export class GetDocumentFieldNamesRequest {
      * If true, result includes "mustache" field names.
      */
     public useNonMergeFields: boolean;
-    
-    public constructor(init?: Partial<GetDocumentFieldNamesRequest>) {        
+
+    public constructor(init?: Partial< GetDocumentFieldNamesRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetDocumentFieldNamesOnline operation.
+ * Reads document field names.
  */
 export class GetDocumentFieldNamesOnlineRequest {
     /**
-     * File with template
+     * File with template.
      */
     public template: Readable;
 
@@ -4123,14 +4168,15 @@ export class GetDocumentFieldNamesOnlineRequest {
      * Use non merge fields or not.
      */
     public useNonMergeFields: boolean;
-    
-    public constructor(init?: Partial<GetDocumentFieldNamesOnlineRequest>) {        
+
+    public constructor(init?: Partial< GetDocumentFieldNamesOnlineRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetDocumentHyperlinkByIndex operation.
+ * Reads document hyperlink by its index.
  */
 export class GetDocumentHyperlinkByIndexRequest {
     /**
@@ -4162,14 +4208,15 @@ export class GetDocumentHyperlinkByIndexRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetDocumentHyperlinkByIndexRequest>) {        
+
+    public constructor(init?: Partial< GetDocumentHyperlinkByIndexRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetDocumentHyperlinks operation.
+ * Reads document hyperlinks common info.
  */
 export class GetDocumentHyperlinksRequest {
     /**
@@ -4196,14 +4243,15 @@ export class GetDocumentHyperlinksRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetDocumentHyperlinksRequest>) {        
+
+    public constructor(init?: Partial< GetDocumentHyperlinksRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetDocumentProperties operation.
+ * Reads document properties info.
  */
 export class GetDocumentPropertiesRequest {
     /**
@@ -4230,14 +4278,15 @@ export class GetDocumentPropertiesRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetDocumentPropertiesRequest>) {        
+
+    public constructor(init?: Partial< GetDocumentPropertiesRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetDocumentProperty operation.
+ * Reads document property info by the property name.
  */
 export class GetDocumentPropertyRequest {
     /**
@@ -4269,14 +4318,15 @@ export class GetDocumentPropertyRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetDocumentPropertyRequest>) {        
+
+    public constructor(init?: Partial< GetDocumentPropertyRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetDocumentProtection operation.
+ * Reads document protection common info.
  */
 export class GetDocumentProtectionRequest {
     /**
@@ -4303,14 +4353,15 @@ export class GetDocumentProtectionRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetDocumentProtectionRequest>) {        
+
+    public constructor(init?: Partial< GetDocumentProtectionRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetDocumentStatistics operation.
+ * Reads document statistics.
  */
 export class GetDocumentStatisticsRequest {
     /**
@@ -4352,14 +4403,15 @@ export class GetDocumentStatisticsRequest {
      * Support including/excluding shape's text from the WordCount. Default value is "false".
      */
     public includeTextInShapes: boolean;
-    
-    public constructor(init?: Partial<GetDocumentStatisticsRequest>) {        
+
+    public constructor(init?: Partial< GetDocumentStatisticsRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetDocumentWithFormat operation.
+ * Exports the document into the specified format.
  */
 export class GetDocumentWithFormatRequest {
     /**
@@ -4401,14 +4453,15 @@ export class GetDocumentWithFormatRequest {
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
-    
-    public constructor(init?: Partial<GetDocumentWithFormatRequest>) {        
+
+    public constructor(init?: Partial< GetDocumentWithFormatRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetField operation.
+ * Gets field from document.
  */
 export class GetFieldRequest {
     /**
@@ -4445,53 +4498,15 @@ export class GetFieldRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetFieldRequest>) {        
+
+    public constructor(init?: Partial< GetFieldRequest >) {
         Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for GetFieldWithoutNodePath operation.
- */
-export class GetFieldWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * Object index.
-     */
-    public index: number;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-    
-    public constructor(init?: Partial<GetFieldWithoutNodePathRequest>) {        
-        Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetFields operation.
+ * Get fields from document.
  */
 export class GetFieldsRequest {
     /**
@@ -4523,14 +4538,15 @@ export class GetFieldsRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetFieldsRequest>) {        
+
+    public constructor(init?: Partial< GetFieldsRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetFieldsWithoutNodePath operation.
+ * Get fields from document.
  */
 export class GetFieldsWithoutNodePathRequest {
     /**
@@ -4557,33 +4573,75 @@ export class GetFieldsWithoutNodePathRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetFieldsWithoutNodePathRequest>) {        
+
+    public constructor(init?: Partial< GetFieldsWithoutNodePathRequest >) {
         Object.assign(this, init);
-    } 
+    }
+}
+
+/**
+ * Request model for GetFieldWithoutNodePath operation.
+ * Gets field from document.
+ */
+export class GetFieldWithoutNodePathRequest {
+    /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetFieldWithoutNodePathRequest >) {
+        Object.assign(this, init);
+    }
 }
 
 /**
  * Request model for GetFilesList operation.
+ * Get all files and folders within a folder.
  */
 export class GetFilesListRequest {
     /**
-     * Folder path e.g. /Folder1
+     * Folder path e.g. /Folder1.
      */
     public path: string;
 
     /**
-     * Storage name
+     * Storage name.
      */
     public storageName: string;
-    
-    public constructor(init?: Partial<GetFilesListRequest>) {        
+
+    public constructor(init?: Partial< GetFilesListRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetFootnote operation.
+ * Reads footnote by index.
  */
 export class GetFootnoteRequest {
     /**
@@ -4620,53 +4678,15 @@ export class GetFootnoteRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetFootnoteRequest>) {        
+
+    public constructor(init?: Partial< GetFootnoteRequest >) {
         Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for GetFootnoteWithoutNodePath operation.
- */
-export class GetFootnoteWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * Object index.
-     */
-    public index: number;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-    
-    public constructor(init?: Partial<GetFootnoteWithoutNodePathRequest>) {        
-        Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetFootnotes operation.
+ * Gets footnotes from document.
  */
 export class GetFootnotesRequest {
     /**
@@ -4698,14 +4718,15 @@ export class GetFootnotesRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetFootnotesRequest>) {        
+
+    public constructor(init?: Partial< GetFootnotesRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetFootnotesWithoutNodePath operation.
+ * Gets footnotes from document.
  */
 export class GetFootnotesWithoutNodePathRequest {
     /**
@@ -4732,14 +4753,55 @@ export class GetFootnotesWithoutNodePathRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetFootnotesWithoutNodePathRequest>) {        
+
+    public constructor(init?: Partial< GetFootnotesWithoutNodePathRequest >) {
         Object.assign(this, init);
-    } 
+    }
+}
+
+/**
+ * Request model for GetFootnoteWithoutNodePath operation.
+ * Reads footnote by index.
+ */
+export class GetFootnoteWithoutNodePathRequest {
+    /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetFootnoteWithoutNodePathRequest >) {
+        Object.assign(this, init);
+    }
 }
 
 /**
  * Request model for GetFormField operation.
+ * Returns representation of an one of the form field.
  */
 export class GetFormFieldRequest {
     /**
@@ -4776,53 +4838,15 @@ export class GetFormFieldRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetFormFieldRequest>) {        
+
+    public constructor(init?: Partial< GetFormFieldRequest >) {
         Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for GetFormFieldWithoutNodePath operation.
- */
-export class GetFormFieldWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * Object index.
-     */
-    public index: number;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-    
-    public constructor(init?: Partial<GetFormFieldWithoutNodePathRequest>) {        
-        Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetFormFields operation.
+ * Gets form fields from document.
  */
 export class GetFormFieldsRequest {
     /**
@@ -4854,14 +4878,15 @@ export class GetFormFieldsRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetFormFieldsRequest>) {        
+
+    public constructor(init?: Partial< GetFormFieldsRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetFormFieldsWithoutNodePath operation.
+ * Gets form fields from document.
  */
 export class GetFormFieldsWithoutNodePathRequest {
     /**
@@ -4888,14 +4913,55 @@ export class GetFormFieldsWithoutNodePathRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetFormFieldsWithoutNodePathRequest>) {        
+
+    public constructor(init?: Partial< GetFormFieldsWithoutNodePathRequest >) {
         Object.assign(this, init);
-    } 
+    }
+}
+
+/**
+ * Request model for GetFormFieldWithoutNodePath operation.
+ * Returns representation of an one of the form field.
+ */
+export class GetFormFieldWithoutNodePathRequest {
+    /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetFormFieldWithoutNodePathRequest >) {
+        Object.assign(this, init);
+    }
 }
 
 /**
  * Request model for GetHeaderFooter operation.
+ * Returns a header/footer from the document by index.
  */
 export class GetHeaderFooterRequest {
     /**
@@ -4932,14 +4998,15 @@ export class GetHeaderFooterRequest {
      * List of types of headers and footers.
      */
     public filterByType: string;
-    
-    public constructor(init?: Partial<GetHeaderFooterRequest>) {        
+
+    public constructor(init?: Partial< GetHeaderFooterRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetHeaderFooterOfSection operation.
+ * Returns a header/footer from the document section.
  */
 export class GetHeaderFooterOfSectionRequest {
     /**
@@ -4981,14 +5048,15 @@ export class GetHeaderFooterOfSectionRequest {
      * List of types of headers and footers.
      */
     public filterByType: string;
-    
-    public constructor(init?: Partial<GetHeaderFooterOfSectionRequest>) {        
+
+    public constructor(init?: Partial< GetHeaderFooterOfSectionRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetHeaderFooters operation.
+ * Returns a list of header/footers from the document.
  */
 export class GetHeaderFootersRequest {
     /**
@@ -5025,14 +5093,15 @@ export class GetHeaderFootersRequest {
      * List of types of headers and footers.
      */
     public filterByType: string;
-    
-    public constructor(init?: Partial<GetHeaderFootersRequest>) {        
+
+    public constructor(init?: Partial< GetHeaderFootersRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetList operation.
+ * This resource represents one of the lists contained in the document.
  */
 export class GetListRequest {
     /**
@@ -5064,14 +5133,15 @@ export class GetListRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetListRequest>) {        
+
+    public constructor(init?: Partial< GetListRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetLists operation.
+ * Returns a list of lists that are contained in the document.
  */
 export class GetListsRequest {
     /**
@@ -5098,14 +5168,15 @@ export class GetListsRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetListsRequest>) {        
+
+    public constructor(init?: Partial< GetListsRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetOfficeMathObject operation.
+ * Reads OfficeMath object by index.
  */
 export class GetOfficeMathObjectRequest {
     /**
@@ -5142,53 +5213,15 @@ export class GetOfficeMathObjectRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetOfficeMathObjectRequest>) {        
+
+    public constructor(init?: Partial< GetOfficeMathObjectRequest >) {
         Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for GetOfficeMathObjectWithoutNodePath operation.
- */
-export class GetOfficeMathObjectWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * Object index.
-     */
-    public index: number;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-    
-    public constructor(init?: Partial<GetOfficeMathObjectWithoutNodePathRequest>) {        
-        Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetOfficeMathObjects operation.
+ * Gets OfficeMath objects from document.
  */
 export class GetOfficeMathObjectsRequest {
     /**
@@ -5220,14 +5253,15 @@ export class GetOfficeMathObjectsRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetOfficeMathObjectsRequest>) {        
+
+    public constructor(init?: Partial< GetOfficeMathObjectsRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetOfficeMathObjectsWithoutNodePath operation.
+ * Gets OfficeMath objects from document.
  */
 export class GetOfficeMathObjectsWithoutNodePathRequest {
     /**
@@ -5254,14 +5288,55 @@ export class GetOfficeMathObjectsWithoutNodePathRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetOfficeMathObjectsWithoutNodePathRequest>) {        
+
+    public constructor(init?: Partial< GetOfficeMathObjectsWithoutNodePathRequest >) {
         Object.assign(this, init);
-    } 
+    }
+}
+
+/**
+ * Request model for GetOfficeMathObjectWithoutNodePath operation.
+ * Reads OfficeMath object by index.
+ */
+export class GetOfficeMathObjectWithoutNodePathRequest {
+    /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetOfficeMathObjectWithoutNodePathRequest >) {
+        Object.assign(this, init);
+    }
 }
 
 /**
  * Request model for GetParagraph operation.
+ * This resource represents one of the paragraphs contained in the document.
  */
 export class GetParagraphRequest {
     /**
@@ -5298,14 +5373,15 @@ export class GetParagraphRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetParagraphRequest>) {        
+
+    public constructor(init?: Partial< GetParagraphRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetParagraphFormat operation.
+ * Represents all the formatting for a paragraph.
  */
 export class GetParagraphFormatRequest {
     /**
@@ -5342,14 +5418,15 @@ export class GetParagraphFormatRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetParagraphFormatRequest>) {        
+
+    public constructor(init?: Partial< GetParagraphFormatRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetParagraphFormatWithoutNodePath operation.
+ * Represents all the formatting for a paragraph.
  */
 export class GetParagraphFormatWithoutNodePathRequest {
     /**
@@ -5381,14 +5458,15 @@ export class GetParagraphFormatWithoutNodePathRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetParagraphFormatWithoutNodePathRequest>) {        
+
+    public constructor(init?: Partial< GetParagraphFormatWithoutNodePathRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetParagraphListFormat operation.
+ * Represents list format for a paragraph.
  */
 export class GetParagraphListFormatRequest {
     /**
@@ -5425,14 +5503,15 @@ export class GetParagraphListFormatRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetParagraphListFormatRequest>) {        
+
+    public constructor(init?: Partial< GetParagraphListFormatRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetParagraphListFormatWithoutNodePath operation.
+ * Represents list format for a paragraph.
  */
 export class GetParagraphListFormatWithoutNodePathRequest {
     /**
@@ -5464,14 +5543,90 @@ export class GetParagraphListFormatWithoutNodePathRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetParagraphListFormatWithoutNodePathRequest>) {        
+
+    public constructor(init?: Partial< GetParagraphListFormatWithoutNodePathRequest >) {
         Object.assign(this, init);
-    } 
+    }
+}
+
+/**
+ * Request model for GetParagraphs operation.
+ * Returns a list of paragraphs that are contained in the document.
+ */
+export class GetParagraphsRequest {
+    /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * Path to the node which contains paragraphs.
+     */
+    public nodePath: string;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetParagraphsRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
+ * Request model for GetParagraphsWithoutNodePath operation.
+ * Returns a list of paragraphs that are contained in the document.
+ */
+export class GetParagraphsWithoutNodePathRequest {
+    /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetParagraphsWithoutNodePathRequest >) {
+        Object.assign(this, init);
+    }
 }
 
 /**
  * Request model for GetParagraphTabStops operation.
+ * Get all tab stops for the paragraph.
  */
 export class GetParagraphTabStopsRequest {
     /**
@@ -5508,14 +5663,15 @@ export class GetParagraphTabStopsRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetParagraphTabStopsRequest>) {        
+
+    public constructor(init?: Partial< GetParagraphTabStopsRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetParagraphTabStopsWithoutNodePath operation.
+ * Get all tab stops for the paragraph.
  */
 export class GetParagraphTabStopsWithoutNodePathRequest {
     /**
@@ -5547,14 +5703,15 @@ export class GetParagraphTabStopsWithoutNodePathRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetParagraphTabStopsWithoutNodePathRequest>) {        
+
+    public constructor(init?: Partial< GetParagraphTabStopsWithoutNodePathRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetParagraphWithoutNodePath operation.
+ * This resource represents one of the paragraphs contained in the document.
  */
 export class GetParagraphWithoutNodePathRequest {
     /**
@@ -5586,87 +5743,15 @@ export class GetParagraphWithoutNodePathRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetParagraphWithoutNodePathRequest>) {        
+
+    public constructor(init?: Partial< GetParagraphWithoutNodePathRequest >) {
         Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for GetParagraphs operation.
- */
-export class GetParagraphsRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * Path to the node which contains paragraphs.
-     */
-    public nodePath: string;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-    
-    public constructor(init?: Partial<GetParagraphsRequest>) {        
-        Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for GetParagraphsWithoutNodePath operation.
- */
-export class GetParagraphsWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-    
-    public constructor(init?: Partial<GetParagraphsWithoutNodePathRequest>) {        
-        Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetRangeText operation.
+ * Gets the text from the range.
  */
 export class GetRangeTextRequest {
     /**
@@ -5675,7 +5760,9 @@ export class GetRangeTextRequest {
     public name: string;
 
     /**
-     * The range start identifier. Identifier is the value of the "nodeId" field, which every document node has, extended with the prefix "id". It looks like "id0.0.7". Also values like "image5" and "table3" can be used as an identifier for images and tables, where the number is an index of the image/table.
+     * The range start identifier.
+     * Identifier is the value of the "nodeId" field, which every document node has, extended with the prefix "id".
+     * It looks like "id0.0.7". Also values like "image5" and "table3" can be used as an identifier for images and tables, where the number is an index of the image/table.
      */
     public rangeStartIdentifier: string;
 
@@ -5703,14 +5790,15 @@ export class GetRangeTextRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetRangeTextRequest>) {        
+
+    public constructor(init?: Partial< GetRangeTextRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetRun operation.
+ * This resource represents run of text contained in the document.
  */
 export class GetRunRequest {
     /**
@@ -5747,14 +5835,15 @@ export class GetRunRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetRunRequest>) {        
+
+    public constructor(init?: Partial< GetRunRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetRunFont operation.
+ * This resource represents font of run.
  */
 export class GetRunFontRequest {
     /**
@@ -5791,14 +5880,15 @@ export class GetRunFontRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetRunFontRequest>) {        
+
+    public constructor(init?: Partial< GetRunFontRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetRuns operation.
+ * This resource represents collection of runs in the paragraph.
  */
 export class GetRunsRequest {
     /**
@@ -5830,14 +5920,15 @@ export class GetRunsRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetRunsRequest>) {        
+
+    public constructor(init?: Partial< GetRunsRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetSection operation.
+ * Gets document section by index.
  */
 export class GetSectionRequest {
     /**
@@ -5869,14 +5960,15 @@ export class GetSectionRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetSectionRequest>) {        
+
+    public constructor(init?: Partial< GetSectionRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetSectionPageSetup operation.
+ * Gets page setup of section.
  */
 export class GetSectionPageSetupRequest {
     /**
@@ -5908,14 +6000,15 @@ export class GetSectionPageSetupRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetSectionPageSetupRequest>) {        
+
+    public constructor(init?: Partial< GetSectionPageSetupRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetSections operation.
+ * Returns a list of sections that are contained in the document.
  */
 export class GetSectionsRequest {
     /**
@@ -5942,14 +6035,15 @@ export class GetSectionsRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetSectionsRequest>) {        
+
+    public constructor(init?: Partial< GetSectionsRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetStyle operation.
+ * This resource represents one of the styles contained in the document.
  */
 export class GetStyleRequest {
     /**
@@ -5981,14 +6075,15 @@ export class GetStyleRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetStyleRequest>) {        
+
+    public constructor(init?: Partial< GetStyleRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetStyleFromDocumentElement operation.
+ * Gets a style from the document node.
  */
 export class GetStyleFromDocumentElementRequest {
     /**
@@ -6020,14 +6115,15 @@ export class GetStyleFromDocumentElementRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetStyleFromDocumentElementRequest>) {        
+
+    public constructor(init?: Partial< GetStyleFromDocumentElementRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetStyles operation.
+ * Returns a list of styles contained in the document.
  */
 export class GetStylesRequest {
     /**
@@ -6054,14 +6150,15 @@ export class GetStylesRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetStylesRequest>) {        
+
+    public constructor(init?: Partial< GetStylesRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetTable operation.
+ * Returns a table.
  */
 export class GetTableRequest {
     /**
@@ -6098,14 +6195,15 @@ export class GetTableRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetTableRequest>) {        
+
+    public constructor(init?: Partial< GetTableRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetTableCell operation.
+ * Returns a table cell.
  */
 export class GetTableCellRequest {
     /**
@@ -6142,14 +6240,15 @@ export class GetTableCellRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetTableCellRequest>) {        
+
+    public constructor(init?: Partial< GetTableCellRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetTableCellFormat operation.
+ * Returns a table cell format.
  */
 export class GetTableCellFormatRequest {
     /**
@@ -6186,14 +6285,15 @@ export class GetTableCellFormatRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetTableCellFormatRequest>) {        
+
+    public constructor(init?: Partial< GetTableCellFormatRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetTableProperties operation.
+ * Returns a table properties.
  */
 export class GetTablePropertiesRequest {
     /**
@@ -6230,14 +6330,15 @@ export class GetTablePropertiesRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetTablePropertiesRequest>) {        
+
+    public constructor(init?: Partial< GetTablePropertiesRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetTablePropertiesWithoutNodePath operation.
+ * Returns a table properties.
  */
 export class GetTablePropertiesWithoutNodePathRequest {
     /**
@@ -6269,14 +6370,15 @@ export class GetTablePropertiesWithoutNodePathRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetTablePropertiesWithoutNodePathRequest>) {        
+
+    public constructor(init?: Partial< GetTablePropertiesWithoutNodePathRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetTableRow operation.
+ * Returns a table row.
  */
 export class GetTableRowRequest {
     /**
@@ -6313,14 +6415,15 @@ export class GetTableRowRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetTableRowRequest>) {        
+
+    public constructor(init?: Partial< GetTableRowRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetTableRowFormat operation.
+ * Returns a table row format.
  */
 export class GetTableRowFormatRequest {
     /**
@@ -6357,53 +6460,15 @@ export class GetTableRowFormatRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetTableRowFormatRequest>) {        
+
+    public constructor(init?: Partial< GetTableRowFormatRequest >) {
         Object.assign(this, init);
-    } 
-}
-
-/**
- * Request model for GetTableWithoutNodePath operation.
- */
-export class GetTableWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * Object index.
-     */
-    public index: number;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-    
-    public constructor(init?: Partial<GetTableWithoutNodePathRequest>) {        
-        Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetTables operation.
+ * Returns a list of tables that are contained in the document.
  */
 export class GetTablesRequest {
     /**
@@ -6435,14 +6500,15 @@ export class GetTablesRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetTablesRequest>) {        
+
+    public constructor(init?: Partial< GetTablesRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for GetTablesWithoutNodePath operation.
+ * Returns a list of tables that are contained in the document.
  */
 export class GetTablesWithoutNodePathRequest {
     /**
@@ -6469,14 +6535,55 @@ export class GetTablesWithoutNodePathRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<GetTablesWithoutNodePathRequest>) {        
+
+    public constructor(init?: Partial< GetTablesWithoutNodePathRequest >) {
         Object.assign(this, init);
-    } 
+    }
+}
+
+/**
+ * Request model for GetTableWithoutNodePath operation.
+ * Returns a table.
+ */
+export class GetTableWithoutNodePathRequest {
+    /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetTableWithoutNodePathRequest >) {
+        Object.assign(this, init);
+    }
 }
 
 /**
  * Request model for InsertComment operation.
+ * Adds comment to document, returns inserted comment data.
  */
 export class InsertCommentRequest {
     /**
@@ -6523,14 +6630,15 @@ export class InsertCommentRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<InsertCommentRequest>) {        
+
+    public constructor(init?: Partial< InsertCommentRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for InsertDrawingObject operation.
+ * Adds drawing object to document, returns added  drawing object's data.
  */
 export class InsertDrawingObjectRequest {
     /**
@@ -6544,7 +6652,7 @@ export class InsertDrawingObjectRequest {
     public drawingObject: importedDrawingObjectInsert.DrawingObjectInsert;
 
     /**
-     * File with image
+     * File with image.
      */
     public imageFile: Readable;
 
@@ -6587,14 +6695,15 @@ export class InsertDrawingObjectRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<InsertDrawingObjectRequest>) {        
+
+    public constructor(init?: Partial< InsertDrawingObjectRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for InsertDrawingObjectWithoutNodePath operation.
+ * Adds drawing object to document, returns added  drawing object's data.
  */
 export class InsertDrawingObjectWithoutNodePathRequest {
     /**
@@ -6608,7 +6717,7 @@ export class InsertDrawingObjectWithoutNodePathRequest {
     public drawingObject: importedDrawingObjectInsert.DrawingObjectInsert;
 
     /**
-     * File with image
+     * File with image.
      */
     public imageFile: Readable;
 
@@ -6646,14 +6755,15 @@ export class InsertDrawingObjectWithoutNodePathRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<InsertDrawingObjectWithoutNodePathRequest>) {        
+
+    public constructor(init?: Partial< InsertDrawingObjectWithoutNodePathRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for InsertField operation.
+ * Adds field to document, returns inserted field's data.
  */
 export class InsertFieldRequest {
     /**
@@ -6710,14 +6820,15 @@ export class InsertFieldRequest {
      * Field will be inserted before node with id="nodeId".
      */
     public insertBeforeNode: string;
-    
-    public constructor(init?: Partial<InsertFieldRequest>) {        
+
+    public constructor(init?: Partial< InsertFieldRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for InsertFieldWithoutNodePath operation.
+ * Adds field to document, returns inserted field's data.
  */
 export class InsertFieldWithoutNodePathRequest {
     /**
@@ -6769,14 +6880,15 @@ export class InsertFieldWithoutNodePathRequest {
      * Field will be inserted before node with id="nodeId".
      */
     public insertBeforeNode: string;
-    
-    public constructor(init?: Partial<InsertFieldWithoutNodePathRequest>) {        
+
+    public constructor(init?: Partial< InsertFieldWithoutNodePathRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for InsertFootnote operation.
+ * Adds footnote to document, returns added footnote's data.
  */
 export class InsertFootnoteRequest {
     /**
@@ -6828,14 +6940,15 @@ export class InsertFootnoteRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<InsertFootnoteRequest>) {        
+
+    public constructor(init?: Partial< InsertFootnoteRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for InsertFootnoteWithoutNodePath operation.
+ * Adds footnote to document, returns added footnote's data.
  */
 export class InsertFootnoteWithoutNodePathRequest {
     /**
@@ -6882,14 +6995,15 @@ export class InsertFootnoteWithoutNodePathRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<InsertFootnoteWithoutNodePathRequest>) {        
+
+    public constructor(init?: Partial< InsertFootnoteWithoutNodePathRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for InsertFormField operation.
+ * Adds form field to paragraph, returns added form field's data.
  */
 export class InsertFormFieldRequest {
     /**
@@ -6946,14 +7060,15 @@ export class InsertFormFieldRequest {
      * Form field will be inserted before node with index.
      */
     public insertBeforeNode: string;
-    
-    public constructor(init?: Partial<InsertFormFieldRequest>) {        
+
+    public constructor(init?: Partial< InsertFormFieldRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for InsertFormFieldWithoutNodePath operation.
+ * Adds form field to paragraph, returns added form field's data.
  */
 export class InsertFormFieldWithoutNodePathRequest {
     /**
@@ -7005,14 +7120,15 @@ export class InsertFormFieldWithoutNodePathRequest {
      * Form field will be inserted before node with index.
      */
     public insertBeforeNode: string;
-    
-    public constructor(init?: Partial<InsertFormFieldWithoutNodePathRequest>) {        
+
+    public constructor(init?: Partial< InsertFormFieldWithoutNodePathRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for InsertHeaderFooter operation.
+ * Inserts to document header or footer.
  */
 export class InsertHeaderFooterRequest {
     /**
@@ -7064,14 +7180,15 @@ export class InsertHeaderFooterRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<InsertHeaderFooterRequest>) {        
+
+    public constructor(init?: Partial< InsertHeaderFooterRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for InsertList operation.
+ * Adds list to document, returns added list's data.
  */
 export class InsertListRequest {
     /**
@@ -7118,14 +7235,15 @@ export class InsertListRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<InsertListRequest>) {        
+
+    public constructor(init?: Partial< InsertListRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for InsertOrUpdateParagraphTabStop operation.
+ * Insert or resplace tab stop if a tab stop with the position exists.
  */
 export class InsertOrUpdateParagraphTabStopRequest {
     /**
@@ -7172,14 +7290,15 @@ export class InsertOrUpdateParagraphTabStopRequest {
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
-    
-    public constructor(init?: Partial<InsertOrUpdateParagraphTabStopRequest>) {        
+
+    public constructor(init?: Partial< InsertOrUpdateParagraphTabStopRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for InsertOrUpdateParagraphTabStopWithoutNodePath operation.
+ * Insert or resplace tab stop if a tab stop with the position exists.
  */
 export class InsertOrUpdateParagraphTabStopWithoutNodePathRequest {
     /**
@@ -7221,14 +7340,15 @@ export class InsertOrUpdateParagraphTabStopWithoutNodePathRequest {
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
-    
-    public constructor(init?: Partial<InsertOrUpdateParagraphTabStopWithoutNodePathRequest>) {        
+
+    public constructor(init?: Partial< InsertOrUpdateParagraphTabStopWithoutNodePathRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for InsertPageNumbers operation.
+ * Inserts document page numbers.
  */
 export class InsertPageNumbersRequest {
     /**
@@ -7275,14 +7395,15 @@ export class InsertPageNumbersRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<InsertPageNumbersRequest>) {        
+
+    public constructor(init?: Partial< InsertPageNumbersRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for InsertParagraph operation.
+ * Adds paragraph to document, returns added paragraph's data.
  */
 export class InsertParagraphRequest {
     /**
@@ -7339,14 +7460,15 @@ export class InsertParagraphRequest {
      * Paragraph will be inserted before node with index.
      */
     public insertBeforeNode: string;
-    
-    public constructor(init?: Partial<InsertParagraphRequest>) {        
+
+    public constructor(init?: Partial< InsertParagraphRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for InsertParagraphWithoutNodePath operation.
+ * Adds paragraph to document, returns added paragraph's data.
  */
 export class InsertParagraphWithoutNodePathRequest {
     /**
@@ -7398,14 +7520,15 @@ export class InsertParagraphWithoutNodePathRequest {
      * Paragraph will be inserted before node with index.
      */
     public insertBeforeNode: string;
-    
-    public constructor(init?: Partial<InsertParagraphWithoutNodePathRequest>) {        
+
+    public constructor(init?: Partial< InsertParagraphWithoutNodePathRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for InsertRun operation.
+ * Adds run to document, returns added paragraph's data.
  */
 export class InsertRunRequest {
     /**
@@ -7462,14 +7585,15 @@ export class InsertRunRequest {
      * Paragraph will be inserted before node with index.
      */
     public insertBeforeNode: string;
-    
-    public constructor(init?: Partial<InsertRunRequest>) {        
+
+    public constructor(init?: Partial< InsertRunRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for InsertStyle operation.
+ * Adds a style to the document, returns an added style.
  */
 export class InsertStyleRequest {
     /**
@@ -7516,20 +7640,26 @@ export class InsertStyleRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<InsertStyleRequest>) {        
+
+    public constructor(init?: Partial< InsertStyleRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for InsertTable operation.
+ * Adds table to document, returns added table's data.
  */
 export class InsertTableRequest {
     /**
      * The document name.
      */
     public name: string;
+
+    /**
+     * Table parameters/.
+     */
+    public table: importedTableInsert.TableInsert;
 
     /**
      * Path to the node, which contains tables.
@@ -7571,24 +7701,25 @@ export class InsertTableRequest {
      */
     public revisionDateTime: string;
 
-    /**
-     * Table parameters/.
-     */
-    public table: importedTableInsert.TableInsert;
-    
-    public constructor(init?: Partial<InsertTableRequest>) {        
+    public constructor(init?: Partial< InsertTableRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for InsertTableCell operation.
+ * Adds table cell to table, returns added cell's data.
  */
 export class InsertTableCellRequest {
     /**
      * The document name.
      */
     public name: string;
+
+    /**
+     * Table cell parameters/.
+     */
+    public cell: importedTableCellInsert.TableCellInsert;
 
     /**
      * Path to table row.
@@ -7630,24 +7761,25 @@ export class InsertTableCellRequest {
      */
     public revisionDateTime: string;
 
-    /**
-     * Table cell parameters/.
-     */
-    public cell: importedTableCellInsert.TableCellInsert;
-    
-    public constructor(init?: Partial<InsertTableCellRequest>) {        
+    public constructor(init?: Partial< InsertTableCellRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for InsertTableRow operation.
+ * Adds table row to table, returns added row's data.
  */
 export class InsertTableRowRequest {
     /**
      * The document name.
      */
     public name: string;
+
+    /**
+     * Table row parameters/.
+     */
+    public row: importedTableRowInsert.TableRowInsert;
 
     /**
      * Path to table.
@@ -7689,24 +7821,25 @@ export class InsertTableRowRequest {
      */
     public revisionDateTime: string;
 
-    /**
-     * Table row parameters/.
-     */
-    public row: importedTableRowInsert.TableRowInsert;
-    
-    public constructor(init?: Partial<InsertTableRowRequest>) {        
+    public constructor(init?: Partial< InsertTableRowRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for InsertTableWithoutNodePath operation.
+ * Adds table to document, returns added table's data.
  */
 export class InsertTableWithoutNodePathRequest {
     /**
      * The document name.
      */
     public name: string;
+
+    /**
+     * Table parameters/.
+     */
+    public table: importedTableInsert.TableInsert;
 
     /**
      * Original document folder.
@@ -7743,18 +7876,14 @@ export class InsertTableWithoutNodePathRequest {
      */
     public revisionDateTime: string;
 
-    /**
-     * Table parameters/.
-     */
-    public table: importedTableInsert.TableInsert;
-    
-    public constructor(init?: Partial<InsertTableWithoutNodePathRequest>) {        
+    public constructor(init?: Partial< InsertTableWithoutNodePathRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for InsertWatermarkImage operation.
+ * Inserts document watermark image.
  */
 export class InsertWatermarkImageRequest {
     /**
@@ -7763,7 +7892,7 @@ export class InsertWatermarkImageRequest {
     public name: string;
 
     /**
-     * File with image
+     * File with image.
      */
     public imageFile: Readable;
 
@@ -7811,14 +7940,15 @@ export class InsertWatermarkImageRequest {
      * The image file server full name. If the name is empty the image is expected in request content.
      */
     public image: string;
-    
-    public constructor(init?: Partial<InsertWatermarkImageRequest>) {        
+
+    public constructor(init?: Partial< InsertWatermarkImageRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for InsertWatermarkText operation.
+ * Inserts document watermark text.
  */
 export class InsertWatermarkTextRequest {
     /**
@@ -7827,7 +7957,7 @@ export class InsertWatermarkTextRequest {
     public name: string;
 
     /**
-     * WatermarkText with the watermark data.             
+     * WatermarkText with the watermark data.
      */
     public watermarkText: importedWatermarkText.WatermarkText;
 
@@ -7865,14 +7995,15 @@ export class InsertWatermarkTextRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<InsertWatermarkTextRequest>) {        
+
+    public constructor(init?: Partial< InsertWatermarkTextRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for LoadWebDocument operation.
+ * Loads new document from web into the file with any supported format of data.
  */
 export class LoadWebDocumentRequest {
     /**
@@ -7884,77 +8015,80 @@ export class LoadWebDocumentRequest {
      * Original document storage.
      */
     public storage: string;
-    
-    public constructor(init?: Partial<LoadWebDocumentRequest>) {        
+
+    public constructor(init?: Partial< LoadWebDocumentRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for MoveFile operation.
+ * Move file.
  */
 export class MoveFileRequest {
     /**
-     * Destination file path e.g. '/dest.ext'
+     * Destination file path e.g. '/dest.ext'.
      */
     public destPath: string;
 
     /**
-     * Source file's path e.g. '/Folder 1/file.ext' or '/Bucket/Folder 1/file.ext'
+     * Source file's path e.g. '/Folder 1/file.ext' or '/Bucket/Folder 1/file.ext'.
      */
     public srcPath: string;
 
     /**
-     * Source storage name
+     * Source storage name.
      */
     public srcStorageName: string;
 
     /**
-     * Destination storage name
+     * Destination storage name.
      */
     public destStorageName: string;
 
     /**
-     * File version ID to move
+     * File version ID to move.
      */
     public versionId: string;
-    
-    public constructor(init?: Partial<MoveFileRequest>) {        
+
+    public constructor(init?: Partial< MoveFileRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for MoveFolder operation.
+ * Move folder.
  */
 export class MoveFolderRequest {
     /**
-     * Destination folder path to move to e.g '/dst'
+     * Destination folder path to move to e.g '/dst'.
      */
     public destPath: string;
 
     /**
-     * Source folder path e.g. /Folder1
+     * Source folder path e.g. /Folder1.
      */
     public srcPath: string;
 
     /**
-     * Source storage name
+     * Source storage name.
      */
     public srcStorageName: string;
 
     /**
-     * Destination storage name
+     * Destination storage name.
      */
     public destStorageName: string;
-    
-    public constructor(init?: Partial<MoveFolderRequest>) {        
+
+    public constructor(init?: Partial< MoveFolderRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for ProtectDocument operation.
+ * Protects document.
  */
 export class ProtectDocumentRequest {
     /**
@@ -7991,14 +8125,15 @@ export class ProtectDocumentRequest {
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
-    
-    public constructor(init?: Partial<ProtectDocumentRequest>) {        
+
+    public constructor(init?: Partial< ProtectDocumentRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for RejectAllRevisions operation.
+ * Rejects all revisions in document.
  */
 export class RejectAllRevisionsRequest {
     /**
@@ -8030,14 +8165,15 @@ export class RejectAllRevisionsRequest {
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
-    
-    public constructor(init?: Partial<RejectAllRevisionsRequest>) {        
+
+    public constructor(init?: Partial< RejectAllRevisionsRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for RemoveRange operation.
+ * Removes the range from the document.
  */
 export class RemoveRangeRequest {
     /**
@@ -8046,7 +8182,9 @@ export class RemoveRangeRequest {
     public name: string;
 
     /**
-     * The range start identifier. Identifier is the value of the "nodeId" field, which every document node has, extended with the prefix "id". It looks like "id0.0.7". Also values like "image5" and "table3" can be used as an identifier for images and tables, where the number is an index of the image/table.
+     * The range start identifier.
+     * Identifier is the value of the "nodeId" field, which every document node has, extended with the prefix "id".
+     * It looks like "id0.0.7". Also values like "image5" and "table3" can be used as an identifier for images and tables, where the number is an index of the image/table.
      */
     public rangeStartIdentifier: string;
 
@@ -8079,14 +8217,15 @@ export class RemoveRangeRequest {
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
-    
-    public constructor(init?: Partial<RemoveRangeRequest>) {        
+
+    public constructor(init?: Partial< RemoveRangeRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for RenderDrawingObject operation.
+ * Renders drawing object to specified format.
  */
 export class RenderDrawingObjectRequest {
     /**
@@ -8133,14 +8272,15 @@ export class RenderDrawingObjectRequest {
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
-    
-    public constructor(init?: Partial<RenderDrawingObjectRequest>) {        
+
+    public constructor(init?: Partial< RenderDrawingObjectRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for RenderDrawingObjectWithoutNodePath operation.
+ * Renders drawing object to specified format.
  */
 export class RenderDrawingObjectWithoutNodePathRequest {
     /**
@@ -8182,14 +8322,15 @@ export class RenderDrawingObjectWithoutNodePathRequest {
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
-    
-    public constructor(init?: Partial<RenderDrawingObjectWithoutNodePathRequest>) {        
+
+    public constructor(init?: Partial< RenderDrawingObjectWithoutNodePathRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for RenderMathObject operation.
+ * Renders math object to specified format.
  */
 export class RenderMathObjectRequest {
     /**
@@ -8236,14 +8377,15 @@ export class RenderMathObjectRequest {
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
-    
-    public constructor(init?: Partial<RenderMathObjectRequest>) {        
+
+    public constructor(init?: Partial< RenderMathObjectRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for RenderMathObjectWithoutNodePath operation.
+ * Renders math object to specified format.
  */
 export class RenderMathObjectWithoutNodePathRequest {
     /**
@@ -8285,14 +8427,15 @@ export class RenderMathObjectWithoutNodePathRequest {
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
-    
-    public constructor(init?: Partial<RenderMathObjectWithoutNodePathRequest>) {        
+
+    public constructor(init?: Partial< RenderMathObjectWithoutNodePathRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for RenderPage operation.
+ * Renders page to specified format.
  */
 export class RenderPageRequest {
     /**
@@ -8334,14 +8477,15 @@ export class RenderPageRequest {
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
-    
-    public constructor(init?: Partial<RenderPageRequest>) {        
+
+    public constructor(init?: Partial< RenderPageRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for RenderParagraph operation.
+ * Renders paragraph to specified format.
  */
 export class RenderParagraphRequest {
     /**
@@ -8388,14 +8532,15 @@ export class RenderParagraphRequest {
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
-    
-    public constructor(init?: Partial<RenderParagraphRequest>) {        
+
+    public constructor(init?: Partial< RenderParagraphRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for RenderParagraphWithoutNodePath operation.
+ * Renders paragraph to specified format.
  */
 export class RenderParagraphWithoutNodePathRequest {
     /**
@@ -8437,14 +8582,15 @@ export class RenderParagraphWithoutNodePathRequest {
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
-    
-    public constructor(init?: Partial<RenderParagraphWithoutNodePathRequest>) {        
+
+    public constructor(init?: Partial< RenderParagraphWithoutNodePathRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for RenderTable operation.
+ * Renders table to specified format.
  */
 export class RenderTableRequest {
     /**
@@ -8491,14 +8637,15 @@ export class RenderTableRequest {
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
-    
-    public constructor(init?: Partial<RenderTableRequest>) {        
+
+    public constructor(init?: Partial< RenderTableRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for RenderTableWithoutNodePath operation.
+ * Renders table to specified format.
  */
 export class RenderTableWithoutNodePathRequest {
     /**
@@ -8540,14 +8687,15 @@ export class RenderTableWithoutNodePathRequest {
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
-    
-    public constructor(init?: Partial<RenderTableWithoutNodePathRequest>) {        
+
+    public constructor(init?: Partial< RenderTableWithoutNodePathRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for ReplaceText operation.
+ * Replaces document text.
  */
 export class ReplaceTextRequest {
     /**
@@ -8594,14 +8742,15 @@ export class ReplaceTextRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<ReplaceTextRequest>) {        
+
+    public constructor(init?: Partial< ReplaceTextRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for ReplaceWithText operation.
+ * Replaces the content in the range.
  */
 export class ReplaceWithTextRequest {
     /**
@@ -8610,7 +8759,9 @@ export class ReplaceWithTextRequest {
     public name: string;
 
     /**
-     * The range start identifier. Identifier is the value of the "nodeId" field, which every document node has, extended with the prefix "id". It looks like "id0.0.7". Also values like "image5" and "table3" can be used as an identifier for images and tables, where the number is an index of the image/table.
+     * The range start identifier.
+     * Identifier is the value of the "nodeId" field, which every document node has, extended with the prefix "id".
+     * It looks like "id0.0.7". Also values like "image5" and "table3" can be used as an identifier for images and tables, where the number is an index of the image/table.
      */
     public rangeStartIdentifier: string;
 
@@ -8648,24 +8799,26 @@ export class ReplaceWithTextRequest {
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
-    
-    public constructor(init?: Partial<ReplaceWithTextRequest>) {        
+
+    public constructor(init?: Partial< ReplaceWithTextRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for ResetCache operation.
+ * Resets font's cache.
  */
 export class ResetCacheRequest {
-    
-    public constructor(init?: Partial<ResetCacheRequest>) {        
+
+    public constructor(init?: Partial< ResetCacheRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for SaveAs operation.
+ * Converts document to destination format with detailed settings and saves result to storage.
  */
 export class SaveAsRequest {
     /**
@@ -8702,14 +8855,15 @@ export class SaveAsRequest {
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
-    
-    public constructor(init?: Partial<SaveAsRequest>) {        
+
+    public constructor(init?: Partial< SaveAsRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for SaveAsRange operation.
+ * Saves the selected range as a new document.
  */
 export class SaveAsRangeRequest {
     /**
@@ -8718,7 +8872,9 @@ export class SaveAsRangeRequest {
     public name: string;
 
     /**
-     * The range start identifier. Identifier is the value of the "nodeId" field, which every document node has, extended with the prefix "id". It looks like "id0.0.7". Also values like "image5" and "table3" can be used as an identifier for images and tables, where the number is an index of the image/table.
+     * The range start identifier.
+     * Identifier is the value of the "nodeId" field, which every document node has, extended with the prefix "id".
+     * It looks like "id0.0.7". Also values like "image5" and "table3" can be used as an identifier for images and tables, where the number is an index of the image/table.
      */
     public rangeStartIdentifier: string;
 
@@ -8751,14 +8907,15 @@ export class SaveAsRangeRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<SaveAsRangeRequest>) {        
+
+    public constructor(init?: Partial< SaveAsRangeRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for SaveAsTiff operation.
+ * Converts document to tiff with detailed settings and saves result to storage.
  */
 export class SaveAsTiffRequest {
     /**
@@ -8880,14 +9037,15 @@ export class SaveAsTiffRequest {
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
-    
-    public constructor(init?: Partial<SaveAsTiffRequest>) {        
+
+    public constructor(init?: Partial< SaveAsTiffRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for Search operation.
+ * Searches text in document.
  */
 export class SearchRequest {
     /**
@@ -8919,14 +9077,15 @@ export class SearchRequest {
      * Password for opening an encrypted document.
      */
     public password: string;
-    
-    public constructor(init?: Partial<SearchRequest>) {        
+
+    public constructor(init?: Partial< SearchRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for SplitDocument operation.
+ * Splits document.
  */
 export class SplitDocumentRequest {
     /**
@@ -8983,14 +9142,15 @@ export class SplitDocumentRequest {
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
-    
-    public constructor(init?: Partial<SplitDocumentRequest>) {        
+
+    public constructor(init?: Partial< SplitDocumentRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for UnprotectDocument operation.
+ * Unprotects document.
  */
 export class UnprotectDocumentRequest {
     /**
@@ -9027,14 +9187,15 @@ export class UnprotectDocumentRequest {
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
-    
-    public constructor(init?: Partial<UnprotectDocumentRequest>) {        
+
+    public constructor(init?: Partial< UnprotectDocumentRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for UpdateBookmark operation.
+ * Updates document bookmark.
  */
 export class UpdateBookmarkRequest {
     /**
@@ -9086,14 +9247,15 @@ export class UpdateBookmarkRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<UpdateBookmarkRequest>) {        
+
+    public constructor(init?: Partial< UpdateBookmarkRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for UpdateBorder operation.
+ * 'nodePath' should refer to paragraph, cell or row.
  */
 export class UpdateBorderRequest {
     /**
@@ -9150,14 +9312,15 @@ export class UpdateBorderRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<UpdateBorderRequest>) {        
+
+    public constructor(init?: Partial< UpdateBorderRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for UpdateComment operation.
+ * Updates the comment, returns updated comment data.
  */
 export class UpdateCommentRequest {
     /**
@@ -9209,14 +9372,15 @@ export class UpdateCommentRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<UpdateCommentRequest>) {        
+
+    public constructor(init?: Partial< UpdateCommentRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for UpdateDrawingObject operation.
+ * Updates drawing object, returns updated  drawing object's data.
  */
 export class UpdateDrawingObjectRequest {
     /**
@@ -9225,12 +9389,12 @@ export class UpdateDrawingObjectRequest {
     public name: string;
 
     /**
-     * Drawing object parameters
+     * Drawing object parameters.
      */
     public drawingObject: importedDrawingObjectUpdate.DrawingObjectUpdate;
 
     /**
-     * File with image
+     * File with image.
      */
     public imageFile: Readable;
 
@@ -9278,14 +9442,15 @@ export class UpdateDrawingObjectRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<UpdateDrawingObjectRequest>) {        
+
+    public constructor(init?: Partial< UpdateDrawingObjectRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for UpdateDrawingObjectWithoutNodePath operation.
+ * Updates drawing object, returns updated  drawing object's data.
  */
 export class UpdateDrawingObjectWithoutNodePathRequest {
     /**
@@ -9294,12 +9459,12 @@ export class UpdateDrawingObjectWithoutNodePathRequest {
     public name: string;
 
     /**
-     * Drawing object parameters
+     * Drawing object parameters.
      */
     public drawingObject: importedDrawingObjectUpdate.DrawingObjectUpdate;
 
     /**
-     * File with image
+     * File with image.
      */
     public imageFile: Readable;
 
@@ -9342,14 +9507,15 @@ export class UpdateDrawingObjectWithoutNodePathRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<UpdateDrawingObjectWithoutNodePathRequest>) {        
+
+    public constructor(init?: Partial< UpdateDrawingObjectWithoutNodePathRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for UpdateField operation.
+ * Updates field's properties, returns updated field's data.
  */
 export class UpdateFieldRequest {
     /**
@@ -9406,14 +9572,15 @@ export class UpdateFieldRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<UpdateFieldRequest>) {        
+
+    public constructor(init?: Partial< UpdateFieldRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for UpdateFields operation.
+ * Updates (reevaluate) fields in document.
  */
 export class UpdateFieldsRequest {
     /**
@@ -9445,14 +9612,15 @@ export class UpdateFieldsRequest {
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
-    
-    public constructor(init?: Partial<UpdateFieldsRequest>) {        
+
+    public constructor(init?: Partial< UpdateFieldsRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for UpdateFootnote operation.
+ * Updates footnote's properties, returns updated run's data.
  */
 export class UpdateFootnoteRequest {
     /**
@@ -9509,14 +9677,15 @@ export class UpdateFootnoteRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<UpdateFootnoteRequest>) {        
+
+    public constructor(init?: Partial< UpdateFootnoteRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for UpdateFootnoteWithoutNodePath operation.
+ * Updates footnote's properties, returns updated run's data.
  */
 export class UpdateFootnoteWithoutNodePathRequest {
     /**
@@ -9568,14 +9737,15 @@ export class UpdateFootnoteWithoutNodePathRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<UpdateFootnoteWithoutNodePathRequest>) {        
+
+    public constructor(init?: Partial< UpdateFootnoteWithoutNodePathRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for UpdateFormField operation.
+ * Updates properties of form field, returns updated form field.
  */
 export class UpdateFormFieldRequest {
     /**
@@ -9632,14 +9802,15 @@ export class UpdateFormFieldRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<UpdateFormFieldRequest>) {        
+
+    public constructor(init?: Partial< UpdateFormFieldRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for UpdateFormFieldWithoutNodePath operation.
+ * Updates properties of form field, returns updated form field.
  */
 export class UpdateFormFieldWithoutNodePathRequest {
     /**
@@ -9691,14 +9862,15 @@ export class UpdateFormFieldWithoutNodePathRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<UpdateFormFieldWithoutNodePathRequest>) {        
+
+    public constructor(init?: Partial< UpdateFormFieldWithoutNodePathRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for UpdateList operation.
+ * Updates list properties, returns updated list.
  */
 export class UpdateListRequest {
     /**
@@ -9750,14 +9922,15 @@ export class UpdateListRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<UpdateListRequest>) {        
+
+    public constructor(init?: Partial< UpdateListRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for UpdateListLevel operation.
+ * Updates list level in document list, returns updated list.
  */
 export class UpdateListLevelRequest {
     /**
@@ -9814,14 +9987,15 @@ export class UpdateListLevelRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<UpdateListLevelRequest>) {        
+
+    public constructor(init?: Partial< UpdateListLevelRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for UpdateParagraphFormat operation.
+ * Updates paragraph format properties, returns updated format properties.
  */
 export class UpdateParagraphFormatRequest {
     /**
@@ -9878,14 +10052,15 @@ export class UpdateParagraphFormatRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<UpdateParagraphFormatRequest>) {        
+
+    public constructor(init?: Partial< UpdateParagraphFormatRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for UpdateParagraphFormatWithoutNodePath operation.
+ * Updates paragraph format properties, returns updated format properties.
  */
 export class UpdateParagraphFormatWithoutNodePathRequest {
     /**
@@ -9937,14 +10112,15 @@ export class UpdateParagraphFormatWithoutNodePathRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<UpdateParagraphFormatWithoutNodePathRequest>) {        
+
+    public constructor(init?: Partial< UpdateParagraphFormatWithoutNodePathRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for UpdateParagraphListFormat operation.
+ * Updates paragraph list format properties, returns updated list format properties.
  */
 export class UpdateParagraphListFormatRequest {
     /**
@@ -10001,14 +10177,15 @@ export class UpdateParagraphListFormatRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<UpdateParagraphListFormatRequest>) {        
+
+    public constructor(init?: Partial< UpdateParagraphListFormatRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for UpdateParagraphListFormatWithoutNodePath operation.
+ * Updates paragraph list format properties, returns updated list format properties.
  */
 export class UpdateParagraphListFormatWithoutNodePathRequest {
     /**
@@ -10060,14 +10237,15 @@ export class UpdateParagraphListFormatWithoutNodePathRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<UpdateParagraphListFormatWithoutNodePathRequest>) {        
+
+    public constructor(init?: Partial< UpdateParagraphListFormatWithoutNodePathRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for UpdateRun operation.
+ * Updates run's properties, returns updated run's data.
  */
 export class UpdateRunRequest {
     /**
@@ -10124,14 +10302,15 @@ export class UpdateRunRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<UpdateRunRequest>) {        
+
+    public constructor(init?: Partial< UpdateRunRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for UpdateRunFont operation.
+ * Updates font properties, returns updated font data.
  */
 export class UpdateRunFontRequest {
     /**
@@ -10188,14 +10367,15 @@ export class UpdateRunFontRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<UpdateRunFontRequest>) {        
+
+    public constructor(init?: Partial< UpdateRunFontRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for UpdateSectionPageSetup operation.
+ * Updates page setup of section.
  */
 export class UpdateSectionPageSetupRequest {
     /**
@@ -10247,14 +10427,15 @@ export class UpdateSectionPageSetupRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<UpdateSectionPageSetupRequest>) {        
+
+    public constructor(init?: Partial< UpdateSectionPageSetupRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for UpdateStyle operation.
+ * Updates style properties, returns an updated style.
  */
 export class UpdateStyleRequest {
     /**
@@ -10306,20 +10487,26 @@ export class UpdateStyleRequest {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-    
-    public constructor(init?: Partial<UpdateStyleRequest>) {        
+
+    public constructor(init?: Partial< UpdateStyleRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for UpdateTableCellFormat operation.
+ * Updates a table cell format.
  */
 export class UpdateTableCellFormatRequest {
     /**
      * The document name.
      */
     public name: string;
+
+    /**
+     * The properties.
+     */
+    public format: importedTableCellFormat.TableCellFormat;
 
     /**
      * Path to table row.
@@ -10366,24 +10553,25 @@ export class UpdateTableCellFormatRequest {
      */
     public revisionDateTime: string;
 
-    /**
-     * The properties.
-     */
-    public format: importedTableCellFormat.TableCellFormat;
-    
-    public constructor(init?: Partial<UpdateTableCellFormatRequest>) {        
+    public constructor(init?: Partial< UpdateTableCellFormatRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for UpdateTableProperties operation.
+ * Updates a table properties.
  */
 export class UpdateTablePropertiesRequest {
     /**
      * The document name.
      */
     public name: string;
+
+    /**
+     * The properties.
+     */
+    public properties: importedTableProperties.TableProperties;
 
     /**
      * Path to the node, which contains tables.
@@ -10430,24 +10618,25 @@ export class UpdateTablePropertiesRequest {
      */
     public revisionDateTime: string;
 
-    /**
-     * The properties.
-     */
-    public properties: importedTableProperties.TableProperties;
-    
-    public constructor(init?: Partial<UpdateTablePropertiesRequest>) {        
+    public constructor(init?: Partial< UpdateTablePropertiesRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for UpdateTablePropertiesWithoutNodePath operation.
+ * Updates a table properties.
  */
 export class UpdateTablePropertiesWithoutNodePathRequest {
     /**
      * The document name.
      */
     public name: string;
+
+    /**
+     * The properties.
+     */
+    public properties: importedTableProperties.TableProperties;
 
     /**
      * Object index.
@@ -10489,24 +10678,25 @@ export class UpdateTablePropertiesWithoutNodePathRequest {
      */
     public revisionDateTime: string;
 
-    /**
-     * The properties.
-     */
-    public properties: importedTableProperties.TableProperties;
-    
-    public constructor(init?: Partial<UpdateTablePropertiesWithoutNodePathRequest>) {        
+    public constructor(init?: Partial< UpdateTablePropertiesWithoutNodePathRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for UpdateTableRowFormat operation.
+ * Updates a table row format.
  */
 export class UpdateTableRowFormatRequest {
     /**
      * The document name.
      */
     public name: string;
+
+    /**
+     * Table row format.
+     */
+    public format: importedTableRowFormat.TableRowFormat;
 
     /**
      * Path to table.
@@ -10553,36 +10743,34 @@ export class UpdateTableRowFormatRequest {
      */
     public revisionDateTime: string;
 
-    /**
-     * Table row format.
-     */
-    public format: importedTableRowFormat.TableRowFormat;
-    
-    public constructor(init?: Partial<UpdateTableRowFormatRequest>) {        
+    public constructor(init?: Partial< UpdateTableRowFormatRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }
 
 /**
  * Request model for UploadFile operation.
+ * Upload file.
  */
 export class UploadFileRequest {
     /**
-     * File to upload
+     * File to upload.
      */
     public fileContent: Readable;
 
     /**
-     * Path where to upload including filename and extension e.g. /file.ext or /Folder 1/file.ext             If the content is multipart and path does not contains the file name it tries to get them from filename parameter             from Content-Disposition header.
+     * Path where to upload including filename and extension e.g. /file.ext or /Folder 1/file.ext
+     * If the content is multipart and path does not contains the file name it tries to get them from filename parameter
+     * from Content-Disposition header.
      */
     public path: string;
 
     /**
-     * Storage name
+     * Storage name.
      */
     public storageName: string;
-    
-    public constructor(init?: Partial<UploadFileRequest>) {        
+
+    public constructor(init?: Partial< UploadFileRequest >) {
         Object.assign(this, init);
-    } 
+    }
 }

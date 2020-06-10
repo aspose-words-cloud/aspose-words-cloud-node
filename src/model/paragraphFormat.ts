@@ -1,39 +1,41 @@
 /*
-* MIT License
+ * --------------------------------------------------------------------------------
+ * <copyright company="Aspose" file="paragraphFormat.ts">
+ *   Copyright (c) 2020 Aspose.Words for Cloud
+ * </copyright>
+ * <summary>
+ *   Permission is hereby granted, free of charge, to any person obtaining a copy
+ *  of this software and associated documentation files (the "Software"), to deal
+ *  in the Software without restriction, including without limitation the rights
+ *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *  copies of the Software, and to permit persons to whom the Software is
+ *  furnished to do so, subject to the following conditions:
+ * 
+ *  The above copyright notice and this permission notice shall be included in all
+ *  copies or substantial portions of the Software.
+ * 
+ *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ *  SOFTWARE.
+ * </summary>
+ * --------------------------------------------------------------------------------
+ */
 
-* Copyright (c) 2019 Aspose Pty Ltd
-
-* Permission is hereby granted, free of charge, to any person obtaining a copy
-* of this software and associated documentation files (the "Software"), to deal
-* in the Software without restriction, including without limitation the rights
-* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-* copies of the Software, and to permit persons to whom the Software is
-* furnished to do so, subject to the following conditions:
-
-* The above copyright notice and this permission notice shall be included in all
-* copies or substantial portions of the Software.
-
-* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-* SOFTWARE.
-*/
 import { AttributeInfo } from '../internal/attributeInfo';
 import { LinkElement } from './linkElement';
 import { Shading } from './shading';
-import { WordsApiLink } from './wordsApiLink';
 
 export const importsMapParagraphFormat = {
     LinkElement,
     Shading,
-    WordsApiLink,
 };
 
 /**
- * Paragraph format element.             
+ * Paragraph format element.
  */
 export class ParagraphFormat extends LinkElement {
     /**
@@ -44,137 +46,138 @@ export class ParagraphFormat extends LinkElement {
             name: "addSpaceBetweenFarEastAndAlpha",
             baseName: "AddSpaceBetweenFarEastAndAlpha",
             type: "boolean",
-        },        
+        },
         {
             name: "addSpaceBetweenFarEastAndDigit",
             baseName: "AddSpaceBetweenFarEastAndDigit",
             type: "boolean",
-        },        
+        },
         {
             name: "alignment",
             baseName: "Alignment",
             type: "ParagraphFormat.AlignmentEnum",
-        },        
+        },
         {
             name: "bidi",
             baseName: "Bidi",
             type: "boolean",
-        },        
+        },
         {
             name: "dropCapPosition",
             baseName: "DropCapPosition",
             type: "ParagraphFormat.DropCapPositionEnum",
-        },        
+        },
         {
             name: "firstLineIndent",
             baseName: "FirstLineIndent",
             type: "number",
-        },        
+        },
         {
             name: "isListItem",
             baseName: "IsListItem",
             type: "boolean",
-        },        
+        },
         {
             name: "keepTogether",
             baseName: "KeepTogether",
             type: "boolean",
-        },        
+        },
         {
             name: "keepWithNext",
             baseName: "KeepWithNext",
             type: "boolean",
-        },        
+        },
         {
             name: "leftIndent",
             baseName: "LeftIndent",
             type: "number",
-        },        
+        },
         {
             name: "lineSpacing",
             baseName: "LineSpacing",
             type: "number",
-        },        
+        },
         {
             name: "lineSpacingRule",
             baseName: "LineSpacingRule",
             type: "ParagraphFormat.LineSpacingRuleEnum",
-        },        
+        },
         {
             name: "linesToDrop",
             baseName: "LinesToDrop",
             type: "number",
-        },        
+        },
         {
             name: "noSpaceBetweenParagraphsOfSameStyle",
             baseName: "NoSpaceBetweenParagraphsOfSameStyle",
             type: "boolean",
-        },        
+        },
         {
             name: "outlineLevel",
             baseName: "OutlineLevel",
             type: "ParagraphFormat.OutlineLevelEnum",
-        },        
+        },
         {
             name: "pageBreakBefore",
             baseName: "PageBreakBefore",
             type: "boolean",
-        },        
+        },
         {
             name: "rightIndent",
             baseName: "RightIndent",
             type: "number",
-        },        
+        },
         {
             name: "shading",
             baseName: "Shading",
             type: "Shading",
-        },        
+        },
         {
             name: "spaceAfter",
             baseName: "SpaceAfter",
             type: "number",
-        },        
+        },
         {
             name: "spaceAfterAuto",
             baseName: "SpaceAfterAuto",
             type: "boolean",
-        },        
+        },
         {
             name: "spaceBefore",
             baseName: "SpaceBefore",
             type: "number",
-        },        
+        },
         {
             name: "spaceBeforeAuto",
             baseName: "SpaceBeforeAuto",
             type: "boolean",
-        },        
+        },
         {
             name: "styleIdentifier",
             baseName: "StyleIdentifier",
             type: "ParagraphFormat.StyleIdentifierEnum",
-        },        
+        },
         {
             name: "styleName",
             baseName: "StyleName",
             type: "string",
-        },        
+        },
         {
             name: "suppressAutoHyphens",
             baseName: "SuppressAutoHyphens",
             type: "boolean",
-        },        
+        },
         {
             name: "suppressLineNumbers",
             baseName: "SuppressLineNumbers",
             type: "boolean",
-        },        
+        },
         {
             name: "widowControl",
             baseName: "WidowControl",
             type: "boolean",
-        }    ];
+        }
+    ];
 
     /**
      * Returns attribute type map
@@ -184,144 +187,150 @@ export class ParagraphFormat extends LinkElement {
     }
 
     /**
-     * Gets or sets a flag indicating whether inter-character spacing is automatically adjusted between regions of Latin text and regions of East Asian text in the current paragraph.             
+     * Gets or sets a flag indicating whether inter-character spacing is automatically adjusted between regions
+     * of Latin text and regions of East Asian text in the current paragraph.
      */
     public addSpaceBetweenFarEastAndAlpha: boolean;
-    
+
     /**
-     * Gets or sets a flag indicating whether inter-character spacing is automatically adjusted between regions of numbers and regions of East Asian text in the current paragraph.             
+     * Gets or sets a flag indicating whether inter-character spacing is automatically adjusted between regions
+     * of numbers and regions of East Asian text in the current paragraph.
      */
     public addSpaceBetweenFarEastAndDigit: boolean;
-    
+
     /**
-     * Gets or sets text alignment for the paragraph.             
+     * Gets or sets text alignment for the paragraph.
      */
     public alignment: ParagraphFormat.AlignmentEnum;
-    
+
     /**
-     * Gets or sets whether this is a right-to-left paragraph.             
+     * Gets or sets whether this is a right-to-left paragraph.
      */
     public bidi: boolean;
-    
+
     /**
-     * Gets or sets the position for a drop cap text.             
+     * Gets or sets the position for a drop cap text.
      */
     public dropCapPosition: ParagraphFormat.DropCapPositionEnum;
-    
+
     /**
-     * Gets or sets the value (in points) for a first line or hanging indent. Use a positive value to set a first-line indent, and use a negative value to set a hanging indent.             
+     * Gets or sets the value (in points) for a first line or hanging indent.
+     * Use a positive value to set a first-line indent, and use a negative value to set a hanging indent.
      */
     public firstLineIndent: number;
-    
+
     /**
      * Gets or sets True when the paragraph is an item in a bulleted or numbered list.
      */
     public isListItem: boolean;
-    
+
     /**
-     * Gets or sets true if all lines in the paragraph are to remain on the same page.             
+     * Gets or sets true if all lines in the paragraph are to remain on the same page.
      */
     public keepTogether: boolean;
-    
+
     /**
-     * Gets or sets true if the paragraph is to remains on the same page as the paragraph that follows it.             
+     * Gets or sets true if the paragraph is to remains on the same page as the paragraph that follows it.
      */
     public keepWithNext: boolean;
-    
+
     /**
-     * Gets or sets the value (in points) that represents the left indent for paragraph.             
+     * Gets or sets the value (in points) that represents the left indent for paragraph.
      */
     public leftIndent: number;
-    
+
     /**
-     * Gets or sets the line spacing (in points) for the paragraph.             
+     * Gets or sets the line spacing (in points) for the paragraph.
      */
     public lineSpacing: number;
-    
+
     /**
-     * Gets or sets the line spacing for the paragraph.             
+     * Gets or sets the line spacing for the paragraph.
      */
     public lineSpacingRule: ParagraphFormat.LineSpacingRuleEnum;
-    
+
     /**
-     * Gets or sets the number of lines of the paragraph text used to calculate the drop cap height.             
+     * Gets or sets the number of lines of the paragraph text used to calculate the drop cap height.
      */
     public linesToDrop: number;
-    
+
     /**
-     * Gets or sets when true, SpaceBefore and SpaceAfter will be ignored between the paragraphs of the same style.             
+     * Gets or sets when true, SpaceBefore and SpaceAfter will be ignored
+     * between the paragraphs of the same style.
      */
     public noSpaceBetweenParagraphsOfSameStyle: boolean;
-    
+
     /**
-     * Gets or sets specifies the outline level of the paragraph in the document.             
+     * Gets or sets specifies the outline level of the paragraph in the document.
      */
     public outlineLevel: ParagraphFormat.OutlineLevelEnum;
-    
+
     /**
-     * Gets or sets true if a page break is forced before the paragraph.             
+     * Gets or sets true if a page break is forced before the paragraph.
      */
     public pageBreakBefore: boolean;
-    
+
     /**
-     * Gets or sets the value (in points) that represents the right indent for paragraph.             
+     * Gets or sets the value (in points) that represents the right indent for paragraph.
      */
     public rightIndent: number;
-    
+
     /**
-     * Gets or sets shading.
+     * Gets or sets a Shading object that refers to the shading formatting for the paragraph.
      */
     public shading: Shading;
-    
+
     /**
-     * Gets or sets the amount of spacing (in points) after the paragraph.             
+     * Gets or sets the amount of spacing (in points) after the paragraph.
      */
     public spaceAfter: number;
-    
+
     /**
-     * Gets or sets true if the amount of spacing after the paragraph is set automatically.             
+     * Gets or sets true if the amount of spacing after the paragraph is set automatically.
      */
     public spaceAfterAuto: boolean;
-    
+
     /**
-     * Gets or sets the amount of spacing (in points) before the paragraph.             
+     * Gets or sets the amount of spacing (in points) before the paragraph.
      */
     public spaceBefore: number;
-    
+
     /**
-     * Gets or sets true if the amount of spacing before the paragraph is set automatically.             
+     * Gets or sets true if the amount of spacing before the paragraph is set automatically.
      */
     public spaceBeforeAuto: boolean;
-    
+
     /**
-     * Gets or sets the locale independent style identifier of the paragraph style applied to this formatting.             
+     * Gets or sets the locale independent style identifier of the paragraph style applied to this formatting.
      */
     public styleIdentifier: ParagraphFormat.StyleIdentifierEnum;
-    
+
     /**
-     * Gets or sets the name of the paragraph style applied to this formatting.             
+     * Gets or sets the name of the paragraph style applied to this formatting.
      */
     public styleName: string;
-    
+
     /**
-     * Gets or sets specifies whether the current paragraph should be exempted from any hyphenation which is applied in the document settings.             
+     * Gets or sets specifies whether the current paragraph should be exempted from any hyphenation which
+     * is applied in the document settings.
      */
     public suppressAutoHyphens: boolean;
-    
+
     /**
-     * Gets or sets specifies whether the current paragraph's lines should be exempted from line numbering which is applied in the parent section.             
+     * Gets or sets specifies whether the current paragraph's lines should be exempted from line numbering
+     * which is applied in the parent section.
      */
     public suppressLineNumbers: boolean;
-    
+
     /**
-     * Gets or sets true if the first and last lines in the paragraph are to remain on the same page as the rest of the paragraph.             
+     * Gets or sets true if the first and last lines in the paragraph are to remain on the same page as the rest of the paragraph.
      */
     public widowControl: boolean;
-    
-    public constructor(init?: Partial<ParagraphFormat>) {
+
+    public constructor(init?: Partial< ParagraphFormat >) {
         super(init);
         Object.assign(this, init);
-    }        
+    }
 }
 
 /**
@@ -339,18 +348,21 @@ export namespace ParagraphFormat {
         ArabicMediumKashida = 'ArabicMediumKashida' as any,
         ArabicHighKashida = 'ArabicHighKashida' as any,
         ArabicLowKashida = 'ArabicLowKashida' as any,
-        ThaiDistributed = 'ThaiDistributed' as any,
+        ThaiDistributed = 'ThaiDistributed' as any
     }
+
     export enum DropCapPositionEnum {
         None = 'None' as any,
         Normal = 'Normal' as any,
-        Margin = 'Margin' as any,
+        Margin = 'Margin' as any
     }
+
     export enum LineSpacingRuleEnum {
         AtLeast = 'AtLeast' as any,
         Exactly = 'Exactly' as any,
-        Multiple = 'Multiple' as any,
+        Multiple = 'Multiple' as any
     }
+
     export enum OutlineLevelEnum {
         Level1 = 'Level1' as any,
         Level2 = 'Level2' as any,
@@ -361,8 +373,9 @@ export namespace ParagraphFormat {
         Level7 = 'Level7' as any,
         Level8 = 'Level8' as any,
         Level9 = 'Level9' as any,
-        BodyText = 'BodyText' as any,
+        BodyText = 'BodyText' as any
     }
+
     export enum StyleIdentifierEnum {
         Normal = 'Normal' as any,
         Heading1 = 'Heading1' as any,
@@ -736,7 +749,8 @@ export namespace ParagraphFormat {
         ListTable6ColorfulAccent6 = 'ListTable6ColorfulAccent6' as any,
         ListTable7ColorfulAccent6 = 'ListTable7ColorfulAccent6' as any,
         User = 'User' as any,
-        Nil = 'Nil' as any,
+        Nil = 'Nil' as any
     }
 }
 // tslint:enable:quotemark
+

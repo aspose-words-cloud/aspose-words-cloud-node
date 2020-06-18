@@ -103,4 +103,5 @@ export const saveFormatTestCases = [
     "html",
     "htmlfixed",
     "pcl",
+    "md",
 ];

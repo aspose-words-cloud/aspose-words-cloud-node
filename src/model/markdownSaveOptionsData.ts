@@ -1,6 +1,6 @@
 /*
  * --------------------------------------------------------------------------------
- * <copyright company="Aspose" file="textSaveOptionsData.ts">
+ * <copyright company="Aspose" file="markdownSaveOptionsData.ts">
  *   Copyright (c) 2020 Aspose.Words for Cloud
  * </copyright>
  * <summary>
@@ -28,32 +28,22 @@
 import { AttributeInfo } from '../internal/attributeInfo';
 import { TxtSaveOptionsBaseData } from './txtSaveOptionsBaseData';
 
-export const importsMapTextSaveOptionsData = {
+export const importsMapMarkdownSaveOptionsData = {
     TxtSaveOptionsBaseData,
 };
 
 /**
- * Container class for text save options.
+ * Container class for markdown save options.
  */
-export class TextSaveOptionsData extends TxtSaveOptionsBaseData {
+export class MarkdownSaveOptionsData extends TxtSaveOptionsBaseData {
     /**
      * Attribute type map
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "addBidiMarks",
-            baseName: "AddBidiMarks",
-            type: "boolean",
-        },
-        {
-            name: "preserveTableLayout",
-            baseName: "PreserveTableLayout",
-            type: "boolean",
-        },
-        {
-            name: "simplifyListLabels",
-            baseName: "SimplifyListLabels",
-            type: "boolean",
+            name: "tableContentAlignment",
+            baseName: "TableContentAlignment",
+            type: "MarkdownSaveOptionsData.TableContentAlignmentEnum",
         }
     ];
 
@@ -61,28 +51,33 @@ export class TextSaveOptionsData extends TxtSaveOptionsBaseData {
      * Returns attribute type map
      */
     public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(TextSaveOptionsData.attributeTypeMap);
+        return super.getAttributeTypeMap().concat(MarkdownSaveOptionsData.attributeTypeMap);
     }
 
     /**
-     * Gets or sets specifies whether to add bi-directional marks before each BiDi run when exporting in plain text format.
-     * The default value is true.
+     * Gets or sets a value that specifies how to align contents in tables when exporting into the Markdown format.
+     * The default value is Auto.
      */
-    public addBidiMarks: boolean;
+    public tableContentAlignment: MarkdownSaveOptionsData.TableContentAlignmentEnum;
 
-    /**
-     * Gets or sets specifies whether the program should attempt to preserve layout of tables when saving in the plain text format.
-     */
-    public preserveTableLayout: boolean;
-
-    /**
-     * Gets or sets specifies whether the program should simplify list labels in case of complex label formatting not being adequately represented by plain text.
-     */
-    public simplifyListLabels: boolean;
-
-    public constructor(init?: Partial< TextSaveOptionsData >) {
+    public constructor(init?: Partial< MarkdownSaveOptionsData >) {
         super(init);
         Object.assign(this, init);
     }
 }
+
+/**
+ * Enums for MarkdownSaveOptionsData
+ */
+// tslint:disable:quotemark
+// tslint:disable-next-line:no-namespace
+export namespace MarkdownSaveOptionsData {
+    export enum TableContentAlignmentEnum {
+        Auto = 'Auto' as any,
+        Left = 'Left' as any,
+        Center = 'Center' as any,
+        Right = 'Right' as any
+    }
+}
+// tslint:enable:quotemark
 

@@ -140,6 +140,7 @@ import * as importedLists from './lists';
 import * as importedListsResponse from './listsResponse';
 import * as importedListUpdate from './listUpdate';
 import * as importedLoadWebDocumentData from './loadWebDocumentData';
+import * as importedMarkdownSaveOptionsData from './markdownSaveOptionsData';
 import * as importedMetafileRenderingOptionsData from './metafileRenderingOptionsData';
 import * as importedMhtmlSaveOptionsData from './mhtmlSaveOptionsData';
 import * as importedModificationOperationResult from './modificationOperationResult';
@@ -242,6 +243,7 @@ import * as importedTabStopInsert from './tabStopInsert';
 import * as importedTabStopsResponse from './tabStopsResponse';
 import * as importedTextSaveOptionsData from './textSaveOptionsData';
 import * as importedTiffSaveOptionsData from './tiffSaveOptionsData';
+import * as importedTxtSaveOptionsBaseData from './txtSaveOptionsBaseData';
 import * as importedWatermarkText from './watermarkText';
 import * as importedWordMLSaveOptionsData from './wordMLSaveOptionsData';
 import * as importedWordsApiErrorResponse from './wordsApiErrorResponse';
@@ -366,6 +368,7 @@ export * from './lists';
 export * from './listsResponse';
 export * from './listUpdate';
 export * from './loadWebDocumentData';
+export * from './markdownSaveOptionsData';
 export * from './metafileRenderingOptionsData';
 export * from './mhtmlSaveOptionsData';
 export * from './modificationOperationResult';
@@ -468,6 +471,7 @@ export * from './tabStopInsert';
 export * from './tabStopsResponse';
 export * from './textSaveOptionsData';
 export * from './tiffSaveOptionsData';
+export * from './txtSaveOptionsBaseData';
 export * from './watermarkText';
 export * from './wordMLSaveOptionsData';
 export * from './wordsApiErrorResponse';
@@ -529,6 +533,7 @@ const enumsMap = {
     "ListLevelUpdate.AlignmentEnum": importedListLevelUpdate.ListLevelUpdate.AlignmentEnum,
     "ListLevelUpdate.NumberStyleEnum": importedListLevelUpdate.ListLevelUpdate.NumberStyleEnum,
     "ListLevelUpdate.TrailingCharacterEnum": importedListLevelUpdate.ListLevelUpdate.TrailingCharacterEnum,
+    "MarkdownSaveOptionsData.TableContentAlignmentEnum": importedMarkdownSaveOptionsData.MarkdownSaveOptionsData.TableContentAlignmentEnum,
     "OdtSaveOptionsData.MeasureUnitEnum": importedOdtSaveOptionsData.OdtSaveOptionsData.MeasureUnitEnum,
     "OfficeMathObject.DisplayTypeEnum": importedOfficeMathObject.OfficeMathObject.DisplayTypeEnum,
     "OfficeMathObject.JustificationEnum": importedOfficeMathObject.OfficeMathObject.JustificationEnum,
@@ -572,7 +577,7 @@ const enumsMap = {
     "TableRowFormat.HeightRuleEnum": importedTableRowFormat.TableRowFormat.HeightRuleEnum,
     "TabStopBase.AlignmentEnum": importedTabStopBase.TabStopBase.AlignmentEnum,
     "TabStopBase.LeaderEnum": importedTabStopBase.TabStopBase.LeaderEnum,
-    "TextSaveOptionsData.ExportHeadersFootersModeEnum": importedTextSaveOptionsData.TextSaveOptionsData.ExportHeadersFootersModeEnum,
+    "TxtSaveOptionsBaseData.ExportHeadersFootersModeEnum": importedTxtSaveOptionsBaseData.TxtSaveOptionsBaseData.ExportHeadersFootersModeEnum,
 
 };
 
@@ -690,6 +695,7 @@ const typeMap = {
     ListsResponse: importedListsResponse.ListsResponse,
     ListUpdate: importedListUpdate.ListUpdate,
     LoadWebDocumentData: importedLoadWebDocumentData.LoadWebDocumentData,
+    MarkdownSaveOptionsData: importedMarkdownSaveOptionsData.MarkdownSaveOptionsData,
     MetafileRenderingOptionsData: importedMetafileRenderingOptionsData.MetafileRenderingOptionsData,
     MhtmlSaveOptionsData: importedMhtmlSaveOptionsData.MhtmlSaveOptionsData,
     ModificationOperationResult: importedModificationOperationResult.ModificationOperationResult,
@@ -792,6 +798,7 @@ const typeMap = {
     TabStopsResponse: importedTabStopsResponse.TabStopsResponse,
     TextSaveOptionsData: importedTextSaveOptionsData.TextSaveOptionsData,
     TiffSaveOptionsData: importedTiffSaveOptionsData.TiffSaveOptionsData,
+    TxtSaveOptionsBaseData: importedTxtSaveOptionsBaseData.TxtSaveOptionsBaseData,
     WatermarkText: importedWatermarkText.WatermarkText,
     WordMLSaveOptionsData: importedWordMLSaveOptionsData.WordMLSaveOptionsData,
     WordsApiErrorResponse: importedWordsApiErrorResponse.WordsApiErrorResponse,

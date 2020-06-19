@@ -10541,73 +10541,7 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.dto, requestObj.dto.constructor.name === "Object" ? "importedParagraphFormat.ParagraphFormat" : requestObj.dto.constructor.name),
-        };
-
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "ParagraphFormatResponse");
-        const result: model.WordsIncomingMessage< model.ParagraphFormatResponse > = {body, response};
-        return Promise.resolve(result);
-    }
-
-    /**
-     * Updates paragraph format properties, returns updated format properties.
-     * @param requestObj contains request parameters
-     */
-    public async updateParagraphFormatWithoutNodePath(requestObj: model.UpdateParagraphFormatWithoutNodePathRequest): Promise< model.WordsIncomingMessage< model.ParagraphFormatResponse > > {
-        if (requestObj === null || requestObj === undefined) {
-            throw new Error('Required parameter "requestObj" was null or undefined when calling updateParagraphFormatWithoutNodePath.');
-        }
-
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/paragraphs/{index}/format"
-            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
-            .replace("//", "/");
-        const queryParameters: any = {};
-        // verify required parameter 'requestObj.name' is not undefined
-        if (requestObj.name === undefined) {
-            throw new Error('Required parameter "requestObj.name" was undefined when calling updateParagraphFormatWithoutNodePath.');
-        }
-
-        // verify required parameter 'requestObj.name' is not null
-        if (requestObj.name === null) {
-            throw new Error('Required parameter "requestObj.name" was null when calling updateParagraphFormatWithoutNodePath.');
-        }
-
-        // verify required parameter 'requestObj.dto' is not undefined
-        if (requestObj.dto === undefined) {
-            throw new Error('Required parameter "requestObj.dto" was undefined when calling updateParagraphFormatWithoutNodePath.');
-        }
-
-        // verify required parameter 'requestObj.dto' is not null
-        if (requestObj.dto === null) {
-            throw new Error('Required parameter "requestObj.dto" was null when calling updateParagraphFormatWithoutNodePath.');
-        }
-
-        // verify required parameter 'requestObj.index' is not undefined
-        if (requestObj.index === undefined) {
-            throw new Error('Required parameter "requestObj.index" was undefined when calling updateParagraphFormatWithoutNodePath.');
-        }
-
-        // verify required parameter 'requestObj.index' is not null
-        if (requestObj.index === null) {
-            throw new Error('Required parameter "requestObj.index" was null when calling updateParagraphFormatWithoutNodePath.');
-        }
-
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
-
-        const requestOptions: request.Options = {
-            method: "PUT",
-            qs: queryParameters,
-            uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(requestObj.dto, requestObj.dto.constructor.name === "Object" ? "importedParagraphFormat.ParagraphFormat" : requestObj.dto.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.dto, requestObj.dto.constructor.name === "Object" ? "importedParagraphFormatUpdate.ParagraphFormatUpdate" : requestObj.dto.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);

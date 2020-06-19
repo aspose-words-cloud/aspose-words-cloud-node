@@ -158,7 +158,9 @@ import * as importedPageSetup from './pageSetup';
 import * as importedPageStatData from './pageStatData';
 import * as importedParagraph from './paragraph';
 import * as importedParagraphFormat from './paragraphFormat';
+import * as importedParagraphFormatBase from './paragraphFormatBase';
 import * as importedParagraphFormatResponse from './paragraphFormatResponse';
+import * as importedParagraphFormatUpdate from './paragraphFormatUpdate';
 import * as importedParagraphInsert from './paragraphInsert';
 import * as importedParagraphLink from './paragraphLink';
 import * as importedParagraphLinkCollection from './paragraphLinkCollection';
@@ -386,7 +388,9 @@ export * from './pageSetup';
 export * from './pageStatData';
 export * from './paragraph';
 export * from './paragraphFormat';
+export * from './paragraphFormatBase';
 export * from './paragraphFormatResponse';
+export * from './paragraphFormatUpdate';
 export * from './paragraphInsert';
 export * from './paragraphLink';
 export * from './paragraphLinkCollection';
@@ -547,11 +551,11 @@ const enumsMap = {
     "PageSetup.PaperSizeEnum": importedPageSetup.PageSetup.PaperSizeEnum,
     "PageSetup.SectionStartEnum": importedPageSetup.PageSetup.SectionStartEnum,
     "PageSetup.VerticalAlignmentEnum": importedPageSetup.PageSetup.VerticalAlignmentEnum,
-    "ParagraphFormat.AlignmentEnum": importedParagraphFormat.ParagraphFormat.AlignmentEnum,
-    "ParagraphFormat.DropCapPositionEnum": importedParagraphFormat.ParagraphFormat.DropCapPositionEnum,
-    "ParagraphFormat.LineSpacingRuleEnum": importedParagraphFormat.ParagraphFormat.LineSpacingRuleEnum,
-    "ParagraphFormat.OutlineLevelEnum": importedParagraphFormat.ParagraphFormat.OutlineLevelEnum,
-    "ParagraphFormat.StyleIdentifierEnum": importedParagraphFormat.ParagraphFormat.StyleIdentifierEnum,
+    "ParagraphFormatBase.AlignmentEnum": importedParagraphFormatBase.ParagraphFormatBase.AlignmentEnum,
+    "ParagraphFormatBase.DropCapPositionEnum": importedParagraphFormatBase.ParagraphFormatBase.DropCapPositionEnum,
+    "ParagraphFormatBase.LineSpacingRuleEnum": importedParagraphFormatBase.ParagraphFormatBase.LineSpacingRuleEnum,
+    "ParagraphFormatBase.OutlineLevelEnum": importedParagraphFormatBase.ParagraphFormatBase.OutlineLevelEnum,
+    "ParagraphFormatBase.StyleIdentifierEnum": importedParagraphFormatBase.ParagraphFormatBase.StyleIdentifierEnum,
     "PdfSaveOptionsData.HeaderFooterBookmarksExportModeEnum": importedPdfSaveOptionsData.PdfSaveOptionsData.HeaderFooterBookmarksExportModeEnum,
     "PreferredWidth.TypeEnum": importedPreferredWidth.PreferredWidth.TypeEnum,
     "ReplaceRange.TextTypeEnum": importedReplaceRange.ReplaceRange.TextTypeEnum,
@@ -713,7 +717,9 @@ const typeMap = {
     PageStatData: importedPageStatData.PageStatData,
     Paragraph: importedParagraph.Paragraph,
     ParagraphFormat: importedParagraphFormat.ParagraphFormat,
+    ParagraphFormatBase: importedParagraphFormatBase.ParagraphFormatBase,
     ParagraphFormatResponse: importedParagraphFormatResponse.ParagraphFormatResponse,
+    ParagraphFormatUpdate: importedParagraphFormatUpdate.ParagraphFormatUpdate,
     ParagraphInsert: importedParagraphInsert.ParagraphInsert,
     ParagraphLink: importedParagraphLink.ParagraphLink,
     ParagraphLinkCollection: importedParagraphLinkCollection.ParagraphLinkCollection,
@@ -10013,7 +10019,7 @@ export class UpdateParagraphFormatRequest {
     /**
      * Paragraph format object.
      */
-    public dto: importedParagraphFormat.ParagraphFormat;
+    public dto: importedParagraphFormatUpdate.ParagraphFormatUpdate;
 
     /**
      * Path to the node which contains paragraphs.
@@ -10061,66 +10067,6 @@ export class UpdateParagraphFormatRequest {
     public revisionDateTime: string;
 
     public constructor(init?: Partial< UpdateParagraphFormatRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
- * Request model for UpdateParagraphFormatWithoutNodePath operation.
- * Updates paragraph format properties, returns updated format properties.
- */
-export class UpdateParagraphFormatWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * Paragraph format object.
-     */
-    public dto: importedParagraphFormat.ParagraphFormat;
-
-    /**
-     * Object index.
-     */
-    public index: number;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    /**
-     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
-     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-     */
-    public revisionAuthor: string;
-
-    /**
-     * The date and time to use for revisions.
-     */
-    public revisionDateTime: string;
-
-    public constructor(init?: Partial< UpdateParagraphFormatWithoutNodePathRequest >) {
         Object.assign(this, init);
     }
 }

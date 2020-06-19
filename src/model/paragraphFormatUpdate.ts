@@ -1,6 +1,6 @@
 /*
  * --------------------------------------------------------------------------------
- * <copyright company="Aspose" file="paragraphFormat.ts">
+ * <copyright company="Aspose" file="paragraphFormatUpdate.ts">
  *   Copyright (c) 2020 Aspose.Words for Cloud
  * </copyright>
  * <summary>
@@ -28,48 +28,29 @@
 import { AttributeInfo } from '../internal/attributeInfo';
 import { ParagraphFormatBase } from './paragraphFormatBase';
 
-export const importsMapParagraphFormat = {
+export const importsMapParagraphFormatUpdate = {
     ParagraphFormatBase,
 };
 
 /**
- * Paragraph format element.
+ * Paragraph format element update DTO.
  */
-export class ParagraphFormat extends ParagraphFormatBase {
+export class ParagraphFormatUpdate extends ParagraphFormatBase {
     /**
      * Attribute type map
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
-        {
-            name: "isHeading",
-            baseName: "IsHeading",
-            type: "boolean",
-        },
-        {
-            name: "isListItem",
-            baseName: "IsListItem",
-            type: "boolean",
-        }
     ];
 
     /**
      * Returns attribute type map
      */
     public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(ParagraphFormat.attributeTypeMap);
+        return super.getAttributeTypeMap().concat(ParagraphFormatUpdate.attributeTypeMap);
     }
 
-    /**
-     * Gets or sets True when the paragraph style is one of the built-in Heading styles.
-     */
-    public isHeading: boolean;
 
-    /**
-     * Gets or sets True when the paragraph is an item in a bulleted or numbered list.
-     */
-    public isListItem: boolean;
-
-    public constructor(init?: Partial< ParagraphFormat >) {
+    public constructor(init?: Partial< ParagraphFormatUpdate >) {
         super(init);
         Object.assign(this, init);
     }

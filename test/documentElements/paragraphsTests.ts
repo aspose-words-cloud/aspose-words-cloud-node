@@ -25,12 +25,12 @@
 import { expect } from "chai";
 import "mocha";
 
-import { DeleteParagraphRequest, GetParagraphFormatRequest, GetParagraphRequest, GetParagraphsRequest, InsertParagraphRequest, ParagraphFormat, ParagraphInsert, RenderParagraphRequest, UpdateParagraphFormatRequest } from "../../src/model/model";
+import { DeleteParagraphRequest, GetParagraphFormatRequest, GetParagraphRequest, GetParagraphsRequest, InsertParagraphRequest, ParagraphFormatUpdate, ParagraphInsert, RenderParagraphRequest, UpdateParagraphFormatRequest } from "../../src/model/model";
 import { DeleteParagraphWithoutNodePathRequest, GetParagraphFormatWithoutNodePathRequest, GetParagraphsWithoutNodePathRequest, GetParagraphWithoutNodePathRequest, RenderParagraphWithoutNodePathRequest } from "../../src/model/model";
 import { GetParagraphListFormatRequest, GetParagraphListFormatWithoutNodePathRequest, UpdateParagraphListFormatRequest, DeleteParagraphListFormatRequest, ListFormatUpdate } from "../../src/model/model";
 import {GetParagraphTabStopsRequest, InsertOrUpdateParagraphTabStopRequest, TabStopInsert, TabStopBase, DeleteAllParagraphTabStopsRequest, DeleteParagraphTabStopRequest}  from "../../src/model/model";
 import {DeleteAllParagraphTabStopsWithoutNodePathRequest, DeleteParagraphListFormatWithoutNodePathRequest, DeleteParagraphTabStopWithoutNodePathRequest, GetParagraphTabStopsWithoutNodePathRequest, InsertOrUpdateParagraphTabStopWithoutNodePathRequest}  from "../../src/model/model";
-import {InsertParagraphWithoutNodePathRequest, UpdateParagraphFormatWithoutNodePathRequest, UpdateParagraphListFormatWithoutNodePathRequest}  from "../../src/model/model";
+import {InsertParagraphWithoutNodePathRequest, UpdateParagraphListFormatWithoutNodePathRequest}  from "../../src/model/model";
 import * as BaseTest from "../baseTest";
 
 const testFolder = "DocumentElements/Paragraphs";
@@ -261,46 +261,13 @@ describe("paragraphs", () => {
                     request.folder = remotePath;
                     request.index = 0;
                     request.nodePath = null;
-                    request.dto = new ParagraphFormat(
+                    request.dto = new ParagraphFormatUpdate(
                     {
-                        alignment: ParagraphFormat.AlignmentEnum.Right,
+                        alignment: ParagraphFormatUpdate.AlignmentEnum.Right,
                     });
 
                     // Act
                     return wordsApi.updateParagraphFormat(request)
-                        .then((result1) => {
-                            // Assert
-                            expect(result1.response.statusCode).to.equal(200);
-
-                            expect(result1.body.paragraphFormat).to.exist.and.not.equal(null);
-                        });
-                });
-        });
-    });
-
-    describe("updateParagraphFormatWithoutNodePath function", () => {
-        it("should return response with code 200", () => {
-
-            const wordsApi = BaseTest.initializeWordsApi();
-
-            const localPath = BaseTest.localCommonTestDataFolder + "/test_doc.docx";
-            const remoteFileName = "TestUpdateParagraphFormat.docx";
-            const remotePath = BaseTest.remoteBaseTestDataFolder + testFolder;
-
-            return wordsApi.uploadFileToStorage(remotePath + "/" + remoteFileName, localPath)
-            .then((result) => {
-                    expect(result.response.statusMessage).to.equal("OK");
-                    const request = new UpdateParagraphFormatWithoutNodePathRequest();
-                    request.name = remoteFileName;
-                    request.folder = remotePath;
-                    request.index = 0;
-                    request.dto = new ParagraphFormat(
-                    {
-                        alignment: ParagraphFormat.AlignmentEnum.Right,
-                    });
-
-                    // Act
-                    return wordsApi.updateParagraphFormatWithoutNodePath(request)
                         .then((result1) => {
                             // Assert
                             expect(result1.response.statusCode).to.equal(200);

@@ -280,7 +280,9 @@ export class WordsApi {
             json: true,
         };
 
-        requestOptions.formData = formParams;
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
         const result: model.WordsIncomingMessage< model.DocumentResponse > = {body, response};
@@ -348,7 +350,9 @@ export class WordsApi {
             encoding: null,
         };
 
-        requestOptions.formData = formParams;
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "Buffer");
         const result: model.WordsIncomingMessage< Buffer > = {body, response};
@@ -538,7 +542,9 @@ export class WordsApi {
             encoding: null,
         };
 
-        requestOptions.formData = formParams;
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "Buffer");
         const result: model.WordsIncomingMessage< Buffer > = {body, response};
@@ -2854,7 +2860,9 @@ export class WordsApi {
             json: true,
         };
 
-        requestOptions.formData = formParams;
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
         const result: model.WordsIncomingMessage< model.DocumentResponse > = {body, response};
@@ -2911,7 +2919,9 @@ export class WordsApi {
             encoding: null,
         };
 
-        requestOptions.formData = formParams;
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "Buffer");
         const result: model.WordsIncomingMessage< Buffer > = {body, response};
@@ -3772,7 +3782,9 @@ export class WordsApi {
             json: true,
         };
 
-        requestOptions.formData = formParams;
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "FieldNamesResponse");
         const result: model.WordsIncomingMessage< model.FieldNamesResponse > = {body, response};
@@ -6892,7 +6904,9 @@ export class WordsApi {
             json: true,
         };
 
-        requestOptions.formData = formParams;
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "DrawingObjectResponse");
         const result: model.WordsIncomingMessage< model.DrawingObjectResponse > = {body, response};
@@ -6964,7 +6978,9 @@ export class WordsApi {
             json: true,
         };
 
-        requestOptions.formData = formParams;
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "DrawingObjectResponse");
         const result: model.WordsIncomingMessage< model.DrawingObjectResponse > = {body, response};
@@ -8145,7 +8161,9 @@ export class WordsApi {
             json: true,
         };
 
-        requestOptions.formData = formParams;
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
         const result: model.WordsIncomingMessage< model.DocumentResponse > = {body, response};
@@ -9855,7 +9873,9 @@ export class WordsApi {
             json: true,
         };
 
-        requestOptions.formData = formParams;
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "DrawingObjectResponse");
         const result: model.WordsIncomingMessage< model.DrawingObjectResponse > = {body, response};
@@ -9938,7 +9958,9 @@ export class WordsApi {
             json: true,
         };
 
-        requestOptions.formData = formParams;
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "DrawingObjectResponse");
         const result: model.WordsIncomingMessage< model.DrawingObjectResponse > = {body, response};
@@ -11292,7 +11314,9 @@ export class WordsApi {
             json: true,
         };
 
-        requestOptions.formData = formParams;
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "FilesUploadResult");
         const result: model.WordsIncomingMessage< model.FilesUploadResult > = {body, response};

@@ -36,7 +36,8 @@
         "object-literal-sort-keys": false,
         "no-unused-expression": false,
         "quotemark":false,
-        "ordered-imports": false
+        "ordered-imports": false,
+        "object-literal-shorthand": false
     },
     "rulesDirectory": []
 }

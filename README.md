@@ -16,6 +16,11 @@ Feel free to explore the [Developer's Guide](https://docs.aspose.cloud/display/w
 - Add & remove watermarks and protection.
 - Read & write access to Document Object Model.
 
+## Enhancements in Version 20.7
+
+- Added "Markdown" save format
+- Added endpoint to update paragraph format without node path (PUT "/words/{name}/paragraphs/{index}/format")
+
 ## Enhancements in Version 20.6
 
 - Added new methods:

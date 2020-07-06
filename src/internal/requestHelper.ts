@@ -36,7 +36,7 @@ import { ObjectSerializer } from "./objectSerializer";
  * @param confguration api configuration
  * @param notApplyAuthToRequest if setted to true, auth is not applied to request
  */
-export async function invokeApiMethod(requestOptions: request.Options, confguration: Configuration, notApplyAuthToRequest?: boolean): Promise<request.RequestResponse> {
+export async function invokeApiMethod(requestOptions: request.OptionsWithUri, confguration: Configuration, notApplyAuthToRequest?: boolean): Promise<request.RequestResponse> {
     try {
         return await invokeApiMethodInternal(requestOptions, confguration, notApplyAuthToRequest);
     } catch (e) {
@@ -75,7 +75,7 @@ export function addQueryParameterToUrl(url, queryParameters, parameterName, para
  * @param confguration api configuration
  * @param notApplyAuthToRequest if setted to true, auth is not applied to request
  */
-async function invokeApiMethodInternal(requestOptions: request.Options, confguration: Configuration, notApplyAuthToRequest?: boolean): Promise<request.RequestResponse> {
+async function invokeApiMethodInternal(requestOptions: request.OptionsWithUri, confguration: Configuration, notApplyAuthToRequest?: boolean): Promise<request.RequestResponse> {
     requestDebug(request, (type, data, r) => {
         if (r.writeDebugToConsole) {
             const toLog = {};
@@ -91,6 +91,8 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
 
     requestOptions.headers["x-aspose-client"] = "nodejs sdk";
     requestOptions.headers["x-aspose-client-version"] = "20.7";
+
+	requestOptions.uri = encodeURI(requestOptions.uri.toString());
 
     const auth = confguration.authentication;
     if (!notApplyAuthToRequest) {

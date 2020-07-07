@@ -133,16 +133,14 @@ describe("folder", () => {
     describe("moveFolder test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            const folderToMove = remoteDataFolder + "/TestMoveFolder";
-
             return wordsApi.uploadFileToStorage(
-                folderToMove + "Src/TestMoveFolderSrc.docx",
+                remoteDataFolder + "/TestMoveFolderSrc/TestMoveFolderSrc.docx",
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.MoveFolderRequest({
-                    destPath: folderToMove + "Dest",
-                    srcPath: folderToMove + "Src"
+                    destPath: BaseTest.remoteBaseTestOutFolder + "/TestMoveFolderDest",
+                    srcPath: remoteDataFolder + "/TestMoveFolderSrc"
                 });
 
                 // Act

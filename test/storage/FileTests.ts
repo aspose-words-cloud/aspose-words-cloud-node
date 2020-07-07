@@ -99,7 +99,7 @@ describe("file", () => {
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.MoveFileRequest({
-                    destPath: remoteDataFolder + "/TestMoveFileDest.docx",
+                    destPath: BaseTest.remoteBaseTestOutFolder + "/TestMoveFileDest.docx",
                     srcPath: remoteDataFolder + "/" + remoteFileName
                 });
 

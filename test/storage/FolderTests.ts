@@ -139,7 +139,7 @@ describe("folder", () => {
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.MoveFolderRequest({
-                    destPath: BaseTest.remoteBaseTestOutFolder + "/TestMoveFolderDest",
+                    destPath: BaseTest.remoteBaseTestOutFolder + "/TestMoveFolderDest_" + BaseTest.createRandomGUID(),
                     srcPath: remoteDataFolder + "/TestMoveFolderSrc"
                 });
 

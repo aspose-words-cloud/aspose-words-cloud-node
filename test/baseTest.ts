@@ -28,6 +28,7 @@
 import { createReadStream } from "fs";
 import { WordsApi } from "../src/api";
 import { FilesUploadResult, UploadFileRequest, WordsIncomingMessage } from "../src/model/model";
+import { v4 as uuidv4 } from 'uuid';
 
 /**
  * Initialize WordsApi
@@ -36,6 +37,13 @@ export function initializeWordsApi(debugMode?: boolean) {
     const config = require("../testConfig.json");
     const wordsApi = new TestWordsApi(config.AppSid, config.AppKey, config.BaseUrl, debugMode);
     return wordsApi;
+}
+
+/**
+ * Create random GUID
+ */
+export function createRandomGUID() {
+    return uuidv4();
 }
 
 /**

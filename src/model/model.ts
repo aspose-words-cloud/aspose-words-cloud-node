@@ -152,6 +152,7 @@ import * as importedOfficeMathObjectResponse from './officeMathObjectResponse';
 import * as importedOfficeMathObjectsCollection from './officeMathObjectsCollection';
 import * as importedOfficeMathObjectsResponse from './officeMathObjectsResponse';
 import * as importedOoxmlSaveOptionsData from './ooxmlSaveOptionsData';
+import * as importedOptimizationOptions from './optimizationOptions';
 import * as importedOutlineOptionsData from './outlineOptionsData';
 import * as importedPageNumber from './pageNumber';
 import * as importedPageSetup from './pageSetup';
@@ -382,6 +383,7 @@ export * from './officeMathObjectResponse';
 export * from './officeMathObjectsCollection';
 export * from './officeMathObjectsResponse';
 export * from './ooxmlSaveOptionsData';
+export * from './optimizationOptions';
 export * from './outlineOptionsData';
 export * from './pageNumber';
 export * from './pageSetup';
@@ -543,6 +545,7 @@ const enumsMap = {
     "OfficeMathObject.JustificationEnum": importedOfficeMathObject.OfficeMathObject.JustificationEnum,
     "OfficeMathObject.MathObjectTypeEnum": importedOfficeMathObject.OfficeMathObject.MathObjectTypeEnum,
     "OoxmlSaveOptionsData.CompressionLevelEnum": importedOoxmlSaveOptionsData.OoxmlSaveOptionsData.CompressionLevelEnum,
+    "OptimizationOptions.MsWordVersionEnum": importedOptimizationOptions.OptimizationOptions.MsWordVersionEnum,
     "PageSetup.BorderAppliesToEnum": importedPageSetup.PageSetup.BorderAppliesToEnum,
     "PageSetup.BorderDistanceFromEnum": importedPageSetup.PageSetup.BorderDistanceFromEnum,
     "PageSetup.LineNumberRestartModeEnum": importedPageSetup.PageSetup.LineNumberRestartModeEnum,
@@ -711,6 +714,7 @@ const typeMap = {
     OfficeMathObjectsCollection: importedOfficeMathObjectsCollection.OfficeMathObjectsCollection,
     OfficeMathObjectsResponse: importedOfficeMathObjectsResponse.OfficeMathObjectsResponse,
     OoxmlSaveOptionsData: importedOoxmlSaveOptionsData.OoxmlSaveOptionsData,
+    OptimizationOptions: importedOptimizationOptions.OptimizationOptions,
     OutlineOptionsData: importedOutlineOptionsData.OutlineOptionsData,
     PageNumber: importedPageNumber.PageNumber,
     PageSetup: importedPageSetup.PageSetup,
@@ -8095,6 +8099,61 @@ export class MoveFolderRequest {
     public destStorageName: string;
 
     public constructor(init?: Partial< MoveFolderRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
+ * Request model for OptimizeDocument operation.
+ * Allows to optimize the document contents as well as default Aspose.Words behavior to a particular versions of MS Word.
+ */
+export class OptimizeDocumentRequest {
+    /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * The document optimization options.
+     */
+    public options: importedOptimizationOptions.OptimizationOptions;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< OptimizeDocumentRequest >) {
         Object.assign(this, init);
     }
 }

@@ -8351,6 +8351,59 @@ export class WordsApi {
     }
 
     /**
+     * Allows to optimize the document contents as well as default Aspose.Words behavior to a particular versions of MS Word.
+     * @param requestObj contains request parameters
+     */
+    public async optimizeDocument(requestObj: model.OptimizeDocumentRequest): Promise< http.IncomingMessage > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling optimizeDocument.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/compatibility/optimize"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling optimizeDocument.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling optimizeDocument.');
+        }
+
+        // verify required parameter 'requestObj.options' is not undefined
+        if (requestObj.options === undefined) {
+            throw new Error('Required parameter "requestObj.options" was undefined when calling optimizeDocument.');
+        }
+
+        // verify required parameter 'requestObj.options' is not null
+        if (requestObj.options === null) {
+            throw new Error('Required parameter "requestObj.options" was null when calling optimizeDocument.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+            body: ObjectSerializer.serialize(requestObj.options, requestObj.options.constructor.name === "Object" ? "importedOptimizationOptions.OptimizationOptions" : requestObj.options.constructor.name),
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve(response);
+    }
+
+    /**
      * Protects document.
      * @param requestObj contains request parameters
      */

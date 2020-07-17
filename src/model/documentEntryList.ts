@@ -41,6 +41,11 @@ export class DocumentEntryList {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
+            name: "applyBaseDocumentHeadersAndFootersToAppendingDocuments",
+            baseName: "ApplyBaseDocumentHeadersAndFootersToAppendingDocuments",
+            type: "boolean",
+        },
+        {
             name: "documentEntries",
             baseName: "DocumentEntries",
             type: "Array<DocumentEntry>",
@@ -53,6 +58,11 @@ export class DocumentEntryList {
     public static getAttributeTypeMap() {
         return DocumentEntryList.attributeTypeMap;
     }
+
+    /**
+     * Gets or sets parameter that indicates to apply headers and footers from base document to appending documents. Default is true.
+     */
+    public applyBaseDocumentHeadersAndFootersToAppendingDocuments: boolean;
 
     /**
      * Gets or sets list of documents.

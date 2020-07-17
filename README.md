@@ -18,81 +18,56 @@ Feel free to explore the [Developer's Guide](https://docs.aspose.cloud/display/w
 
 ## Enhancements in Version 20.7
 
-- Added "Markdown" save format
-- Added endpoint to update paragraph format without node path (PUT "/words/{name}/paragraphs/{index}/format")
+- Added 'Markdown' save format
+- Added endpoint to update paragraph format without node path (PUT '/words/{name}/paragraphs/{index}/format')
+
 
 ## Enhancements in Version 20.6
 
 - Added new methods:
-  - deleteAllParagraphTabStopsWithoutNodePath
-  - deleteParagraphTabStopWithoutNodePath
-  - getParagraphTabStopsWithoutNodePath
-  - insertOrUpdateParagraphTabStopWithoutNodePath
-  - insertParagraphWithoutNodePath
-  - updateParagraphFormatWithoutNodePath
-  - updateParagraphListFormatWithoutNodePath
-  - deleteParagraphListFormatWithoutNodePath
+  - DeleteAllParagraphTabStopsWithoutNodePath
+  - DeleteParagraphTabStopWithoutNodePath
+  - GetParagraphTabStopsWithoutNodePath
+  - InsertOrUpdateParagraphTabStopWithoutNodePath
+  - InsertParagraphWithoutNodePath
+  - UpdateParagraphFormatWithoutNodePath
+  - UpdateParagraphListFormatWithoutNodePath
+  - DeleteParagraphListFormatWithoutNodePath
 - DrawingObject related methods have been changed body content. Special request classes are introduced instead of strings.
-- insertOrUpdateParagraphTabStop, deleteParagraphTabStop methods have been changed parameter order
+- InsertOrUpdateParagraphTabStop, DeleteParagraphTabStop methods have been changed parameter order
 - OoxmlSaveOptionsData.CompressionLevel property has been added
+
 
 ## Enhancements in Version 20.5
 
 - Added methods to work with Word document lists
-  - getLists
-  - getList
-  - insertList
-  - updateList
-  - updateListLevel
+  - GetLists
+  - GetList
+  - InsertList
+  - UpdateList
+  - UpdateListLevel
 - Added methods to work with styles
-  - getStyles
-  - updateStyle
-  - insertStyle
-  - copyStyle
-  - getStyleFromDocumentElement
-  - applyStyleToDocumentElement
+  - GetStyles
+  - UpdateStyle
+  - InsertStyle
+  - CopyStyle
+  - GetStyleFromDocumentElement
+  - ApplyStyleToDocumentElement
 - Added methods to work with paragraph list format
-  - getParagraphListFormat
-  - getParagraphListFormatWithoutNodePath
-  - updateParagraphListFormat
-  - deleteParagraphListFormat
+  - GetParagraphListFormat
+  - GetParagraphListFormatWithoutNodePath
+  - UpdateParagraphListFormat
+  - DeleteParagraphListFormat
 - Added methods to work with paragraph tab stops
-  - g1etParagraphTabStops
-  - insertOrUpdateParagraphTabStop
-  - deleteAllParagraphTabStops
-  - deleteParagraphTabStop
+  - GetParagraphTabStops
+  - InsertOrUpdateParagraphTabStop
+  - DeleteAllParagraphTabStops
+  - DeleteParagraphTabStop
 - Added methods to build reports
-  - buildReport
-  - buildReportOnline
+  - BuildReport
+  - BuildReportOnline
 - Added Shading property to ParagraphFormat
 
-## Enhancements in Version 20.4
-
-- Added CompareOptions property to CompareData class
-- Added Password property to OdtSaveOptions class
-- Added Dml3DEffectsRenderingMode property to SaveOptions class
-- Added UpdateLastPrintedProperty property to SaveOptions class
-- Added InterpolateImages property to PdfSaveOptions class
-- Added UseTargetMachineFonts property to HtmlFixedSaveOptions class
-- Added some request data classes:
-  - RunUpdate and RunInsert
-  - FootnoteUpdate and FootnoteInsert
-  - FieldUpdate and FieldInsert
-  - CommentUpdate and CommentInsert
-  - DocumentPropertyCreateOrUpdate
-
-## Enhancements in Version 20.3
-
-- XmlColor.Alpha isn't a required property
-- RtfSaveOptionsData.SaveImageAsWmf property is added
-
-## Enhancements in Version 20.1
-
-- Moved property `ColorMode` from `SaveOptionsData` to `FixedPageSaveOptionsData`.
-- Replaced `MemoryStream` and `byte[]` with `SixLabors.ImageSharp.IImage` for image processing.
-- Included support of `ICC` profiles and implement `ICCBased` color space.
-
-For the detailed notes, please visit [Aspose.Words Cloud 20.1 Release Notes](https://docs.aspose.cloud/display/wordscloud/Aspose.Words+Cloud+20.1+Release+Notes).
 
 ## Read & Write Document Formats
 
@@ -127,15 +102,15 @@ The complete source code is available at [GitHub Repository](https://github.com/
 
 ```js
         // Start README example
-        
+
         // create API instance (baseUrl is optional)
         const wordsApi = new WordsApi(appSid, appKey, baseUrl);
-        
+
         // upload file to the Aspose cloud
         const uploadRequest = new UploadFileRequest();
         uploadRequest.path = "uploaded.docx";
         uploadRequest.fileContent = createReadStream(localPath);
-        
+
         wordsApi.uploadFile(uploadRequest)
             .then((_uploadResult) => {
                 // save the file as pdf in the cloud
@@ -147,7 +122,7 @@ The complete source code is available at [GitHub Repository](https://github.com/
                             fileName: "destination.pdf"
                         })
                 });
-                 
+
                 wordsApi.saveAs(request)
                     .then((_result) => {
                         // deal with the pdf file

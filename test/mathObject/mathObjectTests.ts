@@ -78,13 +78,13 @@ describe("mathObject", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.GetOfficeMathObjectsWithoutNodePathRequest({
+                const request = new model.GetOfficeMathObjectsRequest({
                     name: remoteFileName,
                     folder: remoteDataFolder
                 });
 
                 // Act
-                return wordsApi.getOfficeMathObjectsWithoutNodePath(request)
+                return wordsApi.getOfficeMathObjects(request)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
@@ -108,8 +108,8 @@ describe("mathObject", () => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.GetOfficeMathObjectRequest({
                     name: remoteFileName,
-                    nodePath: "",
                     index: 0,
+                    nodePath: "",
                     folder: remoteDataFolder
                 });
 
@@ -136,14 +136,14 @@ describe("mathObject", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.GetOfficeMathObjectWithoutNodePathRequest({
+                const request = new model.GetOfficeMathObjectRequest({
                     name: remoteFileName,
                     index: 0,
                     folder: remoteDataFolder
                 });
 
                 // Act
-                return wordsApi.getOfficeMathObjectWithoutNodePath(request)
+                return wordsApi.getOfficeMathObject(request)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
@@ -168,8 +168,8 @@ describe("mathObject", () => {
                 const request = new model.RenderMathObjectRequest({
                     name: remoteFileName,
                     format: "png",
-                    nodePath: "",
                     index: 0,
+                    nodePath: "",
                     folder: remoteDataFolder
                 });
 
@@ -196,7 +196,7 @@ describe("mathObject", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.RenderMathObjectWithoutNodePathRequest({
+                const request = new model.RenderMathObjectRequest({
                     name: remoteFileName,
                     format: "png",
                     index: 0,
@@ -204,7 +204,7 @@ describe("mathObject", () => {
                 });
 
                 // Act
-                return wordsApi.renderMathObjectWithoutNodePath(request)
+                return wordsApi.renderMathObject(request)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
@@ -228,8 +228,8 @@ describe("mathObject", () => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.DeleteOfficeMathObjectRequest({
                     name: remoteFileName,
-                    nodePath: "",
                     index: 0,
+                    nodePath: "",
                     folder: remoteDataFolder
                 });
 
@@ -256,14 +256,14 @@ describe("mathObject", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.DeleteOfficeMathObjectWithoutNodePathRequest({
+                const request = new model.DeleteOfficeMathObjectRequest({
                     name: remoteFileName,
                     index: 0,
                     folder: remoteDataFolder
                 });
 
                 // Act
-                return wordsApi.deleteOfficeMathObjectWithoutNodePath(request)
+                return wordsApi.deleteOfficeMathObject(request)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.statusCode).to.equal(200);

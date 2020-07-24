@@ -81,13 +81,13 @@ describe("field", () => {
                 BaseTest.localBaseTestDataFolder + fieldFolder + "/" + localFileName
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.GetFieldsWithoutNodePathRequest({
+                const request = new model.GetFieldsRequest({
                     name: remoteFileName,
                     folder: remoteDataFolder
                 });
 
                 // Act
-                return wordsApi.getFieldsWithoutNodePath(request)
+                return wordsApi.getFields(request)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
@@ -112,8 +112,8 @@ describe("field", () => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.GetFieldRequest({
                     name: remoteFileName,
-                    nodePath: "sections/0/paragraphs/0",
                     index: 0,
+                    nodePath: "sections/0/paragraphs/0",
                     folder: remoteDataFolder
                 });
 
@@ -141,14 +141,14 @@ describe("field", () => {
                 BaseTest.localBaseTestDataFolder + fieldFolder + "/" + localFileName
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.GetFieldWithoutNodePathRequest({
+                const request = new model.GetFieldRequest({
                     name: remoteFileName,
                     index: 0,
                     folder: remoteDataFolder
                 });
 
                 // Act
-                return wordsApi.getFieldWithoutNodePath(request)
+                return wordsApi.getField(request)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
@@ -204,7 +204,7 @@ describe("field", () => {
                 BaseTest.localBaseTestDataFolder + textFolder + "/" + localFileName
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.InsertFieldWithoutNodePathRequest({
+                const request = new model.InsertFieldRequest({
                     name: remoteFileName,
                     field: new model.FieldInsert({
                         fieldCode: "{ NUMPAGES }"
@@ -213,7 +213,7 @@ describe("field", () => {
                 });
 
                 // Act
-                return wordsApi.insertFieldWithoutNodePath(request)
+                return wordsApi.insertField(request)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
@@ -241,8 +241,8 @@ describe("field", () => {
                     field: new model.FieldUpdate({
                         fieldCode: "{ NUMPAGES }"
                     }),
-                    nodePath: "sections/0/paragraphs/0",
                     index: 0,
+                    nodePath: "sections/0/paragraphs/0",
                     folder: remoteDataFolder
                 });
 
@@ -306,8 +306,8 @@ describe("field", () => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.DeleteFieldRequest({
                     name: remoteFileName,
-                    nodePath: "sections/0/paragraphs/0",
                     index: 0,
+                    nodePath: "sections/0/paragraphs/0",
                     folder: remoteDataFolder
                 });
 
@@ -335,14 +335,14 @@ describe("field", () => {
                 BaseTest.localBaseTestDataFolder + fieldFolder + "/" + localFileName
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.DeleteFieldWithoutNodePathRequest({
+                const request = new model.DeleteFieldRequest({
                     name: remoteFileName,
                     index: 0,
                     folder: remoteDataFolder
                 });
 
                 // Act
-                return wordsApi.deleteFieldWithoutNodePath(request)
+                return wordsApi.deleteField(request)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.statusCode).to.equal(200);
@@ -395,13 +395,13 @@ describe("field", () => {
                 BaseTest.localBaseTestDataFolder + "Common/" + localFileName
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.DeleteFieldsWithoutNodePathRequest({
+                const request = new model.DeleteFieldsRequest({
                     name: remoteFileName,
                     folder: remoteDataFolder
                 });
 
                 // Act
-                return wordsApi.deleteFieldsWithoutNodePath(request)
+                return wordsApi.deleteFields(request)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.statusCode).to.equal(200);
@@ -454,13 +454,13 @@ describe("field", () => {
                 BaseTest.localBaseTestDataFolder + "Common/" + localFileName
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.DeleteFieldsWithoutNodePathRequest({
+                const request = new model.DeleteFieldsRequest({
                     name: remoteFileName,
                     folder: remoteDataFolder
                 });
 
                 // Act
-                return wordsApi.deleteFieldsWithoutNodePath(request)
+                return wordsApi.deleteFields(request)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.statusCode).to.equal(200);

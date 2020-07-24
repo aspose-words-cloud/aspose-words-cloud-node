@@ -59,8 +59,8 @@ describe("formField", () => {
                         textInputType: model.FormFieldTextInput.TextInputTypeEnum.Regular,
                         textInputDefault: "No name"
                     }),
-                    nodePath: "sections/0",
                     index: 0,
+                    nodePath: "sections/0",
                     folder: remoteDataFolder,
                     destFileName: BaseTest.remoteBaseTestOutFolder + "/" + remoteFileName
                 });
@@ -88,7 +88,7 @@ describe("formField", () => {
                 BaseTest.localBaseTestDataFolder + fieldFolder + "/FormFilled.docx"
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.UpdateFormFieldWithoutNodePathRequest({
+                const request = new model.UpdateFormFieldRequest({
                     name: remoteFileName,
                     formField: new model.FormFieldTextInput({
                         name: "FullName",
@@ -104,7 +104,7 @@ describe("formField", () => {
                 });
 
                 // Act
-                return wordsApi.updateFormFieldWithoutNodePath(request)
+                return wordsApi.updateFormField(request)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
@@ -128,8 +128,8 @@ describe("formField", () => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.GetFormFieldRequest({
                     name: remoteFileName,
-                    nodePath: "sections/0",
                     index: 0,
+                    nodePath: "sections/0",
                     folder: remoteDataFolder
                 });
 
@@ -156,14 +156,14 @@ describe("formField", () => {
                 BaseTest.localBaseTestDataFolder + fieldFolder + "/FormFilled.docx"
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.GetFormFieldWithoutNodePathRequest({
+                const request = new model.GetFormFieldRequest({
                     name: remoteFileName,
                     index: 0,
                     folder: remoteDataFolder
                 });
 
                 // Act
-                return wordsApi.getFormFieldWithoutNodePath(request)
+                return wordsApi.getFormField(request)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
@@ -214,13 +214,13 @@ describe("formField", () => {
                 BaseTest.localBaseTestDataFolder + fieldFolder + "/FormFilled.docx"
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.GetFormFieldsWithoutNodePathRequest({
+                const request = new model.GetFormFieldsRequest({
                     name: remoteFileName,
                     folder: remoteDataFolder
                 });
 
                 // Act
-                return wordsApi.getFormFieldsWithoutNodePath(request)
+                return wordsApi.getFormFields(request)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
@@ -281,7 +281,7 @@ describe("formField", () => {
                 BaseTest.localBaseTestDataFolder + "Common/test_multi_pages.docx"
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.InsertFormFieldWithoutNodePathRequest({
+                const request = new model.InsertFormFieldRequest({
                     name: remoteFileName,
                     formField: new model.FormFieldTextInput({
                         name: "FullName",
@@ -297,7 +297,7 @@ describe("formField", () => {
                 });
 
                 // Act
-                return wordsApi.insertFormFieldWithoutNodePath(request)
+                return wordsApi.insertFormField(request)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
@@ -321,8 +321,8 @@ describe("formField", () => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.DeleteFormFieldRequest({
                     name: remoteFileName,
-                    nodePath: "sections/0",
                     index: 0,
+                    nodePath: "sections/0",
                     folder: remoteDataFolder,
                     destFileName: BaseTest.remoteBaseTestOutFolder + "/" + remoteFileName
                 });
@@ -350,7 +350,7 @@ describe("formField", () => {
                 BaseTest.localBaseTestDataFolder + fieldFolder + "/FormFilled.docx"
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.DeleteFormFieldWithoutNodePathRequest({
+                const request = new model.DeleteFormFieldRequest({
                     name: remoteFileName,
                     index: 0,
                     folder: remoteDataFolder,
@@ -358,7 +358,7 @@ describe("formField", () => {
                 });
 
                 // Act
-                return wordsApi.deleteFormFieldWithoutNodePath(request)
+                return wordsApi.deleteFormField(request)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.statusCode).to.equal(200);

@@ -80,8 +80,8 @@ describe("tableBorder", () => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.GetBorderRequest({
                     name: remoteFileName,
-                    nodePath: "tables/1/rows/0/cells/0",
                     borderType: "left",
+                    nodePath: "tables/1/rows/0/cells/0",
                     folder: remoteDataFolder
                 });
 
@@ -139,8 +139,8 @@ describe("tableBorder", () => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.DeleteBorderRequest({
                     name: remoteFileName,
-                    nodePath: "tables/1/rows/0/cells/0",
                     borderType: "left",
+                    nodePath: "tables/1/rows/0/cells/0",
                     folder: remoteDataFolder
                 });
 
@@ -179,8 +179,8 @@ describe("tableBorder", () => {
                         lineWidth: 2,
                         shadow: true
                     }),
-                    nodePath: "tables/1/rows/0/cells/0",
                     borderType: "left",
+                    nodePath: "tables/1/rows/0/cells/0",
                     folder: remoteDataFolder
                 });
 

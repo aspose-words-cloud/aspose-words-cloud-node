@@ -79,13 +79,13 @@ describe("drawingObjects", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.GetDocumentDrawingObjectsWithoutNodePathRequest({
+                const request = new model.GetDocumentDrawingObjectsRequest({
                     name: remoteFileName,
                     folder: remoteDataFolder
                 });
 
                 // Act
-                return wordsApi.getDocumentDrawingObjectsWithoutNodePath(request)
+                return wordsApi.getDocumentDrawingObjects(request)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
@@ -109,8 +109,8 @@ describe("drawingObjects", () => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.GetDocumentDrawingObjectByIndexRequest({
                     name: remoteFileName,
-                    nodePath: "sections/0",
                     index: 0,
+                    nodePath: "sections/0",
                     folder: remoteDataFolder
                 });
 
@@ -137,14 +137,14 @@ describe("drawingObjects", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.GetDocumentDrawingObjectByIndexWithoutNodePathRequest({
+                const request = new model.GetDocumentDrawingObjectByIndexRequest({
                     name: remoteFileName,
                     index: 0,
                     folder: remoteDataFolder
                 });
 
                 // Act
-                return wordsApi.getDocumentDrawingObjectByIndexWithoutNodePath(request)
+                return wordsApi.getDocumentDrawingObjectByIndex(request)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
@@ -169,8 +169,8 @@ describe("drawingObjects", () => {
                 const request = new model.RenderDrawingObjectRequest({
                     name: remoteFileName,
                     format: "png",
-                    nodePath: "sections/0",
                     index: 0,
+                    nodePath: "sections/0",
                     folder: remoteDataFolder
                 });
 
@@ -197,7 +197,7 @@ describe("drawingObjects", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.RenderDrawingObjectWithoutNodePathRequest({
+                const request = new model.RenderDrawingObjectRequest({
                     name: remoteFileName,
                     format: "png",
                     index: 0,
@@ -205,7 +205,7 @@ describe("drawingObjects", () => {
                 });
 
                 // Act
-                return wordsApi.renderDrawingObjectWithoutNodePath(request)
+                return wordsApi.renderDrawingObject(request)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
@@ -229,8 +229,8 @@ describe("drawingObjects", () => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.GetDocumentDrawingObjectImageDataRequest({
                     name: remoteFileName,
-                    nodePath: "sections/0",
                     index: 0,
+                    nodePath: "sections/0",
                     folder: remoteDataFolder
                 });
 
@@ -257,14 +257,14 @@ describe("drawingObjects", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.GetDocumentDrawingObjectImageDataWithoutNodePathRequest({
+                const request = new model.GetDocumentDrawingObjectImageDataRequest({
                     name: remoteFileName,
                     index: 0,
                     folder: remoteDataFolder
                 });
 
                 // Act
-                return wordsApi.getDocumentDrawingObjectImageDataWithoutNodePath(request)
+                return wordsApi.getDocumentDrawingObjectImageData(request)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
@@ -288,8 +288,8 @@ describe("drawingObjects", () => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.GetDocumentDrawingObjectOleDataRequest({
                     name: remoteFileName,
-                    nodePath: "sections/0",
                     index: 0,
+                    nodePath: "sections/0",
                     folder: remoteDataFolder
                 });
 
@@ -316,14 +316,14 @@ describe("drawingObjects", () => {
                 BaseTest.localBaseTestDataFolder + localDrawingFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.GetDocumentDrawingObjectOleDataWithoutNodePathRequest({
+                const request = new model.GetDocumentDrawingObjectOleDataRequest({
                     name: remoteFileName,
                     index: 0,
                     folder: remoteDataFolder
                 });
 
                 // Act
-                return wordsApi.getDocumentDrawingObjectOleDataWithoutNodePath(request)
+                return wordsApi.getDocumentDrawingObjectOleData(request)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
@@ -384,7 +384,7 @@ describe("drawingObjects", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.InsertDrawingObjectWithoutNodePathRequest({
+                const request = new model.InsertDrawingObjectRequest({
                     name: remoteFileName,
                     drawingObject: new model.DrawingObjectInsert({
                         height: 0,
@@ -400,7 +400,7 @@ describe("drawingObjects", () => {
                 });
 
                 // Act
-                return wordsApi.insertDrawingObjectWithoutNodePath(request)
+                return wordsApi.insertDrawingObject(request)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
@@ -424,8 +424,8 @@ describe("drawingObjects", () => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.DeleteDrawingObjectRequest({
                     name: remoteFileName,
-                    nodePath: "",
                     index: 0,
+                    nodePath: "",
                     folder: remoteDataFolder
                 });
 
@@ -452,14 +452,14 @@ describe("drawingObjects", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.DeleteDrawingObjectWithoutNodePathRequest({
+                const request = new model.DeleteDrawingObjectRequest({
                     name: remoteFileName,
                     index: 0,
                     folder: remoteDataFolder
                 });
 
                 // Act
-                return wordsApi.deleteDrawingObjectWithoutNodePath(request)
+                return wordsApi.deleteDrawingObject(request)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.statusCode).to.equal(200);
@@ -487,8 +487,8 @@ describe("drawingObjects", () => {
                         left: 0
                     }),
                     imageFile: fs.createReadStream(BaseTest.localBaseTestDataFolder + "Common/aspose-cloud.png"),
-                    nodePath: "",
                     index: 0,
+                    nodePath: "",
                     folder: remoteDataFolder
                 });
 
@@ -515,7 +515,7 @@ describe("drawingObjects", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.UpdateDrawingObjectWithoutNodePathRequest({
+                const request = new model.UpdateDrawingObjectRequest({
                     name: remoteFileName,
                     drawingObject: new model.DrawingObjectUpdate({
                         left: 0
@@ -526,7 +526,7 @@ describe("drawingObjects", () => {
                 });
 
                 // Act
-                return wordsApi.updateDrawingObjectWithoutNodePath(request)
+                return wordsApi.updateDrawingObject(request)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);

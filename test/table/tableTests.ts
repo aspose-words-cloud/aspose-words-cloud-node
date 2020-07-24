@@ -78,13 +78,13 @@ describe("table", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.GetTablesWithoutNodePathRequest({
+                const request = new model.GetTablesRequest({
                     name: remoteFileName,
                     folder: remoteDataFolder
                 });
 
                 // Act
-                return wordsApi.getTablesWithoutNodePath(request)
+                return wordsApi.getTables(request)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
@@ -108,8 +108,8 @@ describe("table", () => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.GetTableRequest({
                     name: remoteFileName,
-                    nodePath: "",
                     index: 1,
+                    nodePath: "",
                     folder: remoteDataFolder
                 });
 
@@ -136,14 +136,14 @@ describe("table", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.GetTableWithoutNodePathRequest({
+                const request = new model.GetTableRequest({
                     name: remoteFileName,
                     index: 1,
                     folder: remoteDataFolder
                 });
 
                 // Act
-                return wordsApi.getTableWithoutNodePath(request)
+                return wordsApi.getTable(request)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
@@ -167,8 +167,8 @@ describe("table", () => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.DeleteTableRequest({
                     name: remoteFileName,
-                    nodePath: "",
                     index: 1,
+                    nodePath: "",
                     folder: remoteDataFolder
                 });
 
@@ -195,14 +195,14 @@ describe("table", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.DeleteTableWithoutNodePathRequest({
+                const request = new model.DeleteTableRequest({
                     name: remoteFileName,
                     index: 1,
                     folder: remoteDataFolder
                 });
 
                 // Act
-                return wordsApi.deleteTableWithoutNodePath(request)
+                return wordsApi.deleteTable(request)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.statusCode).to.equal(200);
@@ -257,7 +257,7 @@ describe("table", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.InsertTableWithoutNodePathRequest({
+                const request = new model.InsertTableRequest({
                     name: remoteFileName,
                     table: new model.TableInsert({
                         columnsCount: 5,
@@ -267,7 +267,7 @@ describe("table", () => {
                 });
 
                 // Act
-                return wordsApi.insertTableWithoutNodePath(request)
+                return wordsApi.insertTable(request)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
@@ -291,8 +291,8 @@ describe("table", () => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.GetTablePropertiesRequest({
                     name: remoteFileName,
-                    nodePath: "",
                     index: 1,
+                    nodePath: "",
                     folder: remoteDataFolder
                 });
 
@@ -319,14 +319,14 @@ describe("table", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.GetTablePropertiesWithoutNodePathRequest({
+                const request = new model.GetTablePropertiesRequest({
                     name: remoteFileName,
                     index: 1,
                     folder: remoteDataFolder
                 });
 
                 // Act
-                return wordsApi.getTablePropertiesWithoutNodePath(request)
+                return wordsApi.getTableProperties(request)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
@@ -358,8 +358,8 @@ describe("table", () => {
                         cellSpacing: 2,
                         styleOptions: model.TableProperties.StyleOptionsEnum.ColumnBands
                     }),
-                    nodePath: "",
                     index: 1,
+                    nodePath: "",
                     folder: remoteDataFolder
                 });
 
@@ -386,7 +386,7 @@ describe("table", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.UpdateTablePropertiesWithoutNodePathRequest({
+                const request = new model.UpdateTablePropertiesRequest({
                     name: remoteFileName,
                     properties: new model.TableProperties({
                         alignment: model.TableProperties.AlignmentEnum.Right,
@@ -401,7 +401,7 @@ describe("table", () => {
                 });
 
                 // Act
-                return wordsApi.updateTablePropertiesWithoutNodePath(request)
+                return wordsApi.updateTableProperties(request)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
@@ -741,8 +741,8 @@ describe("table", () => {
                 const request = new model.RenderTableRequest({
                     name: remoteFileName,
                     format: "png",
-                    nodePath: "",
                     index: 0,
+                    nodePath: "",
                     folder: remoteDataFolder
                 });
 
@@ -769,7 +769,7 @@ describe("table", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.RenderTableWithoutNodePathRequest({
+                const request = new model.RenderTableRequest({
                     name: remoteFileName,
                     format: "png",
                     index: 0,
@@ -777,7 +777,7 @@ describe("table", () => {
                 });
 
                 // Act
-                return wordsApi.renderTableWithoutNodePath(request)
+                return wordsApi.renderTable(request)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);

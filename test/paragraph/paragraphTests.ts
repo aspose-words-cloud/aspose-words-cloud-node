@@ -53,8 +53,8 @@ describe("paragraph", () => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.GetParagraphRequest({
                     name: remoteFileName,
-                    nodePath: "sections/0",
                     index: 0,
+                    nodePath: "sections/0",
                     folder: remoteDataFolder
                 });
 
@@ -81,14 +81,14 @@ describe("paragraph", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.GetParagraphWithoutNodePathRequest({
+                const request = new model.GetParagraphRequest({
                     name: remoteFileName,
                     index: 0,
                     folder: remoteDataFolder
                 });
 
                 // Act
-                return wordsApi.getParagraphWithoutNodePath(request)
+                return wordsApi.getParagraph(request)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
@@ -139,13 +139,13 @@ describe("paragraph", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.GetParagraphsWithoutNodePathRequest({
+                const request = new model.GetParagraphsRequest({
                     name: remoteFileName,
                     folder: remoteDataFolder
                 });
 
                 // Act
-                return wordsApi.getParagraphsWithoutNodePath(request)
+                return wordsApi.getParagraphs(request)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
@@ -322,7 +322,7 @@ describe("paragraph", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.InsertParagraphWithoutNodePathRequest({
+                const request = new model.InsertParagraphRequest({
                     name: remoteFileName,
                     paragraph: new model.ParagraphInsert({
                         text: "This is a new paragraph for your document"
@@ -331,7 +331,7 @@ describe("paragraph", () => {
                 });
 
                 // Act
-                return wordsApi.insertParagraphWithoutNodePath(request)
+                return wordsApi.insertParagraph(request)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
@@ -356,8 +356,8 @@ describe("paragraph", () => {
                 const request = new model.RenderParagraphRequest({
                     name: remoteFileName,
                     format: "png",
-                    nodePath: "",
                     index: 0,
+                    nodePath: "",
                     folder: remoteDataFolder
                 });
 
@@ -384,7 +384,7 @@ describe("paragraph", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.RenderParagraphWithoutNodePathRequest({
+                const request = new model.RenderParagraphRequest({
                     name: remoteFileName,
                     format: "png",
                     index: 0,
@@ -392,7 +392,7 @@ describe("paragraph", () => {
                 });
 
                 // Act
-                return wordsApi.renderParagraphWithoutNodePath(request)
+                return wordsApi.renderParagraph(request)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
@@ -416,8 +416,8 @@ describe("paragraph", () => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.GetParagraphFormatRequest({
                     name: remoteFileName,
-                    nodePath: "",
                     index: 0,
+                    nodePath: "",
                     folder: remoteDataFolder
                 });
 
@@ -444,14 +444,14 @@ describe("paragraph", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.GetParagraphFormatWithoutNodePathRequest({
+                const request = new model.GetParagraphFormatRequest({
                     name: remoteFileName,
                     index: 0,
                     folder: remoteDataFolder
                 });
 
                 // Act
-                return wordsApi.getParagraphFormatWithoutNodePath(request)
+                return wordsApi.getParagraphFormat(request)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
@@ -478,8 +478,8 @@ describe("paragraph", () => {
                     dto: new model.ParagraphFormatUpdate({
                         alignment: model.ParagraphFormatUpdate.AlignmentEnum.Right
                     }),
-                    nodePath: "",
                     index: 0,
+                    nodePath: "",
                     folder: remoteDataFolder
                 });
 
@@ -508,8 +508,8 @@ describe("paragraph", () => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.DeleteParagraphRequest({
                     name: remoteFileName,
-                    nodePath: "",
                     index: 0,
+                    nodePath: "",
                     folder: remoteDataFolder
                 });
 
@@ -536,14 +536,14 @@ describe("paragraph", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.DeleteParagraphWithoutNodePathRequest({
+                const request = new model.DeleteParagraphRequest({
                     name: remoteFileName,
                     index: 0,
                     folder: remoteDataFolder
                 });
 
                 // Act
-                return wordsApi.deleteParagraphWithoutNodePath(request)
+                return wordsApi.deleteParagraph(request)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.statusCode).to.equal(200);
@@ -567,8 +567,8 @@ describe("paragraph", () => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.GetParagraphListFormatRequest({
                     name: remoteFileName,
-                    nodePath: "",
                     index: 0,
+                    nodePath: "",
                     folder: remoteDataFolder
                 });
 
@@ -595,14 +595,14 @@ describe("paragraph", () => {
                 BaseTest.localBaseTestDataFolder + listFolder + "/ParagraphGetListFormat.doc"
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.GetParagraphListFormatWithoutNodePathRequest({
+                const request = new model.GetParagraphListFormatRequest({
                     name: remoteFileName,
                     index: 0,
                     folder: remoteDataFolder
                 });
 
                 // Act
-                return wordsApi.getParagraphListFormatWithoutNodePath(request)
+                return wordsApi.getParagraphListFormat(request)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
@@ -629,8 +629,8 @@ describe("paragraph", () => {
                     dto: new model.ListFormatUpdate({
                         listId: 2
                     }),
-                    nodePath: "",
                     index: 0,
+                    nodePath: "",
                     folder: remoteDataFolder
                 });
 
@@ -657,7 +657,7 @@ describe("paragraph", () => {
                 BaseTest.localBaseTestDataFolder + listFolder + "/ParagraphUpdateListFormat.doc"
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.UpdateParagraphListFormatWithoutNodePathRequest({
+                const request = new model.UpdateParagraphListFormatRequest({
                     name: remoteFileName,
                     dto: new model.ListFormatUpdate({
                         listId: 2
@@ -667,7 +667,7 @@ describe("paragraph", () => {
                 });
 
                 // Act
-                return wordsApi.updateParagraphListFormatWithoutNodePath(request)
+                return wordsApi.updateParagraphListFormat(request)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
@@ -691,8 +691,8 @@ describe("paragraph", () => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.DeleteParagraphListFormatRequest({
                     name: remoteFileName,
-                    nodePath: "",
                     index: 0,
+                    nodePath: "",
                     folder: remoteDataFolder
                 });
 
@@ -719,14 +719,14 @@ describe("paragraph", () => {
                 BaseTest.localBaseTestDataFolder + listFolder + "/ParagraphDeleteListFormat.doc"
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.DeleteParagraphListFormatWithoutNodePathRequest({
+                const request = new model.DeleteParagraphListFormatRequest({
                     name: remoteFileName,
                     index: 0,
                     folder: remoteDataFolder
                 });
 
                 // Act
-                return wordsApi.deleteParagraphListFormatWithoutNodePath(request)
+                return wordsApi.deleteParagraphListFormat(request)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
@@ -750,8 +750,8 @@ describe("paragraph", () => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.GetParagraphTabStopsRequest({
                     name: remoteFileName,
-                    nodePath: "",
                     index: 0,
+                    nodePath: "",
                     folder: remoteDataFolder
                 });
 
@@ -778,14 +778,14 @@ describe("paragraph", () => {
                 BaseTest.localBaseTestDataFolder + tabStopFolder + "/ParagraphTabStops.docx"
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.GetParagraphTabStopsWithoutNodePathRequest({
+                const request = new model.GetParagraphTabStopsRequest({
                     name: remoteFileName,
                     index: 0,
                     folder: remoteDataFolder
                 });
 
                 // Act
-                return wordsApi.getParagraphTabStopsWithoutNodePath(request)
+                return wordsApi.getParagraphTabStops(request)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
@@ -814,8 +814,8 @@ describe("paragraph", () => {
                         leader: model.TabStopInsert.LeaderEnum.None,
                         position: 72
                     }),
-                    nodePath: "",
                     index: 0,
+                    nodePath: "",
                     folder: remoteDataFolder
                 });
 
@@ -842,7 +842,7 @@ describe("paragraph", () => {
                 BaseTest.localBaseTestDataFolder + tabStopFolder + "/ParagraphTabStops.docx"
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.InsertOrUpdateParagraphTabStopWithoutNodePathRequest({
+                const request = new model.InsertOrUpdateParagraphTabStopRequest({
                     name: remoteFileName,
                     dto: new model.TabStopInsert({
                         alignment: model.TabStopInsert.AlignmentEnum.Left,
@@ -854,7 +854,7 @@ describe("paragraph", () => {
                 });
 
                 // Act
-                return wordsApi.insertOrUpdateParagraphTabStopWithoutNodePath(request)
+                return wordsApi.insertOrUpdateParagraphTabStop(request)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
@@ -878,8 +878,8 @@ describe("paragraph", () => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.DeleteAllParagraphTabStopsRequest({
                     name: remoteFileName,
-                    nodePath: "",
                     index: 0,
+                    nodePath: "",
                     folder: remoteDataFolder
                 });
 
@@ -906,14 +906,14 @@ describe("paragraph", () => {
                 BaseTest.localBaseTestDataFolder + tabStopFolder + "/ParagraphTabStops.docx"
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.DeleteAllParagraphTabStopsWithoutNodePathRequest({
+                const request = new model.DeleteAllParagraphTabStopsRequest({
                     name: remoteFileName,
                     index: 0,
                     folder: remoteDataFolder
                 });
 
                 // Act
-                return wordsApi.deleteAllParagraphTabStopsWithoutNodePath(request)
+                return wordsApi.deleteAllParagraphTabStops(request)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
@@ -938,8 +938,8 @@ describe("paragraph", () => {
                 const request = new model.DeleteParagraphTabStopRequest({
                     name: remoteFileName,
                     position: 72,
-                    nodePath: "",
                     index: 0,
+                    nodePath: "",
                     folder: remoteDataFolder
                 });
 
@@ -966,7 +966,7 @@ describe("paragraph", () => {
                 BaseTest.localBaseTestDataFolder + tabStopFolder + "/ParagraphTabStops.docx"
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.DeleteParagraphTabStopWithoutNodePathRequest({
+                const request = new model.DeleteParagraphTabStopRequest({
                     name: remoteFileName,
                     position: 72,
                     index: 0,
@@ -974,7 +974,7 @@ describe("paragraph", () => {
                 });
 
                 // Act
-                return wordsApi.deleteParagraphTabStopWithoutNodePath(request)
+                return wordsApi.deleteParagraphTabStop(request)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);

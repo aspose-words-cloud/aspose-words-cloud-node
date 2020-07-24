@@ -82,7 +82,7 @@ describe("footnote", () => {
                 BaseTest.localBaseTestDataFolder + footnoteFolder + "/Footnote.doc"
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.InsertFootnoteWithoutNodePathRequest({
+                const request = new model.InsertFootnoteRequest({
                     name: remoteFileName,
                     footnoteDto: new model.FootnoteInsert({
                         footnoteType: model.FootnoteInsert.FootnoteTypeEnum.Endnote,
@@ -92,7 +92,7 @@ describe("footnote", () => {
                 });
 
                 // Act
-                return wordsApi.insertFootnoteWithoutNodePath(request)
+                return wordsApi.insertFootnote(request)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
@@ -116,8 +116,8 @@ describe("footnote", () => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.DeleteFootnoteRequest({
                     name: remoteFileName,
-                    nodePath: "",
                     index: 0,
+                    nodePath: "",
                     folder: remoteDataFolder
                 });
 
@@ -144,14 +144,14 @@ describe("footnote", () => {
                 BaseTest.localBaseTestDataFolder + footnoteFolder + "/Footnote.doc"
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.DeleteFootnoteWithoutNodePathRequest({
+                const request = new model.DeleteFootnoteRequest({
                     name: remoteFileName,
                     index: 0,
                     folder: remoteDataFolder
                 });
 
                 // Act
-                return wordsApi.deleteFootnoteWithoutNodePath(request)
+                return wordsApi.deleteFootnote(request)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.statusCode).to.equal(200);
@@ -202,13 +202,13 @@ describe("footnote", () => {
                 BaseTest.localBaseTestDataFolder + footnoteFolder + "/Footnote.doc"
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.GetFootnotesWithoutNodePathRequest({
+                const request = new model.GetFootnotesRequest({
                     name: remoteFileName,
                     folder: remoteDataFolder
                 });
 
                 // Act
-                return wordsApi.getFootnotesWithoutNodePath(request)
+                return wordsApi.getFootnotes(request)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
@@ -232,8 +232,8 @@ describe("footnote", () => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.GetFootnoteRequest({
                     name: remoteFileName,
-                    nodePath: "",
                     index: 0,
+                    nodePath: "",
                     folder: remoteDataFolder
                 });
 
@@ -260,14 +260,14 @@ describe("footnote", () => {
                 BaseTest.localBaseTestDataFolder + footnoteFolder + "/Footnote.doc"
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.GetFootnoteWithoutNodePathRequest({
+                const request = new model.GetFootnoteRequest({
                     name: remoteFileName,
                     index: 0,
                     folder: remoteDataFolder
                 });
 
                 // Act
-                return wordsApi.getFootnoteWithoutNodePath(request)
+                return wordsApi.getFootnote(request)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
@@ -294,8 +294,8 @@ describe("footnote", () => {
                     footnoteDto: new model.FootnoteUpdate({
                         text: "new text is here"
                     }),
-                    nodePath: "",
                     index: 0,
+                    nodePath: "",
                     folder: remoteDataFolder
                 });
 
@@ -322,7 +322,7 @@ describe("footnote", () => {
                 BaseTest.localBaseTestDataFolder + footnoteFolder + "/Footnote.doc"
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.UpdateFootnoteWithoutNodePathRequest({
+                const request = new model.UpdateFootnoteRequest({
                     name: remoteFileName,
                     footnoteDto: new model.FootnoteUpdate({
                         text: "new text is here"
@@ -332,7 +332,7 @@ describe("footnote", () => {
                 });
 
                 // Act
-                return wordsApi.updateFootnoteWithoutNodePath(request)
+                return wordsApi.updateFootnote(request)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);

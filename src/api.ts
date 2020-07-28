@@ -64,7 +64,7 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/revisions/acceptAll"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -106,7 +106,7 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/appendDocument"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -152,6 +152,60 @@ export class WordsApi {
     }
 
     /**
+     * Appends documents to original document.
+     * @param requestObj contains request parameters
+     */
+    public async appendDocumentOnline(requestObj: model.AppendDocumentOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling appendDocumentOnline.');
+        }
+
+        const localVarPath = this.configuration.getApiBaseUrl() + "/words/online/appendDocument"
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling appendDocumentOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling appendDocumentOnline.');
+        }
+
+        // verify required parameter 'requestObj.documentList' is not undefined
+        if (requestObj.documentList === undefined) {
+            throw new Error('Required parameter "requestObj.documentList" was undefined when calling appendDocumentOnline.');
+        }
+
+        // verify required parameter 'requestObj.documentList' is not null
+        if (requestObj.documentList === null) {
+            throw new Error('Required parameter "requestObj.documentList" was null when calling appendDocumentOnline.');
+        }
+
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+        if (requestObj.documentList !== undefined) {
+            formParams.DocumentList = JSON.stringify(requestObj.documentList);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+
+        requestOptions.formData = formParams;
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const result: model.WordsIncomingMessage< Buffer > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Apply a style to the document node.
      * @param requestObj contains request parameters
      */
@@ -161,8 +215,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{styledNodePath}/style"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "styledNodePath" + "}", (requestObj.styledNodePath !== null && requestObj.styledNodePath !== undefined) ? "/" + String(requestObj.styledNodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "styledNodePath" + "}", (requestObj.styledNodePath !== null) ? "/" + String(requestObj.styledNodePath) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -227,7 +281,7 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/buildReport"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         const formParams: any = {};
@@ -280,9 +334,7 @@ export class WordsApi {
             json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
-        }
+        requestOptions.formData = formParams;
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
         const result: model.WordsIncomingMessage< model.DocumentResponse > = {body, response};
@@ -350,9 +402,7 @@ export class WordsApi {
             encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
-        }
+        requestOptions.formData = formParams;
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "Buffer");
         const result: model.WordsIncomingMessage< Buffer > = {body, response};
@@ -407,7 +457,7 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{documentName}/classify"
-            .replace("/{" + "documentName" + "}", (requestObj.documentName !== null && requestObj.documentName !== undefined) ? "/" + String(requestObj.documentName) : "")
+            .replace("/{" + "documentName" + "}", (requestObj.documentName !== null) ? "/" + String(requestObj.documentName) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.documentName' is not undefined
@@ -450,7 +500,7 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/compareDocument"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -527,9 +577,9 @@ export class WordsApi {
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fileNameFieldValue", requestObj.fileNameFieldValue);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", requestObj.fontsLocation);
         if (requestObj.document !== undefined) {
             formParams.Document = requestObj.document;
@@ -542,9 +592,7 @@ export class WordsApi {
             encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
-        }
+        requestOptions.formData = formParams;
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "Buffer");
         const result: model.WordsIncomingMessage< Buffer > = {body, response};
@@ -561,7 +609,7 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/storage/file/copy/{srcPath}"
-            .replace("/{" + "srcPath" + "}", (requestObj.srcPath !== null && requestObj.srcPath !== undefined) ? "/" + String(requestObj.srcPath) : "")
+            .replace("/{" + "srcPath" + "}", (requestObj.srcPath !== null) ? "/" + String(requestObj.srcPath) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.destPath' is not undefined
@@ -605,7 +653,7 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/storage/folder/copy/{srcPath}"
-            .replace("/{" + "srcPath" + "}", (requestObj.srcPath !== null && requestObj.srcPath !== undefined) ? "/" + String(requestObj.srcPath) : "")
+            .replace("/{" + "srcPath" + "}", (requestObj.srcPath !== null) ? "/" + String(requestObj.srcPath) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.destPath' is not undefined
@@ -648,7 +696,7 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/styles/copy"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -707,9 +755,9 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/create"
             .replace("//", "/");
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fileName", requestObj.fileName);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -734,7 +782,7 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/storage/folder/{path}"
-            .replace("/{" + "path" + "}", (requestObj.path !== null && requestObj.path !== undefined) ? "/" + String(requestObj.path) : "")
+            .replace("/{" + "path" + "}", (requestObj.path !== null) ? "/" + String(requestObj.path) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.path' is not undefined
@@ -770,8 +818,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/documentProperties/{propertyName}"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "propertyName" + "}", (requestObj.propertyName !== null && requestObj.propertyName !== undefined) ? "/" + String(requestObj.propertyName) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "propertyName" + "}", (requestObj.propertyName !== null) ? "/" + String(requestObj.propertyName) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -836,9 +884,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}/tabstops"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -849,6 +897,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.name' is not null
         if (requestObj.name === null) {
             throw new Error('Required parameter "requestObj.name" was null when calling deleteAllParagraphTabStops.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling deleteAllParagraphTabStops.');
         }
 
         // verify required parameter 'requestObj.index' is not undefined
@@ -881,6 +934,59 @@ export class WordsApi {
     }
 
     /**
+     * Remove all tab stops.
+     * @param requestObj contains request parameters
+     */
+    public async deleteAllParagraphTabStopsWithoutNodePath(requestObj: model.DeleteAllParagraphTabStopsWithoutNodePathRequest): Promise< model.WordsIncomingMessage< model.TabStopsResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling deleteAllParagraphTabStopsWithoutNodePath.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/paragraphs/{index}/tabstops"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling deleteAllParagraphTabStopsWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling deleteAllParagraphTabStopsWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling deleteAllParagraphTabStopsWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling deleteAllParagraphTabStopsWithoutNodePath.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+
+        const requestOptions: request.Options = {
+            method: "DELETE",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "TabStopsResponse");
+        const result: model.WordsIncomingMessage< model.TabStopsResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * 'nodePath' should refer to paragraph, cell or row.
      * @param requestObj contains request parameters
      */
@@ -890,9 +996,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/borders/{borderType}"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "borderType" + "}", (requestObj.borderType !== null && requestObj.borderType !== undefined) ? "/" + String(requestObj.borderType) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "borderType" + "}", (requestObj.borderType !== null) ? "/" + String(requestObj.borderType) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -903,6 +1009,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.name' is not null
         if (requestObj.name === null) {
             throw new Error('Required parameter "requestObj.name" was null when calling deleteBorder.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling deleteBorder.');
         }
 
         // verify required parameter 'requestObj.borderType' is not undefined
@@ -946,8 +1057,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/borders"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -958,6 +1069,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.name' is not null
         if (requestObj.name === null) {
             throw new Error('Required parameter "requestObj.name" was null when calling deleteBorders.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling deleteBorders.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -991,8 +1107,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/comments/{commentIndex}"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "commentIndex" + "}", (requestObj.commentIndex !== null && requestObj.commentIndex !== undefined) ? "/" + String(requestObj.commentIndex) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "commentIndex" + "}", (requestObj.commentIndex !== null) ? "/" + String(requestObj.commentIndex) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -1044,8 +1160,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/documentProperties/{propertyName}"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "propertyName" + "}", (requestObj.propertyName !== null && requestObj.propertyName !== undefined) ? "/" + String(requestObj.propertyName) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "propertyName" + "}", (requestObj.propertyName !== null) ? "/" + String(requestObj.propertyName) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -1097,9 +1213,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects/{index}"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -1110,6 +1226,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.name' is not null
         if (requestObj.name === null) {
             throw new Error('Required parameter "requestObj.name" was null when calling deleteDrawingObject.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling deleteDrawingObject.');
         }
 
         // verify required parameter 'requestObj.index' is not undefined
@@ -1142,6 +1263,59 @@ export class WordsApi {
     }
 
     /**
+     * Removes drawing object from document.
+     * @param requestObj contains request parameters
+     */
+    public async deleteDrawingObjectWithoutNodePath(requestObj: model.DeleteDrawingObjectWithoutNodePathRequest): Promise< http.IncomingMessage > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling deleteDrawingObjectWithoutNodePath.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/drawingObjects/{index}"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling deleteDrawingObjectWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling deleteDrawingObjectWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling deleteDrawingObjectWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling deleteDrawingObjectWithoutNodePath.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+
+        const requestOptions: request.Options = {
+            method: "DELETE",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve(response);
+    }
+
+    /**
      * Deletes field from document.
      * @param requestObj contains request parameters
      */
@@ -1151,9 +1325,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/fields/{index}"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -1164,6 +1338,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.name' is not null
         if (requestObj.name === null) {
             throw new Error('Required parameter "requestObj.name" was null when calling deleteField.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling deleteField.');
         }
 
         // verify required parameter 'requestObj.index' is not undefined
@@ -1205,8 +1384,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/fields"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -1217,6 +1396,106 @@ export class WordsApi {
         // verify required parameter 'requestObj.name' is not null
         if (requestObj.name === null) {
             throw new Error('Required parameter "requestObj.name" was null when calling deleteFields.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling deleteFields.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+
+        const requestOptions: request.Options = {
+            method: "DELETE",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve(response);
+    }
+
+    /**
+     * Removes fields from section paragraph.
+     * @param requestObj contains request parameters
+     */
+    public async deleteFieldsWithoutNodePath(requestObj: model.DeleteFieldsWithoutNodePathRequest): Promise< http.IncomingMessage > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling deleteFieldsWithoutNodePath.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/fields"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling deleteFieldsWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling deleteFieldsWithoutNodePath.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+
+        const requestOptions: request.Options = {
+            method: "DELETE",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve(response);
+    }
+
+    /**
+     * Deletes field from document.
+     * @param requestObj contains request parameters
+     */
+    public async deleteFieldWithoutNodePath(requestObj: model.DeleteFieldWithoutNodePathRequest): Promise< http.IncomingMessage > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling deleteFieldWithoutNodePath.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/fields/{index}"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling deleteFieldWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling deleteFieldWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling deleteFieldWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling deleteFieldWithoutNodePath.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -1248,7 +1527,7 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/storage/file/{path}"
-            .replace("/{" + "path" + "}", (requestObj.path !== null && requestObj.path !== undefined) ? "/" + String(requestObj.path) : "")
+            .replace("/{" + "path" + "}", (requestObj.path !== null) ? "/" + String(requestObj.path) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.path' is not undefined
@@ -1285,7 +1564,7 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/storage/folder/{path}"
-            .replace("/{" + "path" + "}", (requestObj.path !== null && requestObj.path !== undefined) ? "/" + String(requestObj.path) : "")
+            .replace("/{" + "path" + "}", (requestObj.path !== null) ? "/" + String(requestObj.path) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.path' is not undefined
@@ -1322,9 +1601,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/footnotes/{index}"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -1335,6 +1614,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.name' is not null
         if (requestObj.name === null) {
             throw new Error('Required parameter "requestObj.name" was null when calling deleteFootnote.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling deleteFootnote.');
         }
 
         // verify required parameter 'requestObj.index' is not undefined
@@ -1367,6 +1651,59 @@ export class WordsApi {
     }
 
     /**
+     * Removes footnote from document.
+     * @param requestObj contains request parameters
+     */
+    public async deleteFootnoteWithoutNodePath(requestObj: model.DeleteFootnoteWithoutNodePathRequest): Promise< http.IncomingMessage > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling deleteFootnoteWithoutNodePath.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/footnotes/{index}"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling deleteFootnoteWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling deleteFootnoteWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling deleteFootnoteWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling deleteFootnoteWithoutNodePath.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+
+        const requestOptions: request.Options = {
+            method: "DELETE",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve(response);
+    }
+
+    /**
      * Removes form field from document.
      * @param requestObj contains request parameters
      */
@@ -1376,9 +1713,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/formfields/{index}"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -1389,6 +1726,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.name' is not null
         if (requestObj.name === null) {
             throw new Error('Required parameter "requestObj.name" was null when calling deleteFormField.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling deleteFormField.');
         }
 
         // verify required parameter 'requestObj.index' is not undefined
@@ -1421,6 +1763,59 @@ export class WordsApi {
     }
 
     /**
+     * Removes form field from document.
+     * @param requestObj contains request parameters
+     */
+    public async deleteFormFieldWithoutNodePath(requestObj: model.DeleteFormFieldWithoutNodePathRequest): Promise< http.IncomingMessage > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling deleteFormFieldWithoutNodePath.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/formfields/{index}"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling deleteFormFieldWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling deleteFormFieldWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling deleteFormFieldWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling deleteFormFieldWithoutNodePath.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+
+        const requestOptions: request.Options = {
+            method: "DELETE",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve(response);
+    }
+
+    /**
      * Deletes header/footer from document.
      * @param requestObj contains request parameters
      */
@@ -1430,9 +1825,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{sectionPath}/headersfooters/{index}"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "sectionPath" + "}", (requestObj.sectionPath !== null && requestObj.sectionPath !== undefined) ? "/" + String(requestObj.sectionPath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "sectionPath" + "}", (requestObj.sectionPath !== null) ? "/" + String(requestObj.sectionPath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -1489,8 +1884,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{sectionPath}/headersfooters"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "sectionPath" + "}", (requestObj.sectionPath !== null && requestObj.sectionPath !== undefined) ? "/" + String(requestObj.sectionPath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "sectionPath" + "}", (requestObj.sectionPath !== null) ? "/" + String(requestObj.sectionPath) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -1538,7 +1933,7 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/macros"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -1580,9 +1975,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/OfficeMathObjects/{index}"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -1593,6 +1988,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.name' is not null
         if (requestObj.name === null) {
             throw new Error('Required parameter "requestObj.name" was null when calling deleteOfficeMathObject.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling deleteOfficeMathObject.');
         }
 
         // verify required parameter 'requestObj.index' is not undefined
@@ -1625,6 +2025,59 @@ export class WordsApi {
     }
 
     /**
+     * Removes OfficeMath object from document.
+     * @param requestObj contains request parameters
+     */
+    public async deleteOfficeMathObjectWithoutNodePath(requestObj: model.DeleteOfficeMathObjectWithoutNodePathRequest): Promise< http.IncomingMessage > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling deleteOfficeMathObjectWithoutNodePath.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/OfficeMathObjects/{index}"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling deleteOfficeMathObjectWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling deleteOfficeMathObjectWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling deleteOfficeMathObjectWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling deleteOfficeMathObjectWithoutNodePath.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+
+        const requestOptions: request.Options = {
+            method: "DELETE",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve(response);
+    }
+
+    /**
      * Removes paragraph from section.
      * @param requestObj contains request parameters
      */
@@ -1634,9 +2087,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -1647,6 +2100,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.name' is not null
         if (requestObj.name === null) {
             throw new Error('Required parameter "requestObj.name" was null when calling deleteParagraph.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling deleteParagraph.');
         }
 
         // verify required parameter 'requestObj.index' is not undefined
@@ -1688,9 +2146,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}/listFormat"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -1701,6 +2159,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.name' is not null
         if (requestObj.name === null) {
             throw new Error('Required parameter "requestObj.name" was null when calling deleteParagraphListFormat.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling deleteParagraphListFormat.');
         }
 
         // verify required parameter 'requestObj.index' is not undefined
@@ -1735,6 +2198,124 @@ export class WordsApi {
     }
 
     /**
+     * Delete paragraph list format, returns updated list format properties.
+     * @param requestObj contains request parameters
+     */
+    public async deleteParagraphListFormatWithoutNodePath(requestObj: model.DeleteParagraphListFormatWithoutNodePathRequest): Promise< model.WordsIncomingMessage< model.ParagraphListFormatResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling deleteParagraphListFormatWithoutNodePath.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/paragraphs/{index}/listFormat"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling deleteParagraphListFormatWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling deleteParagraphListFormatWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling deleteParagraphListFormatWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling deleteParagraphListFormatWithoutNodePath.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+
+        const requestOptions: request.Options = {
+            method: "DELETE",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "ParagraphListFormatResponse");
+        const result: model.WordsIncomingMessage< model.ParagraphListFormatResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Removes paragraph from section.
+     * @param requestObj contains request parameters
+     */
+    public async deleteParagraphOnline(requestObj: model.DeleteParagraphOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling deleteParagraphOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/{nodePath}/paragraphs/{index}"
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling deleteParagraphOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling deleteParagraphOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling deleteParagraphOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling deleteParagraphOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling deleteParagraphOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "DELETE",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+
+        requestOptions.formData = formParams;
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const result: model.WordsIncomingMessage< Buffer > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Remove the i-th tab stop.
      * @param requestObj contains request parameters
      */
@@ -1744,9 +2325,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}/tabstop"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -1767,6 +2348,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.position' is not null
         if (requestObj.position === null) {
             throw new Error('Required parameter "requestObj.position" was null when calling deleteParagraphTabStop.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling deleteParagraphTabStop.');
         }
 
         // verify required parameter 'requestObj.index' is not undefined
@@ -1800,6 +2386,180 @@ export class WordsApi {
     }
 
     /**
+     * Remove the i-th tab stop.
+     * @param requestObj contains request parameters
+     */
+    public async deleteParagraphTabStopWithoutNodePath(requestObj: model.DeleteParagraphTabStopWithoutNodePathRequest): Promise< model.WordsIncomingMessage< model.TabStopsResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling deleteParagraphTabStopWithoutNodePath.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/paragraphs/{index}/tabstop"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling deleteParagraphTabStopWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling deleteParagraphTabStopWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.position' is not undefined
+        if (requestObj.position === undefined) {
+            throw new Error('Required parameter "requestObj.position" was undefined when calling deleteParagraphTabStopWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.position' is not null
+        if (requestObj.position === null) {
+            throw new Error('Required parameter "requestObj.position" was null when calling deleteParagraphTabStopWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling deleteParagraphTabStopWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling deleteParagraphTabStopWithoutNodePath.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "position", requestObj.position);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+
+        const requestOptions: request.Options = {
+            method: "DELETE",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "TabStopsResponse");
+        const result: model.WordsIncomingMessage< model.TabStopsResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Removes paragraph from section.
+     * @param requestObj contains request parameters
+     */
+    public async deleteParagraphWithoutNodePath(requestObj: model.DeleteParagraphWithoutNodePathRequest): Promise< http.IncomingMessage > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling deleteParagraphWithoutNodePath.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/paragraphs/{index}"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling deleteParagraphWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling deleteParagraphWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling deleteParagraphWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling deleteParagraphWithoutNodePath.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+
+        const requestOptions: request.Options = {
+            method: "DELETE",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve(response);
+    }
+
+    /**
+     * Removes paragraph from section.
+     * @param requestObj contains request parameters
+     */
+    public async deleteParagraphWithoutNodePathOnline(requestObj: model.DeleteParagraphWithoutNodePathOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling deleteParagraphWithoutNodePathOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/paragraphs/{index}"
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling deleteParagraphWithoutNodePathOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling deleteParagraphWithoutNodePathOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling deleteParagraphWithoutNodePathOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling deleteParagraphWithoutNodePathOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "DELETE",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+
+        requestOptions.formData = formParams;
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const result: model.WordsIncomingMessage< Buffer > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Removes run from document.
      * @param requestObj contains request parameters
      */
@@ -1809,9 +2569,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{paragraphPath}/runs/{index}"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "paragraphPath" + "}", (requestObj.paragraphPath !== null && requestObj.paragraphPath !== undefined) ? "/" + String(requestObj.paragraphPath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "paragraphPath" + "}", (requestObj.paragraphPath !== null) ? "/" + String(requestObj.paragraphPath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -1868,8 +2628,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/sections/{sectionIndex}"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "sectionIndex" + "}", (requestObj.sectionIndex !== null && requestObj.sectionIndex !== undefined) ? "/" + String(requestObj.sectionIndex) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "sectionIndex" + "}", (requestObj.sectionIndex !== null) ? "/" + String(requestObj.sectionIndex) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -1921,9 +2681,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/tables/{index}"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -1934,6 +2694,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.name' is not null
         if (requestObj.name === null) {
             throw new Error('Required parameter "requestObj.name" was null when calling deleteTable.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling deleteTable.');
         }
 
         // verify required parameter 'requestObj.index' is not undefined
@@ -1975,9 +2740,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{tableRowPath}/cells/{index}"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "tableRowPath" + "}", (requestObj.tableRowPath !== null && requestObj.tableRowPath !== undefined) ? "/" + String(requestObj.tableRowPath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "tableRowPath" + "}", (requestObj.tableRowPath !== null) ? "/" + String(requestObj.tableRowPath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -2034,9 +2799,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{tablePath}/rows/{index}"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "tablePath" + "}", (requestObj.tablePath !== null && requestObj.tablePath !== undefined) ? "/" + String(requestObj.tablePath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "tablePath" + "}", (requestObj.tablePath !== null) ? "/" + String(requestObj.tablePath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -2084,6 +2849,59 @@ export class WordsApi {
     }
 
     /**
+     * Deletes a table.
+     * @param requestObj contains request parameters
+     */
+    public async deleteTableWithoutNodePath(requestObj: model.DeleteTableWithoutNodePathRequest): Promise< http.IncomingMessage > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling deleteTableWithoutNodePath.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/tables/{index}"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling deleteTableWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling deleteTableWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling deleteTableWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling deleteTableWithoutNodePath.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+
+        const requestOptions: request.Options = {
+            method: "DELETE",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve(response);
+    }
+
+    /**
      * Deletes watermark (for deleting last watermark from the document).
      * @param requestObj contains request parameters
      */
@@ -2093,7 +2911,7 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/watermarks/deleteLast"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -2137,7 +2955,7 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/storage/file/{path}"
-            .replace("/{" + "path" + "}", (requestObj.path !== null && requestObj.path !== undefined) ? "/" + String(requestObj.path) : "")
+            .replace("/{" + "path" + "}", (requestObj.path !== null) ? "/" + String(requestObj.path) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.path' is not undefined
@@ -2176,7 +2994,7 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/MailMerge"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         const formParams: any = {};
@@ -2210,9 +3028,7 @@ export class WordsApi {
             json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
-        }
+        requestOptions.formData = formParams;
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
         const result: model.WordsIncomingMessage< model.DocumentResponse > = {body, response};
@@ -2269,9 +3085,7 @@ export class WordsApi {
             encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
-        }
+        requestOptions.formData = formParams;
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "Buffer");
         const result: model.WordsIncomingMessage< Buffer > = {body, response};
@@ -2315,8 +3129,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/bookmarks/{bookmarkName}"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "bookmarkName" + "}", (requestObj.bookmarkName !== null && requestObj.bookmarkName !== undefined) ? "/" + String(requestObj.bookmarkName) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "bookmarkName" + "}", (requestObj.bookmarkName !== null) ? "/" + String(requestObj.bookmarkName) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -2367,7 +3181,7 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/bookmarks"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -2408,9 +3222,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/borders/{borderType}"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "borderType" + "}", (requestObj.borderType !== null && requestObj.borderType !== undefined) ? "/" + String(requestObj.borderType) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "borderType" + "}", (requestObj.borderType !== null) ? "/" + String(requestObj.borderType) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -2421,6 +3235,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.name' is not null
         if (requestObj.name === null) {
             throw new Error('Required parameter "requestObj.name" was null when calling getBorder.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling getBorder.');
         }
 
         // verify required parameter 'requestObj.borderType' is not undefined
@@ -2461,8 +3280,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/borders"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -2473,6 +3292,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.name' is not null
         if (requestObj.name === null) {
             throw new Error('Required parameter "requestObj.name" was null when calling getBorders.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling getBorders.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -2503,8 +3327,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/comments/{commentIndex}"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "commentIndex" + "}", (requestObj.commentIndex !== null && requestObj.commentIndex !== undefined) ? "/" + String(requestObj.commentIndex) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "commentIndex" + "}", (requestObj.commentIndex !== null) ? "/" + String(requestObj.commentIndex) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -2555,7 +3379,7 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/comments"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -2596,7 +3420,7 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{documentName}"
-            .replace("/{" + "documentName" + "}", (requestObj.documentName !== null && requestObj.documentName !== undefined) ? "/" + String(requestObj.documentName) : "")
+            .replace("/{" + "documentName" + "}", (requestObj.documentName !== null) ? "/" + String(requestObj.documentName) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.documentName' is not undefined
@@ -2637,9 +3461,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects/{index}"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -2650,6 +3474,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.name' is not null
         if (requestObj.name === null) {
             throw new Error('Required parameter "requestObj.name" was null when calling getDocumentDrawingObjectByIndex.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling getDocumentDrawingObjectByIndex.');
         }
 
         // verify required parameter 'requestObj.index' is not undefined
@@ -2681,6 +3510,58 @@ export class WordsApi {
     }
 
     /**
+     * Reads document drawing object common info by its index or convert to format specified.
+     * @param requestObj contains request parameters
+     */
+    public async getDocumentDrawingObjectByIndexWithoutNodePath(requestObj: model.GetDocumentDrawingObjectByIndexWithoutNodePathRequest): Promise< model.WordsIncomingMessage< model.DrawingObjectResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentDrawingObjectByIndexWithoutNodePath.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/drawingObjects/{index}"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling getDocumentDrawingObjectByIndexWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling getDocumentDrawingObjectByIndexWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling getDocumentDrawingObjectByIndexWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling getDocumentDrawingObjectByIndexWithoutNodePath.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "DrawingObjectResponse");
+        const result: model.WordsIncomingMessage< model.DrawingObjectResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Reads drawing object image data.
      * @param requestObj contains request parameters
      */
@@ -2690,9 +3571,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects/{index}/imageData"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -2703,6 +3584,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.name' is not null
         if (requestObj.name === null) {
             throw new Error('Required parameter "requestObj.name" was null when calling getDocumentDrawingObjectImageData.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling getDocumentDrawingObjectImageData.');
         }
 
         // verify required parameter 'requestObj.index' is not undefined
@@ -2734,6 +3620,58 @@ export class WordsApi {
     }
 
     /**
+     * Reads drawing object image data.
+     * @param requestObj contains request parameters
+     */
+    public async getDocumentDrawingObjectImageDataWithoutNodePath(requestObj: model.GetDocumentDrawingObjectImageDataWithoutNodePathRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentDrawingObjectImageDataWithoutNodePath.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/drawingObjects/{index}/imageData"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling getDocumentDrawingObjectImageDataWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling getDocumentDrawingObjectImageDataWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling getDocumentDrawingObjectImageDataWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling getDocumentDrawingObjectImageDataWithoutNodePath.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const result: model.WordsIncomingMessage< Buffer > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Gets drawing object OLE data.
      * @param requestObj contains request parameters
      */
@@ -2743,9 +3681,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects/{index}/oleData"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -2756,6 +3694,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.name' is not null
         if (requestObj.name === null) {
             throw new Error('Required parameter "requestObj.name" was null when calling getDocumentDrawingObjectOleData.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling getDocumentDrawingObjectOleData.');
         }
 
         // verify required parameter 'requestObj.index' is not undefined
@@ -2787,6 +3730,58 @@ export class WordsApi {
     }
 
     /**
+     * Gets drawing object OLE data.
+     * @param requestObj contains request parameters
+     */
+    public async getDocumentDrawingObjectOleDataWithoutNodePath(requestObj: model.GetDocumentDrawingObjectOleDataWithoutNodePathRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentDrawingObjectOleDataWithoutNodePath.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/drawingObjects/{index}/oleData"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling getDocumentDrawingObjectOleDataWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling getDocumentDrawingObjectOleDataWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling getDocumentDrawingObjectOleDataWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling getDocumentDrawingObjectOleDataWithoutNodePath.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const result: model.WordsIncomingMessage< Buffer > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Reads document drawing objects common info.
      * @param requestObj contains request parameters
      */
@@ -2796,8 +3791,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -2808,6 +3803,52 @@ export class WordsApi {
         // verify required parameter 'requestObj.name' is not null
         if (requestObj.name === null) {
             throw new Error('Required parameter "requestObj.name" was null when calling getDocumentDrawingObjects.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling getDocumentDrawingObjects.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "DrawingObjectsResponse");
+        const result: model.WordsIncomingMessage< model.DrawingObjectsResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Reads document drawing objects common info.
+     * @param requestObj contains request parameters
+     */
+    public async getDocumentDrawingObjectsWithoutNodePath(requestObj: model.GetDocumentDrawingObjectsWithoutNodePathRequest): Promise< model.WordsIncomingMessage< model.DrawingObjectsResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentDrawingObjectsWithoutNodePath.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/drawingObjects"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling getDocumentDrawingObjectsWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling getDocumentDrawingObjectsWithoutNodePath.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -2838,7 +3879,7 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/mailMerge/FieldNames"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -2874,43 +3915,41 @@ export class WordsApi {
      * Reads document field names.
      * @param requestObj contains request parameters
      */
-    public async getDocumentFieldNamesOnline(requestObj: model.GetDocumentFieldNamesOnlineRequest): Promise< model.WordsIncomingMessage< model.FieldNamesResponse > > {
+    public async getDocumentFieldNamesOnline(requestObj: model.GetDocumentFieldNamesOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentFieldNamesOnline.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/mailMerge/FieldNames"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/mailMerge/FieldNames"
             .replace("//", "/");
         const queryParameters: any = {};
         const formParams: any = {};
-        // verify required parameter 'requestObj.template' is not undefined
-        if (requestObj.template === undefined) {
-            throw new Error('Required parameter "requestObj.template" was undefined when calling getDocumentFieldNamesOnline.');
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getDocumentFieldNamesOnline.');
         }
 
-        // verify required parameter 'requestObj.template' is not null
-        if (requestObj.template === null) {
-            throw new Error('Required parameter "requestObj.template" was null when calling getDocumentFieldNamesOnline.');
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getDocumentFieldNamesOnline.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "useNonMergeFields", requestObj.useNonMergeFields);
-        if (requestObj.template !== undefined) {
-            formParams.Template = requestObj.template;
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
         }
 
         const requestOptions: request.Options = {
-            method: "PUT",
+            method: "GET",
             qs: queryParameters,
             uri: localVarPath,
-            json: true,
+            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
-        }
+        requestOptions.formData = formParams;
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "FieldNamesResponse");
-        const result: model.WordsIncomingMessage< model.FieldNamesResponse > = {body, response};
+        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const result: model.WordsIncomingMessage< Buffer > = {body, response};
         return Promise.resolve(result);
     }
 
@@ -2924,8 +3963,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/hyperlinks/{hyperlinkIndex}"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "hyperlinkIndex" + "}", (requestObj.hyperlinkIndex !== null && requestObj.hyperlinkIndex !== undefined) ? "/" + String(requestObj.hyperlinkIndex) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "hyperlinkIndex" + "}", (requestObj.hyperlinkIndex !== null) ? "/" + String(requestObj.hyperlinkIndex) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -2976,7 +4015,7 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/hyperlinks"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -3017,7 +4056,7 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/documentProperties"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -3058,8 +4097,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/documentProperties/{propertyName}"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "propertyName" + "}", (requestObj.propertyName !== null && requestObj.propertyName !== undefined) ? "/" + String(requestObj.propertyName) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "propertyName" + "}", (requestObj.propertyName !== null) ? "/" + String(requestObj.propertyName) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -3110,7 +4149,7 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/protection"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -3151,7 +4190,7 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/statistics"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -3186,6 +4225,50 @@ export class WordsApi {
     }
 
     /**
+     * Reads document statistics.
+     * @param requestObj contains request parameters
+     */
+    public async getDocumentStatisticsOnline(requestObj: model.GetDocumentStatisticsOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentStatisticsOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/statistics"
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getDocumentStatisticsOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getDocumentStatisticsOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeComments", requestObj.includeComments);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeFootnotes", requestObj.includeFootnotes);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeTextInShapes", requestObj.includeTextInShapes);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+
+        requestOptions.formData = formParams;
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const result: model.WordsIncomingMessage< Buffer > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Exports the document into the specified format.
      * @param requestObj contains request parameters
      */
@@ -3195,7 +4278,7 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -3249,9 +4332,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/fields/{index}"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -3262,6 +4345,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.name' is not null
         if (requestObj.name === null) {
             throw new Error('Required parameter "requestObj.name" was null when calling getField.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling getField.');
         }
 
         // verify required parameter 'requestObj.index' is not undefined
@@ -3302,8 +4390,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/fields"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -3314,6 +4402,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.name' is not null
         if (requestObj.name === null) {
             throw new Error('Required parameter "requestObj.name" was null when calling getFields.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling getFields.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -3335,6 +4428,99 @@ export class WordsApi {
     }
 
     /**
+     * Get fields from document.
+     * @param requestObj contains request parameters
+     */
+    public async getFieldsWithoutNodePath(requestObj: model.GetFieldsWithoutNodePathRequest): Promise< model.WordsIncomingMessage< model.FieldsResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getFieldsWithoutNodePath.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/fields"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling getFieldsWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling getFieldsWithoutNodePath.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "FieldsResponse");
+        const result: model.WordsIncomingMessage< model.FieldsResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Gets field from document.
+     * @param requestObj contains request parameters
+     */
+    public async getFieldWithoutNodePath(requestObj: model.GetFieldWithoutNodePathRequest): Promise< model.WordsIncomingMessage< model.FieldResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getFieldWithoutNodePath.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/fields/{index}"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling getFieldWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling getFieldWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling getFieldWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling getFieldWithoutNodePath.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "FieldResponse");
+        const result: model.WordsIncomingMessage< model.FieldResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Get all files and folders within a folder.
      * @param requestObj contains request parameters
      */
@@ -3344,7 +4530,7 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/storage/folder/{path}"
-            .replace("/{" + "path" + "}", (requestObj.path !== null && requestObj.path !== undefined) ? "/" + String(requestObj.path) : "")
+            .replace("/{" + "path" + "}", (requestObj.path !== null) ? "/" + String(requestObj.path) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.path' is not undefined
@@ -3382,9 +4568,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/footnotes/{index}"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -3395,6 +4581,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.name' is not null
         if (requestObj.name === null) {
             throw new Error('Required parameter "requestObj.name" was null when calling getFootnote.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling getFootnote.');
         }
 
         // verify required parameter 'requestObj.index' is not undefined
@@ -3435,8 +4626,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/footnotes"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -3447,6 +4638,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.name' is not null
         if (requestObj.name === null) {
             throw new Error('Required parameter "requestObj.name" was null when calling getFootnotes.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling getFootnotes.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -3468,6 +4664,99 @@ export class WordsApi {
     }
 
     /**
+     * Gets footnotes from document.
+     * @param requestObj contains request parameters
+     */
+    public async getFootnotesWithoutNodePath(requestObj: model.GetFootnotesWithoutNodePathRequest): Promise< model.WordsIncomingMessage< model.FootnotesResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getFootnotesWithoutNodePath.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/footnotes"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling getFootnotesWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling getFootnotesWithoutNodePath.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "FootnotesResponse");
+        const result: model.WordsIncomingMessage< model.FootnotesResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Reads footnote by index.
+     * @param requestObj contains request parameters
+     */
+    public async getFootnoteWithoutNodePath(requestObj: model.GetFootnoteWithoutNodePathRequest): Promise< model.WordsIncomingMessage< model.FootnoteResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getFootnoteWithoutNodePath.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/footnotes/{index}"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling getFootnoteWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling getFootnoteWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling getFootnoteWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling getFootnoteWithoutNodePath.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "FootnoteResponse");
+        const result: model.WordsIncomingMessage< model.FootnoteResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Returns representation of an one of the form field.
      * @param requestObj contains request parameters
      */
@@ -3477,9 +4766,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/formfields/{index}"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -3490,6 +4779,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.name' is not null
         if (requestObj.name === null) {
             throw new Error('Required parameter "requestObj.name" was null when calling getFormField.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling getFormField.');
         }
 
         // verify required parameter 'requestObj.index' is not undefined
@@ -3530,8 +4824,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/formfields"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -3542,6 +4836,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.name' is not null
         if (requestObj.name === null) {
             throw new Error('Required parameter "requestObj.name" was null when calling getFormFields.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling getFormFields.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -3563,6 +4862,99 @@ export class WordsApi {
     }
 
     /**
+     * Gets form fields from document.
+     * @param requestObj contains request parameters
+     */
+    public async getFormFieldsWithoutNodePath(requestObj: model.GetFormFieldsWithoutNodePathRequest): Promise< model.WordsIncomingMessage< model.FormFieldsResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getFormFieldsWithoutNodePath.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/formfields"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling getFormFieldsWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling getFormFieldsWithoutNodePath.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "FormFieldsResponse");
+        const result: model.WordsIncomingMessage< model.FormFieldsResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Returns representation of an one of the form field.
+     * @param requestObj contains request parameters
+     */
+    public async getFormFieldWithoutNodePath(requestObj: model.GetFormFieldWithoutNodePathRequest): Promise< model.WordsIncomingMessage< model.FormFieldResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getFormFieldWithoutNodePath.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/formfields/{index}"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling getFormFieldWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling getFormFieldWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling getFormFieldWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling getFormFieldWithoutNodePath.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "FormFieldResponse");
+        const result: model.WordsIncomingMessage< model.FormFieldResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Returns a header/footer from the document by index.
      * @param requestObj contains request parameters
      */
@@ -3572,8 +4964,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/headersfooters/{headerFooterIndex}"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "headerFooterIndex" + "}", (requestObj.headerFooterIndex !== null && requestObj.headerFooterIndex !== undefined) ? "/" + String(requestObj.headerFooterIndex) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "headerFooterIndex" + "}", (requestObj.headerFooterIndex !== null) ? "/" + String(requestObj.headerFooterIndex) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -3625,9 +5017,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/sections/{sectionIndex}/headersfooters/{headerFooterIndex}"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "headerFooterIndex" + "}", (requestObj.headerFooterIndex !== null && requestObj.headerFooterIndex !== undefined) ? "/" + String(requestObj.headerFooterIndex) : "")
-            .replace("/{" + "sectionIndex" + "}", (requestObj.sectionIndex !== null && requestObj.sectionIndex !== undefined) ? "/" + String(requestObj.sectionIndex) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "headerFooterIndex" + "}", (requestObj.headerFooterIndex !== null) ? "/" + String(requestObj.headerFooterIndex) : "")
+            .replace("/{" + "sectionIndex" + "}", (requestObj.sectionIndex !== null) ? "/" + String(requestObj.sectionIndex) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -3689,8 +5081,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{sectionPath}/headersfooters"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "sectionPath" + "}", (requestObj.sectionPath !== null && requestObj.sectionPath !== undefined) ? "/" + String(requestObj.sectionPath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "sectionPath" + "}", (requestObj.sectionPath !== null) ? "/" + String(requestObj.sectionPath) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -3737,8 +5129,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/lists/{listId}"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "listId" + "}", (requestObj.listId !== null && requestObj.listId !== undefined) ? "/" + String(requestObj.listId) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "listId" + "}", (requestObj.listId !== null) ? "/" + String(requestObj.listId) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -3789,7 +5181,7 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/lists"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -3830,9 +5222,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/OfficeMathObjects/{index}"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -3843,6 +5235,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.name' is not null
         if (requestObj.name === null) {
             throw new Error('Required parameter "requestObj.name" was null when calling getOfficeMathObject.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling getOfficeMathObject.');
         }
 
         // verify required parameter 'requestObj.index' is not undefined
@@ -3883,8 +5280,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/OfficeMathObjects"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -3895,6 +5292,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.name' is not null
         if (requestObj.name === null) {
             throw new Error('Required parameter "requestObj.name" was null when calling getOfficeMathObjects.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling getOfficeMathObjects.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -3916,18 +5318,111 @@ export class WordsApi {
     }
 
     /**
+     * Gets OfficeMath objects from document.
+     * @param requestObj contains request parameters
+     */
+    public async getOfficeMathObjectsWithoutNodePath(requestObj: model.GetOfficeMathObjectsWithoutNodePathRequest): Promise< model.WordsIncomingMessage< model.OfficeMathObjectsResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getOfficeMathObjectsWithoutNodePath.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/OfficeMathObjects"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling getOfficeMathObjectsWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling getOfficeMathObjectsWithoutNodePath.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "OfficeMathObjectsResponse");
+        const result: model.WordsIncomingMessage< model.OfficeMathObjectsResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Reads OfficeMath object by index.
+     * @param requestObj contains request parameters
+     */
+    public async getOfficeMathObjectWithoutNodePath(requestObj: model.GetOfficeMathObjectWithoutNodePathRequest): Promise< model.WordsIncomingMessage< model.OfficeMathObjectResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getOfficeMathObjectWithoutNodePath.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/OfficeMathObjects/{index}"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling getOfficeMathObjectWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling getOfficeMathObjectWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling getOfficeMathObjectWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling getOfficeMathObjectWithoutNodePath.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "OfficeMathObjectResponse");
+        const result: model.WordsIncomingMessage< model.OfficeMathObjectResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * This resource represents one of the paragraphs contained in the document.
      * @param requestObj contains request parameters
      */
-    public async getParagraph(requestObj: model.GetParagraphRequest): Promise< model.WordsIncomingMessage< model.ParagraphResponse > > {
+    public async getParagraph(requestObj: model.GetParagraphRequest): Promise< model.WordsIncomingMessage< Buffer > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getParagraph.');
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -3938,6 +5433,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.name' is not null
         if (requestObj.name === null) {
             throw new Error('Required parameter "requestObj.name" was null when calling getParagraph.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling getParagraph.');
         }
 
         // verify required parameter 'requestObj.index' is not undefined
@@ -3959,12 +5459,12 @@ export class WordsApi {
             method: "GET",
             qs: queryParameters,
             uri: localVarPath,
-            json: true,
+            encoding: null,
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "ParagraphResponse");
-        const result: model.WordsIncomingMessage< model.ParagraphResponse > = {body, response};
+        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const result: model.WordsIncomingMessage< Buffer > = {body, response};
         return Promise.resolve(result);
     }
 
@@ -3978,9 +5478,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}/format"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -3991,6 +5491,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.name' is not null
         if (requestObj.name === null) {
             throw new Error('Required parameter "requestObj.name" was null when calling getParagraphFormat.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling getParagraphFormat.');
         }
 
         // verify required parameter 'requestObj.index' is not undefined
@@ -4022,6 +5527,58 @@ export class WordsApi {
     }
 
     /**
+     * Represents all the formatting for a paragraph.
+     * @param requestObj contains request parameters
+     */
+    public async getParagraphFormatWithoutNodePath(requestObj: model.GetParagraphFormatWithoutNodePathRequest): Promise< model.WordsIncomingMessage< model.ParagraphFormatResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getParagraphFormatWithoutNodePath.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/paragraphs/{index}/format"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling getParagraphFormatWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling getParagraphFormatWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling getParagraphFormatWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling getParagraphFormatWithoutNodePath.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "ParagraphFormatResponse");
+        const result: model.WordsIncomingMessage< model.ParagraphFormatResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Represents list format for a paragraph.
      * @param requestObj contains request parameters
      */
@@ -4031,9 +5588,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}/listFormat"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -4044,6 +5601,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.name' is not null
         if (requestObj.name === null) {
             throw new Error('Required parameter "requestObj.name" was null when calling getParagraphListFormat.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling getParagraphListFormat.');
         }
 
         // verify required parameter 'requestObj.index' is not undefined
@@ -4075,27 +5637,37 @@ export class WordsApi {
     }
 
     /**
-     * Returns a list of paragraphs that are contained in the document.
+     * Represents list format for a paragraph.
      * @param requestObj contains request parameters
      */
-    public async getParagraphs(requestObj: model.GetParagraphsRequest): Promise< model.WordsIncomingMessage< model.ParagraphLinkCollectionResponse > > {
+    public async getParagraphListFormatWithoutNodePath(requestObj: model.GetParagraphListFormatWithoutNodePathRequest): Promise< model.WordsIncomingMessage< model.ParagraphListFormatResponse > > {
         if (requestObj === null || requestObj === undefined) {
-            throw new Error('Required parameter "requestObj" was null or undefined when calling getParagraphs.');
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getParagraphListFormatWithoutNodePath.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/paragraphs/{index}/listFormat"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
         if (requestObj.name === undefined) {
-            throw new Error('Required parameter "requestObj.name" was undefined when calling getParagraphs.');
+            throw new Error('Required parameter "requestObj.name" was undefined when calling getParagraphListFormatWithoutNodePath.');
         }
 
         // verify required parameter 'requestObj.name' is not null
         if (requestObj.name === null) {
-            throw new Error('Required parameter "requestObj.name" was null when calling getParagraphs.');
+            throw new Error('Required parameter "requestObj.name" was null when calling getParagraphListFormatWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling getParagraphListFormatWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling getParagraphListFormatWithoutNodePath.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -4111,8 +5683,248 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "ParagraphLinkCollectionResponse");
-        const result: model.WordsIncomingMessage< model.ParagraphLinkCollectionResponse > = {body, response};
+        const body =  ObjectSerializer.deserialize(response.body, "ParagraphListFormatResponse");
+        const result: model.WordsIncomingMessage< model.ParagraphListFormatResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * This resource represents one of the paragraphs contained in the document.
+     * @param requestObj contains request parameters
+     */
+    public async getParagraphOnline(requestObj: model.GetParagraphOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getParagraphOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/{nodePath}/paragraphs/{index}"
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling getParagraphOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getParagraphOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getParagraphOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling getParagraphOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling getParagraphOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+
+        requestOptions.formData = formParams;
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const result: model.WordsIncomingMessage< Buffer > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Returns a list of paragraphs that are contained in the document.
+     * @param requestObj contains request parameters
+     */
+    public async getParagraphs(requestObj: model.GetParagraphsRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getParagraphs.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling getParagraphs.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling getParagraphs.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling getParagraphs.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const result: model.WordsIncomingMessage< Buffer > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Returns a list of paragraphs that are contained in the document.
+     * @param requestObj contains request parameters
+     */
+    public async getParagraphsOnline(requestObj: model.GetParagraphsOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getParagraphsOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/{nodePath}/paragraphs"
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling getParagraphsOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getParagraphsOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getParagraphsOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+
+        requestOptions.formData = formParams;
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const result: model.WordsIncomingMessage< Buffer > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Returns a list of paragraphs that are contained in the document.
+     * @param requestObj contains request parameters
+     */
+    public async getParagraphsWithoutNodePath(requestObj: model.GetParagraphsWithoutNodePathRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getParagraphsWithoutNodePath.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/paragraphs"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling getParagraphsWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling getParagraphsWithoutNodePath.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const result: model.WordsIncomingMessage< Buffer > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Returns a list of paragraphs that are contained in the document.
+     * @param requestObj contains request parameters
+     */
+    public async getParagraphsWithoutNodePathOnline(requestObj: model.GetParagraphsWithoutNodePathOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getParagraphsWithoutNodePathOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/paragraphs"
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getParagraphsWithoutNodePathOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getParagraphsWithoutNodePathOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+
+        requestOptions.formData = formParams;
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const result: model.WordsIncomingMessage< Buffer > = {body, response};
         return Promise.resolve(result);
     }
 
@@ -4126,9 +5938,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}/tabstops"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -4139,6 +5951,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.name' is not null
         if (requestObj.name === null) {
             throw new Error('Required parameter "requestObj.name" was null when calling getParagraphTabStops.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling getParagraphTabStops.');
         }
 
         // verify required parameter 'requestObj.index' is not undefined
@@ -4170,6 +5987,164 @@ export class WordsApi {
     }
 
     /**
+     * Get all tab stops for the paragraph.
+     * @param requestObj contains request parameters
+     */
+    public async getParagraphTabStopsWithoutNodePath(requestObj: model.GetParagraphTabStopsWithoutNodePathRequest): Promise< model.WordsIncomingMessage< model.TabStopsResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getParagraphTabStopsWithoutNodePath.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/paragraphs/{index}/tabstops"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling getParagraphTabStopsWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling getParagraphTabStopsWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling getParagraphTabStopsWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling getParagraphTabStopsWithoutNodePath.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "TabStopsResponse");
+        const result: model.WordsIncomingMessage< model.TabStopsResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * This resource represents one of the paragraphs contained in the document.
+     * @param requestObj contains request parameters
+     */
+    public async getParagraphWithoutNodePath(requestObj: model.GetParagraphWithoutNodePathRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getParagraphWithoutNodePath.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/paragraphs/{index}"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling getParagraphWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling getParagraphWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling getParagraphWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling getParagraphWithoutNodePath.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const result: model.WordsIncomingMessage< Buffer > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * This resource represents one of the paragraphs contained in the document.
+     * @param requestObj contains request parameters
+     */
+    public async getParagraphWithoutNodePathOnline(requestObj: model.GetParagraphWithoutNodePathOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getParagraphWithoutNodePathOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/paragraphs/{index}"
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling getParagraphWithoutNodePathOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling getParagraphWithoutNodePathOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getParagraphWithoutNodePathOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getParagraphWithoutNodePathOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+
+        requestOptions.formData = formParams;
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const result: model.WordsIncomingMessage< Buffer > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Gets the text from the range.
      * @param requestObj contains request parameters
      */
@@ -4179,9 +6154,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/range/{rangeStartIdentifier}/{rangeEndIdentifier}"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "rangeStartIdentifier" + "}", (requestObj.rangeStartIdentifier !== null && requestObj.rangeStartIdentifier !== undefined) ? "/" + String(requestObj.rangeStartIdentifier) : "")
-            .replace("/{" + "rangeEndIdentifier" + "}", (requestObj.rangeEndIdentifier !== null && requestObj.rangeEndIdentifier !== undefined) ? "/" + String(requestObj.rangeEndIdentifier) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "rangeStartIdentifier" + "}", (requestObj.rangeStartIdentifier !== null) ? "/" + String(requestObj.rangeStartIdentifier) : "")
+            .replace("/{" + "rangeEndIdentifier" + "}", (requestObj.rangeEndIdentifier !== null) ? "/" + String(requestObj.rangeEndIdentifier) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -4232,9 +6207,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{paragraphPath}/runs/{index}"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "paragraphPath" + "}", (requestObj.paragraphPath !== null && requestObj.paragraphPath !== undefined) ? "/" + String(requestObj.paragraphPath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "paragraphPath" + "}", (requestObj.paragraphPath !== null) ? "/" + String(requestObj.paragraphPath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -4290,9 +6265,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{paragraphPath}/runs/{index}/font"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "paragraphPath" + "}", (requestObj.paragraphPath !== null && requestObj.paragraphPath !== undefined) ? "/" + String(requestObj.paragraphPath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "paragraphPath" + "}", (requestObj.paragraphPath !== null) ? "/" + String(requestObj.paragraphPath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -4348,8 +6323,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{paragraphPath}/runs"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "paragraphPath" + "}", (requestObj.paragraphPath !== null && requestObj.paragraphPath !== undefined) ? "/" + String(requestObj.paragraphPath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "paragraphPath" + "}", (requestObj.paragraphPath !== null) ? "/" + String(requestObj.paragraphPath) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -4395,8 +6370,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/sections/{sectionIndex}"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "sectionIndex" + "}", (requestObj.sectionIndex !== null && requestObj.sectionIndex !== undefined) ? "/" + String(requestObj.sectionIndex) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "sectionIndex" + "}", (requestObj.sectionIndex !== null) ? "/" + String(requestObj.sectionIndex) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -4447,8 +6422,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/sections/{sectionIndex}/pageSetup"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "sectionIndex" + "}", (requestObj.sectionIndex !== null && requestObj.sectionIndex !== undefined) ? "/" + String(requestObj.sectionIndex) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "sectionIndex" + "}", (requestObj.sectionIndex !== null) ? "/" + String(requestObj.sectionIndex) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -4499,7 +6474,7 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/sections"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -4540,8 +6515,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/styles/{styleName}"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "styleName" + "}", (requestObj.styleName !== null && requestObj.styleName !== undefined) ? "/" + String(requestObj.styleName) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "styleName" + "}", (requestObj.styleName !== null) ? "/" + String(requestObj.styleName) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -4592,8 +6567,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{styledNodePath}/style"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "styledNodePath" + "}", (requestObj.styledNodePath !== null && requestObj.styledNodePath !== undefined) ? "/" + String(requestObj.styledNodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "styledNodePath" + "}", (requestObj.styledNodePath !== null) ? "/" + String(requestObj.styledNodePath) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -4644,7 +6619,7 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/styles"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -4685,9 +6660,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/tables/{index}"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -4698,6 +6673,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.name' is not null
         if (requestObj.name === null) {
             throw new Error('Required parameter "requestObj.name" was null when calling getTable.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling getTable.');
         }
 
         // verify required parameter 'requestObj.index' is not undefined
@@ -4738,9 +6718,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{tableRowPath}/cells/{index}"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "tableRowPath" + "}", (requestObj.tableRowPath !== null && requestObj.tableRowPath !== undefined) ? "/" + String(requestObj.tableRowPath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "tableRowPath" + "}", (requestObj.tableRowPath !== null) ? "/" + String(requestObj.tableRowPath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -4796,9 +6776,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{tableRowPath}/cells/{index}/cellformat"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "tableRowPath" + "}", (requestObj.tableRowPath !== null && requestObj.tableRowPath !== undefined) ? "/" + String(requestObj.tableRowPath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "tableRowPath" + "}", (requestObj.tableRowPath !== null) ? "/" + String(requestObj.tableRowPath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -4854,9 +6834,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/tables/{index}/properties"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -4867,6 +6847,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.name' is not null
         if (requestObj.name === null) {
             throw new Error('Required parameter "requestObj.name" was null when calling getTableProperties.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling getTableProperties.');
         }
 
         // verify required parameter 'requestObj.index' is not undefined
@@ -4898,6 +6883,58 @@ export class WordsApi {
     }
 
     /**
+     * Returns a table properties.
+     * @param requestObj contains request parameters
+     */
+    public async getTablePropertiesWithoutNodePath(requestObj: model.GetTablePropertiesWithoutNodePathRequest): Promise< model.WordsIncomingMessage< model.TablePropertiesResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getTablePropertiesWithoutNodePath.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/tables/{index}/properties"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling getTablePropertiesWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling getTablePropertiesWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling getTablePropertiesWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling getTablePropertiesWithoutNodePath.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "TablePropertiesResponse");
+        const result: model.WordsIncomingMessage< model.TablePropertiesResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Returns a table row.
      * @param requestObj contains request parameters
      */
@@ -4907,9 +6944,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{tablePath}/rows/{index}"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "tablePath" + "}", (requestObj.tablePath !== null && requestObj.tablePath !== undefined) ? "/" + String(requestObj.tablePath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "tablePath" + "}", (requestObj.tablePath !== null) ? "/" + String(requestObj.tablePath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -4965,9 +7002,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{tablePath}/rows/{index}/rowformat"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "tablePath" + "}", (requestObj.tablePath !== null && requestObj.tablePath !== undefined) ? "/" + String(requestObj.tablePath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "tablePath" + "}", (requestObj.tablePath !== null) ? "/" + String(requestObj.tablePath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -5023,8 +7060,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/tables"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -5035,6 +7072,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.name' is not null
         if (requestObj.name === null) {
             throw new Error('Required parameter "requestObj.name" was null when calling getTables.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling getTables.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -5056,6 +7098,99 @@ export class WordsApi {
     }
 
     /**
+     * Returns a list of tables that are contained in the document.
+     * @param requestObj contains request parameters
+     */
+    public async getTablesWithoutNodePath(requestObj: model.GetTablesWithoutNodePathRequest): Promise< model.WordsIncomingMessage< model.TableLinkCollectionResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getTablesWithoutNodePath.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/tables"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling getTablesWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling getTablesWithoutNodePath.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "TableLinkCollectionResponse");
+        const result: model.WordsIncomingMessage< model.TableLinkCollectionResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Returns a table.
+     * @param requestObj contains request parameters
+     */
+    public async getTableWithoutNodePath(requestObj: model.GetTableWithoutNodePathRequest): Promise< model.WordsIncomingMessage< model.TableResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getTableWithoutNodePath.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/tables/{index}"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling getTableWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling getTableWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling getTableWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling getTableWithoutNodePath.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "TableResponse");
+        const result: model.WordsIncomingMessage< model.TableResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Adds comment to document, returns inserted comment data.
      * @param requestObj contains request parameters
      */
@@ -5065,7 +7200,7 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/comments"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -5120,8 +7255,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         const formParams: any = {};
@@ -5155,6 +7290,11 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj.imageFile" was null when calling insertDrawingObject.');
         }
 
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling insertDrawingObject.');
+        }
+
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
@@ -5176,9 +7316,79 @@ export class WordsApi {
             json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        requestOptions.formData = formParams;
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "DrawingObjectResponse");
+        const result: model.WordsIncomingMessage< model.DrawingObjectResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Adds drawing object to document, returns added  drawing object's data.
+     * @param requestObj contains request parameters
+     */
+    public async insertDrawingObjectWithoutNodePath(requestObj: model.InsertDrawingObjectWithoutNodePathRequest): Promise< model.WordsIncomingMessage< model.DrawingObjectResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling insertDrawingObjectWithoutNodePath.');
         }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/drawingObjects"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling insertDrawingObjectWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling insertDrawingObjectWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.drawingObject' is not undefined
+        if (requestObj.drawingObject === undefined) {
+            throw new Error('Required parameter "requestObj.drawingObject" was undefined when calling insertDrawingObjectWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.drawingObject' is not null
+        if (requestObj.drawingObject === null) {
+            throw new Error('Required parameter "requestObj.drawingObject" was null when calling insertDrawingObjectWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.imageFile' is not undefined
+        if (requestObj.imageFile === undefined) {
+            throw new Error('Required parameter "requestObj.imageFile" was undefined when calling insertDrawingObjectWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.imageFile' is not null
+        if (requestObj.imageFile === null) {
+            throw new Error('Required parameter "requestObj.imageFile" was null when calling insertDrawingObjectWithoutNodePath.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.drawingObject !== undefined) {
+            formParams.DrawingObject = JSON.stringify(requestObj.drawingObject);
+        }
+        if (requestObj.imageFile !== undefined) {
+            formParams.ImageFile = requestObj.imageFile;
+        }
+
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        requestOptions.formData = formParams;
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "DrawingObjectResponse");
         const result: model.WordsIncomingMessage< model.DrawingObjectResponse > = {body, response};
@@ -5195,8 +7405,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/fields"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -5217,6 +7427,67 @@ export class WordsApi {
         // verify required parameter 'requestObj.field' is not null
         if (requestObj.field === null) {
             throw new Error('Required parameter "requestObj.field" was null when calling insertField.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling insertField.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", requestObj.insertBeforeNode);
+
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+            body: ObjectSerializer.serialize(requestObj.field, requestObj.field.constructor.name === "Object" ? "importedFieldInsert.FieldInsert" : requestObj.field.constructor.name),
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "FieldResponse");
+        const result: model.WordsIncomingMessage< model.FieldResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Adds field to document, returns inserted field's data.
+     * @param requestObj contains request parameters
+     */
+    public async insertFieldWithoutNodePath(requestObj: model.InsertFieldWithoutNodePathRequest): Promise< model.WordsIncomingMessage< model.FieldResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling insertFieldWithoutNodePath.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/fields"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling insertFieldWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling insertFieldWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.field' is not undefined
+        if (requestObj.field === undefined) {
+            throw new Error('Required parameter "requestObj.field" was undefined when calling insertFieldWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.field' is not null
+        if (requestObj.field === null) {
+            throw new Error('Required parameter "requestObj.field" was null when calling insertFieldWithoutNodePath.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -5252,8 +7523,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/footnotes"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -5274,6 +7545,66 @@ export class WordsApi {
         // verify required parameter 'requestObj.footnoteDto' is not null
         if (requestObj.footnoteDto === null) {
             throw new Error('Required parameter "requestObj.footnoteDto" was null when calling insertFootnote.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling insertFootnote.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+            body: ObjectSerializer.serialize(requestObj.footnoteDto, requestObj.footnoteDto.constructor.name === "Object" ? "importedFootnoteInsert.FootnoteInsert" : requestObj.footnoteDto.constructor.name),
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "FootnoteResponse");
+        const result: model.WordsIncomingMessage< model.FootnoteResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Adds footnote to document, returns added footnote's data.
+     * @param requestObj contains request parameters
+     */
+    public async insertFootnoteWithoutNodePath(requestObj: model.InsertFootnoteWithoutNodePathRequest): Promise< model.WordsIncomingMessage< model.FootnoteResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling insertFootnoteWithoutNodePath.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/footnotes"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling insertFootnoteWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling insertFootnoteWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.footnoteDto' is not undefined
+        if (requestObj.footnoteDto === undefined) {
+            throw new Error('Required parameter "requestObj.footnoteDto" was undefined when calling insertFootnoteWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.footnoteDto' is not null
+        if (requestObj.footnoteDto === null) {
+            throw new Error('Required parameter "requestObj.footnoteDto" was null when calling insertFootnoteWithoutNodePath.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -5308,8 +7639,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/formfields"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -5330,6 +7661,67 @@ export class WordsApi {
         // verify required parameter 'requestObj.formField' is not null
         if (requestObj.formField === null) {
             throw new Error('Required parameter "requestObj.formField" was null when calling insertFormField.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling insertFormField.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", requestObj.insertBeforeNode);
+
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+            body: ObjectSerializer.serialize(requestObj.formField, requestObj.formField.constructor.name === "Object" ? "importedFormField.FormField" : requestObj.formField.constructor.name),
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "FormFieldResponse");
+        const result: model.WordsIncomingMessage< model.FormFieldResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Adds form field to paragraph, returns added form field's data.
+     * @param requestObj contains request parameters
+     */
+    public async insertFormFieldWithoutNodePath(requestObj: model.InsertFormFieldWithoutNodePathRequest): Promise< model.WordsIncomingMessage< model.FormFieldResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling insertFormFieldWithoutNodePath.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/formfields"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling insertFormFieldWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling insertFormFieldWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.formField' is not undefined
+        if (requestObj.formField === undefined) {
+            throw new Error('Required parameter "requestObj.formField" was undefined when calling insertFormFieldWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.formField' is not null
+        if (requestObj.formField === null) {
+            throw new Error('Required parameter "requestObj.formField" was null when calling insertFormFieldWithoutNodePath.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -5365,8 +7757,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{sectionPath}/headersfooters"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "sectionPath" + "}", (requestObj.sectionPath !== null && requestObj.sectionPath !== undefined) ? "/" + String(requestObj.sectionPath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "sectionPath" + "}", (requestObj.sectionPath !== null) ? "/" + String(requestObj.sectionPath) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -5426,7 +7818,7 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/lists"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -5481,9 +7873,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}/tabstops"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -5504,6 +7896,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.dto' is not null
         if (requestObj.dto === null) {
             throw new Error('Required parameter "requestObj.dto" was null when calling insertOrUpdateParagraphTabStop.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling insertOrUpdateParagraphTabStop.');
         }
 
         // verify required parameter 'requestObj.index' is not undefined
@@ -5537,6 +7934,70 @@ export class WordsApi {
     }
 
     /**
+     * Insert or resplace tab stop if a tab stop with the position exists.
+     * @param requestObj contains request parameters
+     */
+    public async insertOrUpdateParagraphTabStopWithoutNodePath(requestObj: model.InsertOrUpdateParagraphTabStopWithoutNodePathRequest): Promise< model.WordsIncomingMessage< model.TabStopsResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling insertOrUpdateParagraphTabStopWithoutNodePath.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/paragraphs/{index}/tabstops"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling insertOrUpdateParagraphTabStopWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling insertOrUpdateParagraphTabStopWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.dto' is not undefined
+        if (requestObj.dto === undefined) {
+            throw new Error('Required parameter "requestObj.dto" was undefined when calling insertOrUpdateParagraphTabStopWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.dto' is not null
+        if (requestObj.dto === null) {
+            throw new Error('Required parameter "requestObj.dto" was null when calling insertOrUpdateParagraphTabStopWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling insertOrUpdateParagraphTabStopWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling insertOrUpdateParagraphTabStopWithoutNodePath.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+            body: ObjectSerializer.serialize(requestObj.dto, requestObj.dto.constructor.name === "Object" ? "importedTabStopInsert.TabStopInsert" : requestObj.dto.constructor.name),
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "TabStopsResponse");
+        const result: model.WordsIncomingMessage< model.TabStopsResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Inserts document page numbers.
      * @param requestObj contains request parameters
      */
@@ -5546,7 +8007,7 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/PageNumbers"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -5595,14 +8056,14 @@ export class WordsApi {
      * Adds paragraph to document, returns added paragraph's data.
      * @param requestObj contains request parameters
      */
-    public async insertParagraph(requestObj: model.InsertParagraphRequest): Promise< model.WordsIncomingMessage< model.ParagraphResponse > > {
+    public async insertParagraph(requestObj: model.InsertParagraphRequest): Promise< model.WordsIncomingMessage< Buffer > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling insertParagraph.');
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -5613,6 +8074,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.name' is not null
         if (requestObj.name === null) {
             throw new Error('Required parameter "requestObj.name" was null when calling insertParagraph.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling insertParagraph.');
         }
 
         // verify required parameter 'requestObj.paragraph' is not undefined
@@ -5638,13 +8104,195 @@ export class WordsApi {
             method: "POST",
             qs: queryParameters,
             uri: localVarPath,
-            json: true,
+            encoding: null,
             body: ObjectSerializer.serialize(requestObj.paragraph, requestObj.paragraph.constructor.name === "Object" ? "importedParagraphInsert.ParagraphInsert" : requestObj.paragraph.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "ParagraphResponse");
-        const result: model.WordsIncomingMessage< model.ParagraphResponse > = {body, response};
+        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const result: model.WordsIncomingMessage< Buffer > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Adds paragraph to document, returns added paragraph's data.
+     * @param requestObj contains request parameters
+     */
+    public async insertParagraphOnline(requestObj: model.InsertParagraphOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling insertParagraphOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/{nodePath}/paragraphs"
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling insertParagraphOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling insertParagraphOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling insertParagraphOnline.');
+        }
+
+        // verify required parameter 'requestObj.paragraph' is not undefined
+        if (requestObj.paragraph === undefined) {
+            throw new Error('Required parameter "requestObj.paragraph" was undefined when calling insertParagraphOnline.');
+        }
+
+        // verify required parameter 'requestObj.paragraph' is not null
+        if (requestObj.paragraph === null) {
+            throw new Error('Required parameter "requestObj.paragraph" was null when calling insertParagraphOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", requestObj.insertBeforeNode);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+        if (requestObj.paragraph !== undefined) {
+            formParams.Paragraph = JSON.stringify(requestObj.paragraph);
+        }
+
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+
+        requestOptions.formData = formParams;
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const result: model.WordsIncomingMessage< Buffer > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Adds paragraph to document, returns added paragraph's data.
+     * @param requestObj contains request parameters
+     */
+    public async insertParagraphWithoutNodePath(requestObj: model.InsertParagraphWithoutNodePathRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling insertParagraphWithoutNodePath.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/paragraphs"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling insertParagraphWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling insertParagraphWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.paragraph' is not undefined
+        if (requestObj.paragraph === undefined) {
+            throw new Error('Required parameter "requestObj.paragraph" was undefined when calling insertParagraphWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.paragraph' is not null
+        if (requestObj.paragraph === null) {
+            throw new Error('Required parameter "requestObj.paragraph" was null when calling insertParagraphWithoutNodePath.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", requestObj.insertBeforeNode);
+
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+            body: ObjectSerializer.serialize(requestObj.paragraph, requestObj.paragraph.constructor.name === "Object" ? "importedParagraphInsert.ParagraphInsert" : requestObj.paragraph.constructor.name),
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const result: model.WordsIncomingMessage< Buffer > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Adds paragraph to document, returns added paragraph's data.
+     * @param requestObj contains request parameters
+     */
+    public async insertParagraphWithoutNodePathOnline(requestObj: model.InsertParagraphWithoutNodePathOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling insertParagraphWithoutNodePathOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/paragraphs"
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling insertParagraphWithoutNodePathOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling insertParagraphWithoutNodePathOnline.');
+        }
+
+        // verify required parameter 'requestObj.paragraph' is not undefined
+        if (requestObj.paragraph === undefined) {
+            throw new Error('Required parameter "requestObj.paragraph" was undefined when calling insertParagraphWithoutNodePathOnline.');
+        }
+
+        // verify required parameter 'requestObj.paragraph' is not null
+        if (requestObj.paragraph === null) {
+            throw new Error('Required parameter "requestObj.paragraph" was null when calling insertParagraphWithoutNodePathOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", requestObj.insertBeforeNode);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+        if (requestObj.paragraph !== undefined) {
+            formParams.Paragraph = JSON.stringify(requestObj.paragraph);
+        }
+
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+
+        requestOptions.formData = formParams;
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const result: model.WordsIncomingMessage< Buffer > = {body, response};
         return Promise.resolve(result);
     }
 
@@ -5658,8 +8306,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{paragraphPath}/runs"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "paragraphPath" + "}", (requestObj.paragraphPath !== null && requestObj.paragraphPath !== undefined) ? "/" + String(requestObj.paragraphPath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "paragraphPath" + "}", (requestObj.paragraphPath !== null) ? "/" + String(requestObj.paragraphPath) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -5720,7 +8368,7 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/styles/insert"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -5775,8 +8423,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/tables"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -5797,6 +8445,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.table' is not null
         if (requestObj.table === null) {
             throw new Error('Required parameter "requestObj.table" was null when calling insertTable.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling insertTable.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -5831,8 +8484,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{tableRowPath}/cells"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "tableRowPath" + "}", (requestObj.tableRowPath !== null && requestObj.tableRowPath !== undefined) ? "/" + String(requestObj.tableRowPath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "tableRowPath" + "}", (requestObj.tableRowPath !== null) ? "/" + String(requestObj.tableRowPath) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -5892,8 +8545,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{tablePath}/rows"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "tablePath" + "}", (requestObj.tablePath !== null && requestObj.tablePath !== undefined) ? "/" + String(requestObj.tablePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "tablePath" + "}", (requestObj.tablePath !== null) ? "/" + String(requestObj.tablePath) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -5944,6 +8597,61 @@ export class WordsApi {
     }
 
     /**
+     * Adds table to document, returns added table's data.
+     * @param requestObj contains request parameters
+     */
+    public async insertTableWithoutNodePath(requestObj: model.InsertTableWithoutNodePathRequest): Promise< model.WordsIncomingMessage< model.TableResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling insertTableWithoutNodePath.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/tables"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling insertTableWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling insertTableWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.table' is not undefined
+        if (requestObj.table === undefined) {
+            throw new Error('Required parameter "requestObj.table" was undefined when calling insertTableWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.table' is not null
+        if (requestObj.table === null) {
+            throw new Error('Required parameter "requestObj.table" was null when calling insertTableWithoutNodePath.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+            body: ObjectSerializer.serialize(requestObj.table, requestObj.table.constructor.name === "Object" ? "importedTableInsert.TableInsert" : requestObj.table.constructor.name),
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "TableResponse");
+        const result: model.WordsIncomingMessage< model.TableResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Inserts document watermark image.
      * @param requestObj contains request parameters
      */
@@ -5953,7 +8661,7 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/watermarks/images"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         const formParams: any = {};
@@ -5987,9 +8695,7 @@ export class WordsApi {
             json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
-        }
+        requestOptions.formData = formParams;
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
         const result: model.WordsIncomingMessage< model.DocumentResponse > = {body, response};
@@ -6006,7 +8712,7 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/watermarks/texts"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -6099,7 +8805,7 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/storage/file/move/{srcPath}"
-            .replace("/{" + "srcPath" + "}", (requestObj.srcPath !== null && requestObj.srcPath !== undefined) ? "/" + String(requestObj.srcPath) : "")
+            .replace("/{" + "srcPath" + "}", (requestObj.srcPath !== null) ? "/" + String(requestObj.srcPath) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.destPath' is not undefined
@@ -6143,7 +8849,7 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/storage/folder/move/{srcPath}"
-            .replace("/{" + "srcPath" + "}", (requestObj.srcPath !== null && requestObj.srcPath !== undefined) ? "/" + String(requestObj.srcPath) : "")
+            .replace("/{" + "srcPath" + "}", (requestObj.srcPath !== null) ? "/" + String(requestObj.srcPath) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.destPath' is not undefined
@@ -6177,59 +8883,6 @@ export class WordsApi {
     }
 
     /**
-     * Allows to optimize the document contents as well as default Aspose.Words behavior to a particular versions of MS Word.
-     * @param requestObj contains request parameters
-     */
-    public async optimizeDocument(requestObj: model.OptimizeDocumentRequest): Promise< http.IncomingMessage > {
-        if (requestObj === null || requestObj === undefined) {
-            throw new Error('Required parameter "requestObj" was null or undefined when calling optimizeDocument.');
-        }
-
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/compatibility/optimize"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("//", "/");
-        const queryParameters: any = {};
-        // verify required parameter 'requestObj.name' is not undefined
-        if (requestObj.name === undefined) {
-            throw new Error('Required parameter "requestObj.name" was undefined when calling optimizeDocument.');
-        }
-
-        // verify required parameter 'requestObj.name' is not null
-        if (requestObj.name === null) {
-            throw new Error('Required parameter "requestObj.name" was null when calling optimizeDocument.');
-        }
-
-        // verify required parameter 'requestObj.options' is not undefined
-        if (requestObj.options === undefined) {
-            throw new Error('Required parameter "requestObj.options" was undefined when calling optimizeDocument.');
-        }
-
-        // verify required parameter 'requestObj.options' is not null
-        if (requestObj.options === null) {
-            throw new Error('Required parameter "requestObj.options" was null when calling optimizeDocument.');
-        }
-
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
-
-        const requestOptions: request.Options = {
-            method: "PUT",
-            qs: queryParameters,
-            uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(requestObj.options, requestObj.options.constructor.name === "Object" ? "importedOptimizationOptions.OptimizationOptions" : requestObj.options.constructor.name),
-        };
-
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        return Promise.resolve(response);
-    }
-
-    /**
      * Protects document.
      * @param requestObj contains request parameters
      */
@@ -6239,7 +8892,7 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/protection"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -6292,7 +8945,7 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/revisions/rejectAll"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -6334,9 +8987,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/range/{rangeStartIdentifier}/{rangeEndIdentifier}"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "rangeStartIdentifier" + "}", (requestObj.rangeStartIdentifier !== null && requestObj.rangeStartIdentifier !== undefined) ? "/" + String(requestObj.rangeStartIdentifier) : "")
-            .replace("/{" + "rangeEndIdentifier" + "}", (requestObj.rangeEndIdentifier !== null && requestObj.rangeEndIdentifier !== undefined) ? "/" + String(requestObj.rangeEndIdentifier) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "rangeStartIdentifier" + "}", (requestObj.rangeStartIdentifier !== null) ? "/" + String(requestObj.rangeStartIdentifier) : "")
+            .replace("/{" + "rangeEndIdentifier" + "}", (requestObj.rangeEndIdentifier !== null) ? "/" + String(requestObj.rangeEndIdentifier) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -6388,9 +9041,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects/{index}/render"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -6411,6 +9064,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.format' is not null
         if (requestObj.format === null) {
             throw new Error('Required parameter "requestObj.format" was null when calling renderDrawingObject.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling renderDrawingObject.');
         }
 
         // verify required parameter 'requestObj.index' is not undefined
@@ -6444,6 +9102,70 @@ export class WordsApi {
     }
 
     /**
+     * Renders drawing object to specified format.
+     * @param requestObj contains request parameters
+     */
+    public async renderDrawingObjectWithoutNodePath(requestObj: model.RenderDrawingObjectWithoutNodePathRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling renderDrawingObjectWithoutNodePath.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/drawingObjects/{index}/render"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling renderDrawingObjectWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling renderDrawingObjectWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.format' is not undefined
+        if (requestObj.format === undefined) {
+            throw new Error('Required parameter "requestObj.format" was undefined when calling renderDrawingObjectWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.format' is not null
+        if (requestObj.format === null) {
+            throw new Error('Required parameter "requestObj.format" was null when calling renderDrawingObjectWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling renderDrawingObjectWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling renderDrawingObjectWithoutNodePath.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", requestObj.fontsLocation);
+
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const result: model.WordsIncomingMessage< Buffer > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Renders math object to specified format.
      * @param requestObj contains request parameters
      */
@@ -6453,9 +9175,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/OfficeMathObjects/{index}/render"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -6476,6 +9198,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.format' is not null
         if (requestObj.format === null) {
             throw new Error('Required parameter "requestObj.format" was null when calling renderMathObject.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling renderMathObject.');
         }
 
         // verify required parameter 'requestObj.index' is not undefined
@@ -6509,6 +9236,70 @@ export class WordsApi {
     }
 
     /**
+     * Renders math object to specified format.
+     * @param requestObj contains request parameters
+     */
+    public async renderMathObjectWithoutNodePath(requestObj: model.RenderMathObjectWithoutNodePathRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling renderMathObjectWithoutNodePath.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/OfficeMathObjects/{index}/render"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling renderMathObjectWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling renderMathObjectWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.format' is not undefined
+        if (requestObj.format === undefined) {
+            throw new Error('Required parameter "requestObj.format" was undefined when calling renderMathObjectWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.format' is not null
+        if (requestObj.format === null) {
+            throw new Error('Required parameter "requestObj.format" was null when calling renderMathObjectWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling renderMathObjectWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling renderMathObjectWithoutNodePath.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", requestObj.fontsLocation);
+
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const result: model.WordsIncomingMessage< Buffer > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Renders page to specified format.
      * @param requestObj contains request parameters
      */
@@ -6518,8 +9309,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/pages/{pageIndex}/render"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "pageIndex" + "}", (requestObj.pageIndex !== null && requestObj.pageIndex !== undefined) ? "/" + String(requestObj.pageIndex) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "pageIndex" + "}", (requestObj.pageIndex !== null) ? "/" + String(requestObj.pageIndex) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -6582,9 +9373,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}/render"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -6605,6 +9396,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.format' is not null
         if (requestObj.format === null) {
             throw new Error('Required parameter "requestObj.format" was null when calling renderParagraph.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling renderParagraph.');
         }
 
         // verify required parameter 'requestObj.index' is not undefined
@@ -6638,6 +9434,70 @@ export class WordsApi {
     }
 
     /**
+     * Renders paragraph to specified format.
+     * @param requestObj contains request parameters
+     */
+    public async renderParagraphWithoutNodePath(requestObj: model.RenderParagraphWithoutNodePathRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling renderParagraphWithoutNodePath.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/paragraphs/{index}/render"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling renderParagraphWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling renderParagraphWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.format' is not undefined
+        if (requestObj.format === undefined) {
+            throw new Error('Required parameter "requestObj.format" was undefined when calling renderParagraphWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.format' is not null
+        if (requestObj.format === null) {
+            throw new Error('Required parameter "requestObj.format" was null when calling renderParagraphWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling renderParagraphWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling renderParagraphWithoutNodePath.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", requestObj.fontsLocation);
+
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const result: model.WordsIncomingMessage< Buffer > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Renders table to specified format.
      * @param requestObj contains request parameters
      */
@@ -6647,9 +9507,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/tables/{index}/render"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -6670,6 +9530,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.format' is not null
         if (requestObj.format === null) {
             throw new Error('Required parameter "requestObj.format" was null when calling renderTable.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling renderTable.');
         }
 
         // verify required parameter 'requestObj.index' is not undefined
@@ -6703,6 +9568,70 @@ export class WordsApi {
     }
 
     /**
+     * Renders table to specified format.
+     * @param requestObj contains request parameters
+     */
+    public async renderTableWithoutNodePath(requestObj: model.RenderTableWithoutNodePathRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling renderTableWithoutNodePath.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/tables/{index}/render"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling renderTableWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling renderTableWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.format' is not undefined
+        if (requestObj.format === undefined) {
+            throw new Error('Required parameter "requestObj.format" was undefined when calling renderTableWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.format' is not null
+        if (requestObj.format === null) {
+            throw new Error('Required parameter "requestObj.format" was null when calling renderTableWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling renderTableWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling renderTableWithoutNodePath.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", requestObj.fontsLocation);
+
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const result: model.WordsIncomingMessage< Buffer > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Replaces document text.
      * @param requestObj contains request parameters
      */
@@ -6712,7 +9641,7 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/replaceText"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -6767,9 +9696,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/range/{rangeStartIdentifier}/{rangeEndIdentifier}"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "rangeStartIdentifier" + "}", (requestObj.rangeStartIdentifier !== null && requestObj.rangeStartIdentifier !== undefined) ? "/" + String(requestObj.rangeStartIdentifier) : "")
-            .replace("/{" + "rangeEndIdentifier" + "}", (requestObj.rangeEndIdentifier !== null && requestObj.rangeEndIdentifier !== undefined) ? "/" + String(requestObj.rangeEndIdentifier) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "rangeStartIdentifier" + "}", (requestObj.rangeStartIdentifier !== null) ? "/" + String(requestObj.rangeStartIdentifier) : "")
+            .replace("/{" + "rangeEndIdentifier" + "}", (requestObj.rangeEndIdentifier !== null) ? "/" + String(requestObj.rangeEndIdentifier) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -6856,7 +9785,7 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/saveAs"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -6900,6 +9829,61 @@ export class WordsApi {
     }
 
     /**
+     * Converts document to destination format with detailed settings and saves result to storage.
+     * @param requestObj contains request parameters
+     */
+    public async saveAsOnline(requestObj: model.SaveAsOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling saveAsOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/saveAs"
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling saveAsOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling saveAsOnline.');
+        }
+
+        // verify required parameter 'requestObj.saveOptionsData' is not undefined
+        if (requestObj.saveOptionsData === undefined) {
+            throw new Error('Required parameter "requestObj.saveOptionsData" was undefined when calling saveAsOnline.');
+        }
+
+        // verify required parameter 'requestObj.saveOptionsData' is not null
+        if (requestObj.saveOptionsData === null) {
+            throw new Error('Required parameter "requestObj.saveOptionsData" was null when calling saveAsOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", requestObj.fontsLocation);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+        if (requestObj.saveOptionsData !== undefined) {
+            formParams.SaveOptionsData = JSON.stringify(requestObj.saveOptionsData);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+
+        requestOptions.formData = formParams;
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const result: model.WordsIncomingMessage< Buffer > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Saves the selected range as a new document.
      * @param requestObj contains request parameters
      */
@@ -6909,9 +9893,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/range/{rangeStartIdentifier}/{rangeEndIdentifier}/SaveAs"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "rangeStartIdentifier" + "}", (requestObj.rangeStartIdentifier !== null && requestObj.rangeStartIdentifier !== undefined) ? "/" + String(requestObj.rangeStartIdentifier) : "")
-            .replace("/{" + "rangeEndIdentifier" + "}", (requestObj.rangeEndIdentifier !== null && requestObj.rangeEndIdentifier !== undefined) ? "/" + String(requestObj.rangeEndIdentifier) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "rangeStartIdentifier" + "}", (requestObj.rangeStartIdentifier !== null) ? "/" + String(requestObj.rangeStartIdentifier) : "")
+            .replace("/{" + "rangeEndIdentifier" + "}", (requestObj.rangeEndIdentifier !== null) ? "/" + String(requestObj.rangeEndIdentifier) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -6973,7 +9957,7 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/saveAs/tiff"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -7043,7 +10027,7 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/search"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -7090,7 +10074,7 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/split"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -7147,7 +10131,7 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/protection"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -7200,8 +10184,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/bookmarks/{bookmarkName}"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "bookmarkName" + "}", (requestObj.bookmarkName !== null && requestObj.bookmarkName !== undefined) ? "/" + String(requestObj.bookmarkName) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "bookmarkName" + "}", (requestObj.bookmarkName !== null) ? "/" + String(requestObj.bookmarkName) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -7266,9 +10250,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/borders/{borderType}"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "borderType" + "}", (requestObj.borderType !== null && requestObj.borderType !== undefined) ? "/" + String(requestObj.borderType) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "borderType" + "}", (requestObj.borderType !== null) ? "/" + String(requestObj.borderType) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -7289,6 +10273,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.borderProperties' is not null
         if (requestObj.borderProperties === null) {
             throw new Error('Required parameter "requestObj.borderProperties" was null when calling updateBorder.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling updateBorder.');
         }
 
         // verify required parameter 'requestObj.borderType' is not undefined
@@ -7333,8 +10322,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/comments/{commentIndex}"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "commentIndex" + "}", (requestObj.commentIndex !== null && requestObj.commentIndex !== undefined) ? "/" + String(requestObj.commentIndex) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "commentIndex" + "}", (requestObj.commentIndex !== null) ? "/" + String(requestObj.commentIndex) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -7399,9 +10388,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects/{index}"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         const formParams: any = {};
@@ -7435,6 +10424,11 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj.imageFile" was null when calling updateDrawingObject.');
         }
 
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling updateDrawingObject.');
+        }
+
         // verify required parameter 'requestObj.index' is not undefined
         if (requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was undefined when calling updateDrawingObject.');
@@ -7466,9 +10460,90 @@ export class WordsApi {
             json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        requestOptions.formData = formParams;
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "DrawingObjectResponse");
+        const result: model.WordsIncomingMessage< model.DrawingObjectResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Updates drawing object, returns updated  drawing object's data.
+     * @param requestObj contains request parameters
+     */
+    public async updateDrawingObjectWithoutNodePath(requestObj: model.UpdateDrawingObjectWithoutNodePathRequest): Promise< model.WordsIncomingMessage< model.DrawingObjectResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling updateDrawingObjectWithoutNodePath.');
         }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/drawingObjects/{index}"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling updateDrawingObjectWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling updateDrawingObjectWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.drawingObject' is not undefined
+        if (requestObj.drawingObject === undefined) {
+            throw new Error('Required parameter "requestObj.drawingObject" was undefined when calling updateDrawingObjectWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.drawingObject' is not null
+        if (requestObj.drawingObject === null) {
+            throw new Error('Required parameter "requestObj.drawingObject" was null when calling updateDrawingObjectWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.imageFile' is not undefined
+        if (requestObj.imageFile === undefined) {
+            throw new Error('Required parameter "requestObj.imageFile" was undefined when calling updateDrawingObjectWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.imageFile' is not null
+        if (requestObj.imageFile === null) {
+            throw new Error('Required parameter "requestObj.imageFile" was null when calling updateDrawingObjectWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling updateDrawingObjectWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling updateDrawingObjectWithoutNodePath.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.drawingObject !== undefined) {
+            formParams.DrawingObject = JSON.stringify(requestObj.drawingObject);
+        }
+        if (requestObj.imageFile !== undefined) {
+            formParams.ImageFile = requestObj.imageFile;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        requestOptions.formData = formParams;
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "DrawingObjectResponse");
         const result: model.WordsIncomingMessage< model.DrawingObjectResponse > = {body, response};
@@ -7485,9 +10560,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/fields/{index}"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -7508,6 +10583,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.field' is not null
         if (requestObj.field === null) {
             throw new Error('Required parameter "requestObj.field" was null when calling updateField.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling updateField.');
         }
 
         // verify required parameter 'requestObj.index' is not undefined
@@ -7552,7 +10632,7 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/updateFields"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -7594,9 +10674,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/footnotes/{index}"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -7617,6 +10697,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.footnoteDto' is not null
         if (requestObj.footnoteDto === null) {
             throw new Error('Required parameter "requestObj.footnoteDto" was null when calling updateFootnote.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling updateFootnote.');
         }
 
         // verify required parameter 'requestObj.index' is not undefined
@@ -7652,6 +10737,72 @@ export class WordsApi {
     }
 
     /**
+     * Updates footnote's properties, returns updated run's data.
+     * @param requestObj contains request parameters
+     */
+    public async updateFootnoteWithoutNodePath(requestObj: model.UpdateFootnoteWithoutNodePathRequest): Promise< model.WordsIncomingMessage< model.FootnoteResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling updateFootnoteWithoutNodePath.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/footnotes/{index}"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling updateFootnoteWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling updateFootnoteWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.footnoteDto' is not undefined
+        if (requestObj.footnoteDto === undefined) {
+            throw new Error('Required parameter "requestObj.footnoteDto" was undefined when calling updateFootnoteWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.footnoteDto' is not null
+        if (requestObj.footnoteDto === null) {
+            throw new Error('Required parameter "requestObj.footnoteDto" was null when calling updateFootnoteWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling updateFootnoteWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling updateFootnoteWithoutNodePath.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+            body: ObjectSerializer.serialize(requestObj.footnoteDto, requestObj.footnoteDto.constructor.name === "Object" ? "importedFootnoteUpdate.FootnoteUpdate" : requestObj.footnoteDto.constructor.name),
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "FootnoteResponse");
+        const result: model.WordsIncomingMessage< model.FootnoteResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Updates properties of form field, returns updated form field.
      * @param requestObj contains request parameters
      */
@@ -7661,9 +10812,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/formfields/{index}"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -7684,6 +10835,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.formField' is not null
         if (requestObj.formField === null) {
             throw new Error('Required parameter "requestObj.formField" was null when calling updateFormField.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling updateFormField.');
         }
 
         // verify required parameter 'requestObj.index' is not undefined
@@ -7719,6 +10875,72 @@ export class WordsApi {
     }
 
     /**
+     * Updates properties of form field, returns updated form field.
+     * @param requestObj contains request parameters
+     */
+    public async updateFormFieldWithoutNodePath(requestObj: model.UpdateFormFieldWithoutNodePathRequest): Promise< model.WordsIncomingMessage< model.FormFieldResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling updateFormFieldWithoutNodePath.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/formfields/{index}"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling updateFormFieldWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling updateFormFieldWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.formField' is not undefined
+        if (requestObj.formField === undefined) {
+            throw new Error('Required parameter "requestObj.formField" was undefined when calling updateFormFieldWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.formField' is not null
+        if (requestObj.formField === null) {
+            throw new Error('Required parameter "requestObj.formField" was null when calling updateFormFieldWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling updateFormFieldWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling updateFormFieldWithoutNodePath.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+            body: ObjectSerializer.serialize(requestObj.formField, requestObj.formField.constructor.name === "Object" ? "importedFormField.FormField" : requestObj.formField.constructor.name),
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "FormFieldResponse");
+        const result: model.WordsIncomingMessage< model.FormFieldResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Updates list properties, returns updated list.
      * @param requestObj contains request parameters
      */
@@ -7728,8 +10950,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/lists/{listId}"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "listId" + "}", (requestObj.listId !== null && requestObj.listId !== undefined) ? "/" + String(requestObj.listId) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "listId" + "}", (requestObj.listId !== null) ? "/" + String(requestObj.listId) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -7794,9 +11016,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/lists/{listId}/listLevels/{listLevel}"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "listId" + "}", (requestObj.listId !== null && requestObj.listId !== undefined) ? "/" + String(requestObj.listId) : "")
-            .replace("/{" + "listLevel" + "}", (requestObj.listLevel !== null && requestObj.listLevel !== undefined) ? "/" + String(requestObj.listLevel) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "listId" + "}", (requestObj.listId !== null) ? "/" + String(requestObj.listId) : "")
+            .replace("/{" + "listLevel" + "}", (requestObj.listLevel !== null) ? "/" + String(requestObj.listLevel) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -7871,9 +11093,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}/format"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -7894,6 +11116,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.dto' is not null
         if (requestObj.dto === null) {
             throw new Error('Required parameter "requestObj.dto" was null when calling updateParagraphFormat.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling updateParagraphFormat.');
         }
 
         // verify required parameter 'requestObj.index' is not undefined
@@ -7938,9 +11165,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}/listFormat"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -7961,6 +11188,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.dto' is not null
         if (requestObj.dto === null) {
             throw new Error('Required parameter "requestObj.dto" was null when calling updateParagraphListFormat.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling updateParagraphListFormat.');
         }
 
         // verify required parameter 'requestObj.index' is not undefined
@@ -7996,6 +11228,72 @@ export class WordsApi {
     }
 
     /**
+     * Updates paragraph list format properties, returns updated list format properties.
+     * @param requestObj contains request parameters
+     */
+    public async updateParagraphListFormatWithoutNodePath(requestObj: model.UpdateParagraphListFormatWithoutNodePathRequest): Promise< model.WordsIncomingMessage< model.ParagraphListFormatResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling updateParagraphListFormatWithoutNodePath.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/paragraphs/{index}/listFormat"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling updateParagraphListFormatWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling updateParagraphListFormatWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.dto' is not undefined
+        if (requestObj.dto === undefined) {
+            throw new Error('Required parameter "requestObj.dto" was undefined when calling updateParagraphListFormatWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.dto' is not null
+        if (requestObj.dto === null) {
+            throw new Error('Required parameter "requestObj.dto" was null when calling updateParagraphListFormatWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling updateParagraphListFormatWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling updateParagraphListFormatWithoutNodePath.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+            body: ObjectSerializer.serialize(requestObj.dto, requestObj.dto.constructor.name === "Object" ? "importedListFormatUpdate.ListFormatUpdate" : requestObj.dto.constructor.name),
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "ParagraphListFormatResponse");
+        const result: model.WordsIncomingMessage< model.ParagraphListFormatResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Updates run's properties, returns updated run's data.
      * @param requestObj contains request parameters
      */
@@ -8005,9 +11303,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{paragraphPath}/runs/{index}"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "paragraphPath" + "}", (requestObj.paragraphPath !== null && requestObj.paragraphPath !== undefined) ? "/" + String(requestObj.paragraphPath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "paragraphPath" + "}", (requestObj.paragraphPath !== null) ? "/" + String(requestObj.paragraphPath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -8077,9 +11375,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{paragraphPath}/runs/{index}/font"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "paragraphPath" + "}", (requestObj.paragraphPath !== null && requestObj.paragraphPath !== undefined) ? "/" + String(requestObj.paragraphPath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "paragraphPath" + "}", (requestObj.paragraphPath !== null) ? "/" + String(requestObj.paragraphPath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -8149,8 +11447,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/sections/{sectionIndex}/pageSetup"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "sectionIndex" + "}", (requestObj.sectionIndex !== null && requestObj.sectionIndex !== undefined) ? "/" + String(requestObj.sectionIndex) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "sectionIndex" + "}", (requestObj.sectionIndex !== null) ? "/" + String(requestObj.sectionIndex) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -8215,8 +11513,8 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/styles/{styleName}/update"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "styleName" + "}", (requestObj.styleName !== null && requestObj.styleName !== undefined) ? "/" + String(requestObj.styleName) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "styleName" + "}", (requestObj.styleName !== null) ? "/" + String(requestObj.styleName) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -8281,9 +11579,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{tableRowPath}/cells/{index}/cellformat"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "tableRowPath" + "}", (requestObj.tableRowPath !== null && requestObj.tableRowPath !== undefined) ? "/" + String(requestObj.tableRowPath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "tableRowPath" + "}", (requestObj.tableRowPath !== null) ? "/" + String(requestObj.tableRowPath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -8353,9 +11651,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/tables/{index}/properties"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
-            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null) ? "/" + String(requestObj.nodePath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -8376,6 +11674,11 @@ export class WordsApi {
         // verify required parameter 'requestObj.properties' is not null
         if (requestObj.properties === null) {
             throw new Error('Required parameter "requestObj.properties" was null when calling updateTableProperties.');
+        }
+
+        // verify required parameter 'requestObj.nodePath' is not undefined
+        if (requestObj.nodePath === undefined) {
+            throw new Error('Required parameter "requestObj.nodePath" was undefined when calling updateTableProperties.');
         }
 
         // verify required parameter 'requestObj.index' is not undefined
@@ -8411,6 +11714,72 @@ export class WordsApi {
     }
 
     /**
+     * Updates a table properties.
+     * @param requestObj contains request parameters
+     */
+    public async updateTablePropertiesWithoutNodePath(requestObj: model.UpdateTablePropertiesWithoutNodePathRequest): Promise< model.WordsIncomingMessage< model.TablePropertiesResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling updateTablePropertiesWithoutNodePath.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/tables/{index}/properties"
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling updateTablePropertiesWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling updateTablePropertiesWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.properties' is not undefined
+        if (requestObj.properties === undefined) {
+            throw new Error('Required parameter "requestObj.properties" was undefined when calling updateTablePropertiesWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.properties' is not null
+        if (requestObj.properties === null) {
+            throw new Error('Required parameter "requestObj.properties" was null when calling updateTablePropertiesWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling updateTablePropertiesWithoutNodePath.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling updateTablePropertiesWithoutNodePath.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+            body: ObjectSerializer.serialize(requestObj.properties, requestObj.properties.constructor.name === "Object" ? "importedTableProperties.TableProperties" : requestObj.properties.constructor.name),
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "TablePropertiesResponse");
+        const result: model.WordsIncomingMessage< model.TablePropertiesResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Updates a table row format.
      * @param requestObj contains request parameters
      */
@@ -8420,9 +11789,9 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/{tablePath}/rows/{index}/rowformat"
-            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
-            .replace("/{" + "tablePath" + "}", (requestObj.tablePath !== null && requestObj.tablePath !== undefined) ? "/" + String(requestObj.tablePath) : "")
-            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("/{" + "name" + "}", (requestObj.name !== null) ? "/" + String(requestObj.name) : "")
+            .replace("/{" + "tablePath" + "}", (requestObj.tablePath !== null) ? "/" + String(requestObj.tablePath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null) ? "/" + String(requestObj.index) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         // verify required parameter 'requestObj.name' is not undefined
@@ -8492,7 +11861,7 @@ export class WordsApi {
         }
 
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/storage/file/{path}"
-            .replace("/{" + "path" + "}", (requestObj.path !== null && requestObj.path !== undefined) ? "/" + String(requestObj.path) : "")
+            .replace("/{" + "path" + "}", (requestObj.path !== null) ? "/" + String(requestObj.path) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         const formParams: any = {};
@@ -8528,9 +11897,7 @@ export class WordsApi {
             json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
-        }
+        requestOptions.formData = formParams;
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "FilesUploadResult");
         const result: model.WordsIncomingMessage< model.FilesUploadResult > = {body, response};

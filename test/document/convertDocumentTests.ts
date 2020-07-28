@@ -71,6 +71,30 @@ describe("convertDocument", () => {
        });
     });
 
+    // Test for converting document online to one of the available formats.
+    describe("saveAsOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const localName = "test_multi_pages.docx";
+
+            const request = new model.SaveAsOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + "Common/" + localName),
+                saveOptionsData: new model.SaveOptionsData({
+                    saveFormat: "pdf",
+                    fileName: BaseTest.remoteBaseTestOutFolder + "/TestSaveAs.pdf"
+                })
+            });
+
+            // Act
+            return wordsApi.saveAsOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+            });
+
+       });
+    });
+
     // Test for converting document to one of the available formats.
     describe("saveAsDocx test", () => {
         it("should return response with code 200", () => {

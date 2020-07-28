@@ -152,6 +152,7 @@ import * as importedOfficeMathObjectResponse from './officeMathObjectResponse';
 import * as importedOfficeMathObjectsCollection from './officeMathObjectsCollection';
 import * as importedOfficeMathObjectsResponse from './officeMathObjectsResponse';
 import * as importedOoxmlSaveOptionsData from './ooxmlSaveOptionsData';
+import * as importedOptimizationOptions from './optimizationOptions';
 import * as importedOutlineOptionsData from './outlineOptionsData';
 import * as importedPageNumber from './pageNumber';
 import * as importedPageSetup from './pageSetup';
@@ -382,6 +383,7 @@ export * from './officeMathObjectResponse';
 export * from './officeMathObjectsCollection';
 export * from './officeMathObjectsResponse';
 export * from './ooxmlSaveOptionsData';
+export * from './optimizationOptions';
 export * from './outlineOptionsData';
 export * from './pageNumber';
 export * from './pageSetup';
@@ -543,6 +545,7 @@ const enumsMap = {
     "OfficeMathObject.JustificationEnum": importedOfficeMathObject.OfficeMathObject.JustificationEnum,
     "OfficeMathObject.MathObjectTypeEnum": importedOfficeMathObject.OfficeMathObject.MathObjectTypeEnum,
     "OoxmlSaveOptionsData.CompressionLevelEnum": importedOoxmlSaveOptionsData.OoxmlSaveOptionsData.CompressionLevelEnum,
+    "OptimizationOptions.MsWordVersionEnum": importedOptimizationOptions.OptimizationOptions.MsWordVersionEnum,
     "PageSetup.BorderAppliesToEnum": importedPageSetup.PageSetup.BorderAppliesToEnum,
     "PageSetup.BorderDistanceFromEnum": importedPageSetup.PageSetup.BorderDistanceFromEnum,
     "PageSetup.LineNumberRestartModeEnum": importedPageSetup.PageSetup.LineNumberRestartModeEnum,
@@ -711,6 +714,7 @@ const typeMap = {
     OfficeMathObjectsCollection: importedOfficeMathObjectsCollection.OfficeMathObjectsCollection,
     OfficeMathObjectsResponse: importedOfficeMathObjectsResponse.OfficeMathObjectsResponse,
     OoxmlSaveOptionsData: importedOoxmlSaveOptionsData.OoxmlSaveOptionsData,
+    OptimizationOptions: importedOptimizationOptions.OptimizationOptions,
     OutlineOptionsData: importedOutlineOptionsData.OutlineOptionsData,
     PageNumber: importedPageNumber.PageNumber,
     PageSetup: importedPageSetup.PageSetup,
@@ -1461,14 +1465,14 @@ export class DeleteAllParagraphTabStopsRequest {
     public name: string;
 
     /**
-     * Path to the node which contains paragraph.
-     */
-    public nodePath: string;
-
-    /**
      * Object index.
      */
     public index: number;
+
+    /**
+     * Path to the node which contains paragraph.
+     */
+    public nodePath: string;
 
     /**
      * Original document folder.
@@ -1501,51 +1505,6 @@ export class DeleteAllParagraphTabStopsRequest {
 }
 
 /**
- * Request model for DeleteAllParagraphTabStopsWithoutNodePath operation.
- * Remove all tab stops.
- */
-export class DeleteAllParagraphTabStopsWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * Object index.
-     */
-    public index: number;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    /**
-     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    public constructor(init?: Partial< DeleteAllParagraphTabStopsWithoutNodePathRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
  * Request model for DeleteBorder operation.
  * 'nodePath' should refer to paragraph, cell or row.
  */
@@ -1556,14 +1515,14 @@ export class DeleteBorderRequest {
     public name: string;
 
     /**
-     * Path to the node with border(node should be paragraph, cell or row).
-     */
-    public nodePath: string;
-
-    /**
      * Border type.
      */
     public borderType: string;
+
+    /**
+     * Path to the node with border(node should be paragraph, cell or row).
+     */
+    public nodePath: string;
 
     /**
      * Original document folder.
@@ -1781,14 +1740,14 @@ export class DeleteDrawingObjectRequest {
     public name: string;
 
     /**
-     * Path to the node, which contains collection of drawing objects.
-     */
-    public nodePath: string;
-
-    /**
      * Object index.
      */
     public index: number;
+
+    /**
+     * Path to the node, which contains collection of drawing objects.
+     */
+    public nodePath: string;
 
     /**
      * Original document folder.
@@ -1831,61 +1790,6 @@ export class DeleteDrawingObjectRequest {
 }
 
 /**
- * Request model for DeleteDrawingObjectWithoutNodePath operation.
- * Removes drawing object from document.
- */
-export class DeleteDrawingObjectWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * Object index.
-     */
-    public index: number;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    /**
-     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
-     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-     */
-    public revisionAuthor: string;
-
-    /**
-     * The date and time to use for revisions.
-     */
-    public revisionDateTime: string;
-
-    public constructor(init?: Partial< DeleteDrawingObjectWithoutNodePathRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
  * Request model for DeleteField operation.
  * Deletes field from document.
  */
@@ -1896,14 +1800,14 @@ export class DeleteFieldRequest {
     public name: string;
 
     /**
-     * Path to the node, which contains collection of fields.
-     */
-    public nodePath: string;
-
-    /**
      * Object index.
      */
     public index: number;
+
+    /**
+     * Path to the node, which contains collection of fields.
+     */
+    public nodePath: string;
 
     /**
      * Original document folder.
@@ -2001,111 +1905,6 @@ export class DeleteFieldsRequest {
 }
 
 /**
- * Request model for DeleteFieldsWithoutNodePath operation.
- * Removes fields from section paragraph.
- */
-export class DeleteFieldsWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    /**
-     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
-     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-     */
-    public revisionAuthor: string;
-
-    /**
-     * The date and time to use for revisions.
-     */
-    public revisionDateTime: string;
-
-    public constructor(init?: Partial< DeleteFieldsWithoutNodePathRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
- * Request model for DeleteFieldWithoutNodePath operation.
- * Deletes field from document.
- */
-export class DeleteFieldWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * Object index.
-     */
-    public index: number;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    /**
-     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
-     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-     */
-    public revisionAuthor: string;
-
-    /**
-     * The date and time to use for revisions.
-     */
-    public revisionDateTime: string;
-
-    public constructor(init?: Partial< DeleteFieldWithoutNodePathRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
  * Request model for DeleteFile operation.
  * Delete file.
  */
@@ -2166,14 +1965,14 @@ export class DeleteFootnoteRequest {
     public name: string;
 
     /**
-     * Path to the node, which contains collection of footnotes.
-     */
-    public nodePath: string;
-
-    /**
      * Object index.
      */
     public index: number;
+
+    /**
+     * Path to the node, which contains collection of footnotes.
+     */
+    public nodePath: string;
 
     /**
      * Original document folder.
@@ -2216,61 +2015,6 @@ export class DeleteFootnoteRequest {
 }
 
 /**
- * Request model for DeleteFootnoteWithoutNodePath operation.
- * Removes footnote from document.
- */
-export class DeleteFootnoteWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * Object index.
-     */
-    public index: number;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    /**
-     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
-     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-     */
-    public revisionAuthor: string;
-
-    /**
-     * The date and time to use for revisions.
-     */
-    public revisionDateTime: string;
-
-    public constructor(init?: Partial< DeleteFootnoteWithoutNodePathRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
  * Request model for DeleteFormField operation.
  * Removes form field from document.
  */
@@ -2281,14 +2025,14 @@ export class DeleteFormFieldRequest {
     public name: string;
 
     /**
-     * Path to the node that contains collection of formfields.
-     */
-    public nodePath: string;
-
-    /**
      * Object index.
      */
     public index: number;
+
+    /**
+     * Path to the node that contains collection of formfields.
+     */
+    public nodePath: string;
 
     /**
      * Original document folder.
@@ -2326,61 +2070,6 @@ export class DeleteFormFieldRequest {
     public revisionDateTime: string;
 
     public constructor(init?: Partial< DeleteFormFieldRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
- * Request model for DeleteFormFieldWithoutNodePath operation.
- * Removes form field from document.
- */
-export class DeleteFormFieldWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * Object index.
-     */
-    public index: number;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    /**
-     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
-     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-     */
-    public revisionAuthor: string;
-
-    /**
-     * The date and time to use for revisions.
-     */
-    public revisionDateTime: string;
-
-    public constructor(init?: Partial< DeleteFormFieldWithoutNodePathRequest >) {
         Object.assign(this, init);
     }
 }
@@ -2566,14 +2255,14 @@ export class DeleteOfficeMathObjectRequest {
     public name: string;
 
     /**
-     * Path to the node, which contains collection of OfficeMath objects.
-     */
-    public nodePath: string;
-
-    /**
      * Object index.
      */
     public index: number;
+
+    /**
+     * Path to the node, which contains collection of OfficeMath objects.
+     */
+    public nodePath: string;
 
     /**
      * Original document folder.
@@ -2616,61 +2305,6 @@ export class DeleteOfficeMathObjectRequest {
 }
 
 /**
- * Request model for DeleteOfficeMathObjectWithoutNodePath operation.
- * Removes OfficeMath object from document.
- */
-export class DeleteOfficeMathObjectWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * Object index.
-     */
-    public index: number;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    /**
-     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
-     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-     */
-    public revisionAuthor: string;
-
-    /**
-     * The date and time to use for revisions.
-     */
-    public revisionDateTime: string;
-
-    public constructor(init?: Partial< DeleteOfficeMathObjectWithoutNodePathRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
  * Request model for DeleteParagraph operation.
  * Removes paragraph from section.
  */
@@ -2681,14 +2315,14 @@ export class DeleteParagraphRequest {
     public name: string;
 
     /**
-     * Path to the node which contains paragraphs.
-     */
-    public nodePath: string;
-
-    /**
      * Object index.
      */
     public index: number;
+
+    /**
+     * Path to the node which contains paragraphs.
+     */
+    public nodePath: string;
 
     /**
      * Original document folder.
@@ -2741,14 +2375,14 @@ export class DeleteParagraphListFormatRequest {
     public name: string;
 
     /**
-     * Path to the node which contains paragraphs.
-     */
-    public nodePath: string;
-
-    /**
      * Object index.
      */
     public index: number;
+
+    /**
+     * Path to the node which contains paragraphs.
+     */
+    public nodePath: string;
 
     /**
      * Original document folder.
@@ -2791,111 +2425,6 @@ export class DeleteParagraphListFormatRequest {
 }
 
 /**
- * Request model for DeleteParagraphListFormatWithoutNodePath operation.
- * Delete paragraph list format, returns updated list format properties.
- */
-export class DeleteParagraphListFormatWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * Object index.
-     */
-    public index: number;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    /**
-     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
-     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-     */
-    public revisionAuthor: string;
-
-    /**
-     * The date and time to use for revisions.
-     */
-    public revisionDateTime: string;
-
-    public constructor(init?: Partial< DeleteParagraphListFormatWithoutNodePathRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
- * Request model for DeleteParagraphOnline operation.
- * Removes paragraph from section.
- */
-export class DeleteParagraphOnlineRequest {
-    /**
-     * Path to the node which contains paragraphs.
-     */
-    public nodePath: string;
-
-    /**
-     * The document.
-     */
-    public document: Readable;
-
-    /**
-     * Object index.
-     */
-    public index: number;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    /**
-     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
-     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-     */
-    public revisionAuthor: string;
-
-    /**
-     * The date and time to use for revisions.
-     */
-    public revisionDateTime: string;
-
-    public constructor(init?: Partial< DeleteParagraphOnlineRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
  * Request model for DeleteParagraphTabStop operation.
  * Remove the i-th tab stop.
  */
@@ -2911,14 +2440,14 @@ export class DeleteParagraphTabStopRequest {
     public position: number;
 
     /**
-     * Path to the node which contains paragraph.
-     */
-    public nodePath: string;
-
-    /**
      * Object index.
      */
     public index: number;
+
+    /**
+     * Path to the node which contains paragraph.
+     */
+    public nodePath: string;
 
     /**
      * Original document folder.
@@ -2946,156 +2475,6 @@ export class DeleteParagraphTabStopRequest {
     public destFileName: string;
 
     public constructor(init?: Partial< DeleteParagraphTabStopRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
- * Request model for DeleteParagraphTabStopWithoutNodePath operation.
- * Remove the i-th tab stop.
- */
-export class DeleteParagraphTabStopWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * a tab stop position to remove.
-     */
-    public position: number;
-
-    /**
-     * Object index.
-     */
-    public index: number;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    /**
-     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    public constructor(init?: Partial< DeleteParagraphTabStopWithoutNodePathRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
- * Request model for DeleteParagraphWithoutNodePath operation.
- * Removes paragraph from section.
- */
-export class DeleteParagraphWithoutNodePathRequest {
-    /**
-     * The file name.
-     */
-    public name: string;
-
-    /**
-     * Object index.
-     */
-    public index: number;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    /**
-     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
-     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-     */
-    public revisionAuthor: string;
-
-    /**
-     * The date and time to use for revisions.
-     */
-    public revisionDateTime: string;
-
-    public constructor(init?: Partial< DeleteParagraphWithoutNodePathRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
- * Request model for DeleteParagraphWithoutNodePathOnline operation.
- * Removes paragraph from section.
- */
-export class DeleteParagraphWithoutNodePathOnlineRequest {
-    /**
-     * Object index.
-     */
-    public index: number;
-
-    /**
-     * The document.
-     */
-    public document: Readable;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    /**
-     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
-     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-     */
-    public revisionAuthor: string;
-
-    /**
-     * The date and time to use for revisions.
-     */
-    public revisionDateTime: string;
-
-    public constructor(init?: Partial< DeleteParagraphWithoutNodePathOnlineRequest >) {
         Object.assign(this, init);
     }
 }
@@ -3226,14 +2605,14 @@ export class DeleteTableRequest {
     public name: string;
 
     /**
-     * Path to the node, which contains tables.
-     */
-    public nodePath: string;
-
-    /**
      * Object index.
      */
     public index: number;
+
+    /**
+     * Path to the node, which contains tables.
+     */
+    public nodePath: string;
 
     /**
      * Original document folder.
@@ -3391,61 +2770,6 @@ export class DeleteTableRowRequest {
     public revisionDateTime: string;
 
     public constructor(init?: Partial< DeleteTableRowRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
- * Request model for DeleteTableWithoutNodePath operation.
- * Deletes a table.
- */
-export class DeleteTableWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * Object index.
-     */
-    public index: number;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    /**
-     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
-     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-     */
-    public revisionAuthor: string;
-
-    /**
-     * The date and time to use for revisions.
-     */
-    public revisionDateTime: string;
-
-    public constructor(init?: Partial< DeleteTableWithoutNodePathRequest >) {
         Object.assign(this, init);
     }
 }
@@ -3728,14 +3052,14 @@ export class GetBorderRequest {
     public name: string;
 
     /**
-     * Path to the node with border(node should be paragraph, cell or row).
-     */
-    public nodePath: string;
-
-    /**
      * Border type.
      */
     public borderType: string;
+
+    /**
+     * Path to the node with border(node should be paragraph, cell or row).
+     */
+    public nodePath: string;
 
     /**
      * Original document folder.
@@ -3923,14 +3247,14 @@ export class GetDocumentDrawingObjectByIndexRequest {
     public name: string;
 
     /**
-     * Path to the node, which contains collection of drawing objects.
-     */
-    public nodePath: string;
-
-    /**
      * Object index.
      */
     public index: number;
+
+    /**
+     * Path to the node, which contains collection of drawing objects.
+     */
+    public nodePath: string;
 
     /**
      * Original document folder.
@@ -3958,46 +3282,6 @@ export class GetDocumentDrawingObjectByIndexRequest {
 }
 
 /**
- * Request model for GetDocumentDrawingObjectByIndexWithoutNodePath operation.
- * Reads document drawing object common info by its index or convert to format specified.
- */
-export class GetDocumentDrawingObjectByIndexWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * Object index.
-     */
-    public index: number;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    public constructor(init?: Partial< GetDocumentDrawingObjectByIndexWithoutNodePathRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
  * Request model for GetDocumentDrawingObjectImageData operation.
  * Reads drawing object image data.
  */
@@ -4008,14 +3292,14 @@ export class GetDocumentDrawingObjectImageDataRequest {
     public name: string;
 
     /**
-     * Path to the node, which contains collection of drawing objects.
-     */
-    public nodePath: string;
-
-    /**
      * Object index.
      */
     public index: number;
+
+    /**
+     * Path to the node, which contains collection of drawing objects.
+     */
+    public nodePath: string;
 
     /**
      * Original document folder.
@@ -4043,46 +3327,6 @@ export class GetDocumentDrawingObjectImageDataRequest {
 }
 
 /**
- * Request model for GetDocumentDrawingObjectImageDataWithoutNodePath operation.
- * Reads drawing object image data.
- */
-export class GetDocumentDrawingObjectImageDataWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * Object index.
-     */
-    public index: number;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    public constructor(init?: Partial< GetDocumentDrawingObjectImageDataWithoutNodePathRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
  * Request model for GetDocumentDrawingObjectOleData operation.
  * Gets drawing object OLE data.
  */
@@ -4093,14 +3337,14 @@ export class GetDocumentDrawingObjectOleDataRequest {
     public name: string;
 
     /**
-     * Path to the node, which contains collection of drawing objects.
-     */
-    public nodePath: string;
-
-    /**
      * Object index.
      */
     public index: number;
+
+    /**
+     * Path to the node, which contains collection of drawing objects.
+     */
+    public nodePath: string;
 
     /**
      * Original document folder.
@@ -4123,46 +3367,6 @@ export class GetDocumentDrawingObjectOleDataRequest {
     public password: string;
 
     public constructor(init?: Partial< GetDocumentDrawingObjectOleDataRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
- * Request model for GetDocumentDrawingObjectOleDataWithoutNodePath operation.
- * Gets drawing object OLE data.
- */
-export class GetDocumentDrawingObjectOleDataWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * Object index.
-     */
-    public index: number;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    public constructor(init?: Partial< GetDocumentDrawingObjectOleDataWithoutNodePathRequest >) {
         Object.assign(this, init);
     }
 }
@@ -4203,41 +3407,6 @@ export class GetDocumentDrawingObjectsRequest {
     public password: string;
 
     public constructor(init?: Partial< GetDocumentDrawingObjectsRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
- * Request model for GetDocumentDrawingObjectsWithoutNodePath operation.
- * Reads document drawing objects common info.
- */
-export class GetDocumentDrawingObjectsWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    public constructor(init?: Partial< GetDocumentDrawingObjectsWithoutNodePathRequest >) {
         Object.assign(this, init);
     }
 }
@@ -4628,14 +3797,14 @@ export class GetFieldRequest {
     public name: string;
 
     /**
-     * Path to the node, which contains collection of fields.
-     */
-    public nodePath: string;
-
-    /**
      * Object index.
      */
     public index: number;
+
+    /**
+     * Path to the node, which contains collection of fields.
+     */
+    public nodePath: string;
 
     /**
      * Original document folder.
@@ -4703,81 +3872,6 @@ export class GetFieldsRequest {
 }
 
 /**
- * Request model for GetFieldsWithoutNodePath operation.
- * Get fields from document.
- */
-export class GetFieldsWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    public constructor(init?: Partial< GetFieldsWithoutNodePathRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
- * Request model for GetFieldWithoutNodePath operation.
- * Gets field from document.
- */
-export class GetFieldWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * Object index.
-     */
-    public index: number;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    public constructor(init?: Partial< GetFieldWithoutNodePathRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
  * Request model for GetFilesList operation.
  * Get all files and folders within a folder.
  */
@@ -4808,14 +3902,14 @@ export class GetFootnoteRequest {
     public name: string;
 
     /**
-     * Path to the node, which contains collection of footnotes.
-     */
-    public nodePath: string;
-
-    /**
      * Object index.
      */
     public index: number;
+
+    /**
+     * Path to the node, which contains collection of footnotes.
+     */
+    public nodePath: string;
 
     /**
      * Original document folder.
@@ -4883,81 +3977,6 @@ export class GetFootnotesRequest {
 }
 
 /**
- * Request model for GetFootnotesWithoutNodePath operation.
- * Gets footnotes from document.
- */
-export class GetFootnotesWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    public constructor(init?: Partial< GetFootnotesWithoutNodePathRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
- * Request model for GetFootnoteWithoutNodePath operation.
- * Reads footnote by index.
- */
-export class GetFootnoteWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * Object index.
-     */
-    public index: number;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    public constructor(init?: Partial< GetFootnoteWithoutNodePathRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
  * Request model for GetFormField operation.
  * Returns representation of an one of the form field.
  */
@@ -4968,14 +3987,14 @@ export class GetFormFieldRequest {
     public name: string;
 
     /**
-     * Path to the node that contains collection of formfields.
-     */
-    public nodePath: string;
-
-    /**
      * Object index.
      */
     public index: number;
+
+    /**
+     * Path to the node that contains collection of formfields.
+     */
+    public nodePath: string;
 
     /**
      * Original document folder.
@@ -5038,81 +4057,6 @@ export class GetFormFieldsRequest {
     public password: string;
 
     public constructor(init?: Partial< GetFormFieldsRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
- * Request model for GetFormFieldsWithoutNodePath operation.
- * Gets form fields from document.
- */
-export class GetFormFieldsWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    public constructor(init?: Partial< GetFormFieldsWithoutNodePathRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
- * Request model for GetFormFieldWithoutNodePath operation.
- * Returns representation of an one of the form field.
- */
-export class GetFormFieldWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * Object index.
-     */
-    public index: number;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    public constructor(init?: Partial< GetFormFieldWithoutNodePathRequest >) {
         Object.assign(this, init);
     }
 }
@@ -5343,14 +4287,14 @@ export class GetOfficeMathObjectRequest {
     public name: string;
 
     /**
-     * Path to the node, which contains collection of OfficeMath objects.
-     */
-    public nodePath: string;
-
-    /**
      * Object index.
      */
     public index: number;
+
+    /**
+     * Path to the node, which contains collection of OfficeMath objects.
+     */
+    public nodePath: string;
 
     /**
      * Original document folder.
@@ -5418,81 +4362,6 @@ export class GetOfficeMathObjectsRequest {
 }
 
 /**
- * Request model for GetOfficeMathObjectsWithoutNodePath operation.
- * Gets OfficeMath objects from document.
- */
-export class GetOfficeMathObjectsWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    public constructor(init?: Partial< GetOfficeMathObjectsWithoutNodePathRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
- * Request model for GetOfficeMathObjectWithoutNodePath operation.
- * Reads OfficeMath object by index.
- */
-export class GetOfficeMathObjectWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * Object index.
-     */
-    public index: number;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    public constructor(init?: Partial< GetOfficeMathObjectWithoutNodePathRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
  * Request model for GetParagraph operation.
  * This resource represents one of the paragraphs contained in the document.
  */
@@ -5503,14 +4372,14 @@ export class GetParagraphRequest {
     public name: string;
 
     /**
-     * Path to the node which contains paragraphs.
-     */
-    public nodePath: string;
-
-    /**
      * Object index.
      */
     public index: number;
+
+    /**
+     * Path to the node which contains paragraphs.
+     */
+    public nodePath: string;
 
     /**
      * Original document folder.
@@ -5548,14 +4417,14 @@ export class GetParagraphFormatRequest {
     public name: string;
 
     /**
-     * Path to the node which contains paragraphs.
-     */
-    public nodePath: string;
-
-    /**
      * Object index.
      */
     public index: number;
+
+    /**
+     * Path to the node which contains paragraphs.
+     */
+    public nodePath: string;
 
     /**
      * Original document folder.
@@ -5583,46 +4452,6 @@ export class GetParagraphFormatRequest {
 }
 
 /**
- * Request model for GetParagraphFormatWithoutNodePath operation.
- * Represents all the formatting for a paragraph.
- */
-export class GetParagraphFormatWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * Object index.
-     */
-    public index: number;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    public constructor(init?: Partial< GetParagraphFormatWithoutNodePathRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
  * Request model for GetParagraphListFormat operation.
  * Represents list format for a paragraph.
  */
@@ -5633,14 +4462,14 @@ export class GetParagraphListFormatRequest {
     public name: string;
 
     /**
-     * Path to the node which contains paragraphs.
-     */
-    public nodePath: string;
-
-    /**
      * Object index.
      */
     public index: number;
+
+    /**
+     * Path to the node which contains paragraphs.
+     */
+    public nodePath: string;
 
     /**
      * Original document folder.
@@ -5663,81 +4492,6 @@ export class GetParagraphListFormatRequest {
     public password: string;
 
     public constructor(init?: Partial< GetParagraphListFormatRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
- * Request model for GetParagraphListFormatWithoutNodePath operation.
- * Represents list format for a paragraph.
- */
-export class GetParagraphListFormatWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * Object index.
-     */
-    public index: number;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    public constructor(init?: Partial< GetParagraphListFormatWithoutNodePathRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
- * Request model for GetParagraphOnline operation.
- * This resource represents one of the paragraphs contained in the document.
- */
-export class GetParagraphOnlineRequest {
-    /**
-     * Path to the node which contains paragraphs.
-     */
-    public nodePath: string;
-
-    /**
-     * The document.
-     */
-    public document: Readable;
-
-    /**
-     * Object index.
-     */
-    public index: number;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    public constructor(init?: Partial< GetParagraphOnlineRequest >) {
         Object.assign(this, init);
     }
 }
@@ -5783,96 +4537,6 @@ export class GetParagraphsRequest {
 }
 
 /**
- * Request model for GetParagraphsOnline operation.
- * Returns a list of paragraphs that are contained in the document.
- */
-export class GetParagraphsOnlineRequest {
-    /**
-     * Path to the node which contains paragraphs.
-     */
-    public nodePath: string;
-
-    /**
-     * The document.
-     */
-    public document: Readable;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    public constructor(init?: Partial< GetParagraphsOnlineRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
- * Request model for GetParagraphsWithoutNodePath operation.
- * Returns a list of paragraphs that are contained in the document.
- */
-export class GetParagraphsWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    public constructor(init?: Partial< GetParagraphsWithoutNodePathRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
- * Request model for GetParagraphsWithoutNodePathOnline operation.
- * Returns a list of paragraphs that are contained in the document.
- */
-export class GetParagraphsWithoutNodePathOnlineRequest {
-    /**
-     * The document.
-     */
-    public document: Readable;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    public constructor(init?: Partial< GetParagraphsWithoutNodePathOnlineRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
  * Request model for GetParagraphTabStops operation.
  * Get all tab stops for the paragraph.
  */
@@ -5883,14 +4547,14 @@ export class GetParagraphTabStopsRequest {
     public name: string;
 
     /**
-     * Path to the node which contains paragraph.
-     */
-    public nodePath: string;
-
-    /**
      * Object index.
      */
     public index: number;
+
+    /**
+     * Path to the node which contains paragraph.
+     */
+    public nodePath: string;
 
     /**
      * Original document folder.
@@ -5913,116 +4577,6 @@ export class GetParagraphTabStopsRequest {
     public password: string;
 
     public constructor(init?: Partial< GetParagraphTabStopsRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
- * Request model for GetParagraphTabStopsWithoutNodePath operation.
- * Get all tab stops for the paragraph.
- */
-export class GetParagraphTabStopsWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * Object index.
-     */
-    public index: number;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    public constructor(init?: Partial< GetParagraphTabStopsWithoutNodePathRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
- * Request model for GetParagraphWithoutNodePath operation.
- * This resource represents one of the paragraphs contained in the document.
- */
-export class GetParagraphWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * Object index.
-     */
-    public index: number;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    public constructor(init?: Partial< GetParagraphWithoutNodePathRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
- * Request model for GetParagraphWithoutNodePathOnline operation.
- * This resource represents one of the paragraphs contained in the document.
- */
-export class GetParagraphWithoutNodePathOnlineRequest {
-    /**
-     * Object index.
-     */
-    public index: number;
-
-    /**
-     * The document.
-     */
-    public document: Readable;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    public constructor(init?: Partial< GetParagraphWithoutNodePathOnlineRequest >) {
         Object.assign(this, init);
     }
 }
@@ -6445,14 +4999,14 @@ export class GetTableRequest {
     public name: string;
 
     /**
-     * Path to the node, which contains tables.
-     */
-    public nodePath: string;
-
-    /**
      * Object index.
      */
     public index: number;
+
+    /**
+     * Path to the node, which contains tables.
+     */
+    public nodePath: string;
 
     /**
      * Original document folder.
@@ -6580,14 +5134,14 @@ export class GetTablePropertiesRequest {
     public name: string;
 
     /**
-     * Path to the node, which contains tables.
-     */
-    public nodePath: string;
-
-    /**
      * Object index.
      */
     public index: number;
+
+    /**
+     * Path to the node, which contains tables.
+     */
+    public nodePath: string;
 
     /**
      * Original document folder.
@@ -6610,46 +5164,6 @@ export class GetTablePropertiesRequest {
     public password: string;
 
     public constructor(init?: Partial< GetTablePropertiesRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
- * Request model for GetTablePropertiesWithoutNodePath operation.
- * Returns a table properties.
- */
-export class GetTablePropertiesWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * Object index.
-     */
-    public index: number;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    public constructor(init?: Partial< GetTablePropertiesWithoutNodePathRequest >) {
         Object.assign(this, init);
     }
 }
@@ -6785,81 +5299,6 @@ export class GetTablesRequest {
 }
 
 /**
- * Request model for GetTablesWithoutNodePath operation.
- * Returns a list of tables that are contained in the document.
- */
-export class GetTablesWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    public constructor(init?: Partial< GetTablesWithoutNodePathRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
- * Request model for GetTableWithoutNodePath operation.
- * Returns a table.
- */
-export class GetTableWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * Object index.
-     */
-    public index: number;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    public constructor(init?: Partial< GetTableWithoutNodePathRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
  * Request model for InsertComment operation.
  * Adds comment to document, returns inserted comment data.
  */
@@ -6980,66 +5419,6 @@ export class InsertDrawingObjectRequest {
 }
 
 /**
- * Request model for InsertDrawingObjectWithoutNodePath operation.
- * Adds drawing object to document, returns added  drawing object's data.
- */
-export class InsertDrawingObjectWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * Drawing object parameters.
-     */
-    public drawingObject: importedDrawingObjectInsert.DrawingObjectInsert;
-
-    /**
-     * File with image.
-     */
-    public imageFile: Readable;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    /**
-     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
-     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-     */
-    public revisionAuthor: string;
-
-    /**
-     * The date and time to use for revisions.
-     */
-    public revisionDateTime: string;
-
-    public constructor(init?: Partial< InsertDrawingObjectWithoutNodePathRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
  * Request model for InsertField operation.
  * Adds field to document, returns inserted field's data.
  */
@@ -7105,66 +5484,6 @@ export class InsertFieldRequest {
 }
 
 /**
- * Request model for InsertFieldWithoutNodePath operation.
- * Adds field to document, returns inserted field's data.
- */
-export class InsertFieldWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * Field data.
-     */
-    public field: importedFieldInsert.FieldInsert;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    /**
-     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
-     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-     */
-    public revisionAuthor: string;
-
-    /**
-     * The date and time to use for revisions.
-     */
-    public revisionDateTime: string;
-
-    /**
-     * Field will be inserted before node with id="nodeId".
-     */
-    public insertBeforeNode: string;
-
-    public constructor(init?: Partial< InsertFieldWithoutNodePathRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
  * Request model for InsertFootnote operation.
  * Adds footnote to document, returns added footnote's data.
  */
@@ -7220,61 +5539,6 @@ export class InsertFootnoteRequest {
     public revisionDateTime: string;
 
     public constructor(init?: Partial< InsertFootnoteRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
- * Request model for InsertFootnoteWithoutNodePath operation.
- * Adds footnote to document, returns added footnote's data.
- */
-export class InsertFootnoteWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * Footnote data.
-     */
-    public footnoteDto: importedFootnoteInsert.FootnoteInsert;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    /**
-     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
-     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-     */
-    public revisionAuthor: string;
-
-    /**
-     * The date and time to use for revisions.
-     */
-    public revisionDateTime: string;
-
-    public constructor(init?: Partial< InsertFootnoteWithoutNodePathRequest >) {
         Object.assign(this, init);
     }
 }
@@ -7340,66 +5604,6 @@ export class InsertFormFieldRequest {
     public insertBeforeNode: string;
 
     public constructor(init?: Partial< InsertFormFieldRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
- * Request model for InsertFormFieldWithoutNodePath operation.
- * Adds form field to paragraph, returns added form field's data.
- */
-export class InsertFormFieldWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * From field data.
-     */
-    public formField: importedFormField.FormField;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    /**
-     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
-     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-     */
-    public revisionAuthor: string;
-
-    /**
-     * The date and time to use for revisions.
-     */
-    public revisionDateTime: string;
-
-    /**
-     * Form field will be inserted before node with index.
-     */
-    public insertBeforeNode: string;
-
-    public constructor(init?: Partial< InsertFormFieldWithoutNodePathRequest >) {
         Object.assign(this, init);
     }
 }
@@ -7535,14 +5739,14 @@ export class InsertOrUpdateParagraphTabStopRequest {
     public dto: importedTabStopInsert.TabStopInsert;
 
     /**
-     * Path to the node which contains paragraph.
-     */
-    public nodePath: string;
-
-    /**
      * Object index.
      */
     public index: number;
+
+    /**
+     * Path to the node which contains paragraph.
+     */
+    public nodePath: string;
 
     /**
      * Original document folder.
@@ -7570,56 +5774,6 @@ export class InsertOrUpdateParagraphTabStopRequest {
     public destFileName: string;
 
     public constructor(init?: Partial< InsertOrUpdateParagraphTabStopRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
- * Request model for InsertOrUpdateParagraphTabStopWithoutNodePath operation.
- * Insert or resplace tab stop if a tab stop with the position exists.
- */
-export class InsertOrUpdateParagraphTabStopWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * Paragraph tab stop.
-     */
-    public dto: importedTabStopInsert.TabStopInsert;
-
-    /**
-     * Object index.
-     */
-    public index: number;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    /**
-     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    public constructor(init?: Partial< InsertOrUpdateParagraphTabStopWithoutNodePathRequest >) {
         Object.assign(this, init);
     }
 }
@@ -7690,14 +5844,14 @@ export class InsertParagraphRequest {
     public name: string;
 
     /**
-     * Path to the node which contains paragraphs.
-     */
-    public nodePath: string;
-
-    /**
      * Paragraph data.
      */
     public paragraph: importedParagraphInsert.ParagraphInsert;
+
+    /**
+     * Path to the node which contains paragraphs.
+     */
+    public nodePath: string;
 
     /**
      * Original document folder.
@@ -7740,171 +5894,6 @@ export class InsertParagraphRequest {
     public insertBeforeNode: string;
 
     public constructor(init?: Partial< InsertParagraphRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
- * Request model for InsertParagraphOnline operation.
- * Adds paragraph to document, returns added paragraph's data.
- */
-export class InsertParagraphOnlineRequest {
-    /**
-     * Path to the node which contains paragraphs.
-     */
-    public nodePath: string;
-
-    /**
-     * The document.
-     */
-    public document: Readable;
-
-    /**
-     * Paragraph data.
-     */
-    public paragraph: importedParagraphInsert.ParagraphInsert;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    /**
-     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
-     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-     */
-    public revisionAuthor: string;
-
-    /**
-     * The date and time to use for revisions.
-     */
-    public revisionDateTime: string;
-
-    /**
-     * Paragraph will be inserted before node with index.
-     */
-    public insertBeforeNode: string;
-
-    public constructor(init?: Partial< InsertParagraphOnlineRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
- * Request model for InsertParagraphWithoutNodePath operation.
- * Adds paragraph to document, returns added paragraph's data.
- */
-export class InsertParagraphWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * Paragraph data.
-     */
-    public paragraph: importedParagraphInsert.ParagraphInsert;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    /**
-     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
-     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-     */
-    public revisionAuthor: string;
-
-    /**
-     * The date and time to use for revisions.
-     */
-    public revisionDateTime: string;
-
-    /**
-     * Paragraph will be inserted before node with index.
-     */
-    public insertBeforeNode: string;
-
-    public constructor(init?: Partial< InsertParagraphWithoutNodePathRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
- * Request model for InsertParagraphWithoutNodePathOnline operation.
- * Adds paragraph to document, returns added paragraph's data.
- */
-export class InsertParagraphWithoutNodePathOnlineRequest {
-    /**
-     * The document.
-     */
-    public document: Readable;
-
-    /**
-     * Paragraph data.
-     */
-    public paragraph: importedParagraphInsert.ParagraphInsert;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    /**
-     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
-     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-     */
-    public revisionAuthor: string;
-
-    /**
-     * The date and time to use for revisions.
-     */
-    public revisionDateTime: string;
-
-    /**
-     * Paragraph will be inserted before node with index.
-     */
-    public insertBeforeNode: string;
-
-    public constructor(init?: Partial< InsertParagraphWithoutNodePathOnlineRequest >) {
         Object.assign(this, init);
     }
 }
@@ -8210,61 +6199,6 @@ export class InsertTableRowRequest {
 }
 
 /**
- * Request model for InsertTableWithoutNodePath operation.
- * Adds table to document, returns added table's data.
- */
-export class InsertTableWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * Table parameters/.
-     */
-    public table: importedTableInsert.TableInsert;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    /**
-     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
-     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-     */
-    public revisionAuthor: string;
-
-    /**
-     * The date and time to use for revisions.
-     */
-    public revisionDateTime: string;
-
-    public constructor(init?: Partial< InsertTableWithoutNodePathRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
  * Request model for InsertWatermarkImage operation.
  * Inserts document watermark image.
  */
@@ -8470,6 +6404,61 @@ export class MoveFolderRequest {
 }
 
 /**
+ * Request model for OptimizeDocument operation.
+ * Allows to optimize the document contents as well as default Aspose.Words behavior to a particular versions of MS Word.
+ */
+export class OptimizeDocumentRequest {
+    /**
+     * The document name.
+     */
+    public name: string;
+
+    /**
+     * The document optimization options.
+     */
+    public options: importedOptimizationOptions.OptimizationOptions;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< OptimizeDocumentRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for ProtectDocument operation.
  * Protects document.
  */
@@ -8622,14 +6611,14 @@ export class RenderDrawingObjectRequest {
     public format: string;
 
     /**
-     * Path to the node, which contains drawing objects.
-     */
-    public nodePath: string;
-
-    /**
      * Object index.
      */
     public index: number;
+
+    /**
+     * Path to the node, which contains drawing objects.
+     */
+    public nodePath: string;
 
     /**
      * Original document folder.
@@ -8662,56 +6651,6 @@ export class RenderDrawingObjectRequest {
 }
 
 /**
- * Request model for RenderDrawingObjectWithoutNodePath operation.
- * Renders drawing object to specified format.
- */
-export class RenderDrawingObjectWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * The destination format.
-     */
-    public format: string;
-
-    /**
-     * Object index.
-     */
-    public index: number;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    /**
-     * Folder in filestorage with custom fonts.
-     */
-    public fontsLocation: string;
-
-    public constructor(init?: Partial< RenderDrawingObjectWithoutNodePathRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
  * Request model for RenderMathObject operation.
  * Renders math object to specified format.
  */
@@ -8727,14 +6666,14 @@ export class RenderMathObjectRequest {
     public format: string;
 
     /**
-     * Path to the node, which contains office math objects.
-     */
-    public nodePath: string;
-
-    /**
      * Object index.
      */
     public index: number;
+
+    /**
+     * Path to the node, which contains office math objects.
+     */
+    public nodePath: string;
 
     /**
      * Original document folder.
@@ -8762,56 +6701,6 @@ export class RenderMathObjectRequest {
     public fontsLocation: string;
 
     public constructor(init?: Partial< RenderMathObjectRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
- * Request model for RenderMathObjectWithoutNodePath operation.
- * Renders math object to specified format.
- */
-export class RenderMathObjectWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * The destination format.
-     */
-    public format: string;
-
-    /**
-     * Object index.
-     */
-    public index: number;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    /**
-     * Folder in filestorage with custom fonts.
-     */
-    public fontsLocation: string;
-
-    public constructor(init?: Partial< RenderMathObjectWithoutNodePathRequest >) {
         Object.assign(this, init);
     }
 }
@@ -8882,14 +6771,14 @@ export class RenderParagraphRequest {
     public format: string;
 
     /**
-     * Path to the node, which contains paragraphs.
-     */
-    public nodePath: string;
-
-    /**
      * Object index.
      */
     public index: number;
+
+    /**
+     * Path to the node, which contains paragraphs.
+     */
+    public nodePath: string;
 
     /**
      * Original document folder.
@@ -8922,56 +6811,6 @@ export class RenderParagraphRequest {
 }
 
 /**
- * Request model for RenderParagraphWithoutNodePath operation.
- * Renders paragraph to specified format.
- */
-export class RenderParagraphWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * The destination format.
-     */
-    public format: string;
-
-    /**
-     * Object index.
-     */
-    public index: number;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    /**
-     * Folder in filestorage with custom fonts.
-     */
-    public fontsLocation: string;
-
-    public constructor(init?: Partial< RenderParagraphWithoutNodePathRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
  * Request model for RenderTable operation.
  * Renders table to specified format.
  */
@@ -8987,14 +6826,14 @@ export class RenderTableRequest {
     public format: string;
 
     /**
-     * Path to the node, which contains tables.
-     */
-    public nodePath: string;
-
-    /**
      * Object index.
      */
     public index: number;
+
+    /**
+     * Path to the node, which contains tables.
+     */
+    public nodePath: string;
 
     /**
      * Original document folder.
@@ -9022,56 +6861,6 @@ export class RenderTableRequest {
     public fontsLocation: string;
 
     public constructor(init?: Partial< RenderTableRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
- * Request model for RenderTableWithoutNodePath operation.
- * Renders table to specified format.
- */
-export class RenderTableWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * The destination format.
-     */
-    public format: string;
-
-    /**
-     * Object index.
-     */
-    public index: number;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    /**
-     * Folder in filestorage with custom fonts.
-     */
-    public fontsLocation: string;
-
-    public constructor(init?: Partial< RenderTableWithoutNodePathRequest >) {
         Object.assign(this, init);
     }
 }
@@ -9677,14 +7466,14 @@ export class UpdateBorderRequest {
     public borderProperties: importedBorder.Border;
 
     /**
-     * Path to the node with border(node should be paragraph, cell or row).
-     */
-    public nodePath: string;
-
-    /**
      * Border type.
      */
     public borderType: string;
+
+    /**
+     * Path to the node with border(node should be paragraph, cell or row).
+     */
+    public nodePath: string;
 
     /**
      * Original document folder.
@@ -9807,14 +7596,14 @@ export class UpdateDrawingObjectRequest {
     public imageFile: Readable;
 
     /**
-     * Path to the node, which contains collection of drawing objects.
-     */
-    public nodePath: string;
-
-    /**
      * Object index.
      */
     public index: number;
+
+    /**
+     * Path to the node, which contains collection of drawing objects.
+     */
+    public nodePath: string;
 
     /**
      * Original document folder.
@@ -9857,71 +7646,6 @@ export class UpdateDrawingObjectRequest {
 }
 
 /**
- * Request model for UpdateDrawingObjectWithoutNodePath operation.
- * Updates drawing object, returns updated  drawing object's data.
- */
-export class UpdateDrawingObjectWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * Drawing object parameters.
-     */
-    public drawingObject: importedDrawingObjectUpdate.DrawingObjectUpdate;
-
-    /**
-     * File with image.
-     */
-    public imageFile: Readable;
-
-    /**
-     * Object index.
-     */
-    public index: number;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    /**
-     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
-     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-     */
-    public revisionAuthor: string;
-
-    /**
-     * The date and time to use for revisions.
-     */
-    public revisionDateTime: string;
-
-    public constructor(init?: Partial< UpdateDrawingObjectWithoutNodePathRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
  * Request model for UpdateField operation.
  * Updates field's properties, returns updated field's data.
  */
@@ -9937,14 +7661,14 @@ export class UpdateFieldRequest {
     public field: importedFieldUpdate.FieldUpdate;
 
     /**
-     * Path to the node, which contains collection of fields.
-     */
-    public nodePath: string;
-
-    /**
      * Object index.
      */
     public index: number;
+
+    /**
+     * Path to the node, which contains collection of fields.
+     */
+    public nodePath: string;
 
     /**
      * Original document folder.
@@ -10042,14 +7766,14 @@ export class UpdateFootnoteRequest {
     public footnoteDto: importedFootnoteUpdate.FootnoteUpdate;
 
     /**
-     * Path to the node, which contains collection of footnotes.
-     */
-    public nodePath: string;
-
-    /**
      * Object index.
      */
     public index: number;
+
+    /**
+     * Path to the node, which contains collection of footnotes.
+     */
+    public nodePath: string;
 
     /**
      * Original document folder.
@@ -10092,66 +7816,6 @@ export class UpdateFootnoteRequest {
 }
 
 /**
- * Request model for UpdateFootnoteWithoutNodePath operation.
- * Updates footnote's properties, returns updated run's data.
- */
-export class UpdateFootnoteWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * Footnote data.
-     */
-    public footnoteDto: importedFootnoteUpdate.FootnoteUpdate;
-
-    /**
-     * Object index.
-     */
-    public index: number;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    /**
-     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
-     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-     */
-    public revisionAuthor: string;
-
-    /**
-     * The date and time to use for revisions.
-     */
-    public revisionDateTime: string;
-
-    public constructor(init?: Partial< UpdateFootnoteWithoutNodePathRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
  * Request model for UpdateFormField operation.
  * Updates properties of form field, returns updated form field.
  */
@@ -10167,14 +7831,14 @@ export class UpdateFormFieldRequest {
     public formField: importedFormField.FormField;
 
     /**
-     * Path to the node that contains collection of formfields.
-     */
-    public nodePath: string;
-
-    /**
      * Object index.
      */
     public index: number;
+
+    /**
+     * Path to the node that contains collection of formfields.
+     */
+    public nodePath: string;
 
     /**
      * Original document folder.
@@ -10212,66 +7876,6 @@ export class UpdateFormFieldRequest {
     public revisionDateTime: string;
 
     public constructor(init?: Partial< UpdateFormFieldRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
- * Request model for UpdateFormFieldWithoutNodePath operation.
- * Updates properties of form field, returns updated form field.
- */
-export class UpdateFormFieldWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * From field data.
-     */
-    public formField: importedFormField.FormField;
-
-    /**
-     * Object index.
-     */
-    public index: number;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    /**
-     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
-     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-     */
-    public revisionAuthor: string;
-
-    /**
-     * The date and time to use for revisions.
-     */
-    public revisionDateTime: string;
-
-    public constructor(init?: Partial< UpdateFormFieldWithoutNodePathRequest >) {
         Object.assign(this, init);
     }
 }
@@ -10417,14 +8021,14 @@ export class UpdateParagraphFormatRequest {
     public dto: importedParagraphFormatUpdate.ParagraphFormatUpdate;
 
     /**
-     * Path to the node which contains paragraphs.
-     */
-    public nodePath: string;
-
-    /**
      * Object index.
      */
     public index: number;
+
+    /**
+     * Path to the node which contains paragraphs.
+     */
+    public nodePath: string;
 
     /**
      * Original document folder.
@@ -10482,14 +8086,14 @@ export class UpdateParagraphListFormatRequest {
     public dto: importedListFormatUpdate.ListFormatUpdate;
 
     /**
-     * Path to the node which contains paragraphs.
-     */
-    public nodePath: string;
-
-    /**
      * Object index.
      */
     public index: number;
+
+    /**
+     * Path to the node which contains paragraphs.
+     */
+    public nodePath: string;
 
     /**
      * Original document folder.
@@ -10527,66 +8131,6 @@ export class UpdateParagraphListFormatRequest {
     public revisionDateTime: string;
 
     public constructor(init?: Partial< UpdateParagraphListFormatRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
- * Request model for UpdateParagraphListFormatWithoutNodePath operation.
- * Updates paragraph list format properties, returns updated list format properties.
- */
-export class UpdateParagraphListFormatWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * Paragraph format object.
-     */
-    public dto: importedListFormatUpdate.ListFormatUpdate;
-
-    /**
-     * Object index.
-     */
-    public index: number;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    /**
-     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
-     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-     */
-    public revisionAuthor: string;
-
-    /**
-     * The date and time to use for revisions.
-     */
-    public revisionDateTime: string;
-
-    public constructor(init?: Partial< UpdateParagraphListFormatWithoutNodePathRequest >) {
         Object.assign(this, init);
     }
 }
@@ -10922,14 +8466,14 @@ export class UpdateTablePropertiesRequest {
     public properties: importedTableProperties.TableProperties;
 
     /**
-     * Path to the node, which contains tables.
-     */
-    public nodePath: string;
-
-    /**
      * Object index.
      */
     public index: number;
+
+    /**
+     * Path to the node, which contains tables.
+     */
+    public nodePath: string;
 
     /**
      * Original document folder.
@@ -10967,66 +8511,6 @@ export class UpdateTablePropertiesRequest {
     public revisionDateTime: string;
 
     public constructor(init?: Partial< UpdateTablePropertiesRequest >) {
-        Object.assign(this, init);
-    }
-}
-
-/**
- * Request model for UpdateTablePropertiesWithoutNodePath operation.
- * Updates a table properties.
- */
-export class UpdateTablePropertiesWithoutNodePathRequest {
-    /**
-     * The document name.
-     */
-    public name: string;
-
-    /**
-     * The properties.
-     */
-    public properties: importedTableProperties.TableProperties;
-
-    /**
-     * Object index.
-     */
-    public index: number;
-
-    /**
-     * Original document folder.
-     */
-    public folder: string;
-
-    /**
-     * Original document storage.
-     */
-    public storage: string;
-
-    /**
-     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
-     */
-    public loadEncoding: string;
-
-    /**
-     * Password for opening an encrypted document.
-     */
-    public password: string;
-
-    /**
-     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
-     */
-    public destFileName: string;
-
-    /**
-     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
-     */
-    public revisionAuthor: string;
-
-    /**
-     * The date and time to use for revisions.
-     */
-    public revisionDateTime: string;
-
-    public constructor(init?: Partial< UpdateTablePropertiesWithoutNodePathRequest >) {
         Object.assign(this, init);
     }
 }

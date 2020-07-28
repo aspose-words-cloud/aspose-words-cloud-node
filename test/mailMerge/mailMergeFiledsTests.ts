@@ -45,7 +45,7 @@ describe("mailMergeFileds", () => {
             const localDocumentFile = "SampleExecuteTemplate.docx";
 
             const request = new model.GetDocumentFieldNamesOnlineRequest({
-                template: fs.createReadStream(BaseTest.localBaseTestDataFolder + mailMergeFolder + "/" + localDocumentFile),
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + mailMergeFolder + "/" + localDocumentFile),
                 useNonMergeFields: true
             });
 

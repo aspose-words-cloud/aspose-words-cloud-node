@@ -74,4 +74,39 @@ describe("appendDocument", () => {
 
        });
     });
+
+    // Test for appending document online.
+    describe("appendDocumentOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const remoteFileName = "TestAppendDocument.docx";
+
+            return wordsApi.uploadFileToStorage(
+                remoteDataFolder + "/" + remoteFileName,
+                BaseTest.localBaseTestDataFolder + localFile
+            ).then((result0) => {
+                expect(result0.response.statusMessage).to.equal("OK");
+                const request = new model.AppendDocumentOnlineRequest({
+                    document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                    documentList: new model.DocumentEntryList({
+                        documentEntries: [
+                            new model.DocumentEntry({
+                                href: remoteDataFolder + "/" + remoteFileName,
+                                importFormatMode: "KeepSourceFormatting"
+                            })
+                        ]
+                    })
+                });
+
+                // Act
+                return wordsApi.appendDocumentOnline(request)
+                .then((resultApi) => {
+                    // Assert
+                    expect(resultApi.response.statusCode).to.equal(200);
+                });
+
+            });
+
+       });
+    });
 });

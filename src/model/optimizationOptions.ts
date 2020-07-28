@@ -1,6 +1,6 @@
 /*
  * --------------------------------------------------------------------------------
- * <copyright company="Aspose" file="documentEntryList.ts">
+ * <copyright company="Aspose" file="optimizationOptions.ts">
  *   Copyright (c) 2020 Aspose.Words for Cloud
  * </copyright>
  * <summary>
@@ -26,29 +26,22 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
-import { DocumentEntry } from './documentEntry';
 
-export const importsMapDocumentEntryList = {
-    DocumentEntry,
+export const importsMapOptimizationOptions = {
 };
 
 /**
- * Represents a list of documents which will be appended to the original resource document.
+ * Container class for the document optimization options.
  */
-export class DocumentEntryList {
+export class OptimizationOptions {
     /**
      * Attribute type map
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "applyBaseDocumentHeadersAndFootersToAppendingDocuments",
-            baseName: "ApplyBaseDocumentHeadersAndFootersToAppendingDocuments",
-            type: "boolean",
-        },
-        {
-            name: "documentEntries",
-            baseName: "DocumentEntries",
-            type: "Array<DocumentEntry>",
+            name: "msWordVersion",
+            baseName: "MsWordVersion",
+            type: "OptimizationOptions.MsWordVersionEnum",
         }
     ];
 
@@ -56,21 +49,35 @@ export class DocumentEntryList {
      * Returns attribute type map
      */
     public static getAttributeTypeMap() {
-        return DocumentEntryList.attributeTypeMap;
+        return OptimizationOptions.attributeTypeMap;
     }
 
     /**
-     * Gets or sets parameter that indicates to apply headers and footers from base document to appending documents. Default is true.
+     * Gets or sets specific MSWord version.
      */
-    public applyBaseDocumentHeadersAndFootersToAppendingDocuments: boolean;
+    public msWordVersion: OptimizationOptions.MsWordVersionEnum;
 
-    /**
-     * Gets or sets list of documents.
-     */
-    public documentEntries: Array<DocumentEntry>;
-
-    public constructor(init?: Partial< DocumentEntryList >) {
+    public constructor(init?: Partial< OptimizationOptions >) {
         Object.assign(this, init);
     }
 }
+
+/**
+ * Enums for OptimizationOptions
+ */
+// tslint:disable:quotemark
+// tslint:disable-next-line:no-namespace
+export namespace OptimizationOptions {
+    export enum MsWordVersionEnum {
+        Word2000 = 'Word2000' as any,
+        Word2002 = 'Word2002' as any,
+        Word2003 = 'Word2003' as any,
+        Word2007 = 'Word2007' as any,
+        Word2010 = 'Word2010' as any,
+        Word2013 = 'Word2013' as any,
+        Word2016 = 'Word2016' as any,
+        Word2019 = 'Word2019' as any
+    }
+}
+// tslint:enable:quotemark
 

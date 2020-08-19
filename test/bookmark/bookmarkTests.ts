@@ -59,6 +59,9 @@ describe("bookmark", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.bookmarks).to.exist;
+                    expect(resultApi.body.bookmarks.bookmarkList).to.have.lengthOf(3);
+                    expect(resultApi.body.bookmarks.bookmarkList[1].name).to.equal("aspose");
                 });
 
             });

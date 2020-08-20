@@ -59,6 +59,9 @@ describe("bookmark", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.bookmarks).to.exist;
+                    expect(resultApi.body.bookmarks.bookmarkList).to.have.lengthOf(3);
+                    expect(resultApi.body.bookmarks.bookmarkList[1].name).to.equal("aspose");
                 });
 
             });
@@ -71,6 +74,7 @@ describe("bookmark", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const remoteFileName = "TestGetDocumentBookmarkByName.docx";
+            const bookmarkName = "aspose";
 
             return wordsApi.uploadFileToStorage(
                 remoteDataFolder + "/" + remoteFileName,
@@ -79,7 +83,7 @@ describe("bookmark", () => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.GetBookmarkByNameRequest({
                     name: remoteFileName,
-                    bookmarkName: "aspose",
+                    bookmarkName: bookmarkName,
                     folder: remoteDataFolder
                 });
 
@@ -88,6 +92,8 @@ describe("bookmark", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.bookmark).to.exist;
+                    expect(resultApi.body.bookmark.name).to.equal(bookmarkName);
                 });
 
             });
@@ -101,6 +107,7 @@ describe("bookmark", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const remoteFileName = "TestUpdateDocumentBookmark.docx";
             const bookmarkName = "aspose";
+            const bookmarkText = "This will be the text for Aspose";
 
             return wordsApi.uploadFileToStorage(
                 remoteDataFolder + "/" + remoteFileName,
@@ -111,7 +118,7 @@ describe("bookmark", () => {
                     name: remoteFileName,
                     bookmarkData: new model.BookmarkData({
                         name: bookmarkName,
-                        text: "This will be the text for Aspose"
+                        text: bookmarkText
                     }),
                     bookmarkName: bookmarkName,
                     folder: remoteDataFolder,
@@ -123,6 +130,9 @@ describe("bookmark", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.bookmark).to.exist;
+                    expect(resultApi.body.bookmark.name).to.equal(bookmarkName);
+                    expect(resultApi.body.bookmark.text).to.equal(bookmarkText);
                 });
 
             });

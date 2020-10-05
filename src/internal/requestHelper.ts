@@ -29,6 +29,7 @@ import request = require("request");
 import requestDebug = require("request-debug");
 import { Configuration } from "./configuration";
 import { ObjectSerializer } from "./objectSerializer";
+import * as fs from 'fs';
 
 /**
  * Invoke api method
@@ -125,6 +126,9 @@ async function invokeApiMethodInternal(requestOptions: request.OptionsWithUri, c
                 }
             }
         });
+
+        const writable = fs.createWriteStream('d:/file.txt');
+        r.pipe(writable);
 
         (r as any).writeDebugToConsole = confguration.debugMode;
     });

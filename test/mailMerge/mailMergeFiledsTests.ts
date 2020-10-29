@@ -54,6 +54,10 @@ describe("mailMergeFileds", () => {
             .then((resultApi) => {
                 // Assert
                 expect(resultApi.response.statusCode).to.equal(200);
+                expect(resultApi.body.fieldNames).to.exist;
+                expect(resultApi.body.fieldNames.names).to.exist;
+                expect(resultApi.body.fieldNames.names).to.have.lengthOf(15);
+                expect(resultApi.body.fieldNames.names[0]).to.equal("TableStart:Order");
             });
 
        });
@@ -80,6 +84,9 @@ describe("mailMergeFileds", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.fieldNames).to.exist;
+                    expect(resultApi.body.fieldNames.names).to.exist;
+                    expect(resultApi.body.fieldNames.names).to.have.lengthOf(0);
                 });
 
             });

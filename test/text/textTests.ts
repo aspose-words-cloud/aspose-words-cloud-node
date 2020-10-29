@@ -52,8 +52,8 @@ describe("text", () => {
                 const request = new model.ReplaceTextRequest({
                     name: remoteFileName,
                     replaceText: new model.ReplaceTextParameters({
-                        oldValue: "aspose",
-                        newValue: "aspose new"
+                        oldValue: "Testing",
+                        newValue: "Aspose testing"
                     }),
                     folder: remoteDataFolder,
                     destFileName: BaseTest.remoteBaseTestOutFolder + "/" + remoteFileName
@@ -64,6 +64,7 @@ describe("text", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.matches).to.equal(3);
                 });
 
             });
@@ -94,6 +95,11 @@ describe("text", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.searchResults).to.exist;
+                    expect(resultApi.body.searchResults.resultsList).to.exist;
+                    expect(resultApi.body.searchResults.resultsList).to.have.lengthOf(23);
+                    expect(resultApi.body.searchResults.resultsList[0].rangeStart).to.exist;
+                    expect(resultApi.body.searchResults.resultsList[0].rangeStart.offset).to.equal(65);
                 });
 
             });

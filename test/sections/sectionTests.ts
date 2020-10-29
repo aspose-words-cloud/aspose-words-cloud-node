@@ -60,6 +60,10 @@ describe("section", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.section).to.exist;
+                    expect(resultApi.body.section.childNodes).to.exist;
+                    expect(resultApi.body.section.childNodes).to.have.lengthOf(13);
+                    expect(resultApi.body.section.childNodes[0].nodeId).to.equal("0.3.0");
                 });
 
             });
@@ -88,6 +92,10 @@ describe("section", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.sections).to.exist;
+                    expect(resultApi.body.sections.sectionLinkList).to.exist;
+                    expect(resultApi.body.sections.sectionLinkList).to.have.lengthOf(1);
+                    expect(resultApi.body.sections.sectionLinkList[0].nodeId).to.equal("0");
                 });
 
             });

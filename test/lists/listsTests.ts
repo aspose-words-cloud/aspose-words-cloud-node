@@ -59,6 +59,10 @@ describe("lists", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.lists).to.exist;
+                    expect(resultApi.body.lists.listInfo).to.exist;
+                    expect(resultApi.body.lists.listInfo).to.have.lengthOf(2);
+                    expect(resultApi.body.lists.listInfo[0].listId).to.equal(1);
                 });
 
             });
@@ -88,6 +92,8 @@ describe("lists", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.list).to.exist;
+                    expect(resultApi.body.list.listId).to.equal(1);
                 });
 
             });
@@ -120,6 +126,9 @@ describe("lists", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.list).to.exist;
+                    expect(resultApi.body.list.listId).to.equal(1);
+                    expect(resultApi.body.list.isRestartAtEachSection).to.true;
                 });
 
             });
@@ -153,6 +162,11 @@ describe("lists", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.list).to.exist;
+                    expect(resultApi.body.list.listLevels).to.exist;
+                    expect(resultApi.body.list.listLevels.listLevel).to.exist;
+                    expect(resultApi.body.list.listLevels.listLevel).to.have.lengthOf(9);
+
                 });
 
             });
@@ -184,6 +198,8 @@ describe("lists", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.list).to.exist;
+                    expect(resultApi.body.list.listId).to.equal(3);
                 });
 
             });

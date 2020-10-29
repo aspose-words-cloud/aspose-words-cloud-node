@@ -52,7 +52,8 @@ describe("documentProtection", () => {
                 const request = new model.ProtectDocumentRequest({
                     name: remoteFileName,
                     protectionRequest: new model.ProtectionRequest({
-                        newPassword: "123"
+                        password: "123",
+                        protectionType: "ReadOnly"
                     }),
                     folder: remoteDataFolder,
                     destFileName: BaseTest.remoteBaseTestOutFolder + "/" + remoteFileName
@@ -63,6 +64,8 @@ describe("documentProtection", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.protectionData).to.exist;
+                    expect(resultApi.body.protectionData.protectionType).to.equal("ReadOnly");
                 });
 
             });
@@ -74,11 +77,12 @@ describe("documentProtection", () => {
     describe("getDocumentProtection test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            const localFilePath = "DocumentActions/DocumentProtection/SampleProtectedBlankWordDocument.docx";
             const remoteFileName = "TestGetDocumentProtection.docx";
 
             return wordsApi.uploadFileToStorage(
                 remoteDataFolder + "/" + remoteFileName,
-                BaseTest.localBaseTestDataFolder + localFile
+                BaseTest.localBaseTestDataFolder + localFilePath
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.GetDocumentProtectionRequest({
@@ -91,37 +95,8 @@ describe("documentProtection", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
-                });
-
-            });
-
-       });
-    });
-
-    // Test for changing document protection.
-    describe("changeDocumentProtection test", () => {
-        it("should return response with code 200", () => {
-            const wordsApi = BaseTest.initializeWordsApi();
-            const remoteFileName = "TestChangeDocumentProtection.docx";
-
-            return wordsApi.uploadFileToStorage(
-                remoteDataFolder + "/" + remoteFileName,
-                BaseTest.localBaseTestDataFolder + localFile
-            ).then((result0) => {
-                expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.ProtectDocumentRequest({
-                    name: remoteFileName,
-                    protectionRequest: new model.ProtectionRequest({
-                        newPassword: "321"
-                    }),
-                    folder: remoteDataFolder
-                });
-
-                // Act
-                return wordsApi.protectDocument(request)
-                .then((resultApi) => {
-                    // Assert
-                    expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.protectionData).to.exist;
+                    expect(resultApi.body.protectionData.protectionType).to.equal("ReadOnly");
                 });
 
             });
@@ -154,6 +129,8 @@ describe("documentProtection", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.protectionData).to.exist;
+                    expect(resultApi.body.protectionData.protectionType).to.equal("NoProtection");
                 });
 
             });

@@ -60,6 +60,9 @@ describe("headerFooter", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.headerFooters).to.exist;
+                    expect(resultApi.body.headerFooters.list).to.exist;
+                    expect(resultApi.body.headerFooters.list).to.have.lengthOf(6);
                 });
 
             });
@@ -89,6 +92,10 @@ describe("headerFooter", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.headerFooter).to.exist;
+                    expect(resultApi.body.headerFooter.childNodes).to.exist;
+                    expect(resultApi.body.headerFooter.childNodes).to.have.lengthOf(1);
+                    expect(resultApi.body.headerFooter.childNodes[0].nodeId).to.equal("0.0.0");
                 });
 
             });
@@ -119,6 +126,10 @@ describe("headerFooter", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.headerFooter).to.exist;
+                    expect(resultApi.body.headerFooter.childNodes).to.exist;
+                    expect(resultApi.body.headerFooter.childNodes).to.have.lengthOf(1);
+                    expect(resultApi.body.headerFooter.childNodes[0].nodeId).to.equal("0.0.0");
                 });
 
             });
@@ -208,6 +219,10 @@ describe("headerFooter", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.headerFooter).to.exist;
+                    expect(resultApi.body.headerFooter.childNodes).to.exist;
+                    expect(resultApi.body.headerFooter.childNodes).to.have.lengthOf(1);
+                    expect(resultApi.body.headerFooter.childNodes[0].nodeId).to.equal("0.2.0");
                 });
 
             });

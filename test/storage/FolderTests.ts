@@ -96,6 +96,7 @@ describe("folder", () => {
             .then((resultApi) => {
                 // Assert
                 expect(resultApi.response.statusCode).to.equal(200);
+                expect(resultApi.body.value).to.exist;
             });
 
        });

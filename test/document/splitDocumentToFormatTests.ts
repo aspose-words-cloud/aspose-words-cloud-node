@@ -63,6 +63,10 @@ describe("splitDocumentToFormat", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.splitResult).to.exist;
+                    expect(resultApi.body.splitResult.pages).to.exist;
+                    expect(resultApi.body.splitResult.pages).to.have.lengthOf(2);
+                    expect(resultApi.body.splitResult.pages[0].href).to.equal("TestOut/NET/TestSplitDocument_page1.text");
                 });
 
             });

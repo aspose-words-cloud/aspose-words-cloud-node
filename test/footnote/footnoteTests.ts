@@ -64,6 +64,9 @@ describe("footnote", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.footnote).to.exist;
+                    expect(resultApi.body.footnote.nodeId).to.equal("0.1.7.1");
+                    expect(resultApi.body.footnote.text).to.equal(" test endnote\r\n");
                 });
 
             });
@@ -96,6 +99,9 @@ describe("footnote", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.footnote).to.exist;
+                    expect(resultApi.body.footnote.nodeId).to.equal("0.1.7.1");
+                    expect(resultApi.body.footnote.text).to.equal(" test endnote\r\n");
                 });
 
             });
@@ -184,6 +190,10 @@ describe("footnote", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.footnotes).to.exist;
+                    expect(resultApi.body.footnotes.list).to.exist;
+                    expect(resultApi.body.footnotes.list).to.have.lengthOf(6);
+                    expect(resultApi.body.footnotes.list[0].text).to.equal(" Footnote 1.\r\n");
                 });
 
             });
@@ -212,6 +222,10 @@ describe("footnote", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.footnotes).to.exist;
+                    expect(resultApi.body.footnotes.list).to.exist;
+                    expect(resultApi.body.footnotes.list).to.have.lengthOf(6);
+                    expect(resultApi.body.footnotes.list[0].text).to.equal(" Footnote 1.\r\n");
                 });
 
             });
@@ -242,6 +256,8 @@ describe("footnote", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.footnote).to.exist;
+                    expect(resultApi.body.footnote.text).to.equal(" Footnote 1.\r\n");
                 });
 
             });
@@ -271,6 +287,8 @@ describe("footnote", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.footnote).to.exist;
+                    expect(resultApi.body.footnote.text).to.equal(" Footnote 1.\r\n");
                 });
 
             });
@@ -304,6 +322,8 @@ describe("footnote", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.footnote).to.exist;
+                    expect(resultApi.body.footnote.text).to.equal(" new text is here\r\n");
                 });
 
             });
@@ -336,6 +356,8 @@ describe("footnote", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.footnote).to.exist;
+                    expect(resultApi.body.footnote.text).to.equal(" new text is here\r\n");
                 });
 
             });

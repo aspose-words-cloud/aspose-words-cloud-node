@@ -60,6 +60,9 @@ describe("revisions", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.result).to.exist;
+                    expect(resultApi.body.result.dest).to.exist;
+                    expect(resultApi.body.result.dest.href).to.equal("TestOut/NET/TestAcceptAllRevisions.docx");
                 });
 
             });
@@ -89,6 +92,9 @@ describe("revisions", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.result).to.exist;
+                    expect(resultApi.body.result.dest).to.exist;
+                    expect(resultApi.body.result.dest.href).to.equal("TestOut/NET/TestRejectAllRevisions.docx");
                 });
 
             });

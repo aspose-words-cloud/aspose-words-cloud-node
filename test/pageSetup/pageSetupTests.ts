@@ -61,6 +61,8 @@ describe("pageSetup", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.pageSetup).to.exist;
+                    expect(resultApi.body.pageSetup.lineStartingNumber).to.equal(1);
                 });
 
             });
@@ -96,6 +98,10 @@ describe("pageSetup", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.pageSetup).to.exist;
+                    expect(resultApi.body.pageSetup.rtlGutter).to.true;
+
+
                 });
 
             });

@@ -63,8 +63,8 @@ describe("documentProperties", () => {
                     expect(resultApi.body.documentProperties.list).to.exist;
                     expect(resultApi.body.documentProperties.list).to.have.lengthOf(24);
                     expect(resultApi.body.documentProperties.list[0]).to.exist;
-                    expect(resultApi.body.documentProperties.list[0].name).to.equal("Author");
-                    expect(resultApi.body.documentProperties.list[0].value).to.equal("");
+                    expect(resultApi.body.documentProperties.list[0].name).startsWith("Author").to.true;
+                    expect(resultApi.body.documentProperties.list[0].value).startsWith("").to.true;
                 });
 
             });
@@ -95,8 +95,8 @@ describe("documentProperties", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.documentProperty).to.exist;
-                    expect(resultApi.body.documentProperty.name).to.equal("Author");
-                    expect(resultApi.body.documentProperty.value).to.equal("");
+                    expect(resultApi.body.documentProperty.name).startsWith("Author").to.true;
+                    expect(resultApi.body.documentProperty.value).startsWith("").to.true;
                 });
 
             });
@@ -161,8 +161,8 @@ describe("documentProperties", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.documentProperty).to.exist;
-                    expect(resultApi.body.documentProperty.name).to.equal("AsposeAuthor");
-                    expect(resultApi.body.documentProperty.value).to.equal("Imran Anwar");
+                    expect(resultApi.body.documentProperty.name).startsWith("AsposeAuthor").to.true;
+                    expect(resultApi.body.documentProperty.value).startsWith("Imran Anwar").to.true;
                 });
 
             });

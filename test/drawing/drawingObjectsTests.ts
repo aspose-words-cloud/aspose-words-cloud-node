@@ -377,7 +377,7 @@ describe("drawingObjects", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.drawingObject).to.exist;
-                    expect(resultApi.body.drawingObject.nodeId).to.equal("0.3.7.1");
+                    expect(resultApi.body.drawingObject.nodeId).startsWith("0.3.7.1").to.true;
                 });
 
             });
@@ -417,7 +417,7 @@ describe("drawingObjects", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.drawingObject).to.exist;
-                    expect(resultApi.body.drawingObject.nodeId).to.equal("0.3.7.1");
+                    expect(resultApi.body.drawingObject.nodeId).startsWith("0.3.7.1").to.true;
                 });
 
             });

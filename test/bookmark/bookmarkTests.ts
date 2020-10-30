@@ -61,7 +61,7 @@ describe("bookmark", () => {
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.bookmarks).to.exist;
                     expect(resultApi.body.bookmarks.bookmarkList).to.have.lengthOf(3);
-                    expect(resultApi.body.bookmarks.bookmarkList[1].name).to.equal("aspose");
+                    expect(resultApi.body.bookmarks.bookmarkList[1].name).startsWith("aspose").to.true;
                 });
 
             });
@@ -93,7 +93,7 @@ describe("bookmark", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.bookmark).to.exist;
-                    expect(resultApi.body.bookmark.name).to.equal(bookmarkName);
+                    expect(resultApi.body.bookmark.name).startsWith(bookmarkName).to.true;
                 });
 
             });
@@ -131,8 +131,8 @@ describe("bookmark", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.bookmark).to.exist;
-                    expect(resultApi.body.bookmark.name).to.equal(bookmarkName);
-                    expect(resultApi.body.bookmark.text).to.equal(bookmarkText);
+                    expect(resultApi.body.bookmark.name).startsWith(bookmarkName).to.true;
+                    expect(resultApi.body.bookmark.text).startsWith(bookmarkText).to.true;
                 });
 
             });

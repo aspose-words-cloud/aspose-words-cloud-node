@@ -64,7 +64,7 @@ describe("paragraph", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.paragraph).to.exist;
-                    expect(resultApi.body.paragraph.nodeId).to.equal("0.0.0");
+                    expect(resultApi.body.paragraph.nodeId).startsWith("0.0.0").to.true;
                 });
 
             });
@@ -95,7 +95,7 @@ describe("paragraph", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.paragraph).to.exist;
-                    expect(resultApi.body.paragraph.nodeId).to.equal("0.0.0");
+                    expect(resultApi.body.paragraph.nodeId).startsWith("0.0.0").to.true;
                 });
 
             });
@@ -128,7 +128,7 @@ describe("paragraph", () => {
                     expect(resultApi.body.paragraphs).to.exist;
                     expect(resultApi.body.paragraphs.paragraphLinkList).to.exist;
                     expect(resultApi.body.paragraphs.paragraphLinkList).to.have.lengthOf(15);
-                    expect(resultApi.body.paragraphs.paragraphLinkList[0].text).to.equal("Page 1 of 3");
+                    expect(resultApi.body.paragraphs.paragraphLinkList[0].text).startsWith("Page 1 of 3").to.true;
                 });
 
             });
@@ -160,7 +160,7 @@ describe("paragraph", () => {
                     expect(resultApi.body.paragraphs).to.exist;
                     expect(resultApi.body.paragraphs.paragraphLinkList).to.exist;
                     expect(resultApi.body.paragraphs.paragraphLinkList).to.have.lengthOf(15);
-                    expect(resultApi.body.paragraphs.paragraphLinkList[0].text).to.equal("Page 1 of 3");
+                    expect(resultApi.body.paragraphs.paragraphLinkList[0].text).startsWith("Page 1 of 3").to.true;
                 });
 
             });
@@ -192,7 +192,7 @@ describe("paragraph", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.run).to.exist;
-                    expect(resultApi.body.run.text).to.equal("Page ");
+                    expect(resultApi.body.run.text).startsWith("Page ").to.true;
                 });
 
             });
@@ -224,7 +224,7 @@ describe("paragraph", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.font).to.exist;
-                    expect(resultApi.body.font.name).to.equal("Times New Roman");
+                    expect(resultApi.body.font.name).startsWith("Times New Roman").to.true;
                 });
 
             });
@@ -257,7 +257,7 @@ describe("paragraph", () => {
                     expect(resultApi.body.runs).to.exist;
                     expect(resultApi.body.runs.list).to.exist;
                     expect(resultApi.body.runs.list).to.have.lengthOf(6);
-                    expect(resultApi.body.runs.list[0].text).to.equal("Page ");
+                    expect(resultApi.body.runs.list[0].text).startsWith("Page ").to.true;
                 });
 
             });
@@ -327,7 +327,7 @@ describe("paragraph", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.paragraph).to.exist;
-                    expect(resultApi.body.paragraph.nodeId).to.equal("0.3.8");
+                    expect(resultApi.body.paragraph.nodeId).startsWith("0.3.8").to.true;
                 });
 
             });
@@ -360,7 +360,7 @@ describe("paragraph", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.paragraph).to.exist;
-                    expect(resultApi.body.paragraph.nodeId).to.equal("0.3.8");
+                    expect(resultApi.body.paragraph.nodeId).startsWith("0.3.8").to.true;
                 });
 
             });
@@ -453,7 +453,7 @@ describe("paragraph", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.paragraphFormat).to.exist;
-                    expect(resultApi.body.paragraphFormat.styleName).to.equal("Normal");
+                    expect(resultApi.body.paragraphFormat.styleName).startsWith("Normal").to.true;
                 });
 
             });
@@ -484,7 +484,7 @@ describe("paragraph", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.paragraphFormat).to.exist;
-                    expect(resultApi.body.paragraphFormat.styleName).to.equal("Normal");
+                    expect(resultApi.body.paragraphFormat.styleName).startsWith("Normal").to.true;
                 });
 
             });

@@ -65,7 +65,7 @@ describe("documentProtection", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.protectionData).to.exist;
-                    expect(resultApi.body.protectionData.protectionType).to.equal("ReadOnly");
+                    expect(resultApi.body.protectionData.protectionType).startsWith("ReadOnly").to.true;
                 });
 
             });
@@ -96,7 +96,7 @@ describe("documentProtection", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.protectionData).to.exist;
-                    expect(resultApi.body.protectionData.protectionType).to.equal("ReadOnly");
+                    expect(resultApi.body.protectionData.protectionType).startsWith("ReadOnly").to.true;
                 });
 
             });
@@ -130,7 +130,7 @@ describe("documentProtection", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.protectionData).to.exist;
-                    expect(resultApi.body.protectionData.protectionType).to.equal("NoProtection");
+                    expect(resultApi.body.protectionData.protectionType).startsWith("NoProtection").to.true;
                 });
 
             });

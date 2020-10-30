@@ -61,7 +61,7 @@ describe("styles", () => {
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.styles).to.exist;
                     expect(resultApi.body.styles).to.have.lengthOf(22);
-                    expect(resultApi.body.styles[0].name).to.equal("Default Paragraph Font");
+                    expect(resultApi.body.styles[0].name).startsWith("Default Paragraph Font").to.true;
                 });
 
             });
@@ -92,7 +92,7 @@ describe("styles", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.style).to.exist;
-                    expect(resultApi.body.style.name).to.equal("Heading 1");
+                    expect(resultApi.body.style.name).startsWith("Heading 1").to.true;
                 });
 
             });
@@ -126,7 +126,7 @@ describe("styles", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.style).to.exist;
-                    expect(resultApi.body.style.name).to.equal("My Style");
+                    expect(resultApi.body.style.name).startsWith("My Style").to.true;
                 });
 
             });
@@ -160,7 +160,7 @@ describe("styles", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.style).to.exist;
-                    expect(resultApi.body.style.name).to.equal("My Style");
+                    expect(resultApi.body.style.name).startsWith("My Style").to.true;
                 });
 
             });
@@ -193,7 +193,7 @@ describe("styles", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.style).to.exist;
-                    expect(resultApi.body.style.name).to.equal("Heading 1_0");
+                    expect(resultApi.body.style.name).startsWith("Heading 1_0").to.true;
                 });
 
             });
@@ -224,7 +224,7 @@ describe("styles", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.style).to.exist;
-                    expect(resultApi.body.style.name).to.equal("TOC 1");
+                    expect(resultApi.body.style.name).startsWith("TOC 1").to.true;
                 });
 
             });

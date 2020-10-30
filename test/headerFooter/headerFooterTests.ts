@@ -95,7 +95,7 @@ describe("headerFooter", () => {
                     expect(resultApi.body.headerFooter).to.exist;
                     expect(resultApi.body.headerFooter.childNodes).to.exist;
                     expect(resultApi.body.headerFooter.childNodes).to.have.lengthOf(1);
-                    expect(resultApi.body.headerFooter.childNodes[0].nodeId).to.equal("0.0.0");
+                    expect(resultApi.body.headerFooter.childNodes[0].nodeId).startsWith("0.0.0").to.true;
                 });
 
             });
@@ -129,7 +129,7 @@ describe("headerFooter", () => {
                     expect(resultApi.body.headerFooter).to.exist;
                     expect(resultApi.body.headerFooter.childNodes).to.exist;
                     expect(resultApi.body.headerFooter.childNodes).to.have.lengthOf(1);
-                    expect(resultApi.body.headerFooter.childNodes[0].nodeId).to.equal("0.0.0");
+                    expect(resultApi.body.headerFooter.childNodes[0].nodeId).startsWith("0.0.0").to.true;
                 });
 
             });
@@ -222,7 +222,7 @@ describe("headerFooter", () => {
                     expect(resultApi.body.headerFooter).to.exist;
                     expect(resultApi.body.headerFooter.childNodes).to.exist;
                     expect(resultApi.body.headerFooter.childNodes).to.have.lengthOf(1);
-                    expect(resultApi.body.headerFooter.childNodes[0].nodeId).to.equal("0.2.0");
+                    expect(resultApi.body.headerFooter.childNodes[0].nodeId).startsWith("0.2.0").to.true;
                 });
 
             });

@@ -74,7 +74,7 @@ describe("compareDocument", () => {
                         // Assert
                         expect(resultApi.response.statusCode).to.equal(200);
                         expect(resultApi.body.document).to.exist;
-                        expect(resultApi.body.document.fileName).to.equal("TestCompareDocumentOut.doc");
+                        expect(resultApi.body.document.fileName).startsWith("TestCompareDocumentOut.doc").to.true;
                     });
 
                 });

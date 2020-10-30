@@ -71,8 +71,8 @@ describe("formField", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.formField).to.exist;
-                    expect(resultApi.body.formField.name).to.equal("FullName");
-                    expect(resultApi.body.formField.statusText).to.equal("");
+                    expect(resultApi.body.formField.name).startsWith("FullName").to.true;
+                    expect(resultApi.body.formField.statusText).startsWith("").to.true;
                 });
 
             });
@@ -112,8 +112,8 @@ describe("formField", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.formField).to.exist;
-                    expect(resultApi.body.formField.name).to.equal("FullName");
-                    expect(resultApi.body.formField.statusText).to.equal("");
+                    expect(resultApi.body.formField.name).startsWith("FullName").to.true;
+                    expect(resultApi.body.formField.statusText).startsWith("").to.true;
                 });
 
             });
@@ -145,7 +145,7 @@ describe("formField", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.formField).to.exist;
-                    expect(resultApi.body.formField.name).to.equal("FullName");
+                    expect(resultApi.body.formField.name).startsWith("FullName").to.true;
                 });
 
             });
@@ -176,7 +176,7 @@ describe("formField", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.formField).to.exist;
-                    expect(resultApi.body.formField.name).to.equal("FullName");
+                    expect(resultApi.body.formField.name).startsWith("FullName").to.true;
                 });
 
             });
@@ -209,7 +209,7 @@ describe("formField", () => {
                     expect(resultApi.body.formFields).to.exist;
                     expect(resultApi.body.formFields.list).to.exist;
                     expect(resultApi.body.formFields.list).to.have.lengthOf(5);
-                    expect(resultApi.body.formFields.list[0].name).to.equal("FullName");
+                    expect(resultApi.body.formFields.list[0].name).startsWith("FullName").to.true;
                 });
 
             });
@@ -241,7 +241,7 @@ describe("formField", () => {
                     expect(resultApi.body.formFields).to.exist;
                     expect(resultApi.body.formFields.list).to.exist;
                     expect(resultApi.body.formFields.list).to.have.lengthOf(5);
-                    expect(resultApi.body.formFields.list[0].name).to.equal("FullName");
+                    expect(resultApi.body.formFields.list[0].name).startsWith("FullName").to.true;
                 });
 
             });
@@ -282,8 +282,8 @@ describe("formField", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.formField).to.exist;
-                    expect(resultApi.body.formField.name).to.equal("FullName");
-                    expect(resultApi.body.formField.statusText).to.equal("");
+                    expect(resultApi.body.formField.name).startsWith("FullName").to.true;
+                    expect(resultApi.body.formField.statusText).startsWith("").to.true;
                 });
 
             });
@@ -323,8 +323,8 @@ describe("formField", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.formField).to.exist;
-                    expect(resultApi.body.formField.name).to.equal("FullName");
-                    expect(resultApi.body.formField.statusText).to.equal("");
+                    expect(resultApi.body.formField.name).startsWith("FullName").to.true;
+                    expect(resultApi.body.formField.statusText).startsWith("").to.true;
                 });
 
             });

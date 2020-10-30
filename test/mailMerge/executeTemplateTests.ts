@@ -64,7 +64,7 @@ describe("executeTemplate", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.document).to.exist;
-                    expect(resultApi.body.document.fileName).to.equal("TestExecuteTemplate.docx");
+                    expect(resultApi.body.document.fileName).startsWith("TestExecuteTemplate.docx").to.true;
                 });
 
             });

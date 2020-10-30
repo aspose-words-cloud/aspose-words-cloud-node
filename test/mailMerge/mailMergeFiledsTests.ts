@@ -57,7 +57,7 @@ describe("mailMergeFileds", () => {
                 expect(resultApi.body.fieldNames).to.exist;
                 expect(resultApi.body.fieldNames.names).to.exist;
                 expect(resultApi.body.fieldNames.names).to.have.lengthOf(15);
-                expect(resultApi.body.fieldNames.names[0]).to.equal("TableStart:Order");
+                expect(resultApi.body.fieldNames.names[0]).startsWith("TableStart:Order").to.true;
             });
 
        });

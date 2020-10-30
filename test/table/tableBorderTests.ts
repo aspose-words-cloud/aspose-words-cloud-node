@@ -64,7 +64,7 @@ describe("tableBorder", () => {
                     expect(resultApi.body.borders.list).to.exist;
                     expect(resultApi.body.borders.list).to.have.lengthOf(6);
                     expect(resultApi.body.borders.list[0].color).to.exist;
-                    expect(resultApi.body.borders.list[0].color.web).to.equal("#000000");
+                    expect(resultApi.body.borders.list[0].color.web).startsWith("#000000").to.true;
                 });
 
             });
@@ -97,7 +97,7 @@ describe("tableBorder", () => {
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.border).to.exist;
                     expect(resultApi.body.border.color).to.exist;
-                    expect(resultApi.body.border.color.web).to.equal("#000000");
+                    expect(resultApi.body.border.color.web).startsWith("#000000").to.true;
                 });
 
             });
@@ -131,7 +131,7 @@ describe("tableBorder", () => {
                     expect(resultApi.body.borders.list).to.exist;
                     expect(resultApi.body.borders.list).to.have.lengthOf(6);
                     expect(resultApi.body.borders.list[0].color).to.exist;
-                    expect(resultApi.body.borders.list[0].color.web).to.equal("");
+                    expect(resultApi.body.borders.list[0].color.web).startsWith("").to.true;
                 });
 
             });
@@ -164,7 +164,7 @@ describe("tableBorder", () => {
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.border).to.exist;
                     expect(resultApi.body.border.color).to.exist;
-                    expect(resultApi.body.border.color.web).to.equal("");
+                    expect(resultApi.body.border.color.web).startsWith("").to.true;
                 });
 
             });
@@ -207,7 +207,7 @@ describe("tableBorder", () => {
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.border).to.exist;
                     expect(resultApi.body.border.color).to.exist;
-                    expect(resultApi.body.border.color.web).to.equal("#000002");
+                    expect(resultApi.body.border.color.web).startsWith("#000002").to.true;
                     expect(resultApi.body.border.distanceFromText).to.equal(6);
                     expect(resultApi.body.border.lineWidth).to.equal(2);
                     expect(resultApi.body.border.shadow).to.true;

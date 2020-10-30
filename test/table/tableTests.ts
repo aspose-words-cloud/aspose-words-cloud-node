@@ -63,7 +63,7 @@ describe("table", () => {
                     expect(resultApi.body.tables).to.exist;
                     expect(resultApi.body.tables.tableLinkList).to.exist;
                     expect(resultApi.body.tables.tableLinkList).to.have.lengthOf(5);
-                    expect(resultApi.body.tables.tableLinkList[0].nodeId).to.equal("0.0.1");
+                    expect(resultApi.body.tables.tableLinkList[0].nodeId).startsWith("0.0.1").to.true;
                 });
 
             });
@@ -95,7 +95,7 @@ describe("table", () => {
                     expect(resultApi.body.tables).to.exist;
                     expect(resultApi.body.tables.tableLinkList).to.exist;
                     expect(resultApi.body.tables.tableLinkList).to.have.lengthOf(5);
-                    expect(resultApi.body.tables.tableLinkList[0].nodeId).to.equal("0.0.1");
+                    expect(resultApi.body.tables.tableLinkList[0].nodeId).startsWith("0.0.1").to.true;
                 });
 
             });
@@ -330,7 +330,7 @@ describe("table", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.properties).to.exist;
-                    expect(resultApi.body.properties.styleName).to.equal("Table Grid");
+                    expect(resultApi.body.properties.styleName).startsWith("Table Grid").to.true;
                 });
 
             });
@@ -361,7 +361,7 @@ describe("table", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.properties).to.exist;
-                    expect(resultApi.body.properties.styleName).to.equal("Table Grid");
+                    expect(resultApi.body.properties.styleName).startsWith("Table Grid").to.true;
                 });
 
             });
@@ -648,7 +648,7 @@ describe("table", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.cell).to.exist;
-                    expect(resultApi.body.cell.nodeId).to.equal("0.0.5.0.0");
+                    expect(resultApi.body.cell.nodeId).startsWith("0.0.5.0.0").to.true;
                 });
 
             });
@@ -711,7 +711,7 @@ describe("table", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.cell).to.exist;
-                    expect(resultApi.body.cell.nodeId).to.equal("0.0.5.0.3");
+                    expect(resultApi.body.cell.nodeId).startsWith("0.0.5.0.3").to.true;
                 });
 
             });

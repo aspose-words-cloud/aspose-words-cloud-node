@@ -86,7 +86,7 @@ describe("pageSetup", () => {
                     sectionIndex: 0,
                     pageSetup: new model.PageSetup({
                         rtlGutter: true,
-                        leftMargin: 10,
+                        leftMargin: 10.0,
                         orientation: model.PageSetup.OrientationEnum.Landscape,
                         paperSize: model.PageSetup.PaperSizeEnum.A5
                     }),

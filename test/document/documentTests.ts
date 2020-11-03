@@ -60,7 +60,7 @@ describe("document", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.document).to.exist;
-                    expect(resultApi.body.document.fileName).startsWith("TestGetDocument.docx").to.true;
+                    expect(resultApi.body.document.fileName).to.equal("TestGetDocument.docx");
                 });
 
             });
@@ -85,7 +85,7 @@ describe("document", () => {
                 // Assert
                 expect(resultApi.response.statusCode).to.equal(200);
                 expect(resultApi.body.document).to.exist;
-                expect(resultApi.body.document.fileName).startsWith("TestCreateDocument.doc").to.true;
+                expect(resultApi.body.document.fileName).to.equal("TestCreateDocument.doc");
             });
 
        });

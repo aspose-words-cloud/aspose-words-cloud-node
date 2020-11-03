@@ -65,7 +65,7 @@ describe("field", () => {
                     expect(resultApi.body.fields).to.exist;
                     expect(resultApi.body.fields.list).to.exist;
                     expect(resultApi.body.fields.list).to.have.lengthOf(1);
-                    expect(resultApi.body.fields.list[0].result).startsWith("1").to.true;
+                    expect(resultApi.body.fields.list[0].result).to.equal("1");
                 });
 
             });
@@ -98,7 +98,7 @@ describe("field", () => {
                     expect(resultApi.body.fields).to.exist;
                     expect(resultApi.body.fields.list).to.exist;
                     expect(resultApi.body.fields.list).to.have.lengthOf(1);
-                    expect(resultApi.body.fields.list[0].result).startsWith("1").to.true;
+                    expect(resultApi.body.fields.list[0].result).to.equal("1");
                 });
 
             });
@@ -131,7 +131,7 @@ describe("field", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.field).to.exist;
-                    expect(resultApi.body.field.result).startsWith("1").to.true;
+                    expect(resultApi.body.field.result).to.equal("1");
                 });
 
             });
@@ -163,7 +163,7 @@ describe("field", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.field).to.exist;
-                    expect(resultApi.body.field.result).startsWith("1").to.true;
+                    expect(resultApi.body.field.result).to.equal("1");
                 });
 
             });
@@ -198,8 +198,8 @@ describe("field", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.field).to.exist;
-                    expect(resultApi.body.field.fieldCode).startsWith("{ NUMPAGES }").to.true;
-                    expect(resultApi.body.field.nodeId).startsWith("0.0.0.1").to.true;
+                    expect(resultApi.body.field.fieldCode).to.equal("{ NUMPAGES }");
+                    expect(resultApi.body.field.nodeId).to.equal("0.0.0.1");
                 });
 
             });
@@ -233,8 +233,8 @@ describe("field", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.field).to.exist;
-                    expect(resultApi.body.field.fieldCode).startsWith("{ NUMPAGES }").to.true;
-                    expect(resultApi.body.field.nodeId).startsWith("5.0.22.0").to.true;
+                    expect(resultApi.body.field.fieldCode).to.equal("{ NUMPAGES }");
+                    expect(resultApi.body.field.nodeId).to.equal("5.0.22.0");
                 });
 
             });
@@ -270,8 +270,8 @@ describe("field", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.field).to.exist;
-                    expect(resultApi.body.field.fieldCode).startsWith("{ NUMPAGES }").to.true;
-                    expect(resultApi.body.field.nodeId).startsWith("0.0.0.0").to.true;
+                    expect(resultApi.body.field.fieldCode).to.equal("{ NUMPAGES }");
+                    expect(resultApi.body.field.nodeId).to.equal("0.0.0.0");
                 });
 
             });
@@ -307,7 +307,7 @@ describe("field", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.document).to.exist;
-                    expect(resultApi.body.document.fileName).startsWith("TestInsertPageNumbers.docx").to.true;
+                    expect(resultApi.body.document.fileName).to.equal("TestInsertPageNumbers.docx");
                 });
 
             });
@@ -577,7 +577,7 @@ describe("field", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.document).to.exist;
-                    expect(resultApi.body.document.fileName).startsWith("TestUpdateDocumentFields.docx").to.true;
+                    expect(resultApi.body.document.fileName).to.equal("TestUpdateDocumentFields.docx");
                 });
 
             });

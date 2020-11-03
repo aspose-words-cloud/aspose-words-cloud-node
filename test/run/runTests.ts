@@ -65,7 +65,7 @@ describe("run", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.run).to.exist;
-                    expect(resultApi.body.run.text).startsWith("run with text").to.true;
+                    expect(resultApi.body.run.text).to.equal("run with text");
                 });
 
             });
@@ -99,8 +99,8 @@ describe("run", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.run).to.exist;
-                    expect(resultApi.body.run.text).startsWith("run with text").to.true;
-                    expect(resultApi.body.run.nodeId).startsWith("0.0.1.3").to.true;
+                    expect(resultApi.body.run.text).to.equal("run with text");
+                    expect(resultApi.body.run.nodeId).to.equal("0.0.1.3");
                 });
 
             });

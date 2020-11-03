@@ -56,7 +56,7 @@ describe("file", () => {
                 expect(resultApi.response.statusCode).to.equal(200);
                 expect(resultApi.body.uploaded).to.exist;
                 expect(resultApi.body.uploaded).to.have.lengthOf(1);
-                expect(resultApi.body.uploaded[0]).startsWith("TestUploadFile.docx").to.true;
+                expect(resultApi.body.uploaded[0]).to.equal("TestUploadFile.docx");
             });
 
        });

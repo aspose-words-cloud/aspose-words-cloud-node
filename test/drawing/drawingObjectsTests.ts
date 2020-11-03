@@ -126,7 +126,7 @@ describe("drawingObjects", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.drawingObject).to.exist;
-                    expect(resultApi.body.drawingObject.height).to.equal(300);
+                    expect(resultApi.body.drawingObject.height).to.equal(300.0);
                 });
 
             });
@@ -157,7 +157,7 @@ describe("drawingObjects", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.drawingObject).to.exist;
-                    expect(resultApi.body.drawingObject.height).to.equal(300);
+                    expect(resultApi.body.drawingObject.height).to.equal(300.0);
                 });
 
             });
@@ -358,10 +358,10 @@ describe("drawingObjects", () => {
                 const request = new model.InsertDrawingObjectRequest({
                     name: remoteFileName,
                     drawingObject: new model.DrawingObjectInsert({
-                        height: 0,
-                        left: 0,
-                        top: 0,
-                        width: 0,
+                        height: 0.0,
+                        left: 0.0,
+                        top: 0.0,
+                        width: 0.0,
                         relativeHorizontalPosition: model.DrawingObjectInsert.RelativeHorizontalPositionEnum.Margin,
                         relativeVerticalPosition: model.DrawingObjectInsert.RelativeVerticalPositionEnum.Margin,
                         wrapType: model.DrawingObjectInsert.WrapTypeEnum.Inline
@@ -377,7 +377,7 @@ describe("drawingObjects", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.drawingObject).to.exist;
-                    expect(resultApi.body.drawingObject.nodeId).startsWith("0.3.7.1").to.true;
+                    expect(resultApi.body.drawingObject.nodeId).to.equal("0.3.7.1");
                 });
 
             });
@@ -399,10 +399,10 @@ describe("drawingObjects", () => {
                 const request = new model.InsertDrawingObjectRequest({
                     name: remoteFileName,
                     drawingObject: new model.DrawingObjectInsert({
-                        height: 0,
-                        left: 0,
-                        top: 0,
-                        width: 0,
+                        height: 0.0,
+                        left: 0.0,
+                        top: 0.0,
+                        width: 0.0,
                         relativeHorizontalPosition: model.DrawingObjectInsert.RelativeHorizontalPositionEnum.Margin,
                         relativeVerticalPosition: model.DrawingObjectInsert.RelativeVerticalPositionEnum.Margin,
                         wrapType: model.DrawingObjectInsert.WrapTypeEnum.Inline
@@ -417,7 +417,7 @@ describe("drawingObjects", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.drawingObject).to.exist;
-                    expect(resultApi.body.drawingObject.nodeId).startsWith("0.3.7.1").to.true;
+                    expect(resultApi.body.drawingObject.nodeId).to.equal("0.3.7.1");
                 });
 
             });
@@ -498,7 +498,7 @@ describe("drawingObjects", () => {
                 const request = new model.UpdateDrawingObjectRequest({
                     name: remoteFileName,
                     drawingObject: new model.DrawingObjectUpdate({
-                        left: 1
+                        left: 1.0
                     }),
                     imageFile: fs.createReadStream(BaseTest.localBaseTestDataFolder + "Common/aspose-cloud.png"),
                     index: 0,
@@ -512,7 +512,7 @@ describe("drawingObjects", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.drawingObject).to.exist;
-                    expect(resultApi.body.drawingObject.left).to.equal(1);
+                    expect(resultApi.body.drawingObject.left).to.equal(1.0);
                 });
 
             });
@@ -534,7 +534,7 @@ describe("drawingObjects", () => {
                 const request = new model.UpdateDrawingObjectRequest({
                     name: remoteFileName,
                     drawingObject: new model.DrawingObjectUpdate({
-                        left: 1
+                        left: 1.0
                     }),
                     imageFile: fs.createReadStream(BaseTest.localBaseTestDataFolder + "Common/aspose-cloud.png"),
                     index: 0,
@@ -547,7 +547,7 @@ describe("drawingObjects", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.drawingObject).to.exist;
-                    expect(resultApi.body.drawingObject.left).to.equal(1);
+                    expect(resultApi.body.drawingObject.left).to.equal(1.0);
                 });
 
             });

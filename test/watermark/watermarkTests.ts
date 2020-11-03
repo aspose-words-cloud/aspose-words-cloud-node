@@ -69,7 +69,7 @@ describe("watermark", () => {
                         // Assert
                         expect(resultApi.response.statusCode).to.equal(200);
                         expect(resultApi.body.document).to.exist;
-                        expect(resultApi.body.document.fileName).startsWith("TestInsertWatermarkImage.docx").to.true;
+                        expect(resultApi.body.document.fileName).to.equal("TestInsertWatermarkImage.docx");
                     });
 
                 });
@@ -94,7 +94,7 @@ describe("watermark", () => {
                     name: remoteFileName,
                     watermarkText: new model.WatermarkText({
                         text: "This is the text",
-                        rotationAngle: 90
+                        rotationAngle: 90.0
                     }),
                     folder: remoteDataFolder,
                     destFileName: BaseTest.remoteBaseTestOutFolder + "/" + remoteFileName
@@ -106,7 +106,7 @@ describe("watermark", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.document).to.exist;
-                    expect(resultApi.body.document.fileName).startsWith("TestInsertWatermarkText.docx").to.true;
+                    expect(resultApi.body.document.fileName).to.equal("TestInsertWatermarkText.docx");
                 });
 
             });
@@ -137,7 +137,7 @@ describe("watermark", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.document).to.exist;
-                    expect(resultApi.body.document.fileName).startsWith("TestDeleteWatermark.docx").to.true;
+                    expect(resultApi.body.document.fileName).to.equal("TestDeleteWatermark.docx");
                 });
 
             });

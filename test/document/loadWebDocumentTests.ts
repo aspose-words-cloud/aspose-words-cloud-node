@@ -58,6 +58,9 @@ describe("loadWebDocument", () => {
             .then((resultApi) => {
                 // Assert
                 expect(resultApi.response.statusCode).to.equal(200);
+                expect(resultApi.body.saveResult).to.exist;
+                expect(resultApi.body.saveResult.destDocument).to.exist;
+                expect(resultApi.body.saveResult.destDocument.href).to.equal("google.doc");
             });
 
        });

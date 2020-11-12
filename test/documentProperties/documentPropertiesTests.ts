@@ -59,6 +59,12 @@ describe("documentProperties", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.documentProperties).to.exist;
+                    expect(resultApi.body.documentProperties.list).to.exist;
+                    expect(resultApi.body.documentProperties.list).to.have.lengthOf(24);
+                    expect(resultApi.body.documentProperties.list[0]).to.exist;
+                    expect(resultApi.body.documentProperties.list[0].name).to.equal("Author");
+                    expect(resultApi.body.documentProperties.list[0].value).to.equal("");
                 });
 
             });
@@ -88,6 +94,9 @@ describe("documentProperties", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.documentProperty).to.exist;
+                    expect(resultApi.body.documentProperty.name).to.equal("Author");
+                    expect(resultApi.body.documentProperty.value).to.equal("");
                 });
 
             });
@@ -151,6 +160,9 @@ describe("documentProperties", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.documentProperty).to.exist;
+                    expect(resultApi.body.documentProperty.name).to.equal("AsposeAuthor");
+                    expect(resultApi.body.documentProperty.value).to.equal("Imran Anwar");
                 });
 
             });

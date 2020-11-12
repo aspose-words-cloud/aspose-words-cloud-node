@@ -60,6 +60,8 @@ describe("comment", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.comment).to.exist;
+                    expect(resultApi.body.comment.text).to.equal("Comment 1" + "\r\n\r\n");
                 });
 
             });
@@ -88,6 +90,10 @@ describe("comment", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.comments).to.exist;
+                    expect(resultApi.body.comments.commentList).to.exist;
+                    expect(resultApi.body.comments.commentList).to.have.lengthOf(1);
+                    expect(resultApi.body.comments.commentList[0].text).to.equal("Comment 1" + "\r\n\r\n");
                 });
 
             });
@@ -133,6 +139,11 @@ describe("comment", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.comment).to.exist;
+                    expect(resultApi.body.comment.text).to.equal("A new Comment" + "\r\n");
+                    expect(resultApi.body.comment.rangeStart).to.exist;
+                    expect(resultApi.body.comment.rangeStart.node).to.exist;
+                    expect(resultApi.body.comment.rangeStart.node.nodeId).to.equal("0.3.0.4");
                 });
 
             });
@@ -179,6 +190,11 @@ describe("comment", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.comment).to.exist;
+                    expect(resultApi.body.comment.text).to.equal("A new Comment" + "\r\n");
+                    expect(resultApi.body.comment.rangeStart).to.exist;
+                    expect(resultApi.body.comment.rangeStart.node).to.exist;
+                    expect(resultApi.body.comment.rangeStart.node.nodeId).to.equal("0.3.0.1");
                 });
 
             });

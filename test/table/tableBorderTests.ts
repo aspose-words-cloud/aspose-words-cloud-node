@@ -60,6 +60,11 @@ describe("tableBorder", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.borders).to.exist;
+                    expect(resultApi.body.borders.list).to.exist;
+                    expect(resultApi.body.borders.list).to.have.lengthOf(6);
+                    expect(resultApi.body.borders.list[0].color).to.exist;
+                    expect(resultApi.body.borders.list[0].color.web).to.equal("#000000");
                 });
 
             });
@@ -90,6 +95,9 @@ describe("tableBorder", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.border).to.exist;
+                    expect(resultApi.body.border.color).to.exist;
+                    expect(resultApi.body.border.color.web).to.equal("#000000");
                 });
 
             });
@@ -119,6 +127,11 @@ describe("tableBorder", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.borders).to.exist;
+                    expect(resultApi.body.borders.list).to.exist;
+                    expect(resultApi.body.borders.list).to.have.lengthOf(6);
+                    expect(resultApi.body.borders.list[0].color).to.exist;
+                    expect(resultApi.body.borders.list[0].color.web).to.equal("");
                 });
 
             });
@@ -149,6 +162,9 @@ describe("tableBorder", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.border).to.exist;
+                    expect(resultApi.body.border.color).to.exist;
+                    expect(resultApi.body.border.color.web).to.equal("");
                 });
 
             });
@@ -174,9 +190,9 @@ describe("tableBorder", () => {
                         color: new model.XmlColor({
                             alpha: 2
                         }),
-                        distanceFromText: 6,
+                        distanceFromText: 6.0,
                         lineStyle: model.Border.LineStyleEnum.DashDotStroker,
-                        lineWidth: 2,
+                        lineWidth: 2.0,
                         shadow: true
                     }),
                     borderType: "left",
@@ -189,6 +205,12 @@ describe("tableBorder", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.border).to.exist;
+                    expect(resultApi.body.border.color).to.exist;
+                    expect(resultApi.body.border.color.web).to.equal("#000002");
+                    expect(resultApi.body.border.distanceFromText).to.equal(6.0);
+                    expect(resultApi.body.border.lineWidth).to.equal(2.0);
+                    expect(resultApi.body.border.shadow).to.true;
                 });
 
             });

@@ -60,6 +60,8 @@ describe("revisions", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.result).to.exist;
+                    expect(resultApi.body.result.dest).to.exist;
                 });
 
             });
@@ -89,6 +91,8 @@ describe("revisions", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.result).to.exist;
+                    expect(resultApi.body.result.dest).to.exist;
                 });
 
             });

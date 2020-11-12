@@ -61,6 +61,7 @@ describe("range", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.text).to.equal("This is HEADER ");
                 });
 
             });
@@ -91,6 +92,8 @@ describe("range", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.document).to.exist;
+                    expect(resultApi.body.document.fileName).to.equal("TestRemoveRange.docx");
                 });
 
             });
@@ -124,6 +127,8 @@ describe("range", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.document).to.exist;
+                    expect(resultApi.body.document.fileName).to.equal("NewDoc.docx");
                 });
 
             });
@@ -157,6 +162,8 @@ describe("range", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.document).to.exist;
+                    expect(resultApi.body.document.fileName).to.equal("TestReplaceWithText.docx");
                 });
 
             });

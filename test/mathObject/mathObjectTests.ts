@@ -60,6 +60,10 @@ describe("mathObject", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.officeMathObjects).to.exist;
+                    expect(resultApi.body.officeMathObjects.list).to.exist;
+                    expect(resultApi.body.officeMathObjects.list).to.have.lengthOf(16);
+                    expect(resultApi.body.officeMathObjects.list[0].nodeId).to.equal("0.0.0.0");
                 });
 
             });
@@ -88,6 +92,10 @@ describe("mathObject", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.officeMathObjects).to.exist;
+                    expect(resultApi.body.officeMathObjects.list).to.exist;
+                    expect(resultApi.body.officeMathObjects.list).to.have.lengthOf(16);
+                    expect(resultApi.body.officeMathObjects.list[0].nodeId).to.equal("0.0.0.0");
                 });
 
             });
@@ -118,6 +126,8 @@ describe("mathObject", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.officeMathObject).to.exist;
+                    expect(resultApi.body.officeMathObject.nodeId).to.equal("0.0.0.0");
                 });
 
             });
@@ -147,6 +157,8 @@ describe("mathObject", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.officeMathObject).to.exist;
+                    expect(resultApi.body.officeMathObject.nodeId).to.equal("0.0.0.0");
                 });
 
             });

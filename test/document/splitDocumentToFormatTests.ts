@@ -63,6 +63,9 @@ describe("splitDocumentToFormat", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.splitResult).to.exist;
+                    expect(resultApi.body.splitResult.pages).to.exist;
+                    expect(resultApi.body.splitResult.pages).to.have.lengthOf(2);
                 });
 
             });

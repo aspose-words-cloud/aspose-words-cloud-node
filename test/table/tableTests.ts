@@ -60,6 +60,10 @@ describe("table", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.tables).to.exist;
+                    expect(resultApi.body.tables.tableLinkList).to.exist;
+                    expect(resultApi.body.tables.tableLinkList).to.have.lengthOf(5);
+                    expect(resultApi.body.tables.tableLinkList[0].nodeId).to.equal("0.0.1");
                 });
 
             });
@@ -88,6 +92,10 @@ describe("table", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.tables).to.exist;
+                    expect(resultApi.body.tables.tableLinkList).to.exist;
+                    expect(resultApi.body.tables.tableLinkList).to.have.lengthOf(5);
+                    expect(resultApi.body.tables.tableLinkList[0].nodeId).to.equal("0.0.1");
                 });
 
             });
@@ -118,6 +126,11 @@ describe("table", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.table).to.exist;
+                    expect(resultApi.body.table.tableRowList).to.exist;
+                    expect(resultApi.body.table.tableRowList).to.have.lengthOf(1);
+                    expect(resultApi.body.table.tableRowList[0].tableCellList).to.exist;
+                    expect(resultApi.body.table.tableRowList[0].tableCellList).to.have.lengthOf(2);
                 });
 
             });
@@ -147,6 +160,11 @@ describe("table", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.table).to.exist;
+                    expect(resultApi.body.table.tableRowList).to.exist;
+                    expect(resultApi.body.table.tableRowList).to.have.lengthOf(1);
+                    expect(resultApi.body.table.tableRowList[0].tableCellList).to.exist;
+                    expect(resultApi.body.table.tableRowList[0].tableCellList).to.have.lengthOf(2);
                 });
 
             });
@@ -239,6 +257,11 @@ describe("table", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.table).to.exist;
+                    expect(resultApi.body.table.tableRowList).to.exist;
+                    expect(resultApi.body.table.tableRowList).to.have.lengthOf(4);
+                    expect(resultApi.body.table.tableRowList[0].tableCellList).to.exist;
+                    expect(resultApi.body.table.tableRowList[0].tableCellList).to.have.lengthOf(5);
                 });
 
             });
@@ -271,6 +294,11 @@ describe("table", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.table).to.exist;
+                    expect(resultApi.body.table.tableRowList).to.exist;
+                    expect(resultApi.body.table.tableRowList).to.have.lengthOf(4);
+                    expect(resultApi.body.table.tableRowList[0].tableCellList).to.exist;
+                    expect(resultApi.body.table.tableRowList[0].tableCellList).to.have.lengthOf(5);
                 });
 
             });
@@ -301,6 +329,8 @@ describe("table", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.properties).to.exist;
+                    expect(resultApi.body.properties.styleName).to.equal("Table Grid");
                 });
 
             });
@@ -330,6 +360,8 @@ describe("table", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.properties).to.exist;
+                    expect(resultApi.body.properties.styleName).to.equal("Table Grid");
                 });
 
             });
@@ -355,7 +387,7 @@ describe("table", () => {
                         allowAutoFit: false,
                         bidi: true,
                         bottomPadding: 1,
-                        cellSpacing: 2,
+                        cellSpacing: 2.0,
                         styleOptions: model.TableProperties.StyleOptionsEnum.ColumnBands
                     }),
                     index: 1,
@@ -368,6 +400,11 @@ describe("table", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.properties).to.exist;
+                    expect(resultApi.body.properties.allowAutoFit).to.false;
+                    expect(resultApi.body.properties.bidi).to.true;
+                    expect(resultApi.body.properties.bottomPadding).to.equal(1.0);
+                    expect(resultApi.body.properties.cellSpacing).to.equal(2.0);
                 });
 
             });
@@ -392,8 +429,8 @@ describe("table", () => {
                         alignment: model.TableProperties.AlignmentEnum.Right,
                         allowAutoFit: false,
                         bidi: true,
-                        bottomPadding: 1,
-                        cellSpacing: 2,
+                        bottomPadding: 1.0,
+                        cellSpacing: 2.0,
                         styleOptions: model.TableProperties.StyleOptionsEnum.ColumnBands
                     }),
                     index: 1,
@@ -405,6 +442,11 @@ describe("table", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.properties).to.exist;
+                    expect(resultApi.body.properties.allowAutoFit).to.false;
+                    expect(resultApi.body.properties.bidi).to.true;
+                    expect(resultApi.body.properties.bottomPadding).to.equal(1.0);
+                    expect(resultApi.body.properties.cellSpacing).to.equal(2.0);
                 });
 
             });
@@ -435,6 +477,9 @@ describe("table", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.row).to.exist;
+                    expect(resultApi.body.row.tableCellList).to.exist;
+                    expect(resultApi.body.row.tableCellList).to.have.lengthOf(2);
                 });
 
             });
@@ -497,6 +542,9 @@ describe("table", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.row).to.exist;
+                    expect(resultApi.body.row.tableCellList).to.exist;
+                    expect(resultApi.body.row.tableCellList).to.have.lengthOf(5);
                 });
 
             });
@@ -527,6 +575,8 @@ describe("table", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.rowFormat).to.exist;
+                    expect(resultApi.body.rowFormat.allowBreakAcrossPages).to.true;
                 });
 
             });
@@ -550,8 +600,8 @@ describe("table", () => {
                     format: new model.TableRowFormat({
                         allowBreakAcrossPages: true,
                         headingFormat: true,
-                        height: 10,
-                        heightRule: model.TableRowFormat.HeightRuleEnum.Auto
+                        height: 10.0,
+                        heightRule: model.TableRowFormat.HeightRuleEnum.Exactly
                     }),
                     tablePath: "sections/0/tables/2",
                     index: 0,
@@ -563,6 +613,10 @@ describe("table", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.rowFormat).to.exist;
+                    expect(resultApi.body.rowFormat.allowBreakAcrossPages).to.true;
+                    expect(resultApi.body.rowFormat.headingFormat).to.true;
+                    expect(resultApi.body.rowFormat.height).to.equal(10.0);
                 });
 
             });
@@ -593,6 +647,8 @@ describe("table", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.cell).to.exist;
+                    expect(resultApi.body.cell.nodeId).to.equal("0.0.5.0.0");
                 });
 
             });
@@ -654,6 +710,8 @@ describe("table", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.cell).to.exist;
+                    expect(resultApi.body.cell.nodeId).to.equal("0.0.5.0.3");
                 });
 
             });
@@ -684,6 +742,8 @@ describe("table", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.cellFormat).to.exist;
+                    expect(resultApi.body.cellFormat.wrapText).to.true;
                 });
 
             });
@@ -705,7 +765,7 @@ describe("table", () => {
                 const request = new model.UpdateTableCellFormatRequest({
                     name: remoteFileName,
                     format: new model.TableCellFormat({
-                        bottomPadding: 5,
+                        bottomPadding: 5.0,
                         fitText: true,
                         horizontalMerge: model.TableCellFormat.HorizontalMergeEnum.First,
                         wrapText: true
@@ -720,6 +780,10 @@ describe("table", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.cellFormat).to.exist;
+                    expect(resultApi.body.cellFormat.bottomPadding).to.equal(5.0);
+                    expect(resultApi.body.cellFormat.fitText).to.true;
+                    expect(resultApi.body.cellFormat.wrapText).to.true;
                 });
 
             });

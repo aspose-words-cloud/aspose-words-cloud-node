@@ -64,6 +64,8 @@ describe("run", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.run).to.exist;
+                    expect(resultApi.body.run.text).to.equal("run with text");
                 });
 
             });
@@ -96,6 +98,9 @@ describe("run", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.run).to.exist;
+                    expect(resultApi.body.run.text).to.equal("run with text");
+                    expect(resultApi.body.run.nodeId).to.equal("0.0.1.3");
                 });
 
             });

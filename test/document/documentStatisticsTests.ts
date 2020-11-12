@@ -59,6 +59,8 @@ describe("documentStatistics", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.statData).to.exist;
+                    expect(resultApi.body.statData.wordCount).to.equal(10);
                 });
 
             });

@@ -52,6 +52,9 @@ describe("classification", () => {
             .then((resultApi) => {
                 // Assert
                 expect(resultApi.response.statusCode).to.equal(200);
+                expect(resultApi.body.bestClassName).to.equal("Science");
+                expect(resultApi.body.bestResults).to.exist;
+                expect(resultApi.body.bestResults).to.have.lengthOf(3);
             });
 
        });
@@ -79,6 +82,9 @@ describe("classification", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.bestClassName).to.equal("Hobbies_&_Interests");
+                    expect(resultApi.body.bestResults).to.exist;
+                    expect(resultApi.body.bestResults).to.have.lengthOf(3);
                 });
 
             });

@@ -37,8 +37,8 @@ describe("Readme code tests", () => {
 
         // set your credentials here
         const config = require("../testConfig.json");
-        const appSid = config.AppSid;
-        const appKey = config.AppKey;
+        const clientId = config.ClientId;
+        const clientSecret = config.ClientSecret;
         const baseUrl = config.BaseUrl;
 
         const localPath = BaseTest.localCommonTestDataFolder + "test_multi_pages.docx";
@@ -46,7 +46,7 @@ describe("Readme code tests", () => {
         // Start README example
 
         // create API instance (baseUrl is optional)
-        const wordsApi = new WordsApi(appSid, appKey, baseUrl);
+        const wordsApi = new WordsApi(clientId, clientSecret, baseUrl);
 
         // upload file to the Aspose cloud
         const uploadRequest = new UploadFileRequest();

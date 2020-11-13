@@ -15,8 +15,8 @@ node('words-linux') {
 					gitRepoUrl = "https://${gitUsername}:${gitPass}@git.auckland.dynabic.com/words-cloud/words-cloud-node.git"
 				}
 				
-				withCredentials([usernamePassword(credentialsId: '6839cbe8-39fa-40c0-86ce-90706f0bae5d', passwordVariable: 'AppKey', usernameVariable: 'AppSid')]) {
-					sh 'echo "{\\"AppSid\\": \\"$AppSid\\",\\"AppKey\\": \\"$AppKey\\", \\"BaseUrl\\": \\"https://api-qa.aspose.cloud\\"}" > testConfig.json'
+				withCredentials([usernamePassword(credentialsId: '6839cbe8-39fa-40c0-86ce-90706f0bae5d', passwordVariable: 'ClientSecret', usernameVariable: 'ClientId')]) {
+					sh 'echo "{\\"ClientId\\": \\"$ClientId\\",\\"ClientSecret\\": \\"$ClientSecret\\", \\"BaseUrl\\": \\"https://api-qa.aspose.cloud\\"}" > testConfig.json'
 				}
 		   }
 		}

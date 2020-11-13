@@ -38,14 +38,14 @@ export class Configuration {
     public authentication: IAuthentication;
 
     /**
-     * App SID.
+     * Client ID.
      */
-    public appSID: string;
+    public ClientId: string;
 
     /**
-     * App key.
+     * Client secret.
      */
-    public appKey: string;
+    public ClientSecret: string;
 
     /**
      * Base Url.
@@ -57,21 +57,21 @@ export class Configuration {
      */
     public debugMode: boolean;
 
-    constructor(appSID: string, appKey: string, baseUrl?: string, debugMode?: boolean) {
+    constructor(clientId: string, clientSecret: string, baseUrl?: string, debugMode?: boolean) {
         if (baseUrl) {
             this.baseUrl = baseUrl;
         }
 
-        if (!appKey || !appKey.trim()) {
-            throw new Error("appKey parameter must be non-empty string");
-        }
-
-        if (!appSID || !appSID.trim()) {
+        if (!clientId || !clientId.trim()) {
             throw new Error("appSID parameter must be non-empty string");
         }
 
-        this.appSID = appSID;
-        this.appKey = appKey;
+        if (!clientSecret || !clientSecret.trim()) {
+            throw new Error("ClientSecret parameter must be non-empty string");
+        }
+
+        this.ClientId = clientId;
+        this.ClientSecret = clientSecret;
         this.debugMode = debugMode;
 
         this.authentication = new OAuth() as IAuthentication;

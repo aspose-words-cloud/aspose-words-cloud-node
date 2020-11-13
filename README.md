@@ -121,7 +121,7 @@ The complete source code is available at [GitHub Repository](https://github.com/
         // Start README example
 
         // create API instance (baseUrl is optional)
-        const wordsApi = new WordsApi(appSid, appKey, baseUrl);
+        const wordsApi = new WordsApi(clientId, clientSecret, baseUrl);
 
         // upload file to the Aspose cloud
         const uploadRequest = new UploadFileRequest();

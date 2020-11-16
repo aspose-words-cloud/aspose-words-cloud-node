@@ -35,7 +35,7 @@ export const importsMapRevisionsModificationResponse = {
 };
 
 /**
- * response of the modification operations for the revisions collection (now these are acceptAll and rejectAll).
+ * The REST response with a result of the modification operations for the revisions collection (now these are acceptAll and rejectAll).
  */
 export class RevisionsModificationResponse extends WordsResponse {
     /**
@@ -57,7 +57,7 @@ export class RevisionsModificationResponse extends WordsResponse {
     }
 
     /**
-     * Gets or sets result of the modification operations for the revisions collection.
+     * Gets or sets the result of the modification operations for the revisions collection.
      */
     public result: ModificationOperationResult;
 

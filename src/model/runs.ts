@@ -35,7 +35,7 @@ export const importsMapRuns = {
 };
 
 /**
- * Represents DTO for collection of runs.
+ * DTO container with a collection of runs.
  */
 export class Runs extends LinkElement {
     /**
@@ -57,7 +57,7 @@ export class Runs extends LinkElement {
     }
 
     /**
-     * Gets or sets collection of fields.
+     * Gets or sets the collection of runs.
      */
     public list: Array<Run>;
 

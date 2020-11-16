@@ -31,7 +31,7 @@ export const importsMapParagraphInsert = {
 };
 
 /**
- * Paragraph element.
+ * DTO container with a paragraph's text.
  */
 export class ParagraphInsert {
     /**
@@ -53,7 +53,7 @@ export class ParagraphInsert {
     }
 
     /**
-     * Gets or sets paragraph's text.
+     * Gets or sets the paragraph's text.
      */
     public text: string;
 

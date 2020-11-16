@@ -35,7 +35,7 @@ export const importsMapTableProperties = {
 };
 
 /**
- * Represents the table properties.
+ * DTO container with table properties.
  */
 export class TableProperties extends LinkElement {
     /**
@@ -122,17 +122,17 @@ export class TableProperties extends LinkElement {
     }
 
     /**
-     * Gets or sets specifies how an inline table is aligned in the document.
+     * Gets or sets the option that controls how an inline table is aligned in the document.
      */
     public alignment: TableProperties.AlignmentEnum;
 
     /**
-     * Gets or sets allows Microsoft Word and Aspose.Words to automatically resize cells in a table to fit their contents.
+     * Gets or sets a value indicating whether to automatically resize cells in a table to fit their contents.
      */
     public allowAutoFit: boolean;
 
     /**
-     * Gets or sets whether this is a right-to-left table.
+     * Gets or sets a value indicating whether this is a right-to-left table.
      */
     public bidi: boolean;
 
@@ -147,7 +147,7 @@ export class TableProperties extends LinkElement {
     public cellSpacing: number;
 
     /**
-     * Gets or sets the value that represents the left indent of the table.
+     * Gets or sets the value, that represents the left indent of the table.
      */
     public leftIndent: number;
 
@@ -178,12 +178,12 @@ export class TableProperties extends LinkElement {
     public styleName: string;
 
     /**
-     * Gets or sets bit flags that specify how a table style is applied to this table.
+     * Gets or sets the bit flags, that specify how a table style is applied to this table.
      */
     public styleOptions: TableProperties.StyleOptionsEnum;
 
     /**
-     * Gets or sets get or sets TextWrapping for table.
+     * Gets or sets the option that controls text wrapping for the table.
      */
     public textWrapping: TableProperties.TextWrappingEnum;
 

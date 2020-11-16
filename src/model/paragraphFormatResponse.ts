@@ -35,8 +35,7 @@ export const importsMapParagraphFormatResponse = {
 };
 
 /**
- * This response should be returned by the service when handling:
- * GET https://api.aspose.cloud/v4.0/words/Test.doc/paragraphs/{0}/format.
+ * The REST response with the formatting properties of a paragraph.
  */
 export class ParagraphFormatResponse extends WordsResponse {
     /**
@@ -58,7 +57,7 @@ export class ParagraphFormatResponse extends WordsResponse {
     }
 
     /**
-     * Gets or sets represents all the formatting for a paragraph.
+     * Gets or sets the formatting properties of a paragraph.
      */
     public paragraphFormat: ParagraphFormat;
 

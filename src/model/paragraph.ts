@@ -33,7 +33,7 @@ export const importsMapParagraph = {
 };
 
 /**
- * Paragraph element.
+ * DTO container with a paragraph element.
  */
 export class Paragraph extends NodeLink {
     /**
@@ -55,7 +55,7 @@ export class Paragraph extends NodeLink {
     }
 
     /**
-     * Gets or sets child nodes.
+     * Gets or sets the list of child nodes.
      */
     public childNodes: Array<NodeLink>;
 

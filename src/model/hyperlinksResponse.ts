@@ -35,7 +35,7 @@ export const importsMapHyperlinksResponse = {
 };
 
 /**
- * This response should be returned by the service when handling:  GET /{name}/hyperlinks .
+ * The REST response with a collection of hyperlinks.
  */
 export class HyperlinksResponse extends WordsResponse {
     /**
@@ -57,7 +57,7 @@ export class HyperlinksResponse extends WordsResponse {
     }
 
     /**
-     * Gets or sets collection of hyperlinks.
+     * Gets or sets the collection of hyperlinks.
      */
     public hyperlinks: Hyperlinks;
 

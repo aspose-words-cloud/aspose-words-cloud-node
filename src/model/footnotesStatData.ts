@@ -58,12 +58,12 @@ export class FootnotesStatData {
     }
 
     /**
-     * Gets or sets total count of paragraphs in footnotes.
+     * Gets or sets the total count of paragraphs in footnotes.
      */
     public paragraphCount: number;
 
     /**
-     * Gets or sets total count of words in footnotes.
+     * Gets or sets the total count of words in footnotes.
      */
     public wordCount: number;
 

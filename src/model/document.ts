@@ -82,7 +82,7 @@ export class Document {
     }
 
     /**
-     * Gets or sets returns document properties.
+     * Gets or sets the document properties.
      */
     public documentProperties: DocumentProperties;
 
@@ -92,18 +92,17 @@ export class Document {
     public fileName: string;
 
     /**
-     * Gets or sets a value indicating whether returns true if the document is encrypted and requires a password to open.
+     * Gets or sets a value indicating whether the document is encrypted and requires a password to open.
      */
     public isEncrypted: boolean;
 
     /**
-     * Gets or sets a value indicating whether returns true if the document contains a digital signature. This property merely informs that a
-     * digital signature is present on a document, but it does not specify whether the signature is valid or not.
+     * Gets or sets a value indicating whether the document contains a digital signature. This property merely informs that a digital signature is present on a document, but it does not specify whether the signature is valid or not.
      */
     public isSigned: boolean;
 
     /**
-     * Gets or sets a list of links that originate from this document.
+     * Gets or sets the list of links that originate from this document.
      */
     public links: Array<Link>;
 

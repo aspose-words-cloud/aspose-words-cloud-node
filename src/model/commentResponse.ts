@@ -35,8 +35,7 @@ export const importsMapCommentResponse = {
 };
 
 /**
- * This response should be returned by the service when handling:
- * GET https://api.aspose.cloud/v4.0/words/Test.doc/comments/0.
+ * The REST response with a comment.
  */
 export class CommentResponse extends WordsResponse {
     /**
@@ -58,7 +57,7 @@ export class CommentResponse extends WordsResponse {
     }
 
     /**
-     * Gets or sets comment information.
+     * Gets or sets the comment.
      */
     public comment: Comment;
 

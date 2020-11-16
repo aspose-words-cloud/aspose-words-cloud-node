@@ -35,8 +35,7 @@ export const importsMapClassificationResponse = {
 };
 
 /**
- * This response should be returned by the service when handling:
- * PUT https://api.aspose.cloud/v4.0/words/classify.
+ * The REST response with data on multi-class text classification.
  */
 export class ClassificationResponse extends WordsResponse {
     /**
@@ -68,17 +67,17 @@ export class ClassificationResponse extends WordsResponse {
     }
 
     /**
-     * Gets or sets best class name.
+     * Gets or sets the best class name.
      */
     public bestClassName: string;
 
     /**
-     * Gets or sets best class probability.
+     * Gets or sets the best class probability.
      */
     public bestClassProbability: number;
 
     /**
-     * Gets or sets array of best classes results.
+     * Gets or sets the array of best classes results.
      */
     public bestResults: Array<ClassificationResult>;
 

@@ -33,7 +33,7 @@ export const importsMapPsSaveOptionsData = {
 };
 
 /**
- * container class for ps save options.
+ * Container class for ps save options.
  */
 export class PsSaveOptionsData extends FixedPageSaveOptionsData {
     /**
@@ -55,7 +55,7 @@ export class PsSaveOptionsData extends FixedPageSaveOptionsData {
     }
 
     /**
-     * Gets or sets determines whether the document should be saved using a booklet printing layout.
+     * Gets or sets a value indicating whether the document should be saved using a booklet printing layout.
      */
     public useBookFoldPrintingSettings: boolean;
 

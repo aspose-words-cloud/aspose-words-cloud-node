@@ -78,7 +78,7 @@ export class StringFormatData {
     public alignment: StringFormatData.AlignmentEnum;
 
     /**
-     * Gets or sets a System.Drawing.StringFormatFlags enumeration that contains formatting information.
+     * Gets or sets the System.Drawing.StringFormatFlags enumeration, that contains formatting information.
      */
     public formatFlags: StringFormatData.FormatFlagsEnum;
 

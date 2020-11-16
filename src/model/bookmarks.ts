@@ -57,7 +57,7 @@ export class Bookmarks extends LinkElement {
     }
 
     /**
-     * Gets or sets array of bookmarks.
+     * Gets or sets the array of bookmarks.
      */
     public bookmarkList: Array<Bookmark>;
 

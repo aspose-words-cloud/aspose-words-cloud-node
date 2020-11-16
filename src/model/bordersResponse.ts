@@ -35,8 +35,7 @@ export const importsMapBordersResponse = {
 };
 
 /**
- * This response should be returned by the service when handling:
- * GET {nodeWithBorders}/borders.
+ * The REST response with a collection of borders.
  */
 export class BordersResponse extends WordsResponse {
     /**
@@ -58,7 +57,7 @@ export class BordersResponse extends WordsResponse {
     }
 
     /**
-     * Gets or sets table.
+     * Gets or sets the collection of borders.
      */
     public borders: BordersCollection;
 

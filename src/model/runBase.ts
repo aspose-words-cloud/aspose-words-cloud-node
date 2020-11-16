@@ -53,7 +53,7 @@ export class RunBase {
     }
 
     /**
-     * Gets or sets run's text.
+     * Gets or sets the run's text.
      */
     public text: string;
 

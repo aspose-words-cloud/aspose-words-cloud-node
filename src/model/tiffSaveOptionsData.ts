@@ -71,12 +71,12 @@ export class TiffSaveOptionsData extends ImageSaveOptionsData {
     public thresholdForFloydSteinbergDithering: number;
 
     /**
-     * Gets or sets specifies method used while converting images to 1 bpp format.
+     * Gets or sets the method used while converting images to 1 bpp format.
      */
     public tiffBinarizationMethod: string;
 
     /**
-     * Gets or sets type of compression.
+     * Gets or sets the type of compression.
      */
     public tiffCompression: string;
 

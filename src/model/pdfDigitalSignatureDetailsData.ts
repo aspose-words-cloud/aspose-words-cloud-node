@@ -31,7 +31,7 @@ export const importsMapPdfDigitalSignatureDetailsData = {
 };
 
 /**
- * container class for details of digital signature.
+ * Container class for details of digital signature.
  */
 export class PdfDigitalSignatureDetailsData {
     /**
@@ -73,27 +73,27 @@ export class PdfDigitalSignatureDetailsData {
     }
 
     /**
-     * Gets or sets certificate's filename using for signing.
+     * Gets or sets the certificate's filename using for signing.
      */
     public certificateFilename: string;
 
     /**
-     * Gets or sets hash algorithm.
+     * Gets or sets the hash algorithm.
      */
     public hashAlgorithm: string;
 
     /**
-     * Gets or sets location of the signing.
+     * Gets or sets the location of the signing.
      */
     public location: string;
 
     /**
-     * Gets or sets reason for the signing.
+     * Gets or sets the reason for the signing.
      */
     public reason: string;
 
     /**
-     * Gets or sets date of the signing.
+     * Gets or sets the date of the signing.
      */
     public signatureDate: Date;
 

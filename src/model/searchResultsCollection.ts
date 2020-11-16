@@ -35,7 +35,7 @@ export const importsMapSearchResultsCollection = {
 };
 
 /**
- * Collection of search results.
+ * The collection of search results.
  */
 export class SearchResultsCollection extends LinkElement {
     /**
@@ -57,7 +57,7 @@ export class SearchResultsCollection extends LinkElement {
     }
 
     /**
-     * Gets or sets collection of comments.
+     * Gets or sets the collection of comments.
      */
     public resultsList: Array<SearchResult>;
 

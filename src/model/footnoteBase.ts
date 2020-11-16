@@ -70,23 +70,23 @@ export class FootnoteBase {
     }
 
     /**
-     * Gets or sets returns a value that specifies whether this is a footnote or endnote.
+     * Gets or sets the option, that specifies whether this is a footnote or endnote.
      */
     public footnoteType: FootnoteBase.FootnoteTypeEnum;
 
     /**
-     * Gets or sets link to comment range start node.
+     * Gets or sets the link to comment range start node.
      */
     public position: DocumentPosition;
 
     /**
-     * Gets or sets /sets custom reference mark to be used for this footnote.
+     * Gets or sets the custom reference mark to be used for this footnote.
      * Default value is Empty, meaning auto-numbered footnotes are used.
      */
     public referenceMark: string;
 
     /**
-     * Gets or sets this is a convenience property that allows to easily get or set text of the footnote.
+     * Gets or sets text of the footnote.
      */
     public text: string;
 

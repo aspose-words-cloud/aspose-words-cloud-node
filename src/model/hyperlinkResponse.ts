@@ -35,7 +35,7 @@ export const importsMapHyperlinkResponse = {
 };
 
 /**
- * This response should be returned by the service when handling:  GET /{name}/hyperlinks/{hyperlinkIndex} .
+ * The REST response with a hyperlink.
  */
 export class HyperlinkResponse extends WordsResponse {
     /**
@@ -57,7 +57,7 @@ export class HyperlinkResponse extends WordsResponse {
     }
 
     /**
-     * Gets or sets hyperlink.
+     * Gets or sets the hyperlink.
      */
     public hyperlink: Hyperlink;
 

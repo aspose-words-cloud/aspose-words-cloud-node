@@ -33,7 +33,7 @@ export const importsMapTableCell = {
 };
 
 /**
- * Table cell element.
+ * DTO container with a table cell element.
  */
 export class TableCell extends NodeLink {
     /**
@@ -55,7 +55,7 @@ export class TableCell extends NodeLink {
     }
 
     /**
-     * Gets or sets child nodes.
+     * Gets or sets the list of child nodes.
      */
     public childNodes: Array<NodeLink>;
 

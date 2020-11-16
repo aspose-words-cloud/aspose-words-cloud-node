@@ -35,8 +35,7 @@ export const importsMapFootnoteResponse = {
 };
 
 /**
- * This response should be returned by the service when handling:
- * GET https://api.aspose.cloud/v4.0/words/Test.doc/footnote/0.
+ * The REST response with a footnote.
  */
 export class FootnoteResponse extends WordsResponse {
     /**
@@ -58,7 +57,7 @@ export class FootnoteResponse extends WordsResponse {
     }
 
     /**
-     * Gets or sets footnote information.
+     * Gets or sets the footnote.
      */
     public footnote: Footnote;
 

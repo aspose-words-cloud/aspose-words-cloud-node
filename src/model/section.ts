@@ -35,7 +35,7 @@ export const importsMapSection = {
 };
 
 /**
- * Section element.
+ * DTO container with a section element.
  */
 export class Section extends LinkElement {
     /**
@@ -77,27 +77,27 @@ export class Section extends LinkElement {
     }
 
     /**
-     * Gets or sets child nodes.
+     * Gets or sets the list of child nodes.
      */
     public childNodes: Array<NodeLink>;
 
     /**
-     * Gets or sets link to HeaderFooters resource.
+     * Gets or sets the link to HeaderFooters resource.
      */
     public headerFooters: LinkElement;
 
     /**
-     * Gets or sets link to PageSetup resource.
+     * Gets or sets the link to PageSetup resource.
      */
     public pageSetup: LinkElement;
 
     /**
-     * Gets or sets link to Paragraphs resource.
+     * Gets or sets the link to Paragraphs resource.
      */
     public paragraphs: LinkElement;
 
     /**
-     * Gets or sets link to Tables resource.
+     * Gets or sets the link to Tables resource.
      */
     public tables: LinkElement;
 

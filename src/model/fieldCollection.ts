@@ -35,7 +35,7 @@ export const importsMapFieldCollection = {
 };
 
 /**
- * Represents DTO for collection of fields.
+ * DTO container with a collection of fields.
  */
 export class FieldCollection extends LinkElement {
     /**
@@ -57,7 +57,7 @@ export class FieldCollection extends LinkElement {
     }
 
     /**
-     * Gets or sets collection of fields.
+     * Gets or sets the collection of fields.
      */
     public list: Array<Field>;
 

@@ -31,7 +31,7 @@ export const importsMapRangeDocument = {
 };
 
 /**
- * Range element.
+ * DTO container with a Range element.
  */
 export class RangeDocument {
     /**
@@ -53,7 +53,7 @@ export class RangeDocument {
     }
 
     /**
-     * Gets or sets name for new document.
+     * Gets or sets the name for a new document.
      */
     public documentName: string;
 

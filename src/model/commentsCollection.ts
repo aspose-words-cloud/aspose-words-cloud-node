@@ -35,7 +35,7 @@ export const importsMapCommentsCollection = {
 };
 
 /**
- * Collection of comments.
+ * The collection of comments.
  */
 export class CommentsCollection extends LinkElement {
     /**
@@ -57,7 +57,7 @@ export class CommentsCollection extends LinkElement {
     }
 
     /**
-     * Gets or sets collection of comments.
+     * Gets or sets the collection of comments.
      */
     public commentList: Array<Comment>;
 

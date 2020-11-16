@@ -35,8 +35,7 @@ export const importsMapTableLinkCollectionResponse = {
 };
 
 /**
- * This response should be returned by the service when handling:
- * GET https://api.aspose.cloud/v4.0/words/Test.doc/tables.
+ * The REST response with a collection of tables.
  */
 export class TableLinkCollectionResponse extends WordsResponse {
     /**
@@ -58,7 +57,7 @@ export class TableLinkCollectionResponse extends WordsResponse {
     }
 
     /**
-     * Gets or sets collection of tables.
+     * Gets or sets the collection of tables.
      */
     public tables: TableLinkCollection;
 

@@ -37,7 +37,7 @@ export const importsMapTableRow = {
 };
 
 /**
- * Table row element.
+ * DTO container with a table row element.
  */
 export class TableRow extends NodeLink {
     /**
@@ -64,12 +64,12 @@ export class TableRow extends NodeLink {
     }
 
     /**
-     * Gets or sets provides access to the formatting properties of the row.
+     * Gets or sets the formatting properties of a row.
      */
     public rowFormat: TableRowFormat;
 
     /**
-     * Gets or sets collection of table's rows.
+     * Gets or sets the collection of rows.
      */
     public tableCellList: Array<TableCell>;
 

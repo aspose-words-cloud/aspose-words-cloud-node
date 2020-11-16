@@ -70,22 +70,22 @@ export class PageStatData {
     }
 
     /**
-     * Gets or sets detailed statistics of footnotes.
+     * Gets or sets the detailed statistics on the footnotes.
      */
     public footnotesStatData: FootnotesStatData;
 
     /**
-     * Gets or sets page number.
+     * Gets or sets the page number.
      */
     public pageNumber: number;
 
     /**
-     * Gets or sets total count of paragraphs in the page.
+     * Gets or sets the total count of paragraphs in the page.
      */
     public paragraphCount: number;
 
     /**
-     * Gets or sets total count of words in the page.
+     * Gets or sets the total count of words in the page.
      */
     public wordCount: number;
 

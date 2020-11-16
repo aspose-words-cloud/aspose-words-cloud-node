@@ -35,7 +35,7 @@ export const importsMapLists = {
 };
 
 /**
- * Represents an array of document lists.
+ * DTO container with an array of document lists.
  */
 export class Lists extends LinkElement {
     /**
@@ -57,7 +57,7 @@ export class Lists extends LinkElement {
     }
 
     /**
-     * Gets or sets array of document lists.
+     * Gets or sets the array of document lists.
      */
     public listInfo: Array<ListInfo>;
 

@@ -60,12 +60,12 @@ export class LoadWebDocumentData {
     }
 
     /**
-     * Gets or sets web document url.
+     * Gets or sets the web document URL.
      */
     public loadingDocumentUrl: string;
 
     /**
-     * Gets or sets save options.
+     * Gets or sets the save options.
      */
     public saveOptions: SaveOptionsData;
 

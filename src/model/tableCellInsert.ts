@@ -31,7 +31,7 @@ export const importsMapTableCellInsert = {
 };
 
 /**
- * Table cell element.
+ * DTO container with a table cell.
  */
 export class TableCellInsert {
     /**
@@ -53,7 +53,7 @@ export class TableCellInsert {
     }
 
     /**
-     * Gets or sets table cell will be inserted after cell with specified 0-based index.
+     * Gets or sets the 0-based index, the table cell will be inserted after.
      */
     public insertAfter: number;
 

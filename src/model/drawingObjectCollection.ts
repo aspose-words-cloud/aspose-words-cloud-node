@@ -33,7 +33,7 @@ export const importsMapDrawingObjectCollection = {
 };
 
 /**
- * Represents drawing objects collection DTO.
+ * DTO container with a collection of DrawingObjects links.
  */
 export class DrawingObjectCollection extends LinkElement {
     /**
@@ -55,7 +55,7 @@ export class DrawingObjectCollection extends LinkElement {
     }
 
     /**
-     * Gets or sets collection of DrawingObjects links.
+     * Gets or sets the collection of DrawingObjects links.
      */
     public list: Array<LinkElement>;
 

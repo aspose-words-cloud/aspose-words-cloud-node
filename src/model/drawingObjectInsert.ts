@@ -90,42 +90,42 @@ export class DrawingObjectInsert {
     }
 
     /**
-     * Gets or sets height of the drawing object in points.
+     * Gets or sets the height of the DrawingObject in points.
      */
     public height: number;
 
     /**
-     * Gets or sets distance in points from the origin to the left side of the image.
+     * Gets or sets the distance in points from the origin to the left side of the image.
      */
     public left: number;
 
     /**
-     * Gets or sets drawing object will be inserted before specified position.
+     * Gets or sets the position, before which the DrawingObject will be inserted.
      */
     public position: DocumentPosition;
 
     /**
-     * Gets or sets specifies where the distance to the image is measured from.
+     * Gets or sets the relative horizontal position, from which the distance to the image is measured.
      */
     public relativeHorizontalPosition: DrawingObjectInsert.RelativeHorizontalPositionEnum;
 
     /**
-     * Gets or sets specifies where the distance to the image measured from.
+     * Gets or sets the relative vertical position, from which the distance to the image is measured.
      */
     public relativeVerticalPosition: DrawingObjectInsert.RelativeVerticalPositionEnum;
 
     /**
-     * Gets or sets distance in points from the origin to the top side of the image.
+     * Gets or sets the distance in points from the origin to the top side of the image.
      */
     public top: number;
 
     /**
-     * Gets or sets width of the drawing objects in points.
+     * Gets or sets the width of the DrawingObjects in points.
      */
     public width: number;
 
     /**
-     * Gets or sets specifies how to wrap text around the image.
+     * Gets or sets the option indicating how to wrap text around the image.
      */
     public wrapType: DrawingObjectInsert.WrapTypeEnum;
 

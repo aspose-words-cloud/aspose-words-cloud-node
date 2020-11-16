@@ -35,7 +35,7 @@ export const importsMapHeaderFooterLinkCollection = {
 };
 
 /**
- * Collection of links to header/footers.
+ * The collection of HeaderFooter's links.
  */
 export class HeaderFooterLinkCollection extends LinkElement {
     /**
@@ -57,7 +57,7 @@ export class HeaderFooterLinkCollection extends LinkElement {
     }
 
     /**
-     * Gets or sets collection of section's links.
+     * Gets or sets the collection of HeaderFooter's links.
      */
     public list: Array<HeaderFooterLink>;
 

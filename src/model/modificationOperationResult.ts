@@ -60,12 +60,12 @@ export class ModificationOperationResult {
     }
 
     /**
-     * Gets or sets link to the dest document (result of the modification operation).
+     * Gets or sets the link to the dest document (result of the modification operation).
      */
     public dest: FileLink;
 
     /**
-     * Gets or sets link to the source document (source for the modification operation).
+     * Gets or sets the link to the source document (source for the modification operation).
      */
     public source: FileLink;
 

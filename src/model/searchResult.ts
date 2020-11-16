@@ -60,12 +60,12 @@ export class SearchResult {
     }
 
     /**
-     * Gets or sets link to result range end node.
+     * Gets or sets the link to result range end node.
      */
     public rangeEnd: DocumentPosition;
 
     /**
-     * Gets or sets link to result range start node.
+     * Gets or sets the link to result range start node.
      */
     public rangeStart: DocumentPosition;
 

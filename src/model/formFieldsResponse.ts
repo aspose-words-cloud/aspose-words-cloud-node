@@ -35,8 +35,7 @@ export const importsMapFormFieldsResponse = {
 };
 
 /**
- * This response should be returned by the service when handling:
- * GET https://api.aspose.cloud/v4.0/words/Test.doc/{nodePath}/formfields.
+ * The REST response with a collection of form fields.
  */
 export class FormFieldsResponse extends WordsResponse {
     /**
@@ -58,7 +57,7 @@ export class FormFieldsResponse extends WordsResponse {
     }
 
     /**
-     * Gets or sets collection of form fields.
+     * Gets or sets the collection of form fields.
      */
     public formFields: FormFieldCollection;
 

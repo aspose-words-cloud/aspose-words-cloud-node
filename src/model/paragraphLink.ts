@@ -55,7 +55,7 @@ export class ParagraphLink extends NodeLink {
     }
 
     /**
-     * Gets or sets paragraph's text.
+     * Gets or sets the paragraph's text.
      */
     public text: string;
 

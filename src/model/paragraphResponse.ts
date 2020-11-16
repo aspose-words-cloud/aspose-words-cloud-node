@@ -35,8 +35,7 @@ export const importsMapParagraphResponse = {
 };
 
 /**
- * This response should be returned by the service when handling:
- * GET https://api.aspose.cloud/v4.0/words/Test.doc/paragraphs/{0}.
+ * The REST response with a paragraph.
  */
 export class ParagraphResponse extends WordsResponse {
     /**
@@ -58,7 +57,7 @@ export class ParagraphResponse extends WordsResponse {
     }
 
     /**
-     * Gets or sets paragraph.
+     * Gets or sets the paragraph.
      */
     public paragraph: Paragraph;
 

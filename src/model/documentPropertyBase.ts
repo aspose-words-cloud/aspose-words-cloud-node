@@ -53,7 +53,7 @@ export class DocumentPropertyBase {
     }
 
     /**
-     * Gets or sets string value of the document property.
+     * Gets or sets the value of the document property.
      */
     public value: string;
 

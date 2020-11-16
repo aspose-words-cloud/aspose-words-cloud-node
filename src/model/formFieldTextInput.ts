@@ -70,22 +70,22 @@ export class FormFieldTextInput extends FormField {
     }
 
     /**
-     * Gets or sets maximum length for the text field. Zero when the length is not limited.
+     * Gets or sets the maximum length for the text field. Zero when the length is not limited.
      */
     public maxLength: number;
 
     /**
-     * Gets or sets the default string or a calculation expression of a text form field.
+     * Gets or sets the default string or a calculation expression of the text form field.
      */
     public textInputDefault: string;
 
     /**
-     * Gets or sets returns or sets the text formatting for a text form field.
+     * Gets or sets text formatting for the text form field.
      */
     public textInputFormat: string;
 
     /**
-     * Gets or sets the type of a text form field.
+     * Gets or sets the type of the text form field.
      */
     public textInputType: FormFieldTextInput.TextInputTypeEnum;
 

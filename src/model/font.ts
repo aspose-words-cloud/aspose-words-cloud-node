@@ -37,7 +37,7 @@ export const importsMapFont = {
 };
 
 /**
- * Font element.
+ * DTO container with a font element.
  */
 export class Font extends LinkElement {
     /**
@@ -254,27 +254,27 @@ export class Font extends LinkElement {
     }
 
     /**
-     * Gets or sets true if the font is formatted as all capital letters.
+     * Gets or sets a value indicating whether the font is formatted as all capital letters.
      */
     public allCaps: boolean;
 
     /**
-     * Gets or sets specifies whether the contents of this run shall have right-to-left characteristics.
+     * Gets or sets a value indicating whether the contents of this run shall have right-to-left characteristics.
      */
     public bidi: boolean;
 
     /**
-     * Gets or sets true if the font is formatted as bold.
+     * Gets or sets a value indicating whether the font is formatted as bold.
      */
     public bold: boolean;
 
     /**
-     * Gets or sets true if the right-to-left text is formatted as bold.
+     * Gets or sets a value indicating whether the right-to-left text is formatted as bold.
      */
     public boldBi: boolean;
 
     /**
-     * Gets or sets border object that specifies border for the font.
+     * Gets or sets the border object, that specifies border for the font.
      */
     public border: Border;
 
@@ -284,28 +284,27 @@ export class Font extends LinkElement {
     public color: XmlColor;
 
     /**
-     * Gets or sets specifies whether the contents of this run shall be treated as complex script text regardless
-     * of their Unicode character values when determining the formatting for this run.
+     * Gets or sets a value indicating whether the contents of this run shall be treated as complex script text regardless of their Unicode character values when determining the formatting for this run.
      */
     public complexScript: boolean;
 
     /**
-     * Gets or sets true if the font is formatted as double strikethrough text.
+     * Gets or sets a value indicating whether the font is formatted as double strikethrough text.
      */
     public doubleStrikeThrough: boolean;
 
     /**
-     * Gets or sets true if the font is formatted as embossed.
+     * Gets or sets a value indicating whether the font is formatted as embossed.
      */
     public emboss: boolean;
 
     /**
-     * Gets or sets true if the font is formatted as engraved.
+     * Gets or sets a value indicating whether the font is formatted as engraved.
      */
     public engrave: boolean;
 
     /**
-     * Gets or sets true if the font is formatted as hidden text.
+     * Gets or sets a value indicating whether the font is formatted as hidden text.
      */
     public hidden: boolean;
 
@@ -315,12 +314,12 @@ export class Font extends LinkElement {
     public highlightColor: XmlColor;
 
     /**
-     * Gets or sets true if the font is formatted as italic.
+     * Gets or sets a value indicating whether the font is formatted as italic.
      */
     public italic: boolean;
 
     /**
-     * Gets or sets true if the right-to-left text is formatted as italic.
+     * Gets or sets a value indicating whether the right-to-left text is formatted as italic.
      */
     public italicBi: boolean;
 
@@ -350,32 +349,32 @@ export class Font extends LinkElement {
     public name: string;
 
     /**
-     * Gets or sets returns or sets the font used for Latin text (characters with character codes from 0 (zero) through 127).
+     * Gets or sets the font used for Latin text (characters with character codes from 0 (zero) through 127).
      */
     public nameAscii: string;
 
     /**
-     * Gets or sets returns or sets the name of the font in a right-to-left language document.
+     * Gets or sets the name of the font in a right-to-left language document.
      */
     public nameBi: string;
 
     /**
-     * Gets or sets returns or sets an East Asian font name.
+     * Gets or sets the East Asian font name.
      */
     public nameFarEast: string;
 
     /**
-     * Gets or sets returns or sets the font used for characters with character codes from 128 through 255.
+     * Gets or sets the font used for characters with character codes from 128 through 255.
      */
     public nameOther: string;
 
     /**
-     * Gets or sets true when the formatted characters are not to be spell checked.
+     * Gets or sets a value indicating whether the formatted characters are not to be spell checked.
      */
     public noProofing: boolean;
 
     /**
-     * Gets or sets true if the font is formatted as outline.
+     * Gets or sets a value indicating whether the font is formatted as outline.
      */
     public outline: boolean;
 
@@ -391,7 +390,7 @@ export class Font extends LinkElement {
     public scaling: number;
 
     /**
-     * Gets or sets true if the font is formatted as shadowed.
+     * Gets or sets a value indicating whether the font is formatted as shadowed.
      */
     public shadow: boolean;
 
@@ -406,17 +405,17 @@ export class Font extends LinkElement {
     public sizeBi: number;
 
     /**
-     * Gets or sets true if the font is formatted as small capital letters.
+     * Gets or sets a value indicating whether the font is formatted as small capital letters.
      */
     public smallCaps: boolean;
 
     /**
-     * Gets or sets returns or sets the spacing (in points) between characters.
+     * Gets or sets the spacing (in points) between characters.
      */
     public spacing: number;
 
     /**
-     * Gets or sets true if the font is formatted as strikethrough text.
+     * Gets or sets a value indicating whether the font is formatted as strikethrough text.
      */
     public strikeThrough: boolean;
 
@@ -431,12 +430,12 @@ export class Font extends LinkElement {
     public styleName: string;
 
     /**
-     * Gets or sets true if the font is formatted as subscript.
+     * Gets or sets a value indicating whether the font is formatted as subscript.
      */
     public subscript: boolean;
 
     /**
-     * Gets or sets true if the font is formatted as superscript.
+     * Gets or sets a value indicating whether the font is formatted as superscript.
      */
     public superscript: boolean;
 

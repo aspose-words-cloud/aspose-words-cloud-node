@@ -33,7 +33,7 @@ export const importsMapWordMLSaveOptionsData = {
 };
 
 /**
- * container class for wml save options.
+ * Container class for wml save options.
  */
 export class WordMLSaveOptionsData extends SaveOptionsData {
     /**
@@ -55,7 +55,7 @@ export class WordMLSaveOptionsData extends SaveOptionsData {
     }
 
     /**
-     * Gets or sets specifies whether or not use pretty formats output.
+     * Gets or sets a value indicating whether to use pretty formats output.
      */
     public prettyFormat: boolean;
 

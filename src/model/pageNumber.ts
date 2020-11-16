@@ -73,7 +73,7 @@ export class PageNumber {
     public alignment: string;
 
     /**
-     * Gets or sets page number format, e.g. "{PAGE} of {NUMPAGES}".
+     * Gets or sets the page number format, e.g. "{PAGE} of {NUMPAGES}".
      */
     public format: string;
 

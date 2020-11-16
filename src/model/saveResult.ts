@@ -65,17 +65,17 @@ export class SaveResult {
     }
 
     /**
-     * Gets or sets links to additional items (css, images etc).
+     * Gets or sets the list of links to additional items (css, images etc).
      */
     public additionalItems: Array<FileLink>;
 
     /**
-     * Gets or sets link to destination document.
+     * Gets or sets the link to destination document.
      */
     public destDocument: FileLink;
 
     /**
-     * Gets or sets link to source document.
+     * Gets or sets the link to source document.
      */
     public sourceDocument: FileLink;
 

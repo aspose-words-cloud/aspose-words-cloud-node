@@ -35,8 +35,7 @@ export const importsMapSectionPageSetupResponse = {
 };
 
 /**
- * This response should be returned by the service when handling:
- * GET https://api.aspose.cloud/v4.0/words/Test.doc/sections/{0}/PageSetup.
+ * The REST response with a page setup of a section.
  */
 export class SectionPageSetupResponse extends WordsResponse {
     /**
@@ -58,7 +57,7 @@ export class SectionPageSetupResponse extends WordsResponse {
     }
 
     /**
-     * Gets or sets section.
+     * Gets or sets the page setup of a section.
      */
     public pageSetup: PageSetup;
 

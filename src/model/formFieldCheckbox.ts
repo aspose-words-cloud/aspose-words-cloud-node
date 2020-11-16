@@ -75,7 +75,7 @@ export class FormFieldCheckbox extends FormField {
     public checked: boolean;
 
     /**
-     * Gets or sets the boolean value that indicates whether the size of the textbox is automatic or specified explicitly.
+     * Gets or sets a value indicating whether the size of the textbox is automatic or specified explicitly.
      */
     public isCheckBoxExactSize: boolean;
 

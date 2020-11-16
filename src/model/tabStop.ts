@@ -33,7 +33,7 @@ export const importsMapTabStop = {
 };
 
 /**
- * Paragraph format tab stop.
+ * DTO container with paragraph format tab stop.
  */
 export class TabStop extends TabStopBase {
     /**

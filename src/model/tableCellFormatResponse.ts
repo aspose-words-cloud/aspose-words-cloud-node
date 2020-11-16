@@ -35,8 +35,7 @@ export const importsMapTableCellFormatResponse = {
 };
 
 /**
- * This response should be returned by the service when handling:
- * GET https://api.aspose.cloud/v4.0/words/Test.doc/tables/{0}/rows/{1}/cells/{2}/cellformat.
+ * The REST response with the formatting properties of a table cell.
  */
 export class TableCellFormatResponse extends WordsResponse {
     /**
@@ -58,7 +57,7 @@ export class TableCellFormatResponse extends WordsResponse {
     }
 
     /**
-     * Gets or sets table.
+     * Gets or sets the formatting properties of a table cell.
      */
     public cellFormat: TableCellFormat;
 

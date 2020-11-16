@@ -35,7 +35,7 @@ export const importsMapDrawingObjectResponse = {
 };
 
 /**
- * Response for "drawingObjects/n" resource.
+ * The REST response with a DrawingObject.
  */
 export class DrawingObjectResponse extends WordsResponse {
     /**
@@ -57,7 +57,7 @@ export class DrawingObjectResponse extends WordsResponse {
     }
 
     /**
-     * Gets or sets drawing object.
+     * Gets or sets the DrawingObject.
      */
     public drawingObject: DrawingObject;
 

@@ -35,8 +35,7 @@ export const importsMapTablePropertiesResponse = {
 };
 
 /**
- * This response should be returned by the service when handling:
- * GET https://api.aspose.cloud/v4.0/words/Test.doc/tables/{0}/properties.
+ * The REST response with a table.
  */
 export class TablePropertiesResponse extends WordsResponse {
     /**
@@ -58,7 +57,7 @@ export class TablePropertiesResponse extends WordsResponse {
     }
 
     /**
-     * Gets or sets table.
+     * Gets or sets the table.
      */
     public properties: TableProperties;
 

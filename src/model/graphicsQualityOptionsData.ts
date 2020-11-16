@@ -80,7 +80,7 @@ export class GraphicsQualityOptionsData {
     }
 
     /**
-     * Gets or sets a value that specifies how composited images are drawn to this Graphics.
+     * Gets or sets the value, that specifies how composited images are drawn to this Graphics.
      */
     public compositingMode: GraphicsQualityOptionsData.CompositingModeEnum;
 

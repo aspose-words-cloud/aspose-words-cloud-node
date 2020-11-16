@@ -35,8 +35,7 @@ export const importsMapStylesResponse = {
 };
 
 /**
- * This response should be returned by the service when handling:
- * GET https://api.aspose.cloud/v4.0/words/Test.doc/styles.
+ * The REST response with an array of styles.
  */
 export class StylesResponse extends WordsResponse {
     /**
@@ -58,7 +57,7 @@ export class StylesResponse extends WordsResponse {
     }
 
     /**
-     * Gets or sets styles which are contained in document.
+     * Gets or sets the array of styles.
      */
     public styles: Array<Style>;
 

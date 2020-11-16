@@ -55,7 +55,7 @@ export class WordsApi {
     }
 
     /**
-     * Accepts all revisions in document.
+     * Accepts all revisions in the document.
      * @param requestObj contains request parameters
      */
     public async acceptAllRevisions(requestObj: model.AcceptAllRevisionsRequest): Promise< model.WordsIncomingMessage< model.RevisionsModificationResponse > > {
@@ -97,7 +97,7 @@ export class WordsApi {
     }
 
     /**
-     * Appends documents to original document.
+     * Appends documents to the original document.
      * @param requestObj contains request parameters
      */
     public async appendDocument(requestObj: model.AppendDocumentRequest): Promise< model.WordsIncomingMessage< model.DocumentResponse > > {
@@ -152,7 +152,7 @@ export class WordsApi {
     }
 
     /**
-     * Apply a style to the document node.
+     * Applies a style to the document node.
      * @param requestObj contains request parameters
      */
     public async applyStyleToDocumentElement(requestObj: model.ApplyStyleToDocumentElementRequest): Promise< model.WordsIncomingMessage< model.WordsResponse > > {
@@ -218,7 +218,7 @@ export class WordsApi {
     }
 
     /**
-     * Executes document "build report" operation.
+     * Executes the report generation process using the specified document template and the external data source in XML, JSON or CSV format.
      * @param requestObj contains request parameters
      */
     public async buildReport(requestObj: model.BuildReportRequest): Promise< model.WordsIncomingMessage< model.DocumentResponse > > {
@@ -290,7 +290,7 @@ export class WordsApi {
     }
 
     /**
-     * Executes document "build report" online operation.
+     * Executes the report generation process online using the specified document template and the external data source in XML, JSON or CSV format.
      * @param requestObj contains request parameters
      */
     public async buildReportOnline(requestObj: model.BuildReportOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
@@ -360,7 +360,7 @@ export class WordsApi {
     }
 
     /**
-     * Classifies raw text.
+     * Runs a multi-class text classification for the specified raw text.
      * @param requestObj contains request parameters
      */
     public async classify(requestObj: model.ClassifyRequest): Promise< model.WordsIncomingMessage< model.ClassificationResponse > > {
@@ -398,7 +398,7 @@ export class WordsApi {
     }
 
     /**
-     * Classifies document.
+     * Runs a multi-class text classification for the document.
      * @param requestObj contains request parameters
      */
     public async classifyDocument(requestObj: model.ClassifyDocumentRequest): Promise< model.WordsIncomingMessage< model.ClassificationResponse > > {
@@ -441,7 +441,7 @@ export class WordsApi {
     }
 
     /**
-     * Compares document with original document.
+     * Compares two documents.
      * @param requestObj contains request parameters
      */
     public async compareDocument(requestObj: model.CompareDocumentRequest): Promise< model.WordsIncomingMessage< model.DocumentResponse > > {
@@ -494,7 +494,7 @@ export class WordsApi {
     }
 
     /**
-     * Converts document from the request's content to the specified format.
+     * Converts a document on a local drive to the specified format.
      * @param requestObj contains request parameters
      */
     public async convertDocument(requestObj: model.ConvertDocumentRequest): Promise< model.WordsIncomingMessage< Buffer > > {
@@ -639,7 +639,7 @@ export class WordsApi {
     }
 
     /**
-     * Copy and insert a new style to the document, returns a copied style.
+     * Makes a copy of the style in the document.
      * @param requestObj contains request parameters
      */
     public async copyStyle(requestObj: model.CopyStyleRequest): Promise< model.WordsIncomingMessage< model.StyleResponse > > {
@@ -694,8 +694,6 @@ export class WordsApi {
     }
 
     /**
-     * Creates new document.
-     * Document is created with format which is recognized from file extensions.
      * Supported extensions: ".doc", ".docx", ".docm", ".dot", ".dotm", ".dotx", ".flatopc", ".fopc", ".flatopc_macro", ".fopc_macro", ".flatopc_template", ".fopc_template", ".flatopc_template_macro", ".fopc_template_macro", ".wordml", ".wml", ".rtf".
      * @param requestObj contains request parameters
      */
@@ -761,7 +759,7 @@ export class WordsApi {
     }
 
     /**
-     * Adds new or update existing document property.
+     * Adds a new or updates an existing document property.
      * @param requestObj contains request parameters
      */
     public async createOrUpdateDocumentProperty(requestObj: model.CreateOrUpdateDocumentPropertyRequest): Promise< model.WordsIncomingMessage< model.DocumentPropertyResponse > > {
@@ -827,7 +825,7 @@ export class WordsApi {
     }
 
     /**
-     * Remove all tab stops.
+     * Removes paragraph tab stops from the document node.
      * @param requestObj contains request parameters
      */
     public async deleteAllParagraphTabStops(requestObj: model.DeleteAllParagraphTabStopsRequest): Promise< model.WordsIncomingMessage< model.TabStopsResponse > > {
@@ -881,7 +879,7 @@ export class WordsApi {
     }
 
     /**
-     * 'nodePath' should refer to paragraph, cell or row.
+     * The 'nodePath' parameter should refer to a paragraph, a cell or a row.
      * @param requestObj contains request parameters
      */
     public async deleteBorder(requestObj: model.DeleteBorderRequest): Promise< model.WordsIncomingMessage< model.BorderResponse > > {
@@ -937,7 +935,7 @@ export class WordsApi {
     }
 
     /**
-     * 'nodePath' should refer to paragraph, cell or row.
+     * The 'nodePath' parameter should refer to a paragraph, a cell or a row.
      * @param requestObj contains request parameters
      */
     public async deleteBorders(requestObj: model.DeleteBordersRequest): Promise< model.WordsIncomingMessage< model.BordersResponse > > {
@@ -982,7 +980,7 @@ export class WordsApi {
     }
 
     /**
-     * Removes comment from document.
+     * Removes a comment from the document.
      * @param requestObj contains request parameters
      */
     public async deleteComment(requestObj: model.DeleteCommentRequest): Promise< http.IncomingMessage > {
@@ -1035,7 +1033,7 @@ export class WordsApi {
     }
 
     /**
-     * Deletes document property.
+     * Removes a document property.
      * @param requestObj contains request parameters
      */
     public async deleteDocumentProperty(requestObj: model.DeleteDocumentPropertyRequest): Promise< http.IncomingMessage > {
@@ -1088,7 +1086,7 @@ export class WordsApi {
     }
 
     /**
-     * Removes drawing object from document.
+     * Removes a DrawingObject from the document node.
      * @param requestObj contains request parameters
      */
     public async deleteDrawingObject(requestObj: model.DeleteDrawingObjectRequest): Promise< http.IncomingMessage > {
@@ -1142,7 +1140,7 @@ export class WordsApi {
     }
 
     /**
-     * Deletes field from document.
+     * Removes a field from the document node.
      * @param requestObj contains request parameters
      */
     public async deleteField(requestObj: model.DeleteFieldRequest): Promise< http.IncomingMessage > {
@@ -1196,7 +1194,7 @@ export class WordsApi {
     }
 
     /**
-     * Removes fields from section paragraph.
+     * Removes fields from the document node.
      * @param requestObj contains request parameters
      */
     public async deleteFields(requestObj: model.DeleteFieldsRequest): Promise< http.IncomingMessage > {
@@ -1313,7 +1311,7 @@ export class WordsApi {
     }
 
     /**
-     * Removes footnote from document.
+     * Removes a footnote from the document node.
      * @param requestObj contains request parameters
      */
     public async deleteFootnote(requestObj: model.DeleteFootnoteRequest): Promise< http.IncomingMessage > {
@@ -1367,7 +1365,7 @@ export class WordsApi {
     }
 
     /**
-     * Removes form field from document.
+     * Removes a form field from the document node.
      * @param requestObj contains request parameters
      */
     public async deleteFormField(requestObj: model.DeleteFormFieldRequest): Promise< http.IncomingMessage > {
@@ -1421,7 +1419,7 @@ export class WordsApi {
     }
 
     /**
-     * Deletes header/footer from document.
+     * Removes a HeaderFooter object from the document section.
      * @param requestObj contains request parameters
      */
     public async deleteHeaderFooter(requestObj: model.DeleteHeaderFooterRequest): Promise< http.IncomingMessage > {
@@ -1480,7 +1478,7 @@ export class WordsApi {
     }
 
     /**
-     * Deletes document headers and footers.
+     * Removes HeaderFooter objects from the document section.
      * @param requestObj contains request parameters
      */
     public async deleteHeadersFooters(requestObj: model.DeleteHeadersFootersRequest): Promise< http.IncomingMessage > {
@@ -1529,7 +1527,7 @@ export class WordsApi {
     }
 
     /**
-     * Removes macros from document.
+     * Removes macros from the document.
      * @param requestObj contains request parameters
      */
     public async deleteMacros(requestObj: model.DeleteMacrosRequest): Promise< http.IncomingMessage > {
@@ -1571,7 +1569,7 @@ export class WordsApi {
     }
 
     /**
-     * Removes OfficeMath object from document.
+     * Removes an OfficeMath object from the document node.
      * @param requestObj contains request parameters
      */
     public async deleteOfficeMathObject(requestObj: model.DeleteOfficeMathObjectRequest): Promise< http.IncomingMessage > {
@@ -1625,7 +1623,7 @@ export class WordsApi {
     }
 
     /**
-     * Removes paragraph from section.
+     * Removes a paragraph from the document node.
      * @param requestObj contains request parameters
      */
     public async deleteParagraph(requestObj: model.DeleteParagraphRequest): Promise< http.IncomingMessage > {
@@ -1679,7 +1677,7 @@ export class WordsApi {
     }
 
     /**
-     * Delete paragraph list format, returns updated list format properties.
+     * Removes the formatting properties of a paragraph list from the document node.
      * @param requestObj contains request parameters
      */
     public async deleteParagraphListFormat(requestObj: model.DeleteParagraphListFormatRequest): Promise< model.WordsIncomingMessage< model.ParagraphListFormatResponse > > {
@@ -1735,7 +1733,7 @@ export class WordsApi {
     }
 
     /**
-     * Remove the i-th tab stop.
+     * Removes a paragraph tab stop from the document node.
      * @param requestObj contains request parameters
      */
     public async deleteParagraphTabStop(requestObj: model.DeleteParagraphTabStopRequest): Promise< model.WordsIncomingMessage< model.TabStopsResponse > > {
@@ -1800,7 +1798,7 @@ export class WordsApi {
     }
 
     /**
-     * Removes run from document.
+     * Removes a Run object from the paragraph.
      * @param requestObj contains request parameters
      */
     public async deleteRun(requestObj: model.DeleteRunRequest): Promise< http.IncomingMessage > {
@@ -1859,7 +1857,7 @@ export class WordsApi {
     }
 
     /**
-     * Removes section from document.
+     * Removes a section from the document.
      * @param requestObj contains request parameters
      */
     public async deleteSection(requestObj: model.DeleteSectionRequest): Promise< http.IncomingMessage > {
@@ -1912,7 +1910,7 @@ export class WordsApi {
     }
 
     /**
-     * Deletes a table.
+     * Removes a table from the document node.
      * @param requestObj contains request parameters
      */
     public async deleteTable(requestObj: model.DeleteTableRequest): Promise< http.IncomingMessage > {
@@ -1966,7 +1964,7 @@ export class WordsApi {
     }
 
     /**
-     * Deletes a table cell.
+     * Removes a cell from the table row.
      * @param requestObj contains request parameters
      */
     public async deleteTableCell(requestObj: model.DeleteTableCellRequest): Promise< http.IncomingMessage > {
@@ -2025,7 +2023,7 @@ export class WordsApi {
     }
 
     /**
-     * Deletes a table row.
+     * Removes a row from the table.
      * @param requestObj contains request parameters
      */
     public async deleteTableRow(requestObj: model.DeleteTableRowRequest): Promise< http.IncomingMessage > {
@@ -2084,7 +2082,7 @@ export class WordsApi {
     }
 
     /**
-     * Deletes watermark (for deleting last watermark from the document).
+     * Removes a watermark from the document.
      * @param requestObj contains request parameters
      */
     public async deleteWatermark(requestObj: model.DeleteWatermarkRequest): Promise< model.WordsIncomingMessage< model.DocumentResponse > > {
@@ -2167,7 +2165,7 @@ export class WordsApi {
     }
 
     /**
-     * Executes document mail merge operation.
+     * Executes a Mail Merge operation.
      * @param requestObj contains request parameters
      */
     public async executeMailMerge(requestObj: model.ExecuteMailMergeRequest): Promise< model.WordsIncomingMessage< model.DocumentResponse > > {
@@ -2220,7 +2218,7 @@ export class WordsApi {
     }
 
     /**
-     * Executes document mail merge online.
+     * Executes a Mail Merge operation online.
      * @param requestObj contains request parameters
      */
     public async executeMailMergeOnline(requestObj: model.ExecuteMailMergeOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
@@ -2279,7 +2277,7 @@ export class WordsApi {
     }
 
     /**
-     * Gets the list of fonts, available for document processing.
+     * Reads available fonts from the document.
      * @param requestObj contains request parameters
      */
     public async getAvailableFonts(requestObj: model.GetAvailableFontsRequest): Promise< model.WordsIncomingMessage< model.AvailableFontsResponse > > {
@@ -2306,7 +2304,7 @@ export class WordsApi {
     }
 
     /**
-     * Reads document bookmark data by its name.
+     * Reads a bookmark, specified by name, from the document.
      * @param requestObj contains request parameters
      */
     public async getBookmarkByName(requestObj: model.GetBookmarkByNameRequest): Promise< model.WordsIncomingMessage< model.BookmarkResponse > > {
@@ -2358,7 +2356,7 @@ export class WordsApi {
     }
 
     /**
-     * Reads document bookmarks common info.
+     * Reads bookmarks from the document.
      * @param requestObj contains request parameters
      */
     public async getBookmarks(requestObj: model.GetBookmarksRequest): Promise< model.WordsIncomingMessage< model.BookmarksResponse > > {
@@ -2399,7 +2397,7 @@ export class WordsApi {
     }
 
     /**
-     * 'nodePath' should refer to paragraph, cell or row.
+     * The 'nodePath' parameter should refer to a paragraph, a cell or a row.
      * @param requestObj contains request parameters
      */
     public async getBorder(requestObj: model.GetBorderRequest): Promise< model.WordsIncomingMessage< model.BorderResponse > > {
@@ -2452,7 +2450,7 @@ export class WordsApi {
     }
 
     /**
-     * 'nodePath' should refer to paragraph, cell or row.
+     * Reads borders from the document node.
      * @param requestObj contains request parameters
      */
     public async getBorders(requestObj: model.GetBordersRequest): Promise< model.WordsIncomingMessage< model.BordersResponse > > {
@@ -2494,7 +2492,7 @@ export class WordsApi {
     }
 
     /**
-     * Gets comment from document.
+     * Reads a comment from the document.
      * @param requestObj contains request parameters
      */
     public async getComment(requestObj: model.GetCommentRequest): Promise< model.WordsIncomingMessage< model.CommentResponse > > {
@@ -2546,7 +2544,7 @@ export class WordsApi {
     }
 
     /**
-     * Gets comments from document.
+     * Reads comments from the document.
      * @param requestObj contains request parameters
      */
     public async getComments(requestObj: model.GetCommentsRequest): Promise< model.WordsIncomingMessage< model.CommentsResponse > > {
@@ -2587,7 +2585,7 @@ export class WordsApi {
     }
 
     /**
-     * Reads document common info.
+     * Reads common information from the document.
      * @param requestObj contains request parameters
      */
     public async getDocument(requestObj: model.GetDocumentRequest): Promise< model.WordsIncomingMessage< model.DocumentResponse > > {
@@ -2628,7 +2626,7 @@ export class WordsApi {
     }
 
     /**
-     * Reads document drawing object common info by its index or convert to format specified.
+     * Reads a DrawingObject from the document node.
      * @param requestObj contains request parameters
      */
     public async getDocumentDrawingObjectByIndex(requestObj: model.GetDocumentDrawingObjectByIndexRequest): Promise< model.WordsIncomingMessage< model.DrawingObjectResponse > > {
@@ -2681,7 +2679,7 @@ export class WordsApi {
     }
 
     /**
-     * Reads drawing object image data.
+     * Reads image data of a DrawingObject from the document node.
      * @param requestObj contains request parameters
      */
     public async getDocumentDrawingObjectImageData(requestObj: model.GetDocumentDrawingObjectImageDataRequest): Promise< model.WordsIncomingMessage< Buffer > > {
@@ -2734,7 +2732,7 @@ export class WordsApi {
     }
 
     /**
-     * Gets drawing object OLE data.
+     * Reads OLE data of a DrawingObject from the document node.
      * @param requestObj contains request parameters
      */
     public async getDocumentDrawingObjectOleData(requestObj: model.GetDocumentDrawingObjectOleDataRequest): Promise< model.WordsIncomingMessage< Buffer > > {
@@ -2787,7 +2785,7 @@ export class WordsApi {
     }
 
     /**
-     * Reads document drawing objects common info.
+     * Reads DrawingObjects from the document node.
      * @param requestObj contains request parameters
      */
     public async getDocumentDrawingObjects(requestObj: model.GetDocumentDrawingObjectsRequest): Promise< model.WordsIncomingMessage< model.DrawingObjectsResponse > > {
@@ -2829,7 +2827,7 @@ export class WordsApi {
     }
 
     /**
-     * Reads document field names.
+     * Reads merge field names from the document.
      * @param requestObj contains request parameters
      */
     public async getDocumentFieldNames(requestObj: model.GetDocumentFieldNamesRequest): Promise< model.WordsIncomingMessage< model.FieldNamesResponse > > {
@@ -2871,7 +2869,7 @@ export class WordsApi {
     }
 
     /**
-     * Reads document field names.
+     * Reads merge field names from the document.
      * @param requestObj contains request parameters
      */
     public async getDocumentFieldNamesOnline(requestObj: model.GetDocumentFieldNamesOnlineRequest): Promise< model.WordsIncomingMessage< model.FieldNamesResponse > > {
@@ -2915,7 +2913,7 @@ export class WordsApi {
     }
 
     /**
-     * Reads document hyperlink by its index.
+     * Reads a hyperlink from the document.
      * @param requestObj contains request parameters
      */
     public async getDocumentHyperlinkByIndex(requestObj: model.GetDocumentHyperlinkByIndexRequest): Promise< model.WordsIncomingMessage< model.HyperlinkResponse > > {
@@ -2967,7 +2965,7 @@ export class WordsApi {
     }
 
     /**
-     * Reads document hyperlinks common info.
+     * Reads hyperlinks from the document.
      * @param requestObj contains request parameters
      */
     public async getDocumentHyperlinks(requestObj: model.GetDocumentHyperlinksRequest): Promise< model.WordsIncomingMessage< model.HyperlinksResponse > > {
@@ -3008,7 +3006,7 @@ export class WordsApi {
     }
 
     /**
-     * Reads document properties info.
+     * Reads document properties.
      * @param requestObj contains request parameters
      */
     public async getDocumentProperties(requestObj: model.GetDocumentPropertiesRequest): Promise< model.WordsIncomingMessage< model.DocumentPropertiesResponse > > {
@@ -3049,7 +3047,7 @@ export class WordsApi {
     }
 
     /**
-     * Reads document property info by the property name.
+     * Reads a document property.
      * @param requestObj contains request parameters
      */
     public async getDocumentProperty(requestObj: model.GetDocumentPropertyRequest): Promise< model.WordsIncomingMessage< model.DocumentPropertyResponse > > {
@@ -3101,7 +3099,7 @@ export class WordsApi {
     }
 
     /**
-     * Reads document protection common info.
+     * Reads protection properties from the document.
      * @param requestObj contains request parameters
      */
     public async getDocumentProtection(requestObj: model.GetDocumentProtectionRequest): Promise< model.WordsIncomingMessage< model.ProtectionDataResponse > > {
@@ -3186,7 +3184,7 @@ export class WordsApi {
     }
 
     /**
-     * Exports the document into the specified format.
+     * Converts a document in cloud storage to the specified format.
      * @param requestObj contains request parameters
      */
     public async getDocumentWithFormat(requestObj: model.GetDocumentWithFormatRequest): Promise< model.WordsIncomingMessage< Buffer > > {
@@ -3240,7 +3238,7 @@ export class WordsApi {
     }
 
     /**
-     * Gets field from document.
+     * Reads a field from the document node.
      * @param requestObj contains request parameters
      */
     public async getField(requestObj: model.GetFieldRequest): Promise< model.WordsIncomingMessage< model.FieldResponse > > {
@@ -3293,7 +3291,7 @@ export class WordsApi {
     }
 
     /**
-     * Get fields from document.
+     * Reads fields from the document node.
      * @param requestObj contains request parameters
      */
     public async getFields(requestObj: model.GetFieldsRequest): Promise< model.WordsIncomingMessage< model.FieldsResponse > > {
@@ -3373,7 +3371,7 @@ export class WordsApi {
     }
 
     /**
-     * Reads footnote by index.
+     * Reads a footnote from the document node.
      * @param requestObj contains request parameters
      */
     public async getFootnote(requestObj: model.GetFootnoteRequest): Promise< model.WordsIncomingMessage< model.FootnoteResponse > > {
@@ -3426,7 +3424,7 @@ export class WordsApi {
     }
 
     /**
-     * Gets footnotes from document.
+     * Reads footnotes from the document node.
      * @param requestObj contains request parameters
      */
     public async getFootnotes(requestObj: model.GetFootnotesRequest): Promise< model.WordsIncomingMessage< model.FootnotesResponse > > {
@@ -3468,7 +3466,7 @@ export class WordsApi {
     }
 
     /**
-     * Returns representation of an one of the form field.
+     * Reads a form field from the document node.
      * @param requestObj contains request parameters
      */
     public async getFormField(requestObj: model.GetFormFieldRequest): Promise< model.WordsIncomingMessage< model.FormFieldResponse > > {
@@ -3521,7 +3519,7 @@ export class WordsApi {
     }
 
     /**
-     * Gets form fields from document.
+     * Reads form fields from the document node.
      * @param requestObj contains request parameters
      */
     public async getFormFields(requestObj: model.GetFormFieldsRequest): Promise< model.WordsIncomingMessage< model.FormFieldsResponse > > {
@@ -3563,7 +3561,7 @@ export class WordsApi {
     }
 
     /**
-     * Returns a header/footer from the document by index.
+     * Reads a HeaderFooter object from the document.
      * @param requestObj contains request parameters
      */
     public async getHeaderFooter(requestObj: model.GetHeaderFooterRequest): Promise< model.WordsIncomingMessage< model.HeaderFooterResponse > > {
@@ -3616,7 +3614,7 @@ export class WordsApi {
     }
 
     /**
-     * Returns a header/footer from the document section.
+     * Reads a HeaderFooter object from the document section.
      * @param requestObj contains request parameters
      */
     public async getHeaderFooterOfSection(requestObj: model.GetHeaderFooterOfSectionRequest): Promise< model.WordsIncomingMessage< model.HeaderFooterResponse > > {
@@ -3680,7 +3678,7 @@ export class WordsApi {
     }
 
     /**
-     * Returns a list of header/footers from the document.
+     * Reads HeaderFooter objects from the document section.
      * @param requestObj contains request parameters
      */
     public async getHeaderFooters(requestObj: model.GetHeaderFootersRequest): Promise< model.WordsIncomingMessage< model.HeaderFootersResponse > > {
@@ -3728,7 +3726,7 @@ export class WordsApi {
     }
 
     /**
-     * This resource represents one of the lists contained in the document.
+     * Reads a list from the document.
      * @param requestObj contains request parameters
      */
     public async getList(requestObj: model.GetListRequest): Promise< model.WordsIncomingMessage< model.ListResponse > > {
@@ -3780,7 +3778,7 @@ export class WordsApi {
     }
 
     /**
-     * Returns a list of lists that are contained in the document.
+     * Reads lists from the document.
      * @param requestObj contains request parameters
      */
     public async getLists(requestObj: model.GetListsRequest): Promise< model.WordsIncomingMessage< model.ListsResponse > > {
@@ -3821,7 +3819,7 @@ export class WordsApi {
     }
 
     /**
-     * Reads OfficeMath object by index.
+     * Reads an OfficeMath object from the document node.
      * @param requestObj contains request parameters
      */
     public async getOfficeMathObject(requestObj: model.GetOfficeMathObjectRequest): Promise< model.WordsIncomingMessage< model.OfficeMathObjectResponse > > {
@@ -3874,7 +3872,7 @@ export class WordsApi {
     }
 
     /**
-     * Gets OfficeMath objects from document.
+     * Reads OfficeMath objects from the document node.
      * @param requestObj contains request parameters
      */
     public async getOfficeMathObjects(requestObj: model.GetOfficeMathObjectsRequest): Promise< model.WordsIncomingMessage< model.OfficeMathObjectsResponse > > {
@@ -3916,7 +3914,7 @@ export class WordsApi {
     }
 
     /**
-     * This resource represents one of the paragraphs contained in the document.
+     * Reads a paragraph from the document node.
      * @param requestObj contains request parameters
      */
     public async getParagraph(requestObj: model.GetParagraphRequest): Promise< model.WordsIncomingMessage< model.ParagraphResponse > > {
@@ -3969,7 +3967,7 @@ export class WordsApi {
     }
 
     /**
-     * Represents all the formatting for a paragraph.
+     * Reads the formatting properties of a paragraph from the document node.
      * @param requestObj contains request parameters
      */
     public async getParagraphFormat(requestObj: model.GetParagraphFormatRequest): Promise< model.WordsIncomingMessage< model.ParagraphFormatResponse > > {
@@ -4022,7 +4020,7 @@ export class WordsApi {
     }
 
     /**
-     * Represents list format for a paragraph.
+     * Reads the formatting properties of a paragraph list from the document node.
      * @param requestObj contains request parameters
      */
     public async getParagraphListFormat(requestObj: model.GetParagraphListFormatRequest): Promise< model.WordsIncomingMessage< model.ParagraphListFormatResponse > > {
@@ -4075,7 +4073,7 @@ export class WordsApi {
     }
 
     /**
-     * Returns a list of paragraphs that are contained in the document.
+     * Reads paragraphs from the document node.
      * @param requestObj contains request parameters
      */
     public async getParagraphs(requestObj: model.GetParagraphsRequest): Promise< model.WordsIncomingMessage< model.ParagraphLinkCollectionResponse > > {
@@ -4117,7 +4115,7 @@ export class WordsApi {
     }
 
     /**
-     * Get all tab stops for the paragraph.
+     * Reads paragraph tab stops from the document node.
      * @param requestObj contains request parameters
      */
     public async getParagraphTabStops(requestObj: model.GetParagraphTabStopsRequest): Promise< model.WordsIncomingMessage< model.TabStopsResponse > > {
@@ -4170,7 +4168,7 @@ export class WordsApi {
     }
 
     /**
-     * Gets the text from the range.
+     * Reads range text from the document.
      * @param requestObj contains request parameters
      */
     public async getRangeText(requestObj: model.GetRangeTextRequest): Promise< model.WordsIncomingMessage< model.RangeTextResponse > > {
@@ -4223,7 +4221,7 @@ export class WordsApi {
     }
 
     /**
-     * This resource represents run of text contained in the document.
+     * Reads a Run object from the paragraph.
      * @param requestObj contains request parameters
      */
     public async getRun(requestObj: model.GetRunRequest): Promise< model.WordsIncomingMessage< model.RunResponse > > {
@@ -4281,7 +4279,7 @@ export class WordsApi {
     }
 
     /**
-     * This resource represents font of run.
+     * Reads the font properties of a Run object from the paragraph.
      * @param requestObj contains request parameters
      */
     public async getRunFont(requestObj: model.GetRunFontRequest): Promise< model.WordsIncomingMessage< model.FontResponse > > {
@@ -4339,7 +4337,7 @@ export class WordsApi {
     }
 
     /**
-     * This resource represents collection of runs in the paragraph.
+     * Reads Run objects from the paragraph.
      * @param requestObj contains request parameters
      */
     public async getRuns(requestObj: model.GetRunsRequest): Promise< model.WordsIncomingMessage< model.RunsResponse > > {
@@ -4386,7 +4384,7 @@ export class WordsApi {
     }
 
     /**
-     * Gets document section by index.
+     * Reads a section from the document.
      * @param requestObj contains request parameters
      */
     public async getSection(requestObj: model.GetSectionRequest): Promise< model.WordsIncomingMessage< model.SectionResponse > > {
@@ -4438,7 +4436,7 @@ export class WordsApi {
     }
 
     /**
-     * Gets page setup of section.
+     * Reads the page setup of a section from the document.
      * @param requestObj contains request parameters
      */
     public async getSectionPageSetup(requestObj: model.GetSectionPageSetupRequest): Promise< model.WordsIncomingMessage< model.SectionPageSetupResponse > > {
@@ -4490,7 +4488,7 @@ export class WordsApi {
     }
 
     /**
-     * Returns a list of sections that are contained in the document.
+     * Reads sections from the document.
      * @param requestObj contains request parameters
      */
     public async getSections(requestObj: model.GetSectionsRequest): Promise< model.WordsIncomingMessage< model.SectionLinkCollectionResponse > > {
@@ -4531,7 +4529,7 @@ export class WordsApi {
     }
 
     /**
-     * This resource represents one of the styles contained in the document.
+     * Reads a style from the document.
      * @param requestObj contains request parameters
      */
     public async getStyle(requestObj: model.GetStyleRequest): Promise< model.WordsIncomingMessage< model.StyleResponse > > {
@@ -4583,7 +4581,7 @@ export class WordsApi {
     }
 
     /**
-     * Gets a style from the document node.
+     * Reads a style from the document node.
      * @param requestObj contains request parameters
      */
     public async getStyleFromDocumentElement(requestObj: model.GetStyleFromDocumentElementRequest): Promise< model.WordsIncomingMessage< model.StyleResponse > > {
@@ -4635,7 +4633,7 @@ export class WordsApi {
     }
 
     /**
-     * Returns a list of styles contained in the document.
+     * Reads styles from the document.
      * @param requestObj contains request parameters
      */
     public async getStyles(requestObj: model.GetStylesRequest): Promise< model.WordsIncomingMessage< model.StylesResponse > > {
@@ -4676,7 +4674,7 @@ export class WordsApi {
     }
 
     /**
-     * Returns a table.
+     * Reads a table from the document node.
      * @param requestObj contains request parameters
      */
     public async getTable(requestObj: model.GetTableRequest): Promise< model.WordsIncomingMessage< model.TableResponse > > {
@@ -4729,7 +4727,7 @@ export class WordsApi {
     }
 
     /**
-     * Returns a table cell.
+     * Reads a cell from the table row.
      * @param requestObj contains request parameters
      */
     public async getTableCell(requestObj: model.GetTableCellRequest): Promise< model.WordsIncomingMessage< model.TableCellResponse > > {
@@ -4787,7 +4785,7 @@ export class WordsApi {
     }
 
     /**
-     * Returns a table cell format.
+     * Reads the formatting properties of a table cell.
      * @param requestObj contains request parameters
      */
     public async getTableCellFormat(requestObj: model.GetTableCellFormatRequest): Promise< model.WordsIncomingMessage< model.TableCellFormatResponse > > {
@@ -4845,7 +4843,7 @@ export class WordsApi {
     }
 
     /**
-     * Returns a table properties.
+     * Reads properties of a table from the document node.
      * @param requestObj contains request parameters
      */
     public async getTableProperties(requestObj: model.GetTablePropertiesRequest): Promise< model.WordsIncomingMessage< model.TablePropertiesResponse > > {
@@ -4898,7 +4896,7 @@ export class WordsApi {
     }
 
     /**
-     * Returns a table row.
+     * Reads a row from the table.
      * @param requestObj contains request parameters
      */
     public async getTableRow(requestObj: model.GetTableRowRequest): Promise< model.WordsIncomingMessage< model.TableRowResponse > > {
@@ -4956,7 +4954,7 @@ export class WordsApi {
     }
 
     /**
-     * Returns a table row format.
+     * Reads the formatting properties of a table row.
      * @param requestObj contains request parameters
      */
     public async getTableRowFormat(requestObj: model.GetTableRowFormatRequest): Promise< model.WordsIncomingMessage< model.TableRowFormatResponse > > {
@@ -5014,7 +5012,7 @@ export class WordsApi {
     }
 
     /**
-     * Returns a list of tables that are contained in the document.
+     * Reads tables from the document node.
      * @param requestObj contains request parameters
      */
     public async getTables(requestObj: model.GetTablesRequest): Promise< model.WordsIncomingMessage< model.TableLinkCollectionResponse > > {
@@ -5056,7 +5054,7 @@ export class WordsApi {
     }
 
     /**
-     * Adds comment to document, returns inserted comment data.
+     * Inserts a new comment to the document.
      * @param requestObj contains request parameters
      */
     public async insertComment(requestObj: model.InsertCommentRequest): Promise< model.WordsIncomingMessage< model.CommentResponse > > {
@@ -5111,7 +5109,7 @@ export class WordsApi {
     }
 
     /**
-     * Adds drawing object to document, returns added  drawing object's data.
+     * Inserts a new DrawingObject to the document node.
      * @param requestObj contains request parameters
      */
     public async insertDrawingObject(requestObj: model.InsertDrawingObjectRequest): Promise< model.WordsIncomingMessage< model.DrawingObjectResponse > > {
@@ -5186,7 +5184,7 @@ export class WordsApi {
     }
 
     /**
-     * Adds field to document, returns inserted field's data.
+     * Inserts a new field to the document node.
      * @param requestObj contains request parameters
      */
     public async insertField(requestObj: model.InsertFieldRequest): Promise< model.WordsIncomingMessage< model.FieldResponse > > {
@@ -5243,7 +5241,7 @@ export class WordsApi {
     }
 
     /**
-     * Adds footnote to document, returns added footnote's data.
+     * Inserts a new footnote to the document node.
      * @param requestObj contains request parameters
      */
     public async insertFootnote(requestObj: model.InsertFootnoteRequest): Promise< model.WordsIncomingMessage< model.FootnoteResponse > > {
@@ -5299,7 +5297,7 @@ export class WordsApi {
     }
 
     /**
-     * Adds form field to paragraph, returns added form field's data.
+     * Inserts a new form field to the document node.
      * @param requestObj contains request parameters
      */
     public async insertFormField(requestObj: model.InsertFormFieldRequest): Promise< model.WordsIncomingMessage< model.FormFieldResponse > > {
@@ -5356,7 +5354,7 @@ export class WordsApi {
     }
 
     /**
-     * Inserts to document header or footer.
+     * Inserts a new HeaderFooter object to the document section.
      * @param requestObj contains request parameters
      */
     public async insertHeaderFooter(requestObj: model.InsertHeaderFooterRequest): Promise< model.WordsIncomingMessage< model.HeaderFooterResponse > > {
@@ -5417,7 +5415,7 @@ export class WordsApi {
     }
 
     /**
-     * Adds list to document, returns added list's data.
+     * Inserts a new list to the document.
      * @param requestObj contains request parameters
      */
     public async insertList(requestObj: model.InsertListRequest): Promise< model.WordsIncomingMessage< model.ListResponse > > {
@@ -5472,7 +5470,7 @@ export class WordsApi {
     }
 
     /**
-     * Insert or resplace tab stop if a tab stop with the position exists.
+     * Inserts a new or updates an existing paragraph tab stop in the document node.
      * @param requestObj contains request parameters
      */
     public async insertOrUpdateParagraphTabStop(requestObj: model.InsertOrUpdateParagraphTabStopRequest): Promise< model.WordsIncomingMessage< model.TabStopsResponse > > {
@@ -5537,7 +5535,7 @@ export class WordsApi {
     }
 
     /**
-     * Inserts document page numbers.
+     * Inserts page numbers to the document.
      * @param requestObj contains request parameters
      */
     public async insertPageNumbers(requestObj: model.InsertPageNumbersRequest): Promise< model.WordsIncomingMessage< model.DocumentResponse > > {
@@ -5592,7 +5590,7 @@ export class WordsApi {
     }
 
     /**
-     * Adds paragraph to document, returns added paragraph's data.
+     * Inserts a new paragraph to the document node.
      * @param requestObj contains request parameters
      */
     public async insertParagraph(requestObj: model.InsertParagraphRequest): Promise< model.WordsIncomingMessage< model.ParagraphResponse > > {
@@ -5649,7 +5647,7 @@ export class WordsApi {
     }
 
     /**
-     * Adds run to document, returns added paragraph's data.
+     * Inserts a new Run object to the paragraph.
      * @param requestObj contains request parameters
      */
     public async insertRun(requestObj: model.InsertRunRequest): Promise< model.WordsIncomingMessage< model.RunResponse > > {
@@ -5711,7 +5709,7 @@ export class WordsApi {
     }
 
     /**
-     * Adds a style to the document, returns an added style.
+     * Inserts a new style to the document.
      * @param requestObj contains request parameters
      */
     public async insertStyle(requestObj: model.InsertStyleRequest): Promise< model.WordsIncomingMessage< model.StyleResponse > > {
@@ -5766,7 +5764,7 @@ export class WordsApi {
     }
 
     /**
-     * Adds table to document, returns added table's data.
+     * Inserts a new table to the document node.
      * @param requestObj contains request parameters
      */
     public async insertTable(requestObj: model.InsertTableRequest): Promise< model.WordsIncomingMessage< model.TableResponse > > {
@@ -5822,7 +5820,7 @@ export class WordsApi {
     }
 
     /**
-     * Adds table cell to table, returns added cell's data.
+     * Inserts a new cell to the table row.
      * @param requestObj contains request parameters
      */
     public async insertTableCell(requestObj: model.InsertTableCellRequest): Promise< model.WordsIncomingMessage< model.TableCellResponse > > {
@@ -5883,7 +5881,7 @@ export class WordsApi {
     }
 
     /**
-     * Adds table row to table, returns added row's data.
+     * Inserts a new row to the table.
      * @param requestObj contains request parameters
      */
     public async insertTableRow(requestObj: model.InsertTableRowRequest): Promise< model.WordsIncomingMessage< model.TableRowResponse > > {
@@ -5944,7 +5942,7 @@ export class WordsApi {
     }
 
     /**
-     * Inserts document watermark image.
+     * Inserts a new watermark image to the document.
      * @param requestObj contains request parameters
      */
     public async insertWatermarkImage(requestObj: model.InsertWatermarkImageRequest): Promise< model.WordsIncomingMessage< model.DocumentResponse > > {
@@ -5997,7 +5995,7 @@ export class WordsApi {
     }
 
     /**
-     * Inserts document watermark text.
+     * Inserts a new watermark text to the document.
      * @param requestObj contains request parameters
      */
     public async insertWatermarkText(requestObj: model.InsertWatermarkTextRequest): Promise< model.WordsIncomingMessage< model.DocumentResponse > > {
@@ -6052,7 +6050,7 @@ export class WordsApi {
     }
 
     /**
-     * Loads new document from web into the file with any supported format of data.
+     * Downloads a document from the Web using URL and saves it to cloud storage in the specified format.
      * @param requestObj contains request parameters
      */
     public async loadWebDocument(requestObj: model.LoadWebDocumentRequest): Promise< model.WordsIncomingMessage< model.SaveResponse > > {
@@ -6177,7 +6175,7 @@ export class WordsApi {
     }
 
     /**
-     * Allows to optimize the document contents as well as default Aspose.Words behavior to a particular versions of MS Word.
+     * Applies document content optimization options, specific to a particular versions of Microsoft Word.
      * @param requestObj contains request parameters
      */
     public async optimizeDocument(requestObj: model.OptimizeDocumentRequest): Promise< http.IncomingMessage > {
@@ -6230,7 +6228,7 @@ export class WordsApi {
     }
 
     /**
-     * Protects document.
+     * Adds protection to the document.
      * @param requestObj contains request parameters
      */
     public async protectDocument(requestObj: model.ProtectDocumentRequest): Promise< model.WordsIncomingMessage< model.ProtectionDataResponse > > {
@@ -6283,7 +6281,7 @@ export class WordsApi {
     }
 
     /**
-     * Rejects all revisions in document.
+     * Rejects all revisions in the document.
      * @param requestObj contains request parameters
      */
     public async rejectAllRevisions(requestObj: model.RejectAllRevisionsRequest): Promise< model.WordsIncomingMessage< model.RevisionsModificationResponse > > {
@@ -6325,7 +6323,7 @@ export class WordsApi {
     }
 
     /**
-     * Removes the range from the document.
+     * Removes a range from the document.
      * @param requestObj contains request parameters
      */
     public async removeRange(requestObj: model.RemoveRangeRequest): Promise< model.WordsIncomingMessage< model.DocumentResponse > > {
@@ -6379,7 +6377,7 @@ export class WordsApi {
     }
 
     /**
-     * Renders drawing object to specified format.
+     * Renders a DrawingObject to the specified format.
      * @param requestObj contains request parameters
      */
     public async renderDrawingObject(requestObj: model.RenderDrawingObjectRequest): Promise< model.WordsIncomingMessage< Buffer > > {
@@ -6444,7 +6442,7 @@ export class WordsApi {
     }
 
     /**
-     * Renders math object to specified format.
+     * Renders an OfficeMath object to the specified format.
      * @param requestObj contains request parameters
      */
     public async renderMathObject(requestObj: model.RenderMathObjectRequest): Promise< model.WordsIncomingMessage< Buffer > > {
@@ -6509,7 +6507,7 @@ export class WordsApi {
     }
 
     /**
-     * Renders page to specified format.
+     * Renders a page to the specified format.
      * @param requestObj contains request parameters
      */
     public async renderPage(requestObj: model.RenderPageRequest): Promise< model.WordsIncomingMessage< Buffer > > {
@@ -6573,7 +6571,7 @@ export class WordsApi {
     }
 
     /**
-     * Renders paragraph to specified format.
+     * Renders a paragraph to the specified format.
      * @param requestObj contains request parameters
      */
     public async renderParagraph(requestObj: model.RenderParagraphRequest): Promise< model.WordsIncomingMessage< Buffer > > {
@@ -6638,7 +6636,7 @@ export class WordsApi {
     }
 
     /**
-     * Renders table to specified format.
+     * Renders a table to the specified format.
      * @param requestObj contains request parameters
      */
     public async renderTable(requestObj: model.RenderTableRequest): Promise< model.WordsIncomingMessage< Buffer > > {
@@ -6703,7 +6701,7 @@ export class WordsApi {
     }
 
     /**
-     * Replaces document text.
+     * Replaces text in the document.
      * @param requestObj contains request parameters
      */
     public async replaceText(requestObj: model.ReplaceTextRequest): Promise< model.WordsIncomingMessage< model.ReplaceTextResponse > > {
@@ -6758,7 +6756,7 @@ export class WordsApi {
     }
 
     /**
-     * Replaces the content in the range.
+     * Replaces a range with text in the document.
      * @param requestObj contains request parameters
      */
     public async replaceWithText(requestObj: model.ReplaceWithTextRequest): Promise< model.WordsIncomingMessage< model.DocumentResponse > > {
@@ -6823,7 +6821,7 @@ export class WordsApi {
     }
 
     /**
-     * Resets font's cache.
+     * Clears the font cache.
      * @param requestObj contains request parameters
      */
     public async resetCache(requestObj: model.ResetCacheRequest): Promise< http.IncomingMessage > {
@@ -6847,7 +6845,7 @@ export class WordsApi {
     }
 
     /**
-     * Converts document to destination format with detailed settings and saves result to storage.
+     * Converts a document in cloud storage to the specified format.
      * @param requestObj contains request parameters
      */
     public async saveAs(requestObj: model.SaveAsRequest): Promise< model.WordsIncomingMessage< model.SaveResponse > > {
@@ -6900,7 +6898,7 @@ export class WordsApi {
     }
 
     /**
-     * Saves the selected range as a new document.
+     * Saves a range as a new document.
      * @param requestObj contains request parameters
      */
     public async saveAsRange(requestObj: model.SaveAsRangeRequest): Promise< model.WordsIncomingMessage< model.DocumentResponse > > {
@@ -6964,7 +6962,7 @@ export class WordsApi {
     }
 
     /**
-     * Converts document to tiff with detailed settings and saves result to storage.
+     * Converts a document in cloud storage to TIFF format using detailed conversion settings.
      * @param requestObj contains request parameters
      */
     public async saveAsTiff(requestObj: model.SaveAsTiffRequest): Promise< model.WordsIncomingMessage< model.SaveResponse > > {
@@ -7034,7 +7032,7 @@ export class WordsApi {
     }
 
     /**
-     * Searches text in document.
+     * Searches text, specified by the regular expression, in the document.
      * @param requestObj contains request parameters
      */
     public async search(requestObj: model.SearchRequest): Promise< model.WordsIncomingMessage< model.SearchResponse > > {
@@ -7081,7 +7079,7 @@ export class WordsApi {
     }
 
     /**
-     * Splits document.
+     * Splits a document into parts and saves them in the specified format.
      * @param requestObj contains request parameters
      */
     public async splitDocument(requestObj: model.SplitDocumentRequest): Promise< model.WordsIncomingMessage< model.SplitDocumentResponse > > {
@@ -7138,7 +7136,7 @@ export class WordsApi {
     }
 
     /**
-     * Unprotects document.
+     * Removes protection from the document.
      * @param requestObj contains request parameters
      */
     public async unprotectDocument(requestObj: model.UnprotectDocumentRequest): Promise< model.WordsIncomingMessage< model.ProtectionDataResponse > > {
@@ -7191,7 +7189,7 @@ export class WordsApi {
     }
 
     /**
-     * Updates document bookmark.
+     * Updates a bookmark in the document.
      * @param requestObj contains request parameters
      */
     public async updateBookmark(requestObj: model.UpdateBookmarkRequest): Promise< model.WordsIncomingMessage< model.BookmarkResponse > > {
@@ -7257,7 +7255,7 @@ export class WordsApi {
     }
 
     /**
-     * 'nodePath' should refer to paragraph, cell or row.
+     * The 'nodePath' parameter should refer to a paragraph, a cell or a row.
      * @param requestObj contains request parameters
      */
     public async updateBorder(requestObj: model.UpdateBorderRequest): Promise< model.WordsIncomingMessage< model.BorderResponse > > {
@@ -7324,7 +7322,7 @@ export class WordsApi {
     }
 
     /**
-     * Updates the comment, returns updated comment data.
+     * Updates a comment in the document.
      * @param requestObj contains request parameters
      */
     public async updateComment(requestObj: model.UpdateCommentRequest): Promise< model.WordsIncomingMessage< model.CommentResponse > > {
@@ -7390,7 +7388,7 @@ export class WordsApi {
     }
 
     /**
-     * Updates drawing object, returns updated  drawing object's data.
+     * Updates a DrawingObject in the document node.
      * @param requestObj contains request parameters
      */
     public async updateDrawingObject(requestObj: model.UpdateDrawingObjectRequest): Promise< model.WordsIncomingMessage< model.DrawingObjectResponse > > {
@@ -7476,7 +7474,7 @@ export class WordsApi {
     }
 
     /**
-     * Updates field's properties, returns updated field's data.
+     * Updates a field in the document node.
      * @param requestObj contains request parameters
      */
     public async updateField(requestObj: model.UpdateFieldRequest): Promise< model.WordsIncomingMessage< model.FieldResponse > > {
@@ -7543,7 +7541,7 @@ export class WordsApi {
     }
 
     /**
-     * Updates (reevaluate) fields in document.
+     * Reevaluates field values in the document.
      * @param requestObj contains request parameters
      */
     public async updateFields(requestObj: model.UpdateFieldsRequest): Promise< model.WordsIncomingMessage< model.DocumentResponse > > {
@@ -7585,7 +7583,7 @@ export class WordsApi {
     }
 
     /**
-     * Updates footnote's properties, returns updated run's data.
+     * Updates a footnote in the document node.
      * @param requestObj contains request parameters
      */
     public async updateFootnote(requestObj: model.UpdateFootnoteRequest): Promise< model.WordsIncomingMessage< model.FootnoteResponse > > {
@@ -7652,7 +7650,7 @@ export class WordsApi {
     }
 
     /**
-     * Updates properties of form field, returns updated form field.
+     * Updates a form field in the document node.
      * @param requestObj contains request parameters
      */
     public async updateFormField(requestObj: model.UpdateFormFieldRequest): Promise< model.WordsIncomingMessage< model.FormFieldResponse > > {
@@ -7719,7 +7717,7 @@ export class WordsApi {
     }
 
     /**
-     * Updates list properties, returns updated list.
+     * Updates a list in the document.
      * @param requestObj contains request parameters
      */
     public async updateList(requestObj: model.UpdateListRequest): Promise< model.WordsIncomingMessage< model.ListResponse > > {
@@ -7785,7 +7783,7 @@ export class WordsApi {
     }
 
     /**
-     * Updates list level in document list, returns updated list.
+     * Updates the level of a List element in the document.
      * @param requestObj contains request parameters
      */
     public async updateListLevel(requestObj: model.UpdateListLevelRequest): Promise< model.WordsIncomingMessage< model.ListResponse > > {
@@ -7862,7 +7860,7 @@ export class WordsApi {
     }
 
     /**
-     * Updates paragraph format properties, returns updated format properties.
+     * Updates the formatting properties of a paragraph in the document node.
      * @param requestObj contains request parameters
      */
     public async updateParagraphFormat(requestObj: model.UpdateParagraphFormatRequest): Promise< model.WordsIncomingMessage< model.ParagraphFormatResponse > > {
@@ -7929,7 +7927,7 @@ export class WordsApi {
     }
 
     /**
-     * Updates paragraph list format properties, returns updated list format properties.
+     * Updates the formatting properties of a paragraph list in the document node.
      * @param requestObj contains request parameters
      */
     public async updateParagraphListFormat(requestObj: model.UpdateParagraphListFormatRequest): Promise< model.WordsIncomingMessage< model.ParagraphListFormatResponse > > {
@@ -7996,7 +7994,7 @@ export class WordsApi {
     }
 
     /**
-     * Updates run's properties, returns updated run's data.
+     * Updates a Run object in the paragraph.
      * @param requestObj contains request parameters
      */
     public async updateRun(requestObj: model.UpdateRunRequest): Promise< model.WordsIncomingMessage< model.RunResponse > > {
@@ -8068,7 +8066,7 @@ export class WordsApi {
     }
 
     /**
-     * Updates font properties, returns updated font data.
+     * Updates the font properties of a Run object in the paragraph.
      * @param requestObj contains request parameters
      */
     public async updateRunFont(requestObj: model.UpdateRunFontRequest): Promise< model.WordsIncomingMessage< model.FontResponse > > {
@@ -8140,7 +8138,7 @@ export class WordsApi {
     }
 
     /**
-     * Updates page setup of section.
+     * Updates the page setup of a section in the document.
      * @param requestObj contains request parameters
      */
     public async updateSectionPageSetup(requestObj: model.UpdateSectionPageSetupRequest): Promise< model.WordsIncomingMessage< model.SectionPageSetupResponse > > {
@@ -8206,7 +8204,7 @@ export class WordsApi {
     }
 
     /**
-     * Updates style properties, returns an updated style.
+     * Updates a style in the document.
      * @param requestObj contains request parameters
      */
     public async updateStyle(requestObj: model.UpdateStyleRequest): Promise< model.WordsIncomingMessage< model.StyleResponse > > {
@@ -8272,7 +8270,7 @@ export class WordsApi {
     }
 
     /**
-     * Updates a table cell format.
+     * Updates the formatting properties of a cell in the table row.
      * @param requestObj contains request parameters
      */
     public async updateTableCellFormat(requestObj: model.UpdateTableCellFormatRequest): Promise< model.WordsIncomingMessage< model.TableCellFormatResponse > > {
@@ -8344,7 +8342,7 @@ export class WordsApi {
     }
 
     /**
-     * Updates a table properties.
+     * Updates properties of a table in the document node.
      * @param requestObj contains request parameters
      */
     public async updateTableProperties(requestObj: model.UpdateTablePropertiesRequest): Promise< model.WordsIncomingMessage< model.TablePropertiesResponse > > {
@@ -8411,7 +8409,7 @@ export class WordsApi {
     }
 
     /**
-     * Updates a table row format.
+     * Updates the formatting properties of a table row.
      * @param requestObj contains request parameters
      */
     public async updateTableRowFormat(requestObj: model.UpdateTableRowFormatRequest): Promise< model.WordsIncomingMessage< model.TableRowFormatResponse > > {

@@ -95,27 +95,27 @@ export class FormField extends NodeLink {
     }
 
     /**
-     * Gets or sets true if references to the specified form field are automatically updated whenever the field is exited.
+     * Gets or sets a value indicating whether references to the specified form field are automatically updated whenever the field is exited.
      */
     public calculateOnExit: boolean;
 
     /**
-     * Gets or sets true if a form field is enabled.
+     * Gets or sets a value indicating whether a form field is enabled.
      */
     public enabled: boolean;
 
     /**
-     * Gets or sets returns or sets an entry macro name for the form field.
+     * Gets or sets the entry macro name for the form field.
      */
     public entryMacro: string;
 
     /**
-     * Gets or sets returns or sets an exit macro name for the form field.
+     * Gets or sets the exit macro name for the form field.
      */
     public exitMacro: string;
 
     /**
-     * Gets or sets returns or sets the text that's displayed in a message box when the form field has the focus and the user presses F1.
+     * Gets or sets text, displayed in a message box when the form field has the focus and the user presses F1.
      */
     public helpText: string;
 
@@ -125,17 +125,17 @@ export class FormField extends NodeLink {
     public name: string;
 
     /**
-     * Gets or sets specifies the source of the text that's displayed in a message box when a form field has the focus and the user presses F1.
+     * Gets or sets a value indicating whether the source of the text that's displayed in a message box when a form field has the focus and the user presses F1.
      */
     public ownHelp: boolean;
 
     /**
-     * Gets or sets specifies the source of the text that's displayed in the status bar when a form field has the focus.
+     * Gets or sets a value indicating whether the source of the text that's displayed in the status bar when a form field has the focus.
      */
     public ownStatus: boolean;
 
     /**
-     * Gets or sets returns or sets the text that's displayed in the status bar when a form field has the focus.
+     * Gets or sets text, displayed in the status bar when a form field has the focus.
      */
     public statusText: string;
 

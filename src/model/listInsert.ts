@@ -53,7 +53,7 @@ export class ListInsert {
     }
 
     /**
-     * Gets or sets a value indicating whether specifies whether list should be restarted at each section. Default value is false.
+     * Gets or sets the option that controls how list should be restarted at each section.
      */
     public template: ListInsert.TemplateEnum;
 

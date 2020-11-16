@@ -63,17 +63,17 @@ export class ProtectionRequest {
     }
 
     /**
-     * Gets or sets new password.
+     * Gets or sets the new password.
      */
     public newPassword: string;
 
     /**
-     * Gets or sets current password.
+     * Gets or sets the current password.
      */
     public password: string;
 
     /**
-     * Gets or sets new type of protection.
+     * Gets or sets the new type of protection.
      */
     public protectionType: string;
 

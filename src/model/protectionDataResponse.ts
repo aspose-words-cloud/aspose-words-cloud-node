@@ -37,7 +37,7 @@ export const importsMapProtectionDataResponse = {
 };
 
 /**
- * Response for the request of data about protection.
+ * The REST response with data on document's protection.
  */
 export class ProtectionDataResponse extends WordsResponse {
     /**
@@ -64,12 +64,12 @@ export class ProtectionDataResponse extends WordsResponse {
     }
 
     /**
-     * Gets or sets link to the document.
+     * Gets or sets the link to the document.
      */
     public documentLink: FileLink;
 
     /**
-     * Gets or sets protection's data of the document.
+     * Gets or sets the protection properties of the document.
      */
     public protectionData: ProtectionData;
 

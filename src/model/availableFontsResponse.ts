@@ -35,7 +35,7 @@ export const importsMapAvailableFontsResponse = {
 };
 
 /**
- * The list of fonts, available for document processing.
+ * The REST response with data on system, additional and custom fonts, available for document processing.
  */
 export class AvailableFontsResponse extends WordsResponse {
     /**
@@ -67,17 +67,17 @@ export class AvailableFontsResponse extends WordsResponse {
     }
 
     /**
-     * Gets or sets the list of addititional fonts, provided by aspose team.
+     * Gets or sets the list of additional fonts, provided by Aspose team.
      */
     public additionalFonts: Array<FontInfo>;
 
     /**
-     * Gets or sets custom user fonts (from user file storage). To use them, you should specify "fontsLocation" parameter in any request.
+     * Gets or sets the list of custom user fonts from user cloud storage. To use them, you should specify "fontsLocation" parameter in any request.
      */
     public customFonts: Array<FontInfo>;
 
     /**
-     * Gets or sets the list of system fonts, availiable on the server.
+     * Gets or sets the list of system fonts, available on the server.
      */
     public systemFonts: Array<FontInfo>;
 

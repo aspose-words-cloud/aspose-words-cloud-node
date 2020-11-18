@@ -188,7 +188,7 @@ describe("tableBorder", () => {
                     borderProperties: new model.Border({
                         borderType: model.Border.BorderTypeEnum.Left,
                         color: new model.XmlColor({
-                            alpha: 2
+                            web: "#AABBCC"
                         }),
                         distanceFromText: 6.0,
                         lineStyle: model.Border.LineStyleEnum.DashDotStroker,
@@ -207,7 +207,7 @@ describe("tableBorder", () => {
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.border).to.exist;
                     expect(resultApi.body.border.color).to.exist;
-                    expect(resultApi.body.border.color.web).to.equal("#000002");
+                    expect(resultApi.body.border.color.web).to.equal("#AABBCC");
                     expect(resultApi.body.border.distanceFromText).to.equal(6.0);
                     expect(resultApi.body.border.lineWidth).to.equal(2.0);
                     expect(resultApi.body.border.shadow).to.true;

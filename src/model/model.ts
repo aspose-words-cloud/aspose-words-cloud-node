@@ -1213,14 +1213,14 @@ export class ConvertDocumentRequest {
  */
 export class CopyFileRequest {
     /**
-     * Source file path e.g. '/folder/file.ext'.
-     */
-    public srcPath: string;
-
-    /**
      * Destination file path.
      */
     public destPath: string;
+
+    /**
+     * Source file's path e.g. '/Folder 1/file.ext' or '/Bucket/Folder 1/file.ext'.
+     */
+    public srcPath: string;
 
     /**
      * Source storage name.
@@ -1248,14 +1248,14 @@ export class CopyFileRequest {
  */
 export class CopyFolderRequest {
     /**
-     * Source folder path e.g. '/src'.
-     */
-    public srcPath: string;
-
-    /**
      * Destination folder path e.g. '/dst'.
      */
     public destPath: string;
+
+    /**
+     * Source folder path e.g. /Folder1.
+     */
+    public srcPath: string;
 
     /**
      * Source storage name.
@@ -1358,7 +1358,7 @@ export class CreateDocumentRequest {
  */
 export class CreateFolderRequest {
     /**
-     * Folder path to create e.g. 'folder_1/folder_2/'.
+     * Target folder's path e.g. Folder1/Folder2/. The folders will be created recursively.
      */
     public path: string;
 
@@ -1888,7 +1888,7 @@ export class DeleteFieldsRequest {
  */
 export class DeleteFileRequest {
     /**
-     * File path e.g. '/folder/file.ext'.
+     * Path of the file including the file name and extension e.g. /folder1/file.ext.
      */
     public path: string;
 
@@ -2808,7 +2808,7 @@ export class DeleteWatermarkRequest {
  */
 export class DownloadFileRequest {
     /**
-     * File path e.g. '/folder/file.ext'.
+     * Path of the file including the file name and extension e.g. /folder1/file.ext.
      */
     public path: string;
 
@@ -6288,14 +6288,14 @@ export class LoadWebDocumentRequest {
  */
 export class MoveFileRequest {
     /**
-     * Source file path e.g. '/src.ext'.
-     */
-    public srcPath: string;
-
-    /**
      * Destination file path e.g. '/dest.ext'.
      */
     public destPath: string;
+
+    /**
+     * Source file's path e.g. '/Folder 1/file.ext' or '/Bucket/Folder 1/file.ext'.
+     */
+    public srcPath: string;
 
     /**
      * Source storage name.
@@ -6323,14 +6323,14 @@ export class MoveFileRequest {
  */
 export class MoveFolderRequest {
     /**
-     * Folder path to move e.g. '/folder'.
-     */
-    public srcPath: string;
-
-    /**
      * Destination folder path to move to e.g '/dst'.
      */
     public destPath: string;
+
+    /**
+     * Source folder path e.g. /Folder1.
+     */
+    public srcPath: string;
 
     /**
      * Source storage name.

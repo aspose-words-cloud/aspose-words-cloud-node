@@ -564,6 +564,11 @@ export class WordsApi {
             .replace("/{" + "srcPath" + "}", (requestObj.srcPath !== null && requestObj.srcPath !== undefined) ? "/" + String(requestObj.srcPath) : "")
             .replace("//", "/");
         const queryParameters: any = {};
+        // verify required parameter 'requestObj.destPath' is not undefined
+        if (requestObj.destPath === undefined) {
+            throw new Error('Required parameter "requestObj.destPath" was undefined when calling copyFile.');
+        }
+
         // verify required parameter 'requestObj.srcPath' is not undefined
         if (requestObj.srcPath === undefined) {
             throw new Error('Required parameter "requestObj.srcPath" was undefined when calling copyFile.');
@@ -572,11 +577,6 @@ export class WordsApi {
         // verify required parameter 'requestObj.srcPath' is not null
         if (requestObj.srcPath === null) {
             throw new Error('Required parameter "requestObj.srcPath" was null when calling copyFile.');
-        }
-
-        // verify required parameter 'requestObj.destPath' is not undefined
-        if (requestObj.destPath === undefined) {
-            throw new Error('Required parameter "requestObj.destPath" was undefined when calling copyFile.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destPath", requestObj.destPath);
@@ -608,6 +608,11 @@ export class WordsApi {
             .replace("/{" + "srcPath" + "}", (requestObj.srcPath !== null && requestObj.srcPath !== undefined) ? "/" + String(requestObj.srcPath) : "")
             .replace("//", "/");
         const queryParameters: any = {};
+        // verify required parameter 'requestObj.destPath' is not undefined
+        if (requestObj.destPath === undefined) {
+            throw new Error('Required parameter "requestObj.destPath" was undefined when calling copyFolder.');
+        }
+
         // verify required parameter 'requestObj.srcPath' is not undefined
         if (requestObj.srcPath === undefined) {
             throw new Error('Required parameter "requestObj.srcPath" was undefined when calling copyFolder.');
@@ -616,11 +621,6 @@ export class WordsApi {
         // verify required parameter 'requestObj.srcPath' is not null
         if (requestObj.srcPath === null) {
             throw new Error('Required parameter "requestObj.srcPath" was null when calling copyFolder.');
-        }
-
-        // verify required parameter 'requestObj.destPath' is not undefined
-        if (requestObj.destPath === undefined) {
-            throw new Error('Required parameter "requestObj.destPath" was undefined when calling copyFolder.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destPath", requestObj.destPath);
@@ -6100,6 +6100,11 @@ export class WordsApi {
             .replace("/{" + "srcPath" + "}", (requestObj.srcPath !== null && requestObj.srcPath !== undefined) ? "/" + String(requestObj.srcPath) : "")
             .replace("//", "/");
         const queryParameters: any = {};
+        // verify required parameter 'requestObj.destPath' is not undefined
+        if (requestObj.destPath === undefined) {
+            throw new Error('Required parameter "requestObj.destPath" was undefined when calling moveFile.');
+        }
+
         // verify required parameter 'requestObj.srcPath' is not undefined
         if (requestObj.srcPath === undefined) {
             throw new Error('Required parameter "requestObj.srcPath" was undefined when calling moveFile.');
@@ -6108,11 +6113,6 @@ export class WordsApi {
         // verify required parameter 'requestObj.srcPath' is not null
         if (requestObj.srcPath === null) {
             throw new Error('Required parameter "requestObj.srcPath" was null when calling moveFile.');
-        }
-
-        // verify required parameter 'requestObj.destPath' is not undefined
-        if (requestObj.destPath === undefined) {
-            throw new Error('Required parameter "requestObj.destPath" was undefined when calling moveFile.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destPath", requestObj.destPath);
@@ -6144,6 +6144,11 @@ export class WordsApi {
             .replace("/{" + "srcPath" + "}", (requestObj.srcPath !== null && requestObj.srcPath !== undefined) ? "/" + String(requestObj.srcPath) : "")
             .replace("//", "/");
         const queryParameters: any = {};
+        // verify required parameter 'requestObj.destPath' is not undefined
+        if (requestObj.destPath === undefined) {
+            throw new Error('Required parameter "requestObj.destPath" was undefined when calling moveFolder.');
+        }
+
         // verify required parameter 'requestObj.srcPath' is not undefined
         if (requestObj.srcPath === undefined) {
             throw new Error('Required parameter "requestObj.srcPath" was undefined when calling moveFolder.');
@@ -6152,11 +6157,6 @@ export class WordsApi {
         // verify required parameter 'requestObj.srcPath' is not null
         if (requestObj.srcPath === null) {
             throw new Error('Required parameter "requestObj.srcPath" was null when calling moveFolder.');
-        }
-
-        // verify required parameter 'requestObj.destPath' is not undefined
-        if (requestObj.destPath === undefined) {
-            throw new Error('Required parameter "requestObj.destPath" was undefined when calling moveFolder.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destPath", requestObj.destPath);

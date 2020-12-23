@@ -31,7 +31,7 @@ export const importsMapFontInfo = {
 };
 
 /**
- * Font info.
+ * DTO container with font info.
  */
 export class FontInfo {
     /**
@@ -68,22 +68,22 @@ export class FontInfo {
     }
 
     /**
-     * Gets or sets path to the font file if any.
+     * Gets or sets the path to the font file if any.
      */
     public filePath: string;
 
     /**
-     * Gets or sets family name of the font.
+     * Gets or sets the family name of the font.
      */
     public fontFamilyName: string;
 
     /**
-     * Gets or sets full name of the font.
+     * Gets or sets the full name of the font.
      */
     public fullFontName: string;
 
     /**
-     * Gets or sets version string of the font.
+     * Gets or sets the version string of the font.
      */
     public version: string;
 

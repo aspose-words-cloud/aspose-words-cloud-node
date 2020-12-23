@@ -68,6 +68,25 @@ describe("drawingObjects", () => {
        });
     });
 
+    // Test for getting drawing objects from document online.
+    describe("getDocumentDrawingObjectsOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetDocumentDrawingObjectsOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                nodePath: "sections/0"
+            });
+
+            // Act
+            return wordsApi.getDocumentDrawingObjectsOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+            });
+
+       });
+    });
+
     // Test for getting drawing objects from document without node path.
     describe("getDocumentDrawingObjectsWithoutNodePath test", () => {
         it("should return response with code 200", () => {
@@ -121,6 +140,26 @@ describe("drawingObjects", () => {
                     expect(resultApi.response.statusCode).to.equal(200);
                 });
 
+            });
+
+       });
+    });
+
+    // Test for getting drawing object by specified index online.
+    describe("getDocumentDrawingObjectByIndexOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetDocumentDrawingObjectByIndexOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                index: 0,
+                nodePath: "sections/0"
+            });
+
+            // Act
+            return wordsApi.getDocumentDrawingObjectByIndexOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -186,6 +225,27 @@ describe("drawingObjects", () => {
        });
     });
 
+    // Test for getting drawing object by specified index and format online.
+    describe("renderDrawingObjectOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.RenderDrawingObjectOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                format: "png",
+                index: 0,
+                nodePath: "sections/0"
+            });
+
+            // Act
+            return wordsApi.renderDrawingObjectOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+            });
+
+       });
+    });
+
     // Test for getting drawing object by specified index and format without node path.
     describe("renderDrawingObjectWithoutNodePath test", () => {
         it("should return response with code 200", () => {
@@ -246,6 +306,26 @@ describe("drawingObjects", () => {
        });
     });
 
+    // Test for reading drawing object's image data online.
+    describe("getDocumentDrawingObjectImageDataOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetDocumentDrawingObjectImageDataOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                index: 0,
+                nodePath: "sections/0"
+            });
+
+            // Act
+            return wordsApi.getDocumentDrawingObjectImageDataOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+            });
+
+       });
+    });
+
     // Test for reading drawing object's image data without node path.
     describe("getDocumentDrawingObjectImageDataWithoutNodePath test", () => {
         it("should return response with code 200", () => {
@@ -300,6 +380,26 @@ describe("drawingObjects", () => {
                     expect(resultApi.response.statusCode).to.equal(200);
                 });
 
+            });
+
+       });
+    });
+
+    // Test for getting drawing object OLE data online.
+    describe("getDocumentDrawingObjectOleDataOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetDocumentDrawingObjectOleDataOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                index: 0,
+                nodePath: "sections/0"
+            });
+
+            // Act
+            return wordsApi.getDocumentDrawingObjectOleDataOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -373,6 +473,35 @@ describe("drawingObjects", () => {
        });
     });
 
+    // Test for adding drawing object online.
+    describe("insertDrawingObjectOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.InsertDrawingObjectOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                drawingObject: new model.DrawingObjectInsert({
+                    height: 0,
+                    left: 0,
+                    top: 0,
+                    width: 0,
+                    relativeHorizontalPosition: model.DrawingObjectInsert.RelativeHorizontalPositionEnum.Margin,
+                    relativeVerticalPosition: model.DrawingObjectInsert.RelativeVerticalPositionEnum.Margin,
+                    wrapType: model.DrawingObjectInsert.WrapTypeEnum.Inline
+                }),
+                imageFile: fs.createReadStream(BaseTest.localBaseTestDataFolder + "Common/aspose-cloud.png"),
+                nodePath: ""
+            });
+
+            // Act
+            return wordsApi.insertDrawingObjectOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+            });
+
+       });
+    });
+
     // Test for adding drawing object without node path.
     describe("insertDrawingObjectWithoutNodePath test", () => {
         it("should return response with code 200", () => {
@@ -441,6 +570,26 @@ describe("drawingObjects", () => {
        });
     });
 
+    // Test for deleting drawing object online.
+    describe("deleteDrawingObjectOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.DeleteDrawingObjectOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                index: 0,
+                nodePath: ""
+            });
+
+            // Act
+            return wordsApi.deleteDrawingObjectOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+            });
+
+       });
+    });
+
     // Test for deleting drawing object without node path.
     describe("deleteDrawingObjectWithoutNodePath test", () => {
         it("should return response with code 200", () => {
@@ -499,6 +648,30 @@ describe("drawingObjects", () => {
                     expect(resultApi.response.statusCode).to.equal(200);
                 });
 
+            });
+
+       });
+    });
+
+    // Test for updating drawing object online.
+    describe("updateDrawingObjectOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.UpdateDrawingObjectOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                drawingObject: new model.DrawingObjectUpdate({
+                    left: 0
+                }),
+                imageFile: fs.createReadStream(BaseTest.localBaseTestDataFolder + "Common/aspose-cloud.png"),
+                index: 0,
+                nodePath: ""
+            });
+
+            // Act
+            return wordsApi.updateDrawingObjectOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });

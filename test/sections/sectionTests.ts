@@ -60,8 +60,31 @@ describe("section", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.section).to.exist;
+                    expect(resultApi.body.section.childNodes).to.exist;
+                    expect(resultApi.body.section.childNodes).to.have.lengthOf(13);
+                    expect(resultApi.body.section.childNodes[0].nodeId).to.equal("0.3.0");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for getting section by index online.
+    describe("getSectionOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetSectionOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                sectionIndex: 0
+            });
+
+            // Act
+            return wordsApi.getSectionOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -88,8 +111,30 @@ describe("section", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.sections).to.exist;
+                    expect(resultApi.body.sections.sectionLinkList).to.exist;
+                    expect(resultApi.body.sections.sectionLinkList).to.have.lengthOf(1);
+                    expect(resultApi.body.sections.sectionLinkList[0].nodeId).to.equal("0");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for getting sections online.
+    describe("getSectionsOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetSectionsOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile)
+            });
+
+            // Act
+            return wordsApi.getSectionsOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -119,6 +164,25 @@ describe("section", () => {
                     expect(resultApi.statusCode).to.equal(200);
                 });
 
+            });
+
+       });
+    });
+
+    // Test for delete a section online.
+    describe("deleteSectionOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.DeleteSectionOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                sectionIndex: 0
+            });
+
+            // Act
+            return wordsApi.deleteSectionOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });

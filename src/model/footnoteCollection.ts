@@ -35,7 +35,7 @@ export const importsMapFootnoteCollection = {
 };
 
 /**
- * Collection of footnotes.
+ * DTO container with a collection of footnotes.
  */
 export class FootnoteCollection extends LinkElement {
     /**
@@ -57,7 +57,7 @@ export class FootnoteCollection extends LinkElement {
     }
 
     /**
-     * Gets or sets collection of foonotes links.
+     * Gets or sets the collection of footnotes.
      */
     public list: Array<Footnote>;
 

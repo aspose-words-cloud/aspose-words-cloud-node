@@ -37,7 +37,7 @@ export const importsMapHeaderFooter = {
 };
 
 /**
- * Section element.
+ * DTO container with a section element.
  */
 export class HeaderFooter extends HeaderFooterLink {
     /**
@@ -69,17 +69,17 @@ export class HeaderFooter extends HeaderFooterLink {
     }
 
     /**
-     * Gets or sets child nodes.
+     * Gets or sets the child nodes.
      */
     public childNodes: Array<NodeLink>;
 
     /**
-     * Gets or sets link to DrawingObjects resource.
+     * Gets or sets the link to DrawingObjects resource.
      */
     public drawingObjects: LinkElement;
 
     /**
-     * Gets or sets link to Paragraphs resource.
+     * Gets or sets the link to Paragraphs resource.
      */
     public paragraphs: LinkElement;
 

@@ -60,8 +60,30 @@ describe("headerFooter", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.headerFooters).to.exist;
+                    expect(resultApi.body.headerFooters.list).to.exist;
+                    expect(resultApi.body.headerFooters.list).to.have.lengthOf(6);
                 });
 
+            });
+
+       });
+    });
+
+    // Test for getting headers and footers online.
+    describe("getHeaderFootersOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetHeaderFootersOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                sectionPath: ""
+            });
+
+            // Act
+            return wordsApi.getHeaderFootersOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -89,8 +111,31 @@ describe("headerFooter", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.headerFooter).to.exist;
+                    expect(resultApi.body.headerFooter.childNodes).to.exist;
+                    expect(resultApi.body.headerFooter.childNodes).to.have.lengthOf(1);
+                    expect(resultApi.body.headerFooter.childNodes[0].nodeId).to.equal("0.0.0");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for getting headerfooter online.
+    describe("getHeaderFooterOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetHeaderFooterOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                headerFooterIndex: 0
+            });
+
+            // Act
+            return wordsApi.getHeaderFooterOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -119,8 +164,32 @@ describe("headerFooter", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.headerFooter).to.exist;
+                    expect(resultApi.body.headerFooter.childNodes).to.exist;
+                    expect(resultApi.body.headerFooter.childNodes).to.have.lengthOf(1);
+                    expect(resultApi.body.headerFooter.childNodes[0].nodeId).to.equal("0.0.0");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for getting headerfooter of section online.
+    describe("getHeaderFooterOfSectionOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetHeaderFooterOfSectionOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                headerFooterIndex: 0,
+                sectionIndex: 0
+            });
+
+            // Act
+            return wordsApi.getHeaderFooterOfSectionOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -156,6 +225,26 @@ describe("headerFooter", () => {
        });
     });
 
+    // Test for deleting headerfooter online.
+    describe("deleteHeaderFooterOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.DeleteHeaderFooterOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                sectionPath: "",
+                index: 0
+            });
+
+            // Act
+            return wordsApi.deleteHeaderFooterOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+            });
+
+       });
+    });
+
     // Test for deleting headerfooters.
     describe("deleteHeadersFooters test", () => {
         it("should return response with code 200", () => {
@@ -185,6 +274,25 @@ describe("headerFooter", () => {
        });
     });
 
+    // Test for deleting headerfooters online.
+    describe("deleteHeadersFootersOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.DeleteHeadersFootersOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                sectionPath: ""
+            });
+
+            // Act
+            return wordsApi.deleteHeadersFootersOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+            });
+
+       });
+    });
+
     // Test for adding headerfooters.
     describe("insertHeaderFooter test", () => {
         it("should return response with code 200", () => {
@@ -198,8 +306,8 @@ describe("headerFooter", () => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.InsertHeaderFooterRequest({
                     name: remoteFileName,
-                    headerFooterType: "FooterEven",
                     sectionPath: "",
+                    headerFooterType: "FooterEven",
                     folder: remoteDataFolder
                 });
 
@@ -210,6 +318,30 @@ describe("headerFooter", () => {
                     expect(resultApi.response.statusCode).to.equal(200);
                 });
 
+            });
+
+       });
+    });
+
+    // Test for adding headerfooters online.
+    describe("insertHeaderFooterOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.InsertHeaderFooterOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                sectionPath: "",
+                headerFooterType: "FooterEven"
+            });
+
+            // Act
+            return wordsApi.insertHeaderFooterOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+                expect(resultApi.body.model.headerFooter).to.exist;
+                expect(resultApi.body.model.headerFooter.childNodes).to.exist;
+                expect(resultApi.body.model.headerFooter.childNodes).to.have.lengthOf(1);
+                expect(resultApi.body.model.headerFooter.childNodes[0].nodeId).to.equal("0.2.0");
             });
 
        });

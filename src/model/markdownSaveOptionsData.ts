@@ -55,7 +55,7 @@ export class MarkdownSaveOptionsData extends TxtSaveOptionsBaseData {
     }
 
     /**
-     * Gets or sets a value that specifies how to align contents in tables when exporting into the Markdown format.
+     * Gets or sets the value, that specifies how to align contents in tables when exporting into the Markdown format.
      * The default value is Auto.
      */
     public tableContentAlignment: MarkdownSaveOptionsData.TableContentAlignmentEnum;

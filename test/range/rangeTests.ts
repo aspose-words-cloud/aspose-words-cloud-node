@@ -61,8 +61,29 @@ describe("range", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.text).to.equal("This is HEADER ");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for getting the text from range online.
+    describe("getRangeTextOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetRangeTextOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                rangeStartIdentifier: "id0.0.0",
+                rangeEndIdentifier: "id0.0.1"
+            });
+
+            // Act
+            return wordsApi.getRangeTextOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -98,6 +119,26 @@ describe("range", () => {
        });
     });
 
+    // Test for removing the text for range online.
+    describe("removeRangeOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.RemoveRangeOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                rangeStartIdentifier: "id0.0.0",
+                rangeEndIdentifier: "id0.0.1"
+            });
+
+            // Act
+            return wordsApi.removeRangeOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+            });
+
+       });
+    });
+
     // Test for saving a range as a new document.
     describe("saveAsRange test", () => {
         it("should return response with code 200", () => {
@@ -124,8 +165,33 @@ describe("range", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.document).to.exist;
+                    expect(resultApi.body.document.fileName).to.equal("NewDoc.docx");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for saving a range as a new document online.
+    describe("saveAsRangeOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.SaveAsRangeOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                rangeStartIdentifier: "id0.0.0",
+                documentParameters: new model.RangeDocument({
+                    documentName: remoteDataFolder + "/NewDoc.docx"
+                }),
+                rangeEndIdentifier: "id0.0.1"
+            });
+
+            // Act
+            return wordsApi.saveAsRangeOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -157,8 +223,33 @@ describe("range", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.document).to.exist;
+                    expect(resultApi.body.document.fileName).to.equal("TestReplaceWithText.docx");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for replacing text in range online.
+    describe("replaceWithTextOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.ReplaceWithTextOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                rangeStartIdentifier: "id0.0.0",
+                rangeText: new model.ReplaceRange({
+                    text: "Replaced header"
+                }),
+                rangeEndIdentifier: "id0.0.1"
+            });
+
+            // Act
+            return wordsApi.replaceWithTextOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });

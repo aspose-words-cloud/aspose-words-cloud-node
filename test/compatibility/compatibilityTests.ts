@@ -68,4 +68,25 @@ describe("compatibility", () => {
 
        });
     });
+
+    // Test for optimize document to specific MS Word version.
+    describe("optimizeDocumentOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.OptimizeDocumentOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                options: new model.OptimizationOptions({
+                    msWordVersion: model.OptimizationOptions.MsWordVersionEnum.Word2002
+                })
+            });
+
+            // Act
+            return wordsApi.optimizeDocumentOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+            });
+
+       });
+    });
 });

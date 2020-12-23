@@ -68,10 +68,31 @@ describe("watermark", () => {
                     .then((resultApi) => {
                         // Assert
                         expect(resultApi.response.statusCode).to.equal(200);
+                        expect(resultApi.body.document).to.exist;
+                        expect(resultApi.body.document.fileName).to.equal("TestInsertWatermarkImage.docx");
                     });
 
                 });
 
+            });
+
+       });
+    });
+
+    // Test for adding watermark image online.
+    describe("insertWatermarkImageOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.InsertWatermarkImageOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                imageFile: fs.createReadStream(BaseTest.localBaseTestDataFolder + "Common/aspose-cloud.png")
+            });
+
+            // Act
+            return wordsApi.insertWatermarkImageOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -92,7 +113,7 @@ describe("watermark", () => {
                     name: remoteFileName,
                     watermarkText: new model.WatermarkText({
                         text: "This is the text",
-                        rotationAngle: 90
+                        rotationAngle: 90.0
                     }),
                     folder: remoteDataFolder,
                     destFileName: BaseTest.remoteBaseTestOutFolder + "/" + remoteFileName
@@ -103,8 +124,32 @@ describe("watermark", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.document).to.exist;
+                    expect(resultApi.body.document.fileName).to.equal("TestInsertWatermarkText.docx");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for adding watermark text online.
+    describe("insertWatermarkTextOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.InsertWatermarkTextOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                watermarkText: new model.WatermarkText({
+                    text: "This is the text",
+                    rotationAngle: 90
+                })
+            });
+
+            // Act
+            return wordsApi.insertWatermarkTextOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -132,8 +177,28 @@ describe("watermark", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.document).to.exist;
+                    expect(resultApi.body.document.fileName).to.equal("TestDeleteWatermark.docx");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for deleting watermark online.
+    describe("deleteWatermarkOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.DeleteWatermarkOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile)
+            });
+
+            // Act
+            return wordsApi.deleteWatermarkOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });

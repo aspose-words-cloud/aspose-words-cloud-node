@@ -31,7 +31,7 @@ export const importsMapPreferredWidth = {
 };
 
 /**
- * Preferred width.
+ * DTO container with a preferred width value.
  */
 export class PreferredWidth {
     /**

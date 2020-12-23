@@ -33,7 +33,7 @@ export const importsMapLinkElement = {
 };
 
 /**
- * Reference to document.
+ * Reference to a document.
  */
 export class LinkElement {
     /**
@@ -55,7 +55,7 @@ export class LinkElement {
     }
 
     /**
-     * Gets or sets link to the document.
+     * Gets or sets the link to the document.
      */
     public link: WordsApiLink;
 

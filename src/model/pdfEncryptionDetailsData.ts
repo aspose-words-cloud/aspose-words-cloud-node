@@ -31,7 +31,7 @@ export const importsMapPdfEncryptionDetailsData = {
 };
 
 /**
- * container class for details of encryption.
+ * Container class for details of encryption.
  */
 export class PdfEncryptionDetailsData {
     /**
@@ -68,22 +68,22 @@ export class PdfEncryptionDetailsData {
     }
 
     /**
-     * Gets or sets specifies the encryption algorithm to use.
+     * Gets or sets the encryption algorithm to use.
      */
     public encryptionAlgorithm: string;
 
     /**
-     * Gets or sets specifies the owner password for the encrypted PDF document.
+     * Gets or sets the owner password for the encrypted PDF document.
      */
     public ownerPassword: string;
 
     /**
-     * Gets or sets specifies the operations that are allowed to a user on an encrypted PDF document.
+     * Gets or sets the operations that are allowed to a user on the encrypted PDF document.
      */
     public permissions: string;
 
     /**
-     * Gets or sets specifies the user password required for opening the encrypted PDF document.
+     * Gets or sets the user password required for opening the encrypted PDF document.
      */
     public userPassword: string;
 

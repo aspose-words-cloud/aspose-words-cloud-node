@@ -35,7 +35,7 @@ export const importsMapBookmarksResponse = {
 };
 
 /**
- * This response should be returned by the service when handling:  GET bookmarks.
+ * The REST response with a collection of bookmarks.
  */
 export class BookmarksResponse extends WordsResponse {
     /**
@@ -57,7 +57,7 @@ export class BookmarksResponse extends WordsResponse {
     }
 
     /**
-     * Gets or sets bookmarks which are contained in document.
+     * Gets or sets the collection of bookmarks.
      */
     public bookmarks: Bookmarks;
 

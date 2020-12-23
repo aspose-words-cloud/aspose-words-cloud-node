@@ -63,8 +63,30 @@ describe("paragraph", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.paragraph).to.exist;
+                    expect(resultApi.body.paragraph.nodeId).to.equal("0.0.0");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for getting paragraph online.
+    describe("getDocumentParagraphOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetParagraphOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                index: 0,
+                nodePath: "sections/0"
+            });
+
+            // Act
+            return wordsApi.getParagraphOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -92,6 +114,8 @@ describe("paragraph", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.paragraph).to.exist;
+                    expect(resultApi.body.paragraph.nodeId).to.equal("0.0.0");
                 });
 
             });
@@ -121,8 +145,31 @@ describe("paragraph", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.paragraphs).to.exist;
+                    expect(resultApi.body.paragraphs.paragraphLinkList).to.exist;
+                    expect(resultApi.body.paragraphs.paragraphLinkList).to.have.lengthOf(15);
+                    expect(resultApi.body.paragraphs.paragraphLinkList[0].text).to.equal("Page 1 of 3");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for getting all paragraphs online.
+    describe("getDocumentParagraphsOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetParagraphsOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                nodePath: "sections/0"
+            });
+
+            // Act
+            return wordsApi.getParagraphsOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -149,6 +196,10 @@ describe("paragraph", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.paragraphs).to.exist;
+                    expect(resultApi.body.paragraphs.paragraphLinkList).to.exist;
+                    expect(resultApi.body.paragraphs.paragraphLinkList).to.have.lengthOf(15);
+                    expect(resultApi.body.paragraphs.paragraphLinkList[0].text).to.equal("Page 1 of 3");
                 });
 
             });
@@ -179,8 +230,30 @@ describe("paragraph", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.run).to.exist;
+                    expect(resultApi.body.run.text).to.equal("Page ");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for getting paragraph run online.
+    describe("getDocumentParagraphRunOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetRunOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                paragraphPath: "paragraphs/0",
+                index: 0
+            });
+
+            // Act
+            return wordsApi.getRunOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -209,8 +282,30 @@ describe("paragraph", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.font).to.exist;
+                    expect(resultApi.body.font.name).to.equal("Times New Roman");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for getting paragraph run font online.
+    describe("getDocumentParagraphRunFontOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetRunFontOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                paragraphPath: "paragraphs/0",
+                index: 0
+            });
+
+            // Act
+            return wordsApi.getRunFontOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -238,8 +333,31 @@ describe("paragraph", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.runs).to.exist;
+                    expect(resultApi.body.runs.list).to.exist;
+                    expect(resultApi.body.runs.list).to.have.lengthOf(6);
+                    expect(resultApi.body.runs.list[0].text).to.equal("Page ");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for getting paragraph runs online.
+    describe("getParagraphRunsOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetRunsOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                paragraphPath: "sections/0/paragraphs/0"
+            });
+
+            // Act
+            return wordsApi.getRunsOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -272,8 +390,33 @@ describe("paragraph", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.font).to.exist;
+                    expect(resultApi.body.font.bold).to.true;
                 });
 
+            });
+
+       });
+    });
+
+    // Test for updating paragraph run font online.
+    describe("updateRunFontOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.UpdateRunFontOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                fontDto: new model.Font({
+                    bold: true
+                }),
+                paragraphPath: "paragraphs/0",
+                index: 0
+            });
+
+            // Act
+            return wordsApi.updateRunFontOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -304,8 +447,32 @@ describe("paragraph", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.paragraph).to.exist;
+                    expect(resultApi.body.paragraph.nodeId).to.equal("0.3.8");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for adding paragraph online.
+    describe("insertParagraphOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.InsertParagraphOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                paragraph: new model.ParagraphInsert({
+                    text: "This is a new paragraph for your document"
+                }),
+                nodePath: "sections/0"
+            });
+
+            // Act
+            return wordsApi.insertParagraphOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -335,6 +502,8 @@ describe("paragraph", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.paragraph).to.exist;
+                    expect(resultApi.body.paragraph.nodeId).to.equal("0.3.8");
                 });
 
             });
@@ -368,6 +537,27 @@ describe("paragraph", () => {
                     expect(resultApi.response.statusCode).to.equal(200);
                 });
 
+            });
+
+       });
+    });
+
+    // Test for paragraph rendering.
+    describe("renderParagraphOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.RenderParagraphOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                format: "png",
+                index: 0,
+                nodePath: ""
+            });
+
+            // Act
+            return wordsApi.renderParagraphOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -426,8 +616,30 @@ describe("paragraph", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.paragraphFormat).to.exist;
+                    expect(resultApi.body.paragraphFormat.styleName).to.equal("Normal");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for getting paragraph format settings online.
+    describe("getParagraphFormatOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetParagraphFormatOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                index: 0,
+                nodePath: ""
+            });
+
+            // Act
+            return wordsApi.getParagraphFormatOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -455,6 +667,8 @@ describe("paragraph", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.paragraphFormat).to.exist;
+                    expect(resultApi.body.paragraphFormat.styleName).to.equal("Normal");
                 });
 
             });
@@ -475,10 +689,10 @@ describe("paragraph", () => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.UpdateParagraphFormatRequest({
                     name: remoteFileName,
-                    dto: new model.ParagraphFormatUpdate({
+                    index: 0,
+                    paragraphFormatDto: new model.ParagraphFormatUpdate({
                         alignment: model.ParagraphFormatUpdate.AlignmentEnum.Right
                     }),
-                    index: 0,
                     nodePath: "",
                     folder: remoteDataFolder
                 });
@@ -488,8 +702,33 @@ describe("paragraph", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.paragraphFormat).to.exist;
+
                 });
 
+            });
+
+       });
+    });
+
+    // Test for updating  paragraph format settings online.
+    describe("updateParagraphFormatOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.UpdateParagraphFormatOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                index: 0,
+                paragraphFormatDto: new model.ParagraphFormatUpdate({
+                    alignment: model.ParagraphFormatUpdate.AlignmentEnum.Right
+                }),
+                nodePath: ""
+            });
+
+            // Act
+            return wordsApi.updateParagraphFormatOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -520,6 +759,26 @@ describe("paragraph", () => {
                     expect(resultApi.statusCode).to.equal(200);
                 });
 
+            });
+
+       });
+    });
+
+    // Test for deleting  a paragraph online.
+    describe("deleteParagraphOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.DeleteParagraphOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                index: 0,
+                nodePath: ""
+            });
+
+            // Act
+            return wordsApi.deleteParagraphOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -577,8 +836,30 @@ describe("paragraph", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.listFormat).to.exist;
+                    expect(resultApi.body.listFormat.listId).to.equal(1);
                 });
 
+            });
+
+       });
+    });
+
+    // Test for getting paragraph list format online.
+    describe("getParagraphListFormatOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetParagraphListFormatOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + listFolder + "/ParagraphGetListFormat.doc"),
+                index: 0,
+                nodePath: ""
+            });
+
+            // Act
+            return wordsApi.getParagraphListFormatOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -606,6 +887,8 @@ describe("paragraph", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.listFormat).to.exist;
+                    expect(resultApi.body.listFormat.listId).to.equal(1);
                 });
 
             });
@@ -626,10 +909,10 @@ describe("paragraph", () => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.UpdateParagraphListFormatRequest({
                     name: remoteFileName,
-                    dto: new model.ListFormatUpdate({
+                    index: 0,
+                    listFormatDto: new model.ListFormatUpdate({
                         listId: 2
                     }),
-                    index: 0,
                     nodePath: "",
                     folder: remoteDataFolder
                 });
@@ -639,8 +922,33 @@ describe("paragraph", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.listFormat).to.exist;
+                    expect(resultApi.body.listFormat.listId).to.equal(2);
                 });
 
+            });
+
+       });
+    });
+
+    // Test for updating paragraph list format online.
+    describe("updateParagraphListFormatOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.UpdateParagraphListFormatOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + listFolder + "/ParagraphUpdateListFormat.doc"),
+                listFormatDto: new model.ListFormatUpdate({
+                    listId: 2
+                }),
+                index: 0,
+                nodePath: ""
+            });
+
+            // Act
+            return wordsApi.updateParagraphListFormatOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -659,10 +967,10 @@ describe("paragraph", () => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.UpdateParagraphListFormatRequest({
                     name: remoteFileName,
-                    dto: new model.ListFormatUpdate({
+                    index: 0,
+                    listFormatDto: new model.ListFormatUpdate({
                         listId: 2
                     }),
-                    index: 0,
                     folder: remoteDataFolder
                 });
 
@@ -671,6 +979,8 @@ describe("paragraph", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.listFormat).to.exist;
+                    expect(resultApi.body.listFormat.listId).to.equal(2);
                 });
 
             });
@@ -703,6 +1013,26 @@ describe("paragraph", () => {
                     expect(resultApi.response.statusCode).to.equal(200);
                 });
 
+            });
+
+       });
+    });
+
+    // Test for deleting paragraph list format online.
+    describe("deleteParagraphListFormatOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.DeleteParagraphListFormatOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + listFolder + "/ParagraphDeleteListFormat.doc"),
+                index: 0,
+                nodePath: ""
+            });
+
+            // Act
+            return wordsApi.deleteParagraphListFormatOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -760,8 +1090,31 @@ describe("paragraph", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.tabStops).to.exist;
+                    expect(resultApi.body.tabStops).to.have.lengthOf(2);
+                    expect(resultApi.body.tabStops[0].position).to.equal(72.0);
                 });
 
+            });
+
+       });
+    });
+
+    // Test for getting paragraph tab stops online.
+    describe("getParagraphTabStopsOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetParagraphTabStopsOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + tabStopFolder + "/ParagraphTabStops.docx"),
+                index: 0,
+                nodePath: ""
+            });
+
+            // Act
+            return wordsApi.getParagraphTabStopsOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -789,6 +1142,9 @@ describe("paragraph", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.tabStops).to.exist;
+                    expect(resultApi.body.tabStops).to.have.lengthOf(2);
+                    expect(resultApi.body.tabStops[0].position).to.equal(72.0);
                 });
 
             });
@@ -809,12 +1165,12 @@ describe("paragraph", () => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.InsertOrUpdateParagraphTabStopRequest({
                     name: remoteFileName,
-                    dto: new model.TabStopInsert({
+                    index: 0,
+                    tabStopInsertDto: new model.TabStopInsert({
                         alignment: model.TabStopInsert.AlignmentEnum.Left,
                         leader: model.TabStopInsert.LeaderEnum.None,
-                        position: 72
+                        position: 100.0
                     }),
-                    index: 0,
                     nodePath: "",
                     folder: remoteDataFolder
                 });
@@ -824,8 +1180,38 @@ describe("paragraph", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.tabStops).to.exist;
+                    expect(resultApi.body.tabStops).to.have.lengthOf(3);
+                    expect(resultApi.body.tabStops[1].position).to.equal(100.0);
+
+
                 });
 
+            });
+
+       });
+    });
+
+    // Test for inserting paragraph tab stop online.
+    describe("insertParagraphTabStopsOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.InsertOrUpdateParagraphTabStopOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + tabStopFolder + "/ParagraphTabStops.docx"),
+                tabStopInsertDto: new model.TabStopInsert({
+                    alignment: model.TabStopInsert.AlignmentEnum.Left,
+                    leader: model.TabStopInsert.LeaderEnum.None,
+                    position: 72
+                }),
+                index: 0,
+                nodePath: ""
+            });
+
+            // Act
+            return wordsApi.insertOrUpdateParagraphTabStopOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -844,12 +1230,12 @@ describe("paragraph", () => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.InsertOrUpdateParagraphTabStopRequest({
                     name: remoteFileName,
-                    dto: new model.TabStopInsert({
+                    index: 0,
+                    tabStopInsertDto: new model.TabStopInsert({
                         alignment: model.TabStopInsert.AlignmentEnum.Left,
                         leader: model.TabStopInsert.LeaderEnum.None,
-                        position: 72
+                        position: 100.0
                     }),
-                    index: 0,
                     folder: remoteDataFolder
                 });
 
@@ -858,6 +1244,11 @@ describe("paragraph", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.tabStops).to.exist;
+                    expect(resultApi.body.tabStops).to.have.lengthOf(3);
+                    expect(resultApi.body.tabStops[1].position).to.equal(100.0);
+
+
                 });
 
             });
@@ -888,6 +1279,8 @@ describe("paragraph", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.tabStops).to.exist;
+                    expect(resultApi.body.tabStops).to.have.lengthOf(0);
                 });
 
             });
@@ -917,6 +1310,8 @@ describe("paragraph", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.tabStops).to.exist;
+                    expect(resultApi.body.tabStops).to.have.lengthOf(0);
                 });
 
             });
@@ -937,7 +1332,7 @@ describe("paragraph", () => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.DeleteParagraphTabStopRequest({
                     name: remoteFileName,
-                    position: 72,
+                    position: 72.0,
                     index: 0,
                     nodePath: "",
                     folder: remoteDataFolder
@@ -948,6 +1343,8 @@ describe("paragraph", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.tabStops).to.exist;
+                    expect(resultApi.body.tabStops).to.have.lengthOf(1);
                 });
 
             });
@@ -968,7 +1365,7 @@ describe("paragraph", () => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.DeleteParagraphTabStopRequest({
                     name: remoteFileName,
-                    position: 72,
+                    position: 72.0,
                     index: 0,
                     folder: remoteDataFolder
                 });
@@ -978,6 +1375,8 @@ describe("paragraph", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.tabStops).to.exist;
+                    expect(resultApi.body.tabStops).to.have.lengthOf(1);
                 });
 
             });

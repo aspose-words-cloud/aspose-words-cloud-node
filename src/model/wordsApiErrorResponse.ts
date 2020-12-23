@@ -35,7 +35,7 @@ export const importsMapWordsApiErrorResponse = {
 };
 
 /**
- * Response for Api error.
+ * The REST response with an API error.
  */
 export class WordsApiErrorResponse extends WordsResponse {
     /**
@@ -57,7 +57,7 @@ export class WordsApiErrorResponse extends WordsResponse {
     }
 
     /**
-     * Gets or sets error.
+     * Gets or sets the API error.
      */
     public error: ApiError;
 

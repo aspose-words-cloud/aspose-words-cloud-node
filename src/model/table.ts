@@ -37,7 +37,7 @@ export const importsMapTable = {
 };
 
 /**
- * Table element.
+ * DTO container with a table element.
  */
 export class Table extends NodeLink {
     /**
@@ -69,7 +69,7 @@ export class Table extends NodeLink {
     public tableProperties: TableProperties;
 
     /**
-     * Gets or sets collection of table's rows.
+     * Gets or sets the collection of table's rows.
      */
     public tableRowList: Array<TableRow>;
 

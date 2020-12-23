@@ -62,8 +62,31 @@ describe("field", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.fields).to.exist;
+                    expect(resultApi.body.fields.list).to.exist;
+                    expect(resultApi.body.fields.list).to.have.lengthOf(1);
+                    expect(resultApi.body.fields.list[0].result).to.equal("1");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for getting fields online.
+    describe("getFieldsOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetFieldsOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + fieldFolder + "/GetField.docx"),
+                nodePath: "sections/0"
+            });
+
+            // Act
+            return wordsApi.getFieldsOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -91,6 +114,10 @@ describe("field", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.fields).to.exist;
+                    expect(resultApi.body.fields.list).to.exist;
+                    expect(resultApi.body.fields.list).to.have.lengthOf(1);
+                    expect(resultApi.body.fields.list[0].result).to.equal("1");
                 });
 
             });
@@ -122,8 +149,30 @@ describe("field", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.field).to.exist;
+                    expect(resultApi.body.field.result).to.equal("1");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for getting field by index online.
+    describe("getFieldOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetFieldOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + fieldFolder + "/GetField.docx"),
+                index: 0,
+                nodePath: "sections/0/paragraphs/0"
+            });
+
+            // Act
+            return wordsApi.getFieldOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -152,6 +201,8 @@ describe("field", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.field).to.exist;
+                    expect(resultApi.body.field.result).to.equal("1");
                 });
 
             });
@@ -185,8 +236,33 @@ describe("field", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.field).to.exist;
+                    expect(resultApi.body.field.fieldCode).to.equal("{ NUMPAGES }");
+                    expect(resultApi.body.field.nodeId).to.equal("0.0.0.1");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for putting field online.
+    describe("insertFieldOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.InsertFieldOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + fieldFolder + "/GetField.docx"),
+                field: new model.FieldInsert({
+                    fieldCode: "{ NUMPAGES }"
+                }),
+                nodePath: "sections/0/paragraphs/0"
+            });
+
+            // Act
+            return wordsApi.insertFieldOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -217,6 +293,9 @@ describe("field", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.field).to.exist;
+                    expect(resultApi.body.field.fieldCode).to.equal("{ NUMPAGES }");
+                    expect(resultApi.body.field.nodeId).to.equal("5.0.22.0");
                 });
 
             });
@@ -238,10 +317,10 @@ describe("field", () => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.UpdateFieldRequest({
                     name: remoteFileName,
+                    index: 0,
                     field: new model.FieldUpdate({
                         fieldCode: "{ NUMPAGES }"
                     }),
-                    index: 0,
                     nodePath: "sections/0/paragraphs/0",
                     folder: remoteDataFolder
                 });
@@ -251,8 +330,34 @@ describe("field", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.field).to.exist;
+                    expect(resultApi.body.field.fieldCode).to.equal("{ NUMPAGES }");
+                    expect(resultApi.body.field.nodeId).to.equal("0.0.0.0");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for posting field online.
+    describe("updateFieldOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.UpdateFieldOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + fieldFolder + "/GetField.docx"),
+                index: 0,
+                field: new model.FieldUpdate({
+                    fieldCode: "{ NUMPAGES }"
+                }),
+                nodePath: "sections/0/paragraphs/0"
+            });
+
+            // Act
+            return wordsApi.updateFieldOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -285,8 +390,34 @@ describe("field", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.document).to.exist;
+                    expect(resultApi.body.document.fileName).to.equal("TestInsertPageNumbers.docx");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for inserting page numbers field online.
+    describe("insertPageNumbersOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const localFileName = "test_multi_pages.docx";
+
+            const request = new model.InsertPageNumbersOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + "Common/" + localFileName),
+                pageNumber: new model.PageNumber({
+                    alignment: "center",
+                    format: "{PAGE} of {NUMPAGES}"
+                })
+            });
+
+            // Act
+            return wordsApi.insertPageNumbersOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -318,6 +449,26 @@ describe("field", () => {
                     expect(resultApi.statusCode).to.equal(200);
                 });
 
+            });
+
+       });
+    });
+
+    // Test for deleting field online.
+    describe("deleteFieldOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.DeleteFieldOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + fieldFolder + "/GetField.docx"),
+                index: 0,
+                nodePath: "sections/0/paragraphs/0"
+            });
+
+            // Act
+            return wordsApi.deleteFieldOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -531,6 +682,27 @@ describe("field", () => {
        });
     });
 
+    // Test for deleting fields online.
+    describe("deleteDocumentFieldsOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const localFileName = "Common/test_multi_pages.docx";
+
+            const request = new model.DeleteFieldsOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFileName),
+                nodePath: ""
+            });
+
+            // Act
+            return wordsApi.deleteFieldsOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+            });
+
+       });
+    });
+
     // Test for posting updated fields.
     describe("updateDocumentFields test", () => {
         it("should return response with code 200", () => {
@@ -553,8 +725,30 @@ describe("field", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.document).to.exist;
+                    expect(resultApi.body.document.fileName).to.equal("TestUpdateDocumentFields.docx");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for posting updated fields online.
+    describe("updateDocumentFieldsOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const localFile = "Common/test_multi_pages.docx";
+
+            const request = new model.UpdateFieldsOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile)
+            });
+
+            // Act
+            return wordsApi.updateFieldsOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });

@@ -35,7 +35,7 @@ export const importsMapTableLinkCollection = {
 };
 
 /**
- * Collection of links to tables.
+ * The collection of table's links.
  */
 export class TableLinkCollection extends LinkElement {
     /**
@@ -57,7 +57,7 @@ export class TableLinkCollection extends LinkElement {
     }
 
     /**
-     * Gets or sets collection of table's links.
+     * Gets or sets the collection of table's links.
      */
     public tableLinkList: Array<TableLink>;
 

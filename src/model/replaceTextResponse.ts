@@ -35,7 +35,7 @@ export const importsMapReplaceTextResponse = {
 };
 
 /**
- * Response for "Replace text" action.
+ * The REST response with a number of occurrences of the captured text in the document.
  */
 export class ReplaceTextResponse extends WordsResponse {
     /**
@@ -62,12 +62,12 @@ export class ReplaceTextResponse extends WordsResponse {
     }
 
     /**
-     * Gets or sets link to the document.
+     * Gets or sets the link to the document.
      */
     public documentLink: FileLink;
 
     /**
-     * Gets or sets number of occurrences of the captured text in the document.
+     * Gets or sets the number of occurrences of the captured text in the document.
      */
     public matches: number;
 

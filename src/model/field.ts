@@ -33,7 +33,7 @@ export const importsMapField = {
 };
 
 /**
- * Field.
+ * DTO container with a field.
  */
 export class Field extends FieldLink {
     /**
@@ -60,12 +60,12 @@ export class Field extends FieldLink {
     }
 
     /**
-     * Gets or sets LCID of the field.
+     * Gets or sets the LCID of the field.
      */
     public localeId: string;
 
     /**
-     * Gets or sets field result.
+     * Gets or sets the field result.
      */
     public result: string;
 

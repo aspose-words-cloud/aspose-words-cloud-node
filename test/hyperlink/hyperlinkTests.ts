@@ -60,8 +60,29 @@ describe("hyperlink", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.hyperlink).to.exist;
+                    expect(resultApi.body.hyperlink.displayText).to.equal("Aspose");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for getting hyperlink by specified index online.
+    describe("getDocumentHyperlinkByIndexOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetDocumentHyperlinkByIndexOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                hyperlinkIndex: 0
+            });
+
+            // Act
+            return wordsApi.getDocumentHyperlinkByIndexOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -88,8 +109,30 @@ describe("hyperlink", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.hyperlinks).to.exist;
+                    expect(resultApi.body.hyperlinks.hyperlinkList).to.exist;
+                    expect(resultApi.body.hyperlinks.hyperlinkList).to.have.lengthOf(2);
+                    expect(resultApi.body.hyperlinks.hyperlinkList[0].displayText).to.equal("Aspose");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for getting hyperlinks online.
+    describe("getDocumentHyperlinksOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetDocumentHyperlinksOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile)
+            });
+
+            // Act
+            return wordsApi.getDocumentHyperlinksOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });

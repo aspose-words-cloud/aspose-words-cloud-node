@@ -35,7 +35,7 @@ import { v4 as uuidv4 } from 'uuid';
  */
 export function initializeWordsApi(debugMode?: boolean) {
     const config = require("../testConfig.json");
-    const wordsApi = new TestWordsApi(config.AppSid, config.AppKey, config.BaseUrl, debugMode);
+    const wordsApi = new TestWordsApi(config.ClientId, config.ClientSecret, config.BaseUrl, debugMode);
     return wordsApi;
 }
 
@@ -51,13 +51,13 @@ export function createRandomGUID() {
  */
 export class TestWordsApi extends WordsApi {
     /**
-     * @param appSID App SID.
-     * @param appKey App key.
+     * @param clientId.
+     * @param clientSecret.
      * @param baseUrl Base api Url.
      * @param debugMode A value indicating whether debug mode. In debug mode all requests and responses are logged to console.
      */
-    constructor(appSID: string, appKey: string, baseUrl?: string, debugMode?: boolean) {
-        super(appSID, appKey, baseUrl, debugMode);
+    constructor(clientId: string, clientSecret: string, baseUrl?: string, debugMode?: boolean) {
+        super(clientId, clientSecret, baseUrl, debugMode);
     }
 
     /**

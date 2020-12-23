@@ -72,22 +72,22 @@ export class XpsSaveOptionsData extends FixedPageSaveOptionsData {
     }
 
     /**
-     * Gets or sets specifies the level in the XPS document outline at which to display Word bookmarks.
+     * Gets or sets the level in the XPS document outline at which to display Word bookmarks.
      */
     public bookmarksOutlineLevel: number;
 
     /**
-     * Gets or sets specifies how many levels of headings (paragraphs formatted with the Heading styles) to include in the XPS document outline.
+     * Gets or sets the number of heading levels (paragraphs formatted with the Heading styles) to include in the XPS document outline.
      */
     public headingsOutlineLevels: number;
 
     /**
-     * Gets or sets allows to specify outline options.
+     * Gets or sets the outline options.
      */
     public outlineOptions: OutlineOptionsData;
 
     /**
-     * Gets or sets determines whether the document should be saved using a booklet printing layout.
+     * Gets or sets a value indicating whether the document should be saved using a booklet printing layout.
      */
     public useBookFoldPrintingSettings: boolean;
 

@@ -37,7 +37,7 @@ export const importsMapFootnote = {
 };
 
 /**
- * Footnote.
+ * DTO container with a footnote.
  */
 export class Footnote extends FootnoteLink {
     /**
@@ -79,28 +79,28 @@ export class Footnote extends FootnoteLink {
     }
 
     /**
-     * Gets or sets content of footnote.
+     * Gets or sets the content of the footnote.
      */
     public content: StoryChildNodes;
 
     /**
-     * Gets or sets returns a value that specifies whether this is a footnote or endnote.
+     * Gets or sets the value, that specifies whether this is a footnote or endnote.
      */
     public footnoteType: Footnote.FootnoteTypeEnum;
 
     /**
-     * Gets or sets link to comment range start node.
+     * Gets or sets the link to comment range start node.
      */
     public position: DocumentPosition;
 
     /**
-     * Gets or sets /sets custom reference mark to be used for this footnote.
+     * Gets or sets the custom reference mark to be used for this footnote.
      * Default value is Empty, meaning auto-numbered footnotes are used.
      */
     public referenceMark: string;
 
     /**
-     * Gets or sets this is a convenience property that allows to easily get or set text of the footnote.
+     * Gets or sets text of the footnote.
      */
     public text: string;
 

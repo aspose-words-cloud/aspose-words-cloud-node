@@ -35,7 +35,7 @@ export const importsMapStyle = {
 };
 
 /**
- * Represents a single document style.
+ * DTO container with a single document style.
  */
 export class Style extends LinkElement {
     /**
@@ -107,18 +107,17 @@ export class Style extends LinkElement {
     }
 
     /**
-     * Gets or sets all aliases of this style. If style has no aliases then empty array of string
-     * is returned.
+     * Gets or sets all aliases of this style. If style has no aliases then empty array of string is returned.
      */
     public aliases: Array<string>;
 
     /**
-     * Gets or sets /sets the name of the style this style is based on.
+     * Gets or sets the name of the style this style is based on.
      */
     public baseStyleName: string;
 
     /**
-     * Gets or sets a value indicating whether true if this style is one of the built-in styles in MS Word.
+     * Gets or sets a value indicating whether this style is one of the built-in styles in MS Word.
      */
     public builtIn: boolean;
 
@@ -128,18 +127,17 @@ export class Style extends LinkElement {
     public font: Font;
 
     /**
-     * Gets or sets a value indicating whether true when the style is one of the built-in Heading styles.
+     * Gets or sets a value indicating whether the style is one of the built-in Heading styles.
      */
     public isHeading: boolean;
 
     /**
-     * Gets or sets a value indicating whether specifies whether this style is shown in the Quick Style gallery inside MS Word UI.
+     * Gets or sets a value indicating whether this style is shown in the Quick Style gallery inside MS Word UI.
      */
     public isQuickStyle: boolean;
 
     /**
-     * Gets or sets the name of the Style linked to this one. Returns Empty string if no styles
-     * are linked.
+     * Gets or sets the name of the Style linked to this one. Returns Empty string if no styles are linked.
      */
     public linkedStyleName: string;
 
@@ -149,8 +147,7 @@ export class Style extends LinkElement {
     public name: string;
 
     /**
-     * Gets or sets /sets the name of the style to be applied automatically to a new paragraph
-     * inserted after a paragraph formatted with the specified style.
+     * Gets or sets the name of the style to be applied automatically to a new paragraph inserted after a paragraph formatted with the specified style.
      */
     public nextParagraphStyleName: string;
 

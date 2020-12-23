@@ -33,7 +33,7 @@ export const importsMapDocumentPosition = {
 };
 
 /**
- * Represents a position in the document tree.
+ * DTO container with a position in the document tree.
  */
 export class DocumentPosition {
     /**
@@ -60,12 +60,12 @@ export class DocumentPosition {
     }
 
     /**
-     * Gets or sets link to  node.
+     * Gets or sets the link to a node.
      */
     public node: NodeLink;
 
     /**
-     * Gets or sets offset into the node.
+     * Gets or sets the offset in the node.
      */
     public offset: number;
 

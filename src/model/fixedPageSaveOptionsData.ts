@@ -87,40 +87,40 @@ export class FixedPageSaveOptionsData extends SaveOptionsData {
     }
 
     /**
-     * Gets or sets a value determining how colors are rendered.
+     * Gets or sets the value determining how colors are rendered.
      * { Normal | Grayscale}.
      */
     public colorMode: string;
 
     /**
-     * Gets or sets determines the quality of the JPEG images inside PDF document.
+     * Gets or sets the quality of the JPEG images inside PDF document.
      */
     public jpegQuality: number;
 
     /**
-     * Gets or sets allows to specify metafile rendering options.
+     * Gets or sets the metafile rendering options.
      */
     public metafileRenderingOptions: MetafileRenderingOptionsData;
 
     /**
-     * Gets or sets indicates the symbol set that is used to represent numbers while rendering to fixed page formats.
+     * Gets or sets the symbol set, that is used to represent numbers while rendering to fixed page formats.
      */
     public numeralFormat: string;
 
     /**
-     * Gets or sets flag indicates whether it is required to optimize output of XPS.
+     * Gets or sets a value indicating whether it is required to optimize output of XPS.
      * If this flag is set redundant nested canvases and empty canvases are removed, also neighbor glyphs with the same formatting are concatenated.
-     * Note: The accuracy of the content display may be affected if this property is set to true.  Default is false.
+     * Note: The accuracy of the content display may be affected if this property is set to true.. The default value is false.
      */
     public optimizeOutput: boolean;
 
     /**
-     * Gets or sets determines number of pages to render.
+     * Gets or sets the number of pages to render.
      */
     public pageCount: number;
 
     /**
-     * Gets or sets determines 0-based index of the first page to render.
+     * Gets or sets the 0-based index of the first page to render.
      */
     public pageIndex: number;
 

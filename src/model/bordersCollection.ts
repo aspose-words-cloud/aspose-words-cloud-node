@@ -35,7 +35,7 @@ export const importsMapBordersCollection = {
 };
 
 /**
- * Collection of borders.
+ * The collection of borders.
  */
 export class BordersCollection extends LinkElement {
     /**
@@ -57,7 +57,7 @@ export class BordersCollection extends LinkElement {
     }
 
     /**
-     * Gets or sets collection of comments.
+     * Gets or sets the collection of comments.
      */
     public list: Array<Border>;
 

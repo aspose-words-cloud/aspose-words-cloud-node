@@ -35,7 +35,7 @@ export const importsMapFormFieldCollection = {
 };
 
 /**
- * Represents DTO for collection of formfields.
+ * DTO container with a collection of form fields.
  */
 export class FormFieldCollection extends LinkElement {
     /**
@@ -57,7 +57,7 @@ export class FormFieldCollection extends LinkElement {
     }
 
     /**
-     * Gets or sets collection of formfields.
+     * Gets or sets the collection of form fields.
      */
     public list: Array<FormField>;
 

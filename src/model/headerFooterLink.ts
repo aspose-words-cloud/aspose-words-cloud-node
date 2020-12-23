@@ -55,7 +55,7 @@ export class HeaderFooterLink extends LinkElement {
     }
 
     /**
-     * Gets or sets paragraph's text.
+     * Gets or sets the paragraph's text.
      */
     public type: HeaderFooterLink.TypeEnum;
 

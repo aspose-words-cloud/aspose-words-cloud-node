@@ -92,7 +92,7 @@ export class Border extends LinkElement {
     public color: XmlColor;
 
     /**
-     * Gets or sets distance of the border from text or from the page edge in points.
+     * Gets or sets the distance of the border from text or from the page edge in points.
      */
     public distanceFromText: number;
 

@@ -68,12 +68,12 @@ export class StyleUpdate {
     }
 
     /**
-     * Gets or sets /sets the name of the style this style is based on.
+     * Gets or sets the name of the style this style is based on.
      */
     public baseStyleName: string;
 
     /**
-     * Gets or sets a value indicating whether specifies whether this style is shown in the Quick Style gallery inside MS Word UI.
+     * Gets or sets a value indicating whether this style is shown in the Quick Style gallery inside MS Word UI.
      */
     public isQuickStyle: boolean;
 
@@ -83,8 +83,7 @@ export class StyleUpdate {
     public name: string;
 
     /**
-     * Gets or sets /sets the name of the style to be applied automatically to a new paragraph
-     * inserted after a paragraph formatted with the specified style.
+     * Gets or sets the name of the style to be applied automatically to a new paragraph inserted after a paragraph formatted with the specified style.
      */
     public nextParagraphStyleName: string;
 

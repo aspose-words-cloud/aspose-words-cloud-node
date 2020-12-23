@@ -33,7 +33,7 @@ export const importsMapShading = {
 };
 
 /**
- * Paragraph format shading element.
+ * DTO container with a paragraph format shading element.
  */
 export class Shading {
     /**

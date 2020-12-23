@@ -35,7 +35,7 @@ export const importsMapDrawingObject = {
 };
 
 /**
- * Represents Drawing Object DTO.
+ * DTO container with a DrawingObject.
  */
 export class DrawingObject extends DrawingObjectLink {
     /**
@@ -102,52 +102,52 @@ export class DrawingObject extends DrawingObjectLink {
     }
 
     /**
-     * Gets or sets height of the drawing object in points.
+     * Gets or sets the height of the DrawingObject in points.
      */
     public height: number;
 
     /**
-     * Gets or sets link to image data. Can be null if shape does not have an image.
+     * Gets or sets the link to image data. Can be null if shape does not have an image.
      */
     public imageDataLink: WordsApiLink;
 
     /**
-     * Gets or sets distance in points from the origin to the left side of the image.
+     * Gets or sets the distance in points from the origin to the left side of the image.
      */
     public left: number;
 
     /**
-     * Gets or sets link to ole object. Can be null if shape does not have ole data.
+     * Gets or sets the link to OLE object. Can be null if shape does not have OLE data.
      */
     public oleDataLink: WordsApiLink;
 
     /**
-     * Gets or sets specifies where the distance to the image is measured from.
+     * Gets or sets the relative horizontal position, from which the distance to the image is measured.
      */
     public relativeHorizontalPosition: DrawingObject.RelativeHorizontalPositionEnum;
 
     /**
-     * Gets or sets specifies where the distance to the image measured from.
+     * Gets or sets the relative vertical position, from which the distance to the image is measured.
      */
     public relativeVerticalPosition: DrawingObject.RelativeVerticalPositionEnum;
 
     /**
-     * Gets or sets a list of links that originate from this DrawingObjectDto.
+     * Gets or sets the list of links that originate from this DrawingObjectDto.
      */
     public renderLinks: Array<WordsApiLink>;
 
     /**
-     * Gets or sets distance in points from the origin to the top side of the image.
+     * Gets or sets the distance in points from the origin to the top side of the image.
      */
     public top: number;
 
     /**
-     * Gets or sets width of the drawing objects in points.
+     * Gets or sets the width of the DrawingObjects in points.
      */
     public width: number;
 
     /**
-     * Gets or sets specifies how to wrap text around the image.
+     * Gets or sets the option that controls how to wrap text around the image.
      */
     public wrapType: DrawingObject.WrapTypeEnum;
 

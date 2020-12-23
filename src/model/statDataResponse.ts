@@ -37,7 +37,7 @@ export const importsMapStatDataResponse = {
 };
 
 /**
- * Response for the request of the document's statistical data.
+ * The REST response with document's statistical data.
  */
 export class StatDataResponse extends WordsResponse {
     /**
@@ -64,12 +64,12 @@ export class StatDataResponse extends WordsResponse {
     }
 
     /**
-     * Gets or sets link to the document.
+     * Gets or sets the link to the document.
      */
     public documentLink: FileLink;
 
     /**
-     * Gets or sets statistical data of the document.
+     * Gets or sets the statistical data of the document.
      */
     public statData: DocumentStatData;
 

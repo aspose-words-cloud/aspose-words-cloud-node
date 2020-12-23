@@ -70,7 +70,7 @@ export class CompareData {
     }
 
     /**
-     * Gets or sets initials of the author to use for revisions.
+     * Gets or sets the initials of the author to use for revisions.
      */
     public author: string;
 
@@ -80,7 +80,7 @@ export class CompareData {
     public compareOptions: CompareOptions;
 
     /**
-     * Gets or sets path to document to compare at the server.
+     * Gets or sets the path to document to compare at the server.
      */
     public comparingWithDocument: string;
 

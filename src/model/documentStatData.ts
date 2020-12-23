@@ -77,27 +77,27 @@ export class DocumentStatData {
     }
 
     /**
-     * Gets or sets detailed statistics of footnotes.
+     * Gets or sets the detailed statistics on footnotes.
      */
     public footnotesStatData: FootnotesStatData;
 
     /**
-     * Gets or sets total count of pages in the document.
+     * Gets or sets the total count of pages in the document.
      */
     public pageCount: number;
 
     /**
-     * Gets or sets detailed statistics of all pages.
+     * Gets or sets the detailed statistics on all pages.
      */
     public pageStatData: Array<PageStatData>;
 
     /**
-     * Gets or sets total count of paragraphs in the document.
+     * Gets or sets the total count of paragraphs in the document.
      */
     public paragraphCount: number;
 
     /**
-     * Gets or sets total count of words in the document.
+     * Gets or sets the total count of words in the document.
      */
     public wordCount: number;
 

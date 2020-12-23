@@ -33,7 +33,7 @@ export const importsMapWordsApiLink = {
 };
 
 /**
- * Provides information for the words api resource link.
+ * Provides information for the words API resource link.
  */
 export class WordsApiLink extends Link {
     /**

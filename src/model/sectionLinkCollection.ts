@@ -35,7 +35,7 @@ export const importsMapSectionLinkCollection = {
 };
 
 /**
- * Collection of links to sections.
+ * The collection of section's links.
  */
 export class SectionLinkCollection extends LinkElement {
     /**
@@ -57,7 +57,7 @@ export class SectionLinkCollection extends LinkElement {
     }
 
     /**
-     * Gets or sets collection of section's links.
+     * Gets or sets the collection of section's links.
      */
     public sectionLinkList: Array<SectionLink>;
 

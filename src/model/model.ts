@@ -93,6 +93,7 @@ import * as importedFilesList from './filesList';
 import * as importedFilesUploadResult from './filesUploadResult';
 import * as importedFixedPageSaveOptionsData from './fixedPageSaveOptionsData';
 import * as importedFont from './font';
+import * as importedFontDto from './fontDto';
 import * as importedFontInfo from './fontInfo';
 import * as importedFontResponse from './fontResponse';
 import * as importedFootnote from './footnote';
@@ -179,8 +180,10 @@ import * as importedProtectionDataResponse from './protectionDataResponse';
 import * as importedProtectionRequest from './protectionRequest';
 import * as importedPsSaveOptionsData from './psSaveOptionsData';
 import * as importedRangeDocument from './rangeDocument';
+import * as importedRangeDocumentDto from './rangeDocumentDto';
 import * as importedRangeTextResponse from './rangeTextResponse';
 import * as importedReplaceRange from './replaceRange';
+import * as importedReplaceRangeDto from './replaceRangeDto';
 import * as importedReplaceTextParameters from './replaceTextParameters';
 import * as importedReplaceTextResponse from './replaceTextResponse';
 import * as importedReportBuildOptions from './reportBuildOptions';
@@ -225,20 +228,26 @@ import * as importedSvgSaveOptionsData from './svgSaveOptionsData';
 import * as importedTable from './table';
 import * as importedTableCell from './tableCell';
 import * as importedTableCellFormat from './tableCellFormat';
+import * as importedTableCellFormatDto from './tableCellFormatDto';
 import * as importedTableCellFormatResponse from './tableCellFormatResponse';
 import * as importedTableCellInsert from './tableCellInsert';
+import * as importedTableCellInsertDto from './tableCellInsertDto';
 import * as importedTableCellResponse from './tableCellResponse';
 import * as importedTableInsert from './tableInsert';
+import * as importedTableInsertDto from './tableInsertDto';
 import * as importedTableLink from './tableLink';
 import * as importedTableLinkCollection from './tableLinkCollection';
 import * as importedTableLinkCollectionResponse from './tableLinkCollectionResponse';
 import * as importedTableProperties from './tableProperties';
+import * as importedTablePropertiesDto from './tablePropertiesDto';
 import * as importedTablePropertiesResponse from './tablePropertiesResponse';
 import * as importedTableResponse from './tableResponse';
 import * as importedTableRow from './tableRow';
 import * as importedTableRowFormat from './tableRowFormat';
+import * as importedTableRowFormatDto from './tableRowFormatDto';
 import * as importedTableRowFormatResponse from './tableRowFormatResponse';
 import * as importedTableRowInsert from './tableRowInsert';
+import * as importedTableRowInsertDto from './tableRowInsertDto';
 import * as importedTableRowResponse from './tableRowResponse';
 import * as importedTabStop from './tabStop';
 import * as importedTabStopBase from './tabStopBase';
@@ -324,6 +333,7 @@ export * from './filesList';
 export * from './filesUploadResult';
 export * from './fixedPageSaveOptionsData';
 export * from './font';
+export * from './fontDto';
 export * from './fontInfo';
 export * from './fontResponse';
 export * from './footnote';
@@ -410,8 +420,10 @@ export * from './protectionDataResponse';
 export * from './protectionRequest';
 export * from './psSaveOptionsData';
 export * from './rangeDocument';
+export * from './rangeDocumentDto';
 export * from './rangeTextResponse';
 export * from './replaceRange';
+export * from './replaceRangeDto';
 export * from './replaceTextParameters';
 export * from './replaceTextResponse';
 export * from './reportBuildOptions';
@@ -456,20 +468,26 @@ export * from './svgSaveOptionsData';
 export * from './table';
 export * from './tableCell';
 export * from './tableCellFormat';
+export * from './tableCellFormatDto';
 export * from './tableCellFormatResponse';
 export * from './tableCellInsert';
+export * from './tableCellInsertDto';
 export * from './tableCellResponse';
 export * from './tableInsert';
+export * from './tableInsertDto';
 export * from './tableLink';
 export * from './tableLinkCollection';
 export * from './tableLinkCollectionResponse';
 export * from './tableProperties';
+export * from './tablePropertiesDto';
 export * from './tablePropertiesResponse';
 export * from './tableResponse';
 export * from './tableRow';
 export * from './tableRowFormat';
+export * from './tableRowFormatDto';
 export * from './tableRowFormatResponse';
 export * from './tableRowInsert';
+export * from './tableRowInsertDto';
 export * from './tableRowResponse';
 export * from './tabStop';
 export * from './tabStopBase';
@@ -562,6 +580,7 @@ const enumsMap = {
     "PdfSaveOptionsData.HeaderFooterBookmarksExportModeEnum": importedPdfSaveOptionsData.PdfSaveOptionsData.HeaderFooterBookmarksExportModeEnum,
     "PreferredWidth.TypeEnum": importedPreferredWidth.PreferredWidth.TypeEnum,
     "ReplaceRange.TextTypeEnum": importedReplaceRange.ReplaceRange.TextTypeEnum,
+    "ReplaceRangeDto.TextTypeEnum": importedReplaceRangeDto.ReplaceRangeDto.TextTypeEnum,
     "ReportEngineSettings.DataSourceTypeEnum": importedReportEngineSettings.ReportEngineSettings.DataSourceTypeEnum,
     "SaveOptionsData.Dml3DEffectsRenderingModeEnum": importedSaveOptionsData.SaveOptionsData.Dml3DEffectsRenderingModeEnum,
     "Shading.TextureEnum": importedShading.Shading.TextureEnum,
@@ -655,6 +674,7 @@ const typeMap = {
     FilesUploadResult: importedFilesUploadResult.FilesUploadResult,
     FixedPageSaveOptionsData: importedFixedPageSaveOptionsData.FixedPageSaveOptionsData,
     Font: importedFont.Font,
+    FontDto: importedFontDto.FontDto,
     FontInfo: importedFontInfo.FontInfo,
     FontResponse: importedFontResponse.FontResponse,
     Footnote: importedFootnote.Footnote,
@@ -741,8 +761,10 @@ const typeMap = {
     ProtectionRequest: importedProtectionRequest.ProtectionRequest,
     PsSaveOptionsData: importedPsSaveOptionsData.PsSaveOptionsData,
     RangeDocument: importedRangeDocument.RangeDocument,
+    RangeDocumentDto: importedRangeDocumentDto.RangeDocumentDto,
     RangeTextResponse: importedRangeTextResponse.RangeTextResponse,
     ReplaceRange: importedReplaceRange.ReplaceRange,
+    ReplaceRangeDto: importedReplaceRangeDto.ReplaceRangeDto,
     ReplaceTextParameters: importedReplaceTextParameters.ReplaceTextParameters,
     ReplaceTextResponse: importedReplaceTextResponse.ReplaceTextResponse,
     ReportBuildOptions: importedReportBuildOptions.ReportBuildOptions,
@@ -787,20 +809,26 @@ const typeMap = {
     Table: importedTable.Table,
     TableCell: importedTableCell.TableCell,
     TableCellFormat: importedTableCellFormat.TableCellFormat,
+    TableCellFormatDto: importedTableCellFormatDto.TableCellFormatDto,
     TableCellFormatResponse: importedTableCellFormatResponse.TableCellFormatResponse,
     TableCellInsert: importedTableCellInsert.TableCellInsert,
+    TableCellInsertDto: importedTableCellInsertDto.TableCellInsertDto,
     TableCellResponse: importedTableCellResponse.TableCellResponse,
     TableInsert: importedTableInsert.TableInsert,
+    TableInsertDto: importedTableInsertDto.TableInsertDto,
     TableLink: importedTableLink.TableLink,
     TableLinkCollection: importedTableLinkCollection.TableLinkCollection,
     TableLinkCollectionResponse: importedTableLinkCollectionResponse.TableLinkCollectionResponse,
     TableProperties: importedTableProperties.TableProperties,
+    TablePropertiesDto: importedTablePropertiesDto.TablePropertiesDto,
     TablePropertiesResponse: importedTablePropertiesResponse.TablePropertiesResponse,
     TableResponse: importedTableResponse.TableResponse,
     TableRow: importedTableRow.TableRow,
     TableRowFormat: importedTableRowFormat.TableRowFormat,
+    TableRowFormatDto: importedTableRowFormatDto.TableRowFormatDto,
     TableRowFormatResponse: importedTableRowFormatResponse.TableRowFormatResponse,
     TableRowInsert: importedTableRowInsert.TableRowInsert,
+    TableRowInsertDto: importedTableRowInsertDto.TableRowInsertDto,
     TableRowResponse: importedTableRowResponse.TableRowResponse,
     TabStop: importedTabStop.TabStop,
     TabStopBase: importedTabStopBase.TabStopBase,
@@ -824,11 +852,11 @@ export {enumsMap, typeMap};
 
 /**
  * Request model for AcceptAllRevisions operation.
- * Accepts all revisions in document.
+ * Accepts all revisions in the document.
  */
 export class AcceptAllRevisionsRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -863,12 +891,42 @@ export class AcceptAllRevisionsRequest {
 }
 
 /**
+ * Request model for AcceptAllRevisionsOnline operation.
+ * Accepts all revisions in the document.
+ */
+export class AcceptAllRevisionsOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    public constructor(init?: Partial< AcceptAllRevisionsOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for AppendDocument operation.
- * Appends documents to original document.
+ * Appends documents to the original document.
  */
 export class AppendDocumentRequest {
     /**
-     * Original document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -919,7 +977,7 @@ export class AppendDocumentRequest {
 
 /**
  * Request model for AppendDocumentOnline operation.
- * Appends documents to original document.
+ * Appends documents to the original document.
  */
 export class AppendDocumentOnlineRequest {
     /**
@@ -932,6 +990,31 @@ export class AppendDocumentOnlineRequest {
      */
     public documentList: importedDocumentEntryList.DocumentEntryList;
 
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
     public constructor(init?: Partial< AppendDocumentOnlineRequest >) {
         Object.assign(this, init);
     }
@@ -939,23 +1022,23 @@ export class AppendDocumentOnlineRequest {
 
 /**
  * Request model for ApplyStyleToDocumentElement operation.
- * Apply a style to the document node.
+ * Applies a style to the document node.
  */
 export class ApplyStyleToDocumentElementRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
+
+    /**
+     * The path to the node in the document tree, that supports styles: ParagraphFormat, List, ListLevel, Table.
+     */
+    public styledNodePath: string;
 
     /**
      * Style to apply.
      */
     public styleApply: importedStyleApply.StyleApply;
-
-    /**
-     * The path to the node that supports a style. Supported node types: ParagraphFormat, List, ListLevel, Table.
-     */
-    public styledNodePath: string;
 
     /**
      * Original document folder.
@@ -998,12 +1081,62 @@ export class ApplyStyleToDocumentElementRequest {
 }
 
 /**
+ * Request model for ApplyStyleToDocumentElementOnline operation.
+ * Applies a style to the document node.
+ */
+export class ApplyStyleToDocumentElementOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The path to the node in the document tree, that supports styles: ParagraphFormat, List, ListLevel, Table.
+     */
+    public styledNodePath: string;
+
+    /**
+     * Style to apply.
+     */
+    public styleApply: importedStyleApply.StyleApply;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< ApplyStyleToDocumentElementOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for BuildReport operation.
- * Executes document "build report" operation.
+ * Executes the report generation process using the specified document template and the external data source in XML, JSON or CSV format.
  */
 export class BuildReportRequest {
     /**
-     * The template name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -1038,7 +1171,7 @@ export class BuildReportRequest {
     public password: string;
 
     /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved with autogenerated name.
+     * The filename of the output document. If this parameter is omitted, the result will be saved with autogenerated name.
      */
     public destFileName: string;
 
@@ -1049,7 +1182,7 @@ export class BuildReportRequest {
 
 /**
  * Request model for BuildReportOnline operation.
- * Executes document "build report" online operation.
+ * Executes the report generation process online using the specified document template and the external data source in XML, JSON or CSV format.
  */
 export class BuildReportOnlineRequest {
     /**
@@ -1068,7 +1201,7 @@ export class BuildReportOnlineRequest {
     public reportEngineSettings: importedReportEngineSettings.ReportEngineSettings;
 
     /**
-     * This file name will be used when resulting document has dynamic field for document file name {filename}. If it is not set, "template" will be used instead.
+     * The filename of the output document, that will be used when the resulting document has a dynamic field {filename}. If it is not set, the "template" will be used instead.
      */
     public documentFileName: string;
 
@@ -1079,16 +1212,16 @@ export class BuildReportOnlineRequest {
 
 /**
  * Request model for Classify operation.
- * Classifies raw text.
+ * Runs a multi-class text classification for the specified raw text.
  */
 export class ClassifyRequest {
     /**
-     * Text to classify.
+     * The text to classify.
      */
     public text: string;
 
     /**
-     * Number of the best classes to return.
+     * The number of the best classes to return.
      */
     public bestClassesCount: string;
 
@@ -1099,13 +1232,13 @@ export class ClassifyRequest {
 
 /**
  * Request model for ClassifyDocument operation.
- * Classifies document.
+ * Runs a multi-class text classification for the document.
  */
 export class ClassifyDocumentRequest {
     /**
      * The document name.
      */
-    public documentName: string;
+    public name: string;
 
     /**
      * Original document folder.
@@ -1128,12 +1261,12 @@ export class ClassifyDocumentRequest {
     public password: string;
 
     /**
-     * Count of the best classes to return.
+     * The number of the best classes to return.
      */
     public bestClassesCount: string;
 
     /**
-     * Taxonomy to use for classification return.
+     * The taxonomy to use.
      */
     public taxonomy: string;
 
@@ -1143,17 +1276,52 @@ export class ClassifyDocumentRequest {
 }
 
 /**
+ * Request model for ClassifyDocumentOnline operation.
+ * Runs a multi-class text classification for the document.
+ */
+export class ClassifyDocumentOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * The number of the best classes to return.
+     */
+    public bestClassesCount: string;
+
+    /**
+     * The taxonomy to use.
+     */
+    public taxonomy: string;
+
+    public constructor(init?: Partial< ClassifyDocumentOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for CompareDocument operation.
- * Compares document with original document.
+ * Compares two documents.
  */
 export class CompareDocumentRequest {
     /**
-     * Original document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * CompareData with a document to compare.
+     * Compare data.
      */
     public compareData: importedCompareData.CompareData;
 
@@ -1188,8 +1356,43 @@ export class CompareDocumentRequest {
 }
 
 /**
+ * Request model for CompareDocumentOnline operation.
+ * Compares two documents.
+ */
+export class CompareDocumentOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Compare data.
+     */
+    public compareData: importedCompareData.CompareData;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    public constructor(init?: Partial< CompareDocumentOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for ConvertDocument operation.
- * Converts document from the request's content to the specified format.
+ * Converts a document on a local drive to the specified format.
  */
 export class ConvertDocumentRequest {
     /**
@@ -1198,17 +1401,17 @@ export class ConvertDocumentRequest {
     public document: Readable;
 
     /**
-     * Format to convert.
+     * The format to convert.
      */
     public format: string;
 
     /**
-     * Path for saving operation result to the local storage.
+     * The path to the output document on a local storage.
      */
     public outPath: string;
 
     /**
-     * This file name will be used when resulting document has dynamic field for document file name {filename}. If it is not set, "sourceFilename" will be used instead.
+     * The filename of the output document, that will be used when the resulting document has a dynamic field {filename}. If it is not set, the "sourceFilename" will be used instead.
      */
     public fileNameFieldValue: string;
 
@@ -1294,11 +1497,11 @@ export class CopyFolderRequest {
 
 /**
  * Request model for CopyStyle operation.
- * Copy and insert a new style to the document, returns a copied style.
+ * Makes a copy of the style in the document.
  */
 export class CopyStyleRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -1348,19 +1551,62 @@ export class CopyStyleRequest {
 }
 
 /**
+ * Request model for CopyStyleOnline operation.
+ * Makes a copy of the style in the document.
+ */
+export class CopyStyleOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Style to copy.
+     */
+    public styleCopy: importedStyleCopy.StyleCopy;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< CopyStyleOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for CreateDocument operation.
- * Creates new document.
- * Document is created with format which is recognized from file extensions.
  * Supported extensions: ".doc", ".docx", ".docm", ".dot", ".dotm", ".dotx", ".flatopc", ".fopc", ".flatopc_macro", ".fopc_macro", ".flatopc_template", ".fopc_template", ".flatopc_template_macro", ".fopc_template_macro", ".wordml", ".wml", ".rtf".
  */
 export class CreateDocumentRequest {
     /**
-     * The document name.
+     * The filename of the document.
      */
     public fileName: string;
 
     /**
-     * The document folder.
+     * The path to the document folder.
      */
     public folder: string;
 
@@ -1396,16 +1642,16 @@ export class CreateFolderRequest {
 
 /**
  * Request model for CreateOrUpdateDocumentProperty operation.
- * Adds new or update existing document property.
+ * Adds a new or updates an existing document property.
  */
 export class CreateOrUpdateDocumentPropertyRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * The property name.
+     * The name of the property.
      */
     public propertyName: string;
 
@@ -1455,12 +1701,62 @@ export class CreateOrUpdateDocumentPropertyRequest {
 }
 
 /**
+ * Request model for CreateOrUpdateDocumentPropertyOnline operation.
+ * Adds a new or updates an existing document property.
+ */
+export class CreateOrUpdateDocumentPropertyOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The name of the property.
+     */
+    public propertyName: string;
+
+    /**
+     * The property with new value.
+     */
+    public property: importedDocumentPropertyCreateOrUpdate.DocumentPropertyCreateOrUpdate;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< CreateOrUpdateDocumentPropertyOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for DeleteAllParagraphTabStops operation.
- * Remove all tab stops.
+ * Removes paragraph tab stops from the document node.
  */
 export class DeleteAllParagraphTabStopsRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -1470,7 +1766,7 @@ export class DeleteAllParagraphTabStopsRequest {
     public index: number;
 
     /**
-     * Path to the node which contains paragraph.
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -1506,11 +1802,11 @@ export class DeleteAllParagraphTabStopsRequest {
 
 /**
  * Request model for DeleteBorder operation.
- * 'nodePath' should refer to paragraph, cell or row.
+ * The 'nodePath' parameter should refer to a paragraph, a cell or a row.
  */
 export class DeleteBorderRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -1520,7 +1816,7 @@ export class DeleteBorderRequest {
     public borderType: string;
 
     /**
-     * Path to the node with border(node should be paragraph, cell or row).
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -1565,17 +1861,67 @@ export class DeleteBorderRequest {
 }
 
 /**
+ * Request model for DeleteBorderOnline operation.
+ * Removes a border from the document node.
+ */
+export class DeleteBorderOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Border type.
+     */
+    public borderType: string;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< DeleteBorderOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for DeleteBorders operation.
- * 'nodePath' should refer to paragraph, cell or row.
+ * The 'nodePath' parameter should refer to a paragraph, a cell or a row.
  */
 export class DeleteBordersRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * Path to the node with borders(node should be paragraph, cell or row).
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -1620,17 +1966,62 @@ export class DeleteBordersRequest {
 }
 
 /**
+ * Request model for DeleteBordersOnline operation.
+ * Removes borders from the document node.
+ */
+export class DeleteBordersOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< DeleteBordersOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for DeleteComment operation.
- * Removes comment from document.
+ * Removes a comment from the document.
  */
 export class DeleteCommentRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * The comment index.
+     * The index of the comment.
      */
     public commentIndex: number;
 
@@ -1675,17 +2066,62 @@ export class DeleteCommentRequest {
 }
 
 /**
+ * Request model for DeleteCommentOnline operation.
+ * Removes a comment from the document.
+ */
+export class DeleteCommentOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The index of the comment.
+     */
+    public commentIndex: number;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< DeleteCommentOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for DeleteDocumentProperty operation.
- * Deletes document property.
+ * Removes a document property.
  */
 export class DeleteDocumentPropertyRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * The property name.
+     * The name of the property.
      */
     public propertyName: string;
 
@@ -1730,12 +2166,57 @@ export class DeleteDocumentPropertyRequest {
 }
 
 /**
+ * Request model for DeleteDocumentPropertyOnline operation.
+ * Removes a document property.
+ */
+export class DeleteDocumentPropertyOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The name of the property.
+     */
+    public propertyName: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< DeleteDocumentPropertyOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for DeleteDrawingObject operation.
- * Removes drawing object from document.
+ * Removes a DrawingObject from the document node.
  */
 export class DeleteDrawingObjectRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -1745,7 +2226,7 @@ export class DeleteDrawingObjectRequest {
     public index: number;
 
     /**
-     * Path to the node, which contains collection of drawing objects.
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -1790,12 +2271,62 @@ export class DeleteDrawingObjectRequest {
 }
 
 /**
+ * Request model for DeleteDrawingObjectOnline operation.
+ * Removes a DrawingObject from the document node.
+ */
+export class DeleteDrawingObjectOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< DeleteDrawingObjectOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for DeleteField operation.
- * Deletes field from document.
+ * Removes a field from the document node.
  */
 export class DeleteFieldRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -1805,7 +2336,7 @@ export class DeleteFieldRequest {
     public index: number;
 
     /**
-     * Path to the node, which contains collection of fields.
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -1850,17 +2381,67 @@ export class DeleteFieldRequest {
 }
 
 /**
+ * Request model for DeleteFieldOnline operation.
+ * Removes a field from the document node.
+ */
+export class DeleteFieldOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< DeleteFieldOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for DeleteFields operation.
- * Removes fields from section paragraph.
+ * Removes fields from the document node.
  */
 export class DeleteFieldsRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * Path to the node, which contains collection of fields.
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -1900,6 +2481,51 @@ export class DeleteFieldsRequest {
     public revisionDateTime: string;
 
     public constructor(init?: Partial< DeleteFieldsRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
+ * Request model for DeleteFieldsOnline operation.
+ * Removes fields from the document node.
+ */
+export class DeleteFieldsOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< DeleteFieldsOnlineRequest >) {
         Object.assign(this, init);
     }
 }
@@ -1956,11 +2582,11 @@ export class DeleteFolderRequest {
 
 /**
  * Request model for DeleteFootnote operation.
- * Removes footnote from document.
+ * Removes a footnote from the document node.
  */
 export class DeleteFootnoteRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -1970,7 +2596,7 @@ export class DeleteFootnoteRequest {
     public index: number;
 
     /**
-     * Path to the node, which contains collection of footnotes.
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -2015,12 +2641,62 @@ export class DeleteFootnoteRequest {
 }
 
 /**
+ * Request model for DeleteFootnoteOnline operation.
+ * Removes a footnote from the document node.
+ */
+export class DeleteFootnoteOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< DeleteFootnoteOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for DeleteFormField operation.
- * Removes form field from document.
+ * Removes a form field from the document node.
  */
 export class DeleteFormFieldRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -2030,7 +2706,7 @@ export class DeleteFormFieldRequest {
     public index: number;
 
     /**
-     * Path to the node that contains collection of formfields.
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -2075,17 +2751,67 @@ export class DeleteFormFieldRequest {
 }
 
 /**
+ * Request model for DeleteFormFieldOnline operation.
+ * Removes a form field from the document node.
+ */
+export class DeleteFormFieldOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< DeleteFormFieldOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for DeleteHeaderFooter operation.
- * Deletes header/footer from document.
+ * Removes a HeaderFooter object from the document section.
  */
 export class DeleteHeaderFooterRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * Path to parent section.
+     * The path to the section in the document tree.
      */
     public sectionPath: string;
 
@@ -2135,17 +2861,67 @@ export class DeleteHeaderFooterRequest {
 }
 
 /**
+ * Request model for DeleteHeaderFooterOnline operation.
+ * Removes a HeaderFooter object from the document section.
+ */
+export class DeleteHeaderFooterOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The path to the section in the document tree.
+     */
+    public sectionPath: string;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< DeleteHeaderFooterOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for DeleteHeadersFooters operation.
- * Deletes document headers and footers.
+ * Removes HeaderFooter objects from the document section.
  */
 export class DeleteHeadersFootersRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * Path to parent section.
+     * The path to the section in the document tree.
      */
     public sectionPath: string;
 
@@ -2185,7 +2961,7 @@ export class DeleteHeadersFootersRequest {
     public revisionDateTime: string;
 
     /**
-     * List of types of headers and footers.
+     * The list of HeaderFooter types.
      */
     public headersFootersTypes: string;
 
@@ -2195,12 +2971,62 @@ export class DeleteHeadersFootersRequest {
 }
 
 /**
+ * Request model for DeleteHeadersFootersOnline operation.
+ * Removes HeaderFooter objects from the document section.
+ */
+export class DeleteHeadersFootersOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The path to the section in the document tree.
+     */
+    public sectionPath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    /**
+     * The list of HeaderFooter types.
+     */
+    public headersFootersTypes: string;
+
+    public constructor(init?: Partial< DeleteHeadersFootersOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for DeleteMacros operation.
- * Removes macros from document.
+ * Removes macros from the document.
  */
 export class DeleteMacrosRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -2245,12 +3071,52 @@ export class DeleteMacrosRequest {
 }
 
 /**
+ * Request model for DeleteMacrosOnline operation.
+ * Removes macros from the document.
+ */
+export class DeleteMacrosOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< DeleteMacrosOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for DeleteOfficeMathObject operation.
- * Removes OfficeMath object from document.
+ * Removes an OfficeMath object from the document node.
  */
 export class DeleteOfficeMathObjectRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -2260,7 +3126,7 @@ export class DeleteOfficeMathObjectRequest {
     public index: number;
 
     /**
-     * Path to the node, which contains collection of OfficeMath objects.
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -2305,12 +3171,62 @@ export class DeleteOfficeMathObjectRequest {
 }
 
 /**
+ * Request model for DeleteOfficeMathObjectOnline operation.
+ * Removes an OfficeMath object from the document node.
+ */
+export class DeleteOfficeMathObjectOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< DeleteOfficeMathObjectOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for DeleteParagraph operation.
- * Removes paragraph from section.
+ * Removes a paragraph from the document node.
  */
 export class DeleteParagraphRequest {
     /**
-     * The file name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -2320,7 +3236,7 @@ export class DeleteParagraphRequest {
     public index: number;
 
     /**
-     * Path to the node which contains paragraphs.
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -2366,11 +3282,11 @@ export class DeleteParagraphRequest {
 
 /**
  * Request model for DeleteParagraphListFormat operation.
- * Delete paragraph list format, returns updated list format properties.
+ * Removes the formatting properties of a paragraph list from the document node.
  */
 export class DeleteParagraphListFormatRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -2380,7 +3296,7 @@ export class DeleteParagraphListFormatRequest {
     public index: number;
 
     /**
-     * Path to the node which contains paragraphs.
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -2425,17 +3341,117 @@ export class DeleteParagraphListFormatRequest {
 }
 
 /**
+ * Request model for DeleteParagraphListFormatOnline operation.
+ * Removes the formatting properties of a paragraph list from the document node.
+ */
+export class DeleteParagraphListFormatOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< DeleteParagraphListFormatOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
+ * Request model for DeleteParagraphOnline operation.
+ * Removes a paragraph from the document node.
+ */
+export class DeleteParagraphOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< DeleteParagraphOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for DeleteParagraphTabStop operation.
- * Remove the i-th tab stop.
+ * Removes a paragraph tab stop from the document node.
  */
 export class DeleteParagraphTabStopRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * a tab stop position to remove.
+     * The position of a tab stop to remove.
      */
     public position: number;
 
@@ -2445,7 +3461,7 @@ export class DeleteParagraphTabStopRequest {
     public index: number;
 
     /**
-     * Path to the node which contains paragraph.
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -2481,16 +3497,16 @@ export class DeleteParagraphTabStopRequest {
 
 /**
  * Request model for DeleteRun operation.
- * Removes run from document.
+ * Removes a Run object from the paragraph.
  */
 export class DeleteRunRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * Path to parent paragraph.
+     * The path to the paragraph in the document tree.
      */
     public paragraphPath: string;
 
@@ -2540,17 +3556,67 @@ export class DeleteRunRequest {
 }
 
 /**
+ * Request model for DeleteRunOnline operation.
+ * Removes a Run object from the paragraph.
+ */
+export class DeleteRunOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The path to the paragraph in the document tree.
+     */
+    public paragraphPath: string;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< DeleteRunOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for DeleteSection operation.
- * Removes section from document.
+ * Removes a section from the document.
  */
 export class DeleteSectionRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * Section index.
+     * The index of the section.
      */
     public sectionIndex: number;
 
@@ -2595,12 +3661,57 @@ export class DeleteSectionRequest {
 }
 
 /**
+ * Request model for DeleteSectionOnline operation.
+ * Removes a section from the document.
+ */
+export class DeleteSectionOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The index of the section.
+     */
+    public sectionIndex: number;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< DeleteSectionOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for DeleteTable operation.
- * Deletes a table.
+ * Removes a table from the document node.
  */
 export class DeleteTableRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -2610,7 +3721,7 @@ export class DeleteTableRequest {
     public index: number;
 
     /**
-     * Path to the node, which contains tables.
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -2656,16 +3767,16 @@ export class DeleteTableRequest {
 
 /**
  * Request model for DeleteTableCell operation.
- * Deletes a table cell.
+ * Removes a cell from the table row.
  */
 export class DeleteTableCellRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * Path to table row.
+     * The path to the table row in the document tree.
      */
     public tableRowPath: string;
 
@@ -2715,17 +3826,117 @@ export class DeleteTableCellRequest {
 }
 
 /**
+ * Request model for DeleteTableCellOnline operation.
+ * Removes a cell from the table row.
+ */
+export class DeleteTableCellOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The path to the table row in the document tree.
+     */
+    public tableRowPath: string;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< DeleteTableCellOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
+ * Request model for DeleteTableOnline operation.
+ * Removes a table from the document node.
+ */
+export class DeleteTableOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< DeleteTableOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for DeleteTableRow operation.
- * Deletes a table row.
+ * Removes a row from the table.
  */
 export class DeleteTableRowRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * Path to table.
+     * The path to the table in the document tree.
      */
     public tablePath: string;
 
@@ -2775,12 +3986,62 @@ export class DeleteTableRowRequest {
 }
 
 /**
+ * Request model for DeleteTableRowOnline operation.
+ * Removes a row from the table.
+ */
+export class DeleteTableRowOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The path to the table in the document tree.
+     */
+    public tablePath: string;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< DeleteTableRowOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for DeleteWatermark operation.
- * Deletes watermark (for deleting last watermark from the document).
+ * Removes a watermark from the document.
  */
 export class DeleteWatermarkRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -2825,6 +4086,46 @@ export class DeleteWatermarkRequest {
 }
 
 /**
+ * Request model for DeleteWatermarkOnline operation.
+ * Removes a watermark from the document.
+ */
+export class DeleteWatermarkOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< DeleteWatermarkOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for DownloadFile operation.
  * Download file.
  */
@@ -2851,11 +4152,11 @@ export class DownloadFileRequest {
 
 /**
  * Request model for ExecuteMailMerge operation.
- * Executes document mail merge operation.
+ * Executes a Mail Merge operation.
  */
 export class ExecuteMailMergeRequest {
     /**
-     * The template name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -2885,29 +4186,27 @@ export class ExecuteMailMergeRequest {
     public password: string;
 
     /**
-     * With regions flag.
+     * The flag indicating whether to execute Mail Merge operation with regions.
      */
     public withRegions: boolean;
 
     /**
-     * Mail merge data file.
+     * The data file.
      */
     public mailMergeDataFile: string;
 
     /**
-     * Clean up options.
+     * The cleanup options.
      */
     public cleanup: string;
 
     /**
-     * Gets or sets a value indicating whether paragraph with TableStart or.
-     * TableEnd field should be fully included into mail merge region or particular range between TableStart and TableEnd fields.
-     * The default value is true.
+     * The flag indicating whether paragraph with TableStart or TableEnd field should be fully included into mail merge region or particular range between TableStart and TableEnd fields. The default value is true.
      */
     public useWholeParagraphAsRegion: boolean;
 
     /**
-     * Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved with autogenerated name.
+     * The filename of the output document. If this parameter is omitted, the result will be saved with autogenerated name.
      */
     public destFileName: string;
 
@@ -2918,7 +4217,7 @@ export class ExecuteMailMergeRequest {
 
 /**
  * Request model for ExecuteMailMergeOnline operation.
- * Executes document mail merge online.
+ * Executes a Mail Merge operation online.
  */
 export class ExecuteMailMergeOnlineRequest {
     /**
@@ -2932,17 +4231,17 @@ export class ExecuteMailMergeOnlineRequest {
     public data: Readable;
 
     /**
-     * With regions flag.
+     * The flag indicating whether to execute Mail Merge operation with regions.
      */
     public withRegions: boolean;
 
     /**
-     * Clean up options.
+     * The cleanup options.
      */
     public cleanup: string;
 
     /**
-     * This file name will be used when resulting document has dynamic field for document file name {filename}. If it is not set, "template" will be used instead.
+     * The filename of the output document, that will be used when the resulting document has a dynamic field {filename}. If it is not set, the "template" will be used instead.
      */
     public documentFileName: string;
 
@@ -2953,11 +4252,11 @@ export class ExecuteMailMergeOnlineRequest {
 
 /**
  * Request model for GetAvailableFonts operation.
- * Gets the list of fonts, available for document processing.
+ * Reads available fonts from the document.
  */
 export class GetAvailableFontsRequest {
     /**
-     * Folder in filestorage with custom fonts.
+     * The folder in cloud storage with custom fonts.
      */
     public fontsLocation: string;
 
@@ -2968,16 +4267,16 @@ export class GetAvailableFontsRequest {
 
 /**
  * Request model for GetBookmarkByName operation.
- * Reads document bookmark data by its name.
+ * Reads a bookmark, specified by name, from the document.
  */
 export class GetBookmarkByNameRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * The bookmark name.
+     * The name of the bookmark.
      */
     public bookmarkName: string;
 
@@ -3007,12 +4306,42 @@ export class GetBookmarkByNameRequest {
 }
 
 /**
+ * Request model for GetBookmarkByNameOnline operation.
+ * Reads a bookmark, specified by name, from the document.
+ */
+export class GetBookmarkByNameOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The name of the bookmark.
+     */
+    public bookmarkName: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetBookmarkByNameOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for GetBookmarks operation.
- * Reads document bookmarks common info.
+ * Reads bookmarks from the document.
  */
 export class GetBookmarksRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -3042,12 +4371,37 @@ export class GetBookmarksRequest {
 }
 
 /**
+ * Request model for GetBookmarksOnline operation.
+ * Reads bookmarks from the document.
+ */
+export class GetBookmarksOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetBookmarksOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for GetBorder operation.
- * 'nodePath' should refer to paragraph, cell or row.
+ * The 'nodePath' parameter should refer to a paragraph, a cell or a row.
  */
 export class GetBorderRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -3057,7 +4411,7 @@ export class GetBorderRequest {
     public borderType: string;
 
     /**
-     * Path to the node with border(node should be paragraph, cell or row).
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -3087,17 +4441,52 @@ export class GetBorderRequest {
 }
 
 /**
+ * Request model for GetBorderOnline operation.
+ * Reads a border from the document node.
+ */
+export class GetBorderOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Border type.
+     */
+    public borderType: string;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetBorderOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for GetBorders operation.
- * 'nodePath' should refer to paragraph, cell or row.
+ * Reads borders from the document node.
  */
 export class GetBordersRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * Path to the node with borders (node should be paragraph, cell or row).
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -3127,17 +4516,47 @@ export class GetBordersRequest {
 }
 
 /**
+ * Request model for GetBordersOnline operation.
+ * Reads borders from the document node.
+ */
+export class GetBordersOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetBordersOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for GetComment operation.
- * Gets comment from document.
+ * Reads a comment from the document.
  */
 export class GetCommentRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * The comment index.
+     * The index of the comment.
      */
     public commentIndex: number;
 
@@ -3167,12 +4586,42 @@ export class GetCommentRequest {
 }
 
 /**
+ * Request model for GetCommentOnline operation.
+ * Reads a comment from the document.
+ */
+export class GetCommentOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The index of the comment.
+     */
+    public commentIndex: number;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetCommentOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for GetComments operation.
- * Gets comments from document.
+ * Reads comments from the document.
  */
 export class GetCommentsRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -3202,12 +4651,37 @@ export class GetCommentsRequest {
 }
 
 /**
+ * Request model for GetCommentsOnline operation.
+ * Reads comments from the document.
+ */
+export class GetCommentsOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetCommentsOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for GetDocument operation.
- * Reads document common info.
+ * Reads common information from the document.
  */
 export class GetDocumentRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public documentName: string;
 
@@ -3238,11 +4712,11 @@ export class GetDocumentRequest {
 
 /**
  * Request model for GetDocumentDrawingObjectByIndex operation.
- * Reads document drawing object common info by its index or convert to format specified.
+ * Reads a DrawingObject from the document node.
  */
 export class GetDocumentDrawingObjectByIndexRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -3252,7 +4726,7 @@ export class GetDocumentDrawingObjectByIndexRequest {
     public index: number;
 
     /**
-     * Path to the node, which contains collection of drawing objects.
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -3282,12 +4756,47 @@ export class GetDocumentDrawingObjectByIndexRequest {
 }
 
 /**
+ * Request model for GetDocumentDrawingObjectByIndexOnline operation.
+ * Reads a DrawingObject from the document node.
+ */
+export class GetDocumentDrawingObjectByIndexOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetDocumentDrawingObjectByIndexOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for GetDocumentDrawingObjectImageData operation.
- * Reads drawing object image data.
+ * Reads image data of a DrawingObject from the document node.
  */
 export class GetDocumentDrawingObjectImageDataRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -3297,7 +4806,7 @@ export class GetDocumentDrawingObjectImageDataRequest {
     public index: number;
 
     /**
-     * Path to the node, which contains collection of drawing objects.
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -3327,12 +4836,47 @@ export class GetDocumentDrawingObjectImageDataRequest {
 }
 
 /**
+ * Request model for GetDocumentDrawingObjectImageDataOnline operation.
+ * Reads image data of a DrawingObject from the document node.
+ */
+export class GetDocumentDrawingObjectImageDataOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetDocumentDrawingObjectImageDataOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for GetDocumentDrawingObjectOleData operation.
- * Gets drawing object OLE data.
+ * Reads OLE data of a DrawingObject from the document node.
  */
 export class GetDocumentDrawingObjectOleDataRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -3342,7 +4886,7 @@ export class GetDocumentDrawingObjectOleDataRequest {
     public index: number;
 
     /**
-     * Path to the node, which contains collection of drawing objects.
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -3372,17 +4916,52 @@ export class GetDocumentDrawingObjectOleDataRequest {
 }
 
 /**
+ * Request model for GetDocumentDrawingObjectOleDataOnline operation.
+ * Reads OLE data of a DrawingObject from the document node.
+ */
+export class GetDocumentDrawingObjectOleDataOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetDocumentDrawingObjectOleDataOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for GetDocumentDrawingObjects operation.
- * Reads document drawing objects common info.
+ * Reads DrawingObjects from the document node.
  */
 export class GetDocumentDrawingObjectsRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * Path to the node, which contains collection of drawing objects.
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -3412,12 +4991,42 @@ export class GetDocumentDrawingObjectsRequest {
 }
 
 /**
+ * Request model for GetDocumentDrawingObjectsOnline operation.
+ * Reads DrawingObjects from the document node.
+ */
+export class GetDocumentDrawingObjectsOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetDocumentDrawingObjectsOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for GetDocumentFieldNames operation.
- * Reads document field names.
+ * Reads merge field names from the document.
  */
 export class GetDocumentFieldNamesRequest {
     /**
-     * The template name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -3442,7 +5051,7 @@ export class GetDocumentFieldNamesRequest {
     public password: string;
 
     /**
-     * If true, result includes "mustache" field names.
+     * The flag indicating whether to use non merge fields. If true, result includes "mustache" field names.
      */
     public useNonMergeFields: boolean;
 
@@ -3453,7 +5062,7 @@ export class GetDocumentFieldNamesRequest {
 
 /**
  * Request model for GetDocumentFieldNamesOnline operation.
- * Reads document field names.
+ * Reads merge field names from the document.
  */
 export class GetDocumentFieldNamesOnlineRequest {
     /**
@@ -3462,7 +5071,17 @@ export class GetDocumentFieldNamesOnlineRequest {
     public document: Readable;
 
     /**
-     * If true, result includes "mustache" field names.
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * The flag indicating whether to use non merge fields. If true, result includes "mustache" field names.
      */
     public useNonMergeFields: boolean;
 
@@ -3473,16 +5092,16 @@ export class GetDocumentFieldNamesOnlineRequest {
 
 /**
  * Request model for GetDocumentHyperlinkByIndex operation.
- * Reads document hyperlink by its index.
+ * Reads a hyperlink from the document.
  */
 export class GetDocumentHyperlinkByIndexRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * The hyperlink index.
+     * The index of the hyperlink.
      */
     public hyperlinkIndex: number;
 
@@ -3512,12 +5131,42 @@ export class GetDocumentHyperlinkByIndexRequest {
 }
 
 /**
+ * Request model for GetDocumentHyperlinkByIndexOnline operation.
+ * Reads a hyperlink from the document.
+ */
+export class GetDocumentHyperlinkByIndexOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The index of the hyperlink.
+     */
+    public hyperlinkIndex: number;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetDocumentHyperlinkByIndexOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for GetDocumentHyperlinks operation.
- * Reads document hyperlinks common info.
+ * Reads hyperlinks from the document.
  */
 export class GetDocumentHyperlinksRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -3547,12 +5196,37 @@ export class GetDocumentHyperlinksRequest {
 }
 
 /**
+ * Request model for GetDocumentHyperlinksOnline operation.
+ * Reads hyperlinks from the document.
+ */
+export class GetDocumentHyperlinksOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetDocumentHyperlinksOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for GetDocumentProperties operation.
- * Reads document properties info.
+ * Reads document properties.
  */
 export class GetDocumentPropertiesRequest {
     /**
-     * The document's name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -3582,17 +5256,42 @@ export class GetDocumentPropertiesRequest {
 }
 
 /**
+ * Request model for GetDocumentPropertiesOnline operation.
+ * Reads document properties.
+ */
+export class GetDocumentPropertiesOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetDocumentPropertiesOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for GetDocumentProperty operation.
- * Reads document property info by the property name.
+ * Reads a document property.
  */
 export class GetDocumentPropertyRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * The property name.
+     * The name of the property.
      */
     public propertyName: string;
 
@@ -3622,12 +5321,42 @@ export class GetDocumentPropertyRequest {
 }
 
 /**
+ * Request model for GetDocumentPropertyOnline operation.
+ * Reads a document property.
+ */
+export class GetDocumentPropertyOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The name of the property.
+     */
+    public propertyName: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetDocumentPropertyOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for GetDocumentProtection operation.
- * Reads document protection common info.
+ * Reads protection properties from the document.
  */
 export class GetDocumentProtectionRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -3657,12 +5386,37 @@ export class GetDocumentProtectionRequest {
 }
 
 /**
+ * Request model for GetDocumentProtectionOnline operation.
+ * Reads protection properties from the document.
+ */
+export class GetDocumentProtectionOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetDocumentProtectionOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for GetDocumentStatistics operation.
  * Reads document statistics.
  */
 export class GetDocumentStatisticsRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -3687,17 +5441,17 @@ export class GetDocumentStatisticsRequest {
     public password: string;
 
     /**
-     * Support including/excluding comments from the WordCount. Default value is "false".
+     * The flag indicating whether to include comments from the WordCount. The default value is "false".
      */
     public includeComments: boolean;
 
     /**
-     * Support including/excluding footnotes from the WordCount. Default value is "false".
+     * The flag indicating whether to include footnotes from the WordCount. The default value is "false".
      */
     public includeFootnotes: boolean;
 
     /**
-     * Support including/excluding shape's text from the WordCount. Default value is "false".
+     * The flag indicating whether to include shape's text from the WordCount. The default value is "false".
      */
     public includeTextInShapes: boolean;
 
@@ -3717,17 +5471,27 @@ export class GetDocumentStatisticsOnlineRequest {
     public document: Readable;
 
     /**
-     * Support including/excluding comments from the WordCount. Default value is "false".
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * The flag indicating whether to include comments from the WordCount. The default value is "false".
      */
     public includeComments: boolean;
 
     /**
-     * Support including/excluding footnotes from the WordCount. Default value is "false".
+     * The flag indicating whether to include footnotes from the WordCount. The default value is "false".
      */
     public includeFootnotes: boolean;
 
     /**
-     * Support including/excluding shape's text from the WordCount. Default value is "false".
+     * The flag indicating whether to include shape's text from the WordCount. The default value is "false".
      */
     public includeTextInShapes: boolean;
 
@@ -3738,11 +5502,11 @@ export class GetDocumentStatisticsOnlineRequest {
 
 /**
  * Request model for GetDocumentWithFormat operation.
- * Exports the document into the specified format.
+ * Converts a document in cloud storage to the specified format.
  */
 export class GetDocumentWithFormatRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -3772,7 +5536,7 @@ export class GetDocumentWithFormatRequest {
     public password: string;
 
     /**
-     * Path to save the result.
+     * The path to the output document.
      */
     public outPath: string;
 
@@ -3788,11 +5552,11 @@ export class GetDocumentWithFormatRequest {
 
 /**
  * Request model for GetField operation.
- * Gets field from document.
+ * Reads a field from the document node.
  */
 export class GetFieldRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -3802,7 +5566,7 @@ export class GetFieldRequest {
     public index: number;
 
     /**
-     * Path to the node, which contains collection of fields.
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -3832,17 +5596,52 @@ export class GetFieldRequest {
 }
 
 /**
+ * Request model for GetFieldOnline operation.
+ * Reads a field from the document node.
+ */
+export class GetFieldOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetFieldOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for GetFields operation.
- * Get fields from document.
+ * Reads fields from the document node.
  */
 export class GetFieldsRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * Path to the node, which contains collection of fields.
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -3872,6 +5671,36 @@ export class GetFieldsRequest {
 }
 
 /**
+ * Request model for GetFieldsOnline operation.
+ * Reads fields from the document node.
+ */
+export class GetFieldsOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetFieldsOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for GetFilesList operation.
  * Get all files and folders within a folder.
  */
@@ -3893,11 +5722,11 @@ export class GetFilesListRequest {
 
 /**
  * Request model for GetFootnote operation.
- * Reads footnote by index.
+ * Reads a footnote from the document node.
  */
 export class GetFootnoteRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -3907,7 +5736,7 @@ export class GetFootnoteRequest {
     public index: number;
 
     /**
-     * Path to the node, which contains collection of footnotes.
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -3937,17 +5766,52 @@ export class GetFootnoteRequest {
 }
 
 /**
+ * Request model for GetFootnoteOnline operation.
+ * Reads a footnote from the document node.
+ */
+export class GetFootnoteOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetFootnoteOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for GetFootnotes operation.
- * Gets footnotes from document.
+ * Reads footnotes from the document node.
  */
 export class GetFootnotesRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * Path to the node, which contains collection of footnotes.
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -3977,12 +5841,42 @@ export class GetFootnotesRequest {
 }
 
 /**
+ * Request model for GetFootnotesOnline operation.
+ * Reads footnotes from the document node.
+ */
+export class GetFootnotesOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetFootnotesOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for GetFormField operation.
- * Returns representation of an one of the form field.
+ * Reads a form field from the document node.
  */
 export class GetFormFieldRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -3992,7 +5886,7 @@ export class GetFormFieldRequest {
     public index: number;
 
     /**
-     * Path to the node that contains collection of formfields.
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -4022,17 +5916,52 @@ export class GetFormFieldRequest {
 }
 
 /**
+ * Request model for GetFormFieldOnline operation.
+ * Reads a form field from the document node.
+ */
+export class GetFormFieldOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetFormFieldOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for GetFormFields operation.
- * Gets form fields from document.
+ * Reads form fields from the document node.
  */
 export class GetFormFieldsRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * Path to the node containing collection of form fields.
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -4062,17 +5991,47 @@ export class GetFormFieldsRequest {
 }
 
 /**
+ * Request model for GetFormFieldsOnline operation.
+ * Reads form fields from the document node.
+ */
+export class GetFormFieldsOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetFormFieldsOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for GetHeaderFooter operation.
- * Returns a header/footer from the document by index.
+ * Reads a HeaderFooter object from the document.
  */
 export class GetHeaderFooterRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * Header/footer index.
+     * The index of the HeaderFooter object.
      */
     public headerFooterIndex: number;
 
@@ -4097,7 +6056,7 @@ export class GetHeaderFooterRequest {
     public password: string;
 
     /**
-     * List of types of headers and footers.
+     * The list of HeaderFooter types.
      */
     public filterByType: string;
 
@@ -4108,21 +6067,21 @@ export class GetHeaderFooterRequest {
 
 /**
  * Request model for GetHeaderFooterOfSection operation.
- * Returns a header/footer from the document section.
+ * Reads a HeaderFooter object from the document section.
  */
 export class GetHeaderFooterOfSectionRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * Header/footer index.
+     * The index of the HeaderFooter object.
      */
     public headerFooterIndex: number;
 
     /**
-     * Section index.
+     * The index of the section.
      */
     public sectionIndex: number;
 
@@ -4147,7 +6106,7 @@ export class GetHeaderFooterOfSectionRequest {
     public password: string;
 
     /**
-     * List of types of headers and footers.
+     * The list of HeaderFooter types.
      */
     public filterByType: string;
 
@@ -4157,17 +6116,92 @@ export class GetHeaderFooterOfSectionRequest {
 }
 
 /**
+ * Request model for GetHeaderFooterOfSectionOnline operation.
+ * Reads a HeaderFooter object from the document section.
+ */
+export class GetHeaderFooterOfSectionOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The index of the HeaderFooter object.
+     */
+    public headerFooterIndex: number;
+
+    /**
+     * The index of the section.
+     */
+    public sectionIndex: number;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * The list of HeaderFooter types.
+     */
+    public filterByType: string;
+
+    public constructor(init?: Partial< GetHeaderFooterOfSectionOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
+ * Request model for GetHeaderFooterOnline operation.
+ * Reads a HeaderFooter object from the document.
+ */
+export class GetHeaderFooterOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The index of the HeaderFooter object.
+     */
+    public headerFooterIndex: number;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * The list of HeaderFooter types.
+     */
+    public filterByType: string;
+
+    public constructor(init?: Partial< GetHeaderFooterOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for GetHeaderFooters operation.
- * Returns a list of header/footers from the document.
+ * Reads HeaderFooter objects from the document section.
  */
 export class GetHeaderFootersRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * Path to parent section.
+     * The path to the section in the document tree.
      */
     public sectionPath: string;
 
@@ -4192,7 +6226,7 @@ export class GetHeaderFootersRequest {
     public password: string;
 
     /**
-     * List of types of headers and footers.
+     * The list of HeaderFooter types.
      */
     public filterByType: string;
 
@@ -4202,17 +6236,52 @@ export class GetHeaderFootersRequest {
 }
 
 /**
+ * Request model for GetHeaderFootersOnline operation.
+ * Reads HeaderFooter objects from the document section.
+ */
+export class GetHeaderFootersOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The path to the section in the document tree.
+     */
+    public sectionPath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * The list of HeaderFooter types.
+     */
+    public filterByType: string;
+
+    public constructor(init?: Partial< GetHeaderFootersOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for GetList operation.
- * This resource represents one of the lists contained in the document.
+ * Reads a list from the document.
  */
 export class GetListRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * List unique identifier.
+     * The list Id.
      */
     public listId: number;
 
@@ -4242,12 +6311,42 @@ export class GetListRequest {
 }
 
 /**
+ * Request model for GetListOnline operation.
+ * Reads a list from the document.
+ */
+export class GetListOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The list Id.
+     */
+    public listId: number;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetListOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for GetLists operation.
- * Returns a list of lists that are contained in the document.
+ * Reads lists from the document.
  */
 export class GetListsRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -4277,12 +6376,37 @@ export class GetListsRequest {
 }
 
 /**
+ * Request model for GetListsOnline operation.
+ * Reads lists from the document.
+ */
+export class GetListsOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetListsOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for GetOfficeMathObject operation.
- * Reads OfficeMath object by index.
+ * Reads an OfficeMath object from the document node.
  */
 export class GetOfficeMathObjectRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -4292,7 +6416,7 @@ export class GetOfficeMathObjectRequest {
     public index: number;
 
     /**
-     * Path to the node, which contains collection of OfficeMath objects.
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -4322,17 +6446,52 @@ export class GetOfficeMathObjectRequest {
 }
 
 /**
+ * Request model for GetOfficeMathObjectOnline operation.
+ * Reads an OfficeMath object from the document node.
+ */
+export class GetOfficeMathObjectOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetOfficeMathObjectOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for GetOfficeMathObjects operation.
- * Gets OfficeMath objects from document.
+ * Reads OfficeMath objects from the document node.
  */
 export class GetOfficeMathObjectsRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * Path to the node, which contains collection of OfficeMath objects.
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -4362,12 +6521,42 @@ export class GetOfficeMathObjectsRequest {
 }
 
 /**
+ * Request model for GetOfficeMathObjectsOnline operation.
+ * Reads OfficeMath objects from the document node.
+ */
+export class GetOfficeMathObjectsOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetOfficeMathObjectsOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for GetParagraph operation.
- * This resource represents one of the paragraphs contained in the document.
+ * Reads a paragraph from the document node.
  */
 export class GetParagraphRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -4377,7 +6566,7 @@ export class GetParagraphRequest {
     public index: number;
 
     /**
-     * Path to the node which contains paragraphs.
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -4408,11 +6597,11 @@ export class GetParagraphRequest {
 
 /**
  * Request model for GetParagraphFormat operation.
- * Represents all the formatting for a paragraph.
+ * Reads the formatting properties of a paragraph from the document node.
  */
 export class GetParagraphFormatRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -4422,7 +6611,7 @@ export class GetParagraphFormatRequest {
     public index: number;
 
     /**
-     * Path to the node which contains paragraphs.
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -4452,12 +6641,47 @@ export class GetParagraphFormatRequest {
 }
 
 /**
+ * Request model for GetParagraphFormatOnline operation.
+ * Reads the formatting properties of a paragraph from the document node.
+ */
+export class GetParagraphFormatOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetParagraphFormatOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for GetParagraphListFormat operation.
- * Represents list format for a paragraph.
+ * Reads the formatting properties of a paragraph list from the document node.
  */
 export class GetParagraphListFormatRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -4467,7 +6691,7 @@ export class GetParagraphListFormatRequest {
     public index: number;
 
     /**
-     * Path to the node which contains paragraphs.
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -4497,17 +6721,87 @@ export class GetParagraphListFormatRequest {
 }
 
 /**
+ * Request model for GetParagraphListFormatOnline operation.
+ * Reads the formatting properties of a paragraph list from the document node.
+ */
+export class GetParagraphListFormatOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetParagraphListFormatOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
+ * Request model for GetParagraphOnline operation.
+ * Reads a paragraph from the document node.
+ */
+export class GetParagraphOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetParagraphOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for GetParagraphs operation.
- * Returns a list of paragraphs that are contained in the document.
+ * Reads paragraphs from the document node.
  */
 export class GetParagraphsRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * Path to the node which contains paragraphs.
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -4537,12 +6831,42 @@ export class GetParagraphsRequest {
 }
 
 /**
+ * Request model for GetParagraphsOnline operation.
+ * Reads paragraphs from the document node.
+ */
+export class GetParagraphsOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetParagraphsOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for GetParagraphTabStops operation.
- * Get all tab stops for the paragraph.
+ * Reads paragraph tab stops from the document node.
  */
 export class GetParagraphTabStopsRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -4552,7 +6876,7 @@ export class GetParagraphTabStopsRequest {
     public index: number;
 
     /**
-     * Path to the node which contains paragraph.
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -4582,19 +6906,52 @@ export class GetParagraphTabStopsRequest {
 }
 
 /**
+ * Request model for GetParagraphTabStopsOnline operation.
+ * Reads paragraph tab stops from the document node.
+ */
+export class GetParagraphTabStopsOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetParagraphTabStopsOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for GetRangeText operation.
- * Gets the text from the range.
+ * Reads range text from the document.
  */
 export class GetRangeTextRequest {
     /**
-     * The document.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
      * The range start identifier.
-     * Identifier is the value of the "nodeId" field, which every document node has, extended with the prefix "id".
-     * It looks like "id0.0.7". Also values like "image5" and "table3" can be used as an identifier for images and tables, where the number is an index of the image/table.
      */
     public rangeStartIdentifier: string;
 
@@ -4629,17 +6986,52 @@ export class GetRangeTextRequest {
 }
 
 /**
+ * Request model for GetRangeTextOnline operation.
+ * Reads range text from the document.
+ */
+export class GetRangeTextOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The range start identifier.
+     */
+    public rangeStartIdentifier: string;
+
+    /**
+     * The range end identifier.
+     */
+    public rangeEndIdentifier: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetRangeTextOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for GetRun operation.
- * This resource represents run of text contained in the document.
+ * Reads a Run object from the paragraph.
  */
 export class GetRunRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * Path to parent paragraph.
+     * The path to the paragraph in the document tree.
      */
     public paragraphPath: string;
 
@@ -4675,16 +7067,16 @@ export class GetRunRequest {
 
 /**
  * Request model for GetRunFont operation.
- * This resource represents font of run.
+ * Reads the font properties of a Run object from the paragraph.
  */
 export class GetRunFontRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * Path to parent paragraph.
+     * The path to the paragraph in the document tree.
      */
     public paragraphPath: string;
 
@@ -4719,17 +7111,87 @@ export class GetRunFontRequest {
 }
 
 /**
+ * Request model for GetRunFontOnline operation.
+ * Reads the font properties of a Run object from the paragraph.
+ */
+export class GetRunFontOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The path to the paragraph in the document tree.
+     */
+    public paragraphPath: string;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetRunFontOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
+ * Request model for GetRunOnline operation.
+ * Reads a Run object from the paragraph.
+ */
+export class GetRunOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The path to the paragraph in the document tree.
+     */
+    public paragraphPath: string;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetRunOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for GetRuns operation.
- * This resource represents collection of runs in the paragraph.
+ * Reads Run objects from the paragraph.
  */
 export class GetRunsRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * Path to parent paragraph.
+     * The path to the paragraph in the document tree.
      */
     public paragraphPath: string;
 
@@ -4759,17 +7221,47 @@ export class GetRunsRequest {
 }
 
 /**
+ * Request model for GetRunsOnline operation.
+ * Reads Run objects from the paragraph.
+ */
+export class GetRunsOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The path to the paragraph in the document tree.
+     */
+    public paragraphPath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetRunsOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for GetSection operation.
- * Gets document section by index.
+ * Reads a section from the document.
  */
 export class GetSectionRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * Section index.
+     * The index of the section.
      */
     public sectionIndex: number;
 
@@ -4799,17 +7291,47 @@ export class GetSectionRequest {
 }
 
 /**
+ * Request model for GetSectionOnline operation.
+ * Reads a section from the document.
+ */
+export class GetSectionOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The index of the section.
+     */
+    public sectionIndex: number;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetSectionOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for GetSectionPageSetup operation.
- * Gets page setup of section.
+ * Reads the page setup of a section from the document.
  */
 export class GetSectionPageSetupRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * Section index.
+     * The index of the section.
      */
     public sectionIndex: number;
 
@@ -4839,12 +7361,42 @@ export class GetSectionPageSetupRequest {
 }
 
 /**
+ * Request model for GetSectionPageSetupOnline operation.
+ * Reads the page setup of a section from the document.
+ */
+export class GetSectionPageSetupOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The index of the section.
+     */
+    public sectionIndex: number;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetSectionPageSetupOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for GetSections operation.
- * Returns a list of sections that are contained in the document.
+ * Reads sections from the document.
  */
 export class GetSectionsRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -4874,17 +7426,42 @@ export class GetSectionsRequest {
 }
 
 /**
+ * Request model for GetSectionsOnline operation.
+ * Reads sections from the document.
+ */
+export class GetSectionsOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetSectionsOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for GetStyle operation.
- * This resource represents one of the styles contained in the document.
+ * Reads a style from the document.
  */
 export class GetStyleRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * Style name.
+     * The name of the style.
      */
     public styleName: string;
 
@@ -4915,16 +7492,16 @@ export class GetStyleRequest {
 
 /**
  * Request model for GetStyleFromDocumentElement operation.
- * Gets a style from the document node.
+ * Reads a style from the document node.
  */
 export class GetStyleFromDocumentElementRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * The path to the node that supports a style. Supported node types: ParagraphFormat, List, ListLevel, Table.
+     * The path to the node in the document tree, that supports styles: ParagraphFormat, List, ListLevel, Table.
      */
     public styledNodePath: string;
 
@@ -4954,12 +7531,72 @@ export class GetStyleFromDocumentElementRequest {
 }
 
 /**
+ * Request model for GetStyleFromDocumentElementOnline operation.
+ * Reads a style from the document node.
+ */
+export class GetStyleFromDocumentElementOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The path to the node in the document tree, that supports styles: ParagraphFormat, List, ListLevel, Table.
+     */
+    public styledNodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetStyleFromDocumentElementOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
+ * Request model for GetStyleOnline operation.
+ * Reads a style from the document.
+ */
+export class GetStyleOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The name of the style.
+     */
+    public styleName: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetStyleOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for GetStyles operation.
- * Returns a list of styles contained in the document.
+ * Reads styles from the document.
  */
 export class GetStylesRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -4989,12 +7626,37 @@ export class GetStylesRequest {
 }
 
 /**
+ * Request model for GetStylesOnline operation.
+ * Reads styles from the document.
+ */
+export class GetStylesOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetStylesOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for GetTable operation.
- * Returns a table.
+ * Reads a table from the document node.
  */
 export class GetTableRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -5004,7 +7666,7 @@ export class GetTableRequest {
     public index: number;
 
     /**
-     * Path to the node, which contains tables.
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -5035,16 +7697,16 @@ export class GetTableRequest {
 
 /**
  * Request model for GetTableCell operation.
- * Returns a table cell.
+ * Reads a cell from the table row.
  */
 export class GetTableCellRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * Path to table row.
+     * The path to the table row in the document tree.
      */
     public tableRowPath: string;
 
@@ -5080,16 +7742,16 @@ export class GetTableCellRequest {
 
 /**
  * Request model for GetTableCellFormat operation.
- * Returns a table cell format.
+ * Reads the formatting properties of a table cell.
  */
 export class GetTableCellFormatRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * Path to table row.
+     * The path to the table row in the document tree.
      */
     public tableRowPath: string;
 
@@ -5124,12 +7786,117 @@ export class GetTableCellFormatRequest {
 }
 
 /**
+ * Request model for GetTableCellFormatOnline operation.
+ * Reads the formatting properties of a table cell.
+ */
+export class GetTableCellFormatOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The path to the table row in the document tree.
+     */
+    public tableRowPath: string;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetTableCellFormatOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
+ * Request model for GetTableCellOnline operation.
+ * Reads a cell from the table row.
+ */
+export class GetTableCellOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The path to the table row in the document tree.
+     */
+    public tableRowPath: string;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetTableCellOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
+ * Request model for GetTableOnline operation.
+ * Reads a table from the document node.
+ */
+export class GetTableOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetTableOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for GetTableProperties operation.
- * Returns a table properties.
+ * Reads properties of a table from the document node.
  */
 export class GetTablePropertiesRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -5139,7 +7906,7 @@ export class GetTablePropertiesRequest {
     public index: number;
 
     /**
-     * Path to the node, which contains tables.
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -5169,17 +7936,52 @@ export class GetTablePropertiesRequest {
 }
 
 /**
+ * Request model for GetTablePropertiesOnline operation.
+ * Reads properties of a table from the document node.
+ */
+export class GetTablePropertiesOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetTablePropertiesOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for GetTableRow operation.
- * Returns a table row.
+ * Reads a row from the table.
  */
 export class GetTableRowRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * Path to table.
+     * The path to the table in the document tree.
      */
     public tablePath: string;
 
@@ -5215,16 +8017,16 @@ export class GetTableRowRequest {
 
 /**
  * Request model for GetTableRowFormat operation.
- * Returns a table row format.
+ * Reads the formatting properties of a table row.
  */
 export class GetTableRowFormatRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * Path to table.
+     * The path to the table in the document tree.
      */
     public tablePath: string;
 
@@ -5259,17 +8061,87 @@ export class GetTableRowFormatRequest {
 }
 
 /**
+ * Request model for GetTableRowFormatOnline operation.
+ * Reads the formatting properties of a table row.
+ */
+export class GetTableRowFormatOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The path to the table in the document tree.
+     */
+    public tablePath: string;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetTableRowFormatOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
+ * Request model for GetTableRowOnline operation.
+ * Reads a row from the table.
+ */
+export class GetTableRowOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The path to the table in the document tree.
+     */
+    public tablePath: string;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetTableRowOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for GetTables operation.
- * Returns a list of tables that are contained in the document.
+ * Reads tables from the document node.
  */
 export class GetTablesRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * Path to the node, which contains tables.
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -5299,17 +8171,47 @@ export class GetTablesRequest {
 }
 
 /**
+ * Request model for GetTablesOnline operation.
+ * Reads tables from the document node.
+ */
+export class GetTablesOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< GetTablesOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for InsertComment operation.
- * Adds comment to document, returns inserted comment data.
+ * Inserts a new comment to the document.
  */
 export class InsertCommentRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * The comment data.
+     * Comment data.
      */
     public comment: importedCommentInsert.CommentInsert;
 
@@ -5354,12 +8256,57 @@ export class InsertCommentRequest {
 }
 
 /**
+ * Request model for InsertCommentOnline operation.
+ * Inserts a new comment to the document.
+ */
+export class InsertCommentOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Comment data.
+     */
+    public comment: importedCommentInsert.CommentInsert;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< InsertCommentOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for InsertDrawingObject operation.
- * Adds drawing object to document, returns added  drawing object's data.
+ * Inserts a new DrawingObject to the document node.
  */
 export class InsertDrawingObjectRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -5374,7 +8321,7 @@ export class InsertDrawingObjectRequest {
     public imageFile: Readable;
 
     /**
-     * Path to the node, which contains collection of drawing objects.
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -5419,12 +8366,67 @@ export class InsertDrawingObjectRequest {
 }
 
 /**
+ * Request model for InsertDrawingObjectOnline operation.
+ * Inserts a new DrawingObject to the document node.
+ */
+export class InsertDrawingObjectOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Drawing object parameters.
+     */
+    public drawingObject: importedDrawingObjectInsert.DrawingObjectInsert;
+
+    /**
+     * File with image.
+     */
+    public imageFile: Readable;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< InsertDrawingObjectOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for InsertField operation.
- * Adds field to document, returns inserted field's data.
+ * Inserts a new field to the document node.
  */
 export class InsertFieldRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -5434,7 +8436,7 @@ export class InsertFieldRequest {
     public field: importedFieldInsert.FieldInsert;
 
     /**
-     * Path to the node, which contains collection of fields.
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -5474,7 +8476,7 @@ export class InsertFieldRequest {
     public revisionDateTime: string;
 
     /**
-     * Field will be inserted before node with id="nodeId".
+     * The index of the node. A new field will be inserted before the node with the specified node Id.
      */
     public insertBeforeNode: string;
 
@@ -5484,12 +8486,67 @@ export class InsertFieldRequest {
 }
 
 /**
+ * Request model for InsertFieldOnline operation.
+ * Inserts a new field to the document node.
+ */
+export class InsertFieldOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Field data.
+     */
+    public field: importedFieldInsert.FieldInsert;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    /**
+     * The index of the node. A new field will be inserted before the node with the specified node Id.
+     */
+    public insertBeforeNode: string;
+
+    public constructor(init?: Partial< InsertFieldOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for InsertFootnote operation.
- * Adds footnote to document, returns added footnote's data.
+ * Inserts a new footnote to the document node.
  */
 export class InsertFootnoteRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -5499,7 +8556,7 @@ export class InsertFootnoteRequest {
     public footnoteDto: importedFootnoteInsert.FootnoteInsert;
 
     /**
-     * Path to the node, which contains collection of footnotes.
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -5544,12 +8601,62 @@ export class InsertFootnoteRequest {
 }
 
 /**
+ * Request model for InsertFootnoteOnline operation.
+ * Inserts a new footnote to the document node.
+ */
+export class InsertFootnoteOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Footnote data.
+     */
+    public footnoteDto: importedFootnoteInsert.FootnoteInsert;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< InsertFootnoteOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for InsertFormField operation.
- * Adds form field to paragraph, returns added form field's data.
+ * Inserts a new form field to the document node.
  */
 export class InsertFormFieldRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -5559,7 +8666,7 @@ export class InsertFormFieldRequest {
     public formField: importedFormField.FormField;
 
     /**
-     * Path to the node that contains collection of formfields.
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -5599,7 +8706,7 @@ export class InsertFormFieldRequest {
     public revisionDateTime: string;
 
     /**
-     * Form field will be inserted before node with index.
+     * The index of the node. A new form field will be inserted before the node with the specified node Id.
      */
     public insertBeforeNode: string;
 
@@ -5609,24 +8716,79 @@ export class InsertFormFieldRequest {
 }
 
 /**
+ * Request model for InsertFormFieldOnline operation.
+ * Inserts a new form field to the document node.
+ */
+export class InsertFormFieldOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * From field data.
+     */
+    public formField: importedFormField.FormField;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    /**
+     * The index of the node. A new form field will be inserted before the node with the specified node Id.
+     */
+    public insertBeforeNode: string;
+
+    public constructor(init?: Partial< InsertFormFieldOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for InsertHeaderFooter operation.
- * Inserts to document header or footer.
+ * Inserts a new HeaderFooter object to the document section.
  */
 export class InsertHeaderFooterRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
+
+    /**
+     * The path to the section in the document tree.
+     */
+    public sectionPath: string;
 
     /**
      * Type of header/footer.
      */
     public headerFooterType: string;
-
-    /**
-     * Path to parent section.
-     */
-    public sectionPath: string;
 
     /**
      * Original document folder.
@@ -5669,17 +8831,67 @@ export class InsertHeaderFooterRequest {
 }
 
 /**
+ * Request model for InsertHeaderFooterOnline operation.
+ * Inserts a new HeaderFooter object to the document section.
+ */
+export class InsertHeaderFooterOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The path to the section in the document tree.
+     */
+    public sectionPath: string;
+
+    /**
+     * Type of header/footer.
+     */
+    public headerFooterType: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< InsertHeaderFooterOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for InsertList operation.
- * Adds list to document, returns added list's data.
+ * Inserts a new list to the document.
  */
 export class InsertListRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * List to insert.
+     * List object.
      */
     public listInsert: importedListInsert.ListInsert;
 
@@ -5724,19 +8936,59 @@ export class InsertListRequest {
 }
 
 /**
+ * Request model for InsertListOnline operation.
+ * Inserts a new list to the document.
+ */
+export class InsertListOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * List object.
+     */
+    public listInsert: importedListInsert.ListInsert;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< InsertListOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for InsertOrUpdateParagraphTabStop operation.
- * Insert or resplace tab stop if a tab stop with the position exists.
+ * Inserts a new or updates an existing paragraph tab stop in the document node.
  */
 export class InsertOrUpdateParagraphTabStopRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
-
-    /**
-     * Paragraph tab stop.
-     */
-    public dto: importedTabStopInsert.TabStopInsert;
 
     /**
      * Object index.
@@ -5744,7 +8996,12 @@ export class InsertOrUpdateParagraphTabStopRequest {
     public index: number;
 
     /**
-     * Path to the node which contains paragraph.
+     * TabStopInsert dto.
+     */
+    public tabStopInsertDto: importedTabStopInsert.TabStopInsert;
+
+    /**
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -5779,17 +9036,62 @@ export class InsertOrUpdateParagraphTabStopRequest {
 }
 
 /**
+ * Request model for InsertOrUpdateParagraphTabStopOnline operation.
+ * Inserts a new or updates an existing paragraph tab stop in the document node.
+ */
+export class InsertOrUpdateParagraphTabStopOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * TabStopInsert dto.
+     */
+    public tabStopInsertDto: importedTabStopInsert.TabStopInsert;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    public constructor(init?: Partial< InsertOrUpdateParagraphTabStopOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for InsertPageNumbers operation.
- * Inserts document page numbers.
+ * Inserts page numbers to the document.
  */
 export class InsertPageNumbersRequest {
     /**
-     * A document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * PageNumber with the page numbers settings.
+     * Page number dto.
      */
     public pageNumber: importedPageNumber.PageNumber;
 
@@ -5834,12 +9136,57 @@ export class InsertPageNumbersRequest {
 }
 
 /**
+ * Request model for InsertPageNumbersOnline operation.
+ * Inserts page numbers to the document.
+ */
+export class InsertPageNumbersOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Page number dto.
+     */
+    public pageNumber: importedPageNumber.PageNumber;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< InsertPageNumbersOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for InsertParagraph operation.
- * Adds paragraph to document, returns added paragraph's data.
+ * Inserts a new paragraph to the document node.
  */
 export class InsertParagraphRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -5849,7 +9196,7 @@ export class InsertParagraphRequest {
     public paragraph: importedParagraphInsert.ParagraphInsert;
 
     /**
-     * Path to the node which contains paragraphs.
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -5889,7 +9236,7 @@ export class InsertParagraphRequest {
     public revisionDateTime: string;
 
     /**
-     * Paragraph will be inserted before node with index.
+     * The index of the node. A new paragraph will be inserted before the node with the specified index.
      */
     public insertBeforeNode: string;
 
@@ -5899,17 +9246,72 @@ export class InsertParagraphRequest {
 }
 
 /**
+ * Request model for InsertParagraphOnline operation.
+ * Inserts a new paragraph to the document node.
+ */
+export class InsertParagraphOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Paragraph data.
+     */
+    public paragraph: importedParagraphInsert.ParagraphInsert;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    /**
+     * The index of the node. A new paragraph will be inserted before the node with the specified index.
+     */
+    public insertBeforeNode: string;
+
+    public constructor(init?: Partial< InsertParagraphOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for InsertRun operation.
- * Adds run to document, returns added paragraph's data.
+ * Inserts a new Run object to the paragraph.
  */
 export class InsertRunRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * Path to parent paragraph.
+     * The path to the paragraph in the document tree.
      */
     public paragraphPath: string;
 
@@ -5954,7 +9356,7 @@ export class InsertRunRequest {
     public revisionDateTime: string;
 
     /**
-     * Paragraph will be inserted before node with index.
+     * The index of the node. A new Run object will be inserted before the node with the specified node Id.
      */
     public insertBeforeNode: string;
 
@@ -5964,12 +9366,67 @@ export class InsertRunRequest {
 }
 
 /**
+ * Request model for InsertRunOnline operation.
+ * Inserts a new Run object to the paragraph.
+ */
+export class InsertRunOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The path to the paragraph in the document tree.
+     */
+    public paragraphPath: string;
+
+    /**
+     * Run data.
+     */
+    public run: importedRunInsert.RunInsert;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    /**
+     * The index of the node. A new Run object will be inserted before the node with the specified node Id.
+     */
+    public insertBeforeNode: string;
+
+    public constructor(init?: Partial< InsertRunOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for InsertStyle operation.
- * Adds a style to the document, returns an added style.
+ * Inserts a new style to the document.
  */
 export class InsertStyleRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -6019,22 +9476,67 @@ export class InsertStyleRequest {
 }
 
 /**
+ * Request model for InsertStyleOnline operation.
+ * Inserts a new style to the document.
+ */
+export class InsertStyleOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Style to insert.
+     */
+    public styleInsert: importedStyleInsert.StyleInsert;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< InsertStyleOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for InsertTable operation.
- * Adds table to document, returns added table's data.
+ * Inserts a new table to the document node.
  */
 export class InsertTableRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * Table parameters/.
+     * Table parameters.
      */
     public table: importedTableInsert.TableInsert;
 
     /**
-     * Path to the node, which contains tables.
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -6080,23 +9582,23 @@ export class InsertTableRequest {
 
 /**
  * Request model for InsertTableCell operation.
- * Adds table cell to table, returns added cell's data.
+ * Inserts a new cell to the table row.
  */
 export class InsertTableCellRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * Table cell parameters/.
-     */
-    public cell: importedTableCellInsert.TableCellInsert;
-
-    /**
-     * Path to table row.
+     * The path to the table row in the document tree.
      */
     public tableRowPath: string;
+
+    /**
+     * Table cell parameters.
+     */
+    public cell: importedTableCellInsert.TableCellInsert;
 
     /**
      * Original document folder.
@@ -6139,24 +9641,124 @@ export class InsertTableCellRequest {
 }
 
 /**
+ * Request model for InsertTableCellOnline operation.
+ * Inserts a new cell to the table row.
+ */
+export class InsertTableCellOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The path to the table row in the document tree.
+     */
+    public tableRowPath: string;
+
+    /**
+     * Table cell parameters.
+     */
+    public cell: importedTableCellInsert.TableCellInsert;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< InsertTableCellOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
+ * Request model for InsertTableOnline operation.
+ * Inserts a new table to the document node.
+ */
+export class InsertTableOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Table parameters.
+     */
+    public table: importedTableInsert.TableInsert;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< InsertTableOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for InsertTableRow operation.
- * Adds table row to table, returns added row's data.
+ * Inserts a new row to the table.
  */
 export class InsertTableRowRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * Table row parameters/.
-     */
-    public row: importedTableRowInsert.TableRowInsert;
-
-    /**
-     * Path to table.
+     * The path to the table in the document tree.
      */
     public tablePath: string;
+
+    /**
+     * Table row parameters.
+     */
+    public row: importedTableRowInsert.TableRowInsert;
 
     /**
      * Original document folder.
@@ -6199,12 +9801,62 @@ export class InsertTableRowRequest {
 }
 
 /**
+ * Request model for InsertTableRowOnline operation.
+ * Inserts a new row to the table.
+ */
+export class InsertTableRowOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The path to the table in the document tree.
+     */
+    public tablePath: string;
+
+    /**
+     * Table row parameters.
+     */
+    public row: importedTableRowInsert.TableRowInsert;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< InsertTableRowOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for InsertWatermarkImage operation.
- * Inserts document watermark image.
+ * Inserts a new watermark image to the document.
  */
 export class InsertWatermarkImageRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -6249,12 +9901,12 @@ export class InsertWatermarkImageRequest {
     public revisionDateTime: string;
 
     /**
-     * The watermark rotation angle.
+     * The rotation angle of the watermark.
      */
     public rotationAngle: number;
 
     /**
-     * The image file server full name. If the name is empty the image is expected in request content.
+     * The filename of the image. If the parameter value is missing — the image data is expected in the request content.
      */
     public image: string;
 
@@ -6264,17 +9916,72 @@ export class InsertWatermarkImageRequest {
 }
 
 /**
+ * Request model for InsertWatermarkImageOnline operation.
+ * Inserts a new watermark image to the document.
+ */
+export class InsertWatermarkImageOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * File with image.
+     */
+    public imageFile: Readable;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    /**
+     * The rotation angle of the watermark.
+     */
+    public rotationAngle: number;
+
+    /**
+     * The filename of the image. If the parameter value is missing — the image data is expected in the request content.
+     */
+    public image: string;
+
+    public constructor(init?: Partial< InsertWatermarkImageOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for InsertWatermarkText operation.
- * Inserts document watermark text.
+ * Inserts a new watermark text to the document.
  */
 export class InsertWatermarkTextRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * WatermarkText with the watermark data.
+     * The watermark data.
      */
     public watermarkText: importedWatermarkText.WatermarkText;
 
@@ -6319,12 +10026,57 @@ export class InsertWatermarkTextRequest {
 }
 
 /**
+ * Request model for InsertWatermarkTextOnline operation.
+ * Inserts a new watermark text to the document.
+ */
+export class InsertWatermarkTextOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The watermark data.
+     */
+    public watermarkText: importedWatermarkText.WatermarkText;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< InsertWatermarkTextOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for LoadWebDocument operation.
- * Loads new document from web into the file with any supported format of data.
+ * Downloads a document from the Web using URL and saves it to cloud storage in the specified format.
  */
 export class LoadWebDocumentRequest {
     /**
-     * Parameters of loading.
+     * The properties of data downloading.
      */
     public data: importedLoadWebDocumentData.LoadWebDocumentData;
 
@@ -6405,11 +10157,11 @@ export class MoveFolderRequest {
 
 /**
  * Request model for OptimizeDocument operation.
- * Allows to optimize the document contents as well as default Aspose.Words behavior to a particular versions of MS Word.
+ * Applies document content optimization options, specific to a particular versions of Microsoft Word.
  */
 export class OptimizeDocumentRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -6459,17 +10211,62 @@ export class OptimizeDocumentRequest {
 }
 
 /**
+ * Request model for OptimizeDocumentOnline operation.
+ * Applies document content optimization options, specific to a particular versions of Microsoft Word.
+ */
+export class OptimizeDocumentOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The document optimization options.
+     */
+    public options: importedOptimizationOptions.OptimizationOptions;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< OptimizeDocumentOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for ProtectDocument operation.
- * Protects document.
+ * Adds protection to the document.
  */
 export class ProtectDocumentRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * ProtectionRequest with protection settings.
+     * Protection request.
      */
     public protectionRequest: importedProtectionRequest.ProtectionRequest;
 
@@ -6504,12 +10301,47 @@ export class ProtectDocumentRequest {
 }
 
 /**
+ * Request model for ProtectDocumentOnline operation.
+ * Adds protection to the document.
+ */
+export class ProtectDocumentOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Protection request.
+     */
+    public protectionRequest: importedProtectionRequest.ProtectionRequest;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    public constructor(init?: Partial< ProtectDocumentOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for RejectAllRevisions operation.
- * Rejects all revisions in document.
+ * Rejects all revisions in the document.
  */
 export class RejectAllRevisionsRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -6544,19 +10376,47 @@ export class RejectAllRevisionsRequest {
 }
 
 /**
+ * Request model for RejectAllRevisionsOnline operation.
+ * Rejects all revisions in the document.
+ */
+export class RejectAllRevisionsOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    public constructor(init?: Partial< RejectAllRevisionsOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for RemoveRange operation.
- * Removes the range from the document.
+ * Removes a range from the document.
  */
 export class RemoveRangeRequest {
     /**
-     * The document.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
      * The range start identifier.
-     * Identifier is the value of the "nodeId" field, which every document node has, extended with the prefix "id".
-     * It looks like "id0.0.7". Also values like "image5" and "table3" can be used as an identifier for images and tables, where the number is an index of the image/table.
      */
     public rangeStartIdentifier: string;
 
@@ -6596,12 +10456,52 @@ export class RemoveRangeRequest {
 }
 
 /**
+ * Request model for RemoveRangeOnline operation.
+ * Removes a range from the document.
+ */
+export class RemoveRangeOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The range start identifier.
+     */
+    public rangeStartIdentifier: string;
+
+    /**
+     * The range end identifier.
+     */
+    public rangeEndIdentifier: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    public constructor(init?: Partial< RemoveRangeOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for RenderDrawingObject operation.
- * Renders drawing object to specified format.
+ * Renders a DrawingObject to the specified format.
  */
 export class RenderDrawingObjectRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -6616,7 +10516,7 @@ export class RenderDrawingObjectRequest {
     public index: number;
 
     /**
-     * Path to the node, which contains drawing objects.
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -6651,12 +10551,57 @@ export class RenderDrawingObjectRequest {
 }
 
 /**
+ * Request model for RenderDrawingObjectOnline operation.
+ * Renders a DrawingObject to the specified format.
+ */
+export class RenderDrawingObjectOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The destination format.
+     */
+    public format: string;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Folder in filestorage with custom fonts.
+     */
+    public fontsLocation: string;
+
+    public constructor(init?: Partial< RenderDrawingObjectOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for RenderMathObject operation.
- * Renders math object to specified format.
+ * Renders an OfficeMath object to the specified format.
  */
 export class RenderMathObjectRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -6671,7 +10616,7 @@ export class RenderMathObjectRequest {
     public index: number;
 
     /**
-     * Path to the node, which contains office math objects.
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -6706,17 +10651,62 @@ export class RenderMathObjectRequest {
 }
 
 /**
+ * Request model for RenderMathObjectOnline operation.
+ * Renders an OfficeMath object to the specified format.
+ */
+export class RenderMathObjectOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The destination format.
+     */
+    public format: string;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Folder in filestorage with custom fonts.
+     */
+    public fontsLocation: string;
+
+    public constructor(init?: Partial< RenderMathObjectOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for RenderPage operation.
- * Renders page to specified format.
+ * Renders a page to the specified format.
  */
 export class RenderPageRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * Comment index.
+     * The index of the page.
      */
     public pageIndex: number;
 
@@ -6756,12 +10746,52 @@ export class RenderPageRequest {
 }
 
 /**
+ * Request model for RenderPageOnline operation.
+ * Renders a page to the specified format.
+ */
+export class RenderPageOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The index of the page.
+     */
+    public pageIndex: number;
+
+    /**
+     * The destination format.
+     */
+    public format: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Folder in filestorage with custom fonts.
+     */
+    public fontsLocation: string;
+
+    public constructor(init?: Partial< RenderPageOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for RenderParagraph operation.
- * Renders paragraph to specified format.
+ * Renders a paragraph to the specified format.
  */
 export class RenderParagraphRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -6776,7 +10806,7 @@ export class RenderParagraphRequest {
     public index: number;
 
     /**
-     * Path to the node, which contains paragraphs.
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -6811,12 +10841,57 @@ export class RenderParagraphRequest {
 }
 
 /**
+ * Request model for RenderParagraphOnline operation.
+ * Renders a paragraph to the specified format.
+ */
+export class RenderParagraphOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The destination format.
+     */
+    public format: string;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Folder in filestorage with custom fonts.
+     */
+    public fontsLocation: string;
+
+    public constructor(init?: Partial< RenderParagraphOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for RenderTable operation.
- * Renders table to specified format.
+ * Renders a table to the specified format.
  */
 export class RenderTableRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -6831,7 +10906,7 @@ export class RenderTableRequest {
     public index: number;
 
     /**
-     * Path to the node, which contains tables.
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -6866,17 +10941,62 @@ export class RenderTableRequest {
 }
 
 /**
+ * Request model for RenderTableOnline operation.
+ * Renders a table to the specified format.
+ */
+export class RenderTableOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The destination format.
+     */
+    public format: string;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Folder in filestorage with custom fonts.
+     */
+    public fontsLocation: string;
+
+    public constructor(init?: Partial< RenderTableOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for ReplaceText operation.
- * Replaces document text.
+ * Replaces text in the document.
  */
 export class ReplaceTextRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * ReplaceTextResponse with the replace operation settings.
+     * The replace operation settings.
      */
     public replaceText: importedReplaceTextParameters.ReplaceTextParameters;
 
@@ -6921,19 +11041,62 @@ export class ReplaceTextRequest {
 }
 
 /**
+ * Request model for ReplaceTextOnline operation.
+ * Replaces text in the document.
+ */
+export class ReplaceTextOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The replace operation settings.
+     */
+    public replaceText: importedReplaceTextParameters.ReplaceTextParameters;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< ReplaceTextOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for ReplaceWithText operation.
- * Replaces the content in the range.
+ * Replaces a range with text in the document.
  */
 export class ReplaceWithTextRequest {
     /**
-     * The document.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
      * The range start identifier.
-     * Identifier is the value of the "nodeId" field, which every document node has, extended with the prefix "id".
-     * It looks like "id0.0.7". Also values like "image5" and "table3" can be used as an identifier for images and tables, where the number is an index of the image/table.
      */
     public rangeStartIdentifier: string;
 
@@ -6978,8 +11141,53 @@ export class ReplaceWithTextRequest {
 }
 
 /**
+ * Request model for ReplaceWithTextOnline operation.
+ * Replaces a range with text in the document.
+ */
+export class ReplaceWithTextOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The range start identifier.
+     */
+    public rangeStartIdentifier: string;
+
+    /**
+     * Model with text for replacement.
+     */
+    public rangeText: importedReplaceRange.ReplaceRange;
+
+    /**
+     * The range end identifier.
+     */
+    public rangeEndIdentifier: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    public constructor(init?: Partial< ReplaceWithTextOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for ResetCache operation.
- * Resets font's cache.
+ * Clears the font cache.
  */
 export class ResetCacheRequest {
 
@@ -6990,11 +11198,11 @@ export class ResetCacheRequest {
 
 /**
  * Request model for SaveAs operation.
- * Converts document to destination format with detailed settings and saves result to storage.
+ * Converts a document in cloud storage to the specified format.
  */
 export class SaveAsRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -7035,7 +11243,7 @@ export class SaveAsRequest {
 
 /**
  * Request model for SaveAsOnline operation.
- * Converts document to destination format with detailed settings and saves result to storage.
+ * Converts a document in cloud storage to the specified format.
  */
 export class SaveAsOnlineRequest {
     /**
@@ -7049,6 +11257,16 @@ export class SaveAsOnlineRequest {
     public saveOptionsData: importedSaveOptionsData.SaveOptionsData;
 
     /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
@@ -7060,18 +11278,16 @@ export class SaveAsOnlineRequest {
 
 /**
  * Request model for SaveAsRange operation.
- * Saves the selected range as a new document.
+ * Saves a range as a new document.
  */
 export class SaveAsRangeRequest {
     /**
-     * The document.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
      * The range start identifier.
-     * Identifier is the value of the "nodeId" field, which every document node has, extended with the prefix "id".
-     * It looks like "id0.0.7". Also values like "image5" and "table3" can be used as an identifier for images and tables, where the number is an index of the image/table.
      */
     public rangeStartIdentifier: string;
 
@@ -7111,12 +11327,52 @@ export class SaveAsRangeRequest {
 }
 
 /**
+ * Request model for SaveAsRangeOnline operation.
+ * Saves a range as a new document.
+ */
+export class SaveAsRangeOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The range start identifier.
+     */
+    public rangeStartIdentifier: string;
+
+    /**
+     * Parameters of a new document.
+     */
+    public documentParameters: importedRangeDocument.RangeDocument;
+
+    /**
+     * The range end identifier.
+     */
+    public rangeEndIdentifier: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< SaveAsRangeOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for SaveAsTiff operation.
- * Converts document to tiff with detailed settings and saves result to storage.
+ * Converts a document in cloud storage to TIFF format using detailed conversion settings.
  */
 export class SaveAsTiffRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -7146,22 +11402,22 @@ export class SaveAsTiffRequest {
     public password: string;
 
     /**
-     * Use antialiasing flag.
+     * The flag indicating whether to use antialiasing.
      */
     public useAntiAliasing: boolean;
 
     /**
-     * Use high quality flag.
+     * The flag indicating whether to use high quality.
      */
     public useHighQualityRendering: boolean;
 
     /**
-     * Brightness for the generated images.
+     * The level of brightness for the generated images.
      */
     public imageBrightness: number;
 
     /**
-     * Color mode for the generated images.
+     * The color mode for the generated images.
      */
     public imageColorMode: string;
 
@@ -7176,32 +11432,32 @@ export class SaveAsTiffRequest {
     public numeralFormat: string;
 
     /**
-     * Number of pages to render.
+     * The number of pages to render.
      */
     public pageCount: number;
 
     /**
-     * Page index to start rendering.
+     * The index of the page to start rendering.
      */
     public pageIndex: number;
 
     /**
-     * Background image color.
+     * The background image color.
      */
     public paperColor: string;
 
     /**
-     * The pixel format of generated images.
+     * The pixel format of the generated images.
      */
     public pixelFormat: string;
 
     /**
-     * The resolution of generated images.
+     * The resolution of the generated images.
      */
     public resolution: number;
 
     /**
-     * Zoom factor for generated images.
+     * The zoom factor for the generated images.
      */
     public scale: number;
 
@@ -7211,22 +11467,22 @@ export class SaveAsTiffRequest {
     public tiffCompression: string;
 
     /**
-     * Optional, default is Fallback.
+     * The optional dml rendering mode. The default value is Fallback.
      */
     public dmlRenderingMode: string;
 
     /**
-     * Optional, default is Simplified.
+     * The optional dml effects rendering mode. The default value is Simplified.
      */
     public dmlEffectsRenderingMode: string;
 
     /**
-     * Optional, Tiff binarization method, possible values are: FloydSteinbergDithering, Threshold.
+     * The optional TIFF binarization method. Possible values are: FloydSteinbergDithering, Threshold.
      */
     public tiffBinarizationMethod: string;
 
     /**
-     * Optional. A value determining zip output or not.
+     * The flag indicating whether to ZIP the output.
      */
     public zipOutput: boolean;
 
@@ -7241,12 +11497,132 @@ export class SaveAsTiffRequest {
 }
 
 /**
+ * Request model for SaveAsTiffOnline operation.
+ * Converts a document in cloud storage to TIFF format using detailed conversion settings.
+ */
+export class SaveAsTiffOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Tiff save options.
+     */
+    public saveOptions: importedTiffSaveOptionsData.TiffSaveOptionsData;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * The flag indicating whether to use antialiasing.
+     */
+    public useAntiAliasing: boolean;
+
+    /**
+     * The flag indicating whether to use high quality.
+     */
+    public useHighQualityRendering: boolean;
+
+    /**
+     * The level of brightness for the generated images.
+     */
+    public imageBrightness: number;
+
+    /**
+     * The color mode for the generated images.
+     */
+    public imageColorMode: string;
+
+    /**
+     * The contrast for the generated images.
+     */
+    public imageContrast: number;
+
+    /**
+     * The images numeral format.
+     */
+    public numeralFormat: string;
+
+    /**
+     * The number of pages to render.
+     */
+    public pageCount: number;
+
+    /**
+     * The index of the page to start rendering.
+     */
+    public pageIndex: number;
+
+    /**
+     * The background image color.
+     */
+    public paperColor: string;
+
+    /**
+     * The pixel format of the generated images.
+     */
+    public pixelFormat: string;
+
+    /**
+     * The resolution of the generated images.
+     */
+    public resolution: number;
+
+    /**
+     * The zoom factor for the generated images.
+     */
+    public scale: number;
+
+    /**
+     * The compression tipe.
+     */
+    public tiffCompression: string;
+
+    /**
+     * The optional dml rendering mode. The default value is Fallback.
+     */
+    public dmlRenderingMode: string;
+
+    /**
+     * The optional dml effects rendering mode. The default value is Simplified.
+     */
+    public dmlEffectsRenderingMode: string;
+
+    /**
+     * The optional TIFF binarization method. Possible values are: FloydSteinbergDithering, Threshold.
+     */
+    public tiffBinarizationMethod: string;
+
+    /**
+     * The flag indicating whether to ZIP the output.
+     */
+    public zipOutput: boolean;
+
+    /**
+     * Folder in filestorage with custom fonts.
+     */
+    public fontsLocation: string;
+
+    public constructor(init?: Partial< SaveAsTiffOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for Search operation.
- * Searches text in document.
+ * Searches text, specified by the regular expression, in the document.
  */
 export class SearchRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -7281,17 +11657,47 @@ export class SearchRequest {
 }
 
 /**
+ * Request model for SearchOnline operation.
+ * Searches text, specified by the regular expression, in the document.
+ */
+export class SearchOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The regular expression used to find matches.
+     */
+    public pattern: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    public constructor(init?: Partial< SearchOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for SplitDocument operation.
- * Splits document.
+ * Splits a document into parts and saves them in the specified format.
  */
 export class SplitDocumentRequest {
     /**
-     * Original document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * Format to split.
+     * The format to split.
      */
     public format: string;
 
@@ -7321,17 +11727,17 @@ export class SplitDocumentRequest {
     public destFileName: string;
 
     /**
-     * Start page.
+     * The start page.
      */
     public from: number;
 
     /**
-     * End page.
+     * The end page.
      */
     public to: number;
 
     /**
-     * ZipOutput or not.
+     * The flag indicating whether to ZIP the output.
      */
     public zipOutput: boolean;
 
@@ -7346,17 +11752,72 @@ export class SplitDocumentRequest {
 }
 
 /**
+ * Request model for SplitDocumentOnline operation.
+ * Splits a document into parts and saves them in the specified format.
+ */
+export class SplitDocumentOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The format to split.
+     */
+    public format: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * The start page.
+     */
+    public from: number;
+
+    /**
+     * The end page.
+     */
+    public to: number;
+
+    /**
+     * The flag indicating whether to ZIP the output.
+     */
+    public zipOutput: boolean;
+
+    /**
+     * Folder in filestorage with custom fonts.
+     */
+    public fontsLocation: string;
+
+    public constructor(init?: Partial< SplitDocumentOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for UnprotectDocument operation.
- * Unprotects document.
+ * Removes protection from the document.
  */
 export class UnprotectDocumentRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * ProtectionRequest with protection settings.
+     * Protection request.
      */
     public protectionRequest: importedProtectionRequest.ProtectionRequest;
 
@@ -7391,24 +11852,59 @@ export class UnprotectDocumentRequest {
 }
 
 /**
+ * Request model for UnprotectDocumentOnline operation.
+ * Removes protection from the document.
+ */
+export class UnprotectDocumentOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Protection request.
+     */
+    public protectionRequest: importedProtectionRequest.ProtectionRequest;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    public constructor(init?: Partial< UnprotectDocumentOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for UpdateBookmark operation.
- * Updates document bookmark.
+ * Updates a bookmark in the document.
  */
 export class UpdateBookmarkRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * BookmarkData with new bookmark data.
-     */
-    public bookmarkData: importedBookmarkData.BookmarkData;
-
-    /**
-     * The bookmark name.
+     * The name of the bookmark.
      */
     public bookmarkName: string;
+
+    /**
+     * Bookmark data.
+     */
+    public bookmarkData: importedBookmarkData.BookmarkData;
 
     /**
      * Original document folder.
@@ -7451,19 +11947,64 @@ export class UpdateBookmarkRequest {
 }
 
 /**
+ * Request model for UpdateBookmarkOnline operation.
+ * Updates a bookmark in the document.
+ */
+export class UpdateBookmarkOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The name of the bookmark.
+     */
+    public bookmarkName: string;
+
+    /**
+     * Bookmark data.
+     */
+    public bookmarkData: importedBookmarkData.BookmarkData;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< UpdateBookmarkOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for UpdateBorder operation.
- * 'nodePath' should refer to paragraph, cell or row.
+ * The 'nodePath' parameter should refer to a paragraph, a cell or a row.
  */
 export class UpdateBorderRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
-
-    /**
-     * Border properties.
-     */
-    public borderProperties: importedBorder.Border;
 
     /**
      * Border type.
@@ -7471,7 +12012,12 @@ export class UpdateBorderRequest {
     public borderType: string;
 
     /**
-     * Path to the node with border(node should be paragraph, cell or row).
+     * Border properties.
+     */
+    public borderProperties: importedBorder.Border;
+
+    /**
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -7516,22 +12062,77 @@ export class UpdateBorderRequest {
 }
 
 /**
+ * Request model for UpdateBorderOnline operation.
+ * Updates a border in the document node.
+ */
+export class UpdateBorderOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Border properties.
+     */
+    public borderProperties: importedBorder.Border;
+
+    /**
+     * Border type.
+     */
+    public borderType: string;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< UpdateBorderOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for UpdateComment operation.
- * Updates the comment, returns updated comment data.
+ * Updates a comment in the document.
  */
 export class UpdateCommentRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * The comment index.
+     * The index of the comment.
      */
     public commentIndex: number;
 
     /**
-     * The comment data.
+     * Comment data.
      */
     public comment: importedCommentUpdate.CommentUpdate;
 
@@ -7576,12 +12177,62 @@ export class UpdateCommentRequest {
 }
 
 /**
+ * Request model for UpdateCommentOnline operation.
+ * Updates a comment in the document.
+ */
+export class UpdateCommentOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The index of the comment.
+     */
+    public commentIndex: number;
+
+    /**
+     * Comment data.
+     */
+    public comment: importedCommentUpdate.CommentUpdate;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< UpdateCommentOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for UpdateDrawingObject operation.
- * Updates drawing object, returns updated  drawing object's data.
+ * Updates a DrawingObject in the document node.
  */
 export class UpdateDrawingObjectRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -7601,7 +12252,7 @@ export class UpdateDrawingObjectRequest {
     public index: number;
 
     /**
-     * Path to the node, which contains collection of drawing objects.
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -7646,19 +12297,24 @@ export class UpdateDrawingObjectRequest {
 }
 
 /**
- * Request model for UpdateField operation.
- * Updates field's properties, returns updated field's data.
+ * Request model for UpdateDrawingObjectOnline operation.
+ * Updates a DrawingObject in the document node.
  */
-export class UpdateFieldRequest {
+export class UpdateDrawingObjectOnlineRequest {
     /**
-     * The document name.
+     * The document.
      */
-    public name: string;
+    public document: Readable;
 
     /**
-     * Field data.
+     * Drawing object parameters.
      */
-    public field: importedFieldUpdate.FieldUpdate;
+    public drawingObject: importedDrawingObjectUpdate.DrawingObjectUpdate;
+
+    /**
+     * File with image.
+     */
+    public imageFile: Readable;
 
     /**
      * Object index.
@@ -7666,7 +12322,62 @@ export class UpdateFieldRequest {
     public index: number;
 
     /**
-     * Path to the node, which contains collection of fields.
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< UpdateDrawingObjectOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
+ * Request model for UpdateField operation.
+ * Updates a field in the document node.
+ */
+export class UpdateFieldRequest {
+    /**
+     * The filename of the input document.
+     */
+    public name: string;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * Field data.
+     */
+    public field: importedFieldUpdate.FieldUpdate;
+
+    /**
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -7711,12 +12422,67 @@ export class UpdateFieldRequest {
 }
 
 /**
+ * Request model for UpdateFieldOnline operation.
+ * Updates a field in the document node.
+ */
+export class UpdateFieldOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Field data.
+     */
+    public field: importedFieldUpdate.FieldUpdate;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< UpdateFieldOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for UpdateFields operation.
- * Updates (reevaluate) fields in document.
+ * Reevaluates field values in the document.
  */
 export class UpdateFieldsRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
@@ -7751,19 +12517,44 @@ export class UpdateFieldsRequest {
 }
 
 /**
+ * Request model for UpdateFieldsOnline operation.
+ * Reevaluates field values in the document.
+ */
+export class UpdateFieldsOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    public constructor(init?: Partial< UpdateFieldsOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for UpdateFootnote operation.
- * Updates footnote's properties, returns updated run's data.
+ * Updates a footnote in the document node.
  */
 export class UpdateFootnoteRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
-
-    /**
-     * Footnote data.
-     */
-    public footnoteDto: importedFootnoteUpdate.FootnoteUpdate;
 
     /**
      * Object index.
@@ -7771,7 +12562,12 @@ export class UpdateFootnoteRequest {
     public index: number;
 
     /**
-     * Path to the node, which contains collection of footnotes.
+     * Footnote data.
+     */
+    public footnoteDto: importedFootnoteUpdate.FootnoteUpdate;
+
+    /**
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -7816,19 +12612,19 @@ export class UpdateFootnoteRequest {
 }
 
 /**
- * Request model for UpdateFormField operation.
- * Updates properties of form field, returns updated form field.
+ * Request model for UpdateFootnoteOnline operation.
+ * Updates a footnote in the document node.
  */
-export class UpdateFormFieldRequest {
+export class UpdateFootnoteOnlineRequest {
     /**
-     * The document name.
+     * The document.
      */
-    public name: string;
+    public document: Readable;
 
     /**
-     * From field data.
+     * Footnote data.
      */
-    public formField: importedFormField.FormField;
+    public footnoteDto: importedFootnoteUpdate.FootnoteUpdate;
 
     /**
      * Object index.
@@ -7836,7 +12632,62 @@ export class UpdateFormFieldRequest {
     public index: number;
 
     /**
-     * Path to the node that contains collection of formfields.
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< UpdateFootnoteOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
+ * Request model for UpdateFormField operation.
+ * Updates a form field in the document node.
+ */
+export class UpdateFormFieldRequest {
+    /**
+     * The filename of the input document.
+     */
+    public name: string;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * From field data.
+     */
+    public formField: importedFormField.FormField;
+
+    /**
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -7881,24 +12732,79 @@ export class UpdateFormFieldRequest {
 }
 
 /**
+ * Request model for UpdateFormFieldOnline operation.
+ * Updates a form field in the document node.
+ */
+export class UpdateFormFieldOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * From field data.
+     */
+    public formField: importedFormField.FormField;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< UpdateFormFieldOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for UpdateList operation.
- * Updates list properties, returns updated list.
+ * Updates a list in the document.
  */
 export class UpdateListRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
+
+    /**
+     * The list Id.
+     */
+    public listId: number;
 
     /**
      * List object.
      */
     public listUpdate: importedListUpdate.ListUpdate;
-
-    /**
-     * List unique identifier.
-     */
-    public listId: number;
 
     /**
      * Original document folder.
@@ -7942,28 +12848,28 @@ export class UpdateListRequest {
 
 /**
  * Request model for UpdateListLevel operation.
- * Updates list level in document list, returns updated list.
+ * Updates the level of a List element in the document.
  */
 export class UpdateListLevelRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
+
+    /**
+     * The list Id.
+     */
+    public listId: number;
+
+    /**
+     * The list level.
+     */
+    public listLevel: number;
 
     /**
      * List object.
      */
     public listUpdate: importedListLevelUpdate.ListLevelUpdate;
-
-    /**
-     * List unique identifier.
-     */
-    public listId: number;
-
-    /**
-     * List level identifier.
-     */
-    public listLevel: number;
 
     /**
      * Original document folder.
@@ -8006,19 +12912,119 @@ export class UpdateListLevelRequest {
 }
 
 /**
+ * Request model for UpdateListLevelOnline operation.
+ * Updates the level of a List element in the document.
+ */
+export class UpdateListLevelOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The list Id.
+     */
+    public listId: number;
+
+    /**
+     * List object.
+     */
+    public listUpdate: importedListLevelUpdate.ListLevelUpdate;
+
+    /**
+     * The list level.
+     */
+    public listLevel: number;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< UpdateListLevelOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
+ * Request model for UpdateListOnline operation.
+ * Updates a list in the document.
+ */
+export class UpdateListOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The list Id.
+     */
+    public listId: number;
+
+    /**
+     * List object.
+     */
+    public listUpdate: importedListUpdate.ListUpdate;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< UpdateListOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for UpdateParagraphFormat operation.
- * Updates paragraph format properties, returns updated format properties.
+ * Updates the formatting properties of a paragraph in the document node.
  */
 export class UpdateParagraphFormatRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
-
-    /**
-     * Paragraph format object.
-     */
-    public dto: importedParagraphFormatUpdate.ParagraphFormatUpdate;
 
     /**
      * Object index.
@@ -8026,7 +13032,12 @@ export class UpdateParagraphFormatRequest {
     public index: number;
 
     /**
-     * Path to the node which contains paragraphs.
+     * Dto for paragraph format update.
+     */
+    public paragraphFormatDto: importedParagraphFormatUpdate.ParagraphFormatUpdate;
+
+    /**
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -8071,19 +13082,19 @@ export class UpdateParagraphFormatRequest {
 }
 
 /**
- * Request model for UpdateParagraphListFormat operation.
- * Updates paragraph list format properties, returns updated list format properties.
+ * Request model for UpdateParagraphFormatOnline operation.
+ * Updates the formatting properties of a paragraph in the document node.
  */
-export class UpdateParagraphListFormatRequest {
+export class UpdateParagraphFormatOnlineRequest {
     /**
-     * The document name.
+     * The document.
      */
-    public name: string;
+    public document: Readable;
 
     /**
-     * Paragraph format object.
+     * Dto for paragraph format update.
      */
-    public dto: importedListFormatUpdate.ListFormatUpdate;
+    public paragraphFormatDto: importedParagraphFormatUpdate.ParagraphFormatUpdate;
 
     /**
      * Object index.
@@ -8091,7 +13102,62 @@ export class UpdateParagraphListFormatRequest {
     public index: number;
 
     /**
-     * Path to the node which contains paragraphs.
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< UpdateParagraphFormatOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
+ * Request model for UpdateParagraphListFormat operation.
+ * Updates the formatting properties of a paragraph list in the document node.
+ */
+export class UpdateParagraphListFormatRequest {
+    /**
+     * The filename of the input document.
+     */
+    public name: string;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * ListFormatUpdate dto.
+     */
+    public listFormatDto: importedListFormatUpdate.ListFormatUpdate;
+
+    /**
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -8136,22 +13202,72 @@ export class UpdateParagraphListFormatRequest {
 }
 
 /**
+ * Request model for UpdateParagraphListFormatOnline operation.
+ * Updates the formatting properties of a paragraph list in the document node.
+ */
+export class UpdateParagraphListFormatOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * ListFormatUpdate dto.
+     */
+    public listFormatDto: importedListFormatUpdate.ListFormatUpdate;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< UpdateParagraphListFormatOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for UpdateRun operation.
- * Updates run's properties, returns updated run's data.
+ * Updates a Run object in the paragraph.
  */
 export class UpdateRunRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * Run data.
-     */
-    public run: importedRunUpdate.RunUpdate;
-
-    /**
-     * Path to parent paragraph.
+     * The path to the paragraph in the document tree.
      */
     public paragraphPath: string;
 
@@ -8159,6 +13275,11 @@ export class UpdateRunRequest {
      * Object index.
      */
     public index: number;
+
+    /**
+     * Run data.
+     */
+    public run: importedRunUpdate.RunUpdate;
 
     /**
      * Original document folder.
@@ -8202,21 +13323,16 @@ export class UpdateRunRequest {
 
 /**
  * Request model for UpdateRunFont operation.
- * Updates font properties, returns updated font data.
+ * Updates the font properties of a Run object in the paragraph.
  */
 export class UpdateRunFontRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * Font dto object.
-     */
-    public fontDto: importedFont.Font;
-
-    /**
-     * Path to parent paragraph.
+     * The path to the paragraph in the document tree.
      */
     public paragraphPath: string;
 
@@ -8224,6 +13340,11 @@ export class UpdateRunFontRequest {
      * Object index.
      */
     public index: number;
+
+    /**
+     * Font dto object.
+     */
+    public fontDto: importedFont.Font;
 
     /**
      * Original document folder.
@@ -8266,17 +13387,127 @@ export class UpdateRunFontRequest {
 }
 
 /**
+ * Request model for UpdateRunFontOnline operation.
+ * Updates the font properties of a Run object in the paragraph.
+ */
+export class UpdateRunFontOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The path to the paragraph in the document tree.
+     */
+    public paragraphPath: string;
+
+    /**
+     * Font dto object.
+     */
+    public fontDto: importedFont.Font;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< UpdateRunFontOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
+ * Request model for UpdateRunOnline operation.
+ * Updates a Run object in the paragraph.
+ */
+export class UpdateRunOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The path to the paragraph in the document tree.
+     */
+    public paragraphPath: string;
+
+    /**
+     * Run data.
+     */
+    public run: importedRunUpdate.RunUpdate;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< UpdateRunOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for UpdateSectionPageSetup operation.
- * Updates page setup of section.
+ * Updates the page setup of a section in the document.
  */
 export class UpdateSectionPageSetupRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * Section index.
+     * The index of the section.
      */
     public sectionIndex: number;
 
@@ -8326,24 +13557,74 @@ export class UpdateSectionPageSetupRequest {
 }
 
 /**
+ * Request model for UpdateSectionPageSetupOnline operation.
+ * Updates the page setup of a section in the document.
+ */
+export class UpdateSectionPageSetupOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The index of the section.
+     */
+    public sectionIndex: number;
+
+    /**
+     * Page setup properties dto.
+     */
+    public pageSetup: importedPageSetup.PageSetup;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< UpdateSectionPageSetupOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for UpdateStyle operation.
- * Updates style properties, returns an updated style.
+ * Updates a style in the document.
  */
 export class UpdateStyleRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
+
+    /**
+     * The name of the style.
+     */
+    public styleName: string;
 
     /**
      * Style properties to update.
      */
     public styleUpdate: importedStyleUpdate.StyleUpdate;
-
-    /**
-     * Style name.
-     */
-    public styleName: string;
 
     /**
      * Original document folder.
@@ -8386,22 +13667,67 @@ export class UpdateStyleRequest {
 }
 
 /**
+ * Request model for UpdateStyleOnline operation.
+ * Updates a style in the document.
+ */
+export class UpdateStyleOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The name of the style.
+     */
+    public styleName: string;
+
+    /**
+     * Style properties to update.
+     */
+    public styleUpdate: importedStyleUpdate.StyleUpdate;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< UpdateStyleOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for UpdateTableCellFormat operation.
- * Updates a table cell format.
+ * Updates the formatting properties of a cell in the table row.
  */
 export class UpdateTableCellFormatRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * The properties.
-     */
-    public format: importedTableCellFormat.TableCellFormat;
-
-    /**
-     * Path to table row.
+     * The path to the table row in the document tree.
      */
     public tableRowPath: string;
 
@@ -8409,6 +13735,11 @@ export class UpdateTableCellFormatRequest {
      * Object index.
      */
     public index: number;
+
+    /**
+     * The properties.
+     */
+    public format: importedTableCellFormat.TableCellFormat;
 
     /**
      * Original document folder.
@@ -8451,19 +13782,24 @@ export class UpdateTableCellFormatRequest {
 }
 
 /**
- * Request model for UpdateTableProperties operation.
- * Updates a table properties.
+ * Request model for UpdateTableCellFormatOnline operation.
+ * Updates the formatting properties of a cell in the table row.
  */
-export class UpdateTablePropertiesRequest {
+export class UpdateTableCellFormatOnlineRequest {
     /**
-     * The document name.
+     * The document.
      */
-    public name: string;
+    public document: Readable;
+
+    /**
+     * The path to the table row in the document tree.
+     */
+    public tableRowPath: string;
 
     /**
      * The properties.
      */
-    public properties: importedTableProperties.TableProperties;
+    public format: importedTableCellFormat.TableCellFormat;
 
     /**
      * Object index.
@@ -8471,7 +13807,57 @@ export class UpdateTablePropertiesRequest {
     public index: number;
 
     /**
-     * Path to the node, which contains tables.
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< UpdateTableCellFormatOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
+ * Request model for UpdateTableProperties operation.
+ * Updates properties of a table in the document node.
+ */
+export class UpdateTablePropertiesRequest {
+    /**
+     * The filename of the input document.
+     */
+    public name: string;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * The properties.
+     */
+    public properties: importedTableProperties.TableProperties;
+
+    /**
+     * The path to the node in the document tree.
      */
     public nodePath: string;
 
@@ -8516,22 +13902,72 @@ export class UpdateTablePropertiesRequest {
 }
 
 /**
+ * Request model for UpdateTablePropertiesOnline operation.
+ * Updates properties of a table in the document node.
+ */
+export class UpdateTablePropertiesOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The properties.
+     */
+    public properties: importedTableProperties.TableProperties;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< UpdateTablePropertiesOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for UpdateTableRowFormat operation.
- * Updates a table row format.
+ * Updates the formatting properties of a table row.
  */
 export class UpdateTableRowFormatRequest {
     /**
-     * The document name.
+     * The filename of the input document.
      */
     public name: string;
 
     /**
-     * Table row format.
-     */
-    public format: importedTableRowFormat.TableRowFormat;
-
-    /**
-     * Path to table.
+     * The path to the table in the document tree.
      */
     public tablePath: string;
 
@@ -8539,6 +13975,11 @@ export class UpdateTableRowFormatRequest {
      * Object index.
      */
     public index: number;
+
+    /**
+     * Table row format.
+     */
+    public format: importedTableRowFormat.TableRowFormat;
 
     /**
      * Original document folder.
@@ -8576,6 +14017,61 @@ export class UpdateTableRowFormatRequest {
     public revisionDateTime: string;
 
     public constructor(init?: Partial< UpdateTableRowFormatRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
+ * Request model for UpdateTableRowFormatOnline operation.
+ * Updates the formatting properties of a table row.
+ */
+export class UpdateTableRowFormatOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The path to the table in the document tree.
+     */
+    public tablePath: string;
+
+    /**
+     * Table row format.
+     */
+    public format: importedTableRowFormat.TableRowFormat;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< UpdateTableRowFormatOnlineRequest >) {
         Object.assign(this, init);
     }
 }

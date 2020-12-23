@@ -73,27 +73,27 @@ export class ApiError {
     }
 
     /**
-     * Gets or sets api error code.
+     * Gets or sets the API error code.
      */
     public code: string;
 
     /**
-     * Gets or sets server datetime.
+     * Gets or sets the server DateTime.
      */
     public dateTime: Date;
 
     /**
-     * Gets or sets error description.
+     * Gets or sets the error description.
      */
     public description: string;
 
     /**
-     * Gets or sets inner error.
+     * Gets or sets the inner error.
      */
     public innerError: ApiError;
 
     /**
-     * Gets or sets error message.
+     * Gets or sets the error message.
      */
     public message: string;
 

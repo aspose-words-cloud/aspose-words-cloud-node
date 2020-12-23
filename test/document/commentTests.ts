@@ -60,8 +60,29 @@ describe("comment", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.comment).to.exist;
+                    expect(resultApi.body.comment.text).to.equal("Comment 1" + "\r\n\r\n");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for getting comment by specified comment's index online.
+    describe("getCommentOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetCommentOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                commentIndex: 0
+            });
+
+            // Act
+            return wordsApi.getCommentOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -88,8 +109,30 @@ describe("comment", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.comments).to.exist;
+                    expect(resultApi.body.comments.commentList).to.exist;
+                    expect(resultApi.body.comments.commentList).to.have.lengthOf(1);
+                    expect(resultApi.body.comments.commentList[0].text).to.equal("Comment 1" + "\r\n\r\n");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for getting all comments from document online.
+    describe("getCommentsOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetCommentsOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile)
+            });
+
+            // Act
+            return wordsApi.getCommentsOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -133,8 +176,48 @@ describe("comment", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.comment).to.exist;
+                    expect(resultApi.body.comment.text).to.equal("A new Comment" + "\r\n");
+                    expect(resultApi.body.comment.rangeStart).to.exist;
+                    expect(resultApi.body.comment.rangeStart.node).to.exist;
+                    expect(resultApi.body.comment.rangeStart.node.nodeId).to.equal("0.3.0.4");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for adding comment online.
+    describe("insertCommentOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.InsertCommentOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                comment: new model.CommentInsert({
+                    rangeStart: new model.DocumentPosition({
+                        node: new model.NodeLink({
+                            nodeId: "0.3.0.3"
+                        }),
+                        offset: 0
+                    }),
+                    rangeEnd: new model.DocumentPosition({
+                        node: new model.NodeLink({
+                            nodeId: "0.3.0.3"
+                        }),
+                        offset: 0
+                    }),
+                    initial: "IA",
+                    author: "Imran Anwar",
+                    text: "A new Comment"
+                })
+            });
+
+            // Act
+            return wordsApi.insertCommentOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -179,8 +262,49 @@ describe("comment", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.comment).to.exist;
+                    expect(resultApi.body.comment.text).to.equal("A new Comment" + "\r\n");
+                    expect(resultApi.body.comment.rangeStart).to.exist;
+                    expect(resultApi.body.comment.rangeStart.node).to.exist;
+                    expect(resultApi.body.comment.rangeStart.node.nodeId).to.equal("0.3.0.1");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for updating comment online.
+    describe("updateCommentOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.UpdateCommentOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                commentIndex: 0,
+                comment: new model.CommentUpdate({
+                    rangeStart: new model.DocumentPosition({
+                        node: new model.NodeLink({
+                            nodeId: "0.3.0"
+                        }),
+                        offset: 0
+                    }),
+                    rangeEnd: new model.DocumentPosition({
+                        node: new model.NodeLink({
+                            nodeId: "0.3.0"
+                        }),
+                        offset: 0
+                    }),
+                    initial: "IA",
+                    author: "Imran Anwar",
+                    text: "A new Comment"
+                })
+            });
+
+            // Act
+            return wordsApi.updateCommentOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -211,6 +335,25 @@ describe("comment", () => {
                     expect(resultApi.statusCode).to.equal(200);
                 });
 
+            });
+
+       });
+    });
+
+    // A test for DeleteComment online.
+    describe("deleteCommentOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.DeleteCommentOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                commentIndex: 0
+            });
+
+            // Act
+            return wordsApi.deleteCommentOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });

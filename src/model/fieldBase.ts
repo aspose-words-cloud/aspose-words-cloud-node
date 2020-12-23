@@ -58,12 +58,12 @@ export class FieldBase {
     }
 
     /**
-     * Gets or sets field code.
+     * Gets or sets the field code.
      */
     public fieldCode: string;
 
     /**
-     * Gets or sets LCID of the field.
+     * Gets or sets the LCID of the field.
      */
     public localeId: string;
 

@@ -35,8 +35,7 @@ export const importsMapSectionLinkCollectionResponse = {
 };
 
 /**
- * This response should be returned by the service when handling:
- * GET https://api.aspose.cloud/v4.0/words/Test.doc/sections.
+ * The REST response with a collection of sections.
  */
 export class SectionLinkCollectionResponse extends WordsResponse {
     /**
@@ -58,7 +57,7 @@ export class SectionLinkCollectionResponse extends WordsResponse {
     }
 
     /**
-     * Gets or sets collection of sections.
+     * Gets or sets the collection of sections.
      */
     public sections: SectionLinkCollection;
 

@@ -35,7 +35,7 @@ export const importsMapOfficeMathObjectsCollection = {
 };
 
 /**
- * Collection of OfficeMath objects.
+ * DTO container with a collection of OfficeMath objects.
  */
 export class OfficeMathObjectsCollection extends LinkElement {
     /**
@@ -57,7 +57,7 @@ export class OfficeMathObjectsCollection extends LinkElement {
     }
 
     /**
-     * Gets or sets collection of OfficeMath objects.
+     * Gets or sets the collection of OfficeMath objects.
      */
     public list: Array<OfficeMathObject>;
 

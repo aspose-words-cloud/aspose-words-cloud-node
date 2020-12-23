@@ -35,7 +35,7 @@ export const importsMapDocumentResponse = {
 };
 
 /**
- * Represents the response with document description.
+ * The REST response with a document description.
  */
 export class DocumentResponse extends WordsResponse {
     /**
@@ -57,7 +57,7 @@ export class DocumentResponse extends WordsResponse {
     }
 
     /**
-     * Gets or sets document description.
+     * Gets or sets the document description.
      */
     public document: Document;
 

@@ -31,7 +31,7 @@ export const importsMapTableRowInsert = {
 };
 
 /**
- * Table row element.
+ * DTO container with a table row element.
  */
 export class TableRowInsert {
     /**
@@ -58,7 +58,7 @@ export class TableRowInsert {
     }
 
     /**
-     * Gets or sets count of columns. Default is 1.
+     * Gets or sets the count of columns. The default value is 1.
      */
     public columnsCount: number;
 

@@ -95,6 +95,8 @@ describe("buildReport", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.document).to.exist;
+                    expect(resultApi.body.document.fileName).to.equal("TestBuildReport.docx");
                 });
 
             });

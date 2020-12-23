@@ -35,7 +35,7 @@ export const importsMapFieldNamesResponse = {
 };
 
 /**
- * This response should be returned by the service when handling:  GET /{name}/mailMergeFieldNames.
+ * The REST response with a collection of mail merge fields.
  */
 export class FieldNamesResponse extends WordsResponse {
     /**
@@ -57,7 +57,7 @@ export class FieldNamesResponse extends WordsResponse {
     }
 
     /**
-     * Gets or sets collection of mail merge fields.
+     * Gets or sets the collection of mail merge fields.
      */
     public fieldNames: FieldNames;
 

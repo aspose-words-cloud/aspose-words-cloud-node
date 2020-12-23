@@ -65,18 +65,18 @@ export class TextSaveOptionsData extends TxtSaveOptionsBaseData {
     }
 
     /**
-     * Gets or sets specifies whether to add bi-directional marks before each BiDi run when exporting in plain text format.
+     * Gets or sets a value indicating whether to add bi-directional marks before each BiDi run when exporting in plain text format.
      * The default value is true.
      */
     public addBidiMarks: boolean;
 
     /**
-     * Gets or sets specifies whether the program should attempt to preserve layout of tables when saving in the plain text format.
+     * Gets or sets a value indicating whether the program should attempt to preserve layout of tables when saving in the plain text format.
      */
     public preserveTableLayout: boolean;
 
     /**
-     * Gets or sets specifies whether the program should simplify list labels in case of complex label formatting not being adequately represented by plain text.
+     * Gets or sets a value indicating whether the program should simplify list labels in case of complex label formatting not being adequately represented by plain text.
      */
     public simplifyListLabels: boolean;
 

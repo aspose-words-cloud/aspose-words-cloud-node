@@ -124,6 +124,9 @@ export class ObjectSerializer {
                     if (data.hasOwnProperty(attributeType.baseName)) {
                         instance[attributeType.name] = ObjectSerializer.deserialize(data[attributeType.baseName], attributeType.type);
                     }
+                    else if (data.hasOwnProperty(attributeType.name)) {
+                        instance[attributeType.name] = ObjectSerializer.deserialize(data[attributeType.name], attributeType.type);
+                    }
                 }
             }
             return instance;

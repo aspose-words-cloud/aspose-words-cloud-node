@@ -60,12 +60,12 @@ export class Hyperlink extends LinkElement {
     }
 
     /**
-     * Gets or sets hypelink's display text.
+     * Gets or sets the hypelink's display text.
      */
     public displayText: string;
 
     /**
-     * Gets or sets value.
+     * Gets or sets the value.
      */
     public value: string;
 

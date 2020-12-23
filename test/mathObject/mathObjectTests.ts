@@ -60,8 +60,31 @@ describe("mathObject", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.officeMathObjects).to.exist;
+                    expect(resultApi.body.officeMathObjects.list).to.exist;
+                    expect(resultApi.body.officeMathObjects.list).to.have.lengthOf(16);
+                    expect(resultApi.body.officeMathObjects.list[0].nodeId).to.equal("0.0.0.0");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for getting mathObjects online.
+    describe("getOfficeMathObjectsOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetOfficeMathObjectsOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                nodePath: ""
+            });
+
+            // Act
+            return wordsApi.getOfficeMathObjectsOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -88,6 +111,10 @@ describe("mathObject", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.officeMathObjects).to.exist;
+                    expect(resultApi.body.officeMathObjects.list).to.exist;
+                    expect(resultApi.body.officeMathObjects.list).to.have.lengthOf(16);
+                    expect(resultApi.body.officeMathObjects.list[0].nodeId).to.equal("0.0.0.0");
                 });
 
             });
@@ -118,8 +145,30 @@ describe("mathObject", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.officeMathObject).to.exist;
+                    expect(resultApi.body.officeMathObject.nodeId).to.equal("0.0.0.0");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for getting mathObject online.
+    describe("getOfficeMathObjectOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetOfficeMathObjectOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                index: 0,
+                nodePath: ""
+            });
+
+            // Act
+            return wordsApi.getOfficeMathObjectOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -147,6 +196,8 @@ describe("mathObject", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.officeMathObject).to.exist;
+                    expect(resultApi.body.officeMathObject.nodeId).to.equal("0.0.0.0");
                 });
 
             });
@@ -180,6 +231,27 @@ describe("mathObject", () => {
                     expect(resultApi.response.statusCode).to.equal(200);
                 });
 
+            });
+
+       });
+    });
+
+    // Test for rendering mathObject.
+    describe("renderMathObjectOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.RenderMathObjectOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                format: "png",
+                index: 0,
+                nodePath: ""
+            });
+
+            // Act
+            return wordsApi.renderMathObjectOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -240,6 +312,26 @@ describe("mathObject", () => {
                     expect(resultApi.statusCode).to.equal(200);
                 });
 
+            });
+
+       });
+    });
+
+    // Test for deleting mathObject online.
+    describe("deleteOfficeMathObjectOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.DeleteOfficeMathObjectOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                index: 0,
+                nodePath: ""
+            });
+
+            // Act
+            return wordsApi.deleteOfficeMathObjectOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });

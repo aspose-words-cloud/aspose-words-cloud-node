@@ -61,8 +61,29 @@ describe("pageSetup", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.pageSetup).to.exist;
+                    expect(resultApi.body.pageSetup.lineStartingNumber).to.equal(1);
                 });
 
+            });
+
+       });
+    });
+
+    // Test for getting page settings online.
+    describe("getSectionPageSetupOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetSectionPageSetupOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                sectionIndex: 0
+            });
+
+            // Act
+            return wordsApi.getSectionPageSetupOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -84,7 +105,7 @@ describe("pageSetup", () => {
                     sectionIndex: 0,
                     pageSetup: new model.PageSetup({
                         rtlGutter: true,
-                        leftMargin: 10,
+                        leftMargin: 10.0,
                         orientation: model.PageSetup.OrientationEnum.Landscape,
                         paperSize: model.PageSetup.PaperSizeEnum.A5
                     }),
@@ -96,8 +117,37 @@ describe("pageSetup", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.pageSetup).to.exist;
+                    expect(resultApi.body.pageSetup.rtlGutter).to.true;
+
+
                 });
 
+            });
+
+       });
+    });
+
+    // Test for updating page settings online.
+    describe("updateSectionPageSetupOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.UpdateSectionPageSetupOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                sectionIndex: 0,
+                pageSetup: new model.PageSetup({
+                    rtlGutter: true,
+                    leftMargin: 10,
+                    orientation: model.PageSetup.OrientationEnum.Landscape,
+                    paperSize: model.PageSetup.PaperSizeEnum.A5
+                })
+            });
+
+            // Act
+            return wordsApi.updateSectionPageSetupOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -128,6 +178,26 @@ describe("pageSetup", () => {
                     expect(resultApi.response.statusCode).to.equal(200);
                 });
 
+            });
+
+       });
+    });
+
+    // Test for page rendering.
+    describe("getRenderPageOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.RenderPageOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localTextFile),
+                pageIndex: 1,
+                format: "bmp"
+            });
+
+            // Act
+            return wordsApi.renderPageOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });

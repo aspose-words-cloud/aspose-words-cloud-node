@@ -33,7 +33,7 @@ export const importsMapOoxmlSaveOptionsData = {
 };
 
 /**
- * container class for docx/docm/dotx/dotm/flatopc save options.
+ * Container class for docx/docm/dotx/dotm/flatopc save options.
  */
 export class OoxmlSaveOptionsData extends SaveOptionsData {
     /**
@@ -70,22 +70,22 @@ export class OoxmlSaveOptionsData extends SaveOptionsData {
     }
 
     /**
-     * Gets or sets specifies the OOXML version for the output document.
+     * Gets or sets the oOXML version for the output document.
      */
     public compliance: string;
 
     /**
-     * Gets or sets compression level.
+     * Gets or sets the compression level.
      */
     public compressionLevel: OoxmlSaveOptionsData.CompressionLevelEnum;
 
     /**
-     * Gets or sets specifies a password to encrypt document using ECMA376 Standard encryption algorithm.
+     * Gets or sets the password to encrypt document using ECMA376 Standard encryption algorithm.
      */
     public password: string;
 
     /**
-     * Gets or sets specifies whether or not use pretty formats output.
+     * Gets or sets a value indicating whether to use pretty formats output.
      */
     public prettyFormat: boolean;
 

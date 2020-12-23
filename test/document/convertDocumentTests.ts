@@ -64,6 +64,8 @@ describe("convertDocument", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.saveResult).to.exist;
+                    expect(resultApi.body.saveResult.destDocument).to.exist;
                 });
 
             });
@@ -121,6 +123,8 @@ describe("convertDocument", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.saveResult).to.exist;
+                    expect(resultApi.body.saveResult.destDocument).to.exist;
                 });
 
             });
@@ -154,8 +158,34 @@ describe("convertDocument", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.saveResult).to.exist;
+                    expect(resultApi.body.saveResult.destDocument).to.exist;
                 });
 
+            });
+
+       });
+    });
+
+    // Test for converting document to one of the available formats.
+    describe("saveAsTiffOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const localName = "test_multi_pages.docx";
+
+            const request = new model.SaveAsTiffOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + "Common/" + localName),
+                saveOptions: new model.TiffSaveOptionsData({
+                    saveFormat: "tiff",
+                    fileName: BaseTest.remoteBaseTestOutFolder + "/abc.tiff"
+                })
+            });
+
+            // Act
+            return wordsApi.saveAsTiffOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });

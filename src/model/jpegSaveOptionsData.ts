@@ -33,7 +33,7 @@ export const importsMapJpegSaveOptionsData = {
 };
 
 /**
- * container class for jpeg save options.
+ * Container class for jpeg save options.
  */
 export class JpegSaveOptionsData extends ImageSaveOptionsData {
     /**

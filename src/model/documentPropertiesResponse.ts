@@ -35,7 +35,7 @@ export const importsMapDocumentPropertiesResponse = {
 };
 
 /**
- * This response should be returned by the service when handling:  GET /documentProperties.
+ * The REST response with a collection of document properties.
  */
 export class DocumentPropertiesResponse extends WordsResponse {
     /**
@@ -57,7 +57,7 @@ export class DocumentPropertiesResponse extends WordsResponse {
     }
 
     /**
-     * Gets or sets collection of document properties.
+     * Gets or sets the collection of document properties.
      */
     public documentProperties: DocumentProperties;
 

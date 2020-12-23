@@ -35,7 +35,7 @@ export const importsMapDocumentProperties = {
 };
 
 /**
- * Collection of document properties.
+ * The collection of document properties.
  */
 export class DocumentProperties extends LinkElement {
     /**
@@ -57,7 +57,7 @@ export class DocumentProperties extends LinkElement {
     }
 
     /**
-     * Gets or sets collection of document properties.
+     * Gets or sets the collection of document properties.
      */
     public list: Array<DocumentProperty>;
 

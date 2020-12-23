@@ -53,7 +53,7 @@ export class OptimizationOptions {
     }
 
     /**
-     * Gets or sets specific MSWord version.
+     * Gets or sets the specific MSWord version.
      */
     public msWordVersion: OptimizationOptions.MsWordVersionEnum;
 

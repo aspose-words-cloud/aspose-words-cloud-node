@@ -33,8 +33,7 @@ export const importsMapRangeTextResponse = {
 };
 
 /**
- * This response should be returned by the service when handling:
- * GET https://api.aspose.cloud/v4.0/words/Test.doc/range/{0}/{1}/.
+ * The REST response with a range's text.
  */
 export class RangeTextResponse extends WordsResponse {
     /**
@@ -56,7 +55,7 @@ export class RangeTextResponse extends WordsResponse {
     }
 
     /**
-     * Gets or sets text from range.
+     * Gets or sets the range's text.
      */
     public text: string;
 

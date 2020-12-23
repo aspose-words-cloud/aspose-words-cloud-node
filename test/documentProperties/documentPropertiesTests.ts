@@ -59,8 +59,32 @@ describe("documentProperties", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.documentProperties).to.exist;
+                    expect(resultApi.body.documentProperties.list).to.exist;
+                    expect(resultApi.body.documentProperties.list).to.have.lengthOf(24);
+                    expect(resultApi.body.documentProperties.list[0]).to.exist;
+                    expect(resultApi.body.documentProperties.list[0].name).to.equal("Author");
+                    expect(resultApi.body.documentProperties.list[0].value).to.equal("");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for getting document properties online.
+    describe("getDocumentPropertiesOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetDocumentPropertiesOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile)
+            });
+
+            // Act
+            return wordsApi.getDocumentPropertiesOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -88,8 +112,30 @@ describe("documentProperties", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.documentProperty).to.exist;
+                    expect(resultApi.body.documentProperty.name).to.equal("Author");
+                    expect(resultApi.body.documentProperty.value).to.equal("");
                 });
 
+            });
+
+       });
+    });
+
+    // A test for GetDocumentProperty online.
+    describe("getDocumentPropertyOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetDocumentPropertyOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                propertyName: "Author"
+            });
+
+            // Act
+            return wordsApi.getDocumentPropertyOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -125,6 +171,25 @@ describe("documentProperties", () => {
        });
     });
 
+    // Test for deleting document property online.
+    describe("deleteDocumentPropertyOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.DeleteDocumentPropertyOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                propertyName: "testProp"
+            });
+
+            // Act
+            return wordsApi.deleteDocumentPropertyOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+            });
+
+       });
+    });
+
     // Test for updating document property.
     describe("updateDocumentProperty test", () => {
         it("should return response with code 200", () => {
@@ -151,8 +216,33 @@ describe("documentProperties", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.documentProperty).to.exist;
+                    expect(resultApi.body.documentProperty.name).to.equal("AsposeAuthor");
+                    expect(resultApi.body.documentProperty.value).to.equal("Imran Anwar");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for updating document property online.
+    describe("updateDocumentPropertyOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.CreateOrUpdateDocumentPropertyOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                propertyName: "AsposeAuthor",
+                property: new model.DocumentPropertyCreateOrUpdate({
+                    value: "Imran Anwar"
+                })
+            });
+
+            // Act
+            return wordsApi.createOrUpdateDocumentPropertyOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });

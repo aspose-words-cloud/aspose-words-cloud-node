@@ -51,6 +51,7 @@ describe("formField", () => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.UpdateFormFieldRequest({
                     name: remoteFileName,
+                    index: 0,
                     formField: new model.FormFieldTextInput({
                         name: "FullName",
                         enabled: true,
@@ -59,7 +60,6 @@ describe("formField", () => {
                         textInputType: model.FormFieldTextInput.TextInputTypeEnum.Regular,
                         textInputDefault: "No name"
                     }),
-                    index: 0,
                     nodePath: "sections/0",
                     folder: remoteDataFolder,
                     destFileName: BaseTest.remoteBaseTestOutFolder + "/" + remoteFileName
@@ -70,8 +70,39 @@ describe("formField", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.formField).to.exist;
+                    expect(resultApi.body.formField.name).to.equal("FullName");
+                    expect(resultApi.body.formField.statusText).to.equal("");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for posting form field online.
+    describe("updateFormFieldOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.UpdateFormFieldOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + fieldFolder + "/FormFilled.docx"),
+                index: 0,
+                formField: new model.FormFieldTextInput({
+                    name: "FullName",
+                    enabled: true,
+                    calculateOnExit: true,
+                    statusText: "",
+                    textInputType: model.FormFieldTextInput.TextInputTypeEnum.Regular,
+                    textInputDefault: "No name"
+                }),
+                nodePath: "sections/0"
+            });
+
+            // Act
+            return wordsApi.updateFormFieldOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -90,6 +121,7 @@ describe("formField", () => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.UpdateFormFieldRequest({
                     name: remoteFileName,
+                    index: 0,
                     formField: new model.FormFieldTextInput({
                         name: "FullName",
                         enabled: true,
@@ -98,7 +130,6 @@ describe("formField", () => {
                         textInputType: model.FormFieldTextInput.TextInputTypeEnum.Regular,
                         textInputDefault: "No name"
                     }),
-                    index: 0,
                     folder: remoteDataFolder,
                     destFileName: BaseTest.remoteBaseTestOutFolder + "/" + remoteFileName
                 });
@@ -108,6 +139,9 @@ describe("formField", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.formField).to.exist;
+                    expect(resultApi.body.formField.name).to.equal("FullName");
+                    expect(resultApi.body.formField.statusText).to.equal("");
                 });
 
             });
@@ -138,8 +172,30 @@ describe("formField", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.formField).to.exist;
+                    expect(resultApi.body.formField.name).to.equal("FullName");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for getting form field online.
+    describe("getFormFieldOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetFormFieldOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + fieldFolder + "/FormFilled.docx"),
+                index: 0,
+                nodePath: "sections/0"
+            });
+
+            // Act
+            return wordsApi.getFormFieldOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -167,6 +223,8 @@ describe("formField", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.formField).to.exist;
+                    expect(resultApi.body.formField.name).to.equal("FullName");
                 });
 
             });
@@ -196,8 +254,31 @@ describe("formField", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.formFields).to.exist;
+                    expect(resultApi.body.formFields.list).to.exist;
+                    expect(resultApi.body.formFields.list).to.have.lengthOf(5);
+                    expect(resultApi.body.formFields.list[0].name).to.equal("FullName");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for getting form fields online.
+    describe("getFormFieldsOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetFormFieldsOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + fieldFolder + "/FormFilled.docx"),
+                nodePath: "sections/0"
+            });
+
+            // Act
+            return wordsApi.getFormFieldsOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -224,6 +305,10 @@ describe("formField", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.formFields).to.exist;
+                    expect(resultApi.body.formFields.list).to.exist;
+                    expect(resultApi.body.formFields.list).to.have.lengthOf(5);
+                    expect(resultApi.body.formFields.list[0].name).to.equal("FullName");
                 });
 
             });
@@ -263,8 +348,39 @@ describe("formField", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.formField).to.exist;
+                    expect(resultApi.body.formField.name).to.equal("FullName");
+                    expect(resultApi.body.formField.statusText).to.equal("");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for insert form field without node path online.
+    describe("insertFormFieldOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.InsertFormFieldOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + fieldFolder + "/FormFilled.docx"),
+                formField: new model.FormFieldTextInput({
+                    name: "FullName",
+                    enabled: true,
+                    calculateOnExit: true,
+                    statusText: "",
+                    textInputType: model.FormFieldTextInput.TextInputTypeEnum.Regular,
+                    textInputDefault: "123",
+                    textInputFormat: "UPPERCASE"
+                }),
+                nodePath: "sections/0/paragraphs/0"
+            });
+
+            // Act
+            return wordsApi.insertFormFieldOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -301,6 +417,9 @@ describe("formField", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.formField).to.exist;
+                    expect(resultApi.body.formField.name).to.equal("FullName");
+                    expect(resultApi.body.formField.statusText).to.equal("");
                 });
 
             });
@@ -334,6 +453,26 @@ describe("formField", () => {
                     expect(resultApi.statusCode).to.equal(200);
                 });
 
+            });
+
+       });
+    });
+
+    // Test for deleting form field online.
+    describe("deleteFormFieldOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.DeleteFormFieldOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + fieldFolder + "/FormFilled.docx"),
+                index: 0,
+                nodePath: "sections/0"
+            });
+
+            // Act
+            return wordsApi.deleteFormFieldOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });

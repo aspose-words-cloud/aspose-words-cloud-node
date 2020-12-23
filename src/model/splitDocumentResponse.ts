@@ -35,7 +35,7 @@ export const importsMapSplitDocumentResponse = {
 };
 
 /**
- * This response should be returned by the service when handling:  POST /{name}/split .
+ * The REST response with a result of document splitting.
  */
 export class SplitDocumentResponse extends WordsResponse {
     /**
@@ -57,7 +57,7 @@ export class SplitDocumentResponse extends WordsResponse {
     }
 
     /**
-     * Gets or sets resylt of splitting document.
+     * Gets or sets the result of document splitting.
      */
     public splitResult: SplitDocumentResult;
 

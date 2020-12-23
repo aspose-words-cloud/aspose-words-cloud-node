@@ -72,12 +72,12 @@ export class ReportEngineSettings {
     }
 
     /**
-     * Gets or sets options for parsing CSV data.
+     * Gets or sets the options for parsing CSV data.
      */
     public csvDataLoadOptions: CsvDataLoadOptions;
 
     /**
-     * Gets or sets a name to reference the data source object in the template.
+     * Gets or sets the name to reference the data source object in the template.
      */
     public dataSourceName: string;
 

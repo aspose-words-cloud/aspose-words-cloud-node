@@ -65,17 +65,17 @@ export class SplitDocumentResult {
     }
 
     /**
-     * Gets or sets array of pages.
+     * Gets or sets the list of pages.
      */
     public pages: Array<FileLink>;
 
     /**
-     * Gets or sets linkt to the source document.
+     * Gets or sets the link to the source document.
      */
     public sourceDocument: FileLink;
 
     /**
-     * Gets or sets link to the file archive with pages.
+     * Gets or sets the link to the file archive with pages.
      */
     public zippedPages: FileLink;
 

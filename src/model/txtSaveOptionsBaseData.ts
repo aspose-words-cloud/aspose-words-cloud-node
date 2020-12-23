@@ -70,24 +70,24 @@ export class TxtSaveOptionsBaseData extends SaveOptionsData {
     }
 
     /**
-     * Gets or sets specifies the encoding to use when exporting in plain text format.
+     * Gets or sets the character encoding to use when exporting in plain text format.
      */
     public encoding: string;
 
     /**
-     * Gets or sets specifies whether to output headers and footers when exporting in plain text format.
+     * Gets or sets the option that controls whether to output headers and footers when exporting in plain text format.
      * default value is TxtExportHeadersFootersMode.PrimaryOnly.
      */
     public exportHeadersFootersMode: TxtSaveOptionsBaseData.ExportHeadersFootersModeEnum;
 
     /**
-     * Gets or sets allows to specify whether the page breaks should be preserved during export.
+     * Gets or sets a value indicating whether the page breaks should be preserved during export.
      * The default value is false.
      */
     public forcePageBreaks: boolean;
 
     /**
-     * Gets or sets specifies the string to use as a paragraph break when exporting in plain text format.
+     * Gets or sets the string to use as a paragraph break when exporting in plain text format.
      */
     public paragraphBreak: string;
 

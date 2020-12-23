@@ -33,7 +33,7 @@ export const importsMapXamlFlowSaveOptionsData = {
 };
 
 /**
- * container class for xaml flow save options.
+ * Container class for xaml flow save options.
  */
 export class XamlFlowSaveOptionsData extends SaveOptionsData {
     /**
@@ -60,12 +60,12 @@ export class XamlFlowSaveOptionsData extends SaveOptionsData {
     }
 
     /**
-     * Gets or sets specifies the physical folder where images are saved when exporting.
+     * Gets or sets the physical folder where images are saved when exporting.
      */
     public imagesFolder: string;
 
     /**
-     * Gets or sets specifies the name of the folder used to construct image URIs.
+     * Gets or sets the name of the folder used to construct image URIs.
      */
     public imagesFolderAlias: string;
 

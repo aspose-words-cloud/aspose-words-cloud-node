@@ -33,7 +33,7 @@ export const importsMapPngSaveOptionsData = {
 };
 
 /**
- * container class for png save options.
+ * Container class for png save options.
  */
 export class PngSaveOptionsData extends ImageSaveOptionsData {
     /**

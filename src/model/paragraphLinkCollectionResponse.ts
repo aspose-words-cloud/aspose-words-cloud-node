@@ -35,8 +35,7 @@ export const importsMapParagraphLinkCollectionResponse = {
 };
 
 /**
- * This response should be returned by the service when handling:
- * GET https://api.aspose.cloud/v4.0/words/Test.doc/paragraphs.
+ * The REST response with a collection of paragraphs.
  */
 export class ParagraphLinkCollectionResponse extends WordsResponse {
     /**
@@ -58,7 +57,7 @@ export class ParagraphLinkCollectionResponse extends WordsResponse {
     }
 
     /**
-     * Gets or sets collection of paragraphs.
+     * Gets or sets the collection of paragraphs.
      */
     public paragraphs: ParagraphLinkCollection;
 

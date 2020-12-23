@@ -60,12 +60,12 @@ export class DocumentEntryList {
     }
 
     /**
-     * Gets or sets parameter that indicates to apply headers and footers from base document to appending documents. Default is true.
+     * Gets or sets a value indicating whether to apply headers and footers from base document to appending documents. The default value is true.
      */
     public applyBaseDocumentHeadersAndFootersToAppendingDocuments: boolean;
 
     /**
-     * Gets or sets list of documents.
+     * Gets or sets the list of documents.
      */
     public documentEntries: Array<DocumentEntry>;
 

@@ -60,8 +60,28 @@ describe("revisions", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.result).to.exist;
+                    expect(resultApi.body.result.dest).to.exist;
                 });
 
+            });
+
+       });
+    });
+
+    // Test for accepting revisions in document online.
+    describe("acceptAllRevisionsOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.AcceptAllRevisionsOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile)
+            });
+
+            // Act
+            return wordsApi.acceptAllRevisionsOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -89,8 +109,28 @@ describe("revisions", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.result).to.exist;
+                    expect(resultApi.body.result.dest).to.exist;
                 });
 
+            });
+
+       });
+    });
+
+    // Test for rejecting revisions in document online.
+    describe("rejectAllRevisionsOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.RejectAllRevisionsOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile)
+            });
+
+            // Act
+            return wordsApi.rejectAllRevisionsOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });

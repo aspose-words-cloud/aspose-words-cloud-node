@@ -35,7 +35,7 @@ export const importsMapTableCellFormat = {
 };
 
 /**
- * Represents all formatting for a table row.
+ * DTO container with all formatting for a table row.
  */
 export class TableCellFormat extends LinkElement {
     /**
@@ -112,52 +112,52 @@ export class TableCellFormat extends LinkElement {
     }
 
     /**
-     * Gets or sets returns or sets the amount of space (in points) to add below the contents of cell.
+     * Gets or sets the amount of space (in points) to add below the contents of the cell.
      */
     public bottomPadding: number;
 
     /**
-     * Gets or sets if true, fits text in the cell, compressing each paragraph to the width of the cell.
+     * Gets or sets a value indicating whether to fit text in the cell, compress each paragraph to the width of the cell.
      */
     public fitText: boolean;
 
     /**
-     * Gets or sets specifies how the cell is merged horizontally with other cells in the row.
+     * Gets or sets the option that controls how the cell is merged horizontally with other cells in the row.
      */
     public horizontalMerge: TableCellFormat.HorizontalMergeEnum;
 
     /**
-     * Gets or sets returns or sets the amount of space (in points) to add to the left of the contents of cell.
+     * Gets or sets the amount of space (in points) to add to the left of the contents of the cell.
      */
     public leftPadding: number;
 
     /**
-     * Gets or sets returns or sets the orientation of text in a table cell.
+     * Gets or sets the orientation of text in a table cell.
      */
     public orientation: TableCellFormat.OrientationEnum;
 
     /**
-     * Gets or sets returns or sets the preferred width of the cell.
+     * Gets or sets the preferred width of the cell.
      */
     public preferredWidth: PreferredWidth;
 
     /**
-     * Gets or sets returns or sets the amount of space (in points) to add to the right of the contents of cell.
+     * Gets or sets the amount of space (in points) to add to the right of the contents of the cell.
      */
     public rightPadding: number;
 
     /**
-     * Gets or sets returns or sets the amount of space (in points) to add above the contents of cell.
+     * Gets or sets the amount of space (in points) to add above the contents of the cell.
      */
     public topPadding: number;
 
     /**
-     * Gets or sets returns or sets the vertical alignment of text in the cell.
+     * Gets or sets the vertical alignment of text in the cell.
      */
     public verticalAlignment: TableCellFormat.VerticalAlignmentEnum;
 
     /**
-     * Gets or sets specifies how the cell is merged with other cells vertically.
+     * Gets or sets the option that controls how the cell is merged with other cells vertically.
      */
     public verticalMerge: TableCellFormat.VerticalMergeEnum;
 
@@ -167,7 +167,7 @@ export class TableCellFormat extends LinkElement {
     public width: number;
 
     /**
-     * Gets or sets if true, wrap text for the cell.
+     * Gets or sets a value indicating whether to wrap text in the cell.
      */
     public wrapText: boolean;
 

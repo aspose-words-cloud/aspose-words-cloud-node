@@ -33,7 +33,7 @@ export const importsMapListFormat = {
 };
 
 /**
- * Paragraph list format element.
+ * DTO container with a paragraph list format element.
  */
 export class ListFormat extends LinkElement {
     /**

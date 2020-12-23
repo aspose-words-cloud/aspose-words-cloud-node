@@ -31,7 +31,7 @@ export const importsMapBookmarksOutlineLevelData = {
 };
 
 /**
- * container class for individual bookmarks outline level.
+ * Container class for individual bookmarks outline level.
  */
 export class BookmarksOutlineLevelData {
     /**
@@ -58,12 +58,12 @@ export class BookmarksOutlineLevelData {
     }
 
     /**
-     * Gets or sets specify the bookmark's level.
+     * Gets or sets the bookmark's level.
      */
     public bookmarksOutlineLevel: number;
 
     /**
-     * Gets or sets specify the bookmark's name.
+     * Gets or sets the bookmark's name.
      */
     public name: string;
 

@@ -64,8 +64,33 @@ describe("run", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.run).to.exist;
+                    expect(resultApi.body.run.text).to.equal("run with text");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for updating run online.
+    describe("updateRunOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.UpdateRunOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                run: new model.RunUpdate({
+                    text: "run with text"
+                }),
+                paragraphPath: "paragraphs/1",
+                index: 0
+            });
+
+            // Act
+            return wordsApi.updateRunOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -96,8 +121,33 @@ describe("run", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.run).to.exist;
+                    expect(resultApi.body.run.text).to.equal("run with text");
+                    expect(resultApi.body.run.nodeId).to.equal("0.0.1.3");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for adding run online.
+    describe("insertRunOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.InsertRunOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                paragraphPath: "paragraphs/1",
+                run: new model.RunInsert({
+                    text: "run with text"
+                })
+            });
+
+            // Act
+            return wordsApi.insertRunOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -128,6 +178,26 @@ describe("run", () => {
                     expect(resultApi.statusCode).to.equal(200);
                 });
 
+            });
+
+       });
+    });
+
+    // Test for deleting run online.
+    describe("deleteRunOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.DeleteRunOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                paragraphPath: "paragraphs/1",
+                index: 0
+            });
+
+            // Act
+            return wordsApi.deleteRunOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });

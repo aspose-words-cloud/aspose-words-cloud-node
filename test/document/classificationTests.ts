@@ -52,6 +52,9 @@ describe("classification", () => {
             .then((resultApi) => {
                 // Assert
                 expect(resultApi.response.statusCode).to.equal(200);
+                expect(resultApi.body.bestClassName).to.equal("Science");
+                expect(resultApi.body.bestResults).to.exist;
+                expect(resultApi.body.bestResults).to.have.lengthOf(3);
             });
 
        });
@@ -69,7 +72,7 @@ describe("classification", () => {
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.ClassifyDocumentRequest({
-                    documentName: remoteFileName,
+                    name: remoteFileName,
                     folder: remoteDataFolder,
                     bestClassesCount: "3"
                 });
@@ -79,8 +82,30 @@ describe("classification", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.bestClassName).to.equal("Hobbies_&_Interests");
+                    expect(resultApi.body.bestResults).to.exist;
+                    expect(resultApi.body.bestResults).to.have.lengthOf(3);
                 });
 
+            });
+
+       });
+    });
+
+    // Test for document classification online.
+    describe("classifyDocumentOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.ClassifyDocumentOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                bestClassesCount: "3"
+            });
+
+            // Act
+            return wordsApi.classifyDocumentOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });

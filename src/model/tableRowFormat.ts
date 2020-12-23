@@ -33,7 +33,7 @@ export const importsMapTableRowFormat = {
 };
 
 /**
- * Represents all formatting for a table row.
+ * DTO container with formatting for a table row.
  */
 export class TableRowFormat extends LinkElement {
     /**
@@ -70,12 +70,12 @@ export class TableRowFormat extends LinkElement {
     }
 
     /**
-     * Gets or sets true if the text in a table row is allowed to split across a page break.
+     * Gets or sets a value indicating whether the text in a table row is allowed to split across a page break.
      */
     public allowBreakAcrossPages: boolean;
 
     /**
-     * Gets or sets true if the row is repeated as a table heading on every page when the table spans more than one page.
+     * Gets or sets a value indicating whether the row is repeated as a table heading on every page when the table spans more than one page.
      */
     public headingFormat: boolean;
 

@@ -35,7 +35,7 @@ export const importsMapOfficeMathObject = {
 };
 
 /**
- * OfficeMath object.
+ * DTO container with an OfficeMath object.
  */
 export class OfficeMathObject extends OfficeMathLink {
     /**
@@ -72,23 +72,22 @@ export class OfficeMathObject extends OfficeMathLink {
     }
 
     /**
-     * Gets or sets content of footnote.
+     * Gets or sets the content of a footnote.
      */
     public content: StoryChildNodes;
 
     /**
-     * Gets or sets /sets Office Math display format type which represents whether an equation is displayed inline with the text
-     * or displayed on its own line.
+     * Gets or sets the display format type of the OfficeMath object. This display format defines whether an equation is displayed inline with the text or displayed on its own line.
      */
     public displayType: OfficeMathObject.DisplayTypeEnum;
 
     /**
-     * Gets or sets /sets Office Math justification.
+     * Gets or sets the justification of the OfficeMath object.
      */
     public justification: OfficeMathObject.JustificationEnum;
 
     /**
-     * Gets or sets type Aspose.Words.Math.OfficeMath.MathObjectType of this Office Math object.
+     * Gets or sets the type of the OfficeMath object.
      */
     public mathObjectType: OfficeMathObject.MathObjectTypeEnum;
 

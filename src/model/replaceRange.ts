@@ -31,7 +31,7 @@ export const importsMapReplaceRange = {
 };
 
 /**
- * Range element.
+ * DTO container with a range element.
  */
 export class ReplaceRange {
     /**
@@ -58,12 +58,12 @@ export class ReplaceRange {
     }
 
     /**
-     * Gets or sets range's text.
+     * Gets or sets the range's text.
      */
     public text: string;
 
     /**
-     * Gets or sets range's text type.
+     * Gets or sets the range's text type.
      */
     public textType: ReplaceRange.TextTypeEnum;
 

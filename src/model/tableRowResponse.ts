@@ -35,8 +35,7 @@ export const importsMapTableRowResponse = {
 };
 
 /**
- * This response should be returned by the service when handling:
- * GET https://api.aspose.cloud/v4.0/words/Test.doc/tables/{0}.
+ * The REST response with a table row.
  */
 export class TableRowResponse extends WordsResponse {
     /**
@@ -58,7 +57,7 @@ export class TableRowResponse extends WordsResponse {
     }
 
     /**
-     * Gets or sets table row.
+     * Gets or sets the table row.
      */
     public row: TableRow;
 

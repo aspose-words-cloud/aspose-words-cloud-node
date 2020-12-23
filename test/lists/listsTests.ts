@@ -59,8 +59,30 @@ describe("lists", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.lists).to.exist;
+                    expect(resultApi.body.lists.listInfo).to.exist;
+                    expect(resultApi.body.lists.listInfo).to.have.lengthOf(2);
+                    expect(resultApi.body.lists.listInfo[0].listId).to.equal(1);
                 });
 
+            });
+
+       });
+    });
+
+    // Test for getting lists from document online.
+    describe("getListsOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetListsOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile)
+            });
+
+            // Act
+            return wordsApi.getListsOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -88,8 +110,29 @@ describe("lists", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.list).to.exist;
+                    expect(resultApi.body.list.listId).to.equal(1);
                 });
 
+            });
+
+       });
+    });
+
+    // Test for getting list from document online.
+    describe("getListOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetListOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                listId: 1
+            });
+
+            // Act
+            return wordsApi.getListOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -108,10 +151,10 @@ describe("lists", () => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.UpdateListRequest({
                     name: remoteFileName,
+                    listId: 1,
                     listUpdate: new model.ListUpdate({
                         isRestartAtEachSection: true
                     }),
-                    listId: 1,
                     folder: remoteDataFolder
                 });
 
@@ -122,6 +165,31 @@ describe("lists", () => {
                     expect(resultApi.response.statusCode).to.equal(200);
                 });
 
+            });
+
+       });
+    });
+
+    // Test for updating list from document online.
+    describe("updateListOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.UpdateListOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                listId: 1,
+                listUpdate: new model.ListUpdate({
+                    isRestartAtEachSection: true
+                })
+            });
+
+            // Act
+            return wordsApi.updateListOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+                expect(resultApi.body.model.list).to.exist;
+                expect(resultApi.body.model.list.listId).to.equal(1);
+                expect(resultApi.body.model.list.isRestartAtEachSection).to.true;
             });
 
        });
@@ -140,11 +208,11 @@ describe("lists", () => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.UpdateListLevelRequest({
                     name: remoteFileName,
+                    listId: 1,
+                    listLevel: 1,
                     listUpdate: new model.ListLevelUpdate({
                         alignment: model.ListLevelUpdate.AlignmentEnum.Right
                     }),
-                    listId: 1,
-                    listLevel: 1,
                     folder: remoteDataFolder
                 });
 
@@ -154,6 +222,34 @@ describe("lists", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                 });
+
+            });
+
+       });
+    });
+
+    // Test for updating list level from document online.
+    describe("updateListLevelOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.UpdateListLevelOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                listId: 1,
+                listLevel: 1,
+                listUpdate: new model.ListLevelUpdate({
+                    alignment: model.ListLevelUpdate.AlignmentEnum.Right
+                })
+            });
+
+            // Act
+            return wordsApi.updateListLevelOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+                expect(resultApi.body.model.list).to.exist;
+                expect(resultApi.body.model.list.listLevels).to.exist;
+                expect(resultApi.body.model.list.listLevels.listLevel).to.exist;
+                expect(resultApi.body.model.list.listLevels.listLevel).to.have.lengthOf(9);
 
             });
 
@@ -184,8 +280,31 @@ describe("lists", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.list).to.exist;
+                    expect(resultApi.body.list.listId).to.equal(3);
                 });
 
+            });
+
+       });
+    });
+
+    // Test for inserting list from document online.
+    describe("insertListOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.InsertListOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                listInsert: new model.ListInsert({
+                    template: model.ListInsert.TemplateEnum.OutlineLegal
+                })
+            });
+
+            // Act
+            return wordsApi.insertListOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });

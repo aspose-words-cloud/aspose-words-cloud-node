@@ -35,7 +35,7 @@ export const importsMapDrawingObjectsResponse = {
 };
 
 /**
- * This response should be returned by the service when handling:  GET /drawingObjects.
+ * The REST response with a collection of DrawingObjects.
  */
 export class DrawingObjectsResponse extends WordsResponse {
     /**
@@ -57,7 +57,7 @@ export class DrawingObjectsResponse extends WordsResponse {
     }
 
     /**
-     * Gets or sets collection of drawing objects.
+     * Gets or sets the collection of DrawingObjects.
      */
     public drawingObjects: DrawingObjectCollection;
 

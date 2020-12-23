@@ -58,12 +58,12 @@ export class XmlColor {
     }
 
     /**
-     * Gets or sets alpha component of color structure.
+     * Gets or sets the Alpha component of color structure.
      */
     public alpha: number;
 
     /**
-     * Gets or sets hTML string color representation.
+     * Gets or sets the HTML string color representation.
      */
     public web: string;
 

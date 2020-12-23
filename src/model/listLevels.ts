@@ -35,7 +35,7 @@ export const importsMapListLevels = {
 };
 
 /**
- * Represents a single document list.
+ * DTO container with a single document list.
  */
 export class ListLevels extends LinkElement {
     /**

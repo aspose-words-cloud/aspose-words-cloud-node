@@ -35,8 +35,7 @@ export const importsMapListResponse = {
 };
 
 /**
- * This response should be returned by the service when handling:
- * GET https://api.aspose.cloud/v4.0/words/Test.doc/lists/{n}.
+ * The REST response with a list information.
  */
 export class ListResponse extends WordsResponse {
     /**
@@ -58,7 +57,7 @@ export class ListResponse extends WordsResponse {
     }
 
     /**
-     * Gets or sets list which are contained in document.
+     * Gets or sets the list information.
      */
     public list: ListInfo;
 

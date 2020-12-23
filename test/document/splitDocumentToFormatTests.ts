@@ -63,8 +63,33 @@ describe("splitDocumentToFormat", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.splitResult).to.exist;
+                    expect(resultApi.body.splitResult.pages).to.exist;
+                    expect(resultApi.body.splitResult.pages).to.have.lengthOf(2);
                 });
 
+            });
+
+       });
+    });
+
+    // Test for document splitting online.
+    describe("splitDocumentOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.SplitDocumentOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                format: "text",
+                destFileName: BaseTest.remoteBaseTestOutFolder + "/TestSplitDocument.text",
+                from: 1,
+                to: 2
+            });
+
+            // Act
+            return wordsApi.splitDocumentOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });

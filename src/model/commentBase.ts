@@ -80,7 +80,7 @@ export class CommentBase {
     }
 
     /**
-     * Gets or sets returns or sets the author name for a comment.
+     * Gets or sets the author name for a comment.
      */
     public author: string;
 
@@ -90,22 +90,22 @@ export class CommentBase {
     public dateTime: Date;
 
     /**
-     * Gets or sets returns or sets the initials of the user associated with a specific comment.
+     * Gets or sets the initials of the user associated with a specific comment.
      */
     public initial: string;
 
     /**
-     * Gets or sets link to comment range end node.
+     * Gets or sets the link to comment range end node.
      */
     public rangeEnd: DocumentPosition;
 
     /**
-     * Gets or sets link to comment range start node.
+     * Gets or sets the link to comment range start node.
      */
     public rangeStart: DocumentPosition;
 
     /**
-     * Gets or sets this is a convenience property that allows to easily get or set text of the comment.
+     * Gets or sets text of the comment.
      */
     public text: string;
 

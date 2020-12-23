@@ -60,7 +60,7 @@ export class FormFieldDropDown extends FormField {
     }
 
     /**
-     * Gets or sets provides access to the items of a dropdown form field.
+     * Gets or sets the items array of a dropdown form field.
      */
     public dropDownItems: Array<string>;
 

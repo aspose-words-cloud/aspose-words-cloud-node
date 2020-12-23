@@ -35,7 +35,7 @@ export const importsMapSaveResponse = {
 };
 
 /**
- * Save response.
+ * The REST response with a save result.
  */
 export class SaveResponse extends WordsResponse {
     /**
@@ -57,7 +57,7 @@ export class SaveResponse extends WordsResponse {
     }
 
     /**
-     * Gets or sets save result.
+     * Gets or sets the save result.
      */
     public saveResult: SaveResult;
 

@@ -65,7 +65,7 @@ export class Bookmark extends LinkElement {
     public name: string;
 
     /**
-     * Gets or sets the text enclosed in the bookmark.
+     * Gets or sets text, enclosed in the bookmark.
      */
     public text: string;
 

@@ -52,8 +52,8 @@ describe("text", () => {
                 const request = new model.ReplaceTextRequest({
                     name: remoteFileName,
                     replaceText: new model.ReplaceTextParameters({
-                        oldValue: "aspose",
-                        newValue: "aspose new"
+                        oldValue: "Testing",
+                        newValue: "Aspose testing"
                     }),
                     folder: remoteDataFolder,
                     destFileName: BaseTest.remoteBaseTestOutFolder + "/" + remoteFileName
@@ -64,8 +64,33 @@ describe("text", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.matches).to.equal(3);
                 });
 
+            });
+
+       });
+    });
+
+    // Test for replacing text online.
+    describe("replaceTextOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const localFile = "Common/test_multi_pages.docx";
+
+            const request = new model.ReplaceTextOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                replaceText: new model.ReplaceTextParameters({
+                    oldValue: "aspose",
+                    newValue: "aspose new"
+                })
+            });
+
+            // Act
+            return wordsApi.replaceTextOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -94,8 +119,34 @@ describe("text", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.searchResults).to.exist;
+                    expect(resultApi.body.searchResults.resultsList).to.exist;
+                    expect(resultApi.body.searchResults.resultsList).to.have.lengthOf(23);
+                    expect(resultApi.body.searchResults.resultsList[0].rangeStart).to.exist;
+                    expect(resultApi.body.searchResults.resultsList[0].rangeStart.offset).to.equal(65);
                 });
 
+            });
+
+       });
+    });
+
+    // Test for searching online.
+    describe("searchOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const localFile = "DocumentElements/Text/SampleWordDocument.docx";
+
+            const request = new model.SearchOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                pattern: "aspose"
+            });
+
+            // Act
+            return wordsApi.searchOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });

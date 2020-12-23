@@ -182,14 +182,12 @@ export class ParagraphFormatBase extends LinkElement {
     }
 
     /**
-     * Gets or sets a flag indicating whether inter-character spacing is automatically adjusted between regions
-     * of Latin text and regions of East Asian text in the current paragraph.
+     * Gets or sets a value indicating whether inter-character spacing is automatically adjusted between regions of Latin text and regions of East Asian text in the current paragraph.
      */
     public addSpaceBetweenFarEastAndAlpha: boolean;
 
     /**
-     * Gets or sets a flag indicating whether inter-character spacing is automatically adjusted between regions
-     * of numbers and regions of East Asian text in the current paragraph.
+     * Gets or sets a value indicating whether inter-character spacing is automatically adjusted between regions of numbers and regions of East Asian text in the current paragraph.
      */
     public addSpaceBetweenFarEastAndDigit: boolean;
 
@@ -199,7 +197,7 @@ export class ParagraphFormatBase extends LinkElement {
     public alignment: ParagraphFormatBase.AlignmentEnum;
 
     /**
-     * Gets or sets whether this is a right-to-left paragraph.
+     * Gets or sets a value indicating whether this is a right-to-left paragraph.
      */
     public bidi: boolean;
 
@@ -215,17 +213,17 @@ export class ParagraphFormatBase extends LinkElement {
     public firstLineIndent: number;
 
     /**
-     * Gets or sets true if all lines in the paragraph are to remain on the same page.
+     * Gets or sets a value indicating whether all lines in the paragraph are to remain on the same page.
      */
     public keepTogether: boolean;
 
     /**
-     * Gets or sets true if the paragraph is to remains on the same page as the paragraph that follows it.
+     * Gets or sets a value indicating whether the paragraph is to remains on the same page as the paragraph that follows it.
      */
     public keepWithNext: boolean;
 
     /**
-     * Gets or sets the value (in points) that represents the left indent for paragraph.
+     * Gets or sets the value (in points), that represents the left indent for paragraph.
      */
     public leftIndent: number;
 
@@ -245,18 +243,17 @@ export class ParagraphFormatBase extends LinkElement {
     public linesToDrop: number;
 
     /**
-     * Gets or sets when true, SpaceBefore and SpaceAfter will be ignored
-     * between the paragraphs of the same style.
+     * Gets or sets a value indicating whether SpaceBefore and SpaceAfter will be ignored between the paragraphs of the same style.
      */
     public noSpaceBetweenParagraphsOfSameStyle: boolean;
 
     /**
-     * Gets or sets specifies the outline level of the paragraph in the document.
+     * Gets or sets the outline level of the paragraph in the document.
      */
     public outlineLevel: ParagraphFormatBase.OutlineLevelEnum;
 
     /**
-     * Gets or sets true if a page break is forced before the paragraph.
+     * Gets or sets a value indicating whether a page break is forced before the paragraph.
      */
     public pageBreakBefore: boolean;
 
@@ -266,7 +263,7 @@ export class ParagraphFormatBase extends LinkElement {
     public rightIndent: number;
 
     /**
-     * Gets or sets a Shading object that refers to the shading formatting for the paragraph.
+     * Gets or sets the Shading object, that refers to the shading formatting for the paragraph.
      */
     public shading: Shading;
 
@@ -276,7 +273,7 @@ export class ParagraphFormatBase extends LinkElement {
     public spaceAfter: number;
 
     /**
-     * Gets or sets true if the amount of spacing after the paragraph is set automatically.
+     * Gets or sets a value indicating whether the amount of spacing after the paragraph is set automatically.
      */
     public spaceAfterAuto: boolean;
 
@@ -286,7 +283,7 @@ export class ParagraphFormatBase extends LinkElement {
     public spaceBefore: number;
 
     /**
-     * Gets or sets true if the amount of spacing before the paragraph is set automatically.
+     * Gets or sets a value indicating whether the amount of spacing before the paragraph is set automatically.
      */
     public spaceBeforeAuto: boolean;
 
@@ -301,19 +298,17 @@ export class ParagraphFormatBase extends LinkElement {
     public styleName: string;
 
     /**
-     * Gets or sets specifies whether the current paragraph should be exempted from any hyphenation which
-     * is applied in the document settings.
+     * Gets or sets a value indicating whether the current paragraph should be exempted from any hyphenation which is applied in the document settings.
      */
     public suppressAutoHyphens: boolean;
 
     /**
-     * Gets or sets specifies whether the current paragraph's lines should be exempted from line numbering
-     * which is applied in the parent section.
+     * Gets or sets a value indicating whether the current paragraph's lines should be exempted from line numbering which is applied in the parent section.
      */
     public suppressLineNumbers: boolean;
 
     /**
-     * Gets or sets true if the first and last lines in the paragraph are to remain on the same page as the rest of the paragraph.
+     * Gets or sets a value indicating whether the first and last lines in the paragraph are to remain on the same page as the rest of the paragraph.
      */
     public widowControl: boolean;
 

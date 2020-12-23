@@ -31,7 +31,7 @@ export const importsMapCompareOptions = {
 };
 
 /**
- * Container class for compare documents options.
+ * DTO container with compare documents options.
  */
 export class CompareOptions {
     /**
@@ -93,54 +93,47 @@ export class CompareOptions {
     }
 
     /**
-     * Gets or sets a value indicating whether true indicates that documents comparison is case insensitive. By default comparison is case sensitive.
+     * Gets or sets a value indicating whether documents comparison is case insensitive. By default comparison is case sensitive.
      */
     public ignoreCaseChanges: boolean;
 
     /**
-     * Gets or sets a value indicating whether specifies whether to compare differences in comments. By default comments are
-     * not ignored.
+     * Gets or sets a value indicating whether comments content is ignored. By default comments are not ignored.
      */
     public ignoreComments: boolean;
 
     /**
-     * Gets or sets a value indicating whether specifies whether to compare differences in fields. By default fields are not
-     * ignored.
+     * Gets or sets a value indicating whether fields content is ignored. By default fields are not ignored.
      */
     public ignoreFields: boolean;
 
     /**
-     * Gets or sets a value indicating whether specifies whether to compare differences in footnotes and endnotes. By default
-     * footnotes are not ignored.
+     * Gets or sets a value indicating whether footnotes/endnotes content is ignored. By default footnotes/endnotes are not ignored.
      */
     public ignoreFootnotes: boolean;
 
     /**
-     * Gets or sets a value indicating whether true indicates that formatting is ignored. By default document formatting is
-     * not ignored.
+     * Gets or sets a value indicating whether formatting is ignored. By default document formatting is not ignored.
      */
     public ignoreFormatting: boolean;
 
     /**
-     * Gets or sets a value indicating whether true indicates that headers and footers content is ignored. By default headers
-     * and footers are not ignored.
+     * Gets or sets a value indicating whether headers and footers content is ignored. By default headers and footers are not ignored.
      */
     public ignoreHeadersAndFooters: boolean;
 
     /**
-     * Gets or sets a value indicating whether specifies whether to compare the differences in data contained in tables. By
-     * default tables are not ignored.
+     * Gets or sets a value indicating whether tables content is ignored. By default tables are not ignored.
      */
     public ignoreTables: boolean;
 
     /**
-     * Gets or sets a value indicating whether specifies whether to compare differences in the data contained within text boxes.
-     * By default textboxes are not ignored.
+     * Gets or sets a value indicating whether textboxes content is ignored. By default textboxes are not ignored.
      */
     public ignoreTextboxes: boolean;
 
     /**
-     * Gets or sets specifies which document shall be used as a target during comparison.
+     * Gets or sets the option that controls which document shall be used as a target during comparison.
      */
     public target: CompareOptions.TargetEnum;
 

@@ -117,71 +117,71 @@ export class ImageSaveOptionsData extends FixedPageSaveOptionsData {
     }
 
     /**
-     * Gets or sets allows to specify additional System.Drawing.Graphics quality options.
+     * Gets or sets the additional System.Drawing.Graphics quality options.
      */
     public graphicsQualityOptions: GraphicsQualityOptionsData;
 
     /**
-     * Gets or sets the horizontal resolution for the generated images, in dots per inch.
+     * Gets or sets the horizontal resolution in dots per inch for the generated images.
      * This property has effect only when saving to raster image formats.
      * The default value is 96.
      */
     public horizontalResolution: number;
 
     /**
-     * Gets or sets brightness of image.
+     * Gets or sets the brightness level of the image.
      */
     public imageBrightness: number;
 
     /**
-     * Gets or sets color mode of image.
+     * Gets or sets the color mode of the image.
      */
     public imageColorMode: string;
 
     /**
-     * Gets or sets contrast of image.
+     * Gets or sets the contrast level of the image.
      */
     public imageContrast: number;
 
     /**
-     * Gets or sets background (paper) color of image.
+     * Gets or sets the background (paper) color of the image.
      */
     public paperColor: string;
 
     /**
-     * Gets or sets pixel format of image.
+     * Gets or sets the pixel format of the image.
      */
     public pixelFormat: string;
 
     /**
-     * Gets or sets both horizontal and vertical resolution for the generated images, in dots per inch.
+     * Gets or sets both horizontal and vertical resolution in dots per inch for the generated images.
      * This property has effect only when saving to raster image formats.
      * The default value is 96.
      */
     public resolution: number;
 
     /**
-     * Gets or sets zoom factor of image.
+     * Gets or sets the zoom factor of the image.
      */
     public scale: number;
 
     /**
-     * Gets or sets determine whether or not to use anti-aliasing for rendering.
+     * Gets or sets a value indicating whether to use anti-aliasing for rendering.
      */
     public useAntiAliasing: boolean;
 
     /**
-     * Gets or sets a value determining whether to use GDI+ or Aspose.Words metafile renderer when saving to EMF.
+     * Gets or sets a value indicating whether to use GDI+ or Aspose.Words metafile renderer when saving to EMF.
      */
     public useGdiEmfRenderer: boolean;
 
     /**
-     * Gets or sets determine whether or not to use high quality (i.e. slow) rendering algorithms.
+     * Gets or sets a value indicating whether to use high quality (i.e. slow) rendering algorithms.
      */
     public useHighQualityRendering: boolean;
 
     /**
-     * Gets or sets the vertical resolution for the generated images, in dots per inch.
+     * Gets or sets the vertical resolution in dots per inch for the generated images.
      * This property has effect only when saving to raster image formats.
      * The default value is 96.
      */

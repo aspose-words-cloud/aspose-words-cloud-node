@@ -57,7 +57,7 @@ export class Hyperlinks extends LinkElement {
     }
 
     /**
-     * Gets or sets array of Hyperlink.
+     * Gets or sets the array of Hyperlink.
      */
     public hyperlinkList: Array<Hyperlink>;
 

@@ -35,8 +35,7 @@ export const importsMapHeaderFooterResponse = {
 };
 
 /**
- * This response should be returned by the service when handling:
- * GET https://api.aspose.cloud/v4.0/words/Test.doc/headersfooters/{0}.
+ * The REST response with a HeaderFooter.
  */
 export class HeaderFooterResponse extends WordsResponse {
     /**
@@ -58,7 +57,7 @@ export class HeaderFooterResponse extends WordsResponse {
     }
 
     /**
-     * Gets or sets headerFooter.
+     * Gets or sets the HeaderFooter.
      */
     public headerFooter: HeaderFooter;
 

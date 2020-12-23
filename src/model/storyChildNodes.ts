@@ -55,7 +55,7 @@ export class StoryChildNodes {
     }
 
     /**
-     * Gets or sets child nodes.
+     * Gets or sets the list of child nodes.
      */
     public childNodes: Array<NodeLink>;
 

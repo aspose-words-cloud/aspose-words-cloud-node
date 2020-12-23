@@ -35,8 +35,7 @@ export const importsMapOfficeMathObjectResponse = {
 };
 
 /**
- * This response should be returned by the service when handling:
- * GET https://api.aspose.cloud/v4.0/words/Test.doc/officeMathObjects/0.
+ * The REST response with a OfficeMath object.
  */
 export class OfficeMathObjectResponse extends WordsResponse {
     /**
@@ -58,7 +57,7 @@ export class OfficeMathObjectResponse extends WordsResponse {
     }
 
     /**
-     * Gets or sets officeMathObject information.
+     * Gets or sets the OfficeMath object.
      */
     public officeMathObject: OfficeMathObject;
 

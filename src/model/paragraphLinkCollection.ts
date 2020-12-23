@@ -35,7 +35,7 @@ export const importsMapParagraphLinkCollection = {
 };
 
 /**
- * Collection of links to paragraphs.
+ * The collection of paragraph's links.
  */
 export class ParagraphLinkCollection extends LinkElement {
     /**
@@ -57,7 +57,7 @@ export class ParagraphLinkCollection extends LinkElement {
     }
 
     /**
-     * Gets or sets collection of paragraph's links.
+     * Gets or sets the collection of paragraph's links.
      */
     public paragraphLinkList: Array<ParagraphLink>;
 

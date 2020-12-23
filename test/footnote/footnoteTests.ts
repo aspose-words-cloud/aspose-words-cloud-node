@@ -64,8 +64,34 @@ describe("footnote", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.footnote).to.exist;
+                    expect(resultApi.body.footnote.nodeId).to.equal("0.1.7.1");
+                    expect(resultApi.body.footnote.text).to.equal(" test endnote" + "\r\n");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for adding footnote online.
+    describe("insertFootnoteOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.InsertFootnoteOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + footnoteFolder + "/Footnote.doc"),
+                footnoteDto: new model.FootnoteInsert({
+                    footnoteType: model.FootnoteInsert.FootnoteTypeEnum.Endnote,
+                    text: "test endnote"
+                }),
+                nodePath: ""
+            });
+
+            // Act
+            return wordsApi.insertFootnoteOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -96,6 +122,9 @@ describe("footnote", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.footnote).to.exist;
+                    expect(resultApi.body.footnote.nodeId).to.equal("0.1.7.1");
+                    expect(resultApi.body.footnote.text).to.equal(" test endnote" + "\r\n");
                 });
 
             });
@@ -128,6 +157,26 @@ describe("footnote", () => {
                     expect(resultApi.statusCode).to.equal(200);
                 });
 
+            });
+
+       });
+    });
+
+    // Test for deleting footnote online.
+    describe("deleteFootnoteOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.DeleteFootnoteOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + footnoteFolder + "/Footnote.doc"),
+                index: 0,
+                nodePath: ""
+            });
+
+            // Act
+            return wordsApi.deleteFootnoteOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -184,8 +233,31 @@ describe("footnote", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.footnotes).to.exist;
+                    expect(resultApi.body.footnotes.list).to.exist;
+                    expect(resultApi.body.footnotes.list).to.have.lengthOf(6);
+                    expect(resultApi.body.footnotes.list[0].text).to.equal(" Footnote 1." + "\r\n");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for getting footnotes online.
+    describe("getFootnotesOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetFootnotesOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + footnoteFolder + "/Footnote.doc"),
+                nodePath: ""
+            });
+
+            // Act
+            return wordsApi.getFootnotesOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -212,6 +284,10 @@ describe("footnote", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.footnotes).to.exist;
+                    expect(resultApi.body.footnotes.list).to.exist;
+                    expect(resultApi.body.footnotes.list).to.have.lengthOf(6);
+                    expect(resultApi.body.footnotes.list[0].text).to.equal(" Footnote 1." + "\r\n");
                 });
 
             });
@@ -242,8 +318,30 @@ describe("footnote", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.footnote).to.exist;
+                    expect(resultApi.body.footnote.text).to.equal(" Footnote 1." + "\r\n");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for getting footnote online.
+    describe("getFootnoteOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetFootnoteOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + footnoteFolder + "/Footnote.doc"),
+                index: 0,
+                nodePath: ""
+            });
+
+            // Act
+            return wordsApi.getFootnoteOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -271,6 +369,8 @@ describe("footnote", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.footnote).to.exist;
+                    expect(resultApi.body.footnote.text).to.equal(" Footnote 1." + "\r\n");
                 });
 
             });
@@ -291,10 +391,10 @@ describe("footnote", () => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.UpdateFootnoteRequest({
                     name: remoteFileName,
+                    index: 0,
                     footnoteDto: new model.FootnoteUpdate({
                         text: "new text is here"
                     }),
-                    index: 0,
                     nodePath: "",
                     folder: remoteDataFolder
                 });
@@ -304,8 +404,33 @@ describe("footnote", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.footnote).to.exist;
+                    expect(resultApi.body.footnote.text).to.equal(" new text is here" + "\r\n");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for updating footnote online.
+    describe("updateFootnoteOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.UpdateFootnoteOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + footnoteFolder + "/Footnote.doc"),
+                index: 0,
+                footnoteDto: new model.FootnoteUpdate({
+                    text: "new text is here"
+                }),
+                nodePath: ""
+            });
+
+            // Act
+            return wordsApi.updateFootnoteOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -324,10 +449,10 @@ describe("footnote", () => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.UpdateFootnoteRequest({
                     name: remoteFileName,
+                    index: 0,
                     footnoteDto: new model.FootnoteUpdate({
                         text: "new text is here"
                     }),
-                    index: 0,
                     folder: remoteDataFolder
                 });
 
@@ -336,6 +461,8 @@ describe("footnote", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.footnote).to.exist;
+                    expect(resultApi.body.footnote.text).to.equal(" new text is here" + "\r\n");
                 });
 
             });

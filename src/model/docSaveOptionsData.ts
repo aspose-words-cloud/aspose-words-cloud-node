@@ -33,7 +33,7 @@ export const importsMapDocSaveOptionsData = {
 };
 
 /**
- * container class for doc/dot save options.
+ * Container class for doc/dot save options.
  */
 export class DocSaveOptionsData extends SaveOptionsData {
     /**
@@ -70,24 +70,24 @@ export class DocSaveOptionsData extends SaveOptionsData {
     }
 
     /**
-     * Gets or sets When false, small metafiles are not compressed for performance reason.
-     * Default value is true, all metafiles are compressed regardless of its size.
+     * Gets or sets a value indicating when False, that small metafiles are not compressed for performance reason.
+     * The default value is true, all metafiles are compressed regardless of its size.
      */
     public alwaysCompressMetafiles: boolean;
 
     /**
-     * Gets or sets password.
+     * Gets or sets the password.
      */
     public password: string;
 
     /**
-     * Gets or sets When false, PictureBullet data is not saved to output document.
-     * Default value is true.
+     * Gets or sets a value indicating when False, that PictureBullet data is not saved to the output document.
+     * The default value is true.
      */
     public savePictureBullet: boolean;
 
     /**
-     * Gets or sets determine whether or not save RoutingSlip data saved to output document.
+     * Gets or sets a value indicating whether to save RoutingSlip data to output document.
      */
     public saveRoutingSlip: boolean;
 

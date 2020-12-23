@@ -31,7 +31,7 @@ export const importsMapWordsResponse = {
 };
 
 /**
- * Base class for all responses.
+ * The base class for all responses.
  */
 export class WordsResponse {
     /**
@@ -53,7 +53,7 @@ export class WordsResponse {
     }
 
     /**
-     * Gets or sets request Id.
+     * Gets or sets the request Id.
      */
     public requestId: string;
 

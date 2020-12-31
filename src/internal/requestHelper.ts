@@ -41,7 +41,16 @@ export async function invokeApiMethod(requestOptions: request.OptionsWithUri, co
         return await invokeApiMethodInternal(requestOptions, confguration, notApplyAuthToRequest);
     } catch (e) {
         if (e instanceof NeedRepeatException) {
-            return await invokeApiMethodInternal(requestOptions, confguration, notApplyAuthToRequest);
+            try {
+                return await invokeApiMethodInternal(requestOptions, confguration, notApplyAuthToRequest);
+            }
+            catch(re) {
+                if (re instanceof NeedRepeatException) {
+                    throw new Error("Authorization failed")
+                }
+
+                throw re
+            }
         }
 
         throw e;

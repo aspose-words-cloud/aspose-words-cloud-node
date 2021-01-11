@@ -1,7 +1,7 @@
 /*
  * --------------------------------------------------------------------------------
  * <copyright company="Aspose" file="documentStatisticsTests.ts">
- *   Copyright (c) 2020 Aspose.Words for Cloud
+ *   Copyright (c) 2021 Aspose.Words for Cloud
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -63,6 +63,24 @@ describe("documentStatistics", () => {
                     expect(resultApi.body.statData.wordCount).to.equal(10);
                 });
 
+            });
+
+       });
+    });
+
+    // Test for document classification online.
+    describe("getDocumentStatisticsOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetDocumentStatisticsOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile)
+            });
+
+            // Act
+            return wordsApi.getDocumentStatisticsOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });

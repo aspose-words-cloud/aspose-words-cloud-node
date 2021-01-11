@@ -1,7 +1,7 @@
 /*
  * --------------------------------------------------------------------------------
  * <copyright company="Aspose" file="api.ts">
- *   Copyright (c) 2020 Aspose.Words for Cloud
+ *   Copyright (c) 2021 Aspose.Words for Cloud
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -97,6 +97,51 @@ export class WordsApi {
     }
 
     /**
+     * Accepts all revisions in the document.
+     * @param requestObj contains request parameters
+     */
+    public async acceptAllRevisionsOnline(requestObj: model.AcceptAllRevisionsOnlineRequest): Promise< model.WordsIncomingMessage< AcceptAllRevisionsOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling acceptAllRevisionsOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/put/revisions/acceptAll"
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling acceptAllRevisionsOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling acceptAllRevisionsOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "AcceptAllRevisionsOnlineResponse");
+        const result: model.WordsIncomingMessage< model.AcceptAllRevisionsOnlineResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Appends documents to the original document.
      * @param requestObj contains request parameters
      */
@@ -152,6 +197,66 @@ export class WordsApi {
     }
 
     /**
+     * Appends documents to the original document.
+     * @param requestObj contains request parameters
+     */
+    public async appendDocumentOnline(requestObj: model.AppendDocumentOnlineRequest): Promise< model.WordsIncomingMessage< AppendDocumentOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling appendDocumentOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/put/appendDocument"
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling appendDocumentOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling appendDocumentOnline.');
+        }
+
+        // verify required parameter 'requestObj.documentList' is not undefined
+        if (requestObj.documentList === undefined) {
+            throw new Error('Required parameter "requestObj.documentList" was undefined when calling appendDocumentOnline.');
+        }
+
+        // verify required parameter 'requestObj.documentList' is not null
+        if (requestObj.documentList === null) {
+            throw new Error('Required parameter "requestObj.documentList" was null when calling appendDocumentOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+        if (requestObj.documentList !== undefined) {
+            formParams.DocumentList = JSON.stringify(requestObj.documentList);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "AppendDocumentOnlineResponse");
+        const result: model.WordsIncomingMessage< model.AppendDocumentOnlineResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Applies a style to the document node.
      * @param requestObj contains request parameters
      */
@@ -175,16 +280,6 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj.name" was null when calling applyStyleToDocumentElement.');
         }
 
-        // verify required parameter 'requestObj.styleApply' is not undefined
-        if (requestObj.styleApply === undefined) {
-            throw new Error('Required parameter "requestObj.styleApply" was undefined when calling applyStyleToDocumentElement.');
-        }
-
-        // verify required parameter 'requestObj.styleApply' is not null
-        if (requestObj.styleApply === null) {
-            throw new Error('Required parameter "requestObj.styleApply" was null when calling applyStyleToDocumentElement.');
-        }
-
         // verify required parameter 'requestObj.styledNodePath' is not undefined
         if (requestObj.styledNodePath === undefined) {
             throw new Error('Required parameter "requestObj.styledNodePath" was undefined when calling applyStyleToDocumentElement.');
@@ -193,6 +288,16 @@ export class WordsApi {
         // verify required parameter 'requestObj.styledNodePath' is not null
         if (requestObj.styledNodePath === null) {
             throw new Error('Required parameter "requestObj.styledNodePath" was null when calling applyStyleToDocumentElement.');
+        }
+
+        // verify required parameter 'requestObj.styleApply' is not undefined
+        if (requestObj.styleApply === undefined) {
+            throw new Error('Required parameter "requestObj.styleApply" was undefined when calling applyStyleToDocumentElement.');
+        }
+
+        // verify required parameter 'requestObj.styleApply' is not null
+        if (requestObj.styleApply === null) {
+            throw new Error('Required parameter "requestObj.styleApply" was null when calling applyStyleToDocumentElement.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -204,7 +309,7 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
 
         const requestOptions: request.Options = {
-            method: "PUT",
+            method: "POST",
             qs: queryParameters,
             uri: localVarPath,
             json: true,
@@ -214,6 +319,77 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "WordsResponse");
         const result: model.WordsIncomingMessage< model.WordsResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Applies a style to the document node.
+     * @param requestObj contains request parameters
+     */
+    public async applyStyleToDocumentElementOnline(requestObj: model.ApplyStyleToDocumentElementOnlineRequest): Promise< model.WordsIncomingMessage< ApplyStyleToDocumentElementOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling applyStyleToDocumentElementOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/put/{name}/{styledNodePath}/style"
+            .replace("/{" + "styledNodePath" + "}", (requestObj.styledNodePath !== null && requestObj.styledNodePath !== undefined) ? "/" + String(requestObj.styledNodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling applyStyleToDocumentElementOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling applyStyleToDocumentElementOnline.');
+        }
+
+        // verify required parameter 'requestObj.styledNodePath' is not undefined
+        if (requestObj.styledNodePath === undefined) {
+            throw new Error('Required parameter "requestObj.styledNodePath" was undefined when calling applyStyleToDocumentElementOnline.');
+        }
+
+        // verify required parameter 'requestObj.styledNodePath' is not null
+        if (requestObj.styledNodePath === null) {
+            throw new Error('Required parameter "requestObj.styledNodePath" was null when calling applyStyleToDocumentElementOnline.');
+        }
+
+        // verify required parameter 'requestObj.styleApply' is not undefined
+        if (requestObj.styleApply === undefined) {
+            throw new Error('Required parameter "requestObj.styleApply" was undefined when calling applyStyleToDocumentElementOnline.');
+        }
+
+        // verify required parameter 'requestObj.styleApply' is not null
+        if (requestObj.styleApply === null) {
+            throw new Error('Required parameter "requestObj.styleApply" was null when calling applyStyleToDocumentElementOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+        if (requestObj.styleApply !== undefined) {
+            formParams.StyleApply = JSON.stringify(requestObj.styleApply);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "ApplyStyleToDocumentElementOnlineResponse");
+        const result: model.WordsIncomingMessage< model.ApplyStyleToDocumentElementOnlineResponse > = {body, response};
         return Promise.resolve(result);
     }
 
@@ -406,18 +582,18 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling classifyDocument.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{documentName}/classify"
-            .replace("/{" + "documentName" + "}", (requestObj.documentName !== null && requestObj.documentName !== undefined) ? "/" + String(requestObj.documentName) : "")
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/classify"
+            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
             .replace("//", "/");
         const queryParameters: any = {};
-        // verify required parameter 'requestObj.documentName' is not undefined
-        if (requestObj.documentName === undefined) {
-            throw new Error('Required parameter "requestObj.documentName" was undefined when calling classifyDocument.');
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling classifyDocument.');
         }
 
-        // verify required parameter 'requestObj.documentName' is not null
-        if (requestObj.documentName === null) {
-            throw new Error('Required parameter "requestObj.documentName" was null when calling classifyDocument.');
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling classifyDocument.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -434,6 +610,53 @@ export class WordsApi {
             json: true,
         };
 
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "ClassificationResponse");
+        const result: model.WordsIncomingMessage< model.ClassificationResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Runs a multi-class text classification for the document.
+     * @param requestObj contains request parameters
+     */
+    public async classifyDocumentOnline(requestObj: model.ClassifyDocumentOnlineRequest): Promise< model.WordsIncomingMessage< model.ClassificationResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling classifyDocumentOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/classify"
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling classifyDocumentOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling classifyDocumentOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "bestClassesCount", requestObj.bestClassesCount);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "taxonomy", requestObj.taxonomy);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "ClassificationResponse");
         const result: model.WordsIncomingMessage< model.ClassificationResponse > = {body, response};
@@ -494,6 +717,64 @@ export class WordsApi {
     }
 
     /**
+     * Compares two documents.
+     * @param requestObj contains request parameters
+     */
+    public async compareDocumentOnline(requestObj: model.CompareDocumentOnlineRequest): Promise< model.WordsIncomingMessage< CompareDocumentOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling compareDocumentOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/put/compareDocument"
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling compareDocumentOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling compareDocumentOnline.');
+        }
+
+        // verify required parameter 'requestObj.compareData' is not undefined
+        if (requestObj.compareData === undefined) {
+            throw new Error('Required parameter "requestObj.compareData" was undefined when calling compareDocumentOnline.');
+        }
+
+        // verify required parameter 'requestObj.compareData' is not null
+        if (requestObj.compareData === null) {
+            throw new Error('Required parameter "requestObj.compareData" was null when calling compareDocumentOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+        if (requestObj.compareData !== undefined) {
+            formParams.CompareData = JSON.stringify(requestObj.compareData);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "CompareDocumentOnlineResponse");
+        const result: model.WordsIncomingMessage< model.CompareDocumentOnlineResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Converts a document on a local drive to the specified format.
      * @param requestObj contains request parameters
      */
@@ -527,9 +808,9 @@ export class WordsApi {
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", requestObj.outPath);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fileNameFieldValue", requestObj.fileNameFieldValue);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", requestObj.fontsLocation);
         if (requestObj.document !== undefined) {
             formParams.Document = requestObj.document;
@@ -694,6 +975,66 @@ export class WordsApi {
     }
 
     /**
+     * Makes a copy of the style in the document.
+     * @param requestObj contains request parameters
+     */
+    public async copyStyleOnline(requestObj: model.CopyStyleOnlineRequest): Promise< model.WordsIncomingMessage< CopyStyleOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling copyStyleOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/post/styles/copy"
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling copyStyleOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling copyStyleOnline.');
+        }
+
+        // verify required parameter 'requestObj.styleCopy' is not undefined
+        if (requestObj.styleCopy === undefined) {
+            throw new Error('Required parameter "requestObj.styleCopy" was undefined when calling copyStyleOnline.');
+        }
+
+        // verify required parameter 'requestObj.styleCopy' is not null
+        if (requestObj.styleCopy === null) {
+            throw new Error('Required parameter "requestObj.styleCopy" was null when calling copyStyleOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+        if (requestObj.styleCopy !== undefined) {
+            formParams.StyleCopy = JSON.stringify(requestObj.styleCopy);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "CopyStyleOnlineResponse");
+        const result: model.WordsIncomingMessage< model.CopyStyleOnlineResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Supported extensions: ".doc", ".docx", ".docm", ".dot", ".dotm", ".dotx", ".flatopc", ".fopc", ".flatopc_macro", ".fopc_macro", ".flatopc_template", ".fopc_template", ".flatopc_template_macro", ".fopc_template_macro", ".wordml", ".wml", ".rtf".
      * @param requestObj contains request parameters
      */
@@ -705,9 +1046,9 @@ export class WordsApi {
         let localVarPath = this.configuration.getApiBaseUrl() + "/words/create"
             .replace("//", "/");
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fileName", requestObj.fileName);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -825,6 +1166,77 @@ export class WordsApi {
     }
 
     /**
+     * Adds a new or updates an existing document property.
+     * @param requestObj contains request parameters
+     */
+    public async createOrUpdateDocumentPropertyOnline(requestObj: model.CreateOrUpdateDocumentPropertyOnlineRequest): Promise< model.WordsIncomingMessage< CreateOrUpdateDocumentPropertyOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling createOrUpdateDocumentPropertyOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/put/documentProperties/{propertyName}"
+            .replace("/{" + "propertyName" + "}", (requestObj.propertyName !== null && requestObj.propertyName !== undefined) ? "/" + String(requestObj.propertyName) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling createOrUpdateDocumentPropertyOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling createOrUpdateDocumentPropertyOnline.');
+        }
+
+        // verify required parameter 'requestObj.propertyName' is not undefined
+        if (requestObj.propertyName === undefined) {
+            throw new Error('Required parameter "requestObj.propertyName" was undefined when calling createOrUpdateDocumentPropertyOnline.');
+        }
+
+        // verify required parameter 'requestObj.propertyName' is not null
+        if (requestObj.propertyName === null) {
+            throw new Error('Required parameter "requestObj.propertyName" was null when calling createOrUpdateDocumentPropertyOnline.');
+        }
+
+        // verify required parameter 'requestObj.property' is not undefined
+        if (requestObj.property === undefined) {
+            throw new Error('Required parameter "requestObj.property" was undefined when calling createOrUpdateDocumentPropertyOnline.');
+        }
+
+        // verify required parameter 'requestObj.property' is not null
+        if (requestObj.property === null) {
+            throw new Error('Required parameter "requestObj.property" was null when calling createOrUpdateDocumentPropertyOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+        if (requestObj.property !== undefined) {
+            formParams.Property = JSON.stringify(requestObj.property);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "CreateOrUpdateDocumentPropertyOnlineResponse");
+        const result: model.WordsIncomingMessage< model.CreateOrUpdateDocumentPropertyOnlineResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Removes paragraph tab stops from the document node.
      * @param requestObj contains request parameters
      */
@@ -875,6 +1287,63 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "TabStopsResponse");
         const result: model.WordsIncomingMessage< model.TabStopsResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Removes paragraph tab stops from the document node.
+     * @param requestObj contains request parameters
+     */
+    public async deleteAllParagraphTabStopsOnline(requestObj: model.DeleteAllParagraphTabStopsOnlineRequest): Promise< model.WordsIncomingMessage< DeleteAllParagraphTabStopsOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling deleteAllParagraphTabStopsOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/delete/{name}/{nodePath}/paragraphs/{index}/tabstops"
+            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling deleteAllParagraphTabStopsOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling deleteAllParagraphTabStopsOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling deleteAllParagraphTabStopsOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling deleteAllParagraphTabStopsOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "DeleteAllParagraphTabStopsOnlineResponse");
+        const result: model.WordsIncomingMessage< model.DeleteAllParagraphTabStopsOnlineResponse > = {body, response};
         return Promise.resolve(result);
     }
 
@@ -935,6 +1404,65 @@ export class WordsApi {
     }
 
     /**
+     * Removes a border from the document node.
+     * @param requestObj contains request parameters
+     */
+    public async deleteBorderOnline(requestObj: model.DeleteBorderOnlineRequest): Promise< model.WordsIncomingMessage< DeleteBorderOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling deleteBorderOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/delete/{name}/{nodePath}/borders/{borderType}"
+            .replace("/{" + "borderType" + "}", (requestObj.borderType !== null && requestObj.borderType !== undefined) ? "/" + String(requestObj.borderType) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling deleteBorderOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling deleteBorderOnline.');
+        }
+
+        // verify required parameter 'requestObj.borderType' is not undefined
+        if (requestObj.borderType === undefined) {
+            throw new Error('Required parameter "requestObj.borderType" was undefined when calling deleteBorderOnline.');
+        }
+
+        // verify required parameter 'requestObj.borderType' is not null
+        if (requestObj.borderType === null) {
+            throw new Error('Required parameter "requestObj.borderType" was null when calling deleteBorderOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "DeleteBorderOnlineResponse");
+        const result: model.WordsIncomingMessage< model.DeleteBorderOnlineResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * The 'nodePath' parameter should refer to a paragraph, a cell or a row.
      * @param requestObj contains request parameters
      */
@@ -976,6 +1504,54 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "BordersResponse");
         const result: model.WordsIncomingMessage< model.BordersResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Removes borders from the document node.
+     * @param requestObj contains request parameters
+     */
+    public async deleteBordersOnline(requestObj: model.DeleteBordersOnlineRequest): Promise< model.WordsIncomingMessage< DeleteBordersOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling deleteBordersOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/delete/{name}/{nodePath}/borders"
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling deleteBordersOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling deleteBordersOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "DeleteBordersOnlineResponse");
+        const result: model.WordsIncomingMessage< model.DeleteBordersOnlineResponse > = {body, response};
         return Promise.resolve(result);
     }
 
@@ -1033,6 +1609,65 @@ export class WordsApi {
     }
 
     /**
+     * Removes a comment from the document.
+     * @param requestObj contains request parameters
+     */
+    public async deleteCommentOnline(requestObj: model.DeleteCommentOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling deleteCommentOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/delete/comments/{commentIndex}"
+            .replace("/{" + "commentIndex" + "}", (requestObj.commentIndex !== null && requestObj.commentIndex !== undefined) ? "/" + String(requestObj.commentIndex) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling deleteCommentOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling deleteCommentOnline.');
+        }
+
+        // verify required parameter 'requestObj.commentIndex' is not undefined
+        if (requestObj.commentIndex === undefined) {
+            throw new Error('Required parameter "requestObj.commentIndex" was undefined when calling deleteCommentOnline.');
+        }
+
+        // verify required parameter 'requestObj.commentIndex' is not null
+        if (requestObj.commentIndex === null) {
+            throw new Error('Required parameter "requestObj.commentIndex" was null when calling deleteCommentOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const result: model.WordsIncomingMessage< Buffer > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Removes a document property.
      * @param requestObj contains request parameters
      */
@@ -1083,6 +1718,65 @@ export class WordsApi {
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         return Promise.resolve(response);
+    }
+
+    /**
+     * Removes a document property.
+     * @param requestObj contains request parameters
+     */
+    public async deleteDocumentPropertyOnline(requestObj: model.DeleteDocumentPropertyOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling deleteDocumentPropertyOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/delete/documentProperties/{propertyName}"
+            .replace("/{" + "propertyName" + "}", (requestObj.propertyName !== null && requestObj.propertyName !== undefined) ? "/" + String(requestObj.propertyName) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling deleteDocumentPropertyOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling deleteDocumentPropertyOnline.');
+        }
+
+        // verify required parameter 'requestObj.propertyName' is not undefined
+        if (requestObj.propertyName === undefined) {
+            throw new Error('Required parameter "requestObj.propertyName" was undefined when calling deleteDocumentPropertyOnline.');
+        }
+
+        // verify required parameter 'requestObj.propertyName' is not null
+        if (requestObj.propertyName === null) {
+            throw new Error('Required parameter "requestObj.propertyName" was null when calling deleteDocumentPropertyOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const result: model.WordsIncomingMessage< Buffer > = {body, response};
+        return Promise.resolve(result);
     }
 
     /**
@@ -1140,6 +1834,66 @@ export class WordsApi {
     }
 
     /**
+     * Removes a DrawingObject from the document node.
+     * @param requestObj contains request parameters
+     */
+    public async deleteDrawingObjectOnline(requestObj: model.DeleteDrawingObjectOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling deleteDrawingObjectOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/delete/{name}/{nodePath}/drawingObjects/{index}"
+            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling deleteDrawingObjectOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling deleteDrawingObjectOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling deleteDrawingObjectOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling deleteDrawingObjectOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const result: model.WordsIncomingMessage< Buffer > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Removes a field from the document node.
      * @param requestObj contains request parameters
      */
@@ -1194,6 +1948,66 @@ export class WordsApi {
     }
 
     /**
+     * Removes a field from the document node.
+     * @param requestObj contains request parameters
+     */
+    public async deleteFieldOnline(requestObj: model.DeleteFieldOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling deleteFieldOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/delete/{name}/{nodePath}/fields/{index}"
+            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling deleteFieldOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling deleteFieldOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling deleteFieldOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling deleteFieldOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const result: model.WordsIncomingMessage< Buffer > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Removes fields from the document node.
      * @param requestObj contains request parameters
      */
@@ -1234,6 +2048,55 @@ export class WordsApi {
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         return Promise.resolve(response);
+    }
+
+    /**
+     * Removes fields from the document node.
+     * @param requestObj contains request parameters
+     */
+    public async deleteFieldsOnline(requestObj: model.DeleteFieldsOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling deleteFieldsOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/delete/{name}/{nodePath}/fields"
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling deleteFieldsOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling deleteFieldsOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const result: model.WordsIncomingMessage< Buffer > = {body, response};
+        return Promise.resolve(result);
     }
 
     /**
@@ -1365,6 +2228,66 @@ export class WordsApi {
     }
 
     /**
+     * Removes a footnote from the document node.
+     * @param requestObj contains request parameters
+     */
+    public async deleteFootnoteOnline(requestObj: model.DeleteFootnoteOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling deleteFootnoteOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/delete/{name}/{nodePath}/footnotes/{index}"
+            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling deleteFootnoteOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling deleteFootnoteOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling deleteFootnoteOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling deleteFootnoteOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const result: model.WordsIncomingMessage< Buffer > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Removes a form field from the document node.
      * @param requestObj contains request parameters
      */
@@ -1416,6 +2339,66 @@ export class WordsApi {
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         return Promise.resolve(response);
+    }
+
+    /**
+     * Removes a form field from the document node.
+     * @param requestObj contains request parameters
+     */
+    public async deleteFormFieldOnline(requestObj: model.DeleteFormFieldOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling deleteFormFieldOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/delete/{name}/{nodePath}/formfields/{index}"
+            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling deleteFormFieldOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling deleteFormFieldOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling deleteFormFieldOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling deleteFormFieldOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const result: model.WordsIncomingMessage< Buffer > = {body, response};
+        return Promise.resolve(result);
     }
 
     /**
@@ -1478,6 +2461,71 @@ export class WordsApi {
     }
 
     /**
+     * Removes a HeaderFooter object from the document section.
+     * @param requestObj contains request parameters
+     */
+    public async deleteHeaderFooterOnline(requestObj: model.DeleteHeaderFooterOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling deleteHeaderFooterOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/delete/{name}/{sectionPath}/headersfooters/{index}"
+            .replace("/{" + "sectionPath" + "}", (requestObj.sectionPath !== null && requestObj.sectionPath !== undefined) ? "/" + String(requestObj.sectionPath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling deleteHeaderFooterOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling deleteHeaderFooterOnline.');
+        }
+
+        // verify required parameter 'requestObj.sectionPath' is not undefined
+        if (requestObj.sectionPath === undefined) {
+            throw new Error('Required parameter "requestObj.sectionPath" was undefined when calling deleteHeaderFooterOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling deleteHeaderFooterOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling deleteHeaderFooterOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const result: model.WordsIncomingMessage< Buffer > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Removes HeaderFooter objects from the document section.
      * @param requestObj contains request parameters
      */
@@ -1527,6 +2575,61 @@ export class WordsApi {
     }
 
     /**
+     * Removes HeaderFooter objects from the document section.
+     * @param requestObj contains request parameters
+     */
+    public async deleteHeadersFootersOnline(requestObj: model.DeleteHeadersFootersOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling deleteHeadersFootersOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/delete/{name}/{sectionPath}/headersfooters"
+            .replace("/{" + "sectionPath" + "}", (requestObj.sectionPath !== null && requestObj.sectionPath !== undefined) ? "/" + String(requestObj.sectionPath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling deleteHeadersFootersOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling deleteHeadersFootersOnline.');
+        }
+
+        // verify required parameter 'requestObj.sectionPath' is not undefined
+        if (requestObj.sectionPath === undefined) {
+            throw new Error('Required parameter "requestObj.sectionPath" was undefined when calling deleteHeadersFootersOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "headersFootersTypes", requestObj.headersFootersTypes);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const result: model.WordsIncomingMessage< Buffer > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Removes macros from the document.
      * @param requestObj contains request parameters
      */
@@ -1566,6 +2669,54 @@ export class WordsApi {
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         return Promise.resolve(response);
+    }
+
+    /**
+     * Removes macros from the document.
+     * @param requestObj contains request parameters
+     */
+    public async deleteMacrosOnline(requestObj: model.DeleteMacrosOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling deleteMacrosOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/delete/macros"
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling deleteMacrosOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling deleteMacrosOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const result: model.WordsIncomingMessage< Buffer > = {body, response};
+        return Promise.resolve(result);
     }
 
     /**
@@ -1620,6 +2771,66 @@ export class WordsApi {
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         return Promise.resolve(response);
+    }
+
+    /**
+     * Removes an OfficeMath object from the document node.
+     * @param requestObj contains request parameters
+     */
+    public async deleteOfficeMathObjectOnline(requestObj: model.DeleteOfficeMathObjectOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling deleteOfficeMathObjectOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/delete/{name}/{nodePath}/OfficeMathObjects/{index}"
+            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling deleteOfficeMathObjectOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling deleteOfficeMathObjectOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling deleteOfficeMathObjectOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling deleteOfficeMathObjectOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const result: model.WordsIncomingMessage< Buffer > = {body, response};
+        return Promise.resolve(result);
     }
 
     /**
@@ -1733,6 +2944,125 @@ export class WordsApi {
     }
 
     /**
+     * Removes the formatting properties of a paragraph list from the document node.
+     * @param requestObj contains request parameters
+     */
+    public async deleteParagraphListFormatOnline(requestObj: model.DeleteParagraphListFormatOnlineRequest): Promise< model.WordsIncomingMessage< DeleteParagraphListFormatOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling deleteParagraphListFormatOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/delete/{name}/{nodePath}/paragraphs/{index}/listFormat"
+            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling deleteParagraphListFormatOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling deleteParagraphListFormatOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling deleteParagraphListFormatOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling deleteParagraphListFormatOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "DeleteParagraphListFormatOnlineResponse");
+        const result: model.WordsIncomingMessage< model.DeleteParagraphListFormatOnlineResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Removes a paragraph from the document node.
+     * @param requestObj contains request parameters
+     */
+    public async deleteParagraphOnline(requestObj: model.DeleteParagraphOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling deleteParagraphOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/delete/{name}/{nodePath}/paragraphs/{index}"
+            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling deleteParagraphOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling deleteParagraphOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling deleteParagraphOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling deleteParagraphOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const result: model.WordsIncomingMessage< Buffer > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Removes a paragraph tab stop from the document node.
      * @param requestObj contains request parameters
      */
@@ -1798,6 +3128,74 @@ export class WordsApi {
     }
 
     /**
+     * Removes a paragraph tab stop from the document node.
+     * @param requestObj contains request parameters
+     */
+    public async deleteParagraphTabStopOnline(requestObj: model.DeleteParagraphTabStopOnlineRequest): Promise< model.WordsIncomingMessage< DeleteParagraphTabStopOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling deleteParagraphTabStopOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/delete/{name}/{nodePath}/paragraphs/{index}/tabstop"
+            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling deleteParagraphTabStopOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling deleteParagraphTabStopOnline.');
+        }
+
+        // verify required parameter 'requestObj.position' is not undefined
+        if (requestObj.position === undefined) {
+            throw new Error('Required parameter "requestObj.position" was undefined when calling deleteParagraphTabStopOnline.');
+        }
+
+        // verify required parameter 'requestObj.position' is not null
+        if (requestObj.position === null) {
+            throw new Error('Required parameter "requestObj.position" was null when calling deleteParagraphTabStopOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling deleteParagraphTabStopOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling deleteParagraphTabStopOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "position", requestObj.position);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "DeleteParagraphTabStopOnlineResponse");
+        const result: model.WordsIncomingMessage< model.DeleteParagraphTabStopOnlineResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Removes a Run object from the paragraph.
      * @param requestObj contains request parameters
      */
@@ -1857,6 +3255,71 @@ export class WordsApi {
     }
 
     /**
+     * Removes a Run object from the paragraph.
+     * @param requestObj contains request parameters
+     */
+    public async deleteRunOnline(requestObj: model.DeleteRunOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling deleteRunOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/delete/{name}/{paragraphPath}/runs/{index}"
+            .replace("/{" + "paragraphPath" + "}", (requestObj.paragraphPath !== null && requestObj.paragraphPath !== undefined) ? "/" + String(requestObj.paragraphPath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling deleteRunOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling deleteRunOnline.');
+        }
+
+        // verify required parameter 'requestObj.paragraphPath' is not undefined
+        if (requestObj.paragraphPath === undefined) {
+            throw new Error('Required parameter "requestObj.paragraphPath" was undefined when calling deleteRunOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling deleteRunOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling deleteRunOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const result: model.WordsIncomingMessage< Buffer > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Removes a section from the document.
      * @param requestObj contains request parameters
      */
@@ -1907,6 +3370,65 @@ export class WordsApi {
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         return Promise.resolve(response);
+    }
+
+    /**
+     * Removes a section from the document.
+     * @param requestObj contains request parameters
+     */
+    public async deleteSectionOnline(requestObj: model.DeleteSectionOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling deleteSectionOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/delete/sections/{sectionIndex}"
+            .replace("/{" + "sectionIndex" + "}", (requestObj.sectionIndex !== null && requestObj.sectionIndex !== undefined) ? "/" + String(requestObj.sectionIndex) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling deleteSectionOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling deleteSectionOnline.');
+        }
+
+        // verify required parameter 'requestObj.sectionIndex' is not undefined
+        if (requestObj.sectionIndex === undefined) {
+            throw new Error('Required parameter "requestObj.sectionIndex" was undefined when calling deleteSectionOnline.');
+        }
+
+        // verify required parameter 'requestObj.sectionIndex' is not null
+        if (requestObj.sectionIndex === null) {
+            throw new Error('Required parameter "requestObj.sectionIndex" was null when calling deleteSectionOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const result: model.WordsIncomingMessage< Buffer > = {body, response};
+        return Promise.resolve(result);
     }
 
     /**
@@ -2023,6 +3545,131 @@ export class WordsApi {
     }
 
     /**
+     * Removes a cell from the table row.
+     * @param requestObj contains request parameters
+     */
+    public async deleteTableCellOnline(requestObj: model.DeleteTableCellOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling deleteTableCellOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/delete/{name}/{tableRowPath}/cells/{index}"
+            .replace("/{" + "tableRowPath" + "}", (requestObj.tableRowPath !== null && requestObj.tableRowPath !== undefined) ? "/" + String(requestObj.tableRowPath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling deleteTableCellOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling deleteTableCellOnline.');
+        }
+
+        // verify required parameter 'requestObj.tableRowPath' is not undefined
+        if (requestObj.tableRowPath === undefined) {
+            throw new Error('Required parameter "requestObj.tableRowPath" was undefined when calling deleteTableCellOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling deleteTableCellOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling deleteTableCellOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const result: model.WordsIncomingMessage< Buffer > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Removes a table from the document node.
+     * @param requestObj contains request parameters
+     */
+    public async deleteTableOnline(requestObj: model.DeleteTableOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling deleteTableOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/delete/{name}/{nodePath}/tables/{index}"
+            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling deleteTableOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling deleteTableOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling deleteTableOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling deleteTableOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const result: model.WordsIncomingMessage< Buffer > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Removes a row from the table.
      * @param requestObj contains request parameters
      */
@@ -2082,6 +3729,71 @@ export class WordsApi {
     }
 
     /**
+     * Removes a row from the table.
+     * @param requestObj contains request parameters
+     */
+    public async deleteTableRowOnline(requestObj: model.DeleteTableRowOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling deleteTableRowOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/delete/{name}/{tablePath}/rows/{index}"
+            .replace("/{" + "tablePath" + "}", (requestObj.tablePath !== null && requestObj.tablePath !== undefined) ? "/" + String(requestObj.tablePath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling deleteTableRowOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling deleteTableRowOnline.');
+        }
+
+        // verify required parameter 'requestObj.tablePath' is not undefined
+        if (requestObj.tablePath === undefined) {
+            throw new Error('Required parameter "requestObj.tablePath" was undefined when calling deleteTableRowOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling deleteTableRowOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling deleteTableRowOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const result: model.WordsIncomingMessage< Buffer > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Removes a watermark from the document.
      * @param requestObj contains request parameters
      */
@@ -2122,6 +3834,53 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
         const result: model.WordsIncomingMessage< model.DocumentResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Removes a watermark from the document.
+     * @param requestObj contains request parameters
+     */
+    public async deleteWatermarkOnline(requestObj: model.DeleteWatermarkOnlineRequest): Promise< model.WordsIncomingMessage< DeleteWatermarkOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling deleteWatermarkOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/post/watermarks/deleteLast"
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling deleteWatermarkOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling deleteWatermarkOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "DeleteWatermarkOnlineResponse");
+        const result: model.WordsIncomingMessage< model.DeleteWatermarkOnlineResponse > = {body, response};
         return Promise.resolve(result);
     }
 
@@ -2356,6 +4115,62 @@ export class WordsApi {
     }
 
     /**
+     * Reads a bookmark, specified by name, from the document.
+     * @param requestObj contains request parameters
+     */
+    public async getBookmarkByNameOnline(requestObj: model.GetBookmarkByNameOnlineRequest): Promise< model.WordsIncomingMessage< model.BookmarkResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getBookmarkByNameOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/bookmarks/{bookmarkName}"
+            .replace("/{" + "bookmarkName" + "}", (requestObj.bookmarkName !== null && requestObj.bookmarkName !== undefined) ? "/" + String(requestObj.bookmarkName) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getBookmarkByNameOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getBookmarkByNameOnline.');
+        }
+
+        // verify required parameter 'requestObj.bookmarkName' is not undefined
+        if (requestObj.bookmarkName === undefined) {
+            throw new Error('Required parameter "requestObj.bookmarkName" was undefined when calling getBookmarkByNameOnline.');
+        }
+
+        // verify required parameter 'requestObj.bookmarkName' is not null
+        if (requestObj.bookmarkName === null) {
+            throw new Error('Required parameter "requestObj.bookmarkName" was null when calling getBookmarkByNameOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "BookmarkResponse");
+        const result: model.WordsIncomingMessage< model.BookmarkResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Reads bookmarks from the document.
      * @param requestObj contains request parameters
      */
@@ -2390,6 +4205,51 @@ export class WordsApi {
             json: true,
         };
 
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "BookmarksResponse");
+        const result: model.WordsIncomingMessage< model.BookmarksResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Reads bookmarks from the document.
+     * @param requestObj contains request parameters
+     */
+    public async getBookmarksOnline(requestObj: model.GetBookmarksOnlineRequest): Promise< model.WordsIncomingMessage< model.BookmarksResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getBookmarksOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/bookmarks"
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getBookmarksOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getBookmarksOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "BookmarksResponse");
         const result: model.WordsIncomingMessage< model.BookmarksResponse > = {body, response};
@@ -2450,6 +4310,63 @@ export class WordsApi {
     }
 
     /**
+     * Reads a border from the document node.
+     * @param requestObj contains request parameters
+     */
+    public async getBorderOnline(requestObj: model.GetBorderOnlineRequest): Promise< model.WordsIncomingMessage< model.BorderResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getBorderOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/{name}/{nodePath}/borders/{borderType}"
+            .replace("/{" + "borderType" + "}", (requestObj.borderType !== null && requestObj.borderType !== undefined) ? "/" + String(requestObj.borderType) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getBorderOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getBorderOnline.');
+        }
+
+        // verify required parameter 'requestObj.borderType' is not undefined
+        if (requestObj.borderType === undefined) {
+            throw new Error('Required parameter "requestObj.borderType" was undefined when calling getBorderOnline.');
+        }
+
+        // verify required parameter 'requestObj.borderType' is not null
+        if (requestObj.borderType === null) {
+            throw new Error('Required parameter "requestObj.borderType" was null when calling getBorderOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "BorderResponse");
+        const result: model.WordsIncomingMessage< model.BorderResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Reads borders from the document node.
      * @param requestObj contains request parameters
      */
@@ -2485,6 +4402,52 @@ export class WordsApi {
             json: true,
         };
 
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "BordersResponse");
+        const result: model.WordsIncomingMessage< model.BordersResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Reads borders from the document node.
+     * @param requestObj contains request parameters
+     */
+    public async getBordersOnline(requestObj: model.GetBordersOnlineRequest): Promise< model.WordsIncomingMessage< model.BordersResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getBordersOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/{name}/{nodePath}/borders"
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getBordersOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getBordersOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "BordersResponse");
         const result: model.WordsIncomingMessage< model.BordersResponse > = {body, response};
@@ -2544,6 +4507,62 @@ export class WordsApi {
     }
 
     /**
+     * Reads a comment from the document.
+     * @param requestObj contains request parameters
+     */
+    public async getCommentOnline(requestObj: model.GetCommentOnlineRequest): Promise< model.WordsIncomingMessage< model.CommentResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getCommentOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/comments/{commentIndex}"
+            .replace("/{" + "commentIndex" + "}", (requestObj.commentIndex !== null && requestObj.commentIndex !== undefined) ? "/" + String(requestObj.commentIndex) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getCommentOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getCommentOnline.');
+        }
+
+        // verify required parameter 'requestObj.commentIndex' is not undefined
+        if (requestObj.commentIndex === undefined) {
+            throw new Error('Required parameter "requestObj.commentIndex" was undefined when calling getCommentOnline.');
+        }
+
+        // verify required parameter 'requestObj.commentIndex' is not null
+        if (requestObj.commentIndex === null) {
+            throw new Error('Required parameter "requestObj.commentIndex" was null when calling getCommentOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "CommentResponse");
+        const result: model.WordsIncomingMessage< model.CommentResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Reads comments from the document.
      * @param requestObj contains request parameters
      */
@@ -2578,6 +4597,51 @@ export class WordsApi {
             json: true,
         };
 
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "CommentsResponse");
+        const result: model.WordsIncomingMessage< model.CommentsResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Reads comments from the document.
+     * @param requestObj contains request parameters
+     */
+    public async getCommentsOnline(requestObj: model.GetCommentsOnlineRequest): Promise< model.WordsIncomingMessage< model.CommentsResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getCommentsOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/comments"
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getCommentsOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getCommentsOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "CommentsResponse");
         const result: model.WordsIncomingMessage< model.CommentsResponse > = {body, response};
@@ -2679,6 +4743,63 @@ export class WordsApi {
     }
 
     /**
+     * Reads a DrawingObject from the document node.
+     * @param requestObj contains request parameters
+     */
+    public async getDocumentDrawingObjectByIndexOnline(requestObj: model.GetDocumentDrawingObjectByIndexOnlineRequest): Promise< model.WordsIncomingMessage< model.DrawingObjectResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentDrawingObjectByIndexOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/{name}/{nodePath}/drawingObjects/{index}"
+            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getDocumentDrawingObjectByIndexOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getDocumentDrawingObjectByIndexOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling getDocumentDrawingObjectByIndexOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling getDocumentDrawingObjectByIndexOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "DrawingObjectResponse");
+        const result: model.WordsIncomingMessage< model.DrawingObjectResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Reads image data of a DrawingObject from the document node.
      * @param requestObj contains request parameters
      */
@@ -2725,6 +4846,63 @@ export class WordsApi {
             encoding: null,
         };
 
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const result: model.WordsIncomingMessage< Buffer > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Reads image data of a DrawingObject from the document node.
+     * @param requestObj contains request parameters
+     */
+    public async getDocumentDrawingObjectImageDataOnline(requestObj: model.GetDocumentDrawingObjectImageDataOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentDrawingObjectImageDataOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/{name}/{nodePath}/drawingObjects/{index}/imageData"
+            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getDocumentDrawingObjectImageDataOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getDocumentDrawingObjectImageDataOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling getDocumentDrawingObjectImageDataOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling getDocumentDrawingObjectImageDataOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "Buffer");
         const result: model.WordsIncomingMessage< Buffer > = {body, response};
@@ -2785,6 +4963,63 @@ export class WordsApi {
     }
 
     /**
+     * Reads OLE data of a DrawingObject from the document node.
+     * @param requestObj contains request parameters
+     */
+    public async getDocumentDrawingObjectOleDataOnline(requestObj: model.GetDocumentDrawingObjectOleDataOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentDrawingObjectOleDataOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/{name}/{nodePath}/drawingObjects/{index}/oleData"
+            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getDocumentDrawingObjectOleDataOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getDocumentDrawingObjectOleDataOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling getDocumentDrawingObjectOleDataOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling getDocumentDrawingObjectOleDataOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const result: model.WordsIncomingMessage< Buffer > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Reads DrawingObjects from the document node.
      * @param requestObj contains request parameters
      */
@@ -2820,6 +5055,52 @@ export class WordsApi {
             json: true,
         };
 
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "DrawingObjectsResponse");
+        const result: model.WordsIncomingMessage< model.DrawingObjectsResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Reads DrawingObjects from the document node.
+     * @param requestObj contains request parameters
+     */
+    public async getDocumentDrawingObjectsOnline(requestObj: model.GetDocumentDrawingObjectsOnlineRequest): Promise< model.WordsIncomingMessage< model.DrawingObjectsResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentDrawingObjectsOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/{name}/{nodePath}/drawingObjects"
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getDocumentDrawingObjectsOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getDocumentDrawingObjectsOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "DrawingObjectsResponse");
         const result: model.WordsIncomingMessage< model.DrawingObjectsResponse > = {body, response};
@@ -2877,23 +5158,25 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentFieldNamesOnline.');
         }
 
-        let localVarPath = this.configuration.getApiBaseUrl() + "/words/mailMerge/FieldNames"
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/mailMerge/FieldNames"
             .replace("//", "/");
         const queryParameters: any = {};
         const formParams: any = {};
-        // verify required parameter 'requestObj.template' is not undefined
-        if (requestObj.template === undefined) {
-            throw new Error('Required parameter "requestObj.template" was undefined when calling getDocumentFieldNamesOnline.');
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getDocumentFieldNamesOnline.');
         }
 
-        // verify required parameter 'requestObj.template' is not null
-        if (requestObj.template === null) {
-            throw new Error('Required parameter "requestObj.template" was null when calling getDocumentFieldNamesOnline.');
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getDocumentFieldNamesOnline.');
         }
 
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "useNonMergeFields", requestObj.useNonMergeFields);
-        if (requestObj.template !== undefined) {
-            formParams.Template = requestObj.template;
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
         }
 
         const requestOptions: request.Options = {
@@ -2965,6 +5248,62 @@ export class WordsApi {
     }
 
     /**
+     * Reads a hyperlink from the document.
+     * @param requestObj contains request parameters
+     */
+    public async getDocumentHyperlinkByIndexOnline(requestObj: model.GetDocumentHyperlinkByIndexOnlineRequest): Promise< model.WordsIncomingMessage< model.HyperlinkResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentHyperlinkByIndexOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/hyperlinks/{hyperlinkIndex}"
+            .replace("/{" + "hyperlinkIndex" + "}", (requestObj.hyperlinkIndex !== null && requestObj.hyperlinkIndex !== undefined) ? "/" + String(requestObj.hyperlinkIndex) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getDocumentHyperlinkByIndexOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getDocumentHyperlinkByIndexOnline.');
+        }
+
+        // verify required parameter 'requestObj.hyperlinkIndex' is not undefined
+        if (requestObj.hyperlinkIndex === undefined) {
+            throw new Error('Required parameter "requestObj.hyperlinkIndex" was undefined when calling getDocumentHyperlinkByIndexOnline.');
+        }
+
+        // verify required parameter 'requestObj.hyperlinkIndex' is not null
+        if (requestObj.hyperlinkIndex === null) {
+            throw new Error('Required parameter "requestObj.hyperlinkIndex" was null when calling getDocumentHyperlinkByIndexOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "HyperlinkResponse");
+        const result: model.WordsIncomingMessage< model.HyperlinkResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Reads hyperlinks from the document.
      * @param requestObj contains request parameters
      */
@@ -3006,6 +5345,51 @@ export class WordsApi {
     }
 
     /**
+     * Reads hyperlinks from the document.
+     * @param requestObj contains request parameters
+     */
+    public async getDocumentHyperlinksOnline(requestObj: model.GetDocumentHyperlinksOnlineRequest): Promise< model.WordsIncomingMessage< model.HyperlinksResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentHyperlinksOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/hyperlinks"
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getDocumentHyperlinksOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getDocumentHyperlinksOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "HyperlinksResponse");
+        const result: model.WordsIncomingMessage< model.HyperlinksResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Reads document properties.
      * @param requestObj contains request parameters
      */
@@ -3040,6 +5424,51 @@ export class WordsApi {
             json: true,
         };
 
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "DocumentPropertiesResponse");
+        const result: model.WordsIncomingMessage< model.DocumentPropertiesResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Reads document properties.
+     * @param requestObj contains request parameters
+     */
+    public async getDocumentPropertiesOnline(requestObj: model.GetDocumentPropertiesOnlineRequest): Promise< model.WordsIncomingMessage< model.DocumentPropertiesResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentPropertiesOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/documentProperties"
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getDocumentPropertiesOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getDocumentPropertiesOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "DocumentPropertiesResponse");
         const result: model.WordsIncomingMessage< model.DocumentPropertiesResponse > = {body, response};
@@ -3099,6 +5528,62 @@ export class WordsApi {
     }
 
     /**
+     * Reads a document property.
+     * @param requestObj contains request parameters
+     */
+    public async getDocumentPropertyOnline(requestObj: model.GetDocumentPropertyOnlineRequest): Promise< model.WordsIncomingMessage< model.DocumentPropertyResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentPropertyOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/documentProperties/{propertyName}"
+            .replace("/{" + "propertyName" + "}", (requestObj.propertyName !== null && requestObj.propertyName !== undefined) ? "/" + String(requestObj.propertyName) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getDocumentPropertyOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getDocumentPropertyOnline.');
+        }
+
+        // verify required parameter 'requestObj.propertyName' is not undefined
+        if (requestObj.propertyName === undefined) {
+            throw new Error('Required parameter "requestObj.propertyName" was undefined when calling getDocumentPropertyOnline.');
+        }
+
+        // verify required parameter 'requestObj.propertyName' is not null
+        if (requestObj.propertyName === null) {
+            throw new Error('Required parameter "requestObj.propertyName" was null when calling getDocumentPropertyOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "DocumentPropertyResponse");
+        const result: model.WordsIncomingMessage< model.DocumentPropertyResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Reads protection properties from the document.
      * @param requestObj contains request parameters
      */
@@ -3133,6 +5618,51 @@ export class WordsApi {
             json: true,
         };
 
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "ProtectionDataResponse");
+        const result: model.WordsIncomingMessage< model.ProtectionDataResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Reads protection properties from the document.
+     * @param requestObj contains request parameters
+     */
+    public async getDocumentProtectionOnline(requestObj: model.GetDocumentProtectionOnlineRequest): Promise< model.WordsIncomingMessage< model.ProtectionDataResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentProtectionOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/protection"
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getDocumentProtectionOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getDocumentProtectionOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "ProtectionDataResponse");
         const result: model.WordsIncomingMessage< model.ProtectionDataResponse > = {body, response};
@@ -3177,6 +5707,54 @@ export class WordsApi {
             json: true,
         };
 
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "StatDataResponse");
+        const result: model.WordsIncomingMessage< model.StatDataResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Reads document statistics.
+     * @param requestObj contains request parameters
+     */
+    public async getDocumentStatisticsOnline(requestObj: model.GetDocumentStatisticsOnlineRequest): Promise< model.WordsIncomingMessage< model.StatDataResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentStatisticsOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/statistics"
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getDocumentStatisticsOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getDocumentStatisticsOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeComments", requestObj.includeComments);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeFootnotes", requestObj.includeFootnotes);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeTextInShapes", requestObj.includeTextInShapes);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "StatDataResponse");
         const result: model.WordsIncomingMessage< model.StatDataResponse > = {body, response};
@@ -3291,6 +5869,63 @@ export class WordsApi {
     }
 
     /**
+     * Reads a field from the document node.
+     * @param requestObj contains request parameters
+     */
+    public async getFieldOnline(requestObj: model.GetFieldOnlineRequest): Promise< model.WordsIncomingMessage< model.FieldResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getFieldOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/{name}/{nodePath}/fields/{index}"
+            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getFieldOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getFieldOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling getFieldOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling getFieldOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "FieldResponse");
+        const result: model.WordsIncomingMessage< model.FieldResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Reads fields from the document node.
      * @param requestObj contains request parameters
      */
@@ -3326,6 +5961,52 @@ export class WordsApi {
             json: true,
         };
 
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "FieldsResponse");
+        const result: model.WordsIncomingMessage< model.FieldsResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Reads fields from the document node.
+     * @param requestObj contains request parameters
+     */
+    public async getFieldsOnline(requestObj: model.GetFieldsOnlineRequest): Promise< model.WordsIncomingMessage< model.FieldsResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getFieldsOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/{name}/{nodePath}/fields"
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getFieldsOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getFieldsOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "FieldsResponse");
         const result: model.WordsIncomingMessage< model.FieldsResponse > = {body, response};
@@ -3424,6 +6105,63 @@ export class WordsApi {
     }
 
     /**
+     * Reads a footnote from the document node.
+     * @param requestObj contains request parameters
+     */
+    public async getFootnoteOnline(requestObj: model.GetFootnoteOnlineRequest): Promise< model.WordsIncomingMessage< model.FootnoteResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getFootnoteOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/{name}/{nodePath}/footnotes/{index}"
+            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getFootnoteOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getFootnoteOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling getFootnoteOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling getFootnoteOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "FootnoteResponse");
+        const result: model.WordsIncomingMessage< model.FootnoteResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Reads footnotes from the document node.
      * @param requestObj contains request parameters
      */
@@ -3459,6 +6197,52 @@ export class WordsApi {
             json: true,
         };
 
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "FootnotesResponse");
+        const result: model.WordsIncomingMessage< model.FootnotesResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Reads footnotes from the document node.
+     * @param requestObj contains request parameters
+     */
+    public async getFootnotesOnline(requestObj: model.GetFootnotesOnlineRequest): Promise< model.WordsIncomingMessage< model.FootnotesResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getFootnotesOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/{name}/{nodePath}/footnotes"
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getFootnotesOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getFootnotesOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "FootnotesResponse");
         const result: model.WordsIncomingMessage< model.FootnotesResponse > = {body, response};
@@ -3519,6 +6303,63 @@ export class WordsApi {
     }
 
     /**
+     * Reads a form field from the document node.
+     * @param requestObj contains request parameters
+     */
+    public async getFormFieldOnline(requestObj: model.GetFormFieldOnlineRequest): Promise< model.WordsIncomingMessage< model.FormFieldResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getFormFieldOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/{name}/{nodePath}/formfields/{index}"
+            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getFormFieldOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getFormFieldOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling getFormFieldOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling getFormFieldOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "FormFieldResponse");
+        const result: model.WordsIncomingMessage< model.FormFieldResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Reads form fields from the document node.
      * @param requestObj contains request parameters
      */
@@ -3554,6 +6395,52 @@ export class WordsApi {
             json: true,
         };
 
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "FormFieldsResponse");
+        const result: model.WordsIncomingMessage< model.FormFieldsResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Reads form fields from the document node.
+     * @param requestObj contains request parameters
+     */
+    public async getFormFieldsOnline(requestObj: model.GetFormFieldsOnlineRequest): Promise< model.WordsIncomingMessage< model.FormFieldsResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getFormFieldsOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/{name}/{nodePath}/formfields"
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getFormFieldsOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getFormFieldsOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "FormFieldsResponse");
         const result: model.WordsIncomingMessage< model.FormFieldsResponse > = {body, response};
@@ -3678,6 +6565,131 @@ export class WordsApi {
     }
 
     /**
+     * Reads a HeaderFooter object from the document section.
+     * @param requestObj contains request parameters
+     */
+    public async getHeaderFooterOfSectionOnline(requestObj: model.GetHeaderFooterOfSectionOnlineRequest): Promise< model.WordsIncomingMessage< model.HeaderFooterResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getHeaderFooterOfSectionOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/sections/{sectionIndex}/headersfooters/{headerFooterIndex}"
+            .replace("/{" + "headerFooterIndex" + "}", (requestObj.headerFooterIndex !== null && requestObj.headerFooterIndex !== undefined) ? "/" + String(requestObj.headerFooterIndex) : "")
+            .replace("/{" + "sectionIndex" + "}", (requestObj.sectionIndex !== null && requestObj.sectionIndex !== undefined) ? "/" + String(requestObj.sectionIndex) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getHeaderFooterOfSectionOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getHeaderFooterOfSectionOnline.');
+        }
+
+        // verify required parameter 'requestObj.headerFooterIndex' is not undefined
+        if (requestObj.headerFooterIndex === undefined) {
+            throw new Error('Required parameter "requestObj.headerFooterIndex" was undefined when calling getHeaderFooterOfSectionOnline.');
+        }
+
+        // verify required parameter 'requestObj.headerFooterIndex' is not null
+        if (requestObj.headerFooterIndex === null) {
+            throw new Error('Required parameter "requestObj.headerFooterIndex" was null when calling getHeaderFooterOfSectionOnline.');
+        }
+
+        // verify required parameter 'requestObj.sectionIndex' is not undefined
+        if (requestObj.sectionIndex === undefined) {
+            throw new Error('Required parameter "requestObj.sectionIndex" was undefined when calling getHeaderFooterOfSectionOnline.');
+        }
+
+        // verify required parameter 'requestObj.sectionIndex' is not null
+        if (requestObj.sectionIndex === null) {
+            throw new Error('Required parameter "requestObj.sectionIndex" was null when calling getHeaderFooterOfSectionOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", requestObj.filterByType);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "HeaderFooterResponse");
+        const result: model.WordsIncomingMessage< model.HeaderFooterResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Reads a HeaderFooter object from the document.
+     * @param requestObj contains request parameters
+     */
+    public async getHeaderFooterOnline(requestObj: model.GetHeaderFooterOnlineRequest): Promise< model.WordsIncomingMessage< model.HeaderFooterResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getHeaderFooterOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/headersfooters/{headerFooterIndex}"
+            .replace("/{" + "headerFooterIndex" + "}", (requestObj.headerFooterIndex !== null && requestObj.headerFooterIndex !== undefined) ? "/" + String(requestObj.headerFooterIndex) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getHeaderFooterOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getHeaderFooterOnline.');
+        }
+
+        // verify required parameter 'requestObj.headerFooterIndex' is not undefined
+        if (requestObj.headerFooterIndex === undefined) {
+            throw new Error('Required parameter "requestObj.headerFooterIndex" was undefined when calling getHeaderFooterOnline.');
+        }
+
+        // verify required parameter 'requestObj.headerFooterIndex' is not null
+        if (requestObj.headerFooterIndex === null) {
+            throw new Error('Required parameter "requestObj.headerFooterIndex" was null when calling getHeaderFooterOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", requestObj.filterByType);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "HeaderFooterResponse");
+        const result: model.WordsIncomingMessage< model.HeaderFooterResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Reads HeaderFooter objects from the document section.
      * @param requestObj contains request parameters
      */
@@ -3719,6 +6731,58 @@ export class WordsApi {
             json: true,
         };
 
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "HeaderFootersResponse");
+        const result: model.WordsIncomingMessage< model.HeaderFootersResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Reads HeaderFooter objects from the document section.
+     * @param requestObj contains request parameters
+     */
+    public async getHeaderFootersOnline(requestObj: model.GetHeaderFootersOnlineRequest): Promise< model.WordsIncomingMessage< model.HeaderFootersResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getHeaderFootersOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/{name}/{sectionPath}/headersfooters"
+            .replace("/{" + "sectionPath" + "}", (requestObj.sectionPath !== null && requestObj.sectionPath !== undefined) ? "/" + String(requestObj.sectionPath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getHeaderFootersOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getHeaderFootersOnline.');
+        }
+
+        // verify required parameter 'requestObj.sectionPath' is not undefined
+        if (requestObj.sectionPath === undefined) {
+            throw new Error('Required parameter "requestObj.sectionPath" was undefined when calling getHeaderFootersOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", requestObj.filterByType);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "HeaderFootersResponse");
         const result: model.WordsIncomingMessage< model.HeaderFootersResponse > = {body, response};
@@ -3778,6 +6842,62 @@ export class WordsApi {
     }
 
     /**
+     * Reads a list from the document.
+     * @param requestObj contains request parameters
+     */
+    public async getListOnline(requestObj: model.GetListOnlineRequest): Promise< model.WordsIncomingMessage< model.ListResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getListOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/lists/{listId}"
+            .replace("/{" + "listId" + "}", (requestObj.listId !== null && requestObj.listId !== undefined) ? "/" + String(requestObj.listId) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getListOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getListOnline.');
+        }
+
+        // verify required parameter 'requestObj.listId' is not undefined
+        if (requestObj.listId === undefined) {
+            throw new Error('Required parameter "requestObj.listId" was undefined when calling getListOnline.');
+        }
+
+        // verify required parameter 'requestObj.listId' is not null
+        if (requestObj.listId === null) {
+            throw new Error('Required parameter "requestObj.listId" was null when calling getListOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "ListResponse");
+        const result: model.WordsIncomingMessage< model.ListResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Reads lists from the document.
      * @param requestObj contains request parameters
      */
@@ -3812,6 +6932,51 @@ export class WordsApi {
             json: true,
         };
 
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "ListsResponse");
+        const result: model.WordsIncomingMessage< model.ListsResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Reads lists from the document.
+     * @param requestObj contains request parameters
+     */
+    public async getListsOnline(requestObj: model.GetListsOnlineRequest): Promise< model.WordsIncomingMessage< model.ListsResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getListsOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/lists"
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getListsOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getListsOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "ListsResponse");
         const result: model.WordsIncomingMessage< model.ListsResponse > = {body, response};
@@ -3872,6 +7037,63 @@ export class WordsApi {
     }
 
     /**
+     * Reads an OfficeMath object from the document node.
+     * @param requestObj contains request parameters
+     */
+    public async getOfficeMathObjectOnline(requestObj: model.GetOfficeMathObjectOnlineRequest): Promise< model.WordsIncomingMessage< model.OfficeMathObjectResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getOfficeMathObjectOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/{name}/{nodePath}/OfficeMathObjects/{index}"
+            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getOfficeMathObjectOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getOfficeMathObjectOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling getOfficeMathObjectOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling getOfficeMathObjectOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "OfficeMathObjectResponse");
+        const result: model.WordsIncomingMessage< model.OfficeMathObjectResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Reads OfficeMath objects from the document node.
      * @param requestObj contains request parameters
      */
@@ -3907,6 +7129,52 @@ export class WordsApi {
             json: true,
         };
 
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "OfficeMathObjectsResponse");
+        const result: model.WordsIncomingMessage< model.OfficeMathObjectsResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Reads OfficeMath objects from the document node.
+     * @param requestObj contains request parameters
+     */
+    public async getOfficeMathObjectsOnline(requestObj: model.GetOfficeMathObjectsOnlineRequest): Promise< model.WordsIncomingMessage< model.OfficeMathObjectsResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getOfficeMathObjectsOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/{name}/{nodePath}/OfficeMathObjects"
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getOfficeMathObjectsOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getOfficeMathObjectsOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "OfficeMathObjectsResponse");
         const result: model.WordsIncomingMessage< model.OfficeMathObjectsResponse > = {body, response};
@@ -4020,6 +7288,63 @@ export class WordsApi {
     }
 
     /**
+     * Reads the formatting properties of a paragraph from the document node.
+     * @param requestObj contains request parameters
+     */
+    public async getParagraphFormatOnline(requestObj: model.GetParagraphFormatOnlineRequest): Promise< model.WordsIncomingMessage< model.ParagraphFormatResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getParagraphFormatOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/{name}/{nodePath}/paragraphs/{index}/format"
+            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getParagraphFormatOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getParagraphFormatOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling getParagraphFormatOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling getParagraphFormatOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "ParagraphFormatResponse");
+        const result: model.WordsIncomingMessage< model.ParagraphFormatResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Reads the formatting properties of a paragraph list from the document node.
      * @param requestObj contains request parameters
      */
@@ -4073,6 +7398,120 @@ export class WordsApi {
     }
 
     /**
+     * Reads the formatting properties of a paragraph list from the document node.
+     * @param requestObj contains request parameters
+     */
+    public async getParagraphListFormatOnline(requestObj: model.GetParagraphListFormatOnlineRequest): Promise< model.WordsIncomingMessage< model.ParagraphListFormatResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getParagraphListFormatOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/{name}/{nodePath}/paragraphs/{index}/listFormat"
+            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getParagraphListFormatOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getParagraphListFormatOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling getParagraphListFormatOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling getParagraphListFormatOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "ParagraphListFormatResponse");
+        const result: model.WordsIncomingMessage< model.ParagraphListFormatResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Reads a paragraph from the document node.
+     * @param requestObj contains request parameters
+     */
+    public async getParagraphOnline(requestObj: model.GetParagraphOnlineRequest): Promise< model.WordsIncomingMessage< model.ParagraphResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getParagraphOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/{name}/{nodePath}/paragraphs/{index}"
+            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getParagraphOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getParagraphOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling getParagraphOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling getParagraphOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "ParagraphResponse");
+        const result: model.WordsIncomingMessage< model.ParagraphResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Reads paragraphs from the document node.
      * @param requestObj contains request parameters
      */
@@ -4108,6 +7547,52 @@ export class WordsApi {
             json: true,
         };
 
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "ParagraphLinkCollectionResponse");
+        const result: model.WordsIncomingMessage< model.ParagraphLinkCollectionResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Reads paragraphs from the document node.
+     * @param requestObj contains request parameters
+     */
+    public async getParagraphsOnline(requestObj: model.GetParagraphsOnlineRequest): Promise< model.WordsIncomingMessage< model.ParagraphLinkCollectionResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getParagraphsOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/{name}/{nodePath}/paragraphs"
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getParagraphsOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getParagraphsOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "ParagraphLinkCollectionResponse");
         const result: model.WordsIncomingMessage< model.ParagraphLinkCollectionResponse > = {body, response};
@@ -4168,6 +7653,63 @@ export class WordsApi {
     }
 
     /**
+     * Reads paragraph tab stops from the document node.
+     * @param requestObj contains request parameters
+     */
+    public async getParagraphTabStopsOnline(requestObj: model.GetParagraphTabStopsOnlineRequest): Promise< model.WordsIncomingMessage< model.TabStopsResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getParagraphTabStopsOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/{name}/{nodePath}/paragraphs/{index}/tabstops"
+            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getParagraphTabStopsOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getParagraphTabStopsOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling getParagraphTabStopsOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling getParagraphTabStopsOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "TabStopsResponse");
+        const result: model.WordsIncomingMessage< model.TabStopsResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Reads range text from the document.
      * @param requestObj contains request parameters
      */
@@ -4214,6 +7756,63 @@ export class WordsApi {
             json: true,
         };
 
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "RangeTextResponse");
+        const result: model.WordsIncomingMessage< model.RangeTextResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Reads range text from the document.
+     * @param requestObj contains request parameters
+     */
+    public async getRangeTextOnline(requestObj: model.GetRangeTextOnlineRequest): Promise< model.WordsIncomingMessage< model.RangeTextResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getRangeTextOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/range/{rangeStartIdentifier}/{rangeEndIdentifier}"
+            .replace("/{" + "rangeStartIdentifier" + "}", (requestObj.rangeStartIdentifier !== null && requestObj.rangeStartIdentifier !== undefined) ? "/" + String(requestObj.rangeStartIdentifier) : "")
+            .replace("/{" + "rangeEndIdentifier" + "}", (requestObj.rangeEndIdentifier !== null && requestObj.rangeEndIdentifier !== undefined) ? "/" + String(requestObj.rangeEndIdentifier) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getRangeTextOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getRangeTextOnline.');
+        }
+
+        // verify required parameter 'requestObj.rangeStartIdentifier' is not undefined
+        if (requestObj.rangeStartIdentifier === undefined) {
+            throw new Error('Required parameter "requestObj.rangeStartIdentifier" was undefined when calling getRangeTextOnline.');
+        }
+
+        // verify required parameter 'requestObj.rangeStartIdentifier' is not null
+        if (requestObj.rangeStartIdentifier === null) {
+            throw new Error('Required parameter "requestObj.rangeStartIdentifier" was null when calling getRangeTextOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "RangeTextResponse");
         const result: model.WordsIncomingMessage< model.RangeTextResponse > = {body, response};
@@ -4337,6 +7936,130 @@ export class WordsApi {
     }
 
     /**
+     * Reads the font properties of a Run object from the paragraph.
+     * @param requestObj contains request parameters
+     */
+    public async getRunFontOnline(requestObj: model.GetRunFontOnlineRequest): Promise< model.WordsIncomingMessage< model.FontResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getRunFontOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/{name}/{paragraphPath}/runs/{index}/font"
+            .replace("/{" + "paragraphPath" + "}", (requestObj.paragraphPath !== null && requestObj.paragraphPath !== undefined) ? "/" + String(requestObj.paragraphPath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getRunFontOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getRunFontOnline.');
+        }
+
+        // verify required parameter 'requestObj.paragraphPath' is not undefined
+        if (requestObj.paragraphPath === undefined) {
+            throw new Error('Required parameter "requestObj.paragraphPath" was undefined when calling getRunFontOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling getRunFontOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling getRunFontOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "FontResponse");
+        const result: model.WordsIncomingMessage< model.FontResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Reads a Run object from the paragraph.
+     * @param requestObj contains request parameters
+     */
+    public async getRunOnline(requestObj: model.GetRunOnlineRequest): Promise< model.WordsIncomingMessage< model.RunResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getRunOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/{name}/{paragraphPath}/runs/{index}"
+            .replace("/{" + "paragraphPath" + "}", (requestObj.paragraphPath !== null && requestObj.paragraphPath !== undefined) ? "/" + String(requestObj.paragraphPath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getRunOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getRunOnline.');
+        }
+
+        // verify required parameter 'requestObj.paragraphPath' is not undefined
+        if (requestObj.paragraphPath === undefined) {
+            throw new Error('Required parameter "requestObj.paragraphPath" was undefined when calling getRunOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling getRunOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling getRunOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "RunResponse");
+        const result: model.WordsIncomingMessage< model.RunResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Reads Run objects from the paragraph.
      * @param requestObj contains request parameters
      */
@@ -4377,6 +8100,57 @@ export class WordsApi {
             json: true,
         };
 
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "RunsResponse");
+        const result: model.WordsIncomingMessage< model.RunsResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Reads Run objects from the paragraph.
+     * @param requestObj contains request parameters
+     */
+    public async getRunsOnline(requestObj: model.GetRunsOnlineRequest): Promise< model.WordsIncomingMessage< model.RunsResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getRunsOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/{name}/{paragraphPath}/runs"
+            .replace("/{" + "paragraphPath" + "}", (requestObj.paragraphPath !== null && requestObj.paragraphPath !== undefined) ? "/" + String(requestObj.paragraphPath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getRunsOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getRunsOnline.');
+        }
+
+        // verify required parameter 'requestObj.paragraphPath' is not undefined
+        if (requestObj.paragraphPath === undefined) {
+            throw new Error('Required parameter "requestObj.paragraphPath" was undefined when calling getRunsOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "RunsResponse");
         const result: model.WordsIncomingMessage< model.RunsResponse > = {body, response};
@@ -4436,6 +8210,62 @@ export class WordsApi {
     }
 
     /**
+     * Reads a section from the document.
+     * @param requestObj contains request parameters
+     */
+    public async getSectionOnline(requestObj: model.GetSectionOnlineRequest): Promise< model.WordsIncomingMessage< model.SectionResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getSectionOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/sections/{sectionIndex}"
+            .replace("/{" + "sectionIndex" + "}", (requestObj.sectionIndex !== null && requestObj.sectionIndex !== undefined) ? "/" + String(requestObj.sectionIndex) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getSectionOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getSectionOnline.');
+        }
+
+        // verify required parameter 'requestObj.sectionIndex' is not undefined
+        if (requestObj.sectionIndex === undefined) {
+            throw new Error('Required parameter "requestObj.sectionIndex" was undefined when calling getSectionOnline.');
+        }
+
+        // verify required parameter 'requestObj.sectionIndex' is not null
+        if (requestObj.sectionIndex === null) {
+            throw new Error('Required parameter "requestObj.sectionIndex" was null when calling getSectionOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "SectionResponse");
+        const result: model.WordsIncomingMessage< model.SectionResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Reads the page setup of a section from the document.
      * @param requestObj contains request parameters
      */
@@ -4488,6 +8318,62 @@ export class WordsApi {
     }
 
     /**
+     * Reads the page setup of a section from the document.
+     * @param requestObj contains request parameters
+     */
+    public async getSectionPageSetupOnline(requestObj: model.GetSectionPageSetupOnlineRequest): Promise< model.WordsIncomingMessage< model.SectionPageSetupResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getSectionPageSetupOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/sections/{sectionIndex}/pageSetup"
+            .replace("/{" + "sectionIndex" + "}", (requestObj.sectionIndex !== null && requestObj.sectionIndex !== undefined) ? "/" + String(requestObj.sectionIndex) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getSectionPageSetupOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getSectionPageSetupOnline.');
+        }
+
+        // verify required parameter 'requestObj.sectionIndex' is not undefined
+        if (requestObj.sectionIndex === undefined) {
+            throw new Error('Required parameter "requestObj.sectionIndex" was undefined when calling getSectionPageSetupOnline.');
+        }
+
+        // verify required parameter 'requestObj.sectionIndex' is not null
+        if (requestObj.sectionIndex === null) {
+            throw new Error('Required parameter "requestObj.sectionIndex" was null when calling getSectionPageSetupOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "SectionPageSetupResponse");
+        const result: model.WordsIncomingMessage< model.SectionPageSetupResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Reads sections from the document.
      * @param requestObj contains request parameters
      */
@@ -4522,6 +8408,51 @@ export class WordsApi {
             json: true,
         };
 
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "SectionLinkCollectionResponse");
+        const result: model.WordsIncomingMessage< model.SectionLinkCollectionResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Reads sections from the document.
+     * @param requestObj contains request parameters
+     */
+    public async getSectionsOnline(requestObj: model.GetSectionsOnlineRequest): Promise< model.WordsIncomingMessage< model.SectionLinkCollectionResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getSectionsOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/sections"
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getSectionsOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getSectionsOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "SectionLinkCollectionResponse");
         const result: model.WordsIncomingMessage< model.SectionLinkCollectionResponse > = {body, response};
@@ -4633,6 +8564,118 @@ export class WordsApi {
     }
 
     /**
+     * Reads a style from the document node.
+     * @param requestObj contains request parameters
+     */
+    public async getStyleFromDocumentElementOnline(requestObj: model.GetStyleFromDocumentElementOnlineRequest): Promise< model.WordsIncomingMessage< model.StyleResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getStyleFromDocumentElementOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/{name}/{styledNodePath}/style"
+            .replace("/{" + "styledNodePath" + "}", (requestObj.styledNodePath !== null && requestObj.styledNodePath !== undefined) ? "/" + String(requestObj.styledNodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getStyleFromDocumentElementOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getStyleFromDocumentElementOnline.');
+        }
+
+        // verify required parameter 'requestObj.styledNodePath' is not undefined
+        if (requestObj.styledNodePath === undefined) {
+            throw new Error('Required parameter "requestObj.styledNodePath" was undefined when calling getStyleFromDocumentElementOnline.');
+        }
+
+        // verify required parameter 'requestObj.styledNodePath' is not null
+        if (requestObj.styledNodePath === null) {
+            throw new Error('Required parameter "requestObj.styledNodePath" was null when calling getStyleFromDocumentElementOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "StyleResponse");
+        const result: model.WordsIncomingMessage< model.StyleResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Reads a style from the document.
+     * @param requestObj contains request parameters
+     */
+    public async getStyleOnline(requestObj: model.GetStyleOnlineRequest): Promise< model.WordsIncomingMessage< model.StyleResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getStyleOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/styles/{styleName}"
+            .replace("/{" + "styleName" + "}", (requestObj.styleName !== null && requestObj.styleName !== undefined) ? "/" + String(requestObj.styleName) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getStyleOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getStyleOnline.');
+        }
+
+        // verify required parameter 'requestObj.styleName' is not undefined
+        if (requestObj.styleName === undefined) {
+            throw new Error('Required parameter "requestObj.styleName" was undefined when calling getStyleOnline.');
+        }
+
+        // verify required parameter 'requestObj.styleName' is not null
+        if (requestObj.styleName === null) {
+            throw new Error('Required parameter "requestObj.styleName" was null when calling getStyleOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "StyleResponse");
+        const result: model.WordsIncomingMessage< model.StyleResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Reads styles from the document.
      * @param requestObj contains request parameters
      */
@@ -4667,6 +8710,51 @@ export class WordsApi {
             json: true,
         };
 
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "StylesResponse");
+        const result: model.WordsIncomingMessage< model.StylesResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Reads styles from the document.
+     * @param requestObj contains request parameters
+     */
+    public async getStylesOnline(requestObj: model.GetStylesOnlineRequest): Promise< model.WordsIncomingMessage< model.StylesResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getStylesOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/styles"
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getStylesOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getStylesOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "StylesResponse");
         const result: model.WordsIncomingMessage< model.StylesResponse > = {body, response};
@@ -4843,6 +8931,187 @@ export class WordsApi {
     }
 
     /**
+     * Reads the formatting properties of a table cell.
+     * @param requestObj contains request parameters
+     */
+    public async getTableCellFormatOnline(requestObj: model.GetTableCellFormatOnlineRequest): Promise< model.WordsIncomingMessage< model.TableCellFormatResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getTableCellFormatOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/{name}/{tableRowPath}/cells/{index}/cellformat"
+            .replace("/{" + "tableRowPath" + "}", (requestObj.tableRowPath !== null && requestObj.tableRowPath !== undefined) ? "/" + String(requestObj.tableRowPath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getTableCellFormatOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getTableCellFormatOnline.');
+        }
+
+        // verify required parameter 'requestObj.tableRowPath' is not undefined
+        if (requestObj.tableRowPath === undefined) {
+            throw new Error('Required parameter "requestObj.tableRowPath" was undefined when calling getTableCellFormatOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling getTableCellFormatOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling getTableCellFormatOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "TableCellFormatResponse");
+        const result: model.WordsIncomingMessage< model.TableCellFormatResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Reads a cell from the table row.
+     * @param requestObj contains request parameters
+     */
+    public async getTableCellOnline(requestObj: model.GetTableCellOnlineRequest): Promise< model.WordsIncomingMessage< model.TableCellResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getTableCellOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/{name}/{tableRowPath}/cells/{index}"
+            .replace("/{" + "tableRowPath" + "}", (requestObj.tableRowPath !== null && requestObj.tableRowPath !== undefined) ? "/" + String(requestObj.tableRowPath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getTableCellOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getTableCellOnline.');
+        }
+
+        // verify required parameter 'requestObj.tableRowPath' is not undefined
+        if (requestObj.tableRowPath === undefined) {
+            throw new Error('Required parameter "requestObj.tableRowPath" was undefined when calling getTableCellOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling getTableCellOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling getTableCellOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "TableCellResponse");
+        const result: model.WordsIncomingMessage< model.TableCellResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Reads a table from the document node.
+     * @param requestObj contains request parameters
+     */
+    public async getTableOnline(requestObj: model.GetTableOnlineRequest): Promise< model.WordsIncomingMessage< model.TableResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getTableOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/{name}/{nodePath}/tables/{index}"
+            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getTableOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getTableOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling getTableOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling getTableOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "TableResponse");
+        const result: model.WordsIncomingMessage< model.TableResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Reads properties of a table from the document node.
      * @param requestObj contains request parameters
      */
@@ -4889,6 +9158,63 @@ export class WordsApi {
             json: true,
         };
 
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "TablePropertiesResponse");
+        const result: model.WordsIncomingMessage< model.TablePropertiesResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Reads properties of a table from the document node.
+     * @param requestObj contains request parameters
+     */
+    public async getTablePropertiesOnline(requestObj: model.GetTablePropertiesOnlineRequest): Promise< model.WordsIncomingMessage< model.TablePropertiesResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getTablePropertiesOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/{name}/{nodePath}/tables/{index}/properties"
+            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getTablePropertiesOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getTablePropertiesOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling getTablePropertiesOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling getTablePropertiesOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "TablePropertiesResponse");
         const result: model.WordsIncomingMessage< model.TablePropertiesResponse > = {body, response};
@@ -5012,6 +9338,130 @@ export class WordsApi {
     }
 
     /**
+     * Reads the formatting properties of a table row.
+     * @param requestObj contains request parameters
+     */
+    public async getTableRowFormatOnline(requestObj: model.GetTableRowFormatOnlineRequest): Promise< model.WordsIncomingMessage< model.TableRowFormatResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getTableRowFormatOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/{name}/{tablePath}/rows/{index}/rowformat"
+            .replace("/{" + "tablePath" + "}", (requestObj.tablePath !== null && requestObj.tablePath !== undefined) ? "/" + String(requestObj.tablePath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getTableRowFormatOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getTableRowFormatOnline.');
+        }
+
+        // verify required parameter 'requestObj.tablePath' is not undefined
+        if (requestObj.tablePath === undefined) {
+            throw new Error('Required parameter "requestObj.tablePath" was undefined when calling getTableRowFormatOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling getTableRowFormatOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling getTableRowFormatOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "TableRowFormatResponse");
+        const result: model.WordsIncomingMessage< model.TableRowFormatResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Reads a row from the table.
+     * @param requestObj contains request parameters
+     */
+    public async getTableRowOnline(requestObj: model.GetTableRowOnlineRequest): Promise< model.WordsIncomingMessage< model.TableRowResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getTableRowOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/{name}/{tablePath}/rows/{index}"
+            .replace("/{" + "tablePath" + "}", (requestObj.tablePath !== null && requestObj.tablePath !== undefined) ? "/" + String(requestObj.tablePath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getTableRowOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getTableRowOnline.');
+        }
+
+        // verify required parameter 'requestObj.tablePath' is not undefined
+        if (requestObj.tablePath === undefined) {
+            throw new Error('Required parameter "requestObj.tablePath" was undefined when calling getTableRowOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling getTableRowOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling getTableRowOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "TableRowResponse");
+        const result: model.WordsIncomingMessage< model.TableRowResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Reads tables from the document node.
      * @param requestObj contains request parameters
      */
@@ -5047,6 +9497,52 @@ export class WordsApi {
             json: true,
         };
 
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "TableLinkCollectionResponse");
+        const result: model.WordsIncomingMessage< model.TableLinkCollectionResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Reads tables from the document node.
+     * @param requestObj contains request parameters
+     */
+    public async getTablesOnline(requestObj: model.GetTablesOnlineRequest): Promise< model.WordsIncomingMessage< model.TableLinkCollectionResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getTablesOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/{name}/{nodePath}/tables"
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling getTablesOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling getTablesOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "TableLinkCollectionResponse");
         const result: model.WordsIncomingMessage< model.TableLinkCollectionResponse > = {body, response};
@@ -5105,6 +9601,66 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "CommentResponse");
         const result: model.WordsIncomingMessage< model.CommentResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Inserts a new comment to the document.
+     * @param requestObj contains request parameters
+     */
+    public async insertCommentOnline(requestObj: model.InsertCommentOnlineRequest): Promise< model.WordsIncomingMessage< InsertCommentOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling insertCommentOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/post/comments"
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling insertCommentOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling insertCommentOnline.');
+        }
+
+        // verify required parameter 'requestObj.comment' is not undefined
+        if (requestObj.comment === undefined) {
+            throw new Error('Required parameter "requestObj.comment" was undefined when calling insertCommentOnline.');
+        }
+
+        // verify required parameter 'requestObj.comment' is not null
+        if (requestObj.comment === null) {
+            throw new Error('Required parameter "requestObj.comment" was null when calling insertCommentOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+        if (requestObj.comment !== undefined) {
+            formParams.Comment = JSON.stringify(requestObj.comment);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "InsertCommentOnlineResponse");
+        const result: model.WordsIncomingMessage< model.InsertCommentOnlineResponse > = {body, response};
         return Promise.resolve(result);
     }
 
@@ -5184,6 +9740,80 @@ export class WordsApi {
     }
 
     /**
+     * Inserts a new DrawingObject to the document node.
+     * @param requestObj contains request parameters
+     */
+    public async insertDrawingObjectOnline(requestObj: model.InsertDrawingObjectOnlineRequest): Promise< model.WordsIncomingMessage< InsertDrawingObjectOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling insertDrawingObjectOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/post/{name}/{nodePath}/drawingObjects"
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling insertDrawingObjectOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling insertDrawingObjectOnline.');
+        }
+
+        // verify required parameter 'requestObj.drawingObject' is not undefined
+        if (requestObj.drawingObject === undefined) {
+            throw new Error('Required parameter "requestObj.drawingObject" was undefined when calling insertDrawingObjectOnline.');
+        }
+
+        // verify required parameter 'requestObj.drawingObject' is not null
+        if (requestObj.drawingObject === null) {
+            throw new Error('Required parameter "requestObj.drawingObject" was null when calling insertDrawingObjectOnline.');
+        }
+
+        // verify required parameter 'requestObj.imageFile' is not undefined
+        if (requestObj.imageFile === undefined) {
+            throw new Error('Required parameter "requestObj.imageFile" was undefined when calling insertDrawingObjectOnline.');
+        }
+
+        // verify required parameter 'requestObj.imageFile' is not null
+        if (requestObj.imageFile === null) {
+            throw new Error('Required parameter "requestObj.imageFile" was null when calling insertDrawingObjectOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+        if (requestObj.drawingObject !== undefined) {
+            formParams.DrawingObject = JSON.stringify(requestObj.drawingObject);
+        }
+        if (requestObj.imageFile !== undefined) {
+            formParams.ImageFile = requestObj.imageFile;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "InsertDrawingObjectOnlineResponse");
+        const result: model.WordsIncomingMessage< model.InsertDrawingObjectOnlineResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Inserts a new field to the document node.
      * @param requestObj contains request parameters
      */
@@ -5241,6 +9871,68 @@ export class WordsApi {
     }
 
     /**
+     * Inserts a new field to the document node.
+     * @param requestObj contains request parameters
+     */
+    public async insertFieldOnline(requestObj: model.InsertFieldOnlineRequest): Promise< model.WordsIncomingMessage< InsertFieldOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling insertFieldOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/post/{name}/{nodePath}/fields"
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling insertFieldOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling insertFieldOnline.');
+        }
+
+        // verify required parameter 'requestObj.field' is not undefined
+        if (requestObj.field === undefined) {
+            throw new Error('Required parameter "requestObj.field" was undefined when calling insertFieldOnline.');
+        }
+
+        // verify required parameter 'requestObj.field' is not null
+        if (requestObj.field === null) {
+            throw new Error('Required parameter "requestObj.field" was null when calling insertFieldOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", requestObj.insertBeforeNode);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+        if (requestObj.field !== undefined) {
+            formParams.Field = JSON.stringify(requestObj.field);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "InsertFieldOnlineResponse");
+        const result: model.WordsIncomingMessage< model.InsertFieldOnlineResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Inserts a new footnote to the document node.
      * @param requestObj contains request parameters
      */
@@ -5293,6 +9985,67 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "FootnoteResponse");
         const result: model.WordsIncomingMessage< model.FootnoteResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Inserts a new footnote to the document node.
+     * @param requestObj contains request parameters
+     */
+    public async insertFootnoteOnline(requestObj: model.InsertFootnoteOnlineRequest): Promise< model.WordsIncomingMessage< InsertFootnoteOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling insertFootnoteOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/post/{name}/{nodePath}/footnotes"
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling insertFootnoteOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling insertFootnoteOnline.');
+        }
+
+        // verify required parameter 'requestObj.footnoteDto' is not undefined
+        if (requestObj.footnoteDto === undefined) {
+            throw new Error('Required parameter "requestObj.footnoteDto" was undefined when calling insertFootnoteOnline.');
+        }
+
+        // verify required parameter 'requestObj.footnoteDto' is not null
+        if (requestObj.footnoteDto === null) {
+            throw new Error('Required parameter "requestObj.footnoteDto" was null when calling insertFootnoteOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+        if (requestObj.footnoteDto !== undefined) {
+            formParams.FootnoteDto = JSON.stringify(requestObj.footnoteDto);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "InsertFootnoteOnlineResponse");
+        const result: model.WordsIncomingMessage< model.InsertFootnoteOnlineResponse > = {body, response};
         return Promise.resolve(result);
     }
 
@@ -5354,6 +10107,68 @@ export class WordsApi {
     }
 
     /**
+     * Inserts a new form field to the document node.
+     * @param requestObj contains request parameters
+     */
+    public async insertFormFieldOnline(requestObj: model.InsertFormFieldOnlineRequest): Promise< model.WordsIncomingMessage< InsertFormFieldOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling insertFormFieldOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/post/{name}/{nodePath}/formfields"
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling insertFormFieldOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling insertFormFieldOnline.');
+        }
+
+        // verify required parameter 'requestObj.formField' is not undefined
+        if (requestObj.formField === undefined) {
+            throw new Error('Required parameter "requestObj.formField" was undefined when calling insertFormFieldOnline.');
+        }
+
+        // verify required parameter 'requestObj.formField' is not null
+        if (requestObj.formField === null) {
+            throw new Error('Required parameter "requestObj.formField" was null when calling insertFormFieldOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", requestObj.insertBeforeNode);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+        if (requestObj.formField !== undefined) {
+            formParams.FormField = JSON.stringify(requestObj.formField);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "InsertFormFieldOnlineResponse");
+        const result: model.WordsIncomingMessage< model.InsertFormFieldOnlineResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Inserts a new HeaderFooter object to the document section.
      * @param requestObj contains request parameters
      */
@@ -5377,6 +10192,11 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj.name" was null when calling insertHeaderFooter.');
         }
 
+        // verify required parameter 'requestObj.sectionPath' is not undefined
+        if (requestObj.sectionPath === undefined) {
+            throw new Error('Required parameter "requestObj.sectionPath" was undefined when calling insertHeaderFooter.');
+        }
+
         // verify required parameter 'requestObj.headerFooterType' is not undefined
         if (requestObj.headerFooterType === undefined) {
             throw new Error('Required parameter "requestObj.headerFooterType" was undefined when calling insertHeaderFooter.');
@@ -5385,11 +10205,6 @@ export class WordsApi {
         // verify required parameter 'requestObj.headerFooterType' is not null
         if (requestObj.headerFooterType === null) {
             throw new Error('Required parameter "requestObj.headerFooterType" was null when calling insertHeaderFooter.');
-        }
-
-        // verify required parameter 'requestObj.sectionPath' is not undefined
-        if (requestObj.sectionPath === undefined) {
-            throw new Error('Required parameter "requestObj.sectionPath" was undefined when calling insertHeaderFooter.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -5401,7 +10216,7 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
 
         const requestOptions: request.Options = {
-            method: "PUT",
+            method: "POST",
             qs: queryParameters,
             uri: localVarPath,
             json: true,
@@ -5411,6 +10226,72 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "HeaderFooterResponse");
         const result: model.WordsIncomingMessage< model.HeaderFooterResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Inserts a new HeaderFooter object to the document section.
+     * @param requestObj contains request parameters
+     */
+    public async insertHeaderFooterOnline(requestObj: model.InsertHeaderFooterOnlineRequest): Promise< model.WordsIncomingMessage< InsertHeaderFooterOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling insertHeaderFooterOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/put/{name}/{sectionPath}/headersfooters"
+            .replace("/{" + "sectionPath" + "}", (requestObj.sectionPath !== null && requestObj.sectionPath !== undefined) ? "/" + String(requestObj.sectionPath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling insertHeaderFooterOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling insertHeaderFooterOnline.');
+        }
+
+        // verify required parameter 'requestObj.sectionPath' is not undefined
+        if (requestObj.sectionPath === undefined) {
+            throw new Error('Required parameter "requestObj.sectionPath" was undefined when calling insertHeaderFooterOnline.');
+        }
+
+        // verify required parameter 'requestObj.headerFooterType' is not undefined
+        if (requestObj.headerFooterType === undefined) {
+            throw new Error('Required parameter "requestObj.headerFooterType" was undefined when calling insertHeaderFooterOnline.');
+        }
+
+        // verify required parameter 'requestObj.headerFooterType' is not null
+        if (requestObj.headerFooterType === null) {
+            throw new Error('Required parameter "requestObj.headerFooterType" was null when calling insertHeaderFooterOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+        if (requestObj.headerFooterType !== undefined) {
+            formParams.HeaderFooterType = ObjectSerializer.serialize(requestObj.headerFooterType, "string");
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "InsertHeaderFooterOnlineResponse");
+        const result: model.WordsIncomingMessage< model.InsertHeaderFooterOnlineResponse > = {body, response};
         return Promise.resolve(result);
     }
 
@@ -5470,6 +10351,66 @@ export class WordsApi {
     }
 
     /**
+     * Inserts a new list to the document.
+     * @param requestObj contains request parameters
+     */
+    public async insertListOnline(requestObj: model.InsertListOnlineRequest): Promise< model.WordsIncomingMessage< InsertListOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling insertListOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/post/lists"
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling insertListOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling insertListOnline.');
+        }
+
+        // verify required parameter 'requestObj.listInsert' is not undefined
+        if (requestObj.listInsert === undefined) {
+            throw new Error('Required parameter "requestObj.listInsert" was undefined when calling insertListOnline.');
+        }
+
+        // verify required parameter 'requestObj.listInsert' is not null
+        if (requestObj.listInsert === null) {
+            throw new Error('Required parameter "requestObj.listInsert" was null when calling insertListOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+        if (requestObj.listInsert !== undefined) {
+            formParams.ListInsert = JSON.stringify(requestObj.listInsert);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "InsertListOnlineResponse");
+        const result: model.WordsIncomingMessage< model.InsertListOnlineResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Inserts a new or updates an existing paragraph tab stop in the document node.
      * @param requestObj contains request parameters
      */
@@ -5494,16 +10435,6 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj.name" was null when calling insertOrUpdateParagraphTabStop.');
         }
 
-        // verify required parameter 'requestObj.dto' is not undefined
-        if (requestObj.dto === undefined) {
-            throw new Error('Required parameter "requestObj.dto" was undefined when calling insertOrUpdateParagraphTabStop.');
-        }
-
-        // verify required parameter 'requestObj.dto' is not null
-        if (requestObj.dto === null) {
-            throw new Error('Required parameter "requestObj.dto" was null when calling insertOrUpdateParagraphTabStop.');
-        }
-
         // verify required parameter 'requestObj.index' is not undefined
         if (requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was undefined when calling insertOrUpdateParagraphTabStop.');
@@ -5512,6 +10443,16 @@ export class WordsApi {
         // verify required parameter 'requestObj.index' is not null
         if (requestObj.index === null) {
             throw new Error('Required parameter "requestObj.index" was null when calling insertOrUpdateParagraphTabStop.');
+        }
+
+        // verify required parameter 'requestObj.tabStopInsertDto' is not undefined
+        if (requestObj.tabStopInsertDto === undefined) {
+            throw new Error('Required parameter "requestObj.tabStopInsertDto" was undefined when calling insertOrUpdateParagraphTabStop.');
+        }
+
+        // verify required parameter 'requestObj.tabStopInsertDto' is not null
+        if (requestObj.tabStopInsertDto === null) {
+            throw new Error('Required parameter "requestObj.tabStopInsertDto" was null when calling insertOrUpdateParagraphTabStop.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -5525,12 +10466,82 @@ export class WordsApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.dto, requestObj.dto.constructor.name === "Object" ? "importedTabStopInsert.TabStopInsert" : requestObj.dto.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.tabStopInsertDto, requestObj.tabStopInsertDto.constructor.name === "Object" ? "importedTabStopInsert.TabStopInsert" : requestObj.tabStopInsertDto.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "TabStopsResponse");
         const result: model.WordsIncomingMessage< model.TabStopsResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Inserts a new or updates an existing paragraph tab stop in the document node.
+     * @param requestObj contains request parameters
+     */
+    public async insertOrUpdateParagraphTabStopOnline(requestObj: model.InsertOrUpdateParagraphTabStopOnlineRequest): Promise< model.WordsIncomingMessage< InsertOrUpdateParagraphTabStopOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling insertOrUpdateParagraphTabStopOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/post/{name}/{nodePath}/paragraphs/{index}/tabstops"
+            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling insertOrUpdateParagraphTabStopOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling insertOrUpdateParagraphTabStopOnline.');
+        }
+
+        // verify required parameter 'requestObj.tabStopInsertDto' is not undefined
+        if (requestObj.tabStopInsertDto === undefined) {
+            throw new Error('Required parameter "requestObj.tabStopInsertDto" was undefined when calling insertOrUpdateParagraphTabStopOnline.');
+        }
+
+        // verify required parameter 'requestObj.tabStopInsertDto' is not null
+        if (requestObj.tabStopInsertDto === null) {
+            throw new Error('Required parameter "requestObj.tabStopInsertDto" was null when calling insertOrUpdateParagraphTabStopOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling insertOrUpdateParagraphTabStopOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling insertOrUpdateParagraphTabStopOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+        if (requestObj.tabStopInsertDto !== undefined) {
+            formParams.TabStopInsertDto = JSON.stringify(requestObj.tabStopInsertDto);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "InsertOrUpdateParagraphTabStopOnlineResponse");
+        const result: model.WordsIncomingMessage< model.InsertOrUpdateParagraphTabStopOnlineResponse > = {body, response};
         return Promise.resolve(result);
     }
 
@@ -5590,6 +10601,66 @@ export class WordsApi {
     }
 
     /**
+     * Inserts page numbers to the document.
+     * @param requestObj contains request parameters
+     */
+    public async insertPageNumbersOnline(requestObj: model.InsertPageNumbersOnlineRequest): Promise< model.WordsIncomingMessage< InsertPageNumbersOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling insertPageNumbersOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/put/PageNumbers"
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling insertPageNumbersOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling insertPageNumbersOnline.');
+        }
+
+        // verify required parameter 'requestObj.pageNumber' is not undefined
+        if (requestObj.pageNumber === undefined) {
+            throw new Error('Required parameter "requestObj.pageNumber" was undefined when calling insertPageNumbersOnline.');
+        }
+
+        // verify required parameter 'requestObj.pageNumber' is not null
+        if (requestObj.pageNumber === null) {
+            throw new Error('Required parameter "requestObj.pageNumber" was null when calling insertPageNumbersOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+        if (requestObj.pageNumber !== undefined) {
+            formParams.PageNumber = JSON.stringify(requestObj.pageNumber);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "InsertPageNumbersOnlineResponse");
+        const result: model.WordsIncomingMessage< model.InsertPageNumbersOnlineResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Inserts a new paragraph to the document node.
      * @param requestObj contains request parameters
      */
@@ -5643,6 +10714,68 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "ParagraphResponse");
         const result: model.WordsIncomingMessage< model.ParagraphResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Inserts a new paragraph to the document node.
+     * @param requestObj contains request parameters
+     */
+    public async insertParagraphOnline(requestObj: model.InsertParagraphOnlineRequest): Promise< model.WordsIncomingMessage< InsertParagraphOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling insertParagraphOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/post/{name}/{nodePath}/paragraphs"
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling insertParagraphOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling insertParagraphOnline.');
+        }
+
+        // verify required parameter 'requestObj.paragraph' is not undefined
+        if (requestObj.paragraph === undefined) {
+            throw new Error('Required parameter "requestObj.paragraph" was undefined when calling insertParagraphOnline.');
+        }
+
+        // verify required parameter 'requestObj.paragraph' is not null
+        if (requestObj.paragraph === null) {
+            throw new Error('Required parameter "requestObj.paragraph" was null when calling insertParagraphOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", requestObj.insertBeforeNode);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+        if (requestObj.paragraph !== undefined) {
+            formParams.Paragraph = JSON.stringify(requestObj.paragraph);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "InsertParagraphOnlineResponse");
+        const result: model.WordsIncomingMessage< model.InsertParagraphOnlineResponse > = {body, response};
         return Promise.resolve(result);
     }
 
@@ -5709,6 +10842,73 @@ export class WordsApi {
     }
 
     /**
+     * Inserts a new Run object to the paragraph.
+     * @param requestObj contains request parameters
+     */
+    public async insertRunOnline(requestObj: model.InsertRunOnlineRequest): Promise< model.WordsIncomingMessage< InsertRunOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling insertRunOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/post/{name}/{paragraphPath}/runs"
+            .replace("/{" + "paragraphPath" + "}", (requestObj.paragraphPath !== null && requestObj.paragraphPath !== undefined) ? "/" + String(requestObj.paragraphPath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling insertRunOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling insertRunOnline.');
+        }
+
+        // verify required parameter 'requestObj.paragraphPath' is not undefined
+        if (requestObj.paragraphPath === undefined) {
+            throw new Error('Required parameter "requestObj.paragraphPath" was undefined when calling insertRunOnline.');
+        }
+
+        // verify required parameter 'requestObj.run' is not undefined
+        if (requestObj.run === undefined) {
+            throw new Error('Required parameter "requestObj.run" was undefined when calling insertRunOnline.');
+        }
+
+        // verify required parameter 'requestObj.run' is not null
+        if (requestObj.run === null) {
+            throw new Error('Required parameter "requestObj.run" was null when calling insertRunOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", requestObj.insertBeforeNode);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+        if (requestObj.run !== undefined) {
+            formParams.Run = JSON.stringify(requestObj.run);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "InsertRunOnlineResponse");
+        const result: model.WordsIncomingMessage< model.InsertRunOnlineResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Inserts a new style to the document.
      * @param requestObj contains request parameters
      */
@@ -5760,6 +10960,66 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "StyleResponse");
         const result: model.WordsIncomingMessage< model.StyleResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Inserts a new style to the document.
+     * @param requestObj contains request parameters
+     */
+    public async insertStyleOnline(requestObj: model.InsertStyleOnlineRequest): Promise< model.WordsIncomingMessage< InsertStyleOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling insertStyleOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/post/styles/insert"
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling insertStyleOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling insertStyleOnline.');
+        }
+
+        // verify required parameter 'requestObj.styleInsert' is not undefined
+        if (requestObj.styleInsert === undefined) {
+            throw new Error('Required parameter "requestObj.styleInsert" was undefined when calling insertStyleOnline.');
+        }
+
+        // verify required parameter 'requestObj.styleInsert' is not null
+        if (requestObj.styleInsert === null) {
+            throw new Error('Required parameter "requestObj.styleInsert" was null when calling insertStyleOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+        if (requestObj.styleInsert !== undefined) {
+            formParams.StyleInsert = JSON.stringify(requestObj.styleInsert);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "InsertStyleOnlineResponse");
+        const result: model.WordsIncomingMessage< model.InsertStyleOnlineResponse > = {body, response};
         return Promise.resolve(result);
     }
 
@@ -5843,6 +11103,11 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj.name" was null when calling insertTableCell.');
         }
 
+        // verify required parameter 'requestObj.tableRowPath' is not undefined
+        if (requestObj.tableRowPath === undefined) {
+            throw new Error('Required parameter "requestObj.tableRowPath" was undefined when calling insertTableCell.');
+        }
+
         // verify required parameter 'requestObj.cell' is not undefined
         if (requestObj.cell === undefined) {
             throw new Error('Required parameter "requestObj.cell" was undefined when calling insertTableCell.');
@@ -5851,11 +11116,6 @@ export class WordsApi {
         // verify required parameter 'requestObj.cell' is not null
         if (requestObj.cell === null) {
             throw new Error('Required parameter "requestObj.cell" was null when calling insertTableCell.');
-        }
-
-        // verify required parameter 'requestObj.tableRowPath' is not undefined
-        if (requestObj.tableRowPath === undefined) {
-            throw new Error('Required parameter "requestObj.tableRowPath" was undefined when calling insertTableCell.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -5877,6 +11137,133 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "TableCellResponse");
         const result: model.WordsIncomingMessage< model.TableCellResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Inserts a new cell to the table row.
+     * @param requestObj contains request parameters
+     */
+    public async insertTableCellOnline(requestObj: model.InsertTableCellOnlineRequest): Promise< model.WordsIncomingMessage< InsertTableCellOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling insertTableCellOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/post/{name}/{tableRowPath}/cells"
+            .replace("/{" + "tableRowPath" + "}", (requestObj.tableRowPath !== null && requestObj.tableRowPath !== undefined) ? "/" + String(requestObj.tableRowPath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling insertTableCellOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling insertTableCellOnline.');
+        }
+
+        // verify required parameter 'requestObj.tableRowPath' is not undefined
+        if (requestObj.tableRowPath === undefined) {
+            throw new Error('Required parameter "requestObj.tableRowPath" was undefined when calling insertTableCellOnline.');
+        }
+
+        // verify required parameter 'requestObj.cell' is not undefined
+        if (requestObj.cell === undefined) {
+            throw new Error('Required parameter "requestObj.cell" was undefined when calling insertTableCellOnline.');
+        }
+
+        // verify required parameter 'requestObj.cell' is not null
+        if (requestObj.cell === null) {
+            throw new Error('Required parameter "requestObj.cell" was null when calling insertTableCellOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+        if (requestObj.cell !== undefined) {
+            formParams.Cell = JSON.stringify(requestObj.cell);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "InsertTableCellOnlineResponse");
+        const result: model.WordsIncomingMessage< model.InsertTableCellOnlineResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Inserts a new table to the document node.
+     * @param requestObj contains request parameters
+     */
+    public async insertTableOnline(requestObj: model.InsertTableOnlineRequest): Promise< model.WordsIncomingMessage< InsertTableOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling insertTableOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/post/{name}/{nodePath}/tables"
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling insertTableOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling insertTableOnline.');
+        }
+
+        // verify required parameter 'requestObj.table' is not undefined
+        if (requestObj.table === undefined) {
+            throw new Error('Required parameter "requestObj.table" was undefined when calling insertTableOnline.');
+        }
+
+        // verify required parameter 'requestObj.table' is not null
+        if (requestObj.table === null) {
+            throw new Error('Required parameter "requestObj.table" was null when calling insertTableOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+        if (requestObj.table !== undefined) {
+            formParams.Table = JSON.stringify(requestObj.table);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "InsertTableOnlineResponse");
+        const result: model.WordsIncomingMessage< model.InsertTableOnlineResponse > = {body, response};
         return Promise.resolve(result);
     }
 
@@ -5904,6 +11291,11 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj.name" was null when calling insertTableRow.');
         }
 
+        // verify required parameter 'requestObj.tablePath' is not undefined
+        if (requestObj.tablePath === undefined) {
+            throw new Error('Required parameter "requestObj.tablePath" was undefined when calling insertTableRow.');
+        }
+
         // verify required parameter 'requestObj.row' is not undefined
         if (requestObj.row === undefined) {
             throw new Error('Required parameter "requestObj.row" was undefined when calling insertTableRow.');
@@ -5912,11 +11304,6 @@ export class WordsApi {
         // verify required parameter 'requestObj.row' is not null
         if (requestObj.row === null) {
             throw new Error('Required parameter "requestObj.row" was null when calling insertTableRow.');
-        }
-
-        // verify required parameter 'requestObj.tablePath' is not undefined
-        if (requestObj.tablePath === undefined) {
-            throw new Error('Required parameter "requestObj.tablePath" was undefined when calling insertTableRow.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -5938,6 +11325,72 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "TableRowResponse");
         const result: model.WordsIncomingMessage< model.TableRowResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Inserts a new row to the table.
+     * @param requestObj contains request parameters
+     */
+    public async insertTableRowOnline(requestObj: model.InsertTableRowOnlineRequest): Promise< model.WordsIncomingMessage< InsertTableRowOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling insertTableRowOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/post/{name}/{tablePath}/rows"
+            .replace("/{" + "tablePath" + "}", (requestObj.tablePath !== null && requestObj.tablePath !== undefined) ? "/" + String(requestObj.tablePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling insertTableRowOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling insertTableRowOnline.');
+        }
+
+        // verify required parameter 'requestObj.tablePath' is not undefined
+        if (requestObj.tablePath === undefined) {
+            throw new Error('Required parameter "requestObj.tablePath" was undefined when calling insertTableRowOnline.');
+        }
+
+        // verify required parameter 'requestObj.row' is not undefined
+        if (requestObj.row === undefined) {
+            throw new Error('Required parameter "requestObj.row" was undefined when calling insertTableRowOnline.');
+        }
+
+        // verify required parameter 'requestObj.row' is not null
+        if (requestObj.row === null) {
+            throw new Error('Required parameter "requestObj.row" was null when calling insertTableRowOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+        if (requestObj.row !== undefined) {
+            formParams.Row = JSON.stringify(requestObj.row);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "InsertTableRowOnlineResponse");
+        const result: model.WordsIncomingMessage< model.InsertTableRowOnlineResponse > = {body, response};
         return Promise.resolve(result);
     }
 
@@ -5995,6 +11448,68 @@ export class WordsApi {
     }
 
     /**
+     * Inserts a new watermark image to the document.
+     * @param requestObj contains request parameters
+     */
+    public async insertWatermarkImageOnline(requestObj: model.InsertWatermarkImageOnlineRequest): Promise< model.WordsIncomingMessage< InsertWatermarkImageOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling insertWatermarkImageOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/post/watermarks/images"
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling insertWatermarkImageOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling insertWatermarkImageOnline.');
+        }
+
+        // verify required parameter 'requestObj.imageFile' is not undefined
+        if (requestObj.imageFile === undefined) {
+            throw new Error('Required parameter "requestObj.imageFile" was undefined when calling insertWatermarkImageOnline.');
+        }
+
+        // verify required parameter 'requestObj.imageFile' is not null
+        if (requestObj.imageFile === null) {
+            throw new Error('Required parameter "requestObj.imageFile" was null when calling insertWatermarkImageOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "rotationAngle", requestObj.rotationAngle);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "image", requestObj.image);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+        if (requestObj.imageFile !== undefined) {
+            formParams.ImageFile = requestObj.imageFile;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "InsertWatermarkImageOnlineResponse");
+        const result: model.WordsIncomingMessage< model.InsertWatermarkImageOnlineResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Inserts a new watermark text to the document.
      * @param requestObj contains request parameters
      */
@@ -6046,6 +11561,66 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
         const result: model.WordsIncomingMessage< model.DocumentResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Inserts a new watermark text to the document.
+     * @param requestObj contains request parameters
+     */
+    public async insertWatermarkTextOnline(requestObj: model.InsertWatermarkTextOnlineRequest): Promise< model.WordsIncomingMessage< InsertWatermarkTextOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling insertWatermarkTextOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/post/watermarks/texts"
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling insertWatermarkTextOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling insertWatermarkTextOnline.');
+        }
+
+        // verify required parameter 'requestObj.watermarkText' is not undefined
+        if (requestObj.watermarkText === undefined) {
+            throw new Error('Required parameter "requestObj.watermarkText" was undefined when calling insertWatermarkTextOnline.');
+        }
+
+        // verify required parameter 'requestObj.watermarkText' is not null
+        if (requestObj.watermarkText === null) {
+            throw new Error('Required parameter "requestObj.watermarkText" was null when calling insertWatermarkTextOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+        if (requestObj.watermarkText !== undefined) {
+            formParams.WatermarkText = JSON.stringify(requestObj.watermarkText);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "InsertWatermarkTextOnlineResponse");
+        const result: model.WordsIncomingMessage< model.InsertWatermarkTextOnlineResponse > = {body, response};
         return Promise.resolve(result);
     }
 
@@ -6228,6 +11803,67 @@ export class WordsApi {
     }
 
     /**
+     * Applies document content optimization options, specific to a particular versions of Microsoft Word.
+     * @param requestObj contains request parameters
+     */
+    public async optimizeDocumentOnline(requestObj: model.OptimizeDocumentOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling optimizeDocumentOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/put/compatibility/optimize"
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling optimizeDocumentOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling optimizeDocumentOnline.');
+        }
+
+        // verify required parameter 'requestObj.options' is not undefined
+        if (requestObj.options === undefined) {
+            throw new Error('Required parameter "requestObj.options" was undefined when calling optimizeDocumentOnline.');
+        }
+
+        // verify required parameter 'requestObj.options' is not null
+        if (requestObj.options === null) {
+            throw new Error('Required parameter "requestObj.options" was null when calling optimizeDocumentOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+        if (requestObj.options !== undefined) {
+            formParams.Options = JSON.stringify(requestObj.options);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const result: model.WordsIncomingMessage< Buffer > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Adds protection to the document.
      * @param requestObj contains request parameters
      */
@@ -6281,6 +11917,64 @@ export class WordsApi {
     }
 
     /**
+     * Adds protection to the document.
+     * @param requestObj contains request parameters
+     */
+    public async protectDocumentOnline(requestObj: model.ProtectDocumentOnlineRequest): Promise< model.WordsIncomingMessage< ProtectDocumentOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling protectDocumentOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/put/protection"
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling protectDocumentOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling protectDocumentOnline.');
+        }
+
+        // verify required parameter 'requestObj.protectionRequest' is not undefined
+        if (requestObj.protectionRequest === undefined) {
+            throw new Error('Required parameter "requestObj.protectionRequest" was undefined when calling protectDocumentOnline.');
+        }
+
+        // verify required parameter 'requestObj.protectionRequest' is not null
+        if (requestObj.protectionRequest === null) {
+            throw new Error('Required parameter "requestObj.protectionRequest" was null when calling protectDocumentOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+        if (requestObj.protectionRequest !== undefined) {
+            formParams.ProtectionRequest = JSON.stringify(requestObj.protectionRequest);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "ProtectDocumentOnlineResponse");
+        const result: model.WordsIncomingMessage< model.ProtectDocumentOnlineResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Rejects all revisions in the document.
      * @param requestObj contains request parameters
      */
@@ -6319,6 +12013,51 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "RevisionsModificationResponse");
         const result: model.WordsIncomingMessage< model.RevisionsModificationResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Rejects all revisions in the document.
+     * @param requestObj contains request parameters
+     */
+    public async rejectAllRevisionsOnline(requestObj: model.RejectAllRevisionsOnlineRequest): Promise< model.WordsIncomingMessage< RejectAllRevisionsOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling rejectAllRevisionsOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/put/revisions/rejectAll"
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling rejectAllRevisionsOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling rejectAllRevisionsOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "RejectAllRevisionsOnlineResponse");
+        const result: model.WordsIncomingMessage< model.RejectAllRevisionsOnlineResponse > = {body, response};
         return Promise.resolve(result);
     }
 
@@ -6377,6 +12116,63 @@ export class WordsApi {
     }
 
     /**
+     * Removes a range from the document.
+     * @param requestObj contains request parameters
+     */
+    public async removeRangeOnline(requestObj: model.RemoveRangeOnlineRequest): Promise< model.WordsIncomingMessage< RemoveRangeOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling removeRangeOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/delete/range/{rangeStartIdentifier}/{rangeEndIdentifier}"
+            .replace("/{" + "rangeStartIdentifier" + "}", (requestObj.rangeStartIdentifier !== null && requestObj.rangeStartIdentifier !== undefined) ? "/" + String(requestObj.rangeStartIdentifier) : "")
+            .replace("/{" + "rangeEndIdentifier" + "}", (requestObj.rangeEndIdentifier !== null && requestObj.rangeEndIdentifier !== undefined) ? "/" + String(requestObj.rangeEndIdentifier) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling removeRangeOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling removeRangeOnline.');
+        }
+
+        // verify required parameter 'requestObj.rangeStartIdentifier' is not undefined
+        if (requestObj.rangeStartIdentifier === undefined) {
+            throw new Error('Required parameter "requestObj.rangeStartIdentifier" was undefined when calling removeRangeOnline.');
+        }
+
+        // verify required parameter 'requestObj.rangeStartIdentifier' is not null
+        if (requestObj.rangeStartIdentifier === null) {
+            throw new Error('Required parameter "requestObj.rangeStartIdentifier" was null when calling removeRangeOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "RemoveRangeOnlineResponse");
+        const result: model.WordsIncomingMessage< model.RemoveRangeOnlineResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Renders a DrawingObject to the specified format.
      * @param requestObj contains request parameters
      */
@@ -6426,10 +12222,11 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", requestObj.fontsLocation);
 
         const requestOptions: request.Options = {
-            method: "GET",
+            method: "POST",
             qs: queryParameters,
             uri: localVarPath,
             encoding: null,
@@ -6438,6 +12235,75 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "Buffer");
         const result: model.WordsIncomingMessage< Buffer > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Renders a DrawingObject to the specified format.
+     * @param requestObj contains request parameters
+     */
+    public async renderDrawingObjectOnline(requestObj: model.RenderDrawingObjectOnlineRequest): Promise< model.WordsIncomingMessage< RenderDrawingObjectOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling renderDrawingObjectOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/{name}/{nodePath}/drawingObjects/{index}/render"
+            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling renderDrawingObjectOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling renderDrawingObjectOnline.');
+        }
+
+        // verify required parameter 'requestObj.format' is not undefined
+        if (requestObj.format === undefined) {
+            throw new Error('Required parameter "requestObj.format" was undefined when calling renderDrawingObjectOnline.');
+        }
+
+        // verify required parameter 'requestObj.format' is not null
+        if (requestObj.format === null) {
+            throw new Error('Required parameter "requestObj.format" was null when calling renderDrawingObjectOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling renderDrawingObjectOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling renderDrawingObjectOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", requestObj.fontsLocation);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "RenderDrawingObjectOnlineResponse");
+        const result: model.WordsIncomingMessage< model.RenderDrawingObjectOnlineResponse > = {body, response};
         return Promise.resolve(result);
     }
 
@@ -6491,10 +12357,11 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", requestObj.fontsLocation);
 
         const requestOptions: request.Options = {
-            method: "GET",
+            method: "POST",
             qs: queryParameters,
             uri: localVarPath,
             encoding: null,
@@ -6503,6 +12370,75 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "Buffer");
         const result: model.WordsIncomingMessage< Buffer > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Renders an OfficeMath object to the specified format.
+     * @param requestObj contains request parameters
+     */
+    public async renderMathObjectOnline(requestObj: model.RenderMathObjectOnlineRequest): Promise< model.WordsIncomingMessage< RenderMathObjectOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling renderMathObjectOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/{name}/{nodePath}/OfficeMathObjects/{index}/render"
+            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling renderMathObjectOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling renderMathObjectOnline.');
+        }
+
+        // verify required parameter 'requestObj.format' is not undefined
+        if (requestObj.format === undefined) {
+            throw new Error('Required parameter "requestObj.format" was undefined when calling renderMathObjectOnline.');
+        }
+
+        // verify required parameter 'requestObj.format' is not null
+        if (requestObj.format === null) {
+            throw new Error('Required parameter "requestObj.format" was null when calling renderMathObjectOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling renderMathObjectOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling renderMathObjectOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", requestObj.fontsLocation);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "RenderMathObjectOnlineResponse");
+        const result: model.WordsIncomingMessage< model.RenderMathObjectOnlineResponse > = {body, response};
         return Promise.resolve(result);
     }
 
@@ -6571,6 +12507,74 @@ export class WordsApi {
     }
 
     /**
+     * Renders a page to the specified format.
+     * @param requestObj contains request parameters
+     */
+    public async renderPageOnline(requestObj: model.RenderPageOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling renderPageOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/pages/{pageIndex}/render"
+            .replace("/{" + "pageIndex" + "}", (requestObj.pageIndex !== null && requestObj.pageIndex !== undefined) ? "/" + String(requestObj.pageIndex) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling renderPageOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling renderPageOnline.');
+        }
+
+        // verify required parameter 'requestObj.pageIndex' is not undefined
+        if (requestObj.pageIndex === undefined) {
+            throw new Error('Required parameter "requestObj.pageIndex" was undefined when calling renderPageOnline.');
+        }
+
+        // verify required parameter 'requestObj.pageIndex' is not null
+        if (requestObj.pageIndex === null) {
+            throw new Error('Required parameter "requestObj.pageIndex" was null when calling renderPageOnline.');
+        }
+
+        // verify required parameter 'requestObj.format' is not undefined
+        if (requestObj.format === undefined) {
+            throw new Error('Required parameter "requestObj.format" was undefined when calling renderPageOnline.');
+        }
+
+        // verify required parameter 'requestObj.format' is not null
+        if (requestObj.format === null) {
+            throw new Error('Required parameter "requestObj.format" was null when calling renderPageOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", requestObj.fontsLocation);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const result: model.WordsIncomingMessage< Buffer > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Renders a paragraph to the specified format.
      * @param requestObj contains request parameters
      */
@@ -6620,10 +12624,11 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", requestObj.fontsLocation);
 
         const requestOptions: request.Options = {
-            method: "GET",
+            method: "POST",
             qs: queryParameters,
             uri: localVarPath,
             encoding: null,
@@ -6632,6 +12637,75 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "Buffer");
         const result: model.WordsIncomingMessage< Buffer > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Renders a paragraph to the specified format.
+     * @param requestObj contains request parameters
+     */
+    public async renderParagraphOnline(requestObj: model.RenderParagraphOnlineRequest): Promise< model.WordsIncomingMessage< RenderParagraphOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling renderParagraphOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/{name}/{nodePath}/paragraphs/{index}/render"
+            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling renderParagraphOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling renderParagraphOnline.');
+        }
+
+        // verify required parameter 'requestObj.format' is not undefined
+        if (requestObj.format === undefined) {
+            throw new Error('Required parameter "requestObj.format" was undefined when calling renderParagraphOnline.');
+        }
+
+        // verify required parameter 'requestObj.format' is not null
+        if (requestObj.format === null) {
+            throw new Error('Required parameter "requestObj.format" was null when calling renderParagraphOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling renderParagraphOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling renderParagraphOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", requestObj.fontsLocation);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "RenderParagraphOnlineResponse");
+        const result: model.WordsIncomingMessage< model.RenderParagraphOnlineResponse > = {body, response};
         return Promise.resolve(result);
     }
 
@@ -6685,10 +12759,11 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", requestObj.fontsLocation);
 
         const requestOptions: request.Options = {
-            method: "GET",
+            method: "POST",
             qs: queryParameters,
             uri: localVarPath,
             encoding: null,
@@ -6697,6 +12772,75 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "Buffer");
         const result: model.WordsIncomingMessage< Buffer > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Renders a table to the specified format.
+     * @param requestObj contains request parameters
+     */
+    public async renderTableOnline(requestObj: model.RenderTableOnlineRequest): Promise< model.WordsIncomingMessage< RenderTableOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling renderTableOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/{name}/{nodePath}/tables/{index}/render"
+            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling renderTableOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling renderTableOnline.');
+        }
+
+        // verify required parameter 'requestObj.format' is not undefined
+        if (requestObj.format === undefined) {
+            throw new Error('Required parameter "requestObj.format" was undefined when calling renderTableOnline.');
+        }
+
+        // verify required parameter 'requestObj.format' is not null
+        if (requestObj.format === null) {
+            throw new Error('Required parameter "requestObj.format" was null when calling renderTableOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling renderTableOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling renderTableOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", requestObj.fontsLocation);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "RenderTableOnlineResponse");
+        const result: model.WordsIncomingMessage< model.RenderTableOnlineResponse > = {body, response};
         return Promise.resolve(result);
     }
 
@@ -6752,6 +12896,66 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "ReplaceTextResponse");
         const result: model.WordsIncomingMessage< model.ReplaceTextResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Replaces text in the document.
+     * @param requestObj contains request parameters
+     */
+    public async replaceTextOnline(requestObj: model.ReplaceTextOnlineRequest): Promise< model.WordsIncomingMessage< ReplaceTextOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling replaceTextOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/put/replaceText"
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling replaceTextOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling replaceTextOnline.');
+        }
+
+        // verify required parameter 'requestObj.replaceText' is not undefined
+        if (requestObj.replaceText === undefined) {
+            throw new Error('Required parameter "requestObj.replaceText" was undefined when calling replaceTextOnline.');
+        }
+
+        // verify required parameter 'requestObj.replaceText' is not null
+        if (requestObj.replaceText === null) {
+            throw new Error('Required parameter "requestObj.replaceText" was null when calling replaceTextOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+        if (requestObj.replaceText !== undefined) {
+            formParams.ReplaceText = JSON.stringify(requestObj.replaceText);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "ReplaceTextOnlineResponse");
+        const result: model.WordsIncomingMessage< model.ReplaceTextOnlineResponse > = {body, response};
         return Promise.resolve(result);
     }
 
@@ -6817,6 +13021,76 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
         const result: model.WordsIncomingMessage< model.DocumentResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Replaces a range with text in the document.
+     * @param requestObj contains request parameters
+     */
+    public async replaceWithTextOnline(requestObj: model.ReplaceWithTextOnlineRequest): Promise< model.WordsIncomingMessage< ReplaceWithTextOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling replaceWithTextOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/post/range/{rangeStartIdentifier}/{rangeEndIdentifier}"
+            .replace("/{" + "rangeStartIdentifier" + "}", (requestObj.rangeStartIdentifier !== null && requestObj.rangeStartIdentifier !== undefined) ? "/" + String(requestObj.rangeStartIdentifier) : "")
+            .replace("/{" + "rangeEndIdentifier" + "}", (requestObj.rangeEndIdentifier !== null && requestObj.rangeEndIdentifier !== undefined) ? "/" + String(requestObj.rangeEndIdentifier) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling replaceWithTextOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling replaceWithTextOnline.');
+        }
+
+        // verify required parameter 'requestObj.rangeStartIdentifier' is not undefined
+        if (requestObj.rangeStartIdentifier === undefined) {
+            throw new Error('Required parameter "requestObj.rangeStartIdentifier" was undefined when calling replaceWithTextOnline.');
+        }
+
+        // verify required parameter 'requestObj.rangeStartIdentifier' is not null
+        if (requestObj.rangeStartIdentifier === null) {
+            throw new Error('Required parameter "requestObj.rangeStartIdentifier" was null when calling replaceWithTextOnline.');
+        }
+
+        // verify required parameter 'requestObj.rangeText' is not undefined
+        if (requestObj.rangeText === undefined) {
+            throw new Error('Required parameter "requestObj.rangeText" was undefined when calling replaceWithTextOnline.');
+        }
+
+        // verify required parameter 'requestObj.rangeText' is not null
+        if (requestObj.rangeText === null) {
+            throw new Error('Required parameter "requestObj.rangeText" was null when calling replaceWithTextOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+        if (requestObj.rangeText !== undefined) {
+            formParams.RangeText = JSON.stringify(requestObj.rangeText);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "ReplaceWithTextOnlineResponse");
+        const result: model.WordsIncomingMessage< model.ReplaceWithTextOnlineResponse > = {body, response};
         return Promise.resolve(result);
     }
 
@@ -6898,6 +13172,64 @@ export class WordsApi {
     }
 
     /**
+     * Converts a document in cloud storage to the specified format.
+     * @param requestObj contains request parameters
+     */
+    public async saveAsOnline(requestObj: model.SaveAsOnlineRequest): Promise< model.WordsIncomingMessage< SaveAsOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling saveAsOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/put/saveAs"
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling saveAsOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling saveAsOnline.');
+        }
+
+        // verify required parameter 'requestObj.saveOptionsData' is not undefined
+        if (requestObj.saveOptionsData === undefined) {
+            throw new Error('Required parameter "requestObj.saveOptionsData" was undefined when calling saveAsOnline.');
+        }
+
+        // verify required parameter 'requestObj.saveOptionsData' is not null
+        if (requestObj.saveOptionsData === null) {
+            throw new Error('Required parameter "requestObj.saveOptionsData" was null when calling saveAsOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", requestObj.fontsLocation);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+        if (requestObj.saveOptionsData !== undefined) {
+            formParams.SaveOptionsData = JSON.stringify(requestObj.saveOptionsData);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "SaveAsOnlineResponse");
+        const result: model.WordsIncomingMessage< model.SaveAsOnlineResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Saves a range as a new document.
      * @param requestObj contains request parameters
      */
@@ -6958,6 +13290,75 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
         const result: model.WordsIncomingMessage< model.DocumentResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Saves a range as a new document.
+     * @param requestObj contains request parameters
+     */
+    public async saveAsRangeOnline(requestObj: model.SaveAsRangeOnlineRequest): Promise< model.WordsIncomingMessage< SaveAsRangeOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling saveAsRangeOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/post/range/{rangeStartIdentifier}/{rangeEndIdentifier}/SaveAs"
+            .replace("/{" + "rangeStartIdentifier" + "}", (requestObj.rangeStartIdentifier !== null && requestObj.rangeStartIdentifier !== undefined) ? "/" + String(requestObj.rangeStartIdentifier) : "")
+            .replace("/{" + "rangeEndIdentifier" + "}", (requestObj.rangeEndIdentifier !== null && requestObj.rangeEndIdentifier !== undefined) ? "/" + String(requestObj.rangeEndIdentifier) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling saveAsRangeOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling saveAsRangeOnline.');
+        }
+
+        // verify required parameter 'requestObj.rangeStartIdentifier' is not undefined
+        if (requestObj.rangeStartIdentifier === undefined) {
+            throw new Error('Required parameter "requestObj.rangeStartIdentifier" was undefined when calling saveAsRangeOnline.');
+        }
+
+        // verify required parameter 'requestObj.rangeStartIdentifier' is not null
+        if (requestObj.rangeStartIdentifier === null) {
+            throw new Error('Required parameter "requestObj.rangeStartIdentifier" was null when calling saveAsRangeOnline.');
+        }
+
+        // verify required parameter 'requestObj.documentParameters' is not undefined
+        if (requestObj.documentParameters === undefined) {
+            throw new Error('Required parameter "requestObj.documentParameters" was undefined when calling saveAsRangeOnline.');
+        }
+
+        // verify required parameter 'requestObj.documentParameters' is not null
+        if (requestObj.documentParameters === null) {
+            throw new Error('Required parameter "requestObj.documentParameters" was null when calling saveAsRangeOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+        if (requestObj.documentParameters !== undefined) {
+            formParams.DocumentParameters = JSON.stringify(requestObj.documentParameters);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "SaveAsRangeOnlineResponse");
+        const result: model.WordsIncomingMessage< model.SaveAsRangeOnlineResponse > = {body, response};
         return Promise.resolve(result);
     }
 
@@ -7032,6 +13433,81 @@ export class WordsApi {
     }
 
     /**
+     * Converts a document in cloud storage to TIFF format using detailed conversion settings.
+     * @param requestObj contains request parameters
+     */
+    public async saveAsTiffOnline(requestObj: model.SaveAsTiffOnlineRequest): Promise< model.WordsIncomingMessage< SaveAsTiffOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling saveAsTiffOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/put/saveAs/tiff"
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling saveAsTiffOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling saveAsTiffOnline.');
+        }
+
+        // verify required parameter 'requestObj.saveOptions' is not undefined
+        if (requestObj.saveOptions === undefined) {
+            throw new Error('Required parameter "requestObj.saveOptions" was undefined when calling saveAsTiffOnline.');
+        }
+
+        // verify required parameter 'requestObj.saveOptions' is not null
+        if (requestObj.saveOptions === null) {
+            throw new Error('Required parameter "requestObj.saveOptions" was null when calling saveAsTiffOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "useAntiAliasing", requestObj.useAntiAliasing);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "useHighQualityRendering", requestObj.useHighQualityRendering);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "imageBrightness", requestObj.imageBrightness);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "imageColorMode", requestObj.imageColorMode);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "imageContrast", requestObj.imageContrast);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "numeralFormat", requestObj.numeralFormat);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "pageCount", requestObj.pageCount);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "pageIndex", requestObj.pageIndex);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "paperColor", requestObj.paperColor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "pixelFormat", requestObj.pixelFormat);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "resolution", requestObj.resolution);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "scale", requestObj.scale);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "tiffCompression", requestObj.tiffCompression);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "dmlRenderingMode", requestObj.dmlRenderingMode);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "dmlEffectsRenderingMode", requestObj.dmlEffectsRenderingMode);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "tiffBinarizationMethod", requestObj.tiffBinarizationMethod);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "zipOutput", requestObj.zipOutput);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", requestObj.fontsLocation);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+        if (requestObj.saveOptions !== undefined) {
+            formParams.SaveOptions = JSON.stringify(requestObj.saveOptions);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "SaveAsTiffOnlineResponse");
+        const result: model.WordsIncomingMessage< model.SaveAsTiffOnlineResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Searches text, specified by the regular expression, in the document.
      * @param requestObj contains request parameters
      */
@@ -7072,6 +13548,57 @@ export class WordsApi {
             json: true,
         };
 
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "SearchResponse");
+        const result: model.WordsIncomingMessage< model.SearchResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Searches text, specified by the regular expression, in the document.
+     * @param requestObj contains request parameters
+     */
+    public async searchOnline(requestObj: model.SearchOnlineRequest): Promise< model.WordsIncomingMessage< model.SearchResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling searchOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/get/search"
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling searchOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling searchOnline.');
+        }
+
+        // verify required parameter 'requestObj.pattern' is not undefined
+        if (requestObj.pattern === undefined) {
+            throw new Error('Required parameter "requestObj.pattern" was undefined when calling searchOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "pattern", requestObj.pattern);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "SearchResponse");
         const result: model.WordsIncomingMessage< model.SearchResponse > = {body, response};
@@ -7136,6 +13663,66 @@ export class WordsApi {
     }
 
     /**
+     * Splits a document into parts and saves them in the specified format.
+     * @param requestObj contains request parameters
+     */
+    public async splitDocumentOnline(requestObj: model.SplitDocumentOnlineRequest): Promise< model.WordsIncomingMessage< SplitDocumentOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling splitDocumentOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/put/split"
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling splitDocumentOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling splitDocumentOnline.');
+        }
+
+        // verify required parameter 'requestObj.format' is not undefined
+        if (requestObj.format === undefined) {
+            throw new Error('Required parameter "requestObj.format" was undefined when calling splitDocumentOnline.');
+        }
+
+        // verify required parameter 'requestObj.format' is not null
+        if (requestObj.format === null) {
+            throw new Error('Required parameter "requestObj.format" was null when calling splitDocumentOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", requestObj.format);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "from", requestObj.from);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "to", requestObj.to);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "zipOutput", requestObj.zipOutput);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", requestObj.fontsLocation);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "SplitDocumentOnlineResponse");
+        const result: model.WordsIncomingMessage< model.SplitDocumentOnlineResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Removes protection from the document.
      * @param requestObj contains request parameters
      */
@@ -7189,6 +13776,64 @@ export class WordsApi {
     }
 
     /**
+     * Removes protection from the document.
+     * @param requestObj contains request parameters
+     */
+    public async unprotectDocumentOnline(requestObj: model.UnprotectDocumentOnlineRequest): Promise< model.WordsIncomingMessage< UnprotectDocumentOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling unprotectDocumentOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/delete/protection"
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling unprotectDocumentOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling unprotectDocumentOnline.');
+        }
+
+        // verify required parameter 'requestObj.protectionRequest' is not undefined
+        if (requestObj.protectionRequest === undefined) {
+            throw new Error('Required parameter "requestObj.protectionRequest" was undefined when calling unprotectDocumentOnline.');
+        }
+
+        // verify required parameter 'requestObj.protectionRequest' is not null
+        if (requestObj.protectionRequest === null) {
+            throw new Error('Required parameter "requestObj.protectionRequest" was null when calling unprotectDocumentOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+        if (requestObj.protectionRequest !== undefined) {
+            formParams.ProtectionRequest = JSON.stringify(requestObj.protectionRequest);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "UnprotectDocumentOnlineResponse");
+        const result: model.WordsIncomingMessage< model.UnprotectDocumentOnlineResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Updates a bookmark in the document.
      * @param requestObj contains request parameters
      */
@@ -7212,16 +13857,6 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj.name" was null when calling updateBookmark.');
         }
 
-        // verify required parameter 'requestObj.bookmarkData' is not undefined
-        if (requestObj.bookmarkData === undefined) {
-            throw new Error('Required parameter "requestObj.bookmarkData" was undefined when calling updateBookmark.');
-        }
-
-        // verify required parameter 'requestObj.bookmarkData' is not null
-        if (requestObj.bookmarkData === null) {
-            throw new Error('Required parameter "requestObj.bookmarkData" was null when calling updateBookmark.');
-        }
-
         // verify required parameter 'requestObj.bookmarkName' is not undefined
         if (requestObj.bookmarkName === undefined) {
             throw new Error('Required parameter "requestObj.bookmarkName" was undefined when calling updateBookmark.');
@@ -7230,6 +13865,16 @@ export class WordsApi {
         // verify required parameter 'requestObj.bookmarkName' is not null
         if (requestObj.bookmarkName === null) {
             throw new Error('Required parameter "requestObj.bookmarkName" was null when calling updateBookmark.');
+        }
+
+        // verify required parameter 'requestObj.bookmarkData' is not undefined
+        if (requestObj.bookmarkData === undefined) {
+            throw new Error('Required parameter "requestObj.bookmarkData" was undefined when calling updateBookmark.');
+        }
+
+        // verify required parameter 'requestObj.bookmarkData' is not null
+        if (requestObj.bookmarkData === null) {
+            throw new Error('Required parameter "requestObj.bookmarkData" was null when calling updateBookmark.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -7251,6 +13896,77 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "BookmarkResponse");
         const result: model.WordsIncomingMessage< model.BookmarkResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Updates a bookmark in the document.
+     * @param requestObj contains request parameters
+     */
+    public async updateBookmarkOnline(requestObj: model.UpdateBookmarkOnlineRequest): Promise< model.WordsIncomingMessage< UpdateBookmarkOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling updateBookmarkOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/put/bookmarks/{bookmarkName}"
+            .replace("/{" + "bookmarkName" + "}", (requestObj.bookmarkName !== null && requestObj.bookmarkName !== undefined) ? "/" + String(requestObj.bookmarkName) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling updateBookmarkOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling updateBookmarkOnline.');
+        }
+
+        // verify required parameter 'requestObj.bookmarkName' is not undefined
+        if (requestObj.bookmarkName === undefined) {
+            throw new Error('Required parameter "requestObj.bookmarkName" was undefined when calling updateBookmarkOnline.');
+        }
+
+        // verify required parameter 'requestObj.bookmarkName' is not null
+        if (requestObj.bookmarkName === null) {
+            throw new Error('Required parameter "requestObj.bookmarkName" was null when calling updateBookmarkOnline.');
+        }
+
+        // verify required parameter 'requestObj.bookmarkData' is not undefined
+        if (requestObj.bookmarkData === undefined) {
+            throw new Error('Required parameter "requestObj.bookmarkData" was undefined when calling updateBookmarkOnline.');
+        }
+
+        // verify required parameter 'requestObj.bookmarkData' is not null
+        if (requestObj.bookmarkData === null) {
+            throw new Error('Required parameter "requestObj.bookmarkData" was null when calling updateBookmarkOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+        if (requestObj.bookmarkData !== undefined) {
+            formParams.BookmarkData = JSON.stringify(requestObj.bookmarkData);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "UpdateBookmarkOnlineResponse");
+        const result: model.WordsIncomingMessage< model.UpdateBookmarkOnlineResponse > = {body, response};
         return Promise.resolve(result);
     }
 
@@ -7279,16 +13995,6 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj.name" was null when calling updateBorder.');
         }
 
-        // verify required parameter 'requestObj.borderProperties' is not undefined
-        if (requestObj.borderProperties === undefined) {
-            throw new Error('Required parameter "requestObj.borderProperties" was undefined when calling updateBorder.');
-        }
-
-        // verify required parameter 'requestObj.borderProperties' is not null
-        if (requestObj.borderProperties === null) {
-            throw new Error('Required parameter "requestObj.borderProperties" was null when calling updateBorder.');
-        }
-
         // verify required parameter 'requestObj.borderType' is not undefined
         if (requestObj.borderType === undefined) {
             throw new Error('Required parameter "requestObj.borderType" was undefined when calling updateBorder.');
@@ -7297,6 +14003,16 @@ export class WordsApi {
         // verify required parameter 'requestObj.borderType' is not null
         if (requestObj.borderType === null) {
             throw new Error('Required parameter "requestObj.borderType" was null when calling updateBorder.');
+        }
+
+        // verify required parameter 'requestObj.borderProperties' is not undefined
+        if (requestObj.borderProperties === undefined) {
+            throw new Error('Required parameter "requestObj.borderProperties" was undefined when calling updateBorder.');
+        }
+
+        // verify required parameter 'requestObj.borderProperties' is not null
+        if (requestObj.borderProperties === null) {
+            throw new Error('Required parameter "requestObj.borderProperties" was null when calling updateBorder.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -7308,7 +14024,7 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
 
         const requestOptions: request.Options = {
-            method: "PUT",
+            method: "POST",
             qs: queryParameters,
             uri: localVarPath,
             json: true,
@@ -7318,6 +14034,78 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "BorderResponse");
         const result: model.WordsIncomingMessage< model.BorderResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Updates a border in the document node.
+     * @param requestObj contains request parameters
+     */
+    public async updateBorderOnline(requestObj: model.UpdateBorderOnlineRequest): Promise< model.WordsIncomingMessage< UpdateBorderOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling updateBorderOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/put/{name}/{nodePath}/borders/{borderType}"
+            .replace("/{" + "borderType" + "}", (requestObj.borderType !== null && requestObj.borderType !== undefined) ? "/" + String(requestObj.borderType) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling updateBorderOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling updateBorderOnline.');
+        }
+
+        // verify required parameter 'requestObj.borderProperties' is not undefined
+        if (requestObj.borderProperties === undefined) {
+            throw new Error('Required parameter "requestObj.borderProperties" was undefined when calling updateBorderOnline.');
+        }
+
+        // verify required parameter 'requestObj.borderProperties' is not null
+        if (requestObj.borderProperties === null) {
+            throw new Error('Required parameter "requestObj.borderProperties" was null when calling updateBorderOnline.');
+        }
+
+        // verify required parameter 'requestObj.borderType' is not undefined
+        if (requestObj.borderType === undefined) {
+            throw new Error('Required parameter "requestObj.borderType" was undefined when calling updateBorderOnline.');
+        }
+
+        // verify required parameter 'requestObj.borderType' is not null
+        if (requestObj.borderType === null) {
+            throw new Error('Required parameter "requestObj.borderType" was null when calling updateBorderOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+        if (requestObj.borderProperties !== undefined) {
+            formParams.BorderProperties = JSON.stringify(requestObj.borderProperties);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "UpdateBorderOnlineResponse");
+        const result: model.WordsIncomingMessage< model.UpdateBorderOnlineResponse > = {body, response};
         return Promise.resolve(result);
     }
 
@@ -7384,6 +14172,77 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "CommentResponse");
         const result: model.WordsIncomingMessage< model.CommentResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Updates a comment in the document.
+     * @param requestObj contains request parameters
+     */
+    public async updateCommentOnline(requestObj: model.UpdateCommentOnlineRequest): Promise< model.WordsIncomingMessage< UpdateCommentOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling updateCommentOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/put/comments/{commentIndex}"
+            .replace("/{" + "commentIndex" + "}", (requestObj.commentIndex !== null && requestObj.commentIndex !== undefined) ? "/" + String(requestObj.commentIndex) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling updateCommentOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling updateCommentOnline.');
+        }
+
+        // verify required parameter 'requestObj.commentIndex' is not undefined
+        if (requestObj.commentIndex === undefined) {
+            throw new Error('Required parameter "requestObj.commentIndex" was undefined when calling updateCommentOnline.');
+        }
+
+        // verify required parameter 'requestObj.commentIndex' is not null
+        if (requestObj.commentIndex === null) {
+            throw new Error('Required parameter "requestObj.commentIndex" was null when calling updateCommentOnline.');
+        }
+
+        // verify required parameter 'requestObj.comment' is not undefined
+        if (requestObj.comment === undefined) {
+            throw new Error('Required parameter "requestObj.comment" was undefined when calling updateCommentOnline.');
+        }
+
+        // verify required parameter 'requestObj.comment' is not null
+        if (requestObj.comment === null) {
+            throw new Error('Required parameter "requestObj.comment" was null when calling updateCommentOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+        if (requestObj.comment !== undefined) {
+            formParams.Comment = JSON.stringify(requestObj.comment);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "UpdateCommentOnlineResponse");
+        const result: model.WordsIncomingMessage< model.UpdateCommentOnlineResponse > = {body, response};
         return Promise.resolve(result);
     }
 
@@ -7458,7 +14317,7 @@ export class WordsApi {
         }
 
         const requestOptions: request.Options = {
-            method: "PUT",
+            method: "POST",
             qs: queryParameters,
             uri: localVarPath,
             json: true,
@@ -7470,6 +14329,91 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "DrawingObjectResponse");
         const result: model.WordsIncomingMessage< model.DrawingObjectResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Updates a DrawingObject in the document node.
+     * @param requestObj contains request parameters
+     */
+    public async updateDrawingObjectOnline(requestObj: model.UpdateDrawingObjectOnlineRequest): Promise< model.WordsIncomingMessage< UpdateDrawingObjectOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling updateDrawingObjectOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/put/{name}/{nodePath}/drawingObjects/{index}"
+            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling updateDrawingObjectOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling updateDrawingObjectOnline.');
+        }
+
+        // verify required parameter 'requestObj.drawingObject' is not undefined
+        if (requestObj.drawingObject === undefined) {
+            throw new Error('Required parameter "requestObj.drawingObject" was undefined when calling updateDrawingObjectOnline.');
+        }
+
+        // verify required parameter 'requestObj.drawingObject' is not null
+        if (requestObj.drawingObject === null) {
+            throw new Error('Required parameter "requestObj.drawingObject" was null when calling updateDrawingObjectOnline.');
+        }
+
+        // verify required parameter 'requestObj.imageFile' is not undefined
+        if (requestObj.imageFile === undefined) {
+            throw new Error('Required parameter "requestObj.imageFile" was undefined when calling updateDrawingObjectOnline.');
+        }
+
+        // verify required parameter 'requestObj.imageFile' is not null
+        if (requestObj.imageFile === null) {
+            throw new Error('Required parameter "requestObj.imageFile" was null when calling updateDrawingObjectOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling updateDrawingObjectOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling updateDrawingObjectOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+        if (requestObj.drawingObject !== undefined) {
+            formParams.DrawingObject = JSON.stringify(requestObj.drawingObject);
+        }
+        if (requestObj.imageFile !== undefined) {
+            formParams.ImageFile = requestObj.imageFile;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "UpdateDrawingObjectOnlineResponse");
+        const result: model.WordsIncomingMessage< model.UpdateDrawingObjectOnlineResponse > = {body, response};
         return Promise.resolve(result);
     }
 
@@ -7498,16 +14442,6 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj.name" was null when calling updateField.');
         }
 
-        // verify required parameter 'requestObj.field' is not undefined
-        if (requestObj.field === undefined) {
-            throw new Error('Required parameter "requestObj.field" was undefined when calling updateField.');
-        }
-
-        // verify required parameter 'requestObj.field' is not null
-        if (requestObj.field === null) {
-            throw new Error('Required parameter "requestObj.field" was null when calling updateField.');
-        }
-
         // verify required parameter 'requestObj.index' is not undefined
         if (requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was undefined when calling updateField.');
@@ -7516,6 +14450,16 @@ export class WordsApi {
         // verify required parameter 'requestObj.index' is not null
         if (requestObj.index === null) {
             throw new Error('Required parameter "requestObj.index" was null when calling updateField.');
+        }
+
+        // verify required parameter 'requestObj.field' is not undefined
+        if (requestObj.field === undefined) {
+            throw new Error('Required parameter "requestObj.field" was undefined when calling updateField.');
+        }
+
+        // verify required parameter 'requestObj.field' is not null
+        if (requestObj.field === null) {
+            throw new Error('Required parameter "requestObj.field" was null when calling updateField.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -7527,7 +14471,7 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
 
         const requestOptions: request.Options = {
-            method: "PUT",
+            method: "POST",
             qs: queryParameters,
             uri: localVarPath,
             json: true,
@@ -7537,6 +14481,78 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "FieldResponse");
         const result: model.WordsIncomingMessage< model.FieldResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Updates a field in the document node.
+     * @param requestObj contains request parameters
+     */
+    public async updateFieldOnline(requestObj: model.UpdateFieldOnlineRequest): Promise< model.WordsIncomingMessage< UpdateFieldOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling updateFieldOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/put/{name}/{nodePath}/fields/{index}"
+            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling updateFieldOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling updateFieldOnline.');
+        }
+
+        // verify required parameter 'requestObj.field' is not undefined
+        if (requestObj.field === undefined) {
+            throw new Error('Required parameter "requestObj.field" was undefined when calling updateFieldOnline.');
+        }
+
+        // verify required parameter 'requestObj.field' is not null
+        if (requestObj.field === null) {
+            throw new Error('Required parameter "requestObj.field" was null when calling updateFieldOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling updateFieldOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling updateFieldOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+        if (requestObj.field !== undefined) {
+            formParams.Field = JSON.stringify(requestObj.field);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "UpdateFieldOnlineResponse");
+        const result: model.WordsIncomingMessage< model.UpdateFieldOnlineResponse > = {body, response};
         return Promise.resolve(result);
     }
 
@@ -7583,6 +14599,51 @@ export class WordsApi {
     }
 
     /**
+     * Reevaluates field values in the document.
+     * @param requestObj contains request parameters
+     */
+    public async updateFieldsOnline(requestObj: model.UpdateFieldsOnlineRequest): Promise< model.WordsIncomingMessage< UpdateFieldsOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling updateFieldsOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/put/updateFields"
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling updateFieldsOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling updateFieldsOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "UpdateFieldsOnlineResponse");
+        const result: model.WordsIncomingMessage< model.UpdateFieldsOnlineResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Updates a footnote in the document node.
      * @param requestObj contains request parameters
      */
@@ -7607,16 +14668,6 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj.name" was null when calling updateFootnote.');
         }
 
-        // verify required parameter 'requestObj.footnoteDto' is not undefined
-        if (requestObj.footnoteDto === undefined) {
-            throw new Error('Required parameter "requestObj.footnoteDto" was undefined when calling updateFootnote.');
-        }
-
-        // verify required parameter 'requestObj.footnoteDto' is not null
-        if (requestObj.footnoteDto === null) {
-            throw new Error('Required parameter "requestObj.footnoteDto" was null when calling updateFootnote.');
-        }
-
         // verify required parameter 'requestObj.index' is not undefined
         if (requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was undefined when calling updateFootnote.');
@@ -7625,6 +14676,16 @@ export class WordsApi {
         // verify required parameter 'requestObj.index' is not null
         if (requestObj.index === null) {
             throw new Error('Required parameter "requestObj.index" was null when calling updateFootnote.');
+        }
+
+        // verify required parameter 'requestObj.footnoteDto' is not undefined
+        if (requestObj.footnoteDto === undefined) {
+            throw new Error('Required parameter "requestObj.footnoteDto" was undefined when calling updateFootnote.');
+        }
+
+        // verify required parameter 'requestObj.footnoteDto' is not null
+        if (requestObj.footnoteDto === null) {
+            throw new Error('Required parameter "requestObj.footnoteDto" was null when calling updateFootnote.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -7636,7 +14697,7 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
 
         const requestOptions: request.Options = {
-            method: "PUT",
+            method: "POST",
             qs: queryParameters,
             uri: localVarPath,
             json: true,
@@ -7646,6 +14707,78 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "FootnoteResponse");
         const result: model.WordsIncomingMessage< model.FootnoteResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Updates a footnote in the document node.
+     * @param requestObj contains request parameters
+     */
+    public async updateFootnoteOnline(requestObj: model.UpdateFootnoteOnlineRequest): Promise< model.WordsIncomingMessage< UpdateFootnoteOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling updateFootnoteOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/put/{name}/{nodePath}/footnotes/{index}"
+            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling updateFootnoteOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling updateFootnoteOnline.');
+        }
+
+        // verify required parameter 'requestObj.footnoteDto' is not undefined
+        if (requestObj.footnoteDto === undefined) {
+            throw new Error('Required parameter "requestObj.footnoteDto" was undefined when calling updateFootnoteOnline.');
+        }
+
+        // verify required parameter 'requestObj.footnoteDto' is not null
+        if (requestObj.footnoteDto === null) {
+            throw new Error('Required parameter "requestObj.footnoteDto" was null when calling updateFootnoteOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling updateFootnoteOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling updateFootnoteOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+        if (requestObj.footnoteDto !== undefined) {
+            formParams.FootnoteDto = JSON.stringify(requestObj.footnoteDto);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "UpdateFootnoteOnlineResponse");
+        const result: model.WordsIncomingMessage< model.UpdateFootnoteOnlineResponse > = {body, response};
         return Promise.resolve(result);
     }
 
@@ -7674,16 +14807,6 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj.name" was null when calling updateFormField.');
         }
 
-        // verify required parameter 'requestObj.formField' is not undefined
-        if (requestObj.formField === undefined) {
-            throw new Error('Required parameter "requestObj.formField" was undefined when calling updateFormField.');
-        }
-
-        // verify required parameter 'requestObj.formField' is not null
-        if (requestObj.formField === null) {
-            throw new Error('Required parameter "requestObj.formField" was null when calling updateFormField.');
-        }
-
         // verify required parameter 'requestObj.index' is not undefined
         if (requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was undefined when calling updateFormField.');
@@ -7692,6 +14815,16 @@ export class WordsApi {
         // verify required parameter 'requestObj.index' is not null
         if (requestObj.index === null) {
             throw new Error('Required parameter "requestObj.index" was null when calling updateFormField.');
+        }
+
+        // verify required parameter 'requestObj.formField' is not undefined
+        if (requestObj.formField === undefined) {
+            throw new Error('Required parameter "requestObj.formField" was undefined when calling updateFormField.');
+        }
+
+        // verify required parameter 'requestObj.formField' is not null
+        if (requestObj.formField === null) {
+            throw new Error('Required parameter "requestObj.formField" was null when calling updateFormField.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -7703,7 +14836,7 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
 
         const requestOptions: request.Options = {
-            method: "PUT",
+            method: "POST",
             qs: queryParameters,
             uri: localVarPath,
             json: true,
@@ -7713,6 +14846,78 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "FormFieldResponse");
         const result: model.WordsIncomingMessage< model.FormFieldResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Updates a form field in the document node.
+     * @param requestObj contains request parameters
+     */
+    public async updateFormFieldOnline(requestObj: model.UpdateFormFieldOnlineRequest): Promise< model.WordsIncomingMessage< UpdateFormFieldOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling updateFormFieldOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/put/{name}/{nodePath}/formfields/{index}"
+            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling updateFormFieldOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling updateFormFieldOnline.');
+        }
+
+        // verify required parameter 'requestObj.formField' is not undefined
+        if (requestObj.formField === undefined) {
+            throw new Error('Required parameter "requestObj.formField" was undefined when calling updateFormFieldOnline.');
+        }
+
+        // verify required parameter 'requestObj.formField' is not null
+        if (requestObj.formField === null) {
+            throw new Error('Required parameter "requestObj.formField" was null when calling updateFormFieldOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling updateFormFieldOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling updateFormFieldOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+        if (requestObj.formField !== undefined) {
+            formParams.FormField = JSON.stringify(requestObj.formField);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "UpdateFormFieldOnlineResponse");
+        const result: model.WordsIncomingMessage< model.UpdateFormFieldOnlineResponse > = {body, response};
         return Promise.resolve(result);
     }
 
@@ -7740,16 +14945,6 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj.name" was null when calling updateList.');
         }
 
-        // verify required parameter 'requestObj.listUpdate' is not undefined
-        if (requestObj.listUpdate === undefined) {
-            throw new Error('Required parameter "requestObj.listUpdate" was undefined when calling updateList.');
-        }
-
-        // verify required parameter 'requestObj.listUpdate' is not null
-        if (requestObj.listUpdate === null) {
-            throw new Error('Required parameter "requestObj.listUpdate" was null when calling updateList.');
-        }
-
         // verify required parameter 'requestObj.listId' is not undefined
         if (requestObj.listId === undefined) {
             throw new Error('Required parameter "requestObj.listId" was undefined when calling updateList.');
@@ -7758,6 +14953,16 @@ export class WordsApi {
         // verify required parameter 'requestObj.listId' is not null
         if (requestObj.listId === null) {
             throw new Error('Required parameter "requestObj.listId" was null when calling updateList.');
+        }
+
+        // verify required parameter 'requestObj.listUpdate' is not undefined
+        if (requestObj.listUpdate === undefined) {
+            throw new Error('Required parameter "requestObj.listUpdate" was undefined when calling updateList.');
+        }
+
+        // verify required parameter 'requestObj.listUpdate' is not null
+        if (requestObj.listUpdate === null) {
+            throw new Error('Required parameter "requestObj.listUpdate" was null when calling updateList.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -7807,16 +15012,6 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj.name" was null when calling updateListLevel.');
         }
 
-        // verify required parameter 'requestObj.listUpdate' is not undefined
-        if (requestObj.listUpdate === undefined) {
-            throw new Error('Required parameter "requestObj.listUpdate" was undefined when calling updateListLevel.');
-        }
-
-        // verify required parameter 'requestObj.listUpdate' is not null
-        if (requestObj.listUpdate === null) {
-            throw new Error('Required parameter "requestObj.listUpdate" was null when calling updateListLevel.');
-        }
-
         // verify required parameter 'requestObj.listId' is not undefined
         if (requestObj.listId === undefined) {
             throw new Error('Required parameter "requestObj.listId" was undefined when calling updateListLevel.');
@@ -7835,6 +15030,16 @@ export class WordsApi {
         // verify required parameter 'requestObj.listLevel' is not null
         if (requestObj.listLevel === null) {
             throw new Error('Required parameter "requestObj.listLevel" was null when calling updateListLevel.');
+        }
+
+        // verify required parameter 'requestObj.listUpdate' is not undefined
+        if (requestObj.listUpdate === undefined) {
+            throw new Error('Required parameter "requestObj.listUpdate" was undefined when calling updateListLevel.');
+        }
+
+        // verify required parameter 'requestObj.listUpdate' is not null
+        if (requestObj.listUpdate === null) {
+            throw new Error('Required parameter "requestObj.listUpdate" was null when calling updateListLevel.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -7856,6 +15061,159 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "ListResponse");
         const result: model.WordsIncomingMessage< model.ListResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Updates the level of a List element in the document.
+     * @param requestObj contains request parameters
+     */
+    public async updateListLevelOnline(requestObj: model.UpdateListLevelOnlineRequest): Promise< model.WordsIncomingMessage< UpdateListLevelOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling updateListLevelOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/put/lists/{listId}/listLevels/{listLevel}"
+            .replace("/{" + "listId" + "}", (requestObj.listId !== null && requestObj.listId !== undefined) ? "/" + String(requestObj.listId) : "")
+            .replace("/{" + "listLevel" + "}", (requestObj.listLevel !== null && requestObj.listLevel !== undefined) ? "/" + String(requestObj.listLevel) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling updateListLevelOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling updateListLevelOnline.');
+        }
+
+        // verify required parameter 'requestObj.listId' is not undefined
+        if (requestObj.listId === undefined) {
+            throw new Error('Required parameter "requestObj.listId" was undefined when calling updateListLevelOnline.');
+        }
+
+        // verify required parameter 'requestObj.listId' is not null
+        if (requestObj.listId === null) {
+            throw new Error('Required parameter "requestObj.listId" was null when calling updateListLevelOnline.');
+        }
+
+        // verify required parameter 'requestObj.listUpdate' is not undefined
+        if (requestObj.listUpdate === undefined) {
+            throw new Error('Required parameter "requestObj.listUpdate" was undefined when calling updateListLevelOnline.');
+        }
+
+        // verify required parameter 'requestObj.listUpdate' is not null
+        if (requestObj.listUpdate === null) {
+            throw new Error('Required parameter "requestObj.listUpdate" was null when calling updateListLevelOnline.');
+        }
+
+        // verify required parameter 'requestObj.listLevel' is not undefined
+        if (requestObj.listLevel === undefined) {
+            throw new Error('Required parameter "requestObj.listLevel" was undefined when calling updateListLevelOnline.');
+        }
+
+        // verify required parameter 'requestObj.listLevel' is not null
+        if (requestObj.listLevel === null) {
+            throw new Error('Required parameter "requestObj.listLevel" was null when calling updateListLevelOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+        if (requestObj.listUpdate !== undefined) {
+            formParams.ListUpdate = JSON.stringify(requestObj.listUpdate);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "UpdateListLevelOnlineResponse");
+        const result: model.WordsIncomingMessage< model.UpdateListLevelOnlineResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Updates a list in the document.
+     * @param requestObj contains request parameters
+     */
+    public async updateListOnline(requestObj: model.UpdateListOnlineRequest): Promise< model.WordsIncomingMessage< UpdateListOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling updateListOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/put/lists/{listId}"
+            .replace("/{" + "listId" + "}", (requestObj.listId !== null && requestObj.listId !== undefined) ? "/" + String(requestObj.listId) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling updateListOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling updateListOnline.');
+        }
+
+        // verify required parameter 'requestObj.listId' is not undefined
+        if (requestObj.listId === undefined) {
+            throw new Error('Required parameter "requestObj.listId" was undefined when calling updateListOnline.');
+        }
+
+        // verify required parameter 'requestObj.listId' is not null
+        if (requestObj.listId === null) {
+            throw new Error('Required parameter "requestObj.listId" was null when calling updateListOnline.');
+        }
+
+        // verify required parameter 'requestObj.listUpdate' is not undefined
+        if (requestObj.listUpdate === undefined) {
+            throw new Error('Required parameter "requestObj.listUpdate" was undefined when calling updateListOnline.');
+        }
+
+        // verify required parameter 'requestObj.listUpdate' is not null
+        if (requestObj.listUpdate === null) {
+            throw new Error('Required parameter "requestObj.listUpdate" was null when calling updateListOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+        if (requestObj.listUpdate !== undefined) {
+            formParams.ListUpdate = JSON.stringify(requestObj.listUpdate);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "UpdateListOnlineResponse");
+        const result: model.WordsIncomingMessage< model.UpdateListOnlineResponse > = {body, response};
         return Promise.resolve(result);
     }
 
@@ -7884,16 +15242,6 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj.name" was null when calling updateParagraphFormat.');
         }
 
-        // verify required parameter 'requestObj.dto' is not undefined
-        if (requestObj.dto === undefined) {
-            throw new Error('Required parameter "requestObj.dto" was undefined when calling updateParagraphFormat.');
-        }
-
-        // verify required parameter 'requestObj.dto' is not null
-        if (requestObj.dto === null) {
-            throw new Error('Required parameter "requestObj.dto" was null when calling updateParagraphFormat.');
-        }
-
         // verify required parameter 'requestObj.index' is not undefined
         if (requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was undefined when calling updateParagraphFormat.');
@@ -7902,6 +15250,16 @@ export class WordsApi {
         // verify required parameter 'requestObj.index' is not null
         if (requestObj.index === null) {
             throw new Error('Required parameter "requestObj.index" was null when calling updateParagraphFormat.');
+        }
+
+        // verify required parameter 'requestObj.paragraphFormatDto' is not undefined
+        if (requestObj.paragraphFormatDto === undefined) {
+            throw new Error('Required parameter "requestObj.paragraphFormatDto" was undefined when calling updateParagraphFormat.');
+        }
+
+        // verify required parameter 'requestObj.paragraphFormatDto' is not null
+        if (requestObj.paragraphFormatDto === null) {
+            throw new Error('Required parameter "requestObj.paragraphFormatDto" was null when calling updateParagraphFormat.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -7913,16 +15271,88 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
 
         const requestOptions: request.Options = {
-            method: "PUT",
+            method: "POST",
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.dto, requestObj.dto.constructor.name === "Object" ? "importedParagraphFormatUpdate.ParagraphFormatUpdate" : requestObj.dto.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.paragraphFormatDto, requestObj.paragraphFormatDto.constructor.name === "Object" ? "importedParagraphFormatUpdate.ParagraphFormatUpdate" : requestObj.paragraphFormatDto.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "ParagraphFormatResponse");
         const result: model.WordsIncomingMessage< model.ParagraphFormatResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Updates the formatting properties of a paragraph in the document node.
+     * @param requestObj contains request parameters
+     */
+    public async updateParagraphFormatOnline(requestObj: model.UpdateParagraphFormatOnlineRequest): Promise< model.WordsIncomingMessage< UpdateParagraphFormatOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling updateParagraphFormatOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/put/{name}/{nodePath}/paragraphs/{index}/format"
+            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling updateParagraphFormatOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling updateParagraphFormatOnline.');
+        }
+
+        // verify required parameter 'requestObj.paragraphFormatDto' is not undefined
+        if (requestObj.paragraphFormatDto === undefined) {
+            throw new Error('Required parameter "requestObj.paragraphFormatDto" was undefined when calling updateParagraphFormatOnline.');
+        }
+
+        // verify required parameter 'requestObj.paragraphFormatDto' is not null
+        if (requestObj.paragraphFormatDto === null) {
+            throw new Error('Required parameter "requestObj.paragraphFormatDto" was null when calling updateParagraphFormatOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling updateParagraphFormatOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling updateParagraphFormatOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+        if (requestObj.paragraphFormatDto !== undefined) {
+            formParams.ParagraphFormatDto = JSON.stringify(requestObj.paragraphFormatDto);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "UpdateParagraphFormatOnlineResponse");
+        const result: model.WordsIncomingMessage< model.UpdateParagraphFormatOnlineResponse > = {body, response};
         return Promise.resolve(result);
     }
 
@@ -7951,16 +15381,6 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj.name" was null when calling updateParagraphListFormat.');
         }
 
-        // verify required parameter 'requestObj.dto' is not undefined
-        if (requestObj.dto === undefined) {
-            throw new Error('Required parameter "requestObj.dto" was undefined when calling updateParagraphListFormat.');
-        }
-
-        // verify required parameter 'requestObj.dto' is not null
-        if (requestObj.dto === null) {
-            throw new Error('Required parameter "requestObj.dto" was null when calling updateParagraphListFormat.');
-        }
-
         // verify required parameter 'requestObj.index' is not undefined
         if (requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was undefined when calling updateParagraphListFormat.');
@@ -7969,6 +15389,16 @@ export class WordsApi {
         // verify required parameter 'requestObj.index' is not null
         if (requestObj.index === null) {
             throw new Error('Required parameter "requestObj.index" was null when calling updateParagraphListFormat.');
+        }
+
+        // verify required parameter 'requestObj.listFormatDto' is not undefined
+        if (requestObj.listFormatDto === undefined) {
+            throw new Error('Required parameter "requestObj.listFormatDto" was undefined when calling updateParagraphListFormat.');
+        }
+
+        // verify required parameter 'requestObj.listFormatDto' is not null
+        if (requestObj.listFormatDto === null) {
+            throw new Error('Required parameter "requestObj.listFormatDto" was null when calling updateParagraphListFormat.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -7980,16 +15410,88 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
 
         const requestOptions: request.Options = {
-            method: "PUT",
+            method: "POST",
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(requestObj.dto, requestObj.dto.constructor.name === "Object" ? "importedListFormatUpdate.ListFormatUpdate" : requestObj.dto.constructor.name),
+            body: ObjectSerializer.serialize(requestObj.listFormatDto, requestObj.listFormatDto.constructor.name === "Object" ? "importedListFormatUpdate.ListFormatUpdate" : requestObj.listFormatDto.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "ParagraphListFormatResponse");
         const result: model.WordsIncomingMessage< model.ParagraphListFormatResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Updates the formatting properties of a paragraph list in the document node.
+     * @param requestObj contains request parameters
+     */
+    public async updateParagraphListFormatOnline(requestObj: model.UpdateParagraphListFormatOnlineRequest): Promise< model.WordsIncomingMessage< UpdateParagraphListFormatOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling updateParagraphListFormatOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/put/{name}/{nodePath}/paragraphs/{index}/listFormat"
+            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling updateParagraphListFormatOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling updateParagraphListFormatOnline.');
+        }
+
+        // verify required parameter 'requestObj.listFormatDto' is not undefined
+        if (requestObj.listFormatDto === undefined) {
+            throw new Error('Required parameter "requestObj.listFormatDto" was undefined when calling updateParagraphListFormatOnline.');
+        }
+
+        // verify required parameter 'requestObj.listFormatDto' is not null
+        if (requestObj.listFormatDto === null) {
+            throw new Error('Required parameter "requestObj.listFormatDto" was null when calling updateParagraphListFormatOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling updateParagraphListFormatOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling updateParagraphListFormatOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+        if (requestObj.listFormatDto !== undefined) {
+            formParams.ListFormatDto = JSON.stringify(requestObj.listFormatDto);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "UpdateParagraphListFormatOnlineResponse");
+        const result: model.WordsIncomingMessage< model.UpdateParagraphListFormatOnlineResponse > = {body, response};
         return Promise.resolve(result);
     }
 
@@ -8018,16 +15520,6 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj.name" was null when calling updateRun.');
         }
 
-        // verify required parameter 'requestObj.run' is not undefined
-        if (requestObj.run === undefined) {
-            throw new Error('Required parameter "requestObj.run" was undefined when calling updateRun.');
-        }
-
-        // verify required parameter 'requestObj.run' is not null
-        if (requestObj.run === null) {
-            throw new Error('Required parameter "requestObj.run" was null when calling updateRun.');
-        }
-
         // verify required parameter 'requestObj.paragraphPath' is not undefined
         if (requestObj.paragraphPath === undefined) {
             throw new Error('Required parameter "requestObj.paragraphPath" was undefined when calling updateRun.');
@@ -8043,6 +15535,16 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj.index" was null when calling updateRun.');
         }
 
+        // verify required parameter 'requestObj.run' is not undefined
+        if (requestObj.run === undefined) {
+            throw new Error('Required parameter "requestObj.run" was undefined when calling updateRun.');
+        }
+
+        // verify required parameter 'requestObj.run' is not null
+        if (requestObj.run === null) {
+            throw new Error('Required parameter "requestObj.run" was null when calling updateRun.');
+        }
+
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
@@ -8052,7 +15554,7 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
 
         const requestOptions: request.Options = {
-            method: "PUT",
+            method: "POST",
             qs: queryParameters,
             uri: localVarPath,
             json: true,
@@ -8090,16 +15592,6 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj.name" was null when calling updateRunFont.');
         }
 
-        // verify required parameter 'requestObj.fontDto' is not undefined
-        if (requestObj.fontDto === undefined) {
-            throw new Error('Required parameter "requestObj.fontDto" was undefined when calling updateRunFont.');
-        }
-
-        // verify required parameter 'requestObj.fontDto' is not null
-        if (requestObj.fontDto === null) {
-            throw new Error('Required parameter "requestObj.fontDto" was null when calling updateRunFont.');
-        }
-
         // verify required parameter 'requestObj.paragraphPath' is not undefined
         if (requestObj.paragraphPath === undefined) {
             throw new Error('Required parameter "requestObj.paragraphPath" was undefined when calling updateRunFont.');
@@ -8115,6 +15607,16 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj.index" was null when calling updateRunFont.');
         }
 
+        // verify required parameter 'requestObj.fontDto' is not undefined
+        if (requestObj.fontDto === undefined) {
+            throw new Error('Required parameter "requestObj.fontDto" was undefined when calling updateRunFont.');
+        }
+
+        // verify required parameter 'requestObj.fontDto' is not null
+        if (requestObj.fontDto === null) {
+            throw new Error('Required parameter "requestObj.fontDto" was null when calling updateRunFont.');
+        }
+
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
@@ -8124,7 +15626,7 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
 
         const requestOptions: request.Options = {
-            method: "PUT",
+            method: "POST",
             qs: queryParameters,
             uri: localVarPath,
             json: true,
@@ -8134,6 +15636,160 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "FontResponse");
         const result: model.WordsIncomingMessage< model.FontResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Updates the font properties of a Run object in the paragraph.
+     * @param requestObj contains request parameters
+     */
+    public async updateRunFontOnline(requestObj: model.UpdateRunFontOnlineRequest): Promise< model.WordsIncomingMessage< UpdateRunFontOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling updateRunFontOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/put/{name}/{paragraphPath}/runs/{index}/font"
+            .replace("/{" + "paragraphPath" + "}", (requestObj.paragraphPath !== null && requestObj.paragraphPath !== undefined) ? "/" + String(requestObj.paragraphPath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling updateRunFontOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling updateRunFontOnline.');
+        }
+
+        // verify required parameter 'requestObj.paragraphPath' is not undefined
+        if (requestObj.paragraphPath === undefined) {
+            throw new Error('Required parameter "requestObj.paragraphPath" was undefined when calling updateRunFontOnline.');
+        }
+
+        // verify required parameter 'requestObj.fontDto' is not undefined
+        if (requestObj.fontDto === undefined) {
+            throw new Error('Required parameter "requestObj.fontDto" was undefined when calling updateRunFontOnline.');
+        }
+
+        // verify required parameter 'requestObj.fontDto' is not null
+        if (requestObj.fontDto === null) {
+            throw new Error('Required parameter "requestObj.fontDto" was null when calling updateRunFontOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling updateRunFontOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling updateRunFontOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+        if (requestObj.fontDto !== undefined) {
+            formParams.FontDto = JSON.stringify(requestObj.fontDto);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "UpdateRunFontOnlineResponse");
+        const result: model.WordsIncomingMessage< model.UpdateRunFontOnlineResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Updates a Run object in the paragraph.
+     * @param requestObj contains request parameters
+     */
+    public async updateRunOnline(requestObj: model.UpdateRunOnlineRequest): Promise< model.WordsIncomingMessage< UpdateRunOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling updateRunOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/put/{name}/{paragraphPath}/runs/{index}"
+            .replace("/{" + "paragraphPath" + "}", (requestObj.paragraphPath !== null && requestObj.paragraphPath !== undefined) ? "/" + String(requestObj.paragraphPath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling updateRunOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling updateRunOnline.');
+        }
+
+        // verify required parameter 'requestObj.paragraphPath' is not undefined
+        if (requestObj.paragraphPath === undefined) {
+            throw new Error('Required parameter "requestObj.paragraphPath" was undefined when calling updateRunOnline.');
+        }
+
+        // verify required parameter 'requestObj.run' is not undefined
+        if (requestObj.run === undefined) {
+            throw new Error('Required parameter "requestObj.run" was undefined when calling updateRunOnline.');
+        }
+
+        // verify required parameter 'requestObj.run' is not null
+        if (requestObj.run === null) {
+            throw new Error('Required parameter "requestObj.run" was null when calling updateRunOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling updateRunOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling updateRunOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+        if (requestObj.run !== undefined) {
+            formParams.Run = JSON.stringify(requestObj.run);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "UpdateRunOnlineResponse");
+        const result: model.WordsIncomingMessage< model.UpdateRunOnlineResponse > = {body, response};
         return Promise.resolve(result);
     }
 
@@ -8204,6 +15860,77 @@ export class WordsApi {
     }
 
     /**
+     * Updates the page setup of a section in the document.
+     * @param requestObj contains request parameters
+     */
+    public async updateSectionPageSetupOnline(requestObj: model.UpdateSectionPageSetupOnlineRequest): Promise< model.WordsIncomingMessage< UpdateSectionPageSetupOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling updateSectionPageSetupOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/put/sections/{sectionIndex}/pageSetup"
+            .replace("/{" + "sectionIndex" + "}", (requestObj.sectionIndex !== null && requestObj.sectionIndex !== undefined) ? "/" + String(requestObj.sectionIndex) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling updateSectionPageSetupOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling updateSectionPageSetupOnline.');
+        }
+
+        // verify required parameter 'requestObj.sectionIndex' is not undefined
+        if (requestObj.sectionIndex === undefined) {
+            throw new Error('Required parameter "requestObj.sectionIndex" was undefined when calling updateSectionPageSetupOnline.');
+        }
+
+        // verify required parameter 'requestObj.sectionIndex' is not null
+        if (requestObj.sectionIndex === null) {
+            throw new Error('Required parameter "requestObj.sectionIndex" was null when calling updateSectionPageSetupOnline.');
+        }
+
+        // verify required parameter 'requestObj.pageSetup' is not undefined
+        if (requestObj.pageSetup === undefined) {
+            throw new Error('Required parameter "requestObj.pageSetup" was undefined when calling updateSectionPageSetupOnline.');
+        }
+
+        // verify required parameter 'requestObj.pageSetup' is not null
+        if (requestObj.pageSetup === null) {
+            throw new Error('Required parameter "requestObj.pageSetup" was null when calling updateSectionPageSetupOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+        if (requestObj.pageSetup !== undefined) {
+            formParams.PageSetup = JSON.stringify(requestObj.pageSetup);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "UpdateSectionPageSetupOnlineResponse");
+        const result: model.WordsIncomingMessage< model.UpdateSectionPageSetupOnlineResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Updates a style in the document.
      * @param requestObj contains request parameters
      */
@@ -8227,16 +15954,6 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj.name" was null when calling updateStyle.');
         }
 
-        // verify required parameter 'requestObj.styleUpdate' is not undefined
-        if (requestObj.styleUpdate === undefined) {
-            throw new Error('Required parameter "requestObj.styleUpdate" was undefined when calling updateStyle.');
-        }
-
-        // verify required parameter 'requestObj.styleUpdate' is not null
-        if (requestObj.styleUpdate === null) {
-            throw new Error('Required parameter "requestObj.styleUpdate" was null when calling updateStyle.');
-        }
-
         // verify required parameter 'requestObj.styleName' is not undefined
         if (requestObj.styleName === undefined) {
             throw new Error('Required parameter "requestObj.styleName" was undefined when calling updateStyle.');
@@ -8245,6 +15962,16 @@ export class WordsApi {
         // verify required parameter 'requestObj.styleName' is not null
         if (requestObj.styleName === null) {
             throw new Error('Required parameter "requestObj.styleName" was null when calling updateStyle.');
+        }
+
+        // verify required parameter 'requestObj.styleUpdate' is not undefined
+        if (requestObj.styleUpdate === undefined) {
+            throw new Error('Required parameter "requestObj.styleUpdate" was undefined when calling updateStyle.');
+        }
+
+        // verify required parameter 'requestObj.styleUpdate' is not null
+        if (requestObj.styleUpdate === null) {
+            throw new Error('Required parameter "requestObj.styleUpdate" was null when calling updateStyle.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -8266,6 +15993,77 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "StyleResponse");
         const result: model.WordsIncomingMessage< model.StyleResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Updates a style in the document.
+     * @param requestObj contains request parameters
+     */
+    public async updateStyleOnline(requestObj: model.UpdateStyleOnlineRequest): Promise< model.WordsIncomingMessage< UpdateStyleOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling updateStyleOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/put/styles/{styleName}/update"
+            .replace("/{" + "styleName" + "}", (requestObj.styleName !== null && requestObj.styleName !== undefined) ? "/" + String(requestObj.styleName) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling updateStyleOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling updateStyleOnline.');
+        }
+
+        // verify required parameter 'requestObj.styleName' is not undefined
+        if (requestObj.styleName === undefined) {
+            throw new Error('Required parameter "requestObj.styleName" was undefined when calling updateStyleOnline.');
+        }
+
+        // verify required parameter 'requestObj.styleName' is not null
+        if (requestObj.styleName === null) {
+            throw new Error('Required parameter "requestObj.styleName" was null when calling updateStyleOnline.');
+        }
+
+        // verify required parameter 'requestObj.styleUpdate' is not undefined
+        if (requestObj.styleUpdate === undefined) {
+            throw new Error('Required parameter "requestObj.styleUpdate" was undefined when calling updateStyleOnline.');
+        }
+
+        // verify required parameter 'requestObj.styleUpdate' is not null
+        if (requestObj.styleUpdate === null) {
+            throw new Error('Required parameter "requestObj.styleUpdate" was null when calling updateStyleOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+        if (requestObj.styleUpdate !== undefined) {
+            formParams.StyleUpdate = JSON.stringify(requestObj.styleUpdate);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "UpdateStyleOnlineResponse");
+        const result: model.WordsIncomingMessage< model.UpdateStyleOnlineResponse > = {body, response};
         return Promise.resolve(result);
     }
 
@@ -8294,16 +16092,6 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj.name" was null when calling updateTableCellFormat.');
         }
 
-        // verify required parameter 'requestObj.format' is not undefined
-        if (requestObj.format === undefined) {
-            throw new Error('Required parameter "requestObj.format" was undefined when calling updateTableCellFormat.');
-        }
-
-        // verify required parameter 'requestObj.format' is not null
-        if (requestObj.format === null) {
-            throw new Error('Required parameter "requestObj.format" was null when calling updateTableCellFormat.');
-        }
-
         // verify required parameter 'requestObj.tableRowPath' is not undefined
         if (requestObj.tableRowPath === undefined) {
             throw new Error('Required parameter "requestObj.tableRowPath" was undefined when calling updateTableCellFormat.');
@@ -8319,6 +16107,16 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj.index" was null when calling updateTableCellFormat.');
         }
 
+        // verify required parameter 'requestObj.format' is not undefined
+        if (requestObj.format === undefined) {
+            throw new Error('Required parameter "requestObj.format" was undefined when calling updateTableCellFormat.');
+        }
+
+        // verify required parameter 'requestObj.format' is not null
+        if (requestObj.format === null) {
+            throw new Error('Required parameter "requestObj.format" was null when calling updateTableCellFormat.');
+        }
+
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
@@ -8328,7 +16126,7 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
 
         const requestOptions: request.Options = {
-            method: "PUT",
+            method: "POST",
             qs: queryParameters,
             uri: localVarPath,
             json: true,
@@ -8338,6 +16136,83 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "TableCellFormatResponse");
         const result: model.WordsIncomingMessage< model.TableCellFormatResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Updates the formatting properties of a cell in the table row.
+     * @param requestObj contains request parameters
+     */
+    public async updateTableCellFormatOnline(requestObj: model.UpdateTableCellFormatOnlineRequest): Promise< model.WordsIncomingMessage< UpdateTableCellFormatOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling updateTableCellFormatOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/put/{name}/{tableRowPath}/cells/{index}/cellformat"
+            .replace("/{" + "tableRowPath" + "}", (requestObj.tableRowPath !== null && requestObj.tableRowPath !== undefined) ? "/" + String(requestObj.tableRowPath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling updateTableCellFormatOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling updateTableCellFormatOnline.');
+        }
+
+        // verify required parameter 'requestObj.tableRowPath' is not undefined
+        if (requestObj.tableRowPath === undefined) {
+            throw new Error('Required parameter "requestObj.tableRowPath" was undefined when calling updateTableCellFormatOnline.');
+        }
+
+        // verify required parameter 'requestObj.format' is not undefined
+        if (requestObj.format === undefined) {
+            throw new Error('Required parameter "requestObj.format" was undefined when calling updateTableCellFormatOnline.');
+        }
+
+        // verify required parameter 'requestObj.format' is not null
+        if (requestObj.format === null) {
+            throw new Error('Required parameter "requestObj.format" was null when calling updateTableCellFormatOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling updateTableCellFormatOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling updateTableCellFormatOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+        if (requestObj.format !== undefined) {
+            formParams.Format = JSON.stringify(requestObj.format);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "UpdateTableCellFormatOnlineResponse");
+        const result: model.WordsIncomingMessage< model.UpdateTableCellFormatOnlineResponse > = {body, response};
         return Promise.resolve(result);
     }
 
@@ -8366,16 +16241,6 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj.name" was null when calling updateTableProperties.');
         }
 
-        // verify required parameter 'requestObj.properties' is not undefined
-        if (requestObj.properties === undefined) {
-            throw new Error('Required parameter "requestObj.properties" was undefined when calling updateTableProperties.');
-        }
-
-        // verify required parameter 'requestObj.properties' is not null
-        if (requestObj.properties === null) {
-            throw new Error('Required parameter "requestObj.properties" was null when calling updateTableProperties.');
-        }
-
         // verify required parameter 'requestObj.index' is not undefined
         if (requestObj.index === undefined) {
             throw new Error('Required parameter "requestObj.index" was undefined when calling updateTableProperties.');
@@ -8384,6 +16249,16 @@ export class WordsApi {
         // verify required parameter 'requestObj.index' is not null
         if (requestObj.index === null) {
             throw new Error('Required parameter "requestObj.index" was null when calling updateTableProperties.');
+        }
+
+        // verify required parameter 'requestObj.properties' is not undefined
+        if (requestObj.properties === undefined) {
+            throw new Error('Required parameter "requestObj.properties" was undefined when calling updateTableProperties.');
+        }
+
+        // verify required parameter 'requestObj.properties' is not null
+        if (requestObj.properties === null) {
+            throw new Error('Required parameter "requestObj.properties" was null when calling updateTableProperties.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
@@ -8395,7 +16270,7 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
 
         const requestOptions: request.Options = {
-            method: "PUT",
+            method: "POST",
             qs: queryParameters,
             uri: localVarPath,
             json: true,
@@ -8405,6 +16280,78 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "TablePropertiesResponse");
         const result: model.WordsIncomingMessage< model.TablePropertiesResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Updates properties of a table in the document node.
+     * @param requestObj contains request parameters
+     */
+    public async updateTablePropertiesOnline(requestObj: model.UpdateTablePropertiesOnlineRequest): Promise< model.WordsIncomingMessage< UpdateTablePropertiesOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling updateTablePropertiesOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/put/{name}/{nodePath}/tables/{index}/properties"
+            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("/{" + "nodePath" + "}", (requestObj.nodePath !== null && requestObj.nodePath !== undefined) ? "/" + String(requestObj.nodePath) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling updateTablePropertiesOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling updateTablePropertiesOnline.');
+        }
+
+        // verify required parameter 'requestObj.properties' is not undefined
+        if (requestObj.properties === undefined) {
+            throw new Error('Required parameter "requestObj.properties" was undefined when calling updateTablePropertiesOnline.');
+        }
+
+        // verify required parameter 'requestObj.properties' is not null
+        if (requestObj.properties === null) {
+            throw new Error('Required parameter "requestObj.properties" was null when calling updateTablePropertiesOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling updateTablePropertiesOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling updateTablePropertiesOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+        if (requestObj.properties !== undefined) {
+            formParams.Properties = JSON.stringify(requestObj.properties);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "UpdateTablePropertiesOnlineResponse");
+        const result: model.WordsIncomingMessage< model.UpdateTablePropertiesOnlineResponse > = {body, response};
         return Promise.resolve(result);
     }
 
@@ -8433,16 +16380,6 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj.name" was null when calling updateTableRowFormat.');
         }
 
-        // verify required parameter 'requestObj.format' is not undefined
-        if (requestObj.format === undefined) {
-            throw new Error('Required parameter "requestObj.format" was undefined when calling updateTableRowFormat.');
-        }
-
-        // verify required parameter 'requestObj.format' is not null
-        if (requestObj.format === null) {
-            throw new Error('Required parameter "requestObj.format" was null when calling updateTableRowFormat.');
-        }
-
         // verify required parameter 'requestObj.tablePath' is not undefined
         if (requestObj.tablePath === undefined) {
             throw new Error('Required parameter "requestObj.tablePath" was undefined when calling updateTableRowFormat.');
@@ -8458,6 +16395,16 @@ export class WordsApi {
             throw new Error('Required parameter "requestObj.index" was null when calling updateTableRowFormat.');
         }
 
+        // verify required parameter 'requestObj.format' is not undefined
+        if (requestObj.format === undefined) {
+            throw new Error('Required parameter "requestObj.format" was undefined when calling updateTableRowFormat.');
+        }
+
+        // verify required parameter 'requestObj.format' is not null
+        if (requestObj.format === null) {
+            throw new Error('Required parameter "requestObj.format" was null when calling updateTableRowFormat.');
+        }
+
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
@@ -8467,7 +16414,7 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
 
         const requestOptions: request.Options = {
-            method: "PUT",
+            method: "POST",
             qs: queryParameters,
             uri: localVarPath,
             json: true,
@@ -8477,6 +16424,83 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const body =  ObjectSerializer.deserialize(response.body, "TableRowFormatResponse");
         const result: model.WordsIncomingMessage< model.TableRowFormatResponse > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Updates the formatting properties of a table row.
+     * @param requestObj contains request parameters
+     */
+    public async updateTableRowFormatOnline(requestObj: model.UpdateTableRowFormatOnlineRequest): Promise< model.WordsIncomingMessage< UpdateTableRowFormatOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling updateTableRowFormatOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/put/{name}/{tablePath}/rows/{index}/rowformat"
+            .replace("/{" + "tablePath" + "}", (requestObj.tablePath !== null && requestObj.tablePath !== undefined) ? "/" + String(requestObj.tablePath) : "")
+            .replace("/{" + "index" + "}", (requestObj.index !== null && requestObj.index !== undefined) ? "/" + String(requestObj.index) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling updateTableRowFormatOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling updateTableRowFormatOnline.');
+        }
+
+        // verify required parameter 'requestObj.tablePath' is not undefined
+        if (requestObj.tablePath === undefined) {
+            throw new Error('Required parameter "requestObj.tablePath" was undefined when calling updateTableRowFormatOnline.');
+        }
+
+        // verify required parameter 'requestObj.format' is not undefined
+        if (requestObj.format === undefined) {
+            throw new Error('Required parameter "requestObj.format" was undefined when calling updateTableRowFormatOnline.');
+        }
+
+        // verify required parameter 'requestObj.format' is not null
+        if (requestObj.format === null) {
+            throw new Error('Required parameter "requestObj.format" was null when calling updateTableRowFormatOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not undefined
+        if (requestObj.index === undefined) {
+            throw new Error('Required parameter "requestObj.index" was undefined when calling updateTableRowFormatOnline.');
+        }
+
+        // verify required parameter 'requestObj.index' is not null
+        if (requestObj.index === null) {
+            throw new Error('Required parameter "requestObj.index" was null when calling updateTableRowFormatOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+        if (requestObj.format !== undefined) {
+            formParams.Format = JSON.stringify(requestObj.format);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body =  ObjectSerializer.deserialize(response.body, "UpdateTableRowFormatOnlineResponse");
+        const result: model.WordsIncomingMessage< model.UpdateTableRowFormatOnlineResponse > = {body, response};
         return Promise.resolve(result);
     }
 

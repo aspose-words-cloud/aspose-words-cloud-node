@@ -1,7 +1,7 @@
 /*
  * --------------------------------------------------------------------------------
  * <copyright company="Aspose" file="documentPropertiesTests.ts">
- *   Copyright (c) 2020 Aspose.Words for Cloud
+ *   Copyright (c) 2021 Aspose.Words for Cloud
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -72,6 +72,24 @@ describe("documentProperties", () => {
        });
     });
 
+    // Test for getting document properties online.
+    describe("getDocumentPropertiesOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetDocumentPropertiesOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile)
+            });
+
+            // Act
+            return wordsApi.getDocumentPropertiesOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+            });
+
+       });
+    });
+
     // A test for GetDocumentProperty.
     describe("getDocumentProperty test", () => {
         it("should return response with code 200", () => {
@@ -104,6 +122,25 @@ describe("documentProperties", () => {
        });
     });
 
+    // A test for GetDocumentProperty online.
+    describe("getDocumentPropertyOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetDocumentPropertyOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                propertyName: "Author"
+            });
+
+            // Act
+            return wordsApi.getDocumentPropertyOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+            });
+
+       });
+    });
+
     // Test for deleting document property.
     describe("deleteDocumentProperty test", () => {
         it("should return response with code 200", () => {
@@ -129,6 +166,25 @@ describe("documentProperties", () => {
                     expect(resultApi.statusCode).to.equal(200);
                 });
 
+            });
+
+       });
+    });
+
+    // Test for deleting document property online.
+    describe("deleteDocumentPropertyOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.DeleteDocumentPropertyOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                propertyName: "testProp"
+            });
+
+            // Act
+            return wordsApi.deleteDocumentPropertyOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -165,6 +221,28 @@ describe("documentProperties", () => {
                     expect(resultApi.body.documentProperty.value).to.equal("Imran Anwar");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for updating document property online.
+    describe("updateDocumentPropertyOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.CreateOrUpdateDocumentPropertyOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                propertyName: "AsposeAuthor",
+                property: new model.DocumentPropertyCreateOrUpdate({
+                    value: "Imran Anwar"
+                })
+            });
+
+            // Act
+            return wordsApi.createOrUpdateDocumentPropertyOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });

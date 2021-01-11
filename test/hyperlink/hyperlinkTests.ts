@@ -1,7 +1,7 @@
 /*
  * --------------------------------------------------------------------------------
  * <copyright company="Aspose" file="hyperlinkTests.ts">
- *   Copyright (c) 2020 Aspose.Words for Cloud
+ *   Copyright (c) 2021 Aspose.Words for Cloud
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -69,6 +69,25 @@ describe("hyperlink", () => {
        });
     });
 
+    // Test for getting hyperlink by specified index online.
+    describe("getDocumentHyperlinkByIndexOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetDocumentHyperlinkByIndexOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                hyperlinkIndex: 0
+            });
+
+            // Act
+            return wordsApi.getDocumentHyperlinkByIndexOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+            });
+
+       });
+    });
+
     // Test for getting hyperlinks.
     describe("getDocumentHyperlinks test", () => {
         it("should return response with code 200", () => {
@@ -96,6 +115,24 @@ describe("hyperlink", () => {
                     expect(resultApi.body.hyperlinks.hyperlinkList[0].displayText).to.equal("Aspose");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for getting hyperlinks online.
+    describe("getDocumentHyperlinksOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetDocumentHyperlinksOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile)
+            });
+
+            // Act
+            return wordsApi.getDocumentHyperlinksOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });

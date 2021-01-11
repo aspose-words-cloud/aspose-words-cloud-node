@@ -1,7 +1,7 @@
 /*
  * --------------------------------------------------------------------------------
  * <copyright company="Aspose" file="splitDocumentToFormatTests.ts">
- *   Copyright (c) 2020 Aspose.Words for Cloud
+ *   Copyright (c) 2021 Aspose.Words for Cloud
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -68,6 +68,28 @@ describe("splitDocumentToFormat", () => {
                     expect(resultApi.body.splitResult.pages).to.have.lengthOf(2);
                 });
 
+            });
+
+       });
+    });
+
+    // Test for document splitting online.
+    describe("splitDocumentOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.SplitDocumentOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                format: "text",
+                destFileName: BaseTest.remoteBaseTestOutFolder + "/TestSplitDocument.text",
+                from: 1,
+                to: 2
+            });
+
+            // Act
+            return wordsApi.splitDocumentOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });

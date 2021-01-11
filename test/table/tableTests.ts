@@ -1,7 +1,7 @@
 /*
  * --------------------------------------------------------------------------------
  * <copyright company="Aspose" file="tableTests.ts">
- *   Copyright (c) 2020 Aspose.Words for Cloud
+ *   Copyright (c) 2021 Aspose.Words for Cloud
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -66,6 +66,25 @@ describe("table", () => {
                     expect(resultApi.body.tables.tableLinkList[0].nodeId).to.equal("0.0.1");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for getting tables online.
+    describe("getTablesOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetTablesOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                nodePath: ""
+            });
+
+            // Act
+            return wordsApi.getTablesOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -138,6 +157,26 @@ describe("table", () => {
        });
     });
 
+    // Test for getting table online.
+    describe("getTableOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetTableOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                index: 1,
+                nodePath: ""
+            });
+
+            // Act
+            return wordsApi.getTableOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+            });
+
+       });
+    });
+
     // Test for getting table without node path.
     describe("getTableWithoutNodePath test", () => {
         it("should return response with code 200", () => {
@@ -197,6 +236,26 @@ describe("table", () => {
                     expect(resultApi.statusCode).to.equal(200);
                 });
 
+            });
+
+       });
+    });
+
+    // Test for deleting table online.
+    describe("deleteTableOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.DeleteTableOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                index: 1,
+                nodePath: ""
+            });
+
+            // Act
+            return wordsApi.deleteTableOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -264,6 +323,29 @@ describe("table", () => {
                     expect(resultApi.body.table.tableRowList[0].tableCellList).to.have.lengthOf(5);
                 });
 
+            });
+
+       });
+    });
+
+    // Test for adding table online.
+    describe("insertTableOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.InsertTableOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                table: new model.TableInsert({
+                    columnsCount: 5,
+                    rowsCount: 4
+                }),
+                nodePath: ""
+            });
+
+            // Act
+            return wordsApi.insertTableOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -338,6 +420,26 @@ describe("table", () => {
        });
     });
 
+    // Test for getting document properties online.
+    describe("getTablePropertiesOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetTablePropertiesOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                index: 1,
+                nodePath: ""
+            });
+
+            // Act
+            return wordsApi.getTablePropertiesOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+            });
+
+       });
+    });
+
     // Test for getting document properties without node path.
     describe("getTablePropertiesWithoutNodePath test", () => {
         it("should return response with code 200", () => {
@@ -407,6 +509,34 @@ describe("table", () => {
                     expect(resultApi.body.properties.cellSpacing).to.equal(2.0);
                 });
 
+            });
+
+       });
+    });
+
+    // Test for updating table properties online.
+    describe("updateTablePropertiesOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.UpdateTablePropertiesOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                properties: new model.TableProperties({
+                    alignment: model.TableProperties.AlignmentEnum.Right,
+                    allowAutoFit: false,
+                    bidi: true,
+                    bottomPadding: 1,
+                    cellSpacing: 2,
+                    styleOptions: model.TableProperties.StyleOptionsEnum.ColumnBands
+                }),
+                index: 1,
+                nodePath: ""
+            });
+
+            // Act
+            return wordsApi.updateTablePropertiesOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -487,6 +617,26 @@ describe("table", () => {
        });
     });
 
+    // Test for getting table row online.
+    describe("getTableRowOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetTableRowOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                tablePath: "tables/1",
+                index: 0
+            });
+
+            // Act
+            return wordsApi.getTableRowOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+            });
+
+       });
+    });
+
     // Test for deleting table row.
     describe("deleteTableRow test", () => {
         it("should return response with code 200", () => {
@@ -512,6 +662,26 @@ describe("table", () => {
                     expect(resultApi.statusCode).to.equal(200);
                 });
 
+            });
+
+       });
+    });
+
+    // Test for deleting table row online.
+    describe("deleteTableRowOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.DeleteTableRowOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                tablePath: "tables/1",
+                index: 0
+            });
+
+            // Act
+            return wordsApi.deleteTableRowOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -552,6 +722,28 @@ describe("table", () => {
        });
     });
 
+    // Test for adding row online.
+    describe("insertTableRowOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.InsertTableRowOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                row: new model.TableRowInsert({
+                    columnsCount: 5
+                }),
+                tablePath: "sections/0/tables/2"
+            });
+
+            // Act
+            return wordsApi.insertTableRowOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+            });
+
+       });
+    });
+
     // Test for getting row format.
     describe("getTableRowFormat test", () => {
         it("should return response with code 200", () => {
@@ -579,6 +771,26 @@ describe("table", () => {
                     expect(resultApi.body.rowFormat.allowBreakAcrossPages).to.true;
                 });
 
+            });
+
+       });
+    });
+
+    // Test for getting row format online.
+    describe("getTableRowFormatOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetTableRowFormatOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                tablePath: "sections/0/tables/2",
+                index: 0
+            });
+
+            // Act
+            return wordsApi.getTableRowFormatOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -624,6 +836,32 @@ describe("table", () => {
        });
     });
 
+    // Test updating row format online.
+    describe("updateTableRowFormatOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.UpdateTableRowFormatOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                format: new model.TableRowFormat({
+                    allowBreakAcrossPages: true,
+                    headingFormat: true,
+                    height: 10,
+                    heightRule: model.TableRowFormat.HeightRuleEnum.Auto
+                }),
+                tablePath: "sections/0/tables/2",
+                index: 0
+            });
+
+            // Act
+            return wordsApi.updateTableRowFormatOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+            });
+
+       });
+    });
+
     // Test for getting table cell.
     describe("getTableCell test", () => {
         it("should return response with code 200", () => {
@@ -656,6 +894,26 @@ describe("table", () => {
        });
     });
 
+    // Test for getting table cell online.
+    describe("getTableCellOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetTableCellOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                tableRowPath: "sections/0/tables/2/rows/0",
+                index: 0
+            });
+
+            // Act
+            return wordsApi.getTableCellOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+            });
+
+       });
+    });
+
     // Test for deleting cell.
     describe("deleteTableCell test", () => {
         it("should return response with code 200", () => {
@@ -681,6 +939,26 @@ describe("table", () => {
                     expect(resultApi.statusCode).to.equal(200);
                 });
 
+            });
+
+       });
+    });
+
+    // Test for deleting cell online.
+    describe("deleteTableCellOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.DeleteTableCellOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                tableRowPath: "sections/0/tables/2/rows/0",
+                index: 0
+            });
+
+            // Act
+            return wordsApi.deleteTableCellOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -719,6 +997,27 @@ describe("table", () => {
        });
     });
 
+    // Test for adding cell online.
+    describe("insertTableCellOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.InsertTableCellOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                cell: new model.TableCellInsert({
+                }),
+                tableRowPath: "sections/0/tables/2/rows/0"
+            });
+
+            // Act
+            return wordsApi.insertTableCellOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+            });
+
+       });
+    });
+
     // Test for getting cell format.
     describe("getTableCellFormat test", () => {
         it("should return response with code 200", () => {
@@ -746,6 +1045,26 @@ describe("table", () => {
                     expect(resultApi.body.cellFormat.wrapText).to.true;
                 });
 
+            });
+
+       });
+    });
+
+    // Test for getting cell format online.
+    describe("getTableCellFormatOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetTableCellFormatOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                tableRowPath: "sections/0/tables/2/rows/0",
+                index: 0
+            });
+
+            // Act
+            return wordsApi.getTableCellFormatOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -791,6 +1110,32 @@ describe("table", () => {
        });
     });
 
+    // Test for updating cell format online.
+    describe("updateTableCellFormatOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.UpdateTableCellFormatOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                format: new model.TableCellFormat({
+                    bottomPadding: 5,
+                    fitText: true,
+                    horizontalMerge: model.TableCellFormat.HorizontalMergeEnum.First,
+                    wrapText: true
+                }),
+                tableRowPath: "sections/0/tables/2/rows/0",
+                index: 0
+            });
+
+            // Act
+            return wordsApi.updateTableCellFormatOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+            });
+
+       });
+    });
+
     // Test for table rendering.
     describe("renderTable test", () => {
         it("should return response with code 200", () => {
@@ -817,6 +1162,27 @@ describe("table", () => {
                     expect(resultApi.response.statusCode).to.equal(200);
                 });
 
+            });
+
+       });
+    });
+
+    // Test for table rendering.
+    describe("renderTableOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.RenderTableOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                format: "png",
+                index: 0,
+                nodePath: ""
+            });
+
+            // Act
+            return wordsApi.renderTableOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });

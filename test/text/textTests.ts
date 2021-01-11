@@ -1,7 +1,7 @@
 /*
  * --------------------------------------------------------------------------------
  * <copyright company="Aspose" file="textTests.ts">
- *   Copyright (c) 2020 Aspose.Words for Cloud
+ *   Copyright (c) 2021 Aspose.Words for Cloud
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -72,6 +72,30 @@ describe("text", () => {
        });
     });
 
+    // Test for replacing text online.
+    describe("replaceTextOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const localFile = "Common/test_multi_pages.docx";
+
+            const request = new model.ReplaceTextOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                replaceText: new model.ReplaceTextParameters({
+                    oldValue: "aspose",
+                    newValue: "aspose new"
+                })
+            });
+
+            // Act
+            return wordsApi.replaceTextOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+            });
+
+       });
+    });
+
     // Test for searching.
     describe("search test", () => {
         it("should return response with code 200", () => {
@@ -102,6 +126,27 @@ describe("text", () => {
                     expect(resultApi.body.searchResults.resultsList[0].rangeStart.offset).to.equal(65);
                 });
 
+            });
+
+       });
+    });
+
+    // Test for searching online.
+    describe("searchOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const localFile = "DocumentElements/Text/SampleWordDocument.docx";
+
+            const request = new model.SearchOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                pattern: "aspose"
+            });
+
+            // Act
+            return wordsApi.searchOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });

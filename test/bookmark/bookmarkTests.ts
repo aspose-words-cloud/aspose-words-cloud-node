@@ -1,7 +1,7 @@
 /*
  * --------------------------------------------------------------------------------
  * <copyright company="Aspose" file="bookmarkTests.ts">
- *   Copyright (c) 2020 Aspose.Words for Cloud
+ *   Copyright (c) 2021 Aspose.Words for Cloud
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -37,6 +37,7 @@ describe("bookmark", () => {
     expect(fs);
     const remoteDataFolder = BaseTest.remoteBaseTestDataFolder + "/DocumentElements/Bookmarks";
     const localFile = "Common/test_multi_pages.docx";
+    const bookmarkName = "aspose";
 
     // Test for getting bookmarks from document.
     describe("getBookmarks test", () => {
@@ -59,11 +60,26 @@ describe("bookmark", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
-                    expect(resultApi.body.bookmarks).to.exist;
-                    expect(resultApi.body.bookmarks.bookmarkList).to.have.lengthOf(3);
-                    expect(resultApi.body.bookmarks.bookmarkList[1].name).to.equal("aspose");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for getting bookmarks from document online.
+    describe("getBookmarksOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetBookmarksOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile)
+            });
+
+            // Act
+            return wordsApi.getBookmarksOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -74,7 +90,6 @@ describe("bookmark", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const remoteFileName = "TestGetDocumentBookmarkByName.docx";
-            const bookmarkName = "aspose";
 
             return wordsApi.uploadFileToStorage(
                 remoteDataFolder + "/" + remoteFileName,
@@ -92,10 +107,27 @@ describe("bookmark", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
-                    expect(resultApi.body.bookmark).to.exist;
-                    expect(resultApi.body.bookmark.name).to.equal(bookmarkName);
                 });
 
+            });
+
+       });
+    });
+
+    // Test for getting bookmark by specified name online.
+    describe("getBookmarkByNameOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetBookmarkByNameOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                bookmarkName: bookmarkName
+            });
+
+            // Act
+            return wordsApi.getBookmarkByNameOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -106,7 +138,6 @@ describe("bookmark", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const remoteFileName = "TestUpdateDocumentBookmark.docx";
-            const bookmarkName = "aspose";
             const bookmarkText = "This will be the text for Aspose";
 
             return wordsApi.uploadFileToStorage(
@@ -116,11 +147,11 @@ describe("bookmark", () => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.UpdateBookmarkRequest({
                     name: remoteFileName,
+                    bookmarkName: bookmarkName,
                     bookmarkData: new model.BookmarkData({
                         name: bookmarkName,
                         text: bookmarkText
                     }),
-                    bookmarkName: bookmarkName,
                     folder: remoteDataFolder,
                     destFileName: BaseTest.remoteBaseTestOutFolder + "/" + remoteFileName
                 });
@@ -130,11 +161,34 @@ describe("bookmark", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
-                    expect(resultApi.body.bookmark).to.exist;
-                    expect(resultApi.body.bookmark.name).to.equal(bookmarkName);
-                    expect(resultApi.body.bookmark.text).to.equal(bookmarkText);
                 });
 
+            });
+
+       });
+    });
+
+    // Test for updating existed bookmark online.
+    describe("updateBookmarkOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const remoteFileName = "TestUpdateDocumentBookmark.docx";
+
+            const request = new model.UpdateBookmarkOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                bookmarkName: bookmarkName,
+                bookmarkData: new model.BookmarkData({
+                    name: bookmarkName,
+                    text: "This will be the text for Aspose"
+                }),
+                destFileName: BaseTest.remoteBaseTestOutFolder + "/" + remoteFileName
+            });
+
+            // Act
+            return wordsApi.updateBookmarkOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });

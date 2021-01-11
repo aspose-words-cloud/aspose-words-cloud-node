@@ -1,7 +1,7 @@
 /*
  * --------------------------------------------------------------------------------
  * <copyright company="Aspose" file="fieldTests.ts">
- *   Copyright (c) 2020 Aspose.Words for Cloud
+ *   Copyright (c) 2021 Aspose.Words for Cloud
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -73,6 +73,25 @@ describe("field", () => {
        });
     });
 
+    // Test for getting fields online.
+    describe("getFieldsOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetFieldsOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + fieldFolder + "/GetField.docx"),
+                nodePath: "sections/0"
+            });
+
+            // Act
+            return wordsApi.getFieldsOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+            });
+
+       });
+    });
+
     // Test for getting fields without node path.
     describe("getFieldsWithoutNodePath test", () => {
         it("should return response with code 200", () => {
@@ -134,6 +153,26 @@ describe("field", () => {
                     expect(resultApi.body.field.result).to.equal("1");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for getting field by index online.
+    describe("getFieldOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetFieldOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + fieldFolder + "/GetField.docx"),
+                index: 0,
+                nodePath: "sections/0/paragraphs/0"
+            });
+
+            // Act
+            return wordsApi.getFieldOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -207,6 +246,28 @@ describe("field", () => {
        });
     });
 
+    // Test for putting field online.
+    describe("insertFieldOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.InsertFieldOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + fieldFolder + "/GetField.docx"),
+                field: new model.FieldInsert({
+                    fieldCode: "{ NUMPAGES }"
+                }),
+                nodePath: "sections/0/paragraphs/0"
+            });
+
+            // Act
+            return wordsApi.insertFieldOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+            });
+
+       });
+    });
+
     // Test for putting field without node path.
     describe("insertFieldWithoutNodePath test", () => {
         it("should return response with code 200", () => {
@@ -256,10 +317,10 @@ describe("field", () => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.UpdateFieldRequest({
                     name: remoteFileName,
+                    index: 0,
                     field: new model.FieldUpdate({
                         fieldCode: "{ NUMPAGES }"
                     }),
-                    index: 0,
                     nodePath: "sections/0/paragraphs/0",
                     folder: remoteDataFolder
                 });
@@ -274,6 +335,29 @@ describe("field", () => {
                     expect(resultApi.body.field.nodeId).to.equal("0.0.0.0");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for posting field online.
+    describe("updateFieldOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.UpdateFieldOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + fieldFolder + "/GetField.docx"),
+                index: 0,
+                field: new model.FieldUpdate({
+                    fieldCode: "{ NUMPAGES }"
+                }),
+                nodePath: "sections/0/paragraphs/0"
+            });
+
+            // Act
+            return wordsApi.updateFieldOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -315,6 +399,30 @@ describe("field", () => {
        });
     });
 
+    // Test for inserting page numbers field online.
+    describe("insertPageNumbersOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const localFileName = "test_multi_pages.docx";
+
+            const request = new model.InsertPageNumbersOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + "Common/" + localFileName),
+                pageNumber: new model.PageNumber({
+                    alignment: "center",
+                    format: "{PAGE} of {NUMPAGES}"
+                })
+            });
+
+            // Act
+            return wordsApi.insertPageNumbersOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+            });
+
+       });
+    });
+
     // Test for deleting field.
     describe("deleteField test", () => {
         it("should return response with code 200", () => {
@@ -341,6 +449,26 @@ describe("field", () => {
                     expect(resultApi.statusCode).to.equal(200);
                 });
 
+            });
+
+       });
+    });
+
+    // Test for deleting field online.
+    describe("deleteFieldOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.DeleteFieldOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + fieldFolder + "/GetField.docx"),
+                index: 0,
+                nodePath: "sections/0/paragraphs/0"
+            });
+
+            // Act
+            return wordsApi.deleteFieldOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -554,6 +682,27 @@ describe("field", () => {
        });
     });
 
+    // Test for deleting fields online.
+    describe("deleteDocumentFieldsOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const localFileName = "Common/test_multi_pages.docx";
+
+            const request = new model.DeleteFieldsOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFileName),
+                nodePath: ""
+            });
+
+            // Act
+            return wordsApi.deleteFieldsOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+            });
+
+       });
+    });
+
     // Test for posting updated fields.
     describe("updateDocumentFields test", () => {
         it("should return response with code 200", () => {
@@ -580,6 +729,26 @@ describe("field", () => {
                     expect(resultApi.body.document.fileName).to.equal("TestUpdateDocumentFields.docx");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for posting updated fields online.
+    describe("updateDocumentFieldsOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const localFile = "Common/test_multi_pages.docx";
+
+            const request = new model.UpdateFieldsOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile)
+            });
+
+            // Act
+            return wordsApi.updateFieldsOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });

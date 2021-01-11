@@ -1,7 +1,7 @@
 /*
  * --------------------------------------------------------------------------------
  * <copyright company="Aspose" file="convertDocumentTests.ts">
- *   Copyright (c) 2020 Aspose.Words for Cloud
+ *   Copyright (c) 2021 Aspose.Words for Cloud
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -73,6 +73,30 @@ describe("convertDocument", () => {
        });
     });
 
+    // Test for converting document online to one of the available formats.
+    describe("saveAsOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const localName = "test_multi_pages.docx";
+
+            const request = new model.SaveAsOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + "Common/" + localName),
+                saveOptionsData: new model.SaveOptionsData({
+                    saveFormat: "pdf",
+                    fileName: BaseTest.remoteBaseTestOutFolder + "/TestSaveAs.pdf"
+                })
+            });
+
+            // Act
+            return wordsApi.saveAsOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+            });
+
+       });
+    });
+
     // Test for converting document to one of the available formats.
     describe("saveAsDocx test", () => {
         it("should return response with code 200", () => {
@@ -138,6 +162,30 @@ describe("convertDocument", () => {
                     expect(resultApi.body.saveResult.destDocument).to.exist;
                 });
 
+            });
+
+       });
+    });
+
+    // Test for converting document to one of the available formats.
+    describe("saveAsTiffOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const localName = "test_multi_pages.docx";
+
+            const request = new model.SaveAsTiffOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + "Common/" + localName),
+                saveOptions: new model.TiffSaveOptionsData({
+                    saveFormat: "tiff",
+                    fileName: BaseTest.remoteBaseTestOutFolder + "/abc.tiff"
+                })
+            });
+
+            // Act
+            return wordsApi.saveAsTiffOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });

@@ -1,7 +1,7 @@
 /*
  * --------------------------------------------------------------------------------
  * <copyright company="Aspose" file="footnoteTests.ts">
- *   Copyright (c) 2020 Aspose.Words for Cloud
+ *   Copyright (c) 2021 Aspose.Words for Cloud
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -74,6 +74,29 @@ describe("footnote", () => {
        });
     });
 
+    // Test for adding footnote online.
+    describe("insertFootnoteOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.InsertFootnoteOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + footnoteFolder + "/Footnote.doc"),
+                footnoteDto: new model.FootnoteInsert({
+                    footnoteType: model.FootnoteInsert.FootnoteTypeEnum.Endnote,
+                    text: "test endnote"
+                }),
+                nodePath: ""
+            });
+
+            // Act
+            return wordsApi.insertFootnoteOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+            });
+
+       });
+    });
+
     // Test for adding footnote without node path.
     describe("insertFootnoteWithoutNodePath test", () => {
         it("should return response with code 200", () => {
@@ -139,6 +162,26 @@ describe("footnote", () => {
        });
     });
 
+    // Test for deleting footnote online.
+    describe("deleteFootnoteOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.DeleteFootnoteOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + footnoteFolder + "/Footnote.doc"),
+                index: 0,
+                nodePath: ""
+            });
+
+            // Act
+            return wordsApi.deleteFootnoteOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+            });
+
+       });
+    });
+
     // Test for deleting footnote without node path.
     describe("deleteFootnoteWithoutNodePath test", () => {
         it("should return response with code 200", () => {
@@ -196,6 +239,25 @@ describe("footnote", () => {
                     expect(resultApi.body.footnotes.list[0].text).to.equal(" Footnote 1." + "\r\n");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for getting footnotes online.
+    describe("getFootnotesOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetFootnotesOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + footnoteFolder + "/Footnote.doc"),
+                nodePath: ""
+            });
+
+            // Act
+            return wordsApi.getFootnotesOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -265,6 +327,26 @@ describe("footnote", () => {
        });
     });
 
+    // Test for getting footnote online.
+    describe("getFootnoteOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetFootnoteOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + footnoteFolder + "/Footnote.doc"),
+                index: 0,
+                nodePath: ""
+            });
+
+            // Act
+            return wordsApi.getFootnoteOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+            });
+
+       });
+    });
+
     // Test for getting footnote without node path.
     describe("getFootnoteWithoutNodePath test", () => {
         it("should return response with code 200", () => {
@@ -309,10 +391,10 @@ describe("footnote", () => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.UpdateFootnoteRequest({
                     name: remoteFileName,
+                    index: 0,
                     footnoteDto: new model.FootnoteUpdate({
                         text: "new text is here"
                     }),
-                    index: 0,
                     nodePath: "",
                     folder: remoteDataFolder
                 });
@@ -331,6 +413,29 @@ describe("footnote", () => {
        });
     });
 
+    // Test for updating footnote online.
+    describe("updateFootnoteOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.UpdateFootnoteOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + footnoteFolder + "/Footnote.doc"),
+                index: 0,
+                footnoteDto: new model.FootnoteUpdate({
+                    text: "new text is here"
+                }),
+                nodePath: ""
+            });
+
+            // Act
+            return wordsApi.updateFootnoteOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+            });
+
+       });
+    });
+
     // Test for updating footnote without node path.
     describe("updateFootnoteWithoutNodePath test", () => {
         it("should return response with code 200", () => {
@@ -344,10 +449,10 @@ describe("footnote", () => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.UpdateFootnoteRequest({
                     name: remoteFileName,
+                    index: 0,
                     footnoteDto: new model.FootnoteUpdate({
                         text: "new text is here"
                     }),
-                    index: 0,
                     folder: remoteDataFolder
                 });
 

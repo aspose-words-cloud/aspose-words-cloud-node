@@ -1,7 +1,7 @@
 /*
  * --------------------------------------------------------------------------------
  * <copyright company="Aspose" file="mailMergeFiledsTests.ts">
- *   Copyright (c) 2020 Aspose.Words for Cloud
+ *   Copyright (c) 2021 Aspose.Words for Cloud
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -45,7 +45,7 @@ describe("mailMergeFileds", () => {
             const localDocumentFile = "SampleExecuteTemplate.docx";
 
             const request = new model.GetDocumentFieldNamesOnlineRequest({
-                template: fs.createReadStream(BaseTest.localBaseTestDataFolder + mailMergeFolder + "/" + localDocumentFile),
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + mailMergeFolder + "/" + localDocumentFile),
                 useNonMergeFields: true
             });
 

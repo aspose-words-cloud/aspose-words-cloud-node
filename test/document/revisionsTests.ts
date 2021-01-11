@@ -1,7 +1,7 @@
 /*
  * --------------------------------------------------------------------------------
  * <copyright company="Aspose" file="revisionsTests.ts">
- *   Copyright (c) 2020 Aspose.Words for Cloud
+ *   Copyright (c) 2021 Aspose.Words for Cloud
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -69,6 +69,24 @@ describe("revisions", () => {
        });
     });
 
+    // Test for accepting revisions in document online.
+    describe("acceptAllRevisionsOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.AcceptAllRevisionsOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile)
+            });
+
+            // Act
+            return wordsApi.acceptAllRevisionsOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+            });
+
+       });
+    });
+
     // Test for rejecting revisions in document.
     describe("rejectAllRevisions test", () => {
         it("should return response with code 200", () => {
@@ -95,6 +113,24 @@ describe("revisions", () => {
                     expect(resultApi.body.result.dest).to.exist;
                 });
 
+            });
+
+       });
+    });
+
+    // Test for rejecting revisions in document online.
+    describe("rejectAllRevisionsOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.RejectAllRevisionsOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile)
+            });
+
+            // Act
+            return wordsApi.rejectAllRevisionsOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });

@@ -1,7 +1,7 @@
 /*
  * --------------------------------------------------------------------------------
  * <copyright company="Aspose" file="watermarkTests.ts">
- *   Copyright (c) 2020 Aspose.Words for Cloud
+ *   Copyright (c) 2021 Aspose.Words for Cloud
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -79,6 +79,25 @@ describe("watermark", () => {
        });
     });
 
+    // Test for adding watermark image online.
+    describe("insertWatermarkImageOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.InsertWatermarkImageOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                imageFile: fs.createReadStream(BaseTest.localBaseTestDataFolder + "Common/aspose-cloud.png")
+            });
+
+            // Act
+            return wordsApi.insertWatermarkImageOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+            });
+
+       });
+    });
+
     // Test for adding watermark text.
     describe("insertWatermarkText test", () => {
         it("should return response with code 200", () => {
@@ -114,6 +133,28 @@ describe("watermark", () => {
        });
     });
 
+    // Test for adding watermark text online.
+    describe("insertWatermarkTextOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.InsertWatermarkTextOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                watermarkText: new model.WatermarkText({
+                    text: "This is the text",
+                    rotationAngle: 90
+                })
+            });
+
+            // Act
+            return wordsApi.insertWatermarkTextOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+            });
+
+       });
+    });
+
     // Test for deleting watermark.
     describe("deleteWatermark test", () => {
         it("should return response with code 200", () => {
@@ -140,6 +181,24 @@ describe("watermark", () => {
                     expect(resultApi.body.document.fileName).to.equal("TestDeleteWatermark.docx");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for deleting watermark online.
+    describe("deleteWatermarkOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.DeleteWatermarkOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile)
+            });
+
+            // Act
+            return wordsApi.deleteWatermarkOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });

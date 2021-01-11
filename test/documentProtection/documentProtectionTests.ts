@@ -1,7 +1,7 @@
 /*
  * --------------------------------------------------------------------------------
  * <copyright company="Aspose" file="documentProtectionTests.ts">
- *   Copyright (c) 2020 Aspose.Words for Cloud
+ *   Copyright (c) 2021 Aspose.Words for Cloud
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -73,36 +73,22 @@ describe("documentProtection", () => {
        });
     });
 
-    // Test for changing document protection.
-    describe("changeDocumentProtection test", () => {
+    // Test for setting document protection.
+    describe("protectDocumentOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            const localFilePath = "DocumentActions/DocumentProtection/SampleProtectedBlankWordDocument.docx";
-            const remoteFileName = "TestChangeDocumentProtection.docx";
+            const request = new model.ProtectDocumentOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                protectionRequest: new model.ProtectionRequest({
+                    newPassword: "123"
+                })
+            });
 
-            return wordsApi.uploadFileToStorage(
-                remoteDataFolder + "/" + remoteFileName,
-                BaseTest.localBaseTestDataFolder + localFilePath
-            ).then((result0) => {
-                expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.ProtectDocumentRequest({
-                    name: remoteFileName,
-                    protectionRequest: new model.ProtectionRequest({
-                        password: "aspose",
-                        protectionType: "AllowOnlyComments"
-                    }),
-                    folder: remoteDataFolder
-                });
-
-                // Act
-                return wordsApi.protectDocument(request)
-                .then((resultApi) => {
-                    // Assert
-                    expect(resultApi.response.statusCode).to.equal(200);
-                    expect(resultApi.body.protectionData).to.exist;
-                    expect(resultApi.body.protectionData.protectionType).to.equal("AllowOnlyComments");
-                });
-
+            // Act
+            return wordsApi.protectDocumentOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -130,10 +116,26 @@ describe("documentProtection", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
-                    expect(resultApi.body.protectionData).to.exist;
-                    expect(resultApi.body.protectionData.protectionType).to.equal("ReadOnly");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for getting document protection.
+    describe("getDocumentProtectionOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetDocumentProtectionOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile)
+            });
+
+            // Act
+            return wordsApi.getDocumentProtectionOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });
@@ -168,6 +170,29 @@ describe("documentProtection", () => {
                     expect(resultApi.body.protectionData.protectionType).to.equal("NoProtection");
                 });
 
+            });
+
+       });
+    });
+
+    // Test for deleting unprotect document.
+    describe("deleteUnprotectDocumentOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const localFilePath = "DocumentActions/DocumentProtection/SampleProtectedBlankWordDocument.docx";
+
+            const request = new model.UnprotectDocumentOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFilePath),
+                protectionRequest: new model.ProtectionRequest({
+                    password: "aspose"
+                })
+            });
+
+            // Act
+            return wordsApi.unprotectDocumentOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });

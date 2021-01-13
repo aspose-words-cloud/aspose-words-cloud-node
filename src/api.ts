@@ -309,7 +309,7 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
 
         const requestOptions: request.Options = {
-            method: "POST",
+            method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
             json: true,
@@ -10216,7 +10216,7 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
 
         const requestOptions: request.Options = {
-            method: "POST",
+            method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
             json: true,
@@ -12226,7 +12226,7 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", requestObj.fontsLocation);
 
         const requestOptions: request.Options = {
-            method: "POST",
+            method: "GET",
             qs: queryParameters,
             uri: localVarPath,
             encoding: null,
@@ -12242,7 +12242,7 @@ export class WordsApi {
      * Renders a DrawingObject to the specified format.
      * @param requestObj contains request parameters
      */
-    public async renderDrawingObjectOnline(requestObj: model.RenderDrawingObjectOnlineRequest): Promise< model.WordsIncomingMessage< RenderDrawingObjectOnlineResponse > > {
+    public async renderDrawingObjectOnline(requestObj: model.RenderDrawingObjectOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling renderDrawingObjectOnline.');
         }
@@ -12296,14 +12296,15 @@ export class WordsApi {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "RenderDrawingObjectOnlineResponse");
-        const result: model.WordsIncomingMessage< model.RenderDrawingObjectOnlineResponse > = {body, response};
+        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const result: model.WordsIncomingMessage< Buffer > = {body, response};
         return Promise.resolve(result);
     }
 
@@ -12361,7 +12362,7 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", requestObj.fontsLocation);
 
         const requestOptions: request.Options = {
-            method: "POST",
+            method: "GET",
             qs: queryParameters,
             uri: localVarPath,
             encoding: null,
@@ -12377,7 +12378,7 @@ export class WordsApi {
      * Renders an OfficeMath object to the specified format.
      * @param requestObj contains request parameters
      */
-    public async renderMathObjectOnline(requestObj: model.RenderMathObjectOnlineRequest): Promise< model.WordsIncomingMessage< RenderMathObjectOnlineResponse > > {
+    public async renderMathObjectOnline(requestObj: model.RenderMathObjectOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling renderMathObjectOnline.');
         }
@@ -12431,14 +12432,15 @@ export class WordsApi {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "RenderMathObjectOnlineResponse");
-        const result: model.WordsIncomingMessage< model.RenderMathObjectOnlineResponse > = {body, response};
+        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const result: model.WordsIncomingMessage< Buffer > = {body, response};
         return Promise.resolve(result);
     }
 
@@ -12628,7 +12630,7 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", requestObj.fontsLocation);
 
         const requestOptions: request.Options = {
-            method: "POST",
+            method: "GET",
             qs: queryParameters,
             uri: localVarPath,
             encoding: null,
@@ -12644,7 +12646,7 @@ export class WordsApi {
      * Renders a paragraph to the specified format.
      * @param requestObj contains request parameters
      */
-    public async renderParagraphOnline(requestObj: model.RenderParagraphOnlineRequest): Promise< model.WordsIncomingMessage< RenderParagraphOnlineResponse > > {
+    public async renderParagraphOnline(requestObj: model.RenderParagraphOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling renderParagraphOnline.');
         }
@@ -12698,14 +12700,15 @@ export class WordsApi {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "RenderParagraphOnlineResponse");
-        const result: model.WordsIncomingMessage< model.RenderParagraphOnlineResponse > = {body, response};
+        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const result: model.WordsIncomingMessage< Buffer > = {body, response};
         return Promise.resolve(result);
     }
 
@@ -12763,7 +12766,7 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", requestObj.fontsLocation);
 
         const requestOptions: request.Options = {
-            method: "POST",
+            method: "GET",
             qs: queryParameters,
             uri: localVarPath,
             encoding: null,
@@ -12779,7 +12782,7 @@ export class WordsApi {
      * Renders a table to the specified format.
      * @param requestObj contains request parameters
      */
-    public async renderTableOnline(requestObj: model.RenderTableOnlineRequest): Promise< model.WordsIncomingMessage< RenderTableOnlineResponse > > {
+    public async renderTableOnline(requestObj: model.RenderTableOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling renderTableOnline.');
         }
@@ -12833,14 +12836,15 @@ export class WordsApi {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "RenderTableOnlineResponse");
-        const result: model.WordsIncomingMessage< model.RenderTableOnlineResponse > = {body, response};
+        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const result: model.WordsIncomingMessage< Buffer > = {body, response};
         return Promise.resolve(result);
     }
 
@@ -14024,7 +14028,7 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
 
         const requestOptions: request.Options = {
-            method: "POST",
+            method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
             json: true,
@@ -14317,7 +14321,7 @@ export class WordsApi {
         }
 
         const requestOptions: request.Options = {
-            method: "POST",
+            method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
             json: true,
@@ -14471,7 +14475,7 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
 
         const requestOptions: request.Options = {
-            method: "POST",
+            method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
             json: true,
@@ -14697,7 +14701,7 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
 
         const requestOptions: request.Options = {
-            method: "POST",
+            method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
             json: true,
@@ -14836,7 +14840,7 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
 
         const requestOptions: request.Options = {
-            method: "POST",
+            method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
             json: true,
@@ -15271,7 +15275,7 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
 
         const requestOptions: request.Options = {
-            method: "POST",
+            method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
             json: true,
@@ -15410,7 +15414,7 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
 
         const requestOptions: request.Options = {
-            method: "POST",
+            method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
             json: true,
@@ -15554,7 +15558,7 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
 
         const requestOptions: request.Options = {
-            method: "POST",
+            method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
             json: true,
@@ -15626,7 +15630,7 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
 
         const requestOptions: request.Options = {
-            method: "POST",
+            method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
             json: true,
@@ -16126,7 +16130,7 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
 
         const requestOptions: request.Options = {
-            method: "POST",
+            method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
             json: true,
@@ -16270,7 +16274,7 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
 
         const requestOptions: request.Options = {
-            method: "POST",
+            method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
             json: true,
@@ -16414,7 +16418,7 @@ export class WordsApi {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
 
         const requestOptions: request.Options = {
-            method: "POST",
+            method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
             json: true,

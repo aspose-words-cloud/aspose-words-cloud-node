@@ -31,6 +31,7 @@ export const importsMapTableRowFormatDto = {
 };
 
 /**
+ * Model object.
  */
 export class TableRowFormatDto {
     /**

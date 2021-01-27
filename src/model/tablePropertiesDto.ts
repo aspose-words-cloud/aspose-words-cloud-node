@@ -31,6 +31,7 @@ export const importsMapTablePropertiesDto = {
 };
 
 /**
+ * Model object.
  */
 export class TablePropertiesDto {
     /**

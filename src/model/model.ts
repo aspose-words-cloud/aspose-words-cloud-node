@@ -14227,3 +14227,931 @@ export class UploadFileRequest {
         Object.assign(this, init);
     }
 }
+
+/**
+ * Response model for AcceptAllRevisionsOnline operation.
+ * Accepts all revisions in the document.
+ */
+export class AcceptAllRevisionsOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedRevisionsModificationResponse.RevisionsModificationResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for AppendDocumentOnline operation.
+ * Appends documents to the original document.
+ */
+export class AppendDocumentOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedDocumentResponse.DocumentResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for ApplyStyleToDocumentElementOnline operation.
+ * Applies a style to the document node.
+ */
+export class ApplyStyleToDocumentElementOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedWordsResponse.WordsResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for CompareDocumentOnline operation.
+ * Compares two documents.
+ */
+export class CompareDocumentOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedDocumentResponse.DocumentResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for CopyStyleOnline operation.
+ * Makes a copy of the style in the document.
+ */
+export class CopyStyleOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedStyleResponse.StyleResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for CreateOrUpdateDocumentPropertyOnline operation.
+ * Adds a new or updates an existing document property.
+ */
+export class CreateOrUpdateDocumentPropertyOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedDocumentPropertyResponse.DocumentPropertyResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for DeleteAllParagraphTabStopsOnline operation.
+ * Removes paragraph tab stops from the document node.
+ */
+export class DeleteAllParagraphTabStopsOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedTabStopsResponse.TabStopsResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for DeleteBorderOnline operation.
+ * Removes a border from the document node.
+ */
+export class DeleteBorderOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedBorderResponse.BorderResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for DeleteBordersOnline operation.
+ * Removes borders from the document node.
+ */
+export class DeleteBordersOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedBordersResponse.BordersResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for DeleteParagraphListFormatOnline operation.
+ * Removes the formatting properties of a paragraph list from the document node.
+ */
+export class DeleteParagraphListFormatOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedParagraphListFormatResponse.ParagraphListFormatResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for DeleteParagraphTabStopOnline operation.
+ * Removes a paragraph tab stop from the document node.
+ */
+export class DeleteParagraphTabStopOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedTabStopsResponse.TabStopsResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for DeleteWatermarkOnline operation.
+ * Removes a watermark from the document.
+ */
+export class DeleteWatermarkOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedDocumentResponse.DocumentResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for InsertCommentOnline operation.
+ * Inserts a new comment to the document.
+ */
+export class InsertCommentOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedCommentResponse.CommentResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for InsertDrawingObjectOnline operation.
+ * Inserts a new DrawingObject to the document node.
+ */
+export class InsertDrawingObjectOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedDrawingObjectResponse.DrawingObjectResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for InsertFieldOnline operation.
+ * Inserts a new field to the document node.
+ */
+export class InsertFieldOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedFieldResponse.FieldResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for InsertFootnoteOnline operation.
+ * Inserts a new footnote to the document node.
+ */
+export class InsertFootnoteOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedFootnoteResponse.FootnoteResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for InsertFormFieldOnline operation.
+ * Inserts a new form field to the document node.
+ */
+export class InsertFormFieldOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedFormFieldResponse.FormFieldResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for InsertHeaderFooterOnline operation.
+ * Inserts a new HeaderFooter object to the document section.
+ */
+export class InsertHeaderFooterOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedHeaderFooterResponse.HeaderFooterResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for InsertListOnline operation.
+ * Inserts a new list to the document.
+ */
+export class InsertListOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedListResponse.ListResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for InsertOrUpdateParagraphTabStopOnline operation.
+ * Inserts a new or updates an existing paragraph tab stop in the document node.
+ */
+export class InsertOrUpdateParagraphTabStopOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedTabStopsResponse.TabStopsResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for InsertPageNumbersOnline operation.
+ * Inserts page numbers to the document.
+ */
+export class InsertPageNumbersOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedDocumentResponse.DocumentResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for InsertParagraphOnline operation.
+ * Inserts a new paragraph to the document node.
+ */
+export class InsertParagraphOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedParagraphResponse.ParagraphResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for InsertRunOnline operation.
+ * Inserts a new Run object to the paragraph.
+ */
+export class InsertRunOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedRunResponse.RunResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for InsertStyleOnline operation.
+ * Inserts a new style to the document.
+ */
+export class InsertStyleOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedStyleResponse.StyleResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for InsertTableCellOnline operation.
+ * Inserts a new cell to the table row.
+ */
+export class InsertTableCellOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedTableCellResponse.TableCellResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for InsertTableOnline operation.
+ * Inserts a new table to the document node.
+ */
+export class InsertTableOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedTableResponse.TableResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for InsertTableRowOnline operation.
+ * Inserts a new row to the table.
+ */
+export class InsertTableRowOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedTableRowResponse.TableRowResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for InsertWatermarkImageOnline operation.
+ * Inserts a new watermark image to the document.
+ */
+export class InsertWatermarkImageOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedDocumentResponse.DocumentResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for InsertWatermarkTextOnline operation.
+ * Inserts a new watermark text to the document.
+ */
+export class InsertWatermarkTextOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedDocumentResponse.DocumentResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for ProtectDocumentOnline operation.
+ * Adds protection to the document.
+ */
+export class ProtectDocumentOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedProtectionDataResponse.ProtectionDataResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for RejectAllRevisionsOnline operation.
+ * Rejects all revisions in the document.
+ */
+export class RejectAllRevisionsOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedRevisionsModificationResponse.RevisionsModificationResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for RemoveRangeOnline operation.
+ * Removes a range from the document.
+ */
+export class RemoveRangeOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedDocumentResponse.DocumentResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for ReplaceTextOnline operation.
+ * Replaces text in the document.
+ */
+export class ReplaceTextOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedReplaceTextResponse.ReplaceTextResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for ReplaceWithTextOnline operation.
+ * Replaces a range with text in the document.
+ */
+export class ReplaceWithTextOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedDocumentResponse.DocumentResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for SaveAsOnline operation.
+ * Converts a document in cloud storage to the specified format.
+ */
+export class SaveAsOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedSaveResponse.SaveResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for SaveAsRangeOnline operation.
+ * Saves a range as a new document.
+ */
+export class SaveAsRangeOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedDocumentResponse.DocumentResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for SaveAsTiffOnline operation.
+ * Converts a document in cloud storage to TIFF format using detailed conversion settings.
+ */
+export class SaveAsTiffOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedSaveResponse.SaveResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for SplitDocumentOnline operation.
+ * Splits a document into parts and saves them in the specified format.
+ */
+export class SplitDocumentOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedSplitDocumentResponse.SplitDocumentResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for UnprotectDocumentOnline operation.
+ * Removes protection from the document.
+ */
+export class UnprotectDocumentOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedProtectionDataResponse.ProtectionDataResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for UpdateBookmarkOnline operation.
+ * Updates a bookmark in the document.
+ */
+export class UpdateBookmarkOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedBookmarkResponse.BookmarkResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for UpdateBorderOnline operation.
+ * Updates a border in the document node.
+ */
+export class UpdateBorderOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedBorderResponse.BorderResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for UpdateCommentOnline operation.
+ * Updates a comment in the document.
+ */
+export class UpdateCommentOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedCommentResponse.CommentResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for UpdateDrawingObjectOnline operation.
+ * Updates a DrawingObject in the document node.
+ */
+export class UpdateDrawingObjectOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedDrawingObjectResponse.DrawingObjectResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for UpdateFieldOnline operation.
+ * Updates a field in the document node.
+ */
+export class UpdateFieldOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedFieldResponse.FieldResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for UpdateFieldsOnline operation.
+ * Reevaluates field values in the document.
+ */
+export class UpdateFieldsOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedDocumentResponse.DocumentResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for UpdateFootnoteOnline operation.
+ * Updates a footnote in the document node.
+ */
+export class UpdateFootnoteOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedFootnoteResponse.FootnoteResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for UpdateFormFieldOnline operation.
+ * Updates a form field in the document node.
+ */
+export class UpdateFormFieldOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedFormFieldResponse.FormFieldResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for UpdateListLevelOnline operation.
+ * Updates the level of a List element in the document.
+ */
+export class UpdateListLevelOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedListResponse.ListResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for UpdateListOnline operation.
+ * Updates a list in the document.
+ */
+export class UpdateListOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedListResponse.ListResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for UpdateParagraphFormatOnline operation.
+ * Updates the formatting properties of a paragraph in the document node.
+ */
+export class UpdateParagraphFormatOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedParagraphFormatResponse.ParagraphFormatResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for UpdateParagraphListFormatOnline operation.
+ * Updates the formatting properties of a paragraph list in the document node.
+ */
+export class UpdateParagraphListFormatOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedParagraphListFormatResponse.ParagraphListFormatResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for UpdateRunFontOnline operation.
+ * Updates the font properties of a Run object in the paragraph.
+ */
+export class UpdateRunFontOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedFontResponse.FontResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for UpdateRunOnline operation.
+ * Updates a Run object in the paragraph.
+ */
+export class UpdateRunOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedRunResponse.RunResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for UpdateSectionPageSetupOnline operation.
+ * Updates the page setup of a section in the document.
+ */
+export class UpdateSectionPageSetupOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedSectionPageSetupResponse.SectionPageSetupResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for UpdateStyleOnline operation.
+ * Updates a style in the document.
+ */
+export class UpdateStyleOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedStyleResponse.StyleResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for UpdateTableCellFormatOnline operation.
+ * Updates the formatting properties of a cell in the table row.
+ */
+export class UpdateTableCellFormatOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedTableCellFormatResponse.TableCellFormatResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for UpdateTablePropertiesOnline operation.
+ * Updates properties of a table in the document node.
+ */
+export class UpdateTablePropertiesOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedTablePropertiesResponse.TablePropertiesResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for UpdateTableRowFormatOnline operation.
+ * Updates the formatting properties of a table row.
+ */
+export class UpdateTableRowFormatOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedTableRowFormatResponse.TableRowFormatResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}

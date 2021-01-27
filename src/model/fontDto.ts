@@ -31,6 +31,7 @@ export const importsMapFontDto = {
 };
 
 /**
+ * Model object.
  */
 export class FontDto {
     /**

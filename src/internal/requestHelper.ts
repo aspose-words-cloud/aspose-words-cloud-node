@@ -31,6 +31,26 @@ import { Configuration } from "./configuration";
 import { ObjectSerializer } from "./objectSerializer";
 
 /**
+ * Parses multipart response.
+ * @param response api response.
+ * @param modelType model type.
+ * @param fileType file type.
+ */
+export async function parseMultipartResponse(response:request.RequestResponse, modelType: string, fileType: string) {
+    response.headers["content-type"] = response.headers['content-type'].replace("multipart/mixed", "multipart/form-data");
+    const header = response.headers['content-type'];
+    let boundary = header.split(" ")[1];
+    boundary = header.split("=")[1];
+    boundary = boundary.slice(1, -1);
+    const bodyString = response.body.toString().slice(2, -4);
+    const parts = bodyString.split(boundary);
+    const modelString = parts[1].split("\r\n\r\n")[1].slice(0, -4).replace("\r\n", "\n");
+    const model = ObjectSerializer.deserialize(JSON.parse(modelString.toString("utf8")), modelType);
+    const file = ObjectSerializer.deserialize(parts[2].split("\r\n\r\n")[1], fileType);
+    return [model, file];
+}
+
+/**
  * Invoke api method
  * @param requestOptions request parameters
  * @param confguration api configuration

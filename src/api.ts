@@ -30,7 +30,7 @@ import request = require("request");
 
 import { Configuration } from "./internal/configuration";
 import { ObjectSerializer } from "./internal/objectSerializer";
-import { addQueryParameterToUrl, invokeApiMethod } from "./internal/requestHelper";
+import { addQueryParameterToUrl, invokeApiMethod, parseMultipartResponse } from "./internal/requestHelper";
 import * as model from "./model/model";
 
 export * from "./model/model";
@@ -91,7 +91,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "RevisionsModificationResponse");
+        const body = ObjectSerializer.deserialize(response.body, "RevisionsModificationResponse");
         const result: model.WordsIncomingMessage< model.RevisionsModificationResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -100,7 +100,7 @@ export class WordsApi {
      * Accepts all revisions in the document.
      * @param requestObj contains request parameters
      */
-    public async acceptAllRevisionsOnline(requestObj: model.AcceptAllRevisionsOnlineRequest): Promise< model.WordsIncomingMessage< AcceptAllRevisionsOnlineResponse > > {
+    public async acceptAllRevisionsOnline(requestObj: model.AcceptAllRevisionsOnlineRequest): Promise< model.WordsIncomingMessage< model.AcceptAllRevisionsOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling acceptAllRevisionsOnline.');
         }
@@ -130,14 +130,22 @@ export class WordsApi {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "AcceptAllRevisionsOnlineResponse");
-        const result: model.WordsIncomingMessage< model.AcceptAllRevisionsOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.AcceptAllRevisionsOnlineResponse >();
+        result.response = response;
+        result.body = new model.AcceptAllRevisionsOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "RevisionsModificationResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -191,7 +199,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
+        const body = ObjectSerializer.deserialize(response.body, "DocumentResponse");
         const result: model.WordsIncomingMessage< model.DocumentResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -200,7 +208,7 @@ export class WordsApi {
      * Appends documents to the original document.
      * @param requestObj contains request parameters
      */
-    public async appendDocumentOnline(requestObj: model.AppendDocumentOnlineRequest): Promise< model.WordsIncomingMessage< AppendDocumentOnlineResponse > > {
+    public async appendDocumentOnline(requestObj: model.AppendDocumentOnlineRequest): Promise< model.WordsIncomingMessage< model.AppendDocumentOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling appendDocumentOnline.');
         }
@@ -238,21 +246,29 @@ export class WordsApi {
             formParams.Document = requestObj.document;
         }
         if (requestObj.documentList !== undefined) {
-            formParams.DocumentList = JSON.stringify(requestObj.documentList);
+            formParams.DocumentList = JSON.stringify(ObjectSerializer.serialize(requestObj.documentList, requestObj.documentList.constructor.name));
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "AppendDocumentOnlineResponse");
-        const result: model.WordsIncomingMessage< model.AppendDocumentOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.AppendDocumentOnlineResponse >();
+        result.response = response;
+        result.body = new model.AppendDocumentOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "DocumentResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -317,7 +333,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "WordsResponse");
+        const body = ObjectSerializer.deserialize(response.body, "WordsResponse");
         const result: model.WordsIncomingMessage< model.WordsResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -326,7 +342,7 @@ export class WordsApi {
      * Applies a style to the document node.
      * @param requestObj contains request parameters
      */
-    public async applyStyleToDocumentElementOnline(requestObj: model.ApplyStyleToDocumentElementOnlineRequest): Promise< model.WordsIncomingMessage< ApplyStyleToDocumentElementOnlineResponse > > {
+    public async applyStyleToDocumentElementOnline(requestObj: model.ApplyStyleToDocumentElementOnlineRequest): Promise< model.WordsIncomingMessage< model.ApplyStyleToDocumentElementOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling applyStyleToDocumentElementOnline.');
         }
@@ -375,21 +391,29 @@ export class WordsApi {
             formParams.Document = requestObj.document;
         }
         if (requestObj.styleApply !== undefined) {
-            formParams.StyleApply = JSON.stringify(requestObj.styleApply);
+            formParams.StyleApply = JSON.stringify(ObjectSerializer.serialize(requestObj.styleApply, requestObj.styleApply.constructor.name));
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "ApplyStyleToDocumentElementOnlineResponse");
-        const result: model.WordsIncomingMessage< model.ApplyStyleToDocumentElementOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.ApplyStyleToDocumentElementOnlineResponse >();
+        result.response = response;
+        result.body = new model.ApplyStyleToDocumentElementOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "WordsResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -460,7 +484,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
+        const body = ObjectSerializer.deserialize(response.body, "DocumentResponse");
         const result: model.WordsIncomingMessage< model.DocumentResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -530,7 +554,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const body = ObjectSerializer.deserialize(response.body, "Buffer");
         const result: model.WordsIncomingMessage< Buffer > = {body, response};
         return Promise.resolve(result);
     }
@@ -568,7 +592,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "ClassificationResponse");
+        const body = ObjectSerializer.deserialize(response.body, "ClassificationResponse");
         const result: model.WordsIncomingMessage< model.ClassificationResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -611,7 +635,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "ClassificationResponse");
+        const body = ObjectSerializer.deserialize(response.body, "ClassificationResponse");
         const result: model.WordsIncomingMessage< model.ClassificationResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -658,7 +682,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "ClassificationResponse");
+        const body = ObjectSerializer.deserialize(response.body, "ClassificationResponse");
         const result: model.WordsIncomingMessage< model.ClassificationResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -711,7 +735,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
+        const body = ObjectSerializer.deserialize(response.body, "DocumentResponse");
         const result: model.WordsIncomingMessage< model.DocumentResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -720,7 +744,7 @@ export class WordsApi {
      * Compares two documents.
      * @param requestObj contains request parameters
      */
-    public async compareDocumentOnline(requestObj: model.CompareDocumentOnlineRequest): Promise< model.WordsIncomingMessage< CompareDocumentOnlineResponse > > {
+    public async compareDocumentOnline(requestObj: model.CompareDocumentOnlineRequest): Promise< model.WordsIncomingMessage< model.CompareDocumentOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling compareDocumentOnline.');
         }
@@ -756,21 +780,29 @@ export class WordsApi {
             formParams.Document = requestObj.document;
         }
         if (requestObj.compareData !== undefined) {
-            formParams.CompareData = JSON.stringify(requestObj.compareData);
+            formParams.CompareData = JSON.stringify(ObjectSerializer.serialize(requestObj.compareData, requestObj.compareData.constructor.name));
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "CompareDocumentOnlineResponse");
-        const result: model.WordsIncomingMessage< model.CompareDocumentOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.CompareDocumentOnlineResponse >();
+        result.response = response;
+        result.body = new model.CompareDocumentOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "DocumentResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -827,7 +859,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const body = ObjectSerializer.deserialize(response.body, "Buffer");
         const result: model.WordsIncomingMessage< Buffer > = {body, response};
         return Promise.resolve(result);
     }
@@ -969,7 +1001,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "StyleResponse");
+        const body = ObjectSerializer.deserialize(response.body, "StyleResponse");
         const result: model.WordsIncomingMessage< model.StyleResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -978,7 +1010,7 @@ export class WordsApi {
      * Makes a copy of the style in the document.
      * @param requestObj contains request parameters
      */
-    public async copyStyleOnline(requestObj: model.CopyStyleOnlineRequest): Promise< model.WordsIncomingMessage< CopyStyleOnlineResponse > > {
+    public async copyStyleOnline(requestObj: model.CopyStyleOnlineRequest): Promise< model.WordsIncomingMessage< model.CopyStyleOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling copyStyleOnline.');
         }
@@ -1016,21 +1048,29 @@ export class WordsApi {
             formParams.Document = requestObj.document;
         }
         if (requestObj.styleCopy !== undefined) {
-            formParams.StyleCopy = JSON.stringify(requestObj.styleCopy);
+            formParams.StyleCopy = JSON.stringify(ObjectSerializer.serialize(requestObj.styleCopy, requestObj.styleCopy.constructor.name));
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "CopyStyleOnlineResponse");
-        const result: model.WordsIncomingMessage< model.CopyStyleOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.CopyStyleOnlineResponse >();
+        result.response = response;
+        result.body = new model.CopyStyleOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "StyleResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -1058,7 +1098,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
+        const body = ObjectSerializer.deserialize(response.body, "DocumentResponse");
         const result: model.WordsIncomingMessage< model.DocumentResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -1160,7 +1200,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "DocumentPropertyResponse");
+        const body = ObjectSerializer.deserialize(response.body, "DocumentPropertyResponse");
         const result: model.WordsIncomingMessage< model.DocumentPropertyResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -1169,7 +1209,7 @@ export class WordsApi {
      * Adds a new or updates an existing document property.
      * @param requestObj contains request parameters
      */
-    public async createOrUpdateDocumentPropertyOnline(requestObj: model.CreateOrUpdateDocumentPropertyOnlineRequest): Promise< model.WordsIncomingMessage< CreateOrUpdateDocumentPropertyOnlineResponse > > {
+    public async createOrUpdateDocumentPropertyOnline(requestObj: model.CreateOrUpdateDocumentPropertyOnlineRequest): Promise< model.WordsIncomingMessage< model.CreateOrUpdateDocumentPropertyOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling createOrUpdateDocumentPropertyOnline.');
         }
@@ -1218,21 +1258,29 @@ export class WordsApi {
             formParams.Document = requestObj.document;
         }
         if (requestObj.property !== undefined) {
-            formParams.Property = JSON.stringify(requestObj.property);
+            formParams.Property = JSON.stringify(ObjectSerializer.serialize(requestObj.property, requestObj.property.constructor.name));
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "CreateOrUpdateDocumentPropertyOnlineResponse");
-        const result: model.WordsIncomingMessage< model.CreateOrUpdateDocumentPropertyOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.CreateOrUpdateDocumentPropertyOnlineResponse >();
+        result.response = response;
+        result.body = new model.CreateOrUpdateDocumentPropertyOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "DocumentPropertyResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -1285,7 +1333,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "TabStopsResponse");
+        const body = ObjectSerializer.deserialize(response.body, "TabStopsResponse");
         const result: model.WordsIncomingMessage< model.TabStopsResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -1294,7 +1342,7 @@ export class WordsApi {
      * Removes paragraph tab stops from the document node.
      * @param requestObj contains request parameters
      */
-    public async deleteAllParagraphTabStopsOnline(requestObj: model.DeleteAllParagraphTabStopsOnlineRequest): Promise< model.WordsIncomingMessage< DeleteAllParagraphTabStopsOnlineResponse > > {
+    public async deleteAllParagraphTabStopsOnline(requestObj: model.DeleteAllParagraphTabStopsOnlineRequest): Promise< model.WordsIncomingMessage< model.DeleteAllParagraphTabStopsOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteAllParagraphTabStopsOnline.');
         }
@@ -1336,14 +1384,22 @@ export class WordsApi {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "DeleteAllParagraphTabStopsOnlineResponse");
-        const result: model.WordsIncomingMessage< model.DeleteAllParagraphTabStopsOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.DeleteAllParagraphTabStopsOnlineResponse >();
+        result.response = response;
+        result.body = new model.DeleteAllParagraphTabStopsOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "TabStopsResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -1398,7 +1454,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "BorderResponse");
+        const body = ObjectSerializer.deserialize(response.body, "BorderResponse");
         const result: model.WordsIncomingMessage< model.BorderResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -1407,7 +1463,7 @@ export class WordsApi {
      * Removes a border from the document node.
      * @param requestObj contains request parameters
      */
-    public async deleteBorderOnline(requestObj: model.DeleteBorderOnlineRequest): Promise< model.WordsIncomingMessage< DeleteBorderOnlineResponse > > {
+    public async deleteBorderOnline(requestObj: model.DeleteBorderOnlineRequest): Promise< model.WordsIncomingMessage< model.DeleteBorderOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteBorderOnline.');
         }
@@ -1451,14 +1507,22 @@ export class WordsApi {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "DeleteBorderOnlineResponse");
-        const result: model.WordsIncomingMessage< model.DeleteBorderOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.DeleteBorderOnlineResponse >();
+        result.response = response;
+        result.body = new model.DeleteBorderOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "BorderResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -1502,7 +1566,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "BordersResponse");
+        const body = ObjectSerializer.deserialize(response.body, "BordersResponse");
         const result: model.WordsIncomingMessage< model.BordersResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -1511,7 +1575,7 @@ export class WordsApi {
      * Removes borders from the document node.
      * @param requestObj contains request parameters
      */
-    public async deleteBordersOnline(requestObj: model.DeleteBordersOnlineRequest): Promise< model.WordsIncomingMessage< DeleteBordersOnlineResponse > > {
+    public async deleteBordersOnline(requestObj: model.DeleteBordersOnlineRequest): Promise< model.WordsIncomingMessage< model.DeleteBordersOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteBordersOnline.');
         }
@@ -1544,14 +1608,22 @@ export class WordsApi {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "DeleteBordersOnlineResponse");
-        const result: model.WordsIncomingMessage< model.DeleteBordersOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.DeleteBordersOnlineResponse >();
+        result.response = response;
+        result.body = new model.DeleteBordersOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "BordersResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -1662,7 +1734,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const body = ObjectSerializer.deserialize(response.body, "Buffer");
         const result: model.WordsIncomingMessage< Buffer > = {body, response};
         return Promise.resolve(result);
     }
@@ -1774,7 +1846,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const body = ObjectSerializer.deserialize(response.body, "Buffer");
         const result: model.WordsIncomingMessage< Buffer > = {body, response};
         return Promise.resolve(result);
     }
@@ -1888,7 +1960,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const body = ObjectSerializer.deserialize(response.body, "Buffer");
         const result: model.WordsIncomingMessage< Buffer > = {body, response};
         return Promise.resolve(result);
     }
@@ -2002,7 +2074,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const body = ObjectSerializer.deserialize(response.body, "Buffer");
         const result: model.WordsIncomingMessage< Buffer > = {body, response};
         return Promise.resolve(result);
     }
@@ -2094,7 +2166,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const body = ObjectSerializer.deserialize(response.body, "Buffer");
         const result: model.WordsIncomingMessage< Buffer > = {body, response};
         return Promise.resolve(result);
     }
@@ -2282,7 +2354,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const body = ObjectSerializer.deserialize(response.body, "Buffer");
         const result: model.WordsIncomingMessage< Buffer > = {body, response};
         return Promise.resolve(result);
     }
@@ -2396,7 +2468,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const body = ObjectSerializer.deserialize(response.body, "Buffer");
         const result: model.WordsIncomingMessage< Buffer > = {body, response};
         return Promise.resolve(result);
     }
@@ -2520,7 +2592,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const body = ObjectSerializer.deserialize(response.body, "Buffer");
         const result: model.WordsIncomingMessage< Buffer > = {body, response};
         return Promise.resolve(result);
     }
@@ -2624,7 +2696,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const body = ObjectSerializer.deserialize(response.body, "Buffer");
         const result: model.WordsIncomingMessage< Buffer > = {body, response};
         return Promise.resolve(result);
     }
@@ -2714,7 +2786,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const body = ObjectSerializer.deserialize(response.body, "Buffer");
         const result: model.WordsIncomingMessage< Buffer > = {body, response};
         return Promise.resolve(result);
     }
@@ -2828,7 +2900,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const body = ObjectSerializer.deserialize(response.body, "Buffer");
         const result: model.WordsIncomingMessage< Buffer > = {body, response};
         return Promise.resolve(result);
     }
@@ -2938,7 +3010,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "ParagraphListFormatResponse");
+        const body = ObjectSerializer.deserialize(response.body, "ParagraphListFormatResponse");
         const result: model.WordsIncomingMessage< model.ParagraphListFormatResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -2947,7 +3019,7 @@ export class WordsApi {
      * Removes the formatting properties of a paragraph list from the document node.
      * @param requestObj contains request parameters
      */
-    public async deleteParagraphListFormatOnline(requestObj: model.DeleteParagraphListFormatOnlineRequest): Promise< model.WordsIncomingMessage< DeleteParagraphListFormatOnlineResponse > > {
+    public async deleteParagraphListFormatOnline(requestObj: model.DeleteParagraphListFormatOnlineRequest): Promise< model.WordsIncomingMessage< model.DeleteParagraphListFormatOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteParagraphListFormatOnline.');
         }
@@ -2991,14 +3063,22 @@ export class WordsApi {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "DeleteParagraphListFormatOnlineResponse");
-        const result: model.WordsIncomingMessage< model.DeleteParagraphListFormatOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.DeleteParagraphListFormatOnlineResponse >();
+        result.response = response;
+        result.body = new model.DeleteParagraphListFormatOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "ParagraphListFormatResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -3057,7 +3137,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const body = ObjectSerializer.deserialize(response.body, "Buffer");
         const result: model.WordsIncomingMessage< Buffer > = {body, response};
         return Promise.resolve(result);
     }
@@ -3122,7 +3202,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "TabStopsResponse");
+        const body = ObjectSerializer.deserialize(response.body, "TabStopsResponse");
         const result: model.WordsIncomingMessage< model.TabStopsResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -3131,7 +3211,7 @@ export class WordsApi {
      * Removes a paragraph tab stop from the document node.
      * @param requestObj contains request parameters
      */
-    public async deleteParagraphTabStopOnline(requestObj: model.DeleteParagraphTabStopOnlineRequest): Promise< model.WordsIncomingMessage< DeleteParagraphTabStopOnlineResponse > > {
+    public async deleteParagraphTabStopOnline(requestObj: model.DeleteParagraphTabStopOnlineRequest): Promise< model.WordsIncomingMessage< model.DeleteParagraphTabStopOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteParagraphTabStopOnline.');
         }
@@ -3184,14 +3264,22 @@ export class WordsApi {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "DeleteParagraphTabStopOnlineResponse");
-        const result: model.WordsIncomingMessage< model.DeleteParagraphTabStopOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.DeleteParagraphTabStopOnlineResponse >();
+        result.response = response;
+        result.body = new model.DeleteParagraphTabStopOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "TabStopsResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -3314,7 +3402,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const body = ObjectSerializer.deserialize(response.body, "Buffer");
         const result: model.WordsIncomingMessage< Buffer > = {body, response};
         return Promise.resolve(result);
     }
@@ -3426,7 +3514,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const body = ObjectSerializer.deserialize(response.body, "Buffer");
         const result: model.WordsIncomingMessage< Buffer > = {body, response};
         return Promise.resolve(result);
     }
@@ -3604,7 +3692,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const body = ObjectSerializer.deserialize(response.body, "Buffer");
         const result: model.WordsIncomingMessage< Buffer > = {body, response};
         return Promise.resolve(result);
     }
@@ -3664,7 +3752,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const body = ObjectSerializer.deserialize(response.body, "Buffer");
         const result: model.WordsIncomingMessage< Buffer > = {body, response};
         return Promise.resolve(result);
     }
@@ -3788,7 +3876,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const body = ObjectSerializer.deserialize(response.body, "Buffer");
         const result: model.WordsIncomingMessage< Buffer > = {body, response};
         return Promise.resolve(result);
     }
@@ -3832,7 +3920,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
+        const body = ObjectSerializer.deserialize(response.body, "DocumentResponse");
         const result: model.WordsIncomingMessage< model.DocumentResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -3841,7 +3929,7 @@ export class WordsApi {
      * Removes a watermark from the document.
      * @param requestObj contains request parameters
      */
-    public async deleteWatermarkOnline(requestObj: model.DeleteWatermarkOnlineRequest): Promise< model.WordsIncomingMessage< DeleteWatermarkOnlineResponse > > {
+    public async deleteWatermarkOnline(requestObj: model.DeleteWatermarkOnlineRequest): Promise< model.WordsIncomingMessage< model.DeleteWatermarkOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling deleteWatermarkOnline.');
         }
@@ -3873,14 +3961,22 @@ export class WordsApi {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "DeleteWatermarkOnlineResponse");
-        const result: model.WordsIncomingMessage< model.DeleteWatermarkOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.DeleteWatermarkOnlineResponse >();
+        result.response = response;
+        result.body = new model.DeleteWatermarkOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "DocumentResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -3918,7 +4014,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const body = ObjectSerializer.deserialize(response.body, "Buffer");
         const result: model.WordsIncomingMessage< Buffer > = {body, response};
         return Promise.resolve(result);
     }
@@ -3971,7 +4067,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
+        const body = ObjectSerializer.deserialize(response.body, "DocumentResponse");
         const result: model.WordsIncomingMessage< model.DocumentResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -4030,7 +4126,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const body = ObjectSerializer.deserialize(response.body, "Buffer");
         const result: model.WordsIncomingMessage< Buffer > = {body, response};
         return Promise.resolve(result);
     }
@@ -4057,7 +4153,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "AvailableFontsResponse");
+        const body = ObjectSerializer.deserialize(response.body, "AvailableFontsResponse");
         const result: model.WordsIncomingMessage< model.AvailableFontsResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -4109,7 +4205,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "BookmarkResponse");
+        const body = ObjectSerializer.deserialize(response.body, "BookmarkResponse");
         const result: model.WordsIncomingMessage< model.BookmarkResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -4165,7 +4261,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "BookmarkResponse");
+        const body = ObjectSerializer.deserialize(response.body, "BookmarkResponse");
         const result: model.WordsIncomingMessage< model.BookmarkResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -4206,7 +4302,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "BookmarksResponse");
+        const body = ObjectSerializer.deserialize(response.body, "BookmarksResponse");
         const result: model.WordsIncomingMessage< model.BookmarksResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -4251,7 +4347,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "BookmarksResponse");
+        const body = ObjectSerializer.deserialize(response.body, "BookmarksResponse");
         const result: model.WordsIncomingMessage< model.BookmarksResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -4304,7 +4400,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "BorderResponse");
+        const body = ObjectSerializer.deserialize(response.body, "BorderResponse");
         const result: model.WordsIncomingMessage< model.BorderResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -4361,7 +4457,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "BorderResponse");
+        const body = ObjectSerializer.deserialize(response.body, "BorderResponse");
         const result: model.WordsIncomingMessage< model.BorderResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -4403,7 +4499,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "BordersResponse");
+        const body = ObjectSerializer.deserialize(response.body, "BordersResponse");
         const result: model.WordsIncomingMessage< model.BordersResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -4449,7 +4545,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "BordersResponse");
+        const body = ObjectSerializer.deserialize(response.body, "BordersResponse");
         const result: model.WordsIncomingMessage< model.BordersResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -4501,7 +4597,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "CommentResponse");
+        const body = ObjectSerializer.deserialize(response.body, "CommentResponse");
         const result: model.WordsIncomingMessage< model.CommentResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -4557,7 +4653,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "CommentResponse");
+        const body = ObjectSerializer.deserialize(response.body, "CommentResponse");
         const result: model.WordsIncomingMessage< model.CommentResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -4598,7 +4694,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "CommentsResponse");
+        const body = ObjectSerializer.deserialize(response.body, "CommentsResponse");
         const result: model.WordsIncomingMessage< model.CommentsResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -4643,7 +4739,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "CommentsResponse");
+        const body = ObjectSerializer.deserialize(response.body, "CommentsResponse");
         const result: model.WordsIncomingMessage< model.CommentsResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -4684,7 +4780,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
+        const body = ObjectSerializer.deserialize(response.body, "DocumentResponse");
         const result: model.WordsIncomingMessage< model.DocumentResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -4737,7 +4833,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "DrawingObjectResponse");
+        const body = ObjectSerializer.deserialize(response.body, "DrawingObjectResponse");
         const result: model.WordsIncomingMessage< model.DrawingObjectResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -4794,7 +4890,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "DrawingObjectResponse");
+        const body = ObjectSerializer.deserialize(response.body, "DrawingObjectResponse");
         const result: model.WordsIncomingMessage< model.DrawingObjectResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -4847,7 +4943,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const body = ObjectSerializer.deserialize(response.body, "Buffer");
         const result: model.WordsIncomingMessage< Buffer > = {body, response};
         return Promise.resolve(result);
     }
@@ -4904,7 +5000,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const body = ObjectSerializer.deserialize(response.body, "Buffer");
         const result: model.WordsIncomingMessage< Buffer > = {body, response};
         return Promise.resolve(result);
     }
@@ -4957,7 +5053,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const body = ObjectSerializer.deserialize(response.body, "Buffer");
         const result: model.WordsIncomingMessage< Buffer > = {body, response};
         return Promise.resolve(result);
     }
@@ -5014,7 +5110,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const body = ObjectSerializer.deserialize(response.body, "Buffer");
         const result: model.WordsIncomingMessage< Buffer > = {body, response};
         return Promise.resolve(result);
     }
@@ -5056,7 +5152,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "DrawingObjectsResponse");
+        const body = ObjectSerializer.deserialize(response.body, "DrawingObjectsResponse");
         const result: model.WordsIncomingMessage< model.DrawingObjectsResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -5102,7 +5198,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "DrawingObjectsResponse");
+        const body = ObjectSerializer.deserialize(response.body, "DrawingObjectsResponse");
         const result: model.WordsIncomingMessage< model.DrawingObjectsResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -5144,7 +5240,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "FieldNamesResponse");
+        const body = ObjectSerializer.deserialize(response.body, "FieldNamesResponse");
         const result: model.WordsIncomingMessage< model.FieldNamesResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -5190,7 +5286,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "FieldNamesResponse");
+        const body = ObjectSerializer.deserialize(response.body, "FieldNamesResponse");
         const result: model.WordsIncomingMessage< model.FieldNamesResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -5242,7 +5338,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "HyperlinkResponse");
+        const body = ObjectSerializer.deserialize(response.body, "HyperlinkResponse");
         const result: model.WordsIncomingMessage< model.HyperlinkResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -5298,7 +5394,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "HyperlinkResponse");
+        const body = ObjectSerializer.deserialize(response.body, "HyperlinkResponse");
         const result: model.WordsIncomingMessage< model.HyperlinkResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -5339,7 +5435,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "HyperlinksResponse");
+        const body = ObjectSerializer.deserialize(response.body, "HyperlinksResponse");
         const result: model.WordsIncomingMessage< model.HyperlinksResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -5384,7 +5480,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "HyperlinksResponse");
+        const body = ObjectSerializer.deserialize(response.body, "HyperlinksResponse");
         const result: model.WordsIncomingMessage< model.HyperlinksResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -5425,7 +5521,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "DocumentPropertiesResponse");
+        const body = ObjectSerializer.deserialize(response.body, "DocumentPropertiesResponse");
         const result: model.WordsIncomingMessage< model.DocumentPropertiesResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -5470,7 +5566,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "DocumentPropertiesResponse");
+        const body = ObjectSerializer.deserialize(response.body, "DocumentPropertiesResponse");
         const result: model.WordsIncomingMessage< model.DocumentPropertiesResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -5522,7 +5618,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "DocumentPropertyResponse");
+        const body = ObjectSerializer.deserialize(response.body, "DocumentPropertyResponse");
         const result: model.WordsIncomingMessage< model.DocumentPropertyResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -5578,7 +5674,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "DocumentPropertyResponse");
+        const body = ObjectSerializer.deserialize(response.body, "DocumentPropertyResponse");
         const result: model.WordsIncomingMessage< model.DocumentPropertyResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -5619,7 +5715,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "ProtectionDataResponse");
+        const body = ObjectSerializer.deserialize(response.body, "ProtectionDataResponse");
         const result: model.WordsIncomingMessage< model.ProtectionDataResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -5664,7 +5760,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "ProtectionDataResponse");
+        const body = ObjectSerializer.deserialize(response.body, "ProtectionDataResponse");
         const result: model.WordsIncomingMessage< model.ProtectionDataResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -5708,7 +5804,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "StatDataResponse");
+        const body = ObjectSerializer.deserialize(response.body, "StatDataResponse");
         const result: model.WordsIncomingMessage< model.StatDataResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -5756,7 +5852,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "StatDataResponse");
+        const body = ObjectSerializer.deserialize(response.body, "StatDataResponse");
         const result: model.WordsIncomingMessage< model.StatDataResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -5810,7 +5906,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const body = ObjectSerializer.deserialize(response.body, "Buffer");
         const result: model.WordsIncomingMessage< Buffer > = {body, response};
         return Promise.resolve(result);
     }
@@ -5863,7 +5959,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "FieldResponse");
+        const body = ObjectSerializer.deserialize(response.body, "FieldResponse");
         const result: model.WordsIncomingMessage< model.FieldResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -5920,7 +6016,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "FieldResponse");
+        const body = ObjectSerializer.deserialize(response.body, "FieldResponse");
         const result: model.WordsIncomingMessage< model.FieldResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -5962,7 +6058,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "FieldsResponse");
+        const body = ObjectSerializer.deserialize(response.body, "FieldsResponse");
         const result: model.WordsIncomingMessage< model.FieldsResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -6008,7 +6104,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "FieldsResponse");
+        const body = ObjectSerializer.deserialize(response.body, "FieldsResponse");
         const result: model.WordsIncomingMessage< model.FieldsResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -6046,7 +6142,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "FilesList");
+        const body = ObjectSerializer.deserialize(response.body, "FilesList");
         const result: model.WordsIncomingMessage< model.FilesList > = {body, response};
         return Promise.resolve(result);
     }
@@ -6099,7 +6195,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "FootnoteResponse");
+        const body = ObjectSerializer.deserialize(response.body, "FootnoteResponse");
         const result: model.WordsIncomingMessage< model.FootnoteResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -6156,7 +6252,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "FootnoteResponse");
+        const body = ObjectSerializer.deserialize(response.body, "FootnoteResponse");
         const result: model.WordsIncomingMessage< model.FootnoteResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -6198,7 +6294,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "FootnotesResponse");
+        const body = ObjectSerializer.deserialize(response.body, "FootnotesResponse");
         const result: model.WordsIncomingMessage< model.FootnotesResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -6244,7 +6340,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "FootnotesResponse");
+        const body = ObjectSerializer.deserialize(response.body, "FootnotesResponse");
         const result: model.WordsIncomingMessage< model.FootnotesResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -6297,7 +6393,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "FormFieldResponse");
+        const body = ObjectSerializer.deserialize(response.body, "FormFieldResponse");
         const result: model.WordsIncomingMessage< model.FormFieldResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -6354,7 +6450,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "FormFieldResponse");
+        const body = ObjectSerializer.deserialize(response.body, "FormFieldResponse");
         const result: model.WordsIncomingMessage< model.FormFieldResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -6396,7 +6492,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "FormFieldsResponse");
+        const body = ObjectSerializer.deserialize(response.body, "FormFieldsResponse");
         const result: model.WordsIncomingMessage< model.FormFieldsResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -6442,7 +6538,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "FormFieldsResponse");
+        const body = ObjectSerializer.deserialize(response.body, "FormFieldsResponse");
         const result: model.WordsIncomingMessage< model.FormFieldsResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -6495,7 +6591,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "HeaderFooterResponse");
+        const body = ObjectSerializer.deserialize(response.body, "HeaderFooterResponse");
         const result: model.WordsIncomingMessage< model.HeaderFooterResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -6559,7 +6655,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "HeaderFooterResponse");
+        const body = ObjectSerializer.deserialize(response.body, "HeaderFooterResponse");
         const result: model.WordsIncomingMessage< model.HeaderFooterResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -6627,7 +6723,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "HeaderFooterResponse");
+        const body = ObjectSerializer.deserialize(response.body, "HeaderFooterResponse");
         const result: model.WordsIncomingMessage< model.HeaderFooterResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -6684,7 +6780,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "HeaderFooterResponse");
+        const body = ObjectSerializer.deserialize(response.body, "HeaderFooterResponse");
         const result: model.WordsIncomingMessage< model.HeaderFooterResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -6732,7 +6828,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "HeaderFootersResponse");
+        const body = ObjectSerializer.deserialize(response.body, "HeaderFootersResponse");
         const result: model.WordsIncomingMessage< model.HeaderFootersResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -6784,7 +6880,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "HeaderFootersResponse");
+        const body = ObjectSerializer.deserialize(response.body, "HeaderFootersResponse");
         const result: model.WordsIncomingMessage< model.HeaderFootersResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -6836,7 +6932,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "ListResponse");
+        const body = ObjectSerializer.deserialize(response.body, "ListResponse");
         const result: model.WordsIncomingMessage< model.ListResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -6892,7 +6988,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "ListResponse");
+        const body = ObjectSerializer.deserialize(response.body, "ListResponse");
         const result: model.WordsIncomingMessage< model.ListResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -6933,7 +7029,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "ListsResponse");
+        const body = ObjectSerializer.deserialize(response.body, "ListsResponse");
         const result: model.WordsIncomingMessage< model.ListsResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -6978,7 +7074,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "ListsResponse");
+        const body = ObjectSerializer.deserialize(response.body, "ListsResponse");
         const result: model.WordsIncomingMessage< model.ListsResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -7031,7 +7127,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "OfficeMathObjectResponse");
+        const body = ObjectSerializer.deserialize(response.body, "OfficeMathObjectResponse");
         const result: model.WordsIncomingMessage< model.OfficeMathObjectResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -7088,7 +7184,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "OfficeMathObjectResponse");
+        const body = ObjectSerializer.deserialize(response.body, "OfficeMathObjectResponse");
         const result: model.WordsIncomingMessage< model.OfficeMathObjectResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -7130,7 +7226,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "OfficeMathObjectsResponse");
+        const body = ObjectSerializer.deserialize(response.body, "OfficeMathObjectsResponse");
         const result: model.WordsIncomingMessage< model.OfficeMathObjectsResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -7176,7 +7272,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "OfficeMathObjectsResponse");
+        const body = ObjectSerializer.deserialize(response.body, "OfficeMathObjectsResponse");
         const result: model.WordsIncomingMessage< model.OfficeMathObjectsResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -7229,7 +7325,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "ParagraphResponse");
+        const body = ObjectSerializer.deserialize(response.body, "ParagraphResponse");
         const result: model.WordsIncomingMessage< model.ParagraphResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -7282,7 +7378,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "ParagraphFormatResponse");
+        const body = ObjectSerializer.deserialize(response.body, "ParagraphFormatResponse");
         const result: model.WordsIncomingMessage< model.ParagraphFormatResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -7339,7 +7435,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "ParagraphFormatResponse");
+        const body = ObjectSerializer.deserialize(response.body, "ParagraphFormatResponse");
         const result: model.WordsIncomingMessage< model.ParagraphFormatResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -7392,7 +7488,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "ParagraphListFormatResponse");
+        const body = ObjectSerializer.deserialize(response.body, "ParagraphListFormatResponse");
         const result: model.WordsIncomingMessage< model.ParagraphListFormatResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -7449,7 +7545,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "ParagraphListFormatResponse");
+        const body = ObjectSerializer.deserialize(response.body, "ParagraphListFormatResponse");
         const result: model.WordsIncomingMessage< model.ParagraphListFormatResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -7506,7 +7602,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "ParagraphResponse");
+        const body = ObjectSerializer.deserialize(response.body, "ParagraphResponse");
         const result: model.WordsIncomingMessage< model.ParagraphResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -7548,7 +7644,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "ParagraphLinkCollectionResponse");
+        const body = ObjectSerializer.deserialize(response.body, "ParagraphLinkCollectionResponse");
         const result: model.WordsIncomingMessage< model.ParagraphLinkCollectionResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -7594,7 +7690,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "ParagraphLinkCollectionResponse");
+        const body = ObjectSerializer.deserialize(response.body, "ParagraphLinkCollectionResponse");
         const result: model.WordsIncomingMessage< model.ParagraphLinkCollectionResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -7647,7 +7743,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "TabStopsResponse");
+        const body = ObjectSerializer.deserialize(response.body, "TabStopsResponse");
         const result: model.WordsIncomingMessage< model.TabStopsResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -7704,7 +7800,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "TabStopsResponse");
+        const body = ObjectSerializer.deserialize(response.body, "TabStopsResponse");
         const result: model.WordsIncomingMessage< model.TabStopsResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -7757,7 +7853,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "RangeTextResponse");
+        const body = ObjectSerializer.deserialize(response.body, "RangeTextResponse");
         const result: model.WordsIncomingMessage< model.RangeTextResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -7814,7 +7910,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "RangeTextResponse");
+        const body = ObjectSerializer.deserialize(response.body, "RangeTextResponse");
         const result: model.WordsIncomingMessage< model.RangeTextResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -7872,7 +7968,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "RunResponse");
+        const body = ObjectSerializer.deserialize(response.body, "RunResponse");
         const result: model.WordsIncomingMessage< model.RunResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -7930,7 +8026,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "FontResponse");
+        const body = ObjectSerializer.deserialize(response.body, "FontResponse");
         const result: model.WordsIncomingMessage< model.FontResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -7992,7 +8088,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "FontResponse");
+        const body = ObjectSerializer.deserialize(response.body, "FontResponse");
         const result: model.WordsIncomingMessage< model.FontResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -8054,7 +8150,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "RunResponse");
+        const body = ObjectSerializer.deserialize(response.body, "RunResponse");
         const result: model.WordsIncomingMessage< model.RunResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -8101,7 +8197,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "RunsResponse");
+        const body = ObjectSerializer.deserialize(response.body, "RunsResponse");
         const result: model.WordsIncomingMessage< model.RunsResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -8152,7 +8248,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "RunsResponse");
+        const body = ObjectSerializer.deserialize(response.body, "RunsResponse");
         const result: model.WordsIncomingMessage< model.RunsResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -8204,7 +8300,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "SectionResponse");
+        const body = ObjectSerializer.deserialize(response.body, "SectionResponse");
         const result: model.WordsIncomingMessage< model.SectionResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -8260,7 +8356,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "SectionResponse");
+        const body = ObjectSerializer.deserialize(response.body, "SectionResponse");
         const result: model.WordsIncomingMessage< model.SectionResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -8312,7 +8408,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "SectionPageSetupResponse");
+        const body = ObjectSerializer.deserialize(response.body, "SectionPageSetupResponse");
         const result: model.WordsIncomingMessage< model.SectionPageSetupResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -8368,7 +8464,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "SectionPageSetupResponse");
+        const body = ObjectSerializer.deserialize(response.body, "SectionPageSetupResponse");
         const result: model.WordsIncomingMessage< model.SectionPageSetupResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -8409,7 +8505,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "SectionLinkCollectionResponse");
+        const body = ObjectSerializer.deserialize(response.body, "SectionLinkCollectionResponse");
         const result: model.WordsIncomingMessage< model.SectionLinkCollectionResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -8454,7 +8550,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "SectionLinkCollectionResponse");
+        const body = ObjectSerializer.deserialize(response.body, "SectionLinkCollectionResponse");
         const result: model.WordsIncomingMessage< model.SectionLinkCollectionResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -8506,7 +8602,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "StyleResponse");
+        const body = ObjectSerializer.deserialize(response.body, "StyleResponse");
         const result: model.WordsIncomingMessage< model.StyleResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -8558,7 +8654,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "StyleResponse");
+        const body = ObjectSerializer.deserialize(response.body, "StyleResponse");
         const result: model.WordsIncomingMessage< model.StyleResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -8614,7 +8710,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "StyleResponse");
+        const body = ObjectSerializer.deserialize(response.body, "StyleResponse");
         const result: model.WordsIncomingMessage< model.StyleResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -8670,7 +8766,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "StyleResponse");
+        const body = ObjectSerializer.deserialize(response.body, "StyleResponse");
         const result: model.WordsIncomingMessage< model.StyleResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -8711,7 +8807,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "StylesResponse");
+        const body = ObjectSerializer.deserialize(response.body, "StylesResponse");
         const result: model.WordsIncomingMessage< model.StylesResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -8756,7 +8852,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "StylesResponse");
+        const body = ObjectSerializer.deserialize(response.body, "StylesResponse");
         const result: model.WordsIncomingMessage< model.StylesResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -8809,7 +8905,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "TableResponse");
+        const body = ObjectSerializer.deserialize(response.body, "TableResponse");
         const result: model.WordsIncomingMessage< model.TableResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -8867,7 +8963,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "TableCellResponse");
+        const body = ObjectSerializer.deserialize(response.body, "TableCellResponse");
         const result: model.WordsIncomingMessage< model.TableCellResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -8925,7 +9021,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "TableCellFormatResponse");
+        const body = ObjectSerializer.deserialize(response.body, "TableCellFormatResponse");
         const result: model.WordsIncomingMessage< model.TableCellFormatResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -8987,7 +9083,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "TableCellFormatResponse");
+        const body = ObjectSerializer.deserialize(response.body, "TableCellFormatResponse");
         const result: model.WordsIncomingMessage< model.TableCellFormatResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -9049,7 +9145,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "TableCellResponse");
+        const body = ObjectSerializer.deserialize(response.body, "TableCellResponse");
         const result: model.WordsIncomingMessage< model.TableCellResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -9106,7 +9202,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "TableResponse");
+        const body = ObjectSerializer.deserialize(response.body, "TableResponse");
         const result: model.WordsIncomingMessage< model.TableResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -9159,7 +9255,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "TablePropertiesResponse");
+        const body = ObjectSerializer.deserialize(response.body, "TablePropertiesResponse");
         const result: model.WordsIncomingMessage< model.TablePropertiesResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -9216,7 +9312,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "TablePropertiesResponse");
+        const body = ObjectSerializer.deserialize(response.body, "TablePropertiesResponse");
         const result: model.WordsIncomingMessage< model.TablePropertiesResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -9274,7 +9370,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "TableRowResponse");
+        const body = ObjectSerializer.deserialize(response.body, "TableRowResponse");
         const result: model.WordsIncomingMessage< model.TableRowResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -9332,7 +9428,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "TableRowFormatResponse");
+        const body = ObjectSerializer.deserialize(response.body, "TableRowFormatResponse");
         const result: model.WordsIncomingMessage< model.TableRowFormatResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -9394,7 +9490,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "TableRowFormatResponse");
+        const body = ObjectSerializer.deserialize(response.body, "TableRowFormatResponse");
         const result: model.WordsIncomingMessage< model.TableRowFormatResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -9456,7 +9552,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "TableRowResponse");
+        const body = ObjectSerializer.deserialize(response.body, "TableRowResponse");
         const result: model.WordsIncomingMessage< model.TableRowResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -9498,7 +9594,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "TableLinkCollectionResponse");
+        const body = ObjectSerializer.deserialize(response.body, "TableLinkCollectionResponse");
         const result: model.WordsIncomingMessage< model.TableLinkCollectionResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -9544,7 +9640,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "TableLinkCollectionResponse");
+        const body = ObjectSerializer.deserialize(response.body, "TableLinkCollectionResponse");
         const result: model.WordsIncomingMessage< model.TableLinkCollectionResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -9599,7 +9695,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "CommentResponse");
+        const body = ObjectSerializer.deserialize(response.body, "CommentResponse");
         const result: model.WordsIncomingMessage< model.CommentResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -9608,7 +9704,7 @@ export class WordsApi {
      * Inserts a new comment to the document.
      * @param requestObj contains request parameters
      */
-    public async insertCommentOnline(requestObj: model.InsertCommentOnlineRequest): Promise< model.WordsIncomingMessage< InsertCommentOnlineResponse > > {
+    public async insertCommentOnline(requestObj: model.InsertCommentOnlineRequest): Promise< model.WordsIncomingMessage< model.InsertCommentOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling insertCommentOnline.');
         }
@@ -9646,21 +9742,29 @@ export class WordsApi {
             formParams.Document = requestObj.document;
         }
         if (requestObj.comment !== undefined) {
-            formParams.Comment = JSON.stringify(requestObj.comment);
+            formParams.Comment = JSON.stringify(ObjectSerializer.serialize(requestObj.comment, requestObj.comment.constructor.name));
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "InsertCommentOnlineResponse");
-        const result: model.WordsIncomingMessage< model.InsertCommentOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.InsertCommentOnlineResponse >();
+        result.response = response;
+        result.body = new model.InsertCommentOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "CommentResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -9734,7 +9838,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "DrawingObjectResponse");
+        const body = ObjectSerializer.deserialize(response.body, "DrawingObjectResponse");
         const result: model.WordsIncomingMessage< model.DrawingObjectResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -9743,7 +9847,7 @@ export class WordsApi {
      * Inserts a new DrawingObject to the document node.
      * @param requestObj contains request parameters
      */
-    public async insertDrawingObjectOnline(requestObj: model.InsertDrawingObjectOnlineRequest): Promise< model.WordsIncomingMessage< InsertDrawingObjectOnlineResponse > > {
+    public async insertDrawingObjectOnline(requestObj: model.InsertDrawingObjectOnlineRequest): Promise< model.WordsIncomingMessage< model.InsertDrawingObjectOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling insertDrawingObjectOnline.');
         }
@@ -9792,7 +9896,7 @@ export class WordsApi {
             formParams.Document = requestObj.document;
         }
         if (requestObj.drawingObject !== undefined) {
-            formParams.DrawingObject = JSON.stringify(requestObj.drawingObject);
+            formParams.DrawingObject = JSON.stringify(ObjectSerializer.serialize(requestObj.drawingObject, requestObj.drawingObject.constructor.name));
         }
         if (requestObj.imageFile !== undefined) {
             formParams.ImageFile = requestObj.imageFile;
@@ -9802,14 +9906,22 @@ export class WordsApi {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "InsertDrawingObjectOnlineResponse");
-        const result: model.WordsIncomingMessage< model.InsertDrawingObjectOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.InsertDrawingObjectOnlineResponse >();
+        result.response = response;
+        result.body = new model.InsertDrawingObjectOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "DrawingObjectResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -9865,7 +9977,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "FieldResponse");
+        const body = ObjectSerializer.deserialize(response.body, "FieldResponse");
         const result: model.WordsIncomingMessage< model.FieldResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -9874,7 +9986,7 @@ export class WordsApi {
      * Inserts a new field to the document node.
      * @param requestObj contains request parameters
      */
-    public async insertFieldOnline(requestObj: model.InsertFieldOnlineRequest): Promise< model.WordsIncomingMessage< InsertFieldOnlineResponse > > {
+    public async insertFieldOnline(requestObj: model.InsertFieldOnlineRequest): Promise< model.WordsIncomingMessage< model.InsertFieldOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling insertFieldOnline.');
         }
@@ -9914,21 +10026,29 @@ export class WordsApi {
             formParams.Document = requestObj.document;
         }
         if (requestObj.field !== undefined) {
-            formParams.Field = JSON.stringify(requestObj.field);
+            formParams.Field = JSON.stringify(ObjectSerializer.serialize(requestObj.field, requestObj.field.constructor.name));
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "InsertFieldOnlineResponse");
-        const result: model.WordsIncomingMessage< model.InsertFieldOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.InsertFieldOnlineResponse >();
+        result.response = response;
+        result.body = new model.InsertFieldOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "FieldResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -9983,7 +10103,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "FootnoteResponse");
+        const body = ObjectSerializer.deserialize(response.body, "FootnoteResponse");
         const result: model.WordsIncomingMessage< model.FootnoteResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -9992,7 +10112,7 @@ export class WordsApi {
      * Inserts a new footnote to the document node.
      * @param requestObj contains request parameters
      */
-    public async insertFootnoteOnline(requestObj: model.InsertFootnoteOnlineRequest): Promise< model.WordsIncomingMessage< InsertFootnoteOnlineResponse > > {
+    public async insertFootnoteOnline(requestObj: model.InsertFootnoteOnlineRequest): Promise< model.WordsIncomingMessage< model.InsertFootnoteOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling insertFootnoteOnline.');
         }
@@ -10031,21 +10151,29 @@ export class WordsApi {
             formParams.Document = requestObj.document;
         }
         if (requestObj.footnoteDto !== undefined) {
-            formParams.FootnoteDto = JSON.stringify(requestObj.footnoteDto);
+            formParams.FootnoteDto = JSON.stringify(ObjectSerializer.serialize(requestObj.footnoteDto, requestObj.footnoteDto.constructor.name));
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "InsertFootnoteOnlineResponse");
-        const result: model.WordsIncomingMessage< model.InsertFootnoteOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.InsertFootnoteOnlineResponse >();
+        result.response = response;
+        result.body = new model.InsertFootnoteOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "FootnoteResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -10101,7 +10229,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "FormFieldResponse");
+        const body = ObjectSerializer.deserialize(response.body, "FormFieldResponse");
         const result: model.WordsIncomingMessage< model.FormFieldResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -10110,7 +10238,7 @@ export class WordsApi {
      * Inserts a new form field to the document node.
      * @param requestObj contains request parameters
      */
-    public async insertFormFieldOnline(requestObj: model.InsertFormFieldOnlineRequest): Promise< model.WordsIncomingMessage< InsertFormFieldOnlineResponse > > {
+    public async insertFormFieldOnline(requestObj: model.InsertFormFieldOnlineRequest): Promise< model.WordsIncomingMessage< model.InsertFormFieldOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling insertFormFieldOnline.');
         }
@@ -10150,21 +10278,29 @@ export class WordsApi {
             formParams.Document = requestObj.document;
         }
         if (requestObj.formField !== undefined) {
-            formParams.FormField = JSON.stringify(requestObj.formField);
+            formParams.FormField = JSON.stringify(ObjectSerializer.serialize(requestObj.formField, requestObj.formField.constructor.name));
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "InsertFormFieldOnlineResponse");
-        const result: model.WordsIncomingMessage< model.InsertFormFieldOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.InsertFormFieldOnlineResponse >();
+        result.response = response;
+        result.body = new model.InsertFormFieldOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "FormFieldResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -10224,7 +10360,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "HeaderFooterResponse");
+        const body = ObjectSerializer.deserialize(response.body, "HeaderFooterResponse");
         const result: model.WordsIncomingMessage< model.HeaderFooterResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -10233,7 +10369,7 @@ export class WordsApi {
      * Inserts a new HeaderFooter object to the document section.
      * @param requestObj contains request parameters
      */
-    public async insertHeaderFooterOnline(requestObj: model.InsertHeaderFooterOnlineRequest): Promise< model.WordsIncomingMessage< InsertHeaderFooterOnlineResponse > > {
+    public async insertHeaderFooterOnline(requestObj: model.InsertHeaderFooterOnlineRequest): Promise< model.WordsIncomingMessage< model.InsertHeaderFooterOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling insertHeaderFooterOnline.');
         }
@@ -10284,14 +10420,22 @@ export class WordsApi {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "InsertHeaderFooterOnlineResponse");
-        const result: model.WordsIncomingMessage< model.InsertHeaderFooterOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.InsertHeaderFooterOnlineResponse >();
+        result.response = response;
+        result.body = new model.InsertHeaderFooterOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "HeaderFooterResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -10345,7 +10489,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "ListResponse");
+        const body = ObjectSerializer.deserialize(response.body, "ListResponse");
         const result: model.WordsIncomingMessage< model.ListResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -10354,7 +10498,7 @@ export class WordsApi {
      * Inserts a new list to the document.
      * @param requestObj contains request parameters
      */
-    public async insertListOnline(requestObj: model.InsertListOnlineRequest): Promise< model.WordsIncomingMessage< InsertListOnlineResponse > > {
+    public async insertListOnline(requestObj: model.InsertListOnlineRequest): Promise< model.WordsIncomingMessage< model.InsertListOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling insertListOnline.');
         }
@@ -10392,21 +10536,29 @@ export class WordsApi {
             formParams.Document = requestObj.document;
         }
         if (requestObj.listInsert !== undefined) {
-            formParams.ListInsert = JSON.stringify(requestObj.listInsert);
+            formParams.ListInsert = JSON.stringify(ObjectSerializer.serialize(requestObj.listInsert, requestObj.listInsert.constructor.name));
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "InsertListOnlineResponse");
-        const result: model.WordsIncomingMessage< model.InsertListOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.InsertListOnlineResponse >();
+        result.response = response;
+        result.body = new model.InsertListOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "ListResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -10470,7 +10622,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "TabStopsResponse");
+        const body = ObjectSerializer.deserialize(response.body, "TabStopsResponse");
         const result: model.WordsIncomingMessage< model.TabStopsResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -10479,7 +10631,7 @@ export class WordsApi {
      * Inserts a new or updates an existing paragraph tab stop in the document node.
      * @param requestObj contains request parameters
      */
-    public async insertOrUpdateParagraphTabStopOnline(requestObj: model.InsertOrUpdateParagraphTabStopOnlineRequest): Promise< model.WordsIncomingMessage< InsertOrUpdateParagraphTabStopOnlineResponse > > {
+    public async insertOrUpdateParagraphTabStopOnline(requestObj: model.InsertOrUpdateParagraphTabStopOnlineRequest): Promise< model.WordsIncomingMessage< model.InsertOrUpdateParagraphTabStopOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling insertOrUpdateParagraphTabStopOnline.');
         }
@@ -10527,21 +10679,29 @@ export class WordsApi {
             formParams.Document = requestObj.document;
         }
         if (requestObj.tabStopInsertDto !== undefined) {
-            formParams.TabStopInsertDto = JSON.stringify(requestObj.tabStopInsertDto);
+            formParams.TabStopInsertDto = JSON.stringify(ObjectSerializer.serialize(requestObj.tabStopInsertDto, requestObj.tabStopInsertDto.constructor.name));
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "InsertOrUpdateParagraphTabStopOnlineResponse");
-        const result: model.WordsIncomingMessage< model.InsertOrUpdateParagraphTabStopOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.InsertOrUpdateParagraphTabStopOnlineResponse >();
+        result.response = response;
+        result.body = new model.InsertOrUpdateParagraphTabStopOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "TabStopsResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -10595,7 +10755,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
+        const body = ObjectSerializer.deserialize(response.body, "DocumentResponse");
         const result: model.WordsIncomingMessage< model.DocumentResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -10604,7 +10764,7 @@ export class WordsApi {
      * Inserts page numbers to the document.
      * @param requestObj contains request parameters
      */
-    public async insertPageNumbersOnline(requestObj: model.InsertPageNumbersOnlineRequest): Promise< model.WordsIncomingMessage< InsertPageNumbersOnlineResponse > > {
+    public async insertPageNumbersOnline(requestObj: model.InsertPageNumbersOnlineRequest): Promise< model.WordsIncomingMessage< model.InsertPageNumbersOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling insertPageNumbersOnline.');
         }
@@ -10642,21 +10802,29 @@ export class WordsApi {
             formParams.Document = requestObj.document;
         }
         if (requestObj.pageNumber !== undefined) {
-            formParams.PageNumber = JSON.stringify(requestObj.pageNumber);
+            formParams.PageNumber = JSON.stringify(ObjectSerializer.serialize(requestObj.pageNumber, requestObj.pageNumber.constructor.name));
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "InsertPageNumbersOnlineResponse");
-        const result: model.WordsIncomingMessage< model.InsertPageNumbersOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.InsertPageNumbersOnlineResponse >();
+        result.response = response;
+        result.body = new model.InsertPageNumbersOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "DocumentResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -10712,7 +10880,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "ParagraphResponse");
+        const body = ObjectSerializer.deserialize(response.body, "ParagraphResponse");
         const result: model.WordsIncomingMessage< model.ParagraphResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -10721,7 +10889,7 @@ export class WordsApi {
      * Inserts a new paragraph to the document node.
      * @param requestObj contains request parameters
      */
-    public async insertParagraphOnline(requestObj: model.InsertParagraphOnlineRequest): Promise< model.WordsIncomingMessage< InsertParagraphOnlineResponse > > {
+    public async insertParagraphOnline(requestObj: model.InsertParagraphOnlineRequest): Promise< model.WordsIncomingMessage< model.InsertParagraphOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling insertParagraphOnline.');
         }
@@ -10761,21 +10929,29 @@ export class WordsApi {
             formParams.Document = requestObj.document;
         }
         if (requestObj.paragraph !== undefined) {
-            formParams.Paragraph = JSON.stringify(requestObj.paragraph);
+            formParams.Paragraph = JSON.stringify(ObjectSerializer.serialize(requestObj.paragraph, requestObj.paragraph.constructor.name));
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "InsertParagraphOnlineResponse");
-        const result: model.WordsIncomingMessage< model.InsertParagraphOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.InsertParagraphOnlineResponse >();
+        result.response = response;
+        result.body = new model.InsertParagraphOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "ParagraphResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -10836,7 +11012,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "RunResponse");
+        const body = ObjectSerializer.deserialize(response.body, "RunResponse");
         const result: model.WordsIncomingMessage< model.RunResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -10845,7 +11021,7 @@ export class WordsApi {
      * Inserts a new Run object to the paragraph.
      * @param requestObj contains request parameters
      */
-    public async insertRunOnline(requestObj: model.InsertRunOnlineRequest): Promise< model.WordsIncomingMessage< InsertRunOnlineResponse > > {
+    public async insertRunOnline(requestObj: model.InsertRunOnlineRequest): Promise< model.WordsIncomingMessage< model.InsertRunOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling insertRunOnline.');
         }
@@ -10890,21 +11066,29 @@ export class WordsApi {
             formParams.Document = requestObj.document;
         }
         if (requestObj.run !== undefined) {
-            formParams.Run = JSON.stringify(requestObj.run);
+            formParams.Run = JSON.stringify(ObjectSerializer.serialize(requestObj.run, requestObj.run.constructor.name));
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "InsertRunOnlineResponse");
-        const result: model.WordsIncomingMessage< model.InsertRunOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.InsertRunOnlineResponse >();
+        result.response = response;
+        result.body = new model.InsertRunOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "RunResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -10958,7 +11142,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "StyleResponse");
+        const body = ObjectSerializer.deserialize(response.body, "StyleResponse");
         const result: model.WordsIncomingMessage< model.StyleResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -10967,7 +11151,7 @@ export class WordsApi {
      * Inserts a new style to the document.
      * @param requestObj contains request parameters
      */
-    public async insertStyleOnline(requestObj: model.InsertStyleOnlineRequest): Promise< model.WordsIncomingMessage< InsertStyleOnlineResponse > > {
+    public async insertStyleOnline(requestObj: model.InsertStyleOnlineRequest): Promise< model.WordsIncomingMessage< model.InsertStyleOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling insertStyleOnline.');
         }
@@ -11005,21 +11189,29 @@ export class WordsApi {
             formParams.Document = requestObj.document;
         }
         if (requestObj.styleInsert !== undefined) {
-            formParams.StyleInsert = JSON.stringify(requestObj.styleInsert);
+            formParams.StyleInsert = JSON.stringify(ObjectSerializer.serialize(requestObj.styleInsert, requestObj.styleInsert.constructor.name));
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "InsertStyleOnlineResponse");
-        const result: model.WordsIncomingMessage< model.InsertStyleOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.InsertStyleOnlineResponse >();
+        result.response = response;
+        result.body = new model.InsertStyleOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "StyleResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -11074,7 +11266,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "TableResponse");
+        const body = ObjectSerializer.deserialize(response.body, "TableResponse");
         const result: model.WordsIncomingMessage< model.TableResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -11135,7 +11327,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "TableCellResponse");
+        const body = ObjectSerializer.deserialize(response.body, "TableCellResponse");
         const result: model.WordsIncomingMessage< model.TableCellResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -11144,7 +11336,7 @@ export class WordsApi {
      * Inserts a new cell to the table row.
      * @param requestObj contains request parameters
      */
-    public async insertTableCellOnline(requestObj: model.InsertTableCellOnlineRequest): Promise< model.WordsIncomingMessage< InsertTableCellOnlineResponse > > {
+    public async insertTableCellOnline(requestObj: model.InsertTableCellOnlineRequest): Promise< model.WordsIncomingMessage< model.InsertTableCellOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling insertTableCellOnline.');
         }
@@ -11188,21 +11380,29 @@ export class WordsApi {
             formParams.Document = requestObj.document;
         }
         if (requestObj.cell !== undefined) {
-            formParams.Cell = JSON.stringify(requestObj.cell);
+            formParams.Cell = JSON.stringify(ObjectSerializer.serialize(requestObj.cell, requestObj.cell.constructor.name));
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "InsertTableCellOnlineResponse");
-        const result: model.WordsIncomingMessage< model.InsertTableCellOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.InsertTableCellOnlineResponse >();
+        result.response = response;
+        result.body = new model.InsertTableCellOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "TableCellResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -11210,7 +11410,7 @@ export class WordsApi {
      * Inserts a new table to the document node.
      * @param requestObj contains request parameters
      */
-    public async insertTableOnline(requestObj: model.InsertTableOnlineRequest): Promise< model.WordsIncomingMessage< InsertTableOnlineResponse > > {
+    public async insertTableOnline(requestObj: model.InsertTableOnlineRequest): Promise< model.WordsIncomingMessage< model.InsertTableOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling insertTableOnline.');
         }
@@ -11249,21 +11449,29 @@ export class WordsApi {
             formParams.Document = requestObj.document;
         }
         if (requestObj.table !== undefined) {
-            formParams.Table = JSON.stringify(requestObj.table);
+            formParams.Table = JSON.stringify(ObjectSerializer.serialize(requestObj.table, requestObj.table.constructor.name));
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "InsertTableOnlineResponse");
-        const result: model.WordsIncomingMessage< model.InsertTableOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.InsertTableOnlineResponse >();
+        result.response = response;
+        result.body = new model.InsertTableOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "TableResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -11323,7 +11531,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "TableRowResponse");
+        const body = ObjectSerializer.deserialize(response.body, "TableRowResponse");
         const result: model.WordsIncomingMessage< model.TableRowResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -11332,7 +11540,7 @@ export class WordsApi {
      * Inserts a new row to the table.
      * @param requestObj contains request parameters
      */
-    public async insertTableRowOnline(requestObj: model.InsertTableRowOnlineRequest): Promise< model.WordsIncomingMessage< InsertTableRowOnlineResponse > > {
+    public async insertTableRowOnline(requestObj: model.InsertTableRowOnlineRequest): Promise< model.WordsIncomingMessage< model.InsertTableRowOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling insertTableRowOnline.');
         }
@@ -11376,21 +11584,29 @@ export class WordsApi {
             formParams.Document = requestObj.document;
         }
         if (requestObj.row !== undefined) {
-            formParams.Row = JSON.stringify(requestObj.row);
+            formParams.Row = JSON.stringify(ObjectSerializer.serialize(requestObj.row, requestObj.row.constructor.name));
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "InsertTableRowOnlineResponse");
-        const result: model.WordsIncomingMessage< model.InsertTableRowOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.InsertTableRowOnlineResponse >();
+        result.response = response;
+        result.body = new model.InsertTableRowOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "TableRowResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -11442,7 +11658,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
+        const body = ObjectSerializer.deserialize(response.body, "DocumentResponse");
         const result: model.WordsIncomingMessage< model.DocumentResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -11451,7 +11667,7 @@ export class WordsApi {
      * Inserts a new watermark image to the document.
      * @param requestObj contains request parameters
      */
-    public async insertWatermarkImageOnline(requestObj: model.InsertWatermarkImageOnlineRequest): Promise< model.WordsIncomingMessage< InsertWatermarkImageOnlineResponse > > {
+    public async insertWatermarkImageOnline(requestObj: model.InsertWatermarkImageOnlineRequest): Promise< model.WordsIncomingMessage< model.InsertWatermarkImageOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling insertWatermarkImageOnline.');
         }
@@ -11498,14 +11714,22 @@ export class WordsApi {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "InsertWatermarkImageOnlineResponse");
-        const result: model.WordsIncomingMessage< model.InsertWatermarkImageOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.InsertWatermarkImageOnlineResponse >();
+        result.response = response;
+        result.body = new model.InsertWatermarkImageOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "DocumentResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -11559,7 +11783,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
+        const body = ObjectSerializer.deserialize(response.body, "DocumentResponse");
         const result: model.WordsIncomingMessage< model.DocumentResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -11568,7 +11792,7 @@ export class WordsApi {
      * Inserts a new watermark text to the document.
      * @param requestObj contains request parameters
      */
-    public async insertWatermarkTextOnline(requestObj: model.InsertWatermarkTextOnlineRequest): Promise< model.WordsIncomingMessage< InsertWatermarkTextOnlineResponse > > {
+    public async insertWatermarkTextOnline(requestObj: model.InsertWatermarkTextOnlineRequest): Promise< model.WordsIncomingMessage< model.InsertWatermarkTextOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling insertWatermarkTextOnline.');
         }
@@ -11606,21 +11830,29 @@ export class WordsApi {
             formParams.Document = requestObj.document;
         }
         if (requestObj.watermarkText !== undefined) {
-            formParams.WatermarkText = JSON.stringify(requestObj.watermarkText);
+            formParams.WatermarkText = JSON.stringify(ObjectSerializer.serialize(requestObj.watermarkText, requestObj.watermarkText.constructor.name));
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "InsertWatermarkTextOnlineResponse");
-        const result: model.WordsIncomingMessage< model.InsertWatermarkTextOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.InsertWatermarkTextOnlineResponse >();
+        result.response = response;
+        result.body = new model.InsertWatermarkTextOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "DocumentResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -11657,7 +11889,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "SaveResponse");
+        const body = ObjectSerializer.deserialize(response.body, "SaveResponse");
         const result: model.WordsIncomingMessage< model.SaveResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -11858,7 +12090,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const body = ObjectSerializer.deserialize(response.body, "Buffer");
         const result: model.WordsIncomingMessage< Buffer > = {body, response};
         return Promise.resolve(result);
     }
@@ -11911,7 +12143,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "ProtectionDataResponse");
+        const body = ObjectSerializer.deserialize(response.body, "ProtectionDataResponse");
         const result: model.WordsIncomingMessage< model.ProtectionDataResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -11920,7 +12152,7 @@ export class WordsApi {
      * Adds protection to the document.
      * @param requestObj contains request parameters
      */
-    public async protectDocumentOnline(requestObj: model.ProtectDocumentOnlineRequest): Promise< model.WordsIncomingMessage< ProtectDocumentOnlineResponse > > {
+    public async protectDocumentOnline(requestObj: model.ProtectDocumentOnlineRequest): Promise< model.WordsIncomingMessage< model.ProtectDocumentOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling protectDocumentOnline.');
         }
@@ -11956,21 +12188,29 @@ export class WordsApi {
             formParams.Document = requestObj.document;
         }
         if (requestObj.protectionRequest !== undefined) {
-            formParams.ProtectionRequest = JSON.stringify(requestObj.protectionRequest);
+            formParams.ProtectionRequest = JSON.stringify(ObjectSerializer.serialize(requestObj.protectionRequest, requestObj.protectionRequest.constructor.name));
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "ProtectDocumentOnlineResponse");
-        const result: model.WordsIncomingMessage< model.ProtectDocumentOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.ProtectDocumentOnlineResponse >();
+        result.response = response;
+        result.body = new model.ProtectDocumentOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "ProtectionDataResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -12011,7 +12251,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "RevisionsModificationResponse");
+        const body = ObjectSerializer.deserialize(response.body, "RevisionsModificationResponse");
         const result: model.WordsIncomingMessage< model.RevisionsModificationResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -12020,7 +12260,7 @@ export class WordsApi {
      * Rejects all revisions in the document.
      * @param requestObj contains request parameters
      */
-    public async rejectAllRevisionsOnline(requestObj: model.RejectAllRevisionsOnlineRequest): Promise< model.WordsIncomingMessage< RejectAllRevisionsOnlineResponse > > {
+    public async rejectAllRevisionsOnline(requestObj: model.RejectAllRevisionsOnlineRequest): Promise< model.WordsIncomingMessage< model.RejectAllRevisionsOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling rejectAllRevisionsOnline.');
         }
@@ -12050,14 +12290,22 @@ export class WordsApi {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "RejectAllRevisionsOnlineResponse");
-        const result: model.WordsIncomingMessage< model.RejectAllRevisionsOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.RejectAllRevisionsOnlineResponse >();
+        result.response = response;
+        result.body = new model.RejectAllRevisionsOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "RevisionsModificationResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -12110,7 +12358,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
+        const body = ObjectSerializer.deserialize(response.body, "DocumentResponse");
         const result: model.WordsIncomingMessage< model.DocumentResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -12119,7 +12367,7 @@ export class WordsApi {
      * Removes a range from the document.
      * @param requestObj contains request parameters
      */
-    public async removeRangeOnline(requestObj: model.RemoveRangeOnlineRequest): Promise< model.WordsIncomingMessage< RemoveRangeOnlineResponse > > {
+    public async removeRangeOnline(requestObj: model.RemoveRangeOnlineRequest): Promise< model.WordsIncomingMessage< model.RemoveRangeOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling removeRangeOnline.');
         }
@@ -12161,14 +12409,22 @@ export class WordsApi {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "RemoveRangeOnlineResponse");
-        const result: model.WordsIncomingMessage< model.RemoveRangeOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.RemoveRangeOnlineResponse >();
+        result.response = response;
+        result.body = new model.RemoveRangeOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "DocumentResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -12233,7 +12489,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const body = ObjectSerializer.deserialize(response.body, "Buffer");
         const result: model.WordsIncomingMessage< Buffer > = {body, response};
         return Promise.resolve(result);
     }
@@ -12303,7 +12559,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const body = ObjectSerializer.deserialize(response.body, "Buffer");
         const result: model.WordsIncomingMessage< Buffer > = {body, response};
         return Promise.resolve(result);
     }
@@ -12369,7 +12625,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const body = ObjectSerializer.deserialize(response.body, "Buffer");
         const result: model.WordsIncomingMessage< Buffer > = {body, response};
         return Promise.resolve(result);
     }
@@ -12439,7 +12695,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const body = ObjectSerializer.deserialize(response.body, "Buffer");
         const result: model.WordsIncomingMessage< Buffer > = {body, response};
         return Promise.resolve(result);
     }
@@ -12503,7 +12759,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const body = ObjectSerializer.deserialize(response.body, "Buffer");
         const result: model.WordsIncomingMessage< Buffer > = {body, response};
         return Promise.resolve(result);
     }
@@ -12571,7 +12827,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const body = ObjectSerializer.deserialize(response.body, "Buffer");
         const result: model.WordsIncomingMessage< Buffer > = {body, response};
         return Promise.resolve(result);
     }
@@ -12637,7 +12893,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const body = ObjectSerializer.deserialize(response.body, "Buffer");
         const result: model.WordsIncomingMessage< Buffer > = {body, response};
         return Promise.resolve(result);
     }
@@ -12707,7 +12963,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const body = ObjectSerializer.deserialize(response.body, "Buffer");
         const result: model.WordsIncomingMessage< Buffer > = {body, response};
         return Promise.resolve(result);
     }
@@ -12773,7 +13029,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const body = ObjectSerializer.deserialize(response.body, "Buffer");
         const result: model.WordsIncomingMessage< Buffer > = {body, response};
         return Promise.resolve(result);
     }
@@ -12843,7 +13099,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const body = ObjectSerializer.deserialize(response.body, "Buffer");
         const result: model.WordsIncomingMessage< Buffer > = {body, response};
         return Promise.resolve(result);
     }
@@ -12898,7 +13154,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "ReplaceTextResponse");
+        const body = ObjectSerializer.deserialize(response.body, "ReplaceTextResponse");
         const result: model.WordsIncomingMessage< model.ReplaceTextResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -12907,7 +13163,7 @@ export class WordsApi {
      * Replaces text in the document.
      * @param requestObj contains request parameters
      */
-    public async replaceTextOnline(requestObj: model.ReplaceTextOnlineRequest): Promise< model.WordsIncomingMessage< ReplaceTextOnlineResponse > > {
+    public async replaceTextOnline(requestObj: model.ReplaceTextOnlineRequest): Promise< model.WordsIncomingMessage< model.ReplaceTextOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling replaceTextOnline.');
         }
@@ -12945,21 +13201,29 @@ export class WordsApi {
             formParams.Document = requestObj.document;
         }
         if (requestObj.replaceText !== undefined) {
-            formParams.ReplaceText = JSON.stringify(requestObj.replaceText);
+            formParams.ReplaceText = JSON.stringify(ObjectSerializer.serialize(requestObj.replaceText, requestObj.replaceText.constructor.name));
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "ReplaceTextOnlineResponse");
-        const result: model.WordsIncomingMessage< model.ReplaceTextOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.ReplaceTextOnlineResponse >();
+        result.response = response;
+        result.body = new model.ReplaceTextOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "ReplaceTextResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -13023,7 +13287,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
+        const body = ObjectSerializer.deserialize(response.body, "DocumentResponse");
         const result: model.WordsIncomingMessage< model.DocumentResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -13032,7 +13296,7 @@ export class WordsApi {
      * Replaces a range with text in the document.
      * @param requestObj contains request parameters
      */
-    public async replaceWithTextOnline(requestObj: model.ReplaceWithTextOnlineRequest): Promise< model.WordsIncomingMessage< ReplaceWithTextOnlineResponse > > {
+    public async replaceWithTextOnline(requestObj: model.ReplaceWithTextOnlineRequest): Promise< model.WordsIncomingMessage< model.ReplaceWithTextOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling replaceWithTextOnline.');
         }
@@ -13080,21 +13344,29 @@ export class WordsApi {
             formParams.Document = requestObj.document;
         }
         if (requestObj.rangeText !== undefined) {
-            formParams.RangeText = JSON.stringify(requestObj.rangeText);
+            formParams.RangeText = JSON.stringify(ObjectSerializer.serialize(requestObj.rangeText, requestObj.rangeText.constructor.name));
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "ReplaceWithTextOnlineResponse");
-        const result: model.WordsIncomingMessage< model.ReplaceWithTextOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.ReplaceWithTextOnlineResponse >();
+        result.response = response;
+        result.body = new model.ReplaceWithTextOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "DocumentResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -13170,7 +13442,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "SaveResponse");
+        const body = ObjectSerializer.deserialize(response.body, "SaveResponse");
         const result: model.WordsIncomingMessage< model.SaveResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -13179,7 +13451,7 @@ export class WordsApi {
      * Converts a document in cloud storage to the specified format.
      * @param requestObj contains request parameters
      */
-    public async saveAsOnline(requestObj: model.SaveAsOnlineRequest): Promise< model.WordsIncomingMessage< SaveAsOnlineResponse > > {
+    public async saveAsOnline(requestObj: model.SaveAsOnlineRequest): Promise< model.WordsIncomingMessage< model.SaveAsOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling saveAsOnline.');
         }
@@ -13215,21 +13487,29 @@ export class WordsApi {
             formParams.Document = requestObj.document;
         }
         if (requestObj.saveOptionsData !== undefined) {
-            formParams.SaveOptionsData = JSON.stringify(requestObj.saveOptionsData);
+            formParams.SaveOptionsData = JSON.stringify(ObjectSerializer.serialize(requestObj.saveOptionsData, requestObj.saveOptionsData.constructor.name));
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "SaveAsOnlineResponse");
-        const result: model.WordsIncomingMessage< model.SaveAsOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.SaveAsOnlineResponse >();
+        result.response = response;
+        result.body = new model.SaveAsOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "SaveResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -13292,7 +13572,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
+        const body = ObjectSerializer.deserialize(response.body, "DocumentResponse");
         const result: model.WordsIncomingMessage< model.DocumentResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -13301,7 +13581,7 @@ export class WordsApi {
      * Saves a range as a new document.
      * @param requestObj contains request parameters
      */
-    public async saveAsRangeOnline(requestObj: model.SaveAsRangeOnlineRequest): Promise< model.WordsIncomingMessage< SaveAsRangeOnlineResponse > > {
+    public async saveAsRangeOnline(requestObj: model.SaveAsRangeOnlineRequest): Promise< model.WordsIncomingMessage< model.SaveAsRangeOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling saveAsRangeOnline.');
         }
@@ -13348,21 +13628,29 @@ export class WordsApi {
             formParams.Document = requestObj.document;
         }
         if (requestObj.documentParameters !== undefined) {
-            formParams.DocumentParameters = JSON.stringify(requestObj.documentParameters);
+            formParams.DocumentParameters = JSON.stringify(ObjectSerializer.serialize(requestObj.documentParameters, requestObj.documentParameters.constructor.name));
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "SaveAsRangeOnlineResponse");
-        const result: model.WordsIncomingMessage< model.SaveAsRangeOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.SaveAsRangeOnlineResponse >();
+        result.response = response;
+        result.body = new model.SaveAsRangeOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "DocumentResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -13431,7 +13719,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "SaveResponse");
+        const body = ObjectSerializer.deserialize(response.body, "SaveResponse");
         const result: model.WordsIncomingMessage< model.SaveResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -13440,7 +13728,7 @@ export class WordsApi {
      * Converts a document in cloud storage to TIFF format using detailed conversion settings.
      * @param requestObj contains request parameters
      */
-    public async saveAsTiffOnline(requestObj: model.SaveAsTiffOnlineRequest): Promise< model.WordsIncomingMessage< SaveAsTiffOnlineResponse > > {
+    public async saveAsTiffOnline(requestObj: model.SaveAsTiffOnlineRequest): Promise< model.WordsIncomingMessage< model.SaveAsTiffOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling saveAsTiffOnline.');
         }
@@ -13493,21 +13781,29 @@ export class WordsApi {
             formParams.Document = requestObj.document;
         }
         if (requestObj.saveOptions !== undefined) {
-            formParams.SaveOptions = JSON.stringify(requestObj.saveOptions);
+            formParams.SaveOptions = JSON.stringify(ObjectSerializer.serialize(requestObj.saveOptions, requestObj.saveOptions.constructor.name));
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "SaveAsTiffOnlineResponse");
-        const result: model.WordsIncomingMessage< model.SaveAsTiffOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.SaveAsTiffOnlineResponse >();
+        result.response = response;
+        result.body = new model.SaveAsTiffOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "SaveResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -13553,7 +13849,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "SearchResponse");
+        const body = ObjectSerializer.deserialize(response.body, "SearchResponse");
         const result: model.WordsIncomingMessage< model.SearchResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -13604,7 +13900,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "SearchResponse");
+        const body = ObjectSerializer.deserialize(response.body, "SearchResponse");
         const result: model.WordsIncomingMessage< model.SearchResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -13661,7 +13957,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "SplitDocumentResponse");
+        const body = ObjectSerializer.deserialize(response.body, "SplitDocumentResponse");
         const result: model.WordsIncomingMessage< model.SplitDocumentResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -13670,7 +13966,7 @@ export class WordsApi {
      * Splits a document into parts and saves them in the specified format.
      * @param requestObj contains request parameters
      */
-    public async splitDocumentOnline(requestObj: model.SplitDocumentOnlineRequest): Promise< model.WordsIncomingMessage< SplitDocumentOnlineResponse > > {
+    public async splitDocumentOnline(requestObj: model.SplitDocumentOnlineRequest): Promise< model.WordsIncomingMessage< model.SplitDocumentOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling splitDocumentOnline.');
         }
@@ -13715,14 +14011,22 @@ export class WordsApi {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "SplitDocumentOnlineResponse");
-        const result: model.WordsIncomingMessage< model.SplitDocumentOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.SplitDocumentOnlineResponse >();
+        result.response = response;
+        result.body = new model.SplitDocumentOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "SplitDocumentResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -13774,7 +14078,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "ProtectionDataResponse");
+        const body = ObjectSerializer.deserialize(response.body, "ProtectionDataResponse");
         const result: model.WordsIncomingMessage< model.ProtectionDataResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -13783,7 +14087,7 @@ export class WordsApi {
      * Removes protection from the document.
      * @param requestObj contains request parameters
      */
-    public async unprotectDocumentOnline(requestObj: model.UnprotectDocumentOnlineRequest): Promise< model.WordsIncomingMessage< UnprotectDocumentOnlineResponse > > {
+    public async unprotectDocumentOnline(requestObj: model.UnprotectDocumentOnlineRequest): Promise< model.WordsIncomingMessage< model.UnprotectDocumentOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling unprotectDocumentOnline.');
         }
@@ -13819,21 +14123,29 @@ export class WordsApi {
             formParams.Document = requestObj.document;
         }
         if (requestObj.protectionRequest !== undefined) {
-            formParams.ProtectionRequest = JSON.stringify(requestObj.protectionRequest);
+            formParams.ProtectionRequest = JSON.stringify(ObjectSerializer.serialize(requestObj.protectionRequest, requestObj.protectionRequest.constructor.name));
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "UnprotectDocumentOnlineResponse");
-        const result: model.WordsIncomingMessage< model.UnprotectDocumentOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.UnprotectDocumentOnlineResponse >();
+        result.response = response;
+        result.body = new model.UnprotectDocumentOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "ProtectionDataResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -13898,7 +14210,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "BookmarkResponse");
+        const body = ObjectSerializer.deserialize(response.body, "BookmarkResponse");
         const result: model.WordsIncomingMessage< model.BookmarkResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -13907,7 +14219,7 @@ export class WordsApi {
      * Updates a bookmark in the document.
      * @param requestObj contains request parameters
      */
-    public async updateBookmarkOnline(requestObj: model.UpdateBookmarkOnlineRequest): Promise< model.WordsIncomingMessage< UpdateBookmarkOnlineResponse > > {
+    public async updateBookmarkOnline(requestObj: model.UpdateBookmarkOnlineRequest): Promise< model.WordsIncomingMessage< model.UpdateBookmarkOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling updateBookmarkOnline.');
         }
@@ -13956,21 +14268,29 @@ export class WordsApi {
             formParams.Document = requestObj.document;
         }
         if (requestObj.bookmarkData !== undefined) {
-            formParams.BookmarkData = JSON.stringify(requestObj.bookmarkData);
+            formParams.BookmarkData = JSON.stringify(ObjectSerializer.serialize(requestObj.bookmarkData, requestObj.bookmarkData.constructor.name));
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "UpdateBookmarkOnlineResponse");
-        const result: model.WordsIncomingMessage< model.UpdateBookmarkOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.UpdateBookmarkOnlineResponse >();
+        result.response = response;
+        result.body = new model.UpdateBookmarkOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "BookmarkResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -14036,7 +14356,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "BorderResponse");
+        const body = ObjectSerializer.deserialize(response.body, "BorderResponse");
         const result: model.WordsIncomingMessage< model.BorderResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -14045,7 +14365,7 @@ export class WordsApi {
      * Updates a border in the document node.
      * @param requestObj contains request parameters
      */
-    public async updateBorderOnline(requestObj: model.UpdateBorderOnlineRequest): Promise< model.WordsIncomingMessage< UpdateBorderOnlineResponse > > {
+    public async updateBorderOnline(requestObj: model.UpdateBorderOnlineRequest): Promise< model.WordsIncomingMessage< model.UpdateBorderOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling updateBorderOnline.');
         }
@@ -14095,21 +14415,29 @@ export class WordsApi {
             formParams.Document = requestObj.document;
         }
         if (requestObj.borderProperties !== undefined) {
-            formParams.BorderProperties = JSON.stringify(requestObj.borderProperties);
+            formParams.BorderProperties = JSON.stringify(ObjectSerializer.serialize(requestObj.borderProperties, requestObj.borderProperties.constructor.name));
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "UpdateBorderOnlineResponse");
-        const result: model.WordsIncomingMessage< model.UpdateBorderOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.UpdateBorderOnlineResponse >();
+        result.response = response;
+        result.body = new model.UpdateBorderOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "BorderResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -14174,7 +14502,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "CommentResponse");
+        const body = ObjectSerializer.deserialize(response.body, "CommentResponse");
         const result: model.WordsIncomingMessage< model.CommentResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -14183,7 +14511,7 @@ export class WordsApi {
      * Updates a comment in the document.
      * @param requestObj contains request parameters
      */
-    public async updateCommentOnline(requestObj: model.UpdateCommentOnlineRequest): Promise< model.WordsIncomingMessage< UpdateCommentOnlineResponse > > {
+    public async updateCommentOnline(requestObj: model.UpdateCommentOnlineRequest): Promise< model.WordsIncomingMessage< model.UpdateCommentOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling updateCommentOnline.');
         }
@@ -14232,21 +14560,29 @@ export class WordsApi {
             formParams.Document = requestObj.document;
         }
         if (requestObj.comment !== undefined) {
-            formParams.Comment = JSON.stringify(requestObj.comment);
+            formParams.Comment = JSON.stringify(ObjectSerializer.serialize(requestObj.comment, requestObj.comment.constructor.name));
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "UpdateCommentOnlineResponse");
-        const result: model.WordsIncomingMessage< model.UpdateCommentOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.UpdateCommentOnlineResponse >();
+        result.response = response;
+        result.body = new model.UpdateCommentOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "CommentResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -14331,7 +14667,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "DrawingObjectResponse");
+        const body = ObjectSerializer.deserialize(response.body, "DrawingObjectResponse");
         const result: model.WordsIncomingMessage< model.DrawingObjectResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -14340,7 +14676,7 @@ export class WordsApi {
      * Updates a DrawingObject in the document node.
      * @param requestObj contains request parameters
      */
-    public async updateDrawingObjectOnline(requestObj: model.UpdateDrawingObjectOnlineRequest): Promise< model.WordsIncomingMessage< UpdateDrawingObjectOnlineResponse > > {
+    public async updateDrawingObjectOnline(requestObj: model.UpdateDrawingObjectOnlineRequest): Promise< model.WordsIncomingMessage< model.UpdateDrawingObjectOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling updateDrawingObjectOnline.');
         }
@@ -14400,7 +14736,7 @@ export class WordsApi {
             formParams.Document = requestObj.document;
         }
         if (requestObj.drawingObject !== undefined) {
-            formParams.DrawingObject = JSON.stringify(requestObj.drawingObject);
+            formParams.DrawingObject = JSON.stringify(ObjectSerializer.serialize(requestObj.drawingObject, requestObj.drawingObject.constructor.name));
         }
         if (requestObj.imageFile !== undefined) {
             formParams.ImageFile = requestObj.imageFile;
@@ -14410,14 +14746,22 @@ export class WordsApi {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "UpdateDrawingObjectOnlineResponse");
-        const result: model.WordsIncomingMessage< model.UpdateDrawingObjectOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.UpdateDrawingObjectOnlineResponse >();
+        result.response = response;
+        result.body = new model.UpdateDrawingObjectOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "DrawingObjectResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -14483,7 +14827,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "FieldResponse");
+        const body = ObjectSerializer.deserialize(response.body, "FieldResponse");
         const result: model.WordsIncomingMessage< model.FieldResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -14492,7 +14836,7 @@ export class WordsApi {
      * Updates a field in the document node.
      * @param requestObj contains request parameters
      */
-    public async updateFieldOnline(requestObj: model.UpdateFieldOnlineRequest): Promise< model.WordsIncomingMessage< UpdateFieldOnlineResponse > > {
+    public async updateFieldOnline(requestObj: model.UpdateFieldOnlineRequest): Promise< model.WordsIncomingMessage< model.UpdateFieldOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling updateFieldOnline.');
         }
@@ -14542,21 +14886,29 @@ export class WordsApi {
             formParams.Document = requestObj.document;
         }
         if (requestObj.field !== undefined) {
-            formParams.Field = JSON.stringify(requestObj.field);
+            formParams.Field = JSON.stringify(ObjectSerializer.serialize(requestObj.field, requestObj.field.constructor.name));
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "UpdateFieldOnlineResponse");
-        const result: model.WordsIncomingMessage< model.UpdateFieldOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.UpdateFieldOnlineResponse >();
+        result.response = response;
+        result.body = new model.UpdateFieldOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "FieldResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -14597,7 +14949,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
+        const body = ObjectSerializer.deserialize(response.body, "DocumentResponse");
         const result: model.WordsIncomingMessage< model.DocumentResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -14606,7 +14958,7 @@ export class WordsApi {
      * Reevaluates field values in the document.
      * @param requestObj contains request parameters
      */
-    public async updateFieldsOnline(requestObj: model.UpdateFieldsOnlineRequest): Promise< model.WordsIncomingMessage< UpdateFieldsOnlineResponse > > {
+    public async updateFieldsOnline(requestObj: model.UpdateFieldsOnlineRequest): Promise< model.WordsIncomingMessage< model.UpdateFieldsOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling updateFieldsOnline.');
         }
@@ -14636,14 +14988,22 @@ export class WordsApi {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "UpdateFieldsOnlineResponse");
-        const result: model.WordsIncomingMessage< model.UpdateFieldsOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.UpdateFieldsOnlineResponse >();
+        result.response = response;
+        result.body = new model.UpdateFieldsOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "DocumentResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -14709,7 +15069,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "FootnoteResponse");
+        const body = ObjectSerializer.deserialize(response.body, "FootnoteResponse");
         const result: model.WordsIncomingMessage< model.FootnoteResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -14718,7 +15078,7 @@ export class WordsApi {
      * Updates a footnote in the document node.
      * @param requestObj contains request parameters
      */
-    public async updateFootnoteOnline(requestObj: model.UpdateFootnoteOnlineRequest): Promise< model.WordsIncomingMessage< UpdateFootnoteOnlineResponse > > {
+    public async updateFootnoteOnline(requestObj: model.UpdateFootnoteOnlineRequest): Promise< model.WordsIncomingMessage< model.UpdateFootnoteOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling updateFootnoteOnline.');
         }
@@ -14768,21 +15128,29 @@ export class WordsApi {
             formParams.Document = requestObj.document;
         }
         if (requestObj.footnoteDto !== undefined) {
-            formParams.FootnoteDto = JSON.stringify(requestObj.footnoteDto);
+            formParams.FootnoteDto = JSON.stringify(ObjectSerializer.serialize(requestObj.footnoteDto, requestObj.footnoteDto.constructor.name));
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "UpdateFootnoteOnlineResponse");
-        const result: model.WordsIncomingMessage< model.UpdateFootnoteOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.UpdateFootnoteOnlineResponse >();
+        result.response = response;
+        result.body = new model.UpdateFootnoteOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "FootnoteResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -14848,7 +15216,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "FormFieldResponse");
+        const body = ObjectSerializer.deserialize(response.body, "FormFieldResponse");
         const result: model.WordsIncomingMessage< model.FormFieldResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -14857,7 +15225,7 @@ export class WordsApi {
      * Updates a form field in the document node.
      * @param requestObj contains request parameters
      */
-    public async updateFormFieldOnline(requestObj: model.UpdateFormFieldOnlineRequest): Promise< model.WordsIncomingMessage< UpdateFormFieldOnlineResponse > > {
+    public async updateFormFieldOnline(requestObj: model.UpdateFormFieldOnlineRequest): Promise< model.WordsIncomingMessage< model.UpdateFormFieldOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling updateFormFieldOnline.');
         }
@@ -14907,21 +15275,29 @@ export class WordsApi {
             formParams.Document = requestObj.document;
         }
         if (requestObj.formField !== undefined) {
-            formParams.FormField = JSON.stringify(requestObj.formField);
+            formParams.FormField = JSON.stringify(ObjectSerializer.serialize(requestObj.formField, requestObj.formField.constructor.name));
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "UpdateFormFieldOnlineResponse");
-        const result: model.WordsIncomingMessage< model.UpdateFormFieldOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.UpdateFormFieldOnlineResponse >();
+        result.response = response;
+        result.body = new model.UpdateFormFieldOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "FormFieldResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -14986,7 +15362,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "ListResponse");
+        const body = ObjectSerializer.deserialize(response.body, "ListResponse");
         const result: model.WordsIncomingMessage< model.ListResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -15063,7 +15439,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "ListResponse");
+        const body = ObjectSerializer.deserialize(response.body, "ListResponse");
         const result: model.WordsIncomingMessage< model.ListResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -15072,7 +15448,7 @@ export class WordsApi {
      * Updates the level of a List element in the document.
      * @param requestObj contains request parameters
      */
-    public async updateListLevelOnline(requestObj: model.UpdateListLevelOnlineRequest): Promise< model.WordsIncomingMessage< UpdateListLevelOnlineResponse > > {
+    public async updateListLevelOnline(requestObj: model.UpdateListLevelOnlineRequest): Promise< model.WordsIncomingMessage< model.UpdateListLevelOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling updateListLevelOnline.');
         }
@@ -15132,21 +15508,29 @@ export class WordsApi {
             formParams.Document = requestObj.document;
         }
         if (requestObj.listUpdate !== undefined) {
-            formParams.ListUpdate = JSON.stringify(requestObj.listUpdate);
+            formParams.ListUpdate = JSON.stringify(ObjectSerializer.serialize(requestObj.listUpdate, requestObj.listUpdate.constructor.name));
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "UpdateListLevelOnlineResponse");
-        const result: model.WordsIncomingMessage< model.UpdateListLevelOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.UpdateListLevelOnlineResponse >();
+        result.response = response;
+        result.body = new model.UpdateListLevelOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "ListResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -15154,7 +15538,7 @@ export class WordsApi {
      * Updates a list in the document.
      * @param requestObj contains request parameters
      */
-    public async updateListOnline(requestObj: model.UpdateListOnlineRequest): Promise< model.WordsIncomingMessage< UpdateListOnlineResponse > > {
+    public async updateListOnline(requestObj: model.UpdateListOnlineRequest): Promise< model.WordsIncomingMessage< model.UpdateListOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling updateListOnline.');
         }
@@ -15203,21 +15587,29 @@ export class WordsApi {
             formParams.Document = requestObj.document;
         }
         if (requestObj.listUpdate !== undefined) {
-            formParams.ListUpdate = JSON.stringify(requestObj.listUpdate);
+            formParams.ListUpdate = JSON.stringify(ObjectSerializer.serialize(requestObj.listUpdate, requestObj.listUpdate.constructor.name));
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "UpdateListOnlineResponse");
-        const result: model.WordsIncomingMessage< model.UpdateListOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.UpdateListOnlineResponse >();
+        result.response = response;
+        result.body = new model.UpdateListOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "ListResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -15283,7 +15675,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "ParagraphFormatResponse");
+        const body = ObjectSerializer.deserialize(response.body, "ParagraphFormatResponse");
         const result: model.WordsIncomingMessage< model.ParagraphFormatResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -15292,7 +15684,7 @@ export class WordsApi {
      * Updates the formatting properties of a paragraph in the document node.
      * @param requestObj contains request parameters
      */
-    public async updateParagraphFormatOnline(requestObj: model.UpdateParagraphFormatOnlineRequest): Promise< model.WordsIncomingMessage< UpdateParagraphFormatOnlineResponse > > {
+    public async updateParagraphFormatOnline(requestObj: model.UpdateParagraphFormatOnlineRequest): Promise< model.WordsIncomingMessage< model.UpdateParagraphFormatOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling updateParagraphFormatOnline.');
         }
@@ -15342,21 +15734,29 @@ export class WordsApi {
             formParams.Document = requestObj.document;
         }
         if (requestObj.paragraphFormatDto !== undefined) {
-            formParams.ParagraphFormatDto = JSON.stringify(requestObj.paragraphFormatDto);
+            formParams.ParagraphFormatDto = JSON.stringify(ObjectSerializer.serialize(requestObj.paragraphFormatDto, requestObj.paragraphFormatDto.constructor.name));
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "UpdateParagraphFormatOnlineResponse");
-        const result: model.WordsIncomingMessage< model.UpdateParagraphFormatOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.UpdateParagraphFormatOnlineResponse >();
+        result.response = response;
+        result.body = new model.UpdateParagraphFormatOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "ParagraphFormatResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -15422,7 +15822,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "ParagraphListFormatResponse");
+        const body = ObjectSerializer.deserialize(response.body, "ParagraphListFormatResponse");
         const result: model.WordsIncomingMessage< model.ParagraphListFormatResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -15431,7 +15831,7 @@ export class WordsApi {
      * Updates the formatting properties of a paragraph list in the document node.
      * @param requestObj contains request parameters
      */
-    public async updateParagraphListFormatOnline(requestObj: model.UpdateParagraphListFormatOnlineRequest): Promise< model.WordsIncomingMessage< UpdateParagraphListFormatOnlineResponse > > {
+    public async updateParagraphListFormatOnline(requestObj: model.UpdateParagraphListFormatOnlineRequest): Promise< model.WordsIncomingMessage< model.UpdateParagraphListFormatOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling updateParagraphListFormatOnline.');
         }
@@ -15481,21 +15881,29 @@ export class WordsApi {
             formParams.Document = requestObj.document;
         }
         if (requestObj.listFormatDto !== undefined) {
-            formParams.ListFormatDto = JSON.stringify(requestObj.listFormatDto);
+            formParams.ListFormatDto = JSON.stringify(ObjectSerializer.serialize(requestObj.listFormatDto, requestObj.listFormatDto.constructor.name));
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "UpdateParagraphListFormatOnlineResponse");
-        const result: model.WordsIncomingMessage< model.UpdateParagraphListFormatOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.UpdateParagraphListFormatOnlineResponse >();
+        result.response = response;
+        result.body = new model.UpdateParagraphListFormatOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "ParagraphListFormatResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -15566,7 +15974,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "RunResponse");
+        const body = ObjectSerializer.deserialize(response.body, "RunResponse");
         const result: model.WordsIncomingMessage< model.RunResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -15638,7 +16046,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "FontResponse");
+        const body = ObjectSerializer.deserialize(response.body, "FontResponse");
         const result: model.WordsIncomingMessage< model.FontResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -15647,7 +16055,7 @@ export class WordsApi {
      * Updates the font properties of a Run object in the paragraph.
      * @param requestObj contains request parameters
      */
-    public async updateRunFontOnline(requestObj: model.UpdateRunFontOnlineRequest): Promise< model.WordsIncomingMessage< UpdateRunFontOnlineResponse > > {
+    public async updateRunFontOnline(requestObj: model.UpdateRunFontOnlineRequest): Promise< model.WordsIncomingMessage< model.UpdateRunFontOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling updateRunFontOnline.');
         }
@@ -15702,21 +16110,29 @@ export class WordsApi {
             formParams.Document = requestObj.document;
         }
         if (requestObj.fontDto !== undefined) {
-            formParams.FontDto = JSON.stringify(requestObj.fontDto);
+            formParams.FontDto = JSON.stringify(ObjectSerializer.serialize(requestObj.fontDto, requestObj.fontDto.constructor.name));
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "UpdateRunFontOnlineResponse");
-        const result: model.WordsIncomingMessage< model.UpdateRunFontOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.UpdateRunFontOnlineResponse >();
+        result.response = response;
+        result.body = new model.UpdateRunFontOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "FontResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -15724,7 +16140,7 @@ export class WordsApi {
      * Updates a Run object in the paragraph.
      * @param requestObj contains request parameters
      */
-    public async updateRunOnline(requestObj: model.UpdateRunOnlineRequest): Promise< model.WordsIncomingMessage< UpdateRunOnlineResponse > > {
+    public async updateRunOnline(requestObj: model.UpdateRunOnlineRequest): Promise< model.WordsIncomingMessage< model.UpdateRunOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling updateRunOnline.');
         }
@@ -15779,21 +16195,29 @@ export class WordsApi {
             formParams.Document = requestObj.document;
         }
         if (requestObj.run !== undefined) {
-            formParams.Run = JSON.stringify(requestObj.run);
+            formParams.Run = JSON.stringify(ObjectSerializer.serialize(requestObj.run, requestObj.run.constructor.name));
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "UpdateRunOnlineResponse");
-        const result: model.WordsIncomingMessage< model.UpdateRunOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.UpdateRunOnlineResponse >();
+        result.response = response;
+        result.body = new model.UpdateRunOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "RunResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -15858,7 +16282,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "SectionPageSetupResponse");
+        const body = ObjectSerializer.deserialize(response.body, "SectionPageSetupResponse");
         const result: model.WordsIncomingMessage< model.SectionPageSetupResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -15867,7 +16291,7 @@ export class WordsApi {
      * Updates the page setup of a section in the document.
      * @param requestObj contains request parameters
      */
-    public async updateSectionPageSetupOnline(requestObj: model.UpdateSectionPageSetupOnlineRequest): Promise< model.WordsIncomingMessage< UpdateSectionPageSetupOnlineResponse > > {
+    public async updateSectionPageSetupOnline(requestObj: model.UpdateSectionPageSetupOnlineRequest): Promise< model.WordsIncomingMessage< model.UpdateSectionPageSetupOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling updateSectionPageSetupOnline.');
         }
@@ -15916,21 +16340,29 @@ export class WordsApi {
             formParams.Document = requestObj.document;
         }
         if (requestObj.pageSetup !== undefined) {
-            formParams.PageSetup = JSON.stringify(requestObj.pageSetup);
+            formParams.PageSetup = JSON.stringify(ObjectSerializer.serialize(requestObj.pageSetup, requestObj.pageSetup.constructor.name));
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "UpdateSectionPageSetupOnlineResponse");
-        const result: model.WordsIncomingMessage< model.UpdateSectionPageSetupOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.UpdateSectionPageSetupOnlineResponse >();
+        result.response = response;
+        result.body = new model.UpdateSectionPageSetupOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "SectionPageSetupResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -15995,7 +16427,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "StyleResponse");
+        const body = ObjectSerializer.deserialize(response.body, "StyleResponse");
         const result: model.WordsIncomingMessage< model.StyleResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -16004,7 +16436,7 @@ export class WordsApi {
      * Updates a style in the document.
      * @param requestObj contains request parameters
      */
-    public async updateStyleOnline(requestObj: model.UpdateStyleOnlineRequest): Promise< model.WordsIncomingMessage< UpdateStyleOnlineResponse > > {
+    public async updateStyleOnline(requestObj: model.UpdateStyleOnlineRequest): Promise< model.WordsIncomingMessage< model.UpdateStyleOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling updateStyleOnline.');
         }
@@ -16053,21 +16485,29 @@ export class WordsApi {
             formParams.Document = requestObj.document;
         }
         if (requestObj.styleUpdate !== undefined) {
-            formParams.StyleUpdate = JSON.stringify(requestObj.styleUpdate);
+            formParams.StyleUpdate = JSON.stringify(ObjectSerializer.serialize(requestObj.styleUpdate, requestObj.styleUpdate.constructor.name));
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "UpdateStyleOnlineResponse");
-        const result: model.WordsIncomingMessage< model.UpdateStyleOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.UpdateStyleOnlineResponse >();
+        result.response = response;
+        result.body = new model.UpdateStyleOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "StyleResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -16138,7 +16578,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "TableCellFormatResponse");
+        const body = ObjectSerializer.deserialize(response.body, "TableCellFormatResponse");
         const result: model.WordsIncomingMessage< model.TableCellFormatResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -16147,7 +16587,7 @@ export class WordsApi {
      * Updates the formatting properties of a cell in the table row.
      * @param requestObj contains request parameters
      */
-    public async updateTableCellFormatOnline(requestObj: model.UpdateTableCellFormatOnlineRequest): Promise< model.WordsIncomingMessage< UpdateTableCellFormatOnlineResponse > > {
+    public async updateTableCellFormatOnline(requestObj: model.UpdateTableCellFormatOnlineRequest): Promise< model.WordsIncomingMessage< model.UpdateTableCellFormatOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling updateTableCellFormatOnline.');
         }
@@ -16202,21 +16642,29 @@ export class WordsApi {
             formParams.Document = requestObj.document;
         }
         if (requestObj.format !== undefined) {
-            formParams.Format = JSON.stringify(requestObj.format);
+            formParams.Format = JSON.stringify(ObjectSerializer.serialize(requestObj.format, requestObj.format.constructor.name));
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "UpdateTableCellFormatOnlineResponse");
-        const result: model.WordsIncomingMessage< model.UpdateTableCellFormatOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.UpdateTableCellFormatOnlineResponse >();
+        result.response = response;
+        result.body = new model.UpdateTableCellFormatOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "TableCellFormatResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -16282,7 +16730,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "TablePropertiesResponse");
+        const body = ObjectSerializer.deserialize(response.body, "TablePropertiesResponse");
         const result: model.WordsIncomingMessage< model.TablePropertiesResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -16291,7 +16739,7 @@ export class WordsApi {
      * Updates properties of a table in the document node.
      * @param requestObj contains request parameters
      */
-    public async updateTablePropertiesOnline(requestObj: model.UpdateTablePropertiesOnlineRequest): Promise< model.WordsIncomingMessage< UpdateTablePropertiesOnlineResponse > > {
+    public async updateTablePropertiesOnline(requestObj: model.UpdateTablePropertiesOnlineRequest): Promise< model.WordsIncomingMessage< model.UpdateTablePropertiesOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling updateTablePropertiesOnline.');
         }
@@ -16341,21 +16789,29 @@ export class WordsApi {
             formParams.Document = requestObj.document;
         }
         if (requestObj.properties !== undefined) {
-            formParams.Properties = JSON.stringify(requestObj.properties);
+            formParams.Properties = JSON.stringify(ObjectSerializer.serialize(requestObj.properties, requestObj.properties.constructor.name));
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "UpdateTablePropertiesOnlineResponse");
-        const result: model.WordsIncomingMessage< model.UpdateTablePropertiesOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.UpdateTablePropertiesOnlineResponse >();
+        result.response = response;
+        result.body = new model.UpdateTablePropertiesOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "TablePropertiesResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -16426,7 +16882,7 @@ export class WordsApi {
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "TableRowFormatResponse");
+        const body = ObjectSerializer.deserialize(response.body, "TableRowFormatResponse");
         const result: model.WordsIncomingMessage< model.TableRowFormatResponse > = {body, response};
         return Promise.resolve(result);
     }
@@ -16435,7 +16891,7 @@ export class WordsApi {
      * Updates the formatting properties of a table row.
      * @param requestObj contains request parameters
      */
-    public async updateTableRowFormatOnline(requestObj: model.UpdateTableRowFormatOnlineRequest): Promise< model.WordsIncomingMessage< UpdateTableRowFormatOnlineResponse > > {
+    public async updateTableRowFormatOnline(requestObj: model.UpdateTableRowFormatOnlineRequest): Promise< model.WordsIncomingMessage< model.UpdateTableRowFormatOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "requestObj" was null or undefined when calling updateTableRowFormatOnline.');
         }
@@ -16490,21 +16946,29 @@ export class WordsApi {
             formParams.Document = requestObj.document;
         }
         if (requestObj.format !== undefined) {
-            formParams.Format = JSON.stringify(requestObj.format);
+            formParams.Format = JSON.stringify(ObjectSerializer.serialize(requestObj.format, requestObj.format.constructor.name));
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
+            encoding: null,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "UpdateTableRowFormatOnlineResponse");
-        const result: model.WordsIncomingMessage< model.UpdateTableRowFormatOnlineResponse > = {body, response};
+        const result = new model.WordsIncomingMessage< model.UpdateTableRowFormatOnlineResponse >();
+        result.response = response;
+        result.body = new model.UpdateTableRowFormatOnlineResponse();
+        const parsedResponse = await parseMultipartResponse(response, "TableRowFormatResponse", "Buffer")
+        result.body.model = parsedResponse[0];
+
+
+        result.body.document = parsedResponse[1];
+
         return Promise.resolve(result);
     }
 
@@ -16558,7 +17022,7 @@ export class WordsApi {
             requestOptions.formData = formParams;
         }
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const body =  ObjectSerializer.deserialize(response.body, "FilesUploadResult");
+        const body = ObjectSerializer.deserialize(response.body, "FilesUploadResult");
         const result: model.WordsIncomingMessage< model.FilesUploadResult > = {body, response};
         return Promise.resolve(result);
     }

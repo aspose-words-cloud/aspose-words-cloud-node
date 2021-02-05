@@ -358,4 +358,51 @@ describe("comment", () => {
 
        });
     });
+
+    // A test for DeleteComments.
+    describe("deleteComments test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const remoteFileName = "TestDeleteComment.docx";
+
+            return wordsApi.uploadFileToStorage(
+                remoteDataFolder + "/" + remoteFileName,
+                BaseTest.localBaseTestDataFolder + localFile
+            ).then((result0) => {
+                expect(result0.response.statusMessage).to.equal("OK");
+                const request = new model.DeleteCommentsRequest({
+                    name: remoteFileName,
+                    folder: remoteDataFolder,
+                    destFileName: BaseTest.remoteBaseTestOutFolder + "/" + remoteFileName
+                });
+
+                // Act
+                return wordsApi.deleteComments(request)
+                .then((resultApi) => {
+                    // Assert
+                    expect(resultApi.statusCode).to.equal(200);
+                });
+
+            });
+
+       });
+    });
+
+    // A test for DeleteComments online.
+    describe("deleteCommentsOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.DeleteCommentsOnlineRequest({
+                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile)
+            });
+
+            // Act
+            return wordsApi.deleteCommentsOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+            });
+
+       });
+    });
 });

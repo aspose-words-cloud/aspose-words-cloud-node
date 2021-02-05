@@ -2151,6 +2151,96 @@ export class DeleteCommentOnlineRequest {
 }
 
 /**
+ * Request model for DeleteComments operation.
+ * Removes all comments from the document.
+ */
+export class DeleteCommentsRequest {
+    /**
+     * The filename of the input document.
+     */
+    public name: string;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< DeleteCommentsRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
+ * Request model for DeleteCommentsOnline operation.
+ * Removes all comments from the document.
+ */
+export class DeleteCommentsOnlineRequest {
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    public constructor(init?: Partial< DeleteCommentsOnlineRequest >) {
+        Object.assign(this, init);
+    }
+}
+
+/**
  * Request model for DeleteDocumentProperty operation.
  * Removes a document property.
  */

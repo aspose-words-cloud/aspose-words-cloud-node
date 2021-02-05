@@ -1740,6 +1740,96 @@ export class WordsApi {
     }
 
     /**
+     * Removes all comments from the document.
+     * @param requestObj contains request parameters
+     */
+    public async deleteComments(requestObj: model.DeleteCommentsRequest): Promise< http.IncomingMessage > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling deleteComments.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/{name}/comments"
+            .replace("/{" + "name" + "}", (requestObj.name !== null && requestObj.name !== undefined) ? "/" + String(requestObj.name) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'requestObj.name' is not undefined
+        if (requestObj.name === undefined) {
+            throw new Error('Required parameter "requestObj.name" was undefined when calling deleteComments.');
+        }
+
+        // verify required parameter 'requestObj.name' is not null
+        if (requestObj.name === null) {
+            throw new Error('Required parameter "requestObj.name" was null when calling deleteComments.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", requestObj.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", requestObj.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+
+        const requestOptions: request.Options = {
+            method: "DELETE",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve(response);
+    }
+
+    /**
+     * Removes all comments from the document.
+     * @param requestObj contains request parameters
+     */
+    public async deleteCommentsOnline(requestObj: model.DeleteCommentsOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling deleteCommentsOnline.');
+        }
+
+        let localVarPath = this.configuration.getApiBaseUrl() + "/words/online/delete/comments"
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'requestObj.document' is not undefined
+        if (requestObj.document === undefined) {
+            throw new Error('Required parameter "requestObj.document" was undefined when calling deleteCommentsOnline.');
+        }
+
+        // verify required parameter 'requestObj.document' is not null
+        if (requestObj.document === null) {
+            throw new Error('Required parameter "requestObj.document" was null when calling deleteCommentsOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", requestObj.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", requestObj.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", requestObj.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", requestObj.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", requestObj.revisionDateTime);
+        if (requestObj.document !== undefined) {
+            formParams.Document = requestObj.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const body = ObjectSerializer.deserialize(response.body, "Buffer");
+        const result: model.WordsIncomingMessage< Buffer > = {body, response};
+        return Promise.resolve(result);
+    }
+
+    /**
      * Removes a document property.
      * @param requestObj contains request parameters
      */

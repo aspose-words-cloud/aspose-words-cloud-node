@@ -2666,7 +2666,7 @@ export class DeleteFieldsOnlineRequest {
  */
 export class DeleteFileRequest {
     /**
-     * Path of the file including file name and extension e.g. /Folder1/file.ext.
+     * Path of the file including the file name and extension e.g. /folder1/file.ext.
      */
     public path: string;
 
@@ -2691,7 +2691,7 @@ export class DeleteFileRequest {
  */
 export class DeleteFolderRequest {
     /**
-     * Folder path e.g. /Folder1s.
+     * Folder path e.g. '/folder'.
      */
     public path: string;
 
@@ -5881,7 +5881,7 @@ export class GetFieldsOnlineRequest {
  */
 export class GetFilesListRequest {
     /**
-     * Folder path e.g. /Folder1.
+     * Folder path e.g. '/folder'.
      */
     public path: string;
 

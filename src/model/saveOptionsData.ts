@@ -39,6 +39,11 @@ export class SaveOptionsData {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
+            name: "allowEmbeddingPostScriptFonts",
+            baseName: "AllowEmbeddingPostScriptFonts",
+            type: "boolean",
+        },
+        {
             name: "dml3DEffectsRenderingMode",
             baseName: "Dml3DEffectsRenderingMode",
             type: "SaveOptionsData.Dml3DEffectsRenderingModeEnum",
@@ -96,6 +101,11 @@ export class SaveOptionsData {
     public static getAttributeTypeMap() {
         return SaveOptionsData.attributeTypeMap;
     }
+
+    /**
+     * Gets or sets a boolean value indicating whether to allow embedding fonts with PostScript outlines when embedding TrueType fonts in a document upon it is saved. The default value is false..
+     */
+    public allowEmbeddingPostScriptFonts: boolean;
 
     /**
      * Gets or sets the value determining how 3D effects are rendered.

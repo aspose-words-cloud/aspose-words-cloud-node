@@ -36,6 +36,7 @@ describe("examples", () => {
     expect(fs);
 
     before(function() {
+        const wordsApi = BaseTest.initializeWordsApi();
         return wordsApi.uploadFileToStorage(
             'test_doc.docx',
             './ExamplesData/test_doc.docx'
@@ -59,6 +60,7 @@ describe("examples", () => {
 
             return wordsApi.uploadFile(uploadFileRequest)
             .then((uploadFileRequestResult) => {
+                console.log("Result of UploadFileRequest: ", uploadFileRequestResult);
                 // Calls AcceptAllRevisions method for document in cloud.
                 const request = new model.AcceptAllRevisionsRequest({
                     name: fileName
@@ -66,6 +68,7 @@ describe("examples", () => {
 
                 return wordsApi.acceptAllRevisions(request)
                 .then((requestResult) => {
+                    console.log("Result of Request: ", requestResult);
                 });
             });
         });
@@ -84,7 +87,8 @@ describe("examples", () => {
 
             return wordsApi.acceptAllRevisionsOnline(request)
             .then((requestResult) => {
-                fs.writeFileSync("test_result.docx", requestResult.document);
+                console.log("Result of Request: ", requestResult);
+                fs.writeFileSync("test_result.docx", requestResult.body.document);
             });
         });
     });

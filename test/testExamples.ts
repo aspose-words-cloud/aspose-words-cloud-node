@@ -29,10 +29,12 @@ import { expect } from "chai";
 import "mocha";
 
 import * as fs from "fs";
-import * as model from "../../src/model/model";
+import * as model from "../src/model/model";
 import * as BaseTest from "./baseTest";
 
 describe("examples", () => {
+    expect(fs);
+
     before(function() {
         return wordsApi.uploadFileToStorage(
             'test_doc.docx',
@@ -44,42 +46,46 @@ describe("examples", () => {
     });
 
     describe("exampleAcceptAllRevisions", () => {
-      const wordsApi = BaseTest.initializeWordsApi();
-      const documentsDir = './ExamplesData/';
-      const fileName  = "test_doc.docx";
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const documentsDir = './ExamplesData/';
+            const fileName  = "test_doc.docx";
 
-      // Upload original document to cloud storage.
-      const uploadFileRequest = new model.UploadFileRequest({
-          fileContent: fs.createReadStream(documentsDir + fileName),
-          path: fileName
-      });
+            // Upload original document to cloud storage.
+            const uploadFileRequest = new model.UploadFileRequest({
+                fileContent: fs.createReadStream(documentsDir + fileName),
+                path: fileName
+            });
 
-      return wordsApi.uploadFile(uploadFileRequest)
-      .then((uploadFileRequestResult) => {
-          // Calls AcceptAllRevisions method for document in cloud.
-          const request = new model.AcceptAllRevisionsRequest({
-              name: fileName
-          });
+            return wordsApi.uploadFile(uploadFileRequest)
+            .then((uploadFileRequestResult) => {
+                // Calls AcceptAllRevisions method for document in cloud.
+                const request = new model.AcceptAllRevisionsRequest({
+                    name: fileName
+                });
 
-          return wordsApi.acceptAllRevisions(request)
-          .then((requestResult) => {
-          });
-      });
+                return wordsApi.acceptAllRevisions(request)
+                .then((requestResult) => {
+                });
+            });
+        });
     });
 
     describe("exampleAcceptAllRevisionsOnline", () => {
-      const wordsApi = BaseTest.initializeWordsApi();
-      const documentsDir = './ExamplesData/';
-      const fileName  = "test_doc.docx";
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const documentsDir = './ExamplesData/';
+            const fileName  = "test_doc.docx";
 
-      // Calls AcceptAllRevisionsOnline method for document in cloud.
-      const request = new model.AcceptAllRevisionsOnlineRequest({
-          document: fs.createReadStream(documentsDir + fileName)
-      });
+            // Calls AcceptAllRevisionsOnline method for document in cloud.
+            const request = new model.AcceptAllRevisionsOnlineRequest({
+                document: fs.createReadStream(documentsDir + fileName)
+            });
 
-      return wordsApi.acceptAllRevisionsOnline(request)
-      .then((requestResult) => {
-          fs.writeFileSync("test_result.docx", requestResult.document);
-      });
+            return wordsApi.acceptAllRevisionsOnline(request)
+            .then((requestResult) => {
+                fs.writeFileSync("test_result.docx", requestResult.document);
+            });
+        });
     });
 });

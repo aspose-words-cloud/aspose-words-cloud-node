@@ -1,5 +1,4 @@
 import * as fs from "fs";
-import * as model from "../../src/model/model";
 
 const clientId = "####-####-####-####-####";
 const secret = "##################";

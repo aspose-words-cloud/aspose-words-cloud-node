@@ -29,7 +29,6 @@ import { expect } from "chai";
 import "mocha";
 
 import * as fs from "fs";
-import * as model from "../../src/model/model";
 import * as BaseTest from "../baseTest";
 
 // Example of how to split document and return result with specified format and page range.

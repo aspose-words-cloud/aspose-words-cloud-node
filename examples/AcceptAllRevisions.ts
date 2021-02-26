@@ -14,6 +14,7 @@ const uploadFileRequest = new model.UploadFileRequest({
 
 return wordsApi.uploadFile(uploadFileRequest)
 .then((uploadFileRequestResult) => {
+    console.log("Result of UploadFileRequest: ", uploadFileRequestResult);
     // Calls AcceptAllRevisions method for document in cloud.
     const request = new model.AcceptAllRevisionsRequest({
         name: fileName
@@ -21,5 +22,6 @@ return wordsApi.uploadFile(uploadFileRequest)
 
     return wordsApi.acceptAllRevisions(request)
     .then((requestResult) => {
+        console.log("Result of Request: ", requestResult);
     });
 });

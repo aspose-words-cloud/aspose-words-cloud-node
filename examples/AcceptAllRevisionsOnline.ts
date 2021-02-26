@@ -11,5 +11,6 @@ const request = new model.AcceptAllRevisionsOnlineRequest({
 
 return wordsApi.acceptAllRevisionsOnline(request)
 .then((requestResult) => {
-    fs.writeFileSync("test_result.docx", requestResult.document);
+    console.log("Result of Request: ", requestResult);
+    fs.writeFileSync("test_result.docx", requestResult.body.document);
 });

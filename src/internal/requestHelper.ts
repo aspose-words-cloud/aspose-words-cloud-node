@@ -125,7 +125,11 @@ async function invokeApiMethodInternal(requestOptions: request.OptionsWithUri, c
 
     const auth = confguration.authentication;
     if (!notApplyAuthToRequest) {
-        await auth.applyToRequest(requestOptions, confguration);
+        try {
+            await auth.applyToRequest(requestOptions, confguration);
+        } catch (error) {
+            throw new Error("Authorization failed")
+        }
     }
 
     return new Promise<request.RequestResponse>((resolve, reject) => {
@@ -136,8 +140,12 @@ async function invokeApiMethodInternal(requestOptions: request.OptionsWithUri, c
                 if (response.statusCode >= 200 && response.statusCode <= 299) {
                     resolve(response);
                 } else if (response.statusCode === 401 && !notApplyAuthToRequest) {
-                    await auth.handle401response(confguration);
-                    reject(new NeedRepeatException());
+                    try {
+                        await auth.handle401response(confguration);
+                        reject(new NeedRepeatException());
+                    } catch (error) {
+                        reject({ message: "Error while getting token: " + error });
+                    }
                 } else {
                     try {
                         let bodyContent = response.body;

@@ -133,11 +133,33 @@ export class ObjectSerializer {
         }
     }
 
+    public static parseMultipartBody (body, boundary) {
+        return body.split(`--${boundary}`).reduce((parts, part) => {
+            if (part && part !== '--') {
+                const [ , code, body ] = part.trim().split(/\r\n\r\n/g)
+                parts.push({
+                    code: parseInt(code),  
+                    body: body,
+                    headers: code.split(/\r\n/g).reduce((headers, header) => {
+                        if (header.indexOf(':') != -1) {
+                            const [ key, value ] = header.split(/:\s+/)
+                            headers[key.toLowerCase()] = value
+                        }
+                        return headers
+                    }, {})
+                })
+            }
+            return parts
+        }, []);
+    }
+
     private static findCorrectType(data: any, expectedType: string) {
         if (data === undefined) {
             return expectedType;
         } else if (primitives.indexOf(expectedType.toLowerCase()) !== -1) {
             return expectedType;
+        } else if (expectedType === "Buffer") {
+            return Buffer.from(data);
         } else if (expectedType === "Date") {
             return expectedType;
         } else {

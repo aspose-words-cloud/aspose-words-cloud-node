@@ -1,4 +1,4 @@
-/*
+﻿/*
  * --------------------------------------------------------------------------------
  * <copyright company="Aspose" file="pdfSaveOptionsData.ts">
  *   Copyright (c) 2021 Aspose.Words for Cloud
@@ -87,11 +87,6 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
             name: "encryptionDetails",
             baseName: "EncryptionDetails",
             type: "PdfEncryptionDetailsData",
-        },
-        {
-            name: "escapeUri",
-            baseName: "EscapeUri",
-            type: "boolean",
         },
         {
             name: "exportDocumentStructure",
@@ -224,11 +219,6 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
      * Gets or sets the details for encrypting the output PDF document.
      */
     public encryptionDetails: PdfEncryptionDetailsData;
-
-    /**
-     * Gets or sets a value indicating whether URI should be escaped before writing.
-     */
-    public escapeUri: boolean;
 
     /**
      * Gets or sets a value indicating whether to export document structure.

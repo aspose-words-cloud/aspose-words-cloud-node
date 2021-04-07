@@ -1,4 +1,4 @@
-/*
+﻿/*
  * --------------------------------------------------------------------------------
  * <copyright company="Aspose" file="revisionsTests.ts">
  *   Copyright (c) 2021 Aspose.Words for Cloud
@@ -82,6 +82,10 @@ describe("revisions", () => {
             .then((resultApi) => {
                 // Assert
                 expect(resultApi.response.statusCode).to.equal(200);
+                expect(resultApi.body.document).to.exist;
+                expect(resultApi.body.model).to.exist;
+                expect(resultApi.body.model.result).to.exist;
+                expect(resultApi.body.model.result.dest).to.exist;
             });
 
        });
@@ -131,6 +135,10 @@ describe("revisions", () => {
             .then((resultApi) => {
                 // Assert
                 expect(resultApi.response.statusCode).to.equal(200);
+                expect(resultApi.body.document).to.exist;
+                expect(resultApi.body.model).to.exist;
+                expect(resultApi.body.model.result).to.exist;
+                expect(resultApi.body.model.result.dest).to.exist;
             });
 
        });

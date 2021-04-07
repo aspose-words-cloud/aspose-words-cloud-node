@@ -1,4 +1,4 @@
-/*
+﻿/*
  * --------------------------------------------------------------------------------
  * <copyright company="Aspose" file="commentLink.ts">
  *   Copyright (c) 2021 Aspose.Words for Cloud

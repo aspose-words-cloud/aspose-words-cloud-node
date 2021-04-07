@@ -1,4 +1,4 @@
-/*
+﻿/*
  * --------------------------------------------------------------------------------
  * <copyright company="Aspose" file="listInsert.ts">
  *   Copyright (c) 2021 Aspose.Words for Cloud

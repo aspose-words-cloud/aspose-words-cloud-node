@@ -255,6 +255,7 @@ import * as importedTabStopInsert from './tabStopInsert';
 import * as importedTabStopsResponse from './tabStopsResponse';
 import * as importedTextSaveOptionsData from './textSaveOptionsData';
 import * as importedTiffSaveOptionsData from './tiffSaveOptionsData';
+import * as importedTimeZoneInfoData from './timeZoneInfoData';
 import * as importedTxtSaveOptionsBaseData from './txtSaveOptionsBaseData';
 import * as importedWatermarkText from './watermarkText';
 import * as importedWordMLSaveOptionsData from './wordMLSaveOptionsData';
@@ -495,6 +496,7 @@ export * from './tabStopInsert';
 export * from './tabStopsResponse';
 export * from './textSaveOptionsData';
 export * from './tiffSaveOptionsData';
+export * from './timeZoneInfoData';
 export * from './txtSaveOptionsBaseData';
 export * from './watermarkText';
 export * from './wordMLSaveOptionsData';
@@ -836,6 +838,7 @@ const typeMap = {
     TabStopsResponse: importedTabStopsResponse.TabStopsResponse,
     TextSaveOptionsData: importedTextSaveOptionsData.TextSaveOptionsData,
     TiffSaveOptionsData: importedTiffSaveOptionsData.TiffSaveOptionsData,
+    TimeZoneInfoData: importedTimeZoneInfoData.TimeZoneInfoData,
     TxtSaveOptionsBaseData: importedTxtSaveOptionsBaseData.TxtSaveOptionsBaseData,
     WatermarkText: importedWatermarkText.WatermarkText,
     WordMLSaveOptionsData: importedWordMLSaveOptionsData.WordMLSaveOptionsData,

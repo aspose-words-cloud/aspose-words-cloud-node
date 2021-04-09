@@ -26,8 +26,10 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { TimeZoneInfoData } from './timeZoneInfoData';
 
 export const importsMapSaveOptionsData = {
+    TimeZoneInfoData,
 };
 
 /**
@@ -42,6 +44,11 @@ export class SaveOptionsData {
             name: "allowEmbeddingPostScriptFonts",
             baseName: "AllowEmbeddingPostScriptFonts",
             type: "boolean",
+        },
+        {
+            name: "customTimeZoneInfoData",
+            baseName: "CustomTimeZoneInfoData",
+            type: "TimeZoneInfoData",
         },
         {
             name: "dml3DEffectsRenderingMode",
@@ -111,6 +118,11 @@ export class SaveOptionsData {
      * Gets or sets a boolean value indicating whether to allow embedding fonts with PostScript outlines when embedding TrueType fonts in a document upon it is saved. The default value is false..
      */
     public allowEmbeddingPostScriptFonts: boolean;
+
+    /**
+     * Gets or sets CustomTimeZoneInfo.
+     */
+    public customTimeZoneInfoData: TimeZoneInfoData;
 
     /**
      * Gets or sets the value determining how 3D effects are rendered.

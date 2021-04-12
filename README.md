@@ -1,4 +1,4 @@
-Node.js Cloud SDK wraps Aspose.Words REST API so you could seamlessly integrate Microsoft Word® document generation, manipulation, conversion & inspection features into your own Node.js applications.
+Node.js Cloud SDK wraps Aspose.Words REST API so you could seamlessly integrate Microsoft WordÂ® document generation, manipulation, conversion & inspection features into your own Node.js applications.
 
 # Word Document Processing in the Cloud
 

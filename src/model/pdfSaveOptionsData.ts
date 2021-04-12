@@ -201,7 +201,7 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
     public digitalSignatureDetails: PdfDigitalSignatureDetailsData;
 
     /**
-     * Gets or sets a value indicating whether the window’s title bar should display the document title taken from the Title entry of the document information dictionary.
+     * Gets or sets a value indicating whether the windowâ€™s title bar should display the document title taken from the Title entry of the document information dictionary.
      */
     public displayDocTitle: boolean;
 

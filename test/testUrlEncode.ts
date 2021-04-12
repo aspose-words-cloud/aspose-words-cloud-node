@@ -42,7 +42,7 @@ describe("url encode", () => {
     describe("document name is encoded correctly", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            const remoteFileName = "[“Test_Two,_Inc.”]-_83(b)Election([“Bill_Gates”]).docx";
+            const remoteFileName = "[â€œTest_Two,_Inc.â€]-_83(b)Election([â€œBill_Gatesâ€]).docx";
 
             return wordsApi.uploadFileToStorage(
                 remoteDataFolder + "/" + remoteFileName,

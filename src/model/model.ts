@@ -10084,7 +10084,7 @@ export class InsertWatermarkImageRequest {
     public rotationAngle: number;
 
     /**
-     * The filename of the image. If the parameter value is missing — the image data is expected in the request content.
+     * The filename of the image. If the parameter value is missing â€” the image data is expected in the request content.
      */
     public image: string;
 
@@ -10139,7 +10139,7 @@ export class InsertWatermarkImageOnlineRequest {
     public rotationAngle: number;
 
     /**
-     * The filename of the image. If the parameter value is missing — the image data is expected in the request content.
+     * The filename of the image. If the parameter value is missing â€” the image data is expected in the request content.
      */
     public image: string;
 

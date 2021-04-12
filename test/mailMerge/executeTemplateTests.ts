@@ -1,4 +1,4 @@
-﻿/*
+/*
  * --------------------------------------------------------------------------------
  * <copyright company="Aspose" file="executeTemplateTests.ts">
  *   Copyright (c) 2021 Aspose.Words for Cloud

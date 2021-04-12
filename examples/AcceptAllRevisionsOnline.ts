@@ -1,4 +1,4 @@
-﻿const clientId = "####-####-####-####-####";
+const clientId = "####-####-####-####-####";
 const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
 const documentsDir = "./";

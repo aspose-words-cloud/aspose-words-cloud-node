@@ -1,4 +1,4 @@
-Ôªø/*
+/*
  * --------------------------------------------------------------------------------
  * <copyright company="Aspose" file="testUrlEncode.ts">
  *   Copyright (c) 2021 Aspose.Words for Cloud
@@ -42,7 +42,7 @@ describe("url encode", () => {
     describe("document name is encoded correctly", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            const remoteFileName = "[‚ÄúTest_Two,_Inc.‚Äù]-_83(b)Election([‚ÄúBill_Gates‚Äù]).docx";
+            const remoteFileName = "[ìTest_Two,_Inc.î]-_83(b)Election([ìBill_Gatesî]).docx";
 
             return wordsApi.uploadFileToStorage(
                 remoteDataFolder + "/" + remoteFileName,

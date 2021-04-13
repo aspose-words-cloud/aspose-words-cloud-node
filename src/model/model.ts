@@ -886,11 +886,6 @@ export interface RequestInterface {
 	 * create response from string
 	 */
 	createResponse(response: string, _boundary?: string): any;
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean;
 }
 
 
@@ -1002,17 +997,8 @@ export class AcceptAllRevisionsRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "RevisionsModificationResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -1121,13 +1107,6 @@ export class AcceptAllRevisionsOnlineRequest implements RequestInterface {
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -1257,17 +1236,8 @@ export class AppendDocumentRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "DocumentResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -1406,13 +1376,6 @@ export class AppendDocumentOnlineRequest implements RequestInterface {
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -1558,17 +1521,8 @@ export class ApplyStyleToDocumentElementRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "WordsResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -1723,13 +1677,6 @@ export class ApplyStyleToDocumentElementOnlineRequest implements RequestInterfac
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -1871,17 +1818,8 @@ export class BuildReportRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "DocumentResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -2001,17 +1939,8 @@ export class BuildReportOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
-        return ObjectSerializer.deserialize(_response, "Buffer");
+        return _response;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return true;
-    }
 }
 
 /**
@@ -2089,17 +2018,8 @@ export class ClassifyRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "ClassificationResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -2207,17 +2127,8 @@ export class ClassifyDocumentRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "ClassificationResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -2319,17 +2230,8 @@ export class ClassifyDocumentOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "ClassificationResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -2447,17 +2349,8 @@ export class CompareDocumentRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "DocumentResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -2584,13 +2477,6 @@ export class CompareDocumentOnlineRequest implements RequestInterface {
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -2708,17 +2594,8 @@ export class ConvertDocumentRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
-        return ObjectSerializer.deserialize(_response, "Buffer");
+        return _response;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return true;
-    }
 }
 
 /**
@@ -2821,13 +2698,6 @@ export class CopyFileRequest implements RequestInterface {
 	createResponse(_response: string, _boundary?: string): any {
         return null;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -2924,13 +2794,6 @@ export class CopyFolderRequest implements RequestInterface {
 	createResponse(_response: string, _boundary?: string): any {
         return null;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -3060,17 +2923,8 @@ export class CopyStyleRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "StyleResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -3209,13 +3063,6 @@ export class CopyStyleOnlineRequest implements RequestInterface {
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -3289,17 +3136,8 @@ export class CreateDocumentRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "DocumentResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -3379,13 +3217,6 @@ export class CreateFolderRequest implements RequestInterface {
 	createResponse(_response: string, _boundary?: string): any {
         return null;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -3531,17 +3362,8 @@ export class CreateOrUpdateDocumentPropertyRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "DocumentPropertyResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -3696,13 +3518,6 @@ export class CreateOrUpdateDocumentPropertyOnlineRequest implements RequestInter
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -3826,17 +3641,8 @@ export class DeleteAllParagraphTabStopsRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "TabStopsResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -3967,13 +3773,6 @@ export class DeleteAllParagraphTabStopsOnlineRequest implements RequestInterface
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -4109,17 +3908,8 @@ export class DeleteBorderRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "BorderResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -4262,13 +4052,6 @@ export class DeleteBorderOnlineRequest implements RequestInterface {
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -4388,17 +4171,8 @@ export class DeleteBordersRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "BordersResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -4525,13 +4299,6 @@ export class DeleteBordersOnlineRequest implements RequestInterface {
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -4663,13 +4430,6 @@ export class DeleteCommentRequest implements RequestInterface {
 	createResponse(_response: string, _boundary?: string): any {
         return null;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -4793,17 +4553,8 @@ export class DeleteCommentOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
-        return ObjectSerializer.deserialize(_response, "Buffer");
+        return _response;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return true;
-    }
 }
 
 /**
@@ -4919,13 +4670,6 @@ export class DeleteCommentsRequest implements RequestInterface {
 	createResponse(_response: string, _boundary?: string): any {
         return null;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -5033,17 +4777,8 @@ export class DeleteCommentsOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
-        return ObjectSerializer.deserialize(_response, "Buffer");
+        return _response;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return true;
-    }
 }
 
 /**
@@ -5175,13 +4910,6 @@ export class DeleteDocumentPropertyRequest implements RequestInterface {
 	createResponse(_response: string, _boundary?: string): any {
         return null;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -5305,17 +5033,8 @@ export class DeleteDocumentPropertyOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
-        return ObjectSerializer.deserialize(_response, "Buffer");
+        return _response;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return true;
-    }
 }
 
 /**
@@ -5453,13 +5172,6 @@ export class DeleteDrawingObjectRequest implements RequestInterface {
 	createResponse(_response: string, _boundary?: string): any {
         return null;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -5589,17 +5301,8 @@ export class DeleteDrawingObjectOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
-        return ObjectSerializer.deserialize(_response, "Buffer");
+        return _response;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return true;
-    }
 }
 
 /**
@@ -5737,13 +5440,6 @@ export class DeleteFieldRequest implements RequestInterface {
 	createResponse(_response: string, _boundary?: string): any {
         return null;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -5873,17 +5569,8 @@ export class DeleteFieldOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
-        return ObjectSerializer.deserialize(_response, "Buffer");
+        return _response;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return true;
-    }
 }
 
 /**
@@ -6005,13 +5692,6 @@ export class DeleteFieldsRequest implements RequestInterface {
 	createResponse(_response: string, _boundary?: string): any {
         return null;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -6125,17 +5805,8 @@ export class DeleteFieldsOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
-        return ObjectSerializer.deserialize(_response, "Buffer");
+        return _response;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return true;
-    }
 }
 
 /**
@@ -6221,13 +5892,6 @@ export class DeleteFileRequest implements RequestInterface {
 	createResponse(_response: string, _boundary?: string): any {
         return null;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -6313,13 +5977,6 @@ export class DeleteFolderRequest implements RequestInterface {
 	createResponse(_response: string, _boundary?: string): any {
         return null;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -6457,13 +6114,6 @@ export class DeleteFootnoteRequest implements RequestInterface {
 	createResponse(_response: string, _boundary?: string): any {
         return null;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -6593,17 +6243,8 @@ export class DeleteFootnoteOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
-        return ObjectSerializer.deserialize(_response, "Buffer");
+        return _response;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return true;
-    }
 }
 
 /**
@@ -6741,13 +6382,6 @@ export class DeleteFormFieldRequest implements RequestInterface {
 	createResponse(_response: string, _boundary?: string): any {
         return null;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -6877,17 +6511,8 @@ export class DeleteFormFieldOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
-        return ObjectSerializer.deserialize(_response, "Buffer");
+        return _response;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return true;
-    }
 }
 
 /**
@@ -7030,13 +6655,6 @@ export class DeleteHeaderFooterRequest implements RequestInterface {
 	createResponse(_response: string, _boundary?: string): any {
         return null;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -7171,17 +6789,8 @@ export class DeleteHeaderFooterOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
-        return ObjectSerializer.deserialize(_response, "Buffer");
+        return _response;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return true;
-    }
 }
 
 /**
@@ -7314,13 +6923,6 @@ export class DeleteHeadersFootersRequest implements RequestInterface {
 	createResponse(_response: string, _boundary?: string): any {
         return null;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -7445,17 +7047,8 @@ export class DeleteHeadersFootersOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
-        return ObjectSerializer.deserialize(_response, "Buffer");
+        return _response;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return true;
-    }
 }
 
 /**
@@ -7571,13 +7164,6 @@ export class DeleteMacrosRequest implements RequestInterface {
 	createResponse(_response: string, _boundary?: string): any {
         return null;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -7685,17 +7271,8 @@ export class DeleteMacrosOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
-        return ObjectSerializer.deserialize(_response, "Buffer");
+        return _response;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return true;
-    }
 }
 
 /**
@@ -7833,13 +7410,6 @@ export class DeleteOfficeMathObjectRequest implements RequestInterface {
 	createResponse(_response: string, _boundary?: string): any {
         return null;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -7969,17 +7539,8 @@ export class DeleteOfficeMathObjectOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
-        return ObjectSerializer.deserialize(_response, "Buffer");
+        return _response;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return true;
-    }
 }
 
 /**
@@ -8117,13 +7678,6 @@ export class DeleteParagraphRequest implements RequestInterface {
 	createResponse(_response: string, _boundary?: string): any {
         return null;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -8259,17 +7813,8 @@ export class DeleteParagraphListFormatRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "ParagraphListFormatResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -8412,13 +7957,6 @@ export class DeleteParagraphListFormatOnlineRequest implements RequestInterface 
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -8548,17 +8086,8 @@ export class DeleteParagraphOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
-        return ObjectSerializer.deserialize(_response, "Buffer");
+        return _response;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return true;
-    }
 }
 
 /**
@@ -8698,17 +8227,8 @@ export class DeleteParagraphTabStopRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "TabStopsResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -8855,13 +8375,6 @@ export class DeleteParagraphTabStopOnlineRequest implements RequestInterface {
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -9004,13 +8517,6 @@ export class DeleteRunRequest implements RequestInterface {
 	createResponse(_response: string, _boundary?: string): any {
         return null;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -9145,17 +8651,8 @@ export class DeleteRunOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
-        return ObjectSerializer.deserialize(_response, "Buffer");
+        return _response;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return true;
-    }
 }
 
 /**
@@ -9287,13 +8784,6 @@ export class DeleteSectionRequest implements RequestInterface {
 	createResponse(_response: string, _boundary?: string): any {
         return null;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -9417,17 +8907,8 @@ export class DeleteSectionOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
-        return ObjectSerializer.deserialize(_response, "Buffer");
+        return _response;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return true;
-    }
 }
 
 /**
@@ -9565,13 +9046,6 @@ export class DeleteTableRequest implements RequestInterface {
 	createResponse(_response: string, _boundary?: string): any {
         return null;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -9714,13 +9188,6 @@ export class DeleteTableCellRequest implements RequestInterface {
 	createResponse(_response: string, _boundary?: string): any {
         return null;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -9855,17 +9322,8 @@ export class DeleteTableCellOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
-        return ObjectSerializer.deserialize(_response, "Buffer");
+        return _response;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return true;
-    }
 }
 
 /**
@@ -9995,17 +9453,8 @@ export class DeleteTableOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
-        return ObjectSerializer.deserialize(_response, "Buffer");
+        return _response;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return true;
-    }
 }
 
 /**
@@ -10148,13 +9597,6 @@ export class DeleteTableRowRequest implements RequestInterface {
 	createResponse(_response: string, _boundary?: string): any {
         return null;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -10289,17 +9731,8 @@ export class DeleteTableRowOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
-        return ObjectSerializer.deserialize(_response, "Buffer");
+        return _response;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return true;
-    }
 }
 
 /**
@@ -10413,17 +9846,8 @@ export class DeleteWatermarkRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "DocumentResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -10544,13 +9968,6 @@ export class DeleteWatermarkOnlineRequest implements RequestInterface {
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -10634,17 +10051,8 @@ export class DownloadFileRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
-        return ObjectSerializer.deserialize(_response, "Buffer");
+        return _response;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return true;
-    }
 }
 
 /**
@@ -10782,17 +10190,8 @@ export class ExecuteMailMergeRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "DocumentResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -10906,17 +10305,8 @@ export class ExecuteMailMergeOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
-        return ObjectSerializer.deserialize(_response, "Buffer");
+        return _response;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return true;
-    }
 }
 
 /**
@@ -10978,17 +10368,8 @@ export class GetAvailableFontsRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "AvailableFontsResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -11100,17 +10481,8 @@ export class GetBookmarkByNameRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "BookmarkResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -11216,17 +10588,8 @@ export class GetBookmarkByNameOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "BookmarkResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -11322,17 +10685,8 @@ export class GetBookmarksRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "BookmarksResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -11422,17 +10776,8 @@ export class GetBookmarksOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "BookmarksResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -11550,17 +10895,8 @@ export class GetBorderRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "BorderResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -11672,17 +11008,8 @@ export class GetBorderOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "BorderResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -11784,17 +11111,8 @@ export class GetBordersRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "BordersResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -11890,17 +11208,8 @@ export class GetBordersOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "BordersResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -12012,17 +11321,8 @@ export class GetCommentRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "CommentResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -12128,17 +11428,8 @@ export class GetCommentOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "CommentResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -12234,17 +11525,8 @@ export class GetCommentsRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "CommentsResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -12334,17 +11616,8 @@ export class GetCommentsOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "CommentsResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -12440,17 +11713,8 @@ export class GetDocumentRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "DocumentResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -12568,17 +11832,8 @@ export class GetDocumentDrawingObjectByIndexRequest implements RequestInterface 
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "DrawingObjectResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -12690,17 +11945,8 @@ export class GetDocumentDrawingObjectByIndexOnlineRequest implements RequestInte
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "DrawingObjectResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -12818,17 +12064,8 @@ export class GetDocumentDrawingObjectImageDataRequest implements RequestInterfac
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
-        return ObjectSerializer.deserialize(_response, "Buffer");
+        return _response;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return true;
-    }
 }
 
 /**
@@ -12940,17 +12177,8 @@ export class GetDocumentDrawingObjectImageDataOnlineRequest implements RequestIn
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
-        return ObjectSerializer.deserialize(_response, "Buffer");
+        return _response;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return true;
-    }
 }
 
 /**
@@ -13068,17 +12296,8 @@ export class GetDocumentDrawingObjectOleDataRequest implements RequestInterface 
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
-        return ObjectSerializer.deserialize(_response, "Buffer");
+        return _response;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return true;
-    }
 }
 
 /**
@@ -13190,17 +12409,8 @@ export class GetDocumentDrawingObjectOleDataOnlineRequest implements RequestInte
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
-        return ObjectSerializer.deserialize(_response, "Buffer");
+        return _response;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return true;
-    }
 }
 
 /**
@@ -13302,17 +12512,8 @@ export class GetDocumentDrawingObjectsRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "DrawingObjectsResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -13408,17 +12609,8 @@ export class GetDocumentDrawingObjectsOnlineRequest implements RequestInterface 
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "DrawingObjectsResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -13520,17 +12712,8 @@ export class GetDocumentFieldNamesRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "FieldNamesResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -13626,17 +12809,8 @@ export class GetDocumentFieldNamesOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "FieldNamesResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -13748,17 +12922,8 @@ export class GetDocumentHyperlinkByIndexRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "HyperlinkResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -13864,17 +13029,8 @@ export class GetDocumentHyperlinkByIndexOnlineRequest implements RequestInterfac
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "HyperlinkResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -13970,17 +13126,8 @@ export class GetDocumentHyperlinksRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "HyperlinksResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -14070,17 +13217,8 @@ export class GetDocumentHyperlinksOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "HyperlinksResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -14176,17 +13314,8 @@ export class GetDocumentPropertiesRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "DocumentPropertiesResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -14276,17 +13405,8 @@ export class GetDocumentPropertiesOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "DocumentPropertiesResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -14398,17 +13518,8 @@ export class GetDocumentPropertyRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "DocumentPropertyResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -14514,17 +13625,8 @@ export class GetDocumentPropertyOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "DocumentPropertyResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -14620,17 +13722,8 @@ export class GetDocumentProtectionRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "ProtectionDataResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -14720,17 +13813,8 @@ export class GetDocumentProtectionOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "ProtectionDataResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -14844,17 +13928,8 @@ export class GetDocumentStatisticsRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "StatDataResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -14962,17 +14037,8 @@ export class GetDocumentStatisticsOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "StatDataResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -15096,17 +14162,8 @@ export class GetDocumentWithFormatRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
-        return ObjectSerializer.deserialize(_response, "Buffer");
+        return _response;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return true;
-    }
 }
 
 /**
@@ -15224,17 +14281,8 @@ export class GetFieldRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "FieldResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -15346,17 +14394,8 @@ export class GetFieldOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "FieldResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -15458,17 +14497,8 @@ export class GetFieldsRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "FieldsResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -15564,17 +14594,8 @@ export class GetFieldsOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "FieldsResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -15652,17 +14673,8 @@ export class GetFilesListRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "FilesList");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -15780,17 +14792,8 @@ export class GetFootnoteRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "FootnoteResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -15902,17 +14905,8 @@ export class GetFootnoteOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "FootnoteResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -16014,17 +15008,8 @@ export class GetFootnotesRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "FootnotesResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -16120,17 +15105,8 @@ export class GetFootnotesOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "FootnotesResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -16248,17 +15224,8 @@ export class GetFormFieldRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "FormFieldResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -16370,17 +15337,8 @@ export class GetFormFieldOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "FormFieldResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -16482,17 +15440,8 @@ export class GetFormFieldsRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "FormFieldsResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -16588,17 +15537,8 @@ export class GetFormFieldsOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "FormFieldsResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -16716,17 +15656,8 @@ export class GetHeaderFooterRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "HeaderFooterResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -16860,17 +15791,8 @@ export class GetHeaderFooterOfSectionRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "HeaderFooterResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -16998,17 +15920,8 @@ export class GetHeaderFooterOfSectionOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "HeaderFooterResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -17120,17 +16033,8 @@ export class GetHeaderFooterOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "HeaderFooterResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -17243,17 +16147,8 @@ export class GetHeaderFootersRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "HeaderFootersResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -17360,17 +16255,8 @@ export class GetHeaderFootersOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "HeaderFootersResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -17482,17 +16368,8 @@ export class GetListRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "ListResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -17598,17 +16475,8 @@ export class GetListOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "ListResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -17704,17 +16572,8 @@ export class GetListsRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "ListsResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -17804,17 +16663,8 @@ export class GetListsOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "ListsResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -17932,17 +16782,8 @@ export class GetOfficeMathObjectRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "OfficeMathObjectResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -18054,17 +16895,8 @@ export class GetOfficeMathObjectOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "OfficeMathObjectResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -18166,17 +16998,8 @@ export class GetOfficeMathObjectsRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "OfficeMathObjectsResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -18272,17 +17095,8 @@ export class GetOfficeMathObjectsOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "OfficeMathObjectsResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -18400,17 +17214,8 @@ export class GetParagraphRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "ParagraphResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -18528,17 +17333,8 @@ export class GetParagraphFormatRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "ParagraphFormatResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -18650,17 +17446,8 @@ export class GetParagraphFormatOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "ParagraphFormatResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -18778,17 +17565,8 @@ export class GetParagraphListFormatRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "ParagraphListFormatResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -18900,17 +17678,8 @@ export class GetParagraphListFormatOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "ParagraphListFormatResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -19022,17 +17791,8 @@ export class GetParagraphOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "ParagraphResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -19134,17 +17894,8 @@ export class GetParagraphsRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "ParagraphLinkCollectionResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -19240,17 +17991,8 @@ export class GetParagraphsOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "ParagraphLinkCollectionResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -19368,17 +18110,8 @@ export class GetParagraphTabStopsRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "TabStopsResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -19490,17 +18223,8 @@ export class GetParagraphTabStopsOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "TabStopsResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -19618,17 +18342,8 @@ export class GetRangeTextRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "RangeTextResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -19740,17 +18455,8 @@ export class GetRangeTextOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "RangeTextResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -19873,17 +18579,8 @@ export class GetRunRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "RunResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -20006,17 +18703,8 @@ export class GetRunFontRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "FontResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -20133,17 +18821,8 @@ export class GetRunFontOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "FontResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -20260,17 +18939,8 @@ export class GetRunOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "RunResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -20377,17 +19047,8 @@ export class GetRunsRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "RunsResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -20488,17 +19149,8 @@ export class GetRunsOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "RunsResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -20610,17 +19262,8 @@ export class GetSectionRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "SectionResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -20726,17 +19369,8 @@ export class GetSectionOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "SectionResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -20848,17 +19482,8 @@ export class GetSectionPageSetupRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "SectionPageSetupResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -20964,17 +19589,8 @@ export class GetSectionPageSetupOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "SectionPageSetupResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -21070,17 +19686,8 @@ export class GetSectionsRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "SectionLinkCollectionResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -21170,17 +19777,8 @@ export class GetSectionsOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "SectionLinkCollectionResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -21292,17 +19890,8 @@ export class GetStyleRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "StyleResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -21414,17 +20003,8 @@ export class GetStyleFromDocumentElementRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "StyleResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -21530,17 +20110,8 @@ export class GetStyleFromDocumentElementOnlineRequest implements RequestInterfac
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "StyleResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -21646,17 +20217,8 @@ export class GetStyleOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "StyleResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -21752,17 +20314,8 @@ export class GetStylesRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "StylesResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -21852,17 +20405,8 @@ export class GetStylesOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "StylesResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -21980,17 +20524,8 @@ export class GetTableRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "TableResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -22113,17 +20648,8 @@ export class GetTableCellRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "TableCellResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -22246,17 +20772,8 @@ export class GetTableCellFormatRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "TableCellFormatResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -22373,17 +20890,8 @@ export class GetTableCellFormatOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "TableCellFormatResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -22500,17 +21008,8 @@ export class GetTableCellOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "TableCellResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -22622,17 +21121,8 @@ export class GetTableOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "TableResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -22750,17 +21240,8 @@ export class GetTablePropertiesRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "TablePropertiesResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -22872,17 +21353,8 @@ export class GetTablePropertiesOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "TablePropertiesResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -23005,17 +21477,8 @@ export class GetTableRowRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "TableRowResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -23138,17 +21601,8 @@ export class GetTableRowFormatRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "TableRowFormatResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -23265,17 +21719,8 @@ export class GetTableRowFormatOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "TableRowFormatResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -23392,17 +21837,8 @@ export class GetTableRowOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "TableRowResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -23504,17 +21940,8 @@ export class GetTablesRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "TableLinkCollectionResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -23610,17 +22037,8 @@ export class GetTablesOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "TableLinkCollectionResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -23750,17 +22168,8 @@ export class InsertCommentRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "CommentResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -23899,13 +22308,6 @@ export class InsertCommentOnlineRequest implements RequestInterface {
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -24065,17 +22467,8 @@ export class InsertDrawingObjectRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "DrawingObjectResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -24238,13 +22631,6 @@ export class InsertDrawingObjectOnlineRequest implements RequestInterface {
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -24386,17 +22772,8 @@ export class InsertFieldRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "FieldResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -24547,13 +22924,6 @@ export class InsertFieldOnlineRequest implements RequestInterface {
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -24689,17 +23059,8 @@ export class InsertFootnoteRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "FootnoteResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -24844,13 +23205,6 @@ export class InsertFootnoteOnlineRequest implements RequestInterface {
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -24992,17 +23346,8 @@ export class InsertFormFieldRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "FormFieldResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -25153,13 +23498,6 @@ export class InsertFormFieldOnlineRequest implements RequestInterface {
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -25300,17 +23638,8 @@ export class InsertHeaderFooterRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "HeaderFooterResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -25460,13 +23789,6 @@ export class InsertHeaderFooterOnlineRequest implements RequestInterface {
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -25596,17 +23918,8 @@ export class InsertListRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "ListResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -25745,13 +24058,6 @@ export class InsertListOnlineRequest implements RequestInterface {
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -25891,17 +24197,8 @@ export class InsertOrUpdateParagraphTabStopRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "TabStopsResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -26050,13 +24347,6 @@ export class InsertOrUpdateParagraphTabStopOnlineRequest implements RequestInter
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -26186,17 +24476,8 @@ export class InsertPageNumbersRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "DocumentResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -26335,13 +24616,6 @@ export class InsertPageNumbersOnlineRequest implements RequestInterface {
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -26483,17 +24757,8 @@ export class InsertParagraphRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "ParagraphResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -26644,13 +24909,6 @@ export class InsertParagraphOnlineRequest implements RequestInterface {
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -26797,17 +25055,8 @@ export class InsertRunRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "RunResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -26963,13 +25212,6 @@ export class InsertRunOnlineRequest implements RequestInterface {
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -27099,17 +25341,8 @@ export class InsertStyleRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "StyleResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -27248,13 +25481,6 @@ export class InsertStyleOnlineRequest implements RequestInterface {
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -27390,17 +25616,8 @@ export class InsertTableRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "TableResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -27541,17 +25758,8 @@ export class InsertTableCellRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "TableCellResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -27701,13 +25909,6 @@ export class InsertTableCellOnlineRequest implements RequestInterface {
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -27852,13 +26053,6 @@ export class InsertTableOnlineRequest implements RequestInterface {
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -27999,17 +26193,8 @@ export class InsertTableRowRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "TableRowResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -28159,13 +26344,6 @@ export class InsertTableRowOnlineRequest implements RequestInterface {
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -28303,17 +26481,8 @@ export class InsertWatermarkImageRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "DocumentResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -28464,13 +26633,6 @@ export class InsertWatermarkImageOnlineRequest implements RequestInterface {
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -28600,17 +26762,8 @@ export class InsertWatermarkTextRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "DocumentResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -28749,13 +26902,6 @@ export class InsertWatermarkTextOnlineRequest implements RequestInterface {
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -28833,17 +26979,8 @@ export class LoadWebDocumentRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "SaveResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -28946,13 +27083,6 @@ export class MoveFileRequest implements RequestInterface {
 	createResponse(_response: string, _boundary?: string): any {
         return null;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -29049,13 +27179,6 @@ export class MoveFolderRequest implements RequestInterface {
 	createResponse(_response: string, _boundary?: string): any {
         return null;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -29187,13 +27310,6 @@ export class OptimizeDocumentRequest implements RequestInterface {
 	createResponse(_response: string, _boundary?: string): any {
         return null;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -29319,17 +27435,8 @@ export class OptimizeDocumentOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
-        return ObjectSerializer.deserialize(_response, "Buffer");
+        return _response;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return true;
-    }
 }
 
 /**
@@ -29447,17 +27554,8 @@ export class ProtectDocumentRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "ProtectionDataResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -29584,13 +27682,6 @@ export class ProtectDocumentOnlineRequest implements RequestInterface {
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -29692,17 +27783,8 @@ export class RejectAllRevisionsRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "RevisionsModificationResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -29811,13 +27893,6 @@ export class RejectAllRevisionsOnlineRequest implements RequestInterface {
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -29941,17 +28016,8 @@ export class RemoveRangeRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "DocumentResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -30082,13 +28148,6 @@ export class RemoveRangeOnlineRequest implements RequestInterface {
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -30234,17 +28293,8 @@ export class RenderDrawingObjectRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
-        return ObjectSerializer.deserialize(_response, "Buffer");
+        return _response;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return true;
-    }
 }
 
 /**
@@ -30384,17 +28434,8 @@ export class RenderDrawingObjectOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
-        return ObjectSerializer.deserialize(_response, "Buffer");
+        return _response;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return true;
-    }
 }
 
 /**
@@ -30540,17 +28581,8 @@ export class RenderMathObjectRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
-        return ObjectSerializer.deserialize(_response, "Buffer");
+        return _response;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return true;
-    }
 }
 
 /**
@@ -30690,17 +28722,8 @@ export class RenderMathObjectOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
-        return ObjectSerializer.deserialize(_response, "Buffer");
+        return _response;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return true;
-    }
 }
 
 /**
@@ -30834,17 +28857,8 @@ export class RenderPageRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
-        return ObjectSerializer.deserialize(_response, "Buffer");
+        return _response;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return true;
-    }
 }
 
 /**
@@ -30972,17 +28986,8 @@ export class RenderPageOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
-        return ObjectSerializer.deserialize(_response, "Buffer");
+        return _response;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return true;
-    }
 }
 
 /**
@@ -31128,17 +29133,8 @@ export class RenderParagraphRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
-        return ObjectSerializer.deserialize(_response, "Buffer");
+        return _response;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return true;
-    }
 }
 
 /**
@@ -31278,17 +29274,8 @@ export class RenderParagraphOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
-        return ObjectSerializer.deserialize(_response, "Buffer");
+        return _response;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return true;
-    }
 }
 
 /**
@@ -31434,17 +29421,8 @@ export class RenderTableRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
-        return ObjectSerializer.deserialize(_response, "Buffer");
+        return _response;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return true;
-    }
 }
 
 /**
@@ -31584,17 +29562,8 @@ export class RenderTableOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
-        return ObjectSerializer.deserialize(_response, "Buffer");
+        return _response;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return true;
-    }
 }
 
 /**
@@ -31724,17 +29693,8 @@ export class ReplaceTextRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "ReplaceTextResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -31873,13 +29833,6 @@ export class ReplaceTextOnlineRequest implements RequestInterface {
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -32019,17 +29972,8 @@ export class ReplaceWithTextRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "DocumentResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -32178,13 +30122,6 @@ export class ReplaceWithTextOnlineRequest implements RequestInterface {
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -32243,13 +30180,6 @@ export class ResetCacheRequest implements RequestInterface {
 	createResponse(_response: string, _boundary?: string): any {
         return null;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -32367,17 +30297,8 @@ export class SaveAsRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "SaveResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -32504,13 +30425,6 @@ export class SaveAsOnlineRequest implements RequestInterface {
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -32644,17 +30558,8 @@ export class SaveAsRangeRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "DocumentResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -32797,13 +30702,6 @@ export class SaveAsRangeOnlineRequest implements RequestInterface {
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -33023,17 +30921,8 @@ export class SaveAsTiffRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "SaveResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -33262,13 +31151,6 @@ export class SaveAsTiffOnlineRequest implements RequestInterface {
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -33375,17 +31257,8 @@ export class SearchRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "SearchResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -33486,17 +31359,8 @@ export class SearchOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "SearchResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -33638,17 +31502,8 @@ export class SplitDocumentRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "SplitDocumentResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -33797,13 +31652,6 @@ export class SplitDocumentOnlineRequest implements RequestInterface {
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -33921,17 +31769,8 @@ export class UnprotectDocumentRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "ProtectionDataResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -34058,13 +31897,6 @@ export class UnprotectDocumentOnlineRequest implements RequestInterface {
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -34210,17 +32042,8 @@ export class UpdateBookmarkRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "BookmarkResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -34375,13 +32198,6 @@ export class UpdateBookmarkOnlineRequest implements RequestInterface {
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -34533,17 +32349,8 @@ export class UpdateBorderRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "BorderResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -34704,13 +32511,6 @@ export class UpdateBorderOnlineRequest implements RequestInterface {
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -34856,17 +32656,8 @@ export class UpdateCommentRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "CommentResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -35021,13 +32812,6 @@ export class UpdateCommentOnlineRequest implements RequestInterface {
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -35203,17 +32987,8 @@ export class UpdateDrawingObjectRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "DrawingObjectResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -35392,13 +33167,6 @@ export class UpdateDrawingObjectOnlineRequest implements RequestInterface {
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -35550,17 +33318,8 @@ export class UpdateFieldRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "FieldResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -35721,13 +33480,6 @@ export class UpdateFieldOnlineRequest implements RequestInterface {
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -35829,17 +33581,8 @@ export class UpdateFieldsRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "DocumentResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -35948,13 +33691,6 @@ export class UpdateFieldsOnlineRequest implements RequestInterface {
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -36106,17 +33842,8 @@ export class UpdateFootnoteRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "FootnoteResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -36277,13 +34004,6 @@ export class UpdateFootnoteOnlineRequest implements RequestInterface {
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -36435,17 +34155,8 @@ export class UpdateFormFieldRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "FormFieldResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -36606,13 +34317,6 @@ export class UpdateFormFieldOnlineRequest implements RequestInterface {
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -36758,17 +34462,8 @@ export class UpdateListRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "ListResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -36930,17 +34625,8 @@ export class UpdateListLevelRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "ListResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -37111,13 +34797,6 @@ export class UpdateListLevelOnlineRequest implements RequestInterface {
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -37272,13 +34951,6 @@ export class UpdateListOnlineRequest implements RequestInterface {
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -37430,17 +35102,8 @@ export class UpdateParagraphFormatRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "ParagraphFormatResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -37601,13 +35264,6 @@ export class UpdateParagraphFormatOnlineRequest implements RequestInterface {
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -37759,17 +35415,8 @@ export class UpdateParagraphListFormatRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "ParagraphListFormatResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -37930,13 +35577,6 @@ export class UpdateParagraphListFormatOnlineRequest implements RequestInterface 
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -38093,17 +35733,8 @@ export class UpdateRunRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "RunResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -38260,17 +35891,8 @@ export class UpdateRunFontRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "FontResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -38436,13 +36058,6 @@ export class UpdateRunFontOnlineRequest implements RequestInterface {
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -38608,13 +36223,6 @@ export class UpdateRunOnlineRequest implements RequestInterface {
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -38760,17 +36368,8 @@ export class UpdateSectionPageSetupRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "SectionPageSetupResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -38925,13 +36524,6 @@ export class UpdateSectionPageSetupOnlineRequest implements RequestInterface {
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -39077,17 +36669,8 @@ export class UpdateStyleRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "StyleResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -39242,13 +36825,6 @@ export class UpdateStyleOnlineRequest implements RequestInterface {
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -39405,17 +36981,8 @@ export class UpdateTableCellFormatRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "TableCellFormatResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -39581,13 +37148,6 @@ export class UpdateTableCellFormatOnlineRequest implements RequestInterface {
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -39739,17 +37299,8 @@ export class UpdateTablePropertiesRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "TablePropertiesResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -39910,13 +37461,6 @@ export class UpdateTablePropertiesOnlineRequest implements RequestInterface {
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -40073,17 +37617,8 @@ export class UpdateTableRowFormatRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "TableRowFormatResponse");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**
@@ -40249,13 +37784,6 @@ export class UpdateTableRowFormatOnlineRequest implements RequestInterface {
 
         return result;
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-        return false;
-    }
 }
 
 /**
@@ -40357,17 +37885,8 @@ export class UploadFileRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: string, _boundary?: string): any {
-   
         return ObjectSerializer.deserialize(_response, "FilesUploadResult");
 	}
-
-    /**
-     * is binary response
-     */
-    isBinaryResponse(): Boolean {
-   
-        return false;
-    }
 }
 
 /**

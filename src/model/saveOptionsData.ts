@@ -76,6 +76,11 @@ export class SaveOptionsData {
             type: "string",
         },
         {
+            name: "updateCreatedTimeProperty",
+            baseName: "UpdateCreatedTimeProperty",
+            type: "boolean",
+        },
+        {
             name: "updateFields",
             baseName: "UpdateFields",
             type: "boolean",
@@ -144,6 +149,12 @@ export class SaveOptionsData {
      * Gets or sets the format of save.
      */
     public saveFormat: string;
+
+    /**
+     * Gets or sets a value determining whether the Aspose.Words.Properties.BuiltInDocumentProperties.CreatedTime property is updated before saving.
+     * Default value is false.
+     */
+    public updateCreatedTimeProperty: boolean;
 
     /**
      * Gets or sets a value indicating whether fields should be updated before saving the document to a fixed page format. The default value is true.

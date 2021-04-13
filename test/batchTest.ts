@@ -37,7 +37,7 @@ describe("batch tests", () => {
 
     describe("Empty batch request test", () => {
         it("should throw an error", () => {
-            const wordsApi = BaseTest.initializeWordsApi(true);
+            const wordsApi = BaseTest.initializeWordsApi();
             return wordsApi.batch()
                 .then((_) => {assert.fail("Error is expected");})
                 .catch((_) => {assert.ok("Passed");})
@@ -49,7 +49,7 @@ describe("batch tests", () => {
         const localFile = "Common/test_multi_pages.docx";
 
         it("should return response with code 200", () => {
-            const wordsApi = BaseTest.initializeWordsApi(true);
+            const wordsApi = BaseTest.initializeWordsApi();
             return wordsApi.uploadFileToStorage(
                 remoteDataFolder + "/" + remoteFileName,
                 BaseTest.localBaseTestDataFolder + localFile
@@ -77,7 +77,7 @@ describe("batch tests", () => {
         const localFile = "Common/test_multi_pages.docx";
 
         it("should return response with code 200", () => {
-            const wordsApi = BaseTest.initializeWordsApi(true);
+            const wordsApi = BaseTest.initializeWordsApi();
             return wordsApi.uploadFileToStorage(
                 remoteDataFolder + "/" + remoteFileName,
                 BaseTest.localBaseTestDataFolder + localFile
@@ -114,7 +114,7 @@ describe("batch tests", () => {
         const localFile = "Common/test_multi_pages.docx";
 
         it("should return response with code 200", () => {
-            const wordsApi = BaseTest.initializeWordsApi(true);
+            const wordsApi = BaseTest.initializeWordsApi();
             return wordsApi.uploadFileToStorage(
                 remoteDataFolder + "/" + remoteFileName,
                 BaseTest.localBaseTestDataFolder + localFile
@@ -146,7 +146,7 @@ describe("batch tests", () => {
         const localFile = "Common/test_multi_pages.docx";
 
         it("should return response with code 200", () => {
-            const wordsApi = BaseTest.initializeWordsApi(true);
+            const wordsApi = BaseTest.initializeWordsApi();
             return wordsApi.uploadFileToStorage(
                 remoteDataFolder + "/" + remoteFileName,
                 BaseTest.localBaseTestDataFolder + localFile
@@ -182,7 +182,7 @@ describe("batch tests", () => {
         const localFile = "Common/test_multi_pages.docx";
 
         it("should return response with code 200", () => {
-            const wordsApi = BaseTest.initializeWordsApi(true);
+            const wordsApi = BaseTest.initializeWordsApi();
             return wordsApi.uploadFileToStorage(
                 remoteDataFolder + "/" + remoteFileName,
                 BaseTest.localBaseTestDataFolder + localFile
@@ -234,7 +234,7 @@ describe("batch tests", () => {
                     expect(resultApi.body[0].constructor.name).to.equal("ParagraphLinkCollectionResponse"); // GetParagraphs
                     expect(resultApi.body[1].constructor.name).to.equal("ParagraphResponse"); // GetParagraph
                     expect(resultApi.body[2].constructor.name).to.equal("ParagraphResponse"); // InsertParagraph
-                    expect(resultApi.body[3].constructor.name).to.equal(null); // DeleteParagraph
+                    expect(resultApi.body[3]).to.be.null; // DeleteParagraph
                     expect(resultApi.body[4].constructor.name).to.equal("Buffer"); // BuildReportOnline
                 });
             });
@@ -246,7 +246,7 @@ describe("batch tests", () => {
         const localFile = "Common/test_multi_pages.docx";
 
         it("should return response with code 200", () => {
-            const wordsApi = BaseTest.initializeWordsApi(true);
+            const wordsApi = BaseTest.initializeWordsApi();
             return wordsApi.uploadFileToStorage(
                 remoteDataFolder + "/" + remoteFileName,
                 BaseTest.localBaseTestDataFolder + localFile
@@ -278,7 +278,7 @@ describe("batch tests", () => {
                     folder: remoteDataFolder
                 });
 
-                // set dependency
+                // set dependency 
                 request4.dependsOn(request2);
                 request2.dependsOn(request3);
                 request3.dependsOn(request1);
@@ -286,8 +286,9 @@ describe("batch tests", () => {
                 return wordsApi.batch(request1, request2, request3, request4)
                 .then((resultApi) => {
                     // Assert
+                    // expected order of request: 1, 3, 2, 4
                     expect(resultApi.response.statusCode).to.equal(200);
-                    expect(resultApi.body[1].paragraphs.paragraphLinkList.length).to.equal(resultApi.body[0].paragraphs.paragraphLinkList.length + 1);
+                    expect(resultApi.body[2].paragraphs.paragraphLinkList.length).to.equal(resultApi.body[0].paragraphs.paragraphLinkList.length + 1);
                 });
             });
         }); 

@@ -16,6 +16,12 @@ Feel free to explore the [Developer's Guide](https://docs.aspose.cloud/display/w
 - Add & remove watermarks and protection.
 - Read & write access to Document Object Model.
 
+## Enhancements in Version 21.3
+
+- Added 'UpdateCreatedTimeProperty' save option
+- Added Tables into HeaderFooter so it's possible to address paragraphs inside table which is located in headerfooter (sections/0/headersfooters/1/tables/0/rows/0/cells/0/paragraphs/0)
+
+
 ## Enhancements in Version 21.2
 
 - Added delete all comments method

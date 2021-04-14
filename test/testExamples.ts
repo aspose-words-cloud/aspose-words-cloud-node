@@ -40,8 +40,8 @@ describe("examples", () => {
         return wordsApi.uploadFileToStorage(
             'test_doc.docx',
             './ExamplesData/test_doc.docx'
-        ).then((result1037131313) => {
-            expect(result1037131313.response.statusMessage).to.equal("OK");
+        ).then((result_1037131313) => {
+            expect(result_1037131313.response.statusMessage).to.equal("OK");
         });
 
     });
@@ -60,7 +60,6 @@ describe("examples", () => {
 
             return wordsApi.uploadFile(uploadFileRequest)
             .then((uploadFileRequestResult) => {
-                // tslint:disable-next-line:no-console
                 console.log("Result of UploadFileRequest: ", uploadFileRequestResult);
                 // Calls AcceptAllRevisions method for document in cloud.
                 const request = new model.AcceptAllRevisionsRequest({
@@ -69,7 +68,6 @@ describe("examples", () => {
 
                 return wordsApi.acceptAllRevisions(request)
                 .then((requestResult) => {
-                    // tslint:disable-next-line:no-console
                     console.log("Result of Request: ", requestResult);
                 });
             });
@@ -89,7 +87,6 @@ describe("examples", () => {
 
             return wordsApi.acceptAllRevisionsOnline(request)
             .then((requestResult) => {
-                // tslint:disable-next-line:no-console
                 console.log("Result of Request: ", requestResult);
                 fs.writeFileSync("test_result.docx", requestResult.body.document);
             });

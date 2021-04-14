@@ -25,31 +25,29 @@
  * --------------------------------------------------------------------------------
  */
 
-import http = require("http");
 import request = require("request");
 import requestDebug = require("request-debug");
 import { Configuration } from "./configuration";
 import { ObjectSerializer } from "./objectSerializer";
 
 /**
- * Get boundary for IncomingHttpHeaders
+ * Parses multipart response.
+ * @param response api response.
+ * @param modelType model type.
+ * @param fileType file type.
  */
-export function getBoundary(headers: http.IncomingHttpHeaders): string {
-    return parseContentType(headers["content-type"]);
-}
-
-/**
- * Get boundary for headers dictionary
- */
-export function getPartBoundary(headers: {[key: string]: string}): string {
-    return parseContentType(headers['content-type']);
-}
-
-/**
- * Get boundary value from content-type header
- */
-function parseContentType(contentType: string) : string {
-    return contentType.split(" ")[1].split("=")[1].slice(1, -1);
+export async function parseMultipartResponse(response:request.RequestResponse, modelType: string, fileType: string) {
+    response.headers["content-type"] = response.headers['content-type'].replace("multipart/mixed", "multipart/form-data");
+    const header = response.headers['content-type'];
+    let boundary = header.split(" ")[1];
+    boundary = header.split("=")[1];
+    boundary = boundary.slice(1, -1);
+    const bodyString = response.body.toString().slice(2, -4);
+    const parts = bodyString.split(boundary);
+    const modelString = parts[1].split("\r\n\r\n")[1].slice(0, -4).replace("\r\n", "\n");
+    const model = ObjectSerializer.deserialize(JSON.parse(modelString.toString("utf8")), modelType);
+    const file = ObjectSerializer.deserialize(parts[2].split("\r\n\r\n")[1], fileType);
+    return [model, file];
 }
 
 /**
@@ -167,91 +165,6 @@ async function invokeApiMethodInternal(requestOptions: request.OptionsWithUri, c
 
         (r as any).writeDebugToConsole = confguration.debugMode;
     });
-}
-
-/**
- * Parse multipart response body for given boundary
- */
-export function parseMultipartBody(multipartBodyBuffer, boundary) {
-	const allParts = [];
-
-    let partHeaders = [];
-	let info = ''; 
-    let buffer = [];
-
-    const UNKNOWN = 0;
-    const PART_HEADERS = 1;
-    const STATUS = 2;
-    const CONTENT_HEADERS = 3;
-    const CONTENT = 4;
-    const PART_END = 5;
-
-    let state = UNKNOWN; 
-	let lastline = '';
-
-	for (let i = 0; i < multipartBodyBuffer.length; i++) {
-		const oneByte = multipartBodyBuffer[i];
-		const prevByte = i > 0 ? multipartBodyBuffer[i-1] : null;
-		const newLineDetected = ((oneByte === 0x0a) && (prevByte === 0x0d)) ? true : false;
-		const newLineChar = ((oneByte === 0x0a) || (oneByte === 0x0d)) ? true : false;
-
-		if(!newLineChar)
-			lastline += String.fromCharCode(oneByte);
-
-		if((UNKNOWN === state) && newLineDetected){
-			if(("--"+boundary) === lastline){
-				state = PART_HEADERS;
-                lastline = '';
-			};
-		} else
-        if((PART_HEADERS === state) && newLineDetected){
-            if(lastline === '') {
-                state = STATUS;
-            }
-            lastline = '';
-        } else  
-		if((STATUS === state) && newLineDetected){
-			info = lastline;
-			lastline = '';
-            state = CONTENT_HEADERS;
-		} else
-        if ((CONTENT_HEADERS === state) && newLineDetected) {
-            if(lastline === '') {
-                state = CONTENT;
-            } else {
-                partHeaders.push(lastline);
-            }
-            lastline = '';
-        } else
-		if(CONTENT === state){
-			if(lastline.length > (boundary.length+4)) lastline='';
-			if(((("--" + boundary) === lastline))){              
-                const part = { 
-                    code: parseInt(info, 10), 
-                    headers: partHeaders.reduce((headers, header) => {
-                        if (header.indexOf(':') !== -1) {
-                            const [ key, value ] = header.split(/:\s+/)
-                            headers[key.toLowerCase()] = value
-                        }
-                        return headers
-                        }, {}),
-                    body: Buffer.from(buffer.slice(0,buffer.length - lastline.length - 1))
-                };
-
-				allParts.push(part);
-
-				buffer = []; lastline = ''; state = PART_END; partHeaders = []; info = '';
-			} else {
-				buffer.push(oneByte);
-			}
-			if(newLineDetected) lastline='';
-		} else
-		if(PART_END === state){
-			if(newLineDetected)
-				state = PART_HEADERS;
-		}
-	}
-	return allParts;
 }
 
 /**

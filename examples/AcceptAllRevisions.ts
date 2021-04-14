@@ -14,6 +14,7 @@ const uploadFileRequest = new model.UploadFileRequest({
 
 return wordsApi.uploadFile(uploadFileRequest)
 .then((uploadFileRequestResult) => {
+    // tslint:disable-next-line:no-console
     console.log("Result of UploadFileRequest: ", uploadFileRequestResult);
     // Calls AcceptAllRevisions method for document in cloud.
     const request = new model.AcceptAllRevisionsRequest({
@@ -22,6 +23,7 @@ return wordsApi.uploadFile(uploadFileRequest)
 
     return wordsApi.acceptAllRevisions(request)
     .then((requestResult) => {
+        // tslint:disable-next-line:no-console
         console.log("Result of Request: ", requestResult);
     });
 });

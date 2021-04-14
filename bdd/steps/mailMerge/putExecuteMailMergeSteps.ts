@@ -23,11 +23,12 @@
 */
 
 import { When } from "cucumber";
+import { ExecuteMailMergeOnlineRequest } from "../../../src/model/model";
 import * as BaseTest from "../../../test/baseTest";
 
 When(/^I execute mail merge online$/, function() {
     const wordsApi = BaseTest.initializeWordsApi();
-    const request = this.request;
+    const request = new ExecuteMailMergeOnlineRequest(this.request);
         
     return wordsApi.executeMailMergeOnline(request)
         .then((result) => {                        

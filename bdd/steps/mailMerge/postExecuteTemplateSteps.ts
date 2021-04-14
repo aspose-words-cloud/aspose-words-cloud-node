@@ -25,7 +25,7 @@
 import { expect } from "chai";
 import { Given, Then, When } from "cucumber";
 import * as fs from "fs";
-import { GetDocumentDrawingObjectsRequest } from "../../../src/api";
+import { ExecuteMailMergeRequest, GetDocumentDrawingObjectsRequest } from "../../../src/api";
 import * as BaseTest from "../../../test/baseTest";
 
 const testFolder = "DocumentActions/MailMerge/";
@@ -53,7 +53,7 @@ Given(/^I have specified a body (.*)$/, function(fileWithBodyContent) {
 
 When(/^I execute template$/, function() {
     const wordsApi = BaseTest.initializeWordsApi();
-    const request = this.request;
+    const request = new ExecuteMailMergeRequest(this.request);
 
     return wordsApi.executeMailMerge(request)
         .then((result) => {

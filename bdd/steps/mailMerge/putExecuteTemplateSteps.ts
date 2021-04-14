@@ -24,6 +24,7 @@
 
 import { Given, When } from "cucumber";
 import * as fs from "fs";
+import { ExecuteMailMergeOnlineRequest } from "../../../src/model/model";
 import * as BaseTest from "../../../test/baseTest";
 
 const testFolder = "DocumentActions/MailMerge/";
@@ -34,7 +35,7 @@ Given(/^I have specified a template file (.*) in request$/, function(templateNam
 
 When(/^I execute template online$/, function() {
     const wordsApi = BaseTest.initializeWordsApi();
-    const request = this.request;
+    const request = new ExecuteMailMergeOnlineRequest(this.request);
         
     return wordsApi.executeMailMergeOnline(request)
         .then((result) => {                        

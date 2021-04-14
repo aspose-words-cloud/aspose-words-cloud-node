@@ -23,11 +23,12 @@
 */
 
 import { When } from "cucumber";
+import { GetDocumentWithFormatRequest } from "../../../src/model/model";
 import * as BaseTest from "../../../test/baseTest";
 
 When(/^I execute conversion from storage \(GET document with format\)$/, function() {
     const wordsApi = BaseTest.initializeWordsApi();
-    const request = this.request;
+    const request = new GetDocumentWithFormatRequest(this.request);
         
     return wordsApi.getDocumentWithFormat(request)
         .then((result) => {                        

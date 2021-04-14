@@ -24,6 +24,7 @@
 
 import { Given, When } from "cucumber";
 import * as fs from "fs";
+import { ConvertDocumentRequest } from "../../../src/model/model";
 import * as BaseTest from "../../../test/baseTest";
 
 Given(/^I have specified document (.*) to send it in request body$/, function(documentName) {
@@ -33,7 +34,7 @@ Given(/^I have specified document (.*) to send it in request body$/, function(do
 
 When(/^I execute conversion \(PUT convert\)$/, function() {
     const wordsApi = BaseTest.initializeWordsApi();
-    const request = this.request;
+    const request = new ConvertDocumentRequest(this.request);
         
     return wordsApi.convertDocument(request)
         .then((result) => {                        

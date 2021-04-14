@@ -24,7 +24,7 @@
 
 import { expect } from "chai";
 import { Before, Given, Then, When } from "cucumber";
-import { GetRunsRequest, SaveOptionsData } from "../../../src/api";
+import { GetRunsRequest, SaveAsRequest, SaveOptionsData } from "../../../src/api";
 import * as BaseTest from "../../../test/baseTest";
 
 Before({ tags: "@saveAs" }, function() {
@@ -41,7 +41,7 @@ Given(/^I have specified destFileName (.*)$/, function(destFileName) {
 
 When(/^I execute conversion from storage \(POST SaveAs\)$/, function() {
     const wordsApi = BaseTest.initializeWordsApi();
-    const request = this.request;
+    const request = new SaveAsRequest(this.request);
 
     return wordsApi.saveAs(request)
         .then((result) => {

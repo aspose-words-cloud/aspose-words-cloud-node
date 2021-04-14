@@ -50,11 +50,8 @@ Given(/^There is no file (.*) on storage in (.*) folder$/, function (documentNam
         remotePath = BaseTest.remoteBaseTestOutFolder + documentName;
     }
 
-    const request: DeleteFileRequest = {
-        path: remotePath,
-        storageName: undefined,
-        versionId: undefined
-    };
+    const request = new DeleteFileRequest();
+    request.path = remotePath;
 
     wordsApi.deleteFile(request)
     .then((result) => {
@@ -73,11 +70,8 @@ Then(/^document (.*) is existed on storage in (.*) folder$/, function (documentN
         remotePath = BaseTest.remoteBaseTestOutFolder + documentName;
     }
 
-    const request : DownloadFileRequest = {
-        path: remotePath,
-        storageName: undefined,
-        versionId: undefined
-    };
+    const request =  new DownloadFileRequest();
+    request.path = remotePath;
 
     wordsApi.downloadFile(request).
     then((result) => {

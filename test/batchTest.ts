@@ -102,8 +102,6 @@ describe("batch tests", () => {
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.length).to.equal(2);
                     expect(resultApi.body[1].constructor.name).to.equal("Buffer");
-
-                    fs.writeFileSync("d:/result.docx", resultApi.body[0]);
                 });
             });
         }); 

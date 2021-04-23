@@ -32,6 +32,7 @@
   "dependencies": {
     "@types/request": "^2.48.4",
     "blob": "^0.1.0",
+    "form-data": "^4.0.0",
     "lodash": "^4.17.15",
     "lodash.template": "^4.5.0",
     "request": "^2.88.2",

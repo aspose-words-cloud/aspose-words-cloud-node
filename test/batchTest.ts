@@ -31,6 +31,7 @@ import * as fs from "fs";
 
 import * as model from "../src/model/model";
 import * as BaseTest from "./baseTest";
+import { Readable } from "stream";
 
 describe("batch tests", () => {
     const remoteDataFolder = BaseTest.remoteBaseTestDataFolder + "/DocumentElements/Paragraphs";
@@ -39,8 +40,8 @@ describe("batch tests", () => {
         it("should throw an error", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             return wordsApi.batch()
-                .then((_) => {assert.fail("Error is expected");})
-                .catch((_) => {assert.ok("Passed");})
+                .then((_) => { assert.fail("Error is expected"); })
+                .catch((_) => { assert.ok("Passed"); })
         });
     });
 
@@ -62,14 +63,14 @@ describe("batch tests", () => {
                 });
 
                 return wordsApi.batch(request1)
-                .then((resultApi) => {
-                    // Assert
-                    expect(resultApi.response.statusCode).to.equal(200);
-                    expect(resultApi.body.length).to.equal(1);
-                    expect(resultApi.body[0].constructor.name).to.equal("ParagraphLinkCollectionResponse"); // GetParagraphs
-                });
+                    .then((resultApi) => {
+                        // Assert
+                        expect(resultApi.response.statusCode).to.equal(200);
+                        expect(resultApi.body.length).to.equal(1);
+                        expect(resultApi.body[0].constructor.name).to.equal("ParagraphLinkCollectionResponse"); // GetParagraphs
+                    });
             });
-        }); 
+        });
     });
 
     describe("Batch request for a single file test", () => {
@@ -97,14 +98,14 @@ describe("batch tests", () => {
                 request2.dependsOn(request1);
 
                 return wordsApi.batch(request1, request2)
-                .then((resultApi) => {
-                    // Assert
-                    expect(resultApi.response.statusCode).to.equal(200);
-                    expect(resultApi.body.length).to.equal(2);
-                    expect(resultApi.body[1].constructor.name).to.equal("Buffer");
-                });
+                    .then((resultApi) => {
+                        // Assert
+                        expect(resultApi.response.statusCode).to.equal(200);
+                        expect(resultApi.body.length).to.equal(2);
+                        expect(resultApi.body[1].constructor.name).to.equal("Buffer");
+                    });
             });
-        }); 
+        });
     });
 
     describe("Batch Request for a single form test", () => {
@@ -128,14 +129,14 @@ describe("batch tests", () => {
                 });
 
                 return wordsApi.batch(request1)
-                .then((resultApi) => {
-                    // Assert
-                    expect(resultApi.response.statusCode).to.equal(200);
-                    expect(resultApi.body.length).to.equal(1);
-                    expect(resultApi.body[0].constructor.name).to.equal("ParagraphResponse"); // InsertParagraph
-                });
+                    .then((resultApi) => {
+                        // Assert
+                        expect(resultApi.response.statusCode).to.equal(200);
+                        expect(resultApi.body.length).to.equal(1);
+                        expect(resultApi.body[0].constructor.name).to.equal("ParagraphResponse"); // InsertParagraph
+                    });
             });
-        }); 
+        });
     });
 
     describe("Batch request for a single online request test", () => {
@@ -164,14 +165,14 @@ describe("batch tests", () => {
                 });
 
                 return wordsApi.batch(request)
-                .then((resultApi) => {
-                    // Assert
-                    expect(resultApi.response.statusMessage).to.equal("OK");
-                    expect(resultApi.body.length).to.equal(1);
-                    expect(resultApi.body[0].constructor.name).to.equal("Buffer"); // BuildReportOnline
-                });
+                    .then((resultApi) => {
+                        // Assert
+                        expect(resultApi.response.statusMessage).to.equal("OK");
+                        expect(resultApi.body.length).to.equal(1);
+                        expect(resultApi.body[0].constructor.name).to.equal("Buffer"); // BuildReportOnline
+                    });
             });
-        }); 
+        });
     });
 
     describe("Run Full Batch Request test", () => {
@@ -191,7 +192,7 @@ describe("batch tests", () => {
                     nodePath: "sections/0",
                     folder: remoteDataFolder
                 });
-               const request2 = new model.GetParagraphRequest({
+                const request2 = new model.GetParagraphRequest({
                     name: remoteFileName,
                     index: 0,
                     nodePath: "sections/0",
@@ -225,18 +226,18 @@ describe("batch tests", () => {
                 });
 
                 return wordsApi.batch(request1, request2, request3, request4, request5)
-                .then((resultApi) => {
-                    // Assert
-                    expect(resultApi.response.statusCode).to.equal(200);
-                    expect(resultApi.body.length).to.equal(5);
-                    expect(resultApi.body[0].constructor.name).to.equal("ParagraphLinkCollectionResponse"); // GetParagraphs
-                    expect(resultApi.body[1].constructor.name).to.equal("ParagraphResponse"); // GetParagraph
-                    expect(resultApi.body[2].constructor.name).to.equal("ParagraphResponse"); // InsertParagraph
-                    expect(resultApi.body[3]).to.be.null; // DeleteParagraph
-                    expect(resultApi.body[4].constructor.name).to.equal("Buffer"); // BuildReportOnline
-                });
+                    .then((resultApi) => {
+                        // Assert
+                        expect(resultApi.response.statusCode).to.equal(200);
+                        expect(resultApi.body.length).to.equal(5);
+                        expect(resultApi.body[0].constructor.name).to.equal("ParagraphLinkCollectionResponse"); // GetParagraphs
+                        expect(resultApi.body[1].constructor.name).to.equal("ParagraphResponse"); // GetParagraph
+                        expect(resultApi.body[2].constructor.name).to.equal("ParagraphResponse"); // InsertParagraph
+                        expect(resultApi.body[3]).to.be.null; // DeleteParagraph
+                        expect(resultApi.body[4].constructor.name).to.equal("Buffer"); // BuildReportOnline
+                    });
             });
-        }); 
+        });
     });
 
     describe("Run batch request with depenency tree test", () => {
@@ -255,12 +256,12 @@ describe("batch tests", () => {
                     name: remoteFileName,
                     nodePath: "sections/0",
                     folder: remoteDataFolder
-                    });
+                });
                 const request2 = new model.GetParagraphsRequest({
-                        name: remoteFileName,
-                        nodePath: "sections/0",
-                        folder: remoteDataFolder
-                        });
+                    name: remoteFileName,
+                    nodePath: "sections/0",
+                    folder: remoteDataFolder
+                });
                 const request3 = new model.InsertParagraphRequest({
                     name: remoteFileName,
                     paragraph: new model.ParagraphInsert({
@@ -282,13 +283,54 @@ describe("batch tests", () => {
                 request3.dependsOn(request1);
 
                 return wordsApi.batch(request1, request2, request3, request4)
-                .then((resultApi) => {
-                    // Assert
-                    // expected order of request: 1, 3, 2, 4
-                    expect(resultApi.response.statusCode).to.equal(200);
-                    expect(resultApi.body[2].paragraphs.paragraphLinkList.length).to.equal(resultApi.body[0].paragraphs.paragraphLinkList.length + 1);
-                });
+                    .then((resultApi) => {
+                        // Assert
+                        // expected order of request: 1, 3, 2, 4
+                        expect(resultApi.response.statusCode).to.equal(200);
+                        expect(resultApi.body[2].paragraphs.paragraphLinkList.length).to.equal(resultApi.body[0].paragraphs.paragraphLinkList.length + 1);
+                    });
             });
-        }); 
+        });
+    });
+
+    describe("Run batch request with resultOf feature", () => {
+        const remoteFileName = "TestGetFullBatchRequest.docx";
+        const localFile = "Common/test_multi_pages.docx";
+
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            return wordsApi.uploadFileToStorage(
+                remoteDataFolder + "/" + remoteFileName,
+                BaseTest.localBaseTestDataFolder + localFile
+            ).then((result0) => {
+                expect(result0.response.statusMessage).to.equal("OK");
+
+                const request1 = new model.GetDocumentWithFormatRequest({
+                    name: remoteFileName,
+                    format: "docx",
+                    folder: remoteDataFolder
+                });
+                const request2 = new model.DeleteCommentsOnlineRequest({
+                    document: Readable.from(Buffer.from("resultOf(" + request1.id + ")")),
+                });
+                const request3 = new model.ConvertDocumentRequest({
+                    document: Readable.from(Buffer.from("resultOf(" + request2.id + ")")),
+                    format: "pdf"
+                });
+
+                // set dependency 
+                request2.dependsOn(request1);
+                request3.dependsOn(request2);
+
+                return wordsApi.batch(request1, request2, request3)
+                    .then((resultApi) => {
+                        // Assert
+                        expect(resultApi.response.statusCode).to.equal(200);
+                        expect(resultApi.body[0].constructor.name).to.equal("Buffer");
+                        expect(resultApi.body[1].constructor.name).to.equal("Buffer");
+                        expect(resultApi.body[2].constructor.name).to.equal("Buffer");
+                    });
+            });
+        });
     });
 });

@@ -860,22 +860,6 @@ const typeMap = {
  * Request interface.
  */
 export interface RequestInterface {
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface);
-
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -887,7 +871,6 @@ export interface RequestInterface {
 	 */
 	createResponse(response: string, _boundary?: string): any;
 }
-
 
 /**
  * Create unique request id
@@ -906,18 +889,7 @@ export class AcceptAllRevisionsRequest implements RequestInterface {
 
     public constructor(init?: Partial< AcceptAllRevisionsRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -948,14 +920,6 @@ export class AcceptAllRevisionsRequest implements RequestInterface {
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -1009,18 +973,7 @@ export class AcceptAllRevisionsOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< AcceptAllRevisionsOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -1041,14 +994,6 @@ export class AcceptAllRevisionsOnlineRequest implements RequestInterface {
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -1117,18 +1062,7 @@ export class AppendDocumentRequest implements RequestInterface {
 
     public constructor(init?: Partial< AppendDocumentRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -1174,14 +1108,6 @@ export class AppendDocumentRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -1248,18 +1174,7 @@ export class AppendDocumentOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< AppendDocumentOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -1295,14 +1210,6 @@ export class AppendDocumentOnlineRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -1386,18 +1293,7 @@ export class ApplyStyleToDocumentElementRequest implements RequestInterface {
 
     public constructor(init?: Partial< ApplyStyleToDocumentElementRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -1448,14 +1344,6 @@ export class ApplyStyleToDocumentElementRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -1533,18 +1421,7 @@ export class ApplyStyleToDocumentElementOnlineRequest implements RequestInterfac
 
     public constructor(init?: Partial< ApplyStyleToDocumentElementOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -1585,14 +1462,6 @@ export class ApplyStyleToDocumentElementOnlineRequest implements RequestInterfac
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -1687,18 +1556,7 @@ export class BuildReportRequest implements RequestInterface {
 
     public constructor(init?: Partial< BuildReportRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -1739,14 +1597,6 @@ export class BuildReportRequest implements RequestInterface {
      * The filename of the output document. If this parameter is omitted, the result will be saved with autogenerated name.
      */
     public destFileName: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -1830,18 +1680,7 @@ export class BuildReportOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< BuildReportOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * File with template.
@@ -1862,14 +1701,6 @@ export class BuildReportOnlineRequest implements RequestInterface {
      * The filename of the output document, that will be used when the resulting document has a dynamic field {filename}. If it is not set, the "template" will be used instead.
      */
     public documentFileName: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -1951,18 +1782,7 @@ export class ClassifyRequest implements RequestInterface {
 
     public constructor(init?: Partial< ClassifyRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The text to classify.
@@ -1973,14 +1793,6 @@ export class ClassifyRequest implements RequestInterface {
      * The number of the best classes to return.
      */
     public bestClassesCount: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -2030,18 +1842,7 @@ export class ClassifyDocumentRequest implements RequestInterface {
 
     public constructor(init?: Partial< ClassifyDocumentRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document name.
@@ -2077,14 +1878,6 @@ export class ClassifyDocumentRequest implements RequestInterface {
      * The taxonomy to use.
      */
     public taxonomy: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -2139,18 +1932,7 @@ export class ClassifyDocumentOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< ClassifyDocumentOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -2176,14 +1958,6 @@ export class ClassifyDocumentOnlineRequest implements RequestInterface {
      * The taxonomy to use.
      */
     public taxonomy: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -2242,18 +2016,7 @@ export class CompareDocumentRequest implements RequestInterface {
 
     public constructor(init?: Partial< CompareDocumentRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -2289,14 +2052,6 @@ export class CompareDocumentRequest implements RequestInterface {
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -2361,18 +2116,7 @@ export class CompareDocumentOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< CompareDocumentOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -2398,14 +2142,6 @@ export class CompareDocumentOnlineRequest implements RequestInterface {
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -2487,18 +2223,7 @@ export class ConvertDocumentRequest implements RequestInterface {
 
     public constructor(init?: Partial< ConvertDocumentRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * Converting document.
@@ -2529,14 +2254,6 @@ export class ConvertDocumentRequest implements RequestInterface {
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -2606,18 +2323,7 @@ export class CopyFileRequest implements RequestInterface {
 
     public constructor(init?: Partial< CopyFileRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * Destination file path.
@@ -2643,14 +2349,6 @@ export class CopyFileRequest implements RequestInterface {
      * File version ID to copy.
      */
     public versionId: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -2708,18 +2406,7 @@ export class CopyFolderRequest implements RequestInterface {
 
     public constructor(init?: Partial< CopyFolderRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * Destination folder path e.g. '/dst'.
@@ -2740,14 +2427,6 @@ export class CopyFolderRequest implements RequestInterface {
      * Destination storage name.
      */
     public destStorageName: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -2804,18 +2483,7 @@ export class CopyStyleRequest implements RequestInterface {
 
     public constructor(init?: Partial< CopyStyleRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -2861,14 +2529,6 @@ export class CopyStyleRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -2935,18 +2595,7 @@ export class CopyStyleOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< CopyStyleOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -2982,14 +2631,6 @@ export class CopyStyleOnlineRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -3073,18 +2714,7 @@ export class CreateDocumentRequest implements RequestInterface {
 
     public constructor(init?: Partial< CreateDocumentRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the document.
@@ -3100,14 +2730,6 @@ export class CreateDocumentRequest implements RequestInterface {
      * Original document storage.
      */
     public storage: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -3148,18 +2770,7 @@ export class CreateFolderRequest implements RequestInterface {
 
     public constructor(init?: Partial< CreateFolderRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * Target folder's path e.g. Folder1/Folder2/. The folders will be created recursively.
@@ -3170,14 +2781,6 @@ export class CreateFolderRequest implements RequestInterface {
      * Storage name.
      */
     public storageName: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -3227,18 +2830,7 @@ export class CreateOrUpdateDocumentPropertyRequest implements RequestInterface {
 
     public constructor(init?: Partial< CreateOrUpdateDocumentPropertyRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -3289,14 +2881,6 @@ export class CreateOrUpdateDocumentPropertyRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -3374,18 +2958,7 @@ export class CreateOrUpdateDocumentPropertyOnlineRequest implements RequestInter
 
     public constructor(init?: Partial< CreateOrUpdateDocumentPropertyOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -3426,14 +2999,6 @@ export class CreateOrUpdateDocumentPropertyOnlineRequest implements RequestInter
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -3528,18 +3093,7 @@ export class DeleteAllParagraphTabStopsRequest implements RequestInterface {
 
     public constructor(init?: Partial< DeleteAllParagraphTabStopsRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -3580,14 +3134,6 @@ export class DeleteAllParagraphTabStopsRequest implements RequestInterface {
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -3653,18 +3199,7 @@ export class DeleteAllParagraphTabStopsOnlineRequest implements RequestInterface
 
     public constructor(init?: Partial< DeleteAllParagraphTabStopsOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -3695,14 +3230,6 @@ export class DeleteAllParagraphTabStopsOnlineRequest implements RequestInterface
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -3783,18 +3310,7 @@ export class DeleteBorderRequest implements RequestInterface {
 
     public constructor(init?: Partial< DeleteBorderRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -3845,14 +3361,6 @@ export class DeleteBorderRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -3920,18 +3428,7 @@ export class DeleteBorderOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< DeleteBorderOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -3972,14 +3469,6 @@ export class DeleteBorderOnlineRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -4062,18 +3551,7 @@ export class DeleteBordersRequest implements RequestInterface {
 
     public constructor(init?: Partial< DeleteBordersRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -4119,14 +3597,6 @@ export class DeleteBordersRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -4183,18 +3653,7 @@ export class DeleteBordersOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< DeleteBordersOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -4230,14 +3689,6 @@ export class DeleteBordersOnlineRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -4309,18 +3760,7 @@ export class DeleteCommentRequest implements RequestInterface {
 
     public constructor(init?: Partial< DeleteCommentRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -4366,14 +3806,6 @@ export class DeleteCommentRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -4440,18 +3872,7 @@ export class DeleteCommentOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< DeleteCommentOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -4487,14 +3908,6 @@ export class DeleteCommentOnlineRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -4565,18 +3978,7 @@ export class DeleteCommentsRequest implements RequestInterface {
 
     public constructor(init?: Partial< DeleteCommentsRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -4617,14 +4019,6 @@ export class DeleteCommentsRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -4680,18 +4074,7 @@ export class DeleteCommentsOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< DeleteCommentsOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -4722,14 +4105,6 @@ export class DeleteCommentsOnlineRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -4789,18 +4164,7 @@ export class DeleteDocumentPropertyRequest implements RequestInterface {
 
     public constructor(init?: Partial< DeleteDocumentPropertyRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -4846,14 +4210,6 @@ export class DeleteDocumentPropertyRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -4920,18 +4276,7 @@ export class DeleteDocumentPropertyOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< DeleteDocumentPropertyOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -4967,14 +4312,6 @@ export class DeleteDocumentPropertyOnlineRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -5045,18 +4382,7 @@ export class DeleteDrawingObjectRequest implements RequestInterface {
 
     public constructor(init?: Partial< DeleteDrawingObjectRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -5107,14 +4433,6 @@ export class DeleteDrawingObjectRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -5182,18 +4500,7 @@ export class DeleteDrawingObjectOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< DeleteDrawingObjectOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -5234,14 +4541,6 @@ export class DeleteDrawingObjectOnlineRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -5313,18 +4612,7 @@ export class DeleteFieldRequest implements RequestInterface {
 
     public constructor(init?: Partial< DeleteFieldRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -5375,14 +4663,6 @@ export class DeleteFieldRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -5450,18 +4730,7 @@ export class DeleteFieldOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< DeleteFieldOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -5502,14 +4771,6 @@ export class DeleteFieldOnlineRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -5581,18 +4842,7 @@ export class DeleteFieldsRequest implements RequestInterface {
 
     public constructor(init?: Partial< DeleteFieldsRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -5638,14 +4888,6 @@ export class DeleteFieldsRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -5702,18 +4944,7 @@ export class DeleteFieldsOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< DeleteFieldsOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -5749,14 +4980,6 @@ export class DeleteFieldsOnlineRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -5817,18 +5040,7 @@ export class DeleteFileRequest implements RequestInterface {
 
     public constructor(init?: Partial< DeleteFileRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * Path of the file including the file name and extension e.g. /folder1/file.ext.
@@ -5844,14 +5056,6 @@ export class DeleteFileRequest implements RequestInterface {
      * File version ID to delete.
      */
     public versionId: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -5902,18 +5106,7 @@ export class DeleteFolderRequest implements RequestInterface {
 
     public constructor(init?: Partial< DeleteFolderRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * Folder path e.g. '/folder'.
@@ -5929,14 +5122,6 @@ export class DeleteFolderRequest implements RequestInterface {
      * Enable to delete folders, subfolders and files.
      */
     public recursive: boolean;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -5987,18 +5172,7 @@ export class DeleteFootnoteRequest implements RequestInterface {
 
     public constructor(init?: Partial< DeleteFootnoteRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -6049,14 +5223,6 @@ export class DeleteFootnoteRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -6124,18 +5290,7 @@ export class DeleteFootnoteOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< DeleteFootnoteOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -6176,14 +5331,6 @@ export class DeleteFootnoteOnlineRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -6255,18 +5402,7 @@ export class DeleteFormFieldRequest implements RequestInterface {
 
     public constructor(init?: Partial< DeleteFormFieldRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -6317,14 +5453,6 @@ export class DeleteFormFieldRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -6392,18 +5520,7 @@ export class DeleteFormFieldOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< DeleteFormFieldOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -6444,14 +5561,6 @@ export class DeleteFormFieldOnlineRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -6523,18 +5632,7 @@ export class DeleteHeaderFooterRequest implements RequestInterface {
 
     public constructor(init?: Partial< DeleteHeaderFooterRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -6585,14 +5683,6 @@ export class DeleteHeaderFooterRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -6665,18 +5755,7 @@ export class DeleteHeaderFooterOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< DeleteHeaderFooterOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -6717,14 +5796,6 @@ export class DeleteHeaderFooterOnlineRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -6801,18 +5872,7 @@ export class DeleteHeadersFootersRequest implements RequestInterface {
 
     public constructor(init?: Partial< DeleteHeadersFootersRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -6863,14 +5923,6 @@ export class DeleteHeadersFootersRequest implements RequestInterface {
      * The list of HeaderFooter types.
      */
     public headersFootersTypes: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -6933,18 +5985,7 @@ export class DeleteHeadersFootersOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< DeleteHeadersFootersOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -6985,14 +6026,6 @@ export class DeleteHeadersFootersOnlineRequest implements RequestInterface {
      * The list of HeaderFooter types.
      */
     public headersFootersTypes: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -7059,18 +6092,7 @@ export class DeleteMacrosRequest implements RequestInterface {
 
     public constructor(init?: Partial< DeleteMacrosRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -7111,14 +6133,6 @@ export class DeleteMacrosRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -7174,18 +6188,7 @@ export class DeleteMacrosOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< DeleteMacrosOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -7216,14 +6219,6 @@ export class DeleteMacrosOnlineRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -7283,18 +6278,7 @@ export class DeleteOfficeMathObjectRequest implements RequestInterface {
 
     public constructor(init?: Partial< DeleteOfficeMathObjectRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -7345,14 +6329,6 @@ export class DeleteOfficeMathObjectRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -7420,18 +6396,7 @@ export class DeleteOfficeMathObjectOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< DeleteOfficeMathObjectOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -7472,14 +6437,6 @@ export class DeleteOfficeMathObjectOnlineRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -7551,18 +6508,7 @@ export class DeleteParagraphRequest implements RequestInterface {
 
     public constructor(init?: Partial< DeleteParagraphRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -7613,14 +6559,6 @@ export class DeleteParagraphRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -7688,18 +6626,7 @@ export class DeleteParagraphListFormatRequest implements RequestInterface {
 
     public constructor(init?: Partial< DeleteParagraphListFormatRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -7750,14 +6677,6 @@ export class DeleteParagraphListFormatRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -7825,18 +6744,7 @@ export class DeleteParagraphListFormatOnlineRequest implements RequestInterface 
 
     public constructor(init?: Partial< DeleteParagraphListFormatOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -7877,14 +6785,6 @@ export class DeleteParagraphListFormatOnlineRequest implements RequestInterface 
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -7967,18 +6867,7 @@ export class DeleteParagraphOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< DeleteParagraphOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -8019,14 +6908,6 @@ export class DeleteParagraphOnlineRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -8098,18 +6979,7 @@ export class DeleteParagraphTabStopRequest implements RequestInterface {
 
     public constructor(init?: Partial< DeleteParagraphTabStopRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -8155,14 +7025,6 @@ export class DeleteParagraphTabStopRequest implements RequestInterface {
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -8239,18 +7101,7 @@ export class DeleteParagraphTabStopOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< DeleteParagraphTabStopOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -8286,14 +7137,6 @@ export class DeleteParagraphTabStopOnlineRequest implements RequestInterface {
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -8385,18 +7228,7 @@ export class DeleteRunRequest implements RequestInterface {
 
     public constructor(init?: Partial< DeleteRunRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -8447,14 +7279,6 @@ export class DeleteRunRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -8527,18 +7351,7 @@ export class DeleteRunOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< DeleteRunOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -8579,14 +7392,6 @@ export class DeleteRunOnlineRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -8663,18 +7468,7 @@ export class DeleteSectionRequest implements RequestInterface {
 
     public constructor(init?: Partial< DeleteSectionRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -8720,14 +7514,6 @@ export class DeleteSectionRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -8794,18 +7580,7 @@ export class DeleteSectionOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< DeleteSectionOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -8841,14 +7616,6 @@ export class DeleteSectionOnlineRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -8919,18 +7686,7 @@ export class DeleteTableRequest implements RequestInterface {
 
     public constructor(init?: Partial< DeleteTableRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -8981,14 +7737,6 @@ export class DeleteTableRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -9056,18 +7804,7 @@ export class DeleteTableCellRequest implements RequestInterface {
 
     public constructor(init?: Partial< DeleteTableCellRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -9118,14 +7855,6 @@ export class DeleteTableCellRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -9198,18 +7927,7 @@ export class DeleteTableCellOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< DeleteTableCellOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -9250,14 +7968,6 @@ export class DeleteTableCellOnlineRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -9334,18 +8044,7 @@ export class DeleteTableOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< DeleteTableOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -9386,14 +8085,6 @@ export class DeleteTableOnlineRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -9465,18 +8156,7 @@ export class DeleteTableRowRequest implements RequestInterface {
 
     public constructor(init?: Partial< DeleteTableRowRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -9527,14 +8207,6 @@ export class DeleteTableRowRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -9607,18 +8279,7 @@ export class DeleteTableRowOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< DeleteTableRowOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -9659,14 +8320,6 @@ export class DeleteTableRowOnlineRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -9743,18 +8396,7 @@ export class DeleteWatermarkRequest implements RequestInterface {
 
     public constructor(init?: Partial< DeleteWatermarkRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -9795,14 +8437,6 @@ export class DeleteWatermarkRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -9858,18 +8492,7 @@ export class DeleteWatermarkOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< DeleteWatermarkOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -9900,14 +8523,6 @@ export class DeleteWatermarkOnlineRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -9978,18 +8593,7 @@ export class DownloadFileRequest implements RequestInterface {
 
     public constructor(init?: Partial< DownloadFileRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * Path of the file including the file name and extension e.g. /folder1/file.ext.
@@ -10005,14 +8609,6 @@ export class DownloadFileRequest implements RequestInterface {
      * File version ID to download.
      */
     public versionId: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -10063,18 +8659,7 @@ export class ExecuteMailMergeRequest implements RequestInterface {
 
     public constructor(init?: Partial< ExecuteMailMergeRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -10130,14 +8715,6 @@ export class ExecuteMailMergeRequest implements RequestInterface {
      * The filename of the output document. If this parameter is omitted, the result will be saved with autogenerated name.
      */
     public destFileName: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -10202,18 +8779,7 @@ export class ExecuteMailMergeOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< ExecuteMailMergeOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * File with template.
@@ -10239,14 +8805,6 @@ export class ExecuteMailMergeOnlineRequest implements RequestInterface {
      * The filename of the output document, that will be used when the resulting document has a dynamic field {filename}. If it is not set, the "template" will be used instead.
      */
     public documentFileName: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -10317,31 +8875,12 @@ export class GetAvailableFontsRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetAvailableFontsRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The folder in cloud storage with custom fonts.
      */
     public fontsLocation: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -10380,18 +8919,7 @@ export class GetBookmarkByNameRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetBookmarkByNameRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -10422,14 +8950,6 @@ export class GetBookmarkByNameRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -10493,18 +9013,7 @@ export class GetBookmarkByNameOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetBookmarkByNameOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -10525,14 +9034,6 @@ export class GetBookmarkByNameOnlineRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -10600,18 +9101,7 @@ export class GetBookmarksRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetBookmarksRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -10637,14 +9127,6 @@ export class GetBookmarksRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -10697,18 +9179,7 @@ export class GetBookmarksOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetBookmarksOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -10724,14 +9195,6 @@ export class GetBookmarksOnlineRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -10788,18 +9251,7 @@ export class GetBorderRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetBorderRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -10835,14 +9287,6 @@ export class GetBorderRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -10907,18 +9351,7 @@ export class GetBorderOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetBorderOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -10944,14 +9377,6 @@ export class GetBorderOnlineRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -11020,18 +9445,7 @@ export class GetBordersRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetBordersRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -11062,14 +9476,6 @@ export class GetBordersRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -11123,18 +9529,7 @@ export class GetBordersOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetBordersOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -11155,14 +9550,6 @@ export class GetBordersOnlineRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -11220,18 +9607,7 @@ export class GetCommentRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetCommentRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -11262,14 +9638,6 @@ export class GetCommentRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -11333,18 +9701,7 @@ export class GetCommentOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetCommentOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -11365,14 +9722,6 @@ export class GetCommentOnlineRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -11440,18 +9789,7 @@ export class GetCommentsRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetCommentsRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -11477,14 +9815,6 @@ export class GetCommentsRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -11537,18 +9867,7 @@ export class GetCommentsOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetCommentsOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -11564,14 +9883,6 @@ export class GetCommentsOnlineRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -11628,18 +9939,7 @@ export class GetDocumentRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetDocumentRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -11665,14 +9965,6 @@ export class GetDocumentRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -11725,18 +10017,7 @@ export class GetDocumentDrawingObjectByIndexRequest implements RequestInterface 
 
     public constructor(init?: Partial< GetDocumentDrawingObjectByIndexRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -11772,14 +10053,6 @@ export class GetDocumentDrawingObjectByIndexRequest implements RequestInterface 
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -11844,18 +10117,7 @@ export class GetDocumentDrawingObjectByIndexOnlineRequest implements RequestInte
 
     public constructor(init?: Partial< GetDocumentDrawingObjectByIndexOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -11881,14 +10143,6 @@ export class GetDocumentDrawingObjectByIndexOnlineRequest implements RequestInte
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -11957,18 +10211,7 @@ export class GetDocumentDrawingObjectImageDataRequest implements RequestInterfac
 
     public constructor(init?: Partial< GetDocumentDrawingObjectImageDataRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -12004,14 +10247,6 @@ export class GetDocumentDrawingObjectImageDataRequest implements RequestInterfac
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -12076,18 +10311,7 @@ export class GetDocumentDrawingObjectImageDataOnlineRequest implements RequestIn
 
     public constructor(init?: Partial< GetDocumentDrawingObjectImageDataOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -12113,14 +10337,6 @@ export class GetDocumentDrawingObjectImageDataOnlineRequest implements RequestIn
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -12189,18 +10405,7 @@ export class GetDocumentDrawingObjectOleDataRequest implements RequestInterface 
 
     public constructor(init?: Partial< GetDocumentDrawingObjectOleDataRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -12236,14 +10441,6 @@ export class GetDocumentDrawingObjectOleDataRequest implements RequestInterface 
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -12308,18 +10505,7 @@ export class GetDocumentDrawingObjectOleDataOnlineRequest implements RequestInte
 
     public constructor(init?: Partial< GetDocumentDrawingObjectOleDataOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -12345,14 +10531,6 @@ export class GetDocumentDrawingObjectOleDataOnlineRequest implements RequestInte
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -12421,18 +10599,7 @@ export class GetDocumentDrawingObjectsRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetDocumentDrawingObjectsRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -12463,14 +10630,6 @@ export class GetDocumentDrawingObjectsRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -12524,18 +10683,7 @@ export class GetDocumentDrawingObjectsOnlineRequest implements RequestInterface 
 
     public constructor(init?: Partial< GetDocumentDrawingObjectsOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -12556,14 +10704,6 @@ export class GetDocumentDrawingObjectsOnlineRequest implements RequestInterface 
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -12621,18 +10761,7 @@ export class GetDocumentFieldNamesRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetDocumentFieldNamesRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -12663,14 +10792,6 @@ export class GetDocumentFieldNamesRequest implements RequestInterface {
      * The flag indicating whether to use non merge fields. If true, result includes "mustache" field names.
      */
     public useNonMergeFields: boolean;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -12724,18 +10845,7 @@ export class GetDocumentFieldNamesOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetDocumentFieldNamesOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -12756,14 +10866,6 @@ export class GetDocumentFieldNamesOnlineRequest implements RequestInterface {
      * The flag indicating whether to use non merge fields. If true, result includes "mustache" field names.
      */
     public useNonMergeFields: boolean;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -12821,18 +10923,7 @@ export class GetDocumentHyperlinkByIndexRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetDocumentHyperlinkByIndexRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -12863,14 +10954,6 @@ export class GetDocumentHyperlinkByIndexRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -12934,18 +11017,7 @@ export class GetDocumentHyperlinkByIndexOnlineRequest implements RequestInterfac
 
     public constructor(init?: Partial< GetDocumentHyperlinkByIndexOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -12966,14 +11038,6 @@ export class GetDocumentHyperlinkByIndexOnlineRequest implements RequestInterfac
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -13041,18 +11105,7 @@ export class GetDocumentHyperlinksRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetDocumentHyperlinksRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -13078,14 +11131,6 @@ export class GetDocumentHyperlinksRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -13138,18 +11183,7 @@ export class GetDocumentHyperlinksOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetDocumentHyperlinksOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -13165,14 +11199,6 @@ export class GetDocumentHyperlinksOnlineRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -13229,18 +11255,7 @@ export class GetDocumentPropertiesRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetDocumentPropertiesRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -13266,14 +11281,6 @@ export class GetDocumentPropertiesRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -13326,18 +11333,7 @@ export class GetDocumentPropertiesOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetDocumentPropertiesOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -13353,14 +11349,6 @@ export class GetDocumentPropertiesOnlineRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -13417,18 +11405,7 @@ export class GetDocumentPropertyRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetDocumentPropertyRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -13459,14 +11436,6 @@ export class GetDocumentPropertyRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -13530,18 +11499,7 @@ export class GetDocumentPropertyOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetDocumentPropertyOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -13562,14 +11520,6 @@ export class GetDocumentPropertyOnlineRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -13637,18 +11587,7 @@ export class GetDocumentProtectionRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetDocumentProtectionRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -13674,14 +11613,6 @@ export class GetDocumentProtectionRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -13734,18 +11665,7 @@ export class GetDocumentProtectionOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetDocumentProtectionOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -13761,14 +11681,6 @@ export class GetDocumentProtectionOnlineRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -13825,18 +11737,7 @@ export class GetDocumentStatisticsRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetDocumentStatisticsRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -13877,14 +11778,6 @@ export class GetDocumentStatisticsRequest implements RequestInterface {
      * The flag indicating whether to include shape's text from the WordCount. The default value is "false".
      */
     public includeTextInShapes: boolean;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -13940,18 +11833,7 @@ export class GetDocumentStatisticsOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetDocumentStatisticsOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -13982,14 +11864,6 @@ export class GetDocumentStatisticsOnlineRequest implements RequestInterface {
      * The flag indicating whether to include shape's text from the WordCount. The default value is "false".
      */
     public includeTextInShapes: boolean;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -14049,18 +11923,7 @@ export class GetDocumentWithFormatRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetDocumentWithFormatRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -14101,14 +11964,6 @@ export class GetDocumentWithFormatRequest implements RequestInterface {
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -14174,18 +12029,7 @@ export class GetFieldRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetFieldRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -14221,14 +12065,6 @@ export class GetFieldRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -14293,18 +12129,7 @@ export class GetFieldOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetFieldOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -14330,14 +12155,6 @@ export class GetFieldOnlineRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -14406,18 +12223,7 @@ export class GetFieldsRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetFieldsRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -14448,14 +12254,6 @@ export class GetFieldsRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -14509,18 +12307,7 @@ export class GetFieldsOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetFieldsOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -14541,14 +12328,6 @@ export class GetFieldsOnlineRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -14606,18 +12385,7 @@ export class GetFilesListRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetFilesListRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * Folder path e.g. '/folder'.
@@ -14628,14 +12396,6 @@ export class GetFilesListRequest implements RequestInterface {
      * Storage name.
      */
     public storageName: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -14685,18 +12445,7 @@ export class GetFootnoteRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetFootnoteRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -14732,14 +12481,6 @@ export class GetFootnoteRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -14804,18 +12545,7 @@ export class GetFootnoteOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetFootnoteOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -14841,14 +12571,6 @@ export class GetFootnoteOnlineRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -14917,18 +12639,7 @@ export class GetFootnotesRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetFootnotesRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -14959,14 +12670,6 @@ export class GetFootnotesRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -15020,18 +12723,7 @@ export class GetFootnotesOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetFootnotesOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -15052,14 +12744,6 @@ export class GetFootnotesOnlineRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -15117,18 +12801,7 @@ export class GetFormFieldRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetFormFieldRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -15164,14 +12837,6 @@ export class GetFormFieldRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -15236,18 +12901,7 @@ export class GetFormFieldOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetFormFieldOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -15273,14 +12927,6 @@ export class GetFormFieldOnlineRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -15349,18 +12995,7 @@ export class GetFormFieldsRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetFormFieldsRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -15391,14 +13026,6 @@ export class GetFormFieldsRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -15452,18 +13079,7 @@ export class GetFormFieldsOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetFormFieldsOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -15484,14 +13100,6 @@ export class GetFormFieldsOnlineRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -15549,18 +13157,7 @@ export class GetHeaderFooterRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetHeaderFooterRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -15596,14 +13193,6 @@ export class GetHeaderFooterRequest implements RequestInterface {
      * The list of HeaderFooter types.
      */
     public filterByType: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -15668,18 +13257,7 @@ export class GetHeaderFooterOfSectionRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetHeaderFooterOfSectionRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -15720,14 +13298,6 @@ export class GetHeaderFooterOfSectionRequest implements RequestInterface {
      * The list of HeaderFooter types.
      */
     public filterByType: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -15803,18 +13373,7 @@ export class GetHeaderFooterOfSectionOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetHeaderFooterOfSectionOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -15845,14 +13404,6 @@ export class GetHeaderFooterOfSectionOnlineRequest implements RequestInterface {
      * The list of HeaderFooter types.
      */
     public filterByType: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -15932,18 +13483,7 @@ export class GetHeaderFooterOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetHeaderFooterOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -15969,14 +13509,6 @@ export class GetHeaderFooterOnlineRequest implements RequestInterface {
      * The list of HeaderFooter types.
      */
     public filterByType: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -16045,18 +13577,7 @@ export class GetHeaderFootersRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetHeaderFootersRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -16092,14 +13613,6 @@ export class GetHeaderFootersRequest implements RequestInterface {
      * The list of HeaderFooter types.
      */
     public filterByType: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -16159,18 +13672,7 @@ export class GetHeaderFootersOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetHeaderFootersOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -16196,14 +13698,6 @@ export class GetHeaderFootersOnlineRequest implements RequestInterface {
      * The list of HeaderFooter types.
      */
     public filterByType: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -16267,18 +13761,7 @@ export class GetListRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetListRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -16309,14 +13792,6 @@ export class GetListRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -16380,18 +13855,7 @@ export class GetListOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetListOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -16412,14 +13876,6 @@ export class GetListOnlineRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -16487,18 +13943,7 @@ export class GetListsRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetListsRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -16524,14 +13969,6 @@ export class GetListsRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -16584,18 +14021,7 @@ export class GetListsOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetListsOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -16611,14 +14037,6 @@ export class GetListsOnlineRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -16675,18 +14093,7 @@ export class GetOfficeMathObjectRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetOfficeMathObjectRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -16722,14 +14129,6 @@ export class GetOfficeMathObjectRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -16794,18 +14193,7 @@ export class GetOfficeMathObjectOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetOfficeMathObjectOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -16831,14 +14219,6 @@ export class GetOfficeMathObjectOnlineRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -16907,18 +14287,7 @@ export class GetOfficeMathObjectsRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetOfficeMathObjectsRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -16949,14 +14318,6 @@ export class GetOfficeMathObjectsRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -17010,18 +14371,7 @@ export class GetOfficeMathObjectsOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetOfficeMathObjectsOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -17042,14 +14392,6 @@ export class GetOfficeMathObjectsOnlineRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -17107,18 +14449,7 @@ export class GetParagraphRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetParagraphRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -17154,14 +14485,6 @@ export class GetParagraphRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -17226,18 +14549,7 @@ export class GetParagraphFormatRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetParagraphFormatRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -17273,14 +14585,6 @@ export class GetParagraphFormatRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -17345,18 +14649,7 @@ export class GetParagraphFormatOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetParagraphFormatOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -17382,14 +14675,6 @@ export class GetParagraphFormatOnlineRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -17458,18 +14743,7 @@ export class GetParagraphListFormatRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetParagraphListFormatRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -17505,14 +14779,6 @@ export class GetParagraphListFormatRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -17577,18 +14843,7 @@ export class GetParagraphListFormatOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetParagraphListFormatOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -17614,14 +14869,6 @@ export class GetParagraphListFormatOnlineRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -17690,18 +14937,7 @@ export class GetParagraphOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetParagraphOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -17727,14 +14963,6 @@ export class GetParagraphOnlineRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -17803,18 +15031,7 @@ export class GetParagraphsRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetParagraphsRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -17845,14 +15062,6 @@ export class GetParagraphsRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -17906,18 +15115,7 @@ export class GetParagraphsOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetParagraphsOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -17938,14 +15136,6 @@ export class GetParagraphsOnlineRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -18003,18 +15193,7 @@ export class GetParagraphTabStopsRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetParagraphTabStopsRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -18050,14 +15229,6 @@ export class GetParagraphTabStopsRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -18122,18 +15293,7 @@ export class GetParagraphTabStopsOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetParagraphTabStopsOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -18159,14 +15319,6 @@ export class GetParagraphTabStopsOnlineRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -18235,18 +15387,7 @@ export class GetRangeTextRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetRangeTextRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -18282,14 +15423,6 @@ export class GetRangeTextRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -18354,18 +15487,7 @@ export class GetRangeTextOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetRangeTextOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -18391,14 +15513,6 @@ export class GetRangeTextOnlineRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -18467,18 +15581,7 @@ export class GetRunRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetRunRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -18514,14 +15617,6 @@ export class GetRunRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -18591,18 +15686,7 @@ export class GetRunFontRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetRunFontRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -18638,14 +15722,6 @@ export class GetRunFontRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -18715,18 +15791,7 @@ export class GetRunFontOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetRunFontOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -18752,14 +15817,6 @@ export class GetRunFontOnlineRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -18833,18 +15890,7 @@ export class GetRunOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetRunOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -18870,14 +15916,6 @@ export class GetRunOnlineRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -18951,18 +15989,7 @@ export class GetRunsRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetRunsRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -18993,14 +16020,6 @@ export class GetRunsRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -19059,18 +16078,7 @@ export class GetRunsOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetRunsOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -19091,14 +16099,6 @@ export class GetRunsOnlineRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -19161,18 +16161,7 @@ export class GetSectionRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetSectionRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -19203,14 +16192,6 @@ export class GetSectionRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -19274,18 +16255,7 @@ export class GetSectionOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetSectionOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -19306,14 +16276,6 @@ export class GetSectionOnlineRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -19381,18 +16343,7 @@ export class GetSectionPageSetupRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetSectionPageSetupRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -19423,14 +16374,6 @@ export class GetSectionPageSetupRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -19494,18 +16437,7 @@ export class GetSectionPageSetupOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetSectionPageSetupOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -19526,14 +16458,6 @@ export class GetSectionPageSetupOnlineRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -19601,18 +16525,7 @@ export class GetSectionsRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetSectionsRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -19638,14 +16551,6 @@ export class GetSectionsRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -19698,18 +16603,7 @@ export class GetSectionsOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetSectionsOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -19725,14 +16619,6 @@ export class GetSectionsOnlineRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -19789,18 +16675,7 @@ export class GetStyleRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetStyleRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -19831,14 +16706,6 @@ export class GetStyleRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -19902,18 +16769,7 @@ export class GetStyleFromDocumentElementRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetStyleFromDocumentElementRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -19944,14 +16800,6 @@ export class GetStyleFromDocumentElementRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -20015,18 +16863,7 @@ export class GetStyleFromDocumentElementOnlineRequest implements RequestInterfac
 
     public constructor(init?: Partial< GetStyleFromDocumentElementOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -20047,14 +16884,6 @@ export class GetStyleFromDocumentElementOnlineRequest implements RequestInterfac
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -20122,18 +16951,7 @@ export class GetStyleOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetStyleOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -20154,14 +16972,6 @@ export class GetStyleOnlineRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -20229,18 +17039,7 @@ export class GetStylesRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetStylesRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -20266,14 +17065,6 @@ export class GetStylesRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -20326,18 +17117,7 @@ export class GetStylesOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetStylesOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -20353,14 +17133,6 @@ export class GetStylesOnlineRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -20417,18 +17189,7 @@ export class GetTableRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetTableRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -20464,14 +17225,6 @@ export class GetTableRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -20536,18 +17289,7 @@ export class GetTableCellRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetTableCellRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -20583,14 +17325,6 @@ export class GetTableCellRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -20660,18 +17394,7 @@ export class GetTableCellFormatRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetTableCellFormatRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -20707,14 +17430,6 @@ export class GetTableCellFormatRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -20784,18 +17499,7 @@ export class GetTableCellFormatOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetTableCellFormatOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -20821,14 +17525,6 @@ export class GetTableCellFormatOnlineRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -20902,18 +17598,7 @@ export class GetTableCellOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetTableCellOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -20939,14 +17624,6 @@ export class GetTableCellOnlineRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -21020,18 +17697,7 @@ export class GetTableOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetTableOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -21057,14 +17723,6 @@ export class GetTableOnlineRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -21133,18 +17791,7 @@ export class GetTablePropertiesRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetTablePropertiesRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -21180,14 +17827,6 @@ export class GetTablePropertiesRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -21252,18 +17891,7 @@ export class GetTablePropertiesOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetTablePropertiesOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -21289,14 +17917,6 @@ export class GetTablePropertiesOnlineRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -21365,18 +17985,7 @@ export class GetTableRowRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetTableRowRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -21412,14 +18021,6 @@ export class GetTableRowRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -21489,18 +18090,7 @@ export class GetTableRowFormatRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetTableRowFormatRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -21536,14 +18126,6 @@ export class GetTableRowFormatRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -21613,18 +18195,7 @@ export class GetTableRowFormatOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetTableRowFormatOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -21650,14 +18221,6 @@ export class GetTableRowFormatOnlineRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -21731,18 +18294,7 @@ export class GetTableRowOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetTableRowOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -21768,14 +18320,6 @@ export class GetTableRowOnlineRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -21849,18 +18393,7 @@ export class GetTablesRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetTablesRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -21891,14 +18424,6 @@ export class GetTablesRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -21952,18 +18477,7 @@ export class GetTablesOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< GetTablesOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -21984,14 +18498,6 @@ export class GetTablesOnlineRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -22049,18 +18555,7 @@ export class InsertCommentRequest implements RequestInterface {
 
     public constructor(init?: Partial< InsertCommentRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -22106,14 +18601,6 @@ export class InsertCommentRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -22180,18 +18667,7 @@ export class InsertCommentOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< InsertCommentOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -22227,14 +18703,6 @@ export class InsertCommentOnlineRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -22318,18 +18786,7 @@ export class InsertDrawingObjectRequest implements RequestInterface {
 
     public constructor(init?: Partial< InsertDrawingObjectRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -22385,14 +18842,6 @@ export class InsertDrawingObjectRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -22479,18 +18928,7 @@ export class InsertDrawingObjectOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< InsertDrawingObjectOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -22536,14 +18974,6 @@ export class InsertDrawingObjectOnlineRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -22641,18 +19071,7 @@ export class InsertFieldRequest implements RequestInterface {
 
     public constructor(init?: Partial< InsertFieldRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -22708,14 +19127,6 @@ export class InsertFieldRequest implements RequestInterface {
      * The index of the node. A new field will be inserted before the node with the specified node Id.
      */
     public insertBeforeNode: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -22784,18 +19195,7 @@ export class InsertFieldOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< InsertFieldOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -22841,14 +19241,6 @@ export class InsertFieldOnlineRequest implements RequestInterface {
      * The index of the node. A new field will be inserted before the node with the specified node Id.
      */
     public insertBeforeNode: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -22934,18 +19326,7 @@ export class InsertFootnoteRequest implements RequestInterface {
 
     public constructor(init?: Partial< InsertFootnoteRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -22996,14 +19377,6 @@ export class InsertFootnoteRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -23071,18 +19444,7 @@ export class InsertFootnoteOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< InsertFootnoteOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -23123,14 +19485,6 @@ export class InsertFootnoteOnlineRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -23215,18 +19569,7 @@ export class InsertFormFieldRequest implements RequestInterface {
 
     public constructor(init?: Partial< InsertFormFieldRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -23282,14 +19625,6 @@ export class InsertFormFieldRequest implements RequestInterface {
      * The index of the node. A new form field will be inserted before the node with the specified node Id.
      */
     public insertBeforeNode: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -23358,18 +19693,7 @@ export class InsertFormFieldOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< InsertFormFieldOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -23415,14 +19739,6 @@ export class InsertFormFieldOnlineRequest implements RequestInterface {
      * The index of the node. A new form field will be inserted before the node with the specified node Id.
      */
     public insertBeforeNode: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -23508,18 +19824,7 @@ export class InsertHeaderFooterRequest implements RequestInterface {
 
     public constructor(init?: Partial< InsertHeaderFooterRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -23570,14 +19875,6 @@ export class InsertHeaderFooterRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -23650,18 +19947,7 @@ export class InsertHeaderFooterOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< InsertHeaderFooterOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -23702,14 +19988,6 @@ export class InsertHeaderFooterOnlineRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -23799,18 +20077,7 @@ export class InsertListRequest implements RequestInterface {
 
     public constructor(init?: Partial< InsertListRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -23856,14 +20123,6 @@ export class InsertListRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -23930,18 +20189,7 @@ export class InsertListOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< InsertListOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -23977,14 +20225,6 @@ export class InsertListOnlineRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -24068,18 +20308,7 @@ export class InsertOrUpdateParagraphTabStopRequest implements RequestInterface {
 
     public constructor(init?: Partial< InsertOrUpdateParagraphTabStopRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -24125,14 +20354,6 @@ export class InsertOrUpdateParagraphTabStopRequest implements RequestInterface {
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -24209,18 +20430,7 @@ export class InsertOrUpdateParagraphTabStopOnlineRequest implements RequestInter
 
     public constructor(init?: Partial< InsertOrUpdateParagraphTabStopOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -24256,14 +20466,6 @@ export class InsertOrUpdateParagraphTabStopOnlineRequest implements RequestInter
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -24357,18 +20559,7 @@ export class InsertPageNumbersRequest implements RequestInterface {
 
     public constructor(init?: Partial< InsertPageNumbersRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -24414,14 +20605,6 @@ export class InsertPageNumbersRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -24488,18 +20671,7 @@ export class InsertPageNumbersOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< InsertPageNumbersOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -24535,14 +20707,6 @@ export class InsertPageNumbersOnlineRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -24626,18 +20790,7 @@ export class InsertParagraphRequest implements RequestInterface {
 
     public constructor(init?: Partial< InsertParagraphRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -24693,14 +20846,6 @@ export class InsertParagraphRequest implements RequestInterface {
      * The index of the node. A new paragraph will be inserted before the node with the specified index.
      */
     public insertBeforeNode: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -24769,18 +20914,7 @@ export class InsertParagraphOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< InsertParagraphOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -24826,14 +20960,6 @@ export class InsertParagraphOnlineRequest implements RequestInterface {
      * The index of the node. A new paragraph will be inserted before the node with the specified index.
      */
     public insertBeforeNode: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -24919,18 +21045,7 @@ export class InsertRunRequest implements RequestInterface {
 
     public constructor(init?: Partial< InsertRunRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -24986,14 +21101,6 @@ export class InsertRunRequest implements RequestInterface {
      * The index of the node. A new Run object will be inserted before the node with the specified node Id.
      */
     public insertBeforeNode: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -25067,18 +21174,7 @@ export class InsertRunOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< InsertRunOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -25124,14 +21220,6 @@ export class InsertRunOnlineRequest implements RequestInterface {
      * The index of the node. A new Run object will be inserted before the node with the specified node Id.
      */
     public insertBeforeNode: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -25222,18 +21310,7 @@ export class InsertStyleRequest implements RequestInterface {
 
     public constructor(init?: Partial< InsertStyleRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -25279,14 +21356,6 @@ export class InsertStyleRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -25353,18 +21422,7 @@ export class InsertStyleOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< InsertStyleOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -25400,14 +21458,6 @@ export class InsertStyleOnlineRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -25491,18 +21541,7 @@ export class InsertTableRequest implements RequestInterface {
 
     public constructor(init?: Partial< InsertTableRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -25553,14 +21592,6 @@ export class InsertTableRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -25628,18 +21659,7 @@ export class InsertTableCellRequest implements RequestInterface {
 
     public constructor(init?: Partial< InsertTableCellRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -25690,14 +21710,6 @@ export class InsertTableCellRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -25770,18 +21782,7 @@ export class InsertTableCellOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< InsertTableCellOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -25822,14 +21823,6 @@ export class InsertTableCellOnlineRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -25919,18 +21912,7 @@ export class InsertTableOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< InsertTableOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -25971,14 +21953,6 @@ export class InsertTableOnlineRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -26063,18 +22037,7 @@ export class InsertTableRowRequest implements RequestInterface {
 
     public constructor(init?: Partial< InsertTableRowRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -26125,14 +22088,6 @@ export class InsertTableRowRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -26205,18 +22160,7 @@ export class InsertTableRowOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< InsertTableRowOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -26257,14 +22201,6 @@ export class InsertTableRowOnlineRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -26354,18 +22290,7 @@ export class InsertWatermarkImageRequest implements RequestInterface {
 
     public constructor(init?: Partial< InsertWatermarkImageRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -26421,14 +22346,6 @@ export class InsertWatermarkImageRequest implements RequestInterface {
      * The filename of the image. If the parameter value is missing — the image data is expected in the request content.
      */
     public image: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -26493,18 +22410,7 @@ export class InsertWatermarkImageOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< InsertWatermarkImageOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -26550,14 +22456,6 @@ export class InsertWatermarkImageOnlineRequest implements RequestInterface {
      * The filename of the image. If the parameter value is missing — the image data is expected in the request content.
      */
     public image: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -26643,18 +22541,7 @@ export class InsertWatermarkTextRequest implements RequestInterface {
 
     public constructor(init?: Partial< InsertWatermarkTextRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -26700,14 +22587,6 @@ export class InsertWatermarkTextRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -26774,18 +22653,7 @@ export class InsertWatermarkTextOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< InsertWatermarkTextOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -26821,14 +22689,6 @@ export class InsertWatermarkTextOnlineRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -26912,18 +22772,7 @@ export class LoadWebDocumentRequest implements RequestInterface {
 
     public constructor(init?: Partial< LoadWebDocumentRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The properties of data downloading.
@@ -26934,14 +22783,6 @@ export class LoadWebDocumentRequest implements RequestInterface {
      * Original document storage.
      */
     public storage: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -26991,18 +22832,7 @@ export class MoveFileRequest implements RequestInterface {
 
     public constructor(init?: Partial< MoveFileRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * Destination file path e.g. '/dest.ext'.
@@ -27028,14 +22858,6 @@ export class MoveFileRequest implements RequestInterface {
      * File version ID to move.
      */
     public versionId: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -27093,18 +22915,7 @@ export class MoveFolderRequest implements RequestInterface {
 
     public constructor(init?: Partial< MoveFolderRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * Destination folder path to move to e.g '/dst'.
@@ -27125,14 +22936,6 @@ export class MoveFolderRequest implements RequestInterface {
      * Destination storage name.
      */
     public destStorageName: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -27189,18 +22992,7 @@ export class OptimizeDocumentRequest implements RequestInterface {
 
     public constructor(init?: Partial< OptimizeDocumentRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -27246,14 +23038,6 @@ export class OptimizeDocumentRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -27320,18 +23104,7 @@ export class OptimizeDocumentOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< OptimizeDocumentOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -27367,14 +23140,6 @@ export class OptimizeDocumentOnlineRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -27447,18 +23212,7 @@ export class ProtectDocumentRequest implements RequestInterface {
 
     public constructor(init?: Partial< ProtectDocumentRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -27494,14 +23248,6 @@ export class ProtectDocumentRequest implements RequestInterface {
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -27566,18 +23312,7 @@ export class ProtectDocumentOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< ProtectDocumentOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -27603,14 +23338,6 @@ export class ProtectDocumentOnlineRequest implements RequestInterface {
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -27692,18 +23419,7 @@ export class RejectAllRevisionsRequest implements RequestInterface {
 
     public constructor(init?: Partial< RejectAllRevisionsRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -27734,14 +23450,6 @@ export class RejectAllRevisionsRequest implements RequestInterface {
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -27795,18 +23503,7 @@ export class RejectAllRevisionsOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< RejectAllRevisionsOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -27827,14 +23524,6 @@ export class RejectAllRevisionsOnlineRequest implements RequestInterface {
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -27903,18 +23592,7 @@ export class RemoveRangeRequest implements RequestInterface {
 
     public constructor(init?: Partial< RemoveRangeRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -27955,14 +23633,6 @@ export class RemoveRangeRequest implements RequestInterface {
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -28028,18 +23698,7 @@ export class RemoveRangeOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< RemoveRangeOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -28070,14 +23729,6 @@ export class RemoveRangeOnlineRequest implements RequestInterface {
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -28158,18 +23809,7 @@ export class RenderDrawingObjectRequest implements RequestInterface {
 
     public constructor(init?: Partial< RenderDrawingObjectRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -28220,14 +23860,6 @@ export class RenderDrawingObjectRequest implements RequestInterface {
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -28305,18 +23937,7 @@ export class RenderDrawingObjectOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< RenderDrawingObjectOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -28357,14 +23978,6 @@ export class RenderDrawingObjectOnlineRequest implements RequestInterface {
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -28446,18 +24059,7 @@ export class RenderMathObjectRequest implements RequestInterface {
 
     public constructor(init?: Partial< RenderMathObjectRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -28508,14 +24110,6 @@ export class RenderMathObjectRequest implements RequestInterface {
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -28593,18 +24187,7 @@ export class RenderMathObjectOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< RenderMathObjectOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -28645,14 +24228,6 @@ export class RenderMathObjectOnlineRequest implements RequestInterface {
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -28734,18 +24309,7 @@ export class RenderPageRequest implements RequestInterface {
 
     public constructor(init?: Partial< RenderPageRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -28786,14 +24350,6 @@ export class RenderPageRequest implements RequestInterface {
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -28869,18 +24425,7 @@ export class RenderPageOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< RenderPageOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -28911,14 +24456,6 @@ export class RenderPageOnlineRequest implements RequestInterface {
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -28998,18 +24535,7 @@ export class RenderParagraphRequest implements RequestInterface {
 
     public constructor(init?: Partial< RenderParagraphRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -29060,14 +24586,6 @@ export class RenderParagraphRequest implements RequestInterface {
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -29145,18 +24663,7 @@ export class RenderParagraphOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< RenderParagraphOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -29197,14 +24704,6 @@ export class RenderParagraphOnlineRequest implements RequestInterface {
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -29286,18 +24785,7 @@ export class RenderTableRequest implements RequestInterface {
 
     public constructor(init?: Partial< RenderTableRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -29348,14 +24836,6 @@ export class RenderTableRequest implements RequestInterface {
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -29433,18 +24913,7 @@ export class RenderTableOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< RenderTableOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -29485,14 +24954,6 @@ export class RenderTableOnlineRequest implements RequestInterface {
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -29574,18 +25035,7 @@ export class ReplaceTextRequest implements RequestInterface {
 
     public constructor(init?: Partial< ReplaceTextRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -29631,14 +25081,6 @@ export class ReplaceTextRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -29705,18 +25147,7 @@ export class ReplaceTextOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< ReplaceTextOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -29752,14 +25183,6 @@ export class ReplaceTextOnlineRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -29843,18 +25266,7 @@ export class ReplaceWithTextRequest implements RequestInterface {
 
     public constructor(init?: Partial< ReplaceWithTextRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -29900,14 +25312,6 @@ export class ReplaceWithTextRequest implements RequestInterface {
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -29984,18 +25388,7 @@ export class ReplaceWithTextOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< ReplaceWithTextOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -30031,14 +25424,6 @@ export class ReplaceWithTextOnlineRequest implements RequestInterface {
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -30132,27 +25517,8 @@ export class ResetCacheRequest implements RequestInterface {
 
     public constructor(init?: Partial< ResetCacheRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
 
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
-
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -30190,18 +25556,7 @@ export class SaveAsRequest implements RequestInterface {
 
     public constructor(init?: Partial< SaveAsRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -30237,14 +25592,6 @@ export class SaveAsRequest implements RequestInterface {
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -30309,18 +25656,7 @@ export class SaveAsOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< SaveAsOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -30346,14 +25682,6 @@ export class SaveAsOnlineRequest implements RequestInterface {
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -30435,18 +25763,7 @@ export class SaveAsRangeRequest implements RequestInterface {
 
     public constructor(init?: Partial< SaveAsRangeRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -30487,14 +25804,6 @@ export class SaveAsRangeRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -30570,18 +25879,7 @@ export class SaveAsRangeOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< SaveAsRangeOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -30612,14 +25910,6 @@ export class SaveAsRangeOnlineRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -30712,18 +26002,7 @@ export class SaveAsTiffRequest implements RequestInterface {
 
     public constructor(init?: Partial< SaveAsTiffRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -30846,14 +26125,6 @@ export class SaveAsTiffRequest implements RequestInterface {
     public fontsLocation: string;
 
 	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
-
-	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
 	 */
@@ -30933,18 +26204,7 @@ export class SaveAsTiffOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< SaveAsTiffOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -31055,14 +26315,6 @@ export class SaveAsTiffOnlineRequest implements RequestInterface {
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -31161,18 +26413,7 @@ export class SearchRequest implements RequestInterface {
 
     public constructor(init?: Partial< SearchRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -31203,14 +26444,6 @@ export class SearchRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -31269,18 +26502,7 @@ export class SearchOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< SearchOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -31301,14 +26523,6 @@ export class SearchOnlineRequest implements RequestInterface {
      * Password for opening an encrypted document.
      */
     public password: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -31371,18 +26585,7 @@ export class SplitDocumentRequest implements RequestInterface {
 
     public constructor(init?: Partial< SplitDocumentRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -31438,14 +26641,6 @@ export class SplitDocumentRequest implements RequestInterface {
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -31514,18 +26709,7 @@ export class SplitDocumentOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< SplitDocumentOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -31571,14 +26755,6 @@ export class SplitDocumentOnlineRequest implements RequestInterface {
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -31662,18 +26838,7 @@ export class UnprotectDocumentRequest implements RequestInterface {
 
     public constructor(init?: Partial< UnprotectDocumentRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -31709,14 +26874,6 @@ export class UnprotectDocumentRequest implements RequestInterface {
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -31781,18 +26938,7 @@ export class UnprotectDocumentOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< UnprotectDocumentOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -31818,14 +26964,6 @@ export class UnprotectDocumentOnlineRequest implements RequestInterface {
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -31907,18 +27045,7 @@ export class UpdateBookmarkRequest implements RequestInterface {
 
     public constructor(init?: Partial< UpdateBookmarkRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -31969,14 +27096,6 @@ export class UpdateBookmarkRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -32054,18 +27173,7 @@ export class UpdateBookmarkOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< UpdateBookmarkOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -32106,14 +27214,6 @@ export class UpdateBookmarkOnlineRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -32208,18 +27308,7 @@ export class UpdateBorderRequest implements RequestInterface {
 
     public constructor(init?: Partial< UpdateBorderRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -32275,14 +27364,6 @@ export class UpdateBorderRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -32361,18 +27442,7 @@ export class UpdateBorderOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< UpdateBorderOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -32418,14 +27488,6 @@ export class UpdateBorderOnlineRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -32521,18 +27583,7 @@ export class UpdateCommentRequest implements RequestInterface {
 
     public constructor(init?: Partial< UpdateCommentRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -32583,14 +27634,6 @@ export class UpdateCommentRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -32668,18 +27711,7 @@ export class UpdateCommentOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< UpdateCommentOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -32720,14 +27752,6 @@ export class UpdateCommentOnlineRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -32822,18 +27846,7 @@ export class UpdateDrawingObjectRequest implements RequestInterface {
 
     public constructor(init?: Partial< UpdateDrawingObjectRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -32894,14 +27907,6 @@ export class UpdateDrawingObjectRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -32999,18 +28004,7 @@ export class UpdateDrawingObjectOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< UpdateDrawingObjectOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -33061,14 +28055,6 @@ export class UpdateDrawingObjectOnlineRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -33177,18 +28163,7 @@ export class UpdateFieldRequest implements RequestInterface {
 
     public constructor(init?: Partial< UpdateFieldRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -33244,14 +28219,6 @@ export class UpdateFieldRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -33330,18 +28297,7 @@ export class UpdateFieldOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< UpdateFieldOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -33387,14 +28343,6 @@ export class UpdateFieldOnlineRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -33490,18 +28438,7 @@ export class UpdateFieldsRequest implements RequestInterface {
 
     public constructor(init?: Partial< UpdateFieldsRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -33532,14 +28469,6 @@ export class UpdateFieldsRequest implements RequestInterface {
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -33593,18 +28522,7 @@ export class UpdateFieldsOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< UpdateFieldsOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -33625,14 +28543,6 @@ export class UpdateFieldsOnlineRequest implements RequestInterface {
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -33701,18 +28611,7 @@ export class UpdateFootnoteRequest implements RequestInterface {
 
     public constructor(init?: Partial< UpdateFootnoteRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -33768,14 +28667,6 @@ export class UpdateFootnoteRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -33854,18 +28745,7 @@ export class UpdateFootnoteOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< UpdateFootnoteOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -33911,14 +28791,6 @@ export class UpdateFootnoteOnlineRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -34014,18 +28886,7 @@ export class UpdateFormFieldRequest implements RequestInterface {
 
     public constructor(init?: Partial< UpdateFormFieldRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -34081,14 +28942,6 @@ export class UpdateFormFieldRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -34167,18 +29020,7 @@ export class UpdateFormFieldOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< UpdateFormFieldOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -34224,14 +29066,6 @@ export class UpdateFormFieldOnlineRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -34327,18 +29161,7 @@ export class UpdateListRequest implements RequestInterface {
 
     public constructor(init?: Partial< UpdateListRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -34389,14 +29212,6 @@ export class UpdateListRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -34474,18 +29289,7 @@ export class UpdateListLevelRequest implements RequestInterface {
 
     public constructor(init?: Partial< UpdateListLevelRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -34541,14 +29345,6 @@ export class UpdateListLevelRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -34637,18 +29433,7 @@ export class UpdateListLevelOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< UpdateListLevelOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -34694,14 +29479,6 @@ export class UpdateListLevelOnlineRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -34807,18 +29584,7 @@ export class UpdateListOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< UpdateListOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -34859,14 +29625,6 @@ export class UpdateListOnlineRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -34961,18 +29719,7 @@ export class UpdateParagraphFormatRequest implements RequestInterface {
 
     public constructor(init?: Partial< UpdateParagraphFormatRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -35028,14 +29775,6 @@ export class UpdateParagraphFormatRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -35114,18 +29853,7 @@ export class UpdateParagraphFormatOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< UpdateParagraphFormatOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -35171,14 +29899,6 @@ export class UpdateParagraphFormatOnlineRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -35274,18 +29994,7 @@ export class UpdateParagraphListFormatRequest implements RequestInterface {
 
     public constructor(init?: Partial< UpdateParagraphListFormatRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -35341,14 +30050,6 @@ export class UpdateParagraphListFormatRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -35427,18 +30128,7 @@ export class UpdateParagraphListFormatOnlineRequest implements RequestInterface 
 
     public constructor(init?: Partial< UpdateParagraphListFormatOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -35484,14 +30174,6 @@ export class UpdateParagraphListFormatOnlineRequest implements RequestInterface 
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -35587,18 +30269,7 @@ export class UpdateRunRequest implements RequestInterface {
 
     public constructor(init?: Partial< UpdateRunRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -35654,14 +30325,6 @@ export class UpdateRunRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -35745,18 +30408,7 @@ export class UpdateRunFontRequest implements RequestInterface {
 
     public constructor(init?: Partial< UpdateRunFontRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -35812,14 +30464,6 @@ export class UpdateRunFontRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -35903,18 +30547,7 @@ export class UpdateRunFontOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< UpdateRunFontOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -35960,14 +30593,6 @@ export class UpdateRunFontOnlineRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -36068,18 +30693,7 @@ export class UpdateRunOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< UpdateRunOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -36125,14 +30739,6 @@ export class UpdateRunOnlineRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -36233,18 +30839,7 @@ export class UpdateSectionPageSetupRequest implements RequestInterface {
 
     public constructor(init?: Partial< UpdateSectionPageSetupRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -36295,14 +30890,6 @@ export class UpdateSectionPageSetupRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -36380,18 +30967,7 @@ export class UpdateSectionPageSetupOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< UpdateSectionPageSetupOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -36432,14 +31008,6 @@ export class UpdateSectionPageSetupOnlineRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -36534,18 +31102,7 @@ export class UpdateStyleRequest implements RequestInterface {
 
     public constructor(init?: Partial< UpdateStyleRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -36596,14 +31153,6 @@ export class UpdateStyleRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -36681,18 +31230,7 @@ export class UpdateStyleOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< UpdateStyleOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -36733,14 +31271,6 @@ export class UpdateStyleOnlineRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -36835,18 +31365,7 @@ export class UpdateTableCellFormatRequest implements RequestInterface {
 
     public constructor(init?: Partial< UpdateTableCellFormatRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -36902,14 +31421,6 @@ export class UpdateTableCellFormatRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -36993,18 +31504,7 @@ export class UpdateTableCellFormatOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< UpdateTableCellFormatOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -37050,14 +31550,6 @@ export class UpdateTableCellFormatOnlineRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -37158,18 +31650,7 @@ export class UpdateTablePropertiesRequest implements RequestInterface {
 
     public constructor(init?: Partial< UpdateTablePropertiesRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -37225,14 +31706,6 @@ export class UpdateTablePropertiesRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -37311,18 +31784,7 @@ export class UpdateTablePropertiesOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< UpdateTablePropertiesOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -37368,14 +31830,6 @@ export class UpdateTablePropertiesOnlineRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -37471,18 +31925,7 @@ export class UpdateTableRowFormatRequest implements RequestInterface {
 
     public constructor(init?: Partial< UpdateTableRowFormatRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The filename of the input document.
@@ -37538,14 +31981,6 @@ export class UpdateTableRowFormatRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -37629,18 +32064,7 @@ export class UpdateTableRowFormatOnlineRequest implements RequestInterface {
 
     public constructor(init?: Partial< UpdateTableRowFormatOnlineRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * The document.
@@ -37686,14 +32110,6 @@ export class UpdateTableRowFormatOnlineRequest implements RequestInterface {
      * The date and time to use for revisions.
      */
     public revisionDateTime: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request
@@ -37794,18 +32210,7 @@ export class UploadFileRequest implements RequestInterface {
 
     public constructor(init?: Partial< UploadFileRequest >) {
         Object.assign(this, init);
-        this.id = createUid();
     }
-
-    /**
-     *  Request ID
-     */
-    id: string;
-
-    /**
-     *  Parentn Request Id
-     */
-    parentId: string;
 
     /**
      * File to upload.
@@ -37823,14 +32228,6 @@ export class UploadFileRequest implements RequestInterface {
      * Storage name.
      */
     public storageName: string;
-
-	/**
-	 * set parent request
-	 * @param parentRequest
-	 */
-    dependsOn(parentRequest: RequestInterface) {
-        this.parentId = parentRequest.id
-    }
 
 	/**
 	 * create the requst options for this request

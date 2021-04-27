@@ -34,6 +34,7 @@ import { Configuration } from "./internal/configuration";
 import { invokeApiMethod, getBoundary, parseMultipartBody } from "./internal/requestHelper";
 import { ObjectSerializer } from "./internal/objectSerializer";
 import * as model from "./model/model";
+import { BatchPartRequest } from "./model/batchPartRequest";
 
 export * from "./model/model";
 
@@ -5271,7 +5272,7 @@ export class WordsApi {
      * Batch request.
      * @param requests contains requests parameters
      */
-    public async batch(...requests: model.RequestInterface[]): Promise<model.WordsIncomingMessage<any[]> > {
+    public async batch(...requests: BatchPartRequest[]): Promise<model.WordsIncomingMessage<any[]> > {
         if (requests === null || requests.length === 0) {
             throw new Error('Required parameter "requests" was null or empty.');
         }

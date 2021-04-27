@@ -31,7 +31,7 @@ import * as fs from "fs";
 
 import * as model from "../src/model/model";
 import * as BaseTest from "./baseTest";
-import { Readable } from "stream";
+import { BatchPartRequest } from "../src/model/batchPartRequest";
 
 describe("batch tests", () => {
     const remoteDataFolder = BaseTest.remoteBaseTestDataFolder + "/DocumentElements/Paragraphs";
@@ -40,8 +40,8 @@ describe("batch tests", () => {
         it("should throw an error", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             return wordsApi.batch()
-                .then((_) => { assert.fail("Error is expected"); })
-                .catch((_) => { assert.ok("Passed"); })
+                .then((_) => {assert.fail("Error is expected");})
+                .catch((_) => {assert.ok("Passed");})
         });
     });
 
@@ -56,21 +56,21 @@ describe("batch tests", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request1 = new model.GetParagraphsRequest({
+                const request1 = new BatchPartRequest(new model.GetParagraphsRequest({
                     name: remoteFileName,
                     nodePath: "sections/0",
                     folder: remoteDataFolder
-                });
+                }));
 
                 return wordsApi.batch(request1)
-                    .then((resultApi) => {
-                        // Assert
-                        expect(resultApi.response.statusCode).to.equal(200);
-                        expect(resultApi.body.length).to.equal(1);
-                        expect(resultApi.body[0].constructor.name).to.equal("ParagraphLinkCollectionResponse"); // GetParagraphs
-                    });
+                .then((resultApi) => {
+                    // Assert
+                    expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.length).to.equal(1);
+                    expect(resultApi.body[0].constructor.name).to.equal("ParagraphLinkCollectionResponse"); // GetParagraphs
+                });
             });
-        });
+        }); 
     });
 
     describe("Batch request for a single file test", () => {
@@ -85,27 +85,27 @@ describe("batch tests", () => {
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
 
-                const request1 = new model.GetParagraphsRequest({
+                const request1 = new BatchPartRequest(new model.GetParagraphsRequest({
                     name: remoteFileName,
                     nodePath: "sections/0",
                     folder: remoteDataFolder
-                });
+                }));
 
-                const request2 = new model.DownloadFileRequest({
+                const request2 = new BatchPartRequest(new model.DownloadFileRequest({
                     path: remoteDataFolder + "/" + remoteFileName,
-                });
+                }));
 
                 request2.dependsOn(request1);
 
                 return wordsApi.batch(request1, request2)
-                    .then((resultApi) => {
-                        // Assert
-                        expect(resultApi.response.statusCode).to.equal(200);
-                        expect(resultApi.body.length).to.equal(2);
-                        expect(resultApi.body[1].constructor.name).to.equal("Buffer");
-                    });
+                .then((resultApi) => {
+                    // Assert
+                    expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.length).to.equal(2);
+                    expect(resultApi.body[1].constructor.name).to.equal("Buffer");
+                });
             });
-        });
+        }); 
     });
 
     describe("Batch Request for a single form test", () => {
@@ -119,24 +119,24 @@ describe("batch tests", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request1 = new model.InsertParagraphRequest({
+                const request1 = new BatchPartRequest(new model.InsertParagraphRequest({
                     name: remoteFileName,
                     paragraph: new model.ParagraphInsert({
                         text: "This is a new paragraph for your document"
                     }),
                     nodePath: "sections/0",
                     folder: remoteDataFolder
-                });
+                }));
 
                 return wordsApi.batch(request1)
-                    .then((resultApi) => {
-                        // Assert
-                        expect(resultApi.response.statusCode).to.equal(200);
-                        expect(resultApi.body.length).to.equal(1);
-                        expect(resultApi.body[0].constructor.name).to.equal("ParagraphResponse"); // InsertParagraph
-                    });
+                .then((resultApi) => {
+                    // Assert
+                    expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.length).to.equal(1);
+                    expect(resultApi.body[0].constructor.name).to.equal("ParagraphResponse"); // InsertParagraph
+                });
             });
-        });
+        }); 
     });
 
     describe("Batch request for a single online request test", () => {
@@ -155,24 +155,24 @@ describe("batch tests", () => {
                 const localDocumentFile = "ReportTemplate.docx";
                 const localDataFile = fs.readFileSync(BaseTest.localBaseTestDataFolder + reportingFolder + "/ReportData.json", 'utf8');
 
-                const request = new model.BuildReportOnlineRequest({
+                const request = new BatchPartRequest(new model.BuildReportOnlineRequest({
                     template: fs.createReadStream(BaseTest.localBaseTestDataFolder + reportingFolder + "/" + localDocumentFile),
                     data: localDataFile,
                     reportEngineSettings: new model.ReportEngineSettings({
                         dataSourceType: model.ReportEngineSettings.DataSourceTypeEnum.Json,
                         dataSourceName: "persons"
                     })
-                });
+                }));
 
                 return wordsApi.batch(request)
-                    .then((resultApi) => {
-                        // Assert
-                        expect(resultApi.response.statusMessage).to.equal("OK");
-                        expect(resultApi.body.length).to.equal(1);
-                        expect(resultApi.body[0].constructor.name).to.equal("Buffer"); // BuildReportOnline
-                    });
+                .then((resultApi) => {
+                    // Assert
+                    expect(resultApi.response.statusMessage).to.equal("OK");
+                    expect(resultApi.body.length).to.equal(1);
+                    expect(resultApi.body[0].constructor.name).to.equal("Buffer"); // BuildReportOnline
+                });
             });
-        });
+        }); 
     });
 
     describe("Run Full Batch Request test", () => {
@@ -187,57 +187,57 @@ describe("batch tests", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request1 = new model.GetParagraphsRequest({
+                const request1 = new BatchPartRequest(new model.GetParagraphsRequest({
                     name: remoteFileName,
                     nodePath: "sections/0",
                     folder: remoteDataFolder
-                });
-                const request2 = new model.GetParagraphRequest({
+                }));
+               const request2 = new BatchPartRequest(new model.GetParagraphRequest({
                     name: remoteFileName,
                     index: 0,
                     nodePath: "sections/0",
                     folder: remoteDataFolder
-                });
-                const request3 = new model.InsertParagraphRequest({
+                }));
+                const request3 = new BatchPartRequest(new model.InsertParagraphRequest({
                     name: remoteFileName,
                     paragraph: new model.ParagraphInsert({
                         text: "This is a new paragraph for your document"
                     }),
                     nodePath: "sections/0",
                     folder: remoteDataFolder
-                });
-                const request4 = new model.DeleteParagraphRequest({
+                }));
+                const request4 = new BatchPartRequest(new model.DeleteParagraphRequest({
                     name: remoteFileName,
                     index: 0,
                     nodePath: "",
                     folder: remoteDataFolder
-                });
+                }));
 
                 const localDocumentFile = "ReportTemplate.docx";
                 const localDataFile = fs.readFileSync(BaseTest.localBaseTestDataFolder + reportingFolder + "/ReportData.json", 'utf8');
 
-                const request5 = new model.BuildReportOnlineRequest({
+                const request5 = new BatchPartRequest(new model.BuildReportOnlineRequest({
                     template: fs.createReadStream(BaseTest.localBaseTestDataFolder + reportingFolder + "/" + localDocumentFile),
                     data: localDataFile,
                     reportEngineSettings: new model.ReportEngineSettings({
                         dataSourceType: model.ReportEngineSettings.DataSourceTypeEnum.Json,
                         dataSourceName: "persons"
                     })
-                });
+                }));
 
                 return wordsApi.batch(request1, request2, request3, request4, request5)
-                    .then((resultApi) => {
-                        // Assert
-                        expect(resultApi.response.statusCode).to.equal(200);
-                        expect(resultApi.body.length).to.equal(5);
-                        expect(resultApi.body[0].constructor.name).to.equal("ParagraphLinkCollectionResponse"); // GetParagraphs
-                        expect(resultApi.body[1].constructor.name).to.equal("ParagraphResponse"); // GetParagraph
-                        expect(resultApi.body[2].constructor.name).to.equal("ParagraphResponse"); // InsertParagraph
-                        expect(resultApi.body[3]).to.be.null; // DeleteParagraph
-                        expect(resultApi.body[4].constructor.name).to.equal("Buffer"); // BuildReportOnline
-                    });
+                .then((resultApi) => {
+                    // Assert
+                    expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.length).to.equal(5);
+                    expect(resultApi.body[0].constructor.name).to.equal("ParagraphLinkCollectionResponse"); // GetParagraphs
+                    expect(resultApi.body[1].constructor.name).to.equal("ParagraphResponse"); // GetParagraph
+                    expect(resultApi.body[2].constructor.name).to.equal("ParagraphResponse"); // InsertParagraph
+                    expect(resultApi.body[3]).to.be.null; // DeleteParagraph
+                    expect(resultApi.body[4].constructor.name).to.equal("Buffer"); // BuildReportOnline
+                });
             });
-        });
+        }); 
     });
 
     describe("Run batch request with depenency tree test", () => {
@@ -252,30 +252,30 @@ describe("batch tests", () => {
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
 
-                const request1 = new model.GetParagraphsRequest({
+                const request1 = new BatchPartRequest(new model.GetParagraphsRequest({
                     name: remoteFileName,
                     nodePath: "sections/0",
                     folder: remoteDataFolder
-                });
-                const request2 = new model.GetParagraphsRequest({
-                    name: remoteFileName,
-                    nodePath: "sections/0",
-                    folder: remoteDataFolder
-                });
-                const request3 = new model.InsertParagraphRequest({
+                    }));
+                const request2 = new BatchPartRequest(new model.GetParagraphsRequest({
+                        name: remoteFileName,
+                        nodePath: "sections/0",
+                        folder: remoteDataFolder
+                        }));
+                const request3 = new BatchPartRequest(new model.InsertParagraphRequest({
                     name: remoteFileName,
                     paragraph: new model.ParagraphInsert({
                         text: "This is a new paragraph for your document"
                     }),
                     nodePath: "sections/0",
                     folder: remoteDataFolder
-                });
-                const request4 = new model.DeleteParagraphRequest({
+                }));
+                const request4 = new BatchPartRequest(new model.DeleteParagraphRequest({
                     name: remoteFileName,
                     nodePath: "sections/0",
                     index: 0,
                     folder: remoteDataFolder
-                });
+                }));
 
                 // set dependency 
                 request4.dependsOn(request2);
@@ -283,14 +283,14 @@ describe("batch tests", () => {
                 request3.dependsOn(request1);
 
                 return wordsApi.batch(request1, request2, request3, request4)
-                    .then((resultApi) => {
-                        // Assert
-                        // expected order of request: 1, 3, 2, 4
-                        expect(resultApi.response.statusCode).to.equal(200);
-                        expect(resultApi.body[2].paragraphs.paragraphLinkList.length).to.equal(resultApi.body[0].paragraphs.paragraphLinkList.length + 1);
-                    });
+                .then((resultApi) => {
+                    // Assert
+                    // expected order of request: 1, 3, 2, 4
+                    expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body[2].paragraphs.paragraphLinkList.length).to.equal(resultApi.body[0].paragraphs.paragraphLinkList.length + 1);
+                });
             });
-        });
+        }); 
     });
 
     describe("Run batch request with resultOf feature", () => {
@@ -305,18 +305,18 @@ describe("batch tests", () => {
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
 
-                const request1 = new model.GetDocumentWithFormatRequest({
+                const request1 = new BatchPartRequest(new model.GetDocumentWithFormatRequest({
                     name: remoteFileName,
                     format: "docx",
                     folder: remoteDataFolder
-                });
-                const request2 = new model.DeleteCommentsOnlineRequest({
-                    document: Readable.from(Buffer.from("resultOf(" + request1.id + ")")),
-                });
-                const request3 = new model.ConvertDocumentRequest({
-                    document: Readable.from(Buffer.from("resultOf(" + request2.id + ")")),
+                }));
+                const request2 = new BatchPartRequest(new model.DeleteCommentsOnlineRequest({
+                    document: request1.useAsSource(),
+                }));
+                const request3 = new BatchPartRequest(new model.ConvertDocumentRequest({
+                    document: request2.useAsSource(),
                     format: "pdf"
-                });
+                }));
 
                 // set dependency 
                 request2.dependsOn(request1);
@@ -333,4 +333,5 @@ describe("batch tests", () => {
             });
         });
     });
+
 });

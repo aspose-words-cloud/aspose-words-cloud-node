@@ -33,6 +33,7 @@ import { Configuration } from "../internal/configuration";
 import { addQueryParameterToUrl } from "../internal/requestHelper";
 import { ObjectSerializer } from "../internal/objectSerializer";
 import * as importedApiError from './apiError';
+export * as batchPartRequest from "./batchPartRequest";
 import * as importedAvailableFontsResponse from './availableFontsResponse';
 import * as importedBmpSaveOptionsData from './bmpSaveOptionsData';
 import * as importedBookmark from './bookmark';

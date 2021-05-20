@@ -545,6 +545,7 @@ export namespace Style {
         ListTable5DarkAccent6 = 'ListTable5DarkAccent6' as any,
         ListTable6ColorfulAccent6 = 'ListTable6ColorfulAccent6' as any,
         ListTable7ColorfulAccent6 = 'ListTable7ColorfulAccent6' as any,
+        SmartLink = 'SmartLink' as any,
         User = 'User' as any,
         Nil = 'Nil' as any
     }

@@ -275,7 +275,6 @@ import * as importedXpsSaveOptionsData from './xpsSaveOptionsData';
 export { AttributeInfo } from '../internal/attributeInfo';
 export * from './apiError';
 export * from './availableFontsResponse';
-export * from "./batchPartRequest";
 export * from './bmpSaveOptionsData';
 export * from './bookmark';
 export * from './bookmarkData';

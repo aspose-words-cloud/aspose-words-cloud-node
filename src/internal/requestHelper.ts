@@ -121,7 +121,7 @@ async function invokeApiMethodInternal(requestOptions: request.OptionsWithUri, c
     }
 
     requestOptions.headers["x-aspose-client"] = "nodejs sdk";
-    requestOptions.headers["x-aspose-client-version"] = "21.5";
+    requestOptions.headers["x-aspose-client-version"] = "21.5.1";
 
 	requestOptions.uri = encodeURI(requestOptions.uri.toString());
 

@@ -5288,7 +5288,7 @@ export class WordsApi {
             method: "PUT",
             uri: this.configuration.getApiBaseUrl() + "/words/batch",
             headers: {
-                "Content-Type": "multipart/mixed",
+                "Content-Type": "multipart/form-data",
             },
         };
 
@@ -5373,7 +5373,8 @@ export class WordsApi {
                     }
                 }
 
-                bodyString += "Content-Type: " + requestForm.getHeaders()["content-type"] + "\r\n";
+                let contentType = requestForm.getHeaders()["content-type"].replace("multipart/form-data", "multipart/mixed");
+                bodyString += "Content-Type: " + contentType + "\r\n";
 
                 bodyString += "RequestId: " + requestObj.id + "\r\n";
                 if (requestObj.parentId) {

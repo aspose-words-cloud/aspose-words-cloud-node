@@ -172,7 +172,7 @@ async function invokeApiMethodInternal(requestOptions: request.OptionsWithUri, c
 /**
  * Parse multipart response body for given boundary
  */
-export function parseMultipartBody(multipartBodyBuffer, boundary) {
+export function parseMultipartBody(multipartBodyBuffer, boundary, withStatus) {
 	const allParts = [];
 
     let partHeaders = [];
@@ -206,7 +206,7 @@ export function parseMultipartBody(multipartBodyBuffer, boundary) {
 		} else
         if((PART_HEADERS === state) && newLineDetected){
             if(lastline === '') {
-                state = STATUS;
+                state = withStatus ? STATUS : CONTENT;
             }
             lastline = '';
         } else  
@@ -227,7 +227,7 @@ export function parseMultipartBody(multipartBodyBuffer, boundary) {
 			if(lastline.length > (boundary.length+4)) lastline='';
 			if(((("--" + boundary) === lastline))){              
                 const part = { 
-                    code: parseInt(info, 10), 
+                    code: withStatus ? parseInt(info, 10) : 0, 
                     headers: partHeaders.reduce((headers, header) => {
                         if (header.indexOf(':') !== -1) {
                             const [ key, value ] = header.split(/:\s+/)

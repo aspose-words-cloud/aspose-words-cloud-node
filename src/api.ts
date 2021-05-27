@@ -37,6 +37,7 @@ import * as model from "./model/model";
 import { BatchPartRequest } from "./model/batchPartRequest";
 
 export * from "./model/model";
+export * from "./model/batchPartRequest";
 
 /**
  * Library for communicating with the Aspose.Words for Cloud API
@@ -5288,7 +5289,7 @@ export class WordsApi {
             method: "PUT",
             uri: this.configuration.getApiBaseUrl() + "/words/batch",
             headers: {
-                "Content-Type": "multipart/form-data",
+                "Content-Type": "multipart/mixed",
             },
         };
 
@@ -5373,8 +5374,7 @@ export class WordsApi {
                     }
                 }
 
-                let contentType = requestForm.getHeaders()["content-type"].replace("multipart/form-data", "multipart/mixed");
-                bodyString += "Content-Type: " + contentType + "\r\n";
+                bodyString += "Content-Type: " + requestForm.getHeaders()["content-type"] + "\r\n";
 
                 bodyString += "RequestId: " + requestObj.id + "\r\n";
                 if (requestObj.parentId) {
@@ -5394,11 +5394,12 @@ export class WordsApi {
         }
 
         requestOptions.multipart = requestParts;
+        requestOptions.encoding = null;
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
 
         // parse the response
-        const responseParts = parseMultipartBody(Buffer.from(response.body), getBoundary(response.headers));
+        const responseParts = parseMultipartBody(response.body, getBoundary(response.headers), true);
 
         const data = new Array();
         for (let i = 0; i < requests.length; i++) {

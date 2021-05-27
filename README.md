@@ -19,7 +19,7 @@ Feel free to explore the [Developer's Guide](https://docs.aspose.cloud/display/w
 ## Enhancements in Version 21.5
 
 - Update dependencies in sdk
-
+- Added resultOf feature support for batch requests
 
 ## Enhancements in Version 21.4
 

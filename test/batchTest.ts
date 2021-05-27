@@ -329,11 +329,8 @@ describe("batch tests", () => {
                         expect(resultApi.body[0].constructor.name).to.equal("Buffer");
                         expect(resultApi.body[1].constructor.name).to.equal("Buffer");
                         expect(resultApi.body[2].constructor.name).to.equal("Buffer");
-
-                        fs.writeFileSync("d:/result.pdf", resultApi.body[2]);
                     });
             });
         });
     });
-
 });

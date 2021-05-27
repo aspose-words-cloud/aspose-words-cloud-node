@@ -73,7 +73,7 @@ export class BatchPartRequest {
 	/**
 	 * create response from string
 	 */
-	createResponse(response: string, _boundary?: string): any {
+	createResponse(response: Buffer, _boundary?: string): any {
         if (_boundary == null) {
             return this.innerRequest.createResponse(response);
         }

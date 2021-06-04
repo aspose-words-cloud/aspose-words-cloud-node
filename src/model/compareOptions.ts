@@ -39,6 +39,11 @@ export class CompareOptions {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
+            name: "acceptAllRevisionsBeforeComparison",
+            baseName: "AcceptAllRevisionsBeforeComparison",
+            type: "boolean",
+        },
+        {
             name: "ignoreCaseChanges",
             baseName: "IgnoreCaseChanges",
             type: "boolean",
@@ -91,6 +96,11 @@ export class CompareOptions {
     public static getAttributeTypeMap() {
         return CompareOptions.attributeTypeMap;
     }
+
+    /**
+     * Gets or sets whether accept revisions before comparison or not.
+     */
+    public acceptAllRevisionsBeforeComparison: boolean;
 
     /**
      * Gets or sets a value indicating whether documents comparison is case insensitive. By default comparison is case sensitive.

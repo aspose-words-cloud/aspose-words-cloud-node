@@ -2117,6 +2117,11 @@ export class CompareDocumentOnlineRequest implements RequestInterface {
     public compareData: importedCompareData.CompareData;
 
     /**
+     * The comparing document.
+     */
+    public comparingDocument: Readable;
+
+    /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
      */
     public loadEncoding: string;
@@ -2168,6 +2173,9 @@ export class CompareDocumentOnlineRequest implements RequestInterface {
         }
         if (this.compareData !== undefined) {
             formParams.CompareData = JSON.stringify(ObjectSerializer.serialize(this.compareData, this.compareData.constructor.name));
+        }
+        if (this.comparingDocument !== undefined) {
+            formParams.ComparingDocument = this.comparingDocument;
         }
 
         const requestOptions: request.Options = {

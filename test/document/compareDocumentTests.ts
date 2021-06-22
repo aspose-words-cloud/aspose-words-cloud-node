@@ -118,4 +118,40 @@ describe("compareDocument", () => {
 
        });
     });
+
+    // Test for document comparison online.
+    describe("compareTwoDocumentOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const localName1 = "compareTestDoc1.doc";
+            const localName2 = "compareTestDoc2.doc";
+            const remoteName2 = "TestCompareDocument2.doc";
+
+            return wordsApi.uploadFileToStorage(
+                remoteFolder + "/" + remoteName2,
+                BaseTest.localBaseTestDataFolder + localFolder + "/" + localName2
+            ).then((result0) => {
+                expect(result0.response.statusMessage).to.equal("OK");
+                const request = new model.CompareDocumentOnlineRequest({
+                    document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFolder + "/" + localName1),
+                    compareData: new model.CompareData({
+                        author: "author",
+                        comparingWithDocument: remoteFolder + "/" + remoteName2,
+                        dateTime: new Date('2015-10-26T00:00:00Z')
+                    }),
+                    comparingDocument: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFolder + "/" + localName2),
+                    destFileName: BaseTest.remoteBaseTestOutFolder + "/TestCompareDocumentOut.doc"
+                });
+
+                // Act
+                return wordsApi.compareDocumentOnline(request)
+                .then((resultApi) => {
+                    // Assert
+                    expect(resultApi.response.statusCode).to.equal(200);
+                });
+
+            });
+
+       });
+    });
 });

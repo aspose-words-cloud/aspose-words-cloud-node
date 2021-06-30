@@ -16,6 +16,12 @@ Feel free to explore the [Developer's Guide](https://docs.aspose.cloud/display/w
 - Add & remove watermarks and protection.
 - Read & write access to Document Object Model.
 
+## Enhancements in Version 21.6
+
+- Implemented beta version of CompareDocumentOnline feature with both document sending in request.
+- CompareDocument method now can handle PDF files
+
+
 ## Enhancements in Version 21.5
 
 - Update dependencies in sdk

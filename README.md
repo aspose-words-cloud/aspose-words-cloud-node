@@ -18,8 +18,9 @@ Feel free to explore the [Developer's Guide](https://docs.aspose.cloud/display/w
 
 ## Enhancements in Version 21.6
 
-- Implemented beta version of CompareDocumentOnline feature with both document sending in request.
+- Implemented beta version of CompareDocumentOnline feature with both document sending in request
 - CompareDocument method now can handle PDF files
+- AcceptAllRevisionsBeforeComparison option introduced which is used to specify if accept all revisions before comparison
 
 
 ## Enhancements in Version 21.5

@@ -71,6 +71,11 @@ export class SaveOptionsData {
             type: "string",
         },
         {
+            name: "imlRenderingMode",
+            baseName: "ImlRenderingMode",
+            type: "string",
+        },
+        {
             name: "saveFormat",
             baseName: "SaveFormat",
             type: "string",
@@ -144,6 +149,11 @@ export class SaveOptionsData {
      * Gets or sets the name of destination file.
      */
     public fileName: string;
+
+    /**
+     * Gets or sets the value determining how ink (InkML) objects are rendered.
+     */
+    public imlRenderingMode: string;
 
     /**
      * Gets or sets the format of save.

@@ -46,6 +46,11 @@ export class TextSaveOptionsData extends TxtSaveOptionsBaseData {
             type: "boolean",
         },
         {
+            name: "maxCharactersPerLine",
+            baseName: "MaxCharactersPerLine",
+            type: "number",
+        },
+        {
             name: "preserveTableLayout",
             baseName: "PreserveTableLayout",
             type: "boolean",
@@ -69,6 +74,12 @@ export class TextSaveOptionsData extends TxtSaveOptionsBaseData {
      * The default value is true.
      */
     public addBidiMarks: boolean;
+
+    /**
+     * Gets or sets an integer value that specifies the maximum number of characters per one line.
+     * The default value is 0, that means no limit.
+     */
+    public maxCharactersPerLine: number;
 
     /**
      * Gets or sets a value indicating whether the program should attempt to preserve layout of tables when saving in the plain text format.

@@ -16,6 +16,12 @@ Feel free to explore the [Developer's Guide](https://docs.aspose.cloud/display/w
 - Add & remove watermarks and protection.
 - Read & write access to Document Object Model.
 
+## Enhancements in Version 21.7
+
+- ImlRenderingMode option introduced witch is used to determine how ink (InkML) objects are rendered
+- MaxCharactersPerLine option introduced which is used to specify the maximum number of characters per one line
+
+
 ## Enhancements in Version 21.6
 
 - Implemented beta version of CompareDocumentOnline feature with both document sending in request

@@ -2672,6 +2672,24 @@ export class WordsApi {
     }
 
     /**
+     * Get assymetric public key.
+     * @param requestObj contains request parameters
+     */
+    public async getPublicKey(requestObj: model.GetPublicKeyRequest): Promise< model.WordsIncomingMessage< model.PublicKeyResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling getPublicKey.');
+        }
+
+        const requestOptions = requestObj.createRequestOptions(this.configuration); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = new model.WordsIncomingMessage< model.PublicKeyResponse >();    
+        result.response = response;
+        result.body = requestObj.createResponse(response.body);
+        return Promise.resolve(result);
+    }
+
+    /**
      * Reads range text from the document.
      * @param requestObj contains request parameters
      */

@@ -184,6 +184,7 @@ import * as importedProtectionData from './protectionData';
 import * as importedProtectionDataResponse from './protectionDataResponse';
 import * as importedProtectionRequest from './protectionRequest';
 import * as importedPsSaveOptionsData from './psSaveOptionsData';
+import * as importedPublicKeyResponse from './publicKeyResponse';
 import * as importedRangeDocument from './rangeDocument';
 import * as importedRangeDocumentDto from './rangeDocumentDto';
 import * as importedRangeTextResponse from './rangeTextResponse';
@@ -425,6 +426,7 @@ export * from './protectionData';
 export * from './protectionDataResponse';
 export * from './protectionRequest';
 export * from './psSaveOptionsData';
+export * from './publicKeyResponse';
 export * from './rangeDocument';
 export * from './rangeDocumentDto';
 export * from './rangeTextResponse';
@@ -767,6 +769,7 @@ const typeMap = {
     ProtectionDataResponse: importedProtectionDataResponse.ProtectionDataResponse,
     ProtectionRequest: importedProtectionRequest.ProtectionRequest,
     PsSaveOptionsData: importedPsSaveOptionsData.PsSaveOptionsData,
+    PublicKeyResponse: importedPublicKeyResponse.PublicKeyResponse,
     RangeDocument: importedRangeDocument.RangeDocument,
     RangeDocumentDto: importedRangeDocumentDto.RangeDocumentDto,
     RangeTextResponse: importedRangeTextResponse.RangeTextResponse,
@@ -15336,6 +15339,45 @@ export class GetParagraphTabStopsOnlineRequest implements RequestInterface {
 	 */
 	createResponse(_response: Buffer, _boundary?: string): any {
         return ObjectSerializer.deserialize(_response, "TabStopsResponse");
+	}
+}
+
+/**
+ * Request model for GetPublicKey operation.
+ * Get assymetric public key.
+ */
+export class GetPublicKeyRequest implements RequestInterface {
+
+    public constructor(init?: Partial< GetPublicKeyRequest >) {
+        Object.assign(this, init);
+    }
+
+
+	/**
+	 * create the requst options for this request
+	 * @param configuration a configuration for the request
+	 */
+	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+        const localVarPath = configuration.getApiBaseUrl() + "/words/encryption/publickey"
+            .replace("//", "/");
+        const queryParameters: any = {};
+
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+
+        return requestOptions;
+    }
+
+	/**
+	 * create response from string
+	 */
+	createResponse(_response: Buffer, _boundary?: string): any {
+        return ObjectSerializer.deserialize(_response, "PublicKeyResponse");
 	}
 }
 

@@ -1176,7 +1176,7 @@ export class AppendDocumentOnlineRequest implements RequestInterface {
     }
 
     /**
-     * The document.
+     * Original document.
      */
     public document: Readable;
 
@@ -10811,9 +10811,9 @@ export class GetDocumentFieldNamesOnlineRequest implements RequestInterface {
     }
 
     /**
-     * The document.
+     * The template document.
      */
-    public document: Readable;
+    public template: Readable;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -10839,21 +10839,21 @@ export class GetDocumentFieldNamesOnlineRequest implements RequestInterface {
             .replace("//", "/");
         const queryParameters: any = {};
         const formParams: any = {};
-        // verify required parameter 'this.document' is not undefined
-        if (this.document === undefined) {
-            throw new Error('Required parameter "this.document" was undefined when calling getDocumentFieldNamesOnline.');
+        // verify required parameter 'this.template' is not undefined
+        if (this.template === undefined) {
+            throw new Error('Required parameter "this.template" was undefined when calling getDocumentFieldNamesOnline.');
         }
 
-        // verify required parameter 'this.document' is not null
-        if (this.document === null) {
-            throw new Error('Required parameter "this.document" was null when calling getDocumentFieldNamesOnline.');
+        // verify required parameter 'this.template' is not null
+        if (this.template === null) {
+            throw new Error('Required parameter "this.template" was null when calling getDocumentFieldNamesOnline.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "useNonMergeFields", this.useNonMergeFields);
-        if (this.document !== undefined) {
-            formParams.Document = this.document;
+        if (this.template !== undefined) {
+            formParams.Template = this.template;
         }
 
         const requestOptions: request.Options = {
@@ -25564,7 +25564,7 @@ export class SaveAsRequest implements RequestInterface {
 
 /**
  * Request model for SaveAsOnline operation.
- * Converts a document in cloud storage to the specified format.
+ * Converts a document to the specified format.
  */
 export class SaveAsOnlineRequest implements RequestInterface {
 
@@ -26104,7 +26104,7 @@ export class SaveAsTiffRequest implements RequestInterface {
 
 /**
  * Request model for SaveAsTiffOnline operation.
- * Converts a document in cloud storage to TIFF format using detailed conversion settings.
+ * Converts a document to TIFF format using detailed conversion settings.
  */
 export class SaveAsTiffOnlineRequest implements RequestInterface {
 
@@ -32650,7 +32650,7 @@ export class ReplaceWithTextOnlineResponse {
 
 /**
  * Response model for SaveAsOnline operation.
- * Converts a document in cloud storage to the specified format.
+ * Converts a document to the specified format.
  */
 export class SaveAsOnlineResponse {
     /**
@@ -32682,7 +32682,7 @@ export class SaveAsRangeOnlineResponse {
 
 /**
  * Response model for SaveAsTiffOnline operation.
- * Converts a document in cloud storage to TIFF format using detailed conversion settings.
+ * Converts a document to TIFF format using detailed conversion settings.
  */
 export class SaveAsTiffOnlineResponse {
     /**

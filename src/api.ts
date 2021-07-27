@@ -4388,7 +4388,7 @@ export class WordsApi {
     }
 
     /**
-     * Converts a document in cloud storage to the specified format.
+     * Converts a document to the specified format.
      * @param requestObj contains request parameters
      */
     public async saveAsOnline(requestObj: model.SaveAsOnlineRequest): Promise< model.WordsIncomingMessage< model.SaveAsOnlineResponse > > {
@@ -4460,7 +4460,7 @@ export class WordsApi {
     }
 
     /**
-     * Converts a document in cloud storage to TIFF format using detailed conversion settings.
+     * Converts a document to TIFF format using detailed conversion settings.
      * @param requestObj contains request parameters
      */
     public async saveAsTiffOnline(requestObj: model.SaveAsTiffOnlineRequest): Promise< model.WordsIncomingMessage< model.SaveAsTiffOnlineResponse > > {

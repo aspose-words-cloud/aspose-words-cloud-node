@@ -16,6 +16,11 @@ Feel free to explore the [Developer's Guide](https://docs.aspose.cloud/display/w
 - Add & remove watermarks and protection.
 - Read & write access to Document Object Model.
 
+## Enhancements in Version 21.8
+
+- Added new api methods to get, insert, update or delete custom xml parts from documents.
+
+
 ## Enhancements in Version 21.7
 
 - ImlRenderingMode option introduced witch is used to determine how ink (InkML) objects are rendered

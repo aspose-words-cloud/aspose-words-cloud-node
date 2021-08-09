@@ -620,6 +620,72 @@ export class WordsApi {
     }
 
     /**
+     * Removes the custom xml part from the document.
+     * @param requestObj contains request parameters
+     */
+    public async deleteCustomXmlPart(requestObj: model.DeleteCustomXmlPartRequest): Promise< http.IncomingMessage > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling deleteCustomXmlPart.');
+        }
+
+        const requestOptions = requestObj.createRequestOptions(this.configuration); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve(response);
+    }
+
+    /**
+     * Removes the custom xml part from the document.
+     * @param requestObj contains request parameters
+     */
+    public async deleteCustomXmlPartOnline(requestObj: model.DeleteCustomXmlPartOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling deleteCustomXmlPartOnline.');
+        }
+
+        const requestOptions = requestObj.createRequestOptions(this.configuration); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = new model.WordsIncomingMessage< Buffer >();    
+        result.response = response;
+        result.body = requestObj.createResponse(response.body);
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Removes all custom xml parts from the document.
+     * @param requestObj contains request parameters
+     */
+    public async deleteCustomXmlParts(requestObj: model.DeleteCustomXmlPartsRequest): Promise< http.IncomingMessage > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling deleteCustomXmlParts.');
+        }
+
+        const requestOptions = requestObj.createRequestOptions(this.configuration); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve(response);
+    }
+
+    /**
+     * Removes all custom xml parts from the document.
+     * @param requestObj contains request parameters
+     */
+    public async deleteCustomXmlPartsOnline(requestObj: model.DeleteCustomXmlPartsOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling deleteCustomXmlPartsOnline.');
+        }
+
+        const requestOptions = requestObj.createRequestOptions(this.configuration); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = new model.WordsIncomingMessage< Buffer >();    
+        result.response = response;
+        result.body = requestObj.createResponse(response.body);
+        return Promise.resolve(result);
+    }
+
+    /**
      * Removes a document property.
      * @param requestObj contains request parameters
      */
@@ -1568,6 +1634,78 @@ export class WordsApi {
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.CommentsResponse >();    
+        result.response = response;
+        result.body = requestObj.createResponse(response.body);
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Reads the custom xml part from the document.
+     * @param requestObj contains request parameters
+     */
+    public async getCustomXmlPart(requestObj: model.GetCustomXmlPartRequest): Promise< model.WordsIncomingMessage< model.CustomXmlPartResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling getCustomXmlPart.');
+        }
+
+        const requestOptions = requestObj.createRequestOptions(this.configuration); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = new model.WordsIncomingMessage< model.CustomXmlPartResponse >();    
+        result.response = response;
+        result.body = requestObj.createResponse(response.body);
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Reads the custom xml part from the document.
+     * @param requestObj contains request parameters
+     */
+    public async getCustomXmlPartOnline(requestObj: model.GetCustomXmlPartOnlineRequest): Promise< model.WordsIncomingMessage< model.CustomXmlPartResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling getCustomXmlPartOnline.');
+        }
+
+        const requestOptions = requestObj.createRequestOptions(this.configuration); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = new model.WordsIncomingMessage< model.CustomXmlPartResponse >();    
+        result.response = response;
+        result.body = requestObj.createResponse(response.body);
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Reads custom xml parts from the document.
+     * @param requestObj contains request parameters
+     */
+    public async getCustomXmlParts(requestObj: model.GetCustomXmlPartsRequest): Promise< model.WordsIncomingMessage< model.CustomXmlPartsResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling getCustomXmlParts.');
+        }
+
+        const requestOptions = requestObj.createRequestOptions(this.configuration); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = new model.WordsIncomingMessage< model.CustomXmlPartsResponse >();    
+        result.response = response;
+        result.body = requestObj.createResponse(response.body);
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Reads custom xml parts from the document.
+     * @param requestObj contains request parameters
+     */
+    public async getCustomXmlPartsOnline(requestObj: model.GetCustomXmlPartsOnlineRequest): Promise< model.WordsIncomingMessage< model.CustomXmlPartsResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling getCustomXmlPartsOnline.');
+        }
+
+        const requestOptions = requestObj.createRequestOptions(this.configuration); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = new model.WordsIncomingMessage< model.CustomXmlPartsResponse >();    
         result.response = response;
         result.body = requestObj.createResponse(response.body);
         return Promise.resolve(result);
@@ -3338,6 +3476,42 @@ export class WordsApi {
     }
 
     /**
+     * Inserts a new custom xml part to the document.
+     * @param requestObj contains request parameters
+     */
+    public async insertCustomXmlPart(requestObj: model.InsertCustomXmlPartRequest): Promise< model.WordsIncomingMessage< model.CustomXmlPartResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling insertCustomXmlPart.');
+        }
+
+        const requestOptions = requestObj.createRequestOptions(this.configuration); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = new model.WordsIncomingMessage< model.CustomXmlPartResponse >();    
+        result.response = response;
+        result.body = requestObj.createResponse(response.body);
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Inserts a new custom xml part to the document.
+     * @param requestObj contains request parameters
+     */
+    public async insertCustomXmlPartOnline(requestObj: model.InsertCustomXmlPartOnlineRequest): Promise< model.WordsIncomingMessage< model.InsertCustomXmlPartOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling insertCustomXmlPartOnline.');
+        }
+
+        const requestOptions = requestObj.createRequestOptions(this.configuration); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = new model.WordsIncomingMessage< model.InsertCustomXmlPartOnlineResponse >();
+        result.response = response;
+        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        return Promise.resolve(result);
+    }
+
+    /**
      * Inserts a new DrawingObject to the document node.
      * @param requestObj contains request parameters
      */
@@ -4688,6 +4862,42 @@ export class WordsApi {
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.UpdateCommentOnlineResponse >();
+        result.response = response;
+        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Updates the custom xml part in the document.
+     * @param requestObj contains request parameters
+     */
+    public async updateCustomXmlPart(requestObj: model.UpdateCustomXmlPartRequest): Promise< model.WordsIncomingMessage< model.CustomXmlPartResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling updateCustomXmlPart.');
+        }
+
+        const requestOptions = requestObj.createRequestOptions(this.configuration); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = new model.WordsIncomingMessage< model.CustomXmlPartResponse >();    
+        result.response = response;
+        result.body = requestObj.createResponse(response.body);
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Updates the custom xml part in the document.
+     * @param requestObj contains request parameters
+     */
+    public async updateCustomXmlPartOnline(requestObj: model.UpdateCustomXmlPartOnlineRequest): Promise< model.WordsIncomingMessage< model.UpdateCustomXmlPartOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling updateCustomXmlPartOnline.');
+        }
+
+        const requestOptions = requestObj.createRequestOptions(this.configuration); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = new model.WordsIncomingMessage< model.UpdateCustomXmlPartOnlineResponse >();
         result.response = response;
         result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
         return Promise.resolve(result);

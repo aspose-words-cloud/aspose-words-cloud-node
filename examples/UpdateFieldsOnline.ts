@@ -2,12 +2,12 @@ const clientId = "####-####-####-####-####";
 const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
 const documentsDir = "./";
-const acceptRequest = new model.AcceptAllRevisionsOnlineRequest({
+const updateRequest = new model.UpdateFieldsOnlineRequest({
     document: fs.createReadStream(documentsDir + "Sample.docx")
 });
 
-return wordsApi.acceptAllRevisionsOnline(acceptRequest)
-.then((acceptRequestResult) => {
+return wordsApi.updateFieldsOnline(updateRequest)
+.then((updateRequestResult) => {
     // tslint:disable-next-line:no-console
-    console.log("Result of acceptRequest: ", acceptRequestResult);
+    console.log("Result of updateRequest: ", updateRequestResult);
 });

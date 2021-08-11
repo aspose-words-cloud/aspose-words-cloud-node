@@ -3,13 +3,14 @@ const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
 const remoteFileName = "Sample.docx";
 
-const acceptRequest = new model.AcceptAllRevisionsRequest({
+const deleteRequest = new model.DeleteDocumentPropertyRequest({
     name: remoteFileName,
+    propertyName: "testProp",
     destFileName: remoteFileName
 });
 
-return wordsApi.acceptAllRevisions(acceptRequest)
-.then((acceptRequestResult) => {
+return wordsApi.deleteDocumentProperty(deleteRequest)
+.then((deleteRequestResult) => {
     // tslint:disable-next-line:no-console
-    console.log("Result of acceptRequest: ", acceptRequestResult);
+    console.log("Result of deleteRequest: ", deleteRequestResult);
 });

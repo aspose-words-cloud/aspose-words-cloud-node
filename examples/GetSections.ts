@@ -1,0 +1,12 @@
+const clientId = "####-####-####-####-####";
+const secret = "##################";
+const wordsApi = new WordsApi(clientId, secret);
+const request = new model.GetSectionsRequest({
+    name: "Sample.docx"
+});
+
+return wordsApi.getSections(request)
+.then((requestResult) => {
+    // tslint:disable-next-line:no-console
+    console.log("Result of request: ", requestResult);
+});

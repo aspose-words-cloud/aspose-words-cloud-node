@@ -3,13 +3,14 @@ const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
 const remoteFileName = "Sample.docx";
 
-const acceptRequest = new model.AcceptAllRevisionsRequest({
+const mailMergeRequest = new model.ExecuteMailMergeRequest({
     name: remoteFileName,
+    data: "TestExecuteTemplateData.txt",
     destFileName: remoteFileName
 });
 
-return wordsApi.acceptAllRevisions(acceptRequest)
-.then((acceptRequestResult) => {
+return wordsApi.executeMailMerge(mailMergeRequest)
+.then((mailMergeRequestResult) => {
     // tslint:disable-next-line:no-console
-    console.log("Result of acceptRequest: ", acceptRequestResult);
+    console.log("Result of mailMergeRequest: ", mailMergeRequestResult);
 });

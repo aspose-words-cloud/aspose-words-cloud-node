@@ -3,13 +3,13 @@ const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
 const remoteFileName = "Sample.docx";
 
-const acceptRequest = new model.AcceptAllRevisionsRequest({
+const deleteRequest = new model.DeleteCommentsRequest({
     name: remoteFileName,
     destFileName: remoteFileName
 });
 
-return wordsApi.acceptAllRevisions(acceptRequest)
-.then((acceptRequestResult) => {
+return wordsApi.deleteComments(deleteRequest)
+.then((deleteRequestResult) => {
     // tslint:disable-next-line:no-console
-    console.log("Result of acceptRequest: ", acceptRequestResult);
+    console.log("Result of deleteRequest: ", deleteRequestResult);
 });

@@ -59,6 +59,11 @@ export class CompareData {
             name: "dateTime",
             baseName: "DateTime",
             type: "Date",
+        },
+        {
+            name: "resultDocumentFormat",
+            baseName: "ResultDocumentFormat",
+            type: "string",
         }
     ];
 
@@ -88,6 +93,11 @@ export class CompareData {
      * Gets or sets the date and time to use for revisions.
      */
     public dateTime: Date;
+
+    /**
+     * Gets or sets the result document format.
+     */
+    public resultDocumentFormat: string;
 
     public constructor(init?: Partial< CompareData >) {
         Object.assign(this, init);

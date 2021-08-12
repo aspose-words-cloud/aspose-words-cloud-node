@@ -4761,6 +4761,7 @@ describe("examples", () => {
     describe("exampleUpdateBookmark", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            const bookmarkName = "aspose";
             const remoteFileName = "Sample.docx";
 
             const updateRequest = new model.UpdateBookmarkRequest({
@@ -4785,6 +4786,8 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            const bookmarkName = "aspose";
+
             const updateRequest = new model.UpdateBookmarkOnlineRequest({
                 document: fs.createReadStream(documentsDir + "Sample.docx"),
                 bookmarkName: bookmarkName,

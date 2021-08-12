@@ -2,6 +2,8 @@ const clientId = "####-####-####-####-####";
 const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
 const documentsDir = "./";
+const bookmarkName = "aspose";
+
 const updateRequest = new model.UpdateBookmarkOnlineRequest({
     document: fs.createReadStream(documentsDir + "Sample.docx"),
     bookmarkName: bookmarkName,

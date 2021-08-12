@@ -1,6 +1,7 @@
 const clientId = "####-####-####-####-####";
 const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
+const bookmarkName = "aspose";
 const remoteFileName = "Sample.docx";
 
 const updateRequest = new model.UpdateBookmarkRequest({

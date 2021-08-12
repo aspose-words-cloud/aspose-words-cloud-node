@@ -3,7 +3,7 @@ const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
 const documentsDir = "./";
 const insertRequest = new model.InsertRunOnlineRequest({
-    document: fs.createReadStream(documentsDir + "DocumentElements/Runs/Run.doc"),
+    document: fs.createReadStream(documentsDir + "Sample.doc"),
     paragraphPath: "paragraphs/1",
     run: new model.RunInsert({
         text: "run with text"

@@ -3,7 +3,7 @@ const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
 const documentsDir = "./";
 const updateRequest = new model.UpdateListLevelOnlineRequest({
-    document: fs.createReadStream(documentsDir + "DocumentElements/Lists/ListsGet.doc"),
+    document: fs.createReadStream(documentsDir + "Sample.doc"),
     listId: 1,
     listLevel: 1,
     listUpdate: new model.ListLevelUpdate({

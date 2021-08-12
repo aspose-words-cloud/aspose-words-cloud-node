@@ -1,15 +1,12 @@
 const clientId = "####-####-####-####-####";
 const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
-const remoteFileName = "Sample.docx";
-
 const insertRequest = new model.InsertWatermarkTextRequest({
-    name: remoteFileName,
+    name: "Sample.docx",
     watermarkText: new model.WatermarkText({
         text: "This is the text",
         rotationAngle: 90.0
-    }),
-    destFileName: remoteFileName
+    })
 });
 
 return wordsApi.insertWatermarkText(insertRequest)

@@ -1,12 +1,9 @@
 const clientId = "####-####-####-####-####";
 const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
-const remoteFileName = "Sample.docx";
-
 const deleteRequest = new model.DeleteDocumentPropertyRequest({
-    name: remoteFileName,
-    propertyName: "testProp",
-    destFileName: remoteFileName
+    name: "Sample.docx",
+    propertyName: "testProp"
 });
 
 return wordsApi.deleteDocumentProperty(deleteRequest)

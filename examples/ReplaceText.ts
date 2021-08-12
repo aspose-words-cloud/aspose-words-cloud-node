@@ -1,15 +1,12 @@
 const clientId = "####-####-####-####-####";
 const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
-const remoteFileName = "Sample.docx";
-
 const replaceRequest = new model.ReplaceTextRequest({
-    name: remoteFileName,
+    name: "Sample.docx",
     replaceText: new model.ReplaceTextParameters({
         oldValue: "Testing",
         newValue: "Aspose testing"
-    }),
-    destFileName: remoteFileName
+    })
 });
 
 return wordsApi.replaceText(replaceRequest)

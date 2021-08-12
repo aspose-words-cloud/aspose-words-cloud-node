@@ -12,8 +12,7 @@ const appendRequest = new model.AppendDocumentRequest({
                 importFormatMode: "KeepSourceFormatting"
             })
         ]
-    }),
-    destFileName: remoteFileName
+    })
 });
 
 return wordsApi.appendDocument(appendRequest)

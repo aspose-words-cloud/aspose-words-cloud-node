@@ -1,10 +1,8 @@
 const clientId = "####-####-####-####-####";
 const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
-const remoteFileName = "Sample.docx";
-
 const insertRequest = new model.InsertFormFieldRequest({
-    name: remoteFileName,
+    name: "Sample.docx",
     formField: new model.FormFieldTextInput({
         name: "FullName",
         enabled: true,
@@ -13,8 +11,7 @@ const insertRequest = new model.InsertFormFieldRequest({
         textInputType: model.FormFieldTextInput.TextInputTypeEnum.Regular,
         textInputDefault: "123",
         textInputFormat: "UPPERCASE"
-    }),
-    destFileName: remoteFileName
+    })
 });
 
 return wordsApi.insertFormField(insertRequest)

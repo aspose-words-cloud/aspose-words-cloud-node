@@ -3,7 +3,7 @@ const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
 const documentsDir = "./";
 const saveRequest = new model.SaveAsRangeOnlineRequest({
-    document: fs.createReadStream(documentsDir + "DocumentElements/Range/RangeGet.doc"),
+    document: fs.createReadStream(documentsDir + "Sample.doc"),
     rangeStartIdentifier: "id0.0.0",
     documentParameters: new model.RangeDocument({
         documentName: "/NewDoc.docx"

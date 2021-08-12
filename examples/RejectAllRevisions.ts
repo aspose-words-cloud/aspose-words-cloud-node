@@ -1,11 +1,8 @@
 const clientId = "####-####-####-####-####";
 const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
-const remoteFileName = "Sample.docx";
-
 const rejectRequest = new model.RejectAllRevisionsRequest({
-    name: remoteFileName,
-    destFileName: remoteFileName
+    name: "Sample.docx"
 });
 
 return wordsApi.rejectAllRevisions(rejectRequest)

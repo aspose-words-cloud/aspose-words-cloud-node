@@ -1,12 +1,9 @@
 const clientId = "####-####-####-####-####";
 const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
-const remoteFileName = "Sample.docx";
-
 const deleteRequest = new model.DeleteFormFieldRequest({
-    name: remoteFileName,
-    index: 0,
-    destFileName: remoteFileName
+    name: "Sample.docx",
+    index: 0
 });
 
 return wordsApi.deleteFormField(deleteRequest)

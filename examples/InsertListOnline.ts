@@ -3,7 +3,7 @@ const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
 const documentsDir = "./";
 const insertRequest = new model.InsertListOnlineRequest({
-    document: fs.createReadStream(documentsDir + "DocumentElements/Lists/ListsGet.doc"),
+    document: fs.createReadStream(documentsDir + "Sample.doc"),
     listInsert: new model.ListInsert({
         template: model.ListInsert.TemplateEnum.OutlineLegal
     })

@@ -3,7 +3,7 @@ const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
 const documentsDir = "./";
 const request = new model.GetHeaderFooterOfSectionOnlineRequest({
-    document: fs.createReadStream(documentsDir + "DocumentElements/HeaderFooters/HeadersFooters.doc"),
+    document: fs.createReadStream(documentsDir + "Sample.doc"),
     headerFooterIndex: 0,
     sectionIndex: 0
 });

@@ -3,7 +3,7 @@ const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
 const documentsDir = "./";
 const updateRequest = new model.UpdateRunOnlineRequest({
-    document: fs.createReadStream(documentsDir + "DocumentElements/Runs/Run.doc"),
+    document: fs.createReadStream(documentsDir + "Sample.doc"),
     run: new model.RunUpdate({
         text: "run with text"
     }),

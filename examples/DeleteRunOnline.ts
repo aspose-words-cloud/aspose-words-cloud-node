@@ -3,7 +3,7 @@ const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
 const documentsDir = "./";
 const deleteRequest = new model.DeleteRunOnlineRequest({
-    document: fs.createReadStream(documentsDir + "DocumentElements/Runs/Run.doc"),
+    document: fs.createReadStream(documentsDir + "Sample.doc"),
     paragraphPath: "paragraphs/1",
     index: 0
 });

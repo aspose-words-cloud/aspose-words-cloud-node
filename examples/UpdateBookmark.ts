@@ -2,16 +2,14 @@ const clientId = "####-####-####-####-####";
 const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
 const bookmarkName = "aspose";
-const remoteFileName = "Sample.docx";
 
 const updateRequest = new model.UpdateBookmarkRequest({
-    name: remoteFileName,
+    name: "Sample.docx",
     bookmarkName: bookmarkName,
     bookmarkData: new model.BookmarkData({
         name: bookmarkName,
         text: "This will be the text for Aspose"
-    }),
-    destFileName: remoteFileName
+    })
 });
 
 return wordsApi.updateBookmark(updateRequest)

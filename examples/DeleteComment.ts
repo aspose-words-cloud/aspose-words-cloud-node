@@ -1,12 +1,9 @@
 const clientId = "####-####-####-####-####";
 const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
-const remoteFileName = "Sample.docx";
-
 const deleteRequest = new model.DeleteCommentRequest({
-    name: remoteFileName,
-    commentIndex: 0,
-    destFileName: remoteFileName
+    name: "Sample.docx",
+    commentIndex: 0
 });
 
 return wordsApi.deleteComment(deleteRequest)

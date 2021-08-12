@@ -1,12 +1,9 @@
 const clientId = "####-####-####-####-####";
 const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
-const remoteFileName = "Sample.docx";
-
 const deleteRequest = new model.DeleteCustomXmlPartRequest({
-    name: remoteFileName,
-    customXmlPartIndex: 0,
-    destFileName: remoteFileName
+    name: "Sample.docx",
+    customXmlPartIndex: 0
 });
 
 return wordsApi.deleteCustomXmlPart(deleteRequest)

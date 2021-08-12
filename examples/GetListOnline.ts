@@ -3,7 +3,7 @@ const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
 const documentsDir = "./";
 const request = new model.GetListOnlineRequest({
-    document: fs.createReadStream(documentsDir + "DocumentElements/Lists/ListsGet.doc"),
+    document: fs.createReadStream(documentsDir + "Sample.doc"),
     listId: 1
 });
 

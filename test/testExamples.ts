@@ -41,11 +41,8 @@ describe("examples", () => {
     describe("exampleAcceptAllRevisions", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            const remoteFileName = "Sample.docx";
-
             const acceptRequest = new model.AcceptAllRevisionsRequest({
-                name: remoteFileName,
-                destFileName: remoteFileName
+                name: "Sample.docx"
             });
 
             return wordsApi.acceptAllRevisions(acceptRequest)
@@ -86,8 +83,7 @@ describe("examples", () => {
                             importFormatMode: "KeepSourceFormatting"
                         })
                     ]
-                }),
-                destFileName: remoteFileName
+                })
             });
 
             return wordsApi.appendDocument(appendRequest)
@@ -419,15 +415,12 @@ describe("examples", () => {
     describe("exampleCreateOrUpdateDocumentProperty", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            const remoteFileName = "Sample.docx";
-
             const createRequest = new model.CreateOrUpdateDocumentPropertyRequest({
-                name: remoteFileName,
+                name: "Sample.docx",
                 propertyName: "AsposeAuthor",
                 property: new model.DocumentPropertyCreateOrUpdate({
                     value: "Imran Anwar"
-                }),
-                destFileName: remoteFileName
+                })
             });
 
             return wordsApi.createOrUpdateDocumentProperty(createRequest)
@@ -562,12 +555,9 @@ describe("examples", () => {
     describe("exampleDeleteComment", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            const remoteFileName = "Sample.docx";
-
             const deleteRequest = new model.DeleteCommentRequest({
-                name: remoteFileName,
-                commentIndex: 0,
-                destFileName: remoteFileName
+                name: "Sample.docx",
+                commentIndex: 0
             });
 
             return wordsApi.deleteComment(deleteRequest)
@@ -598,11 +588,8 @@ describe("examples", () => {
     describe("exampleDeleteComments", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            const remoteFileName = "Sample.docx";
-
             const deleteRequest = new model.DeleteCommentsRequest({
-                name: remoteFileName,
-                destFileName: remoteFileName
+                name: "Sample.docx"
             });
 
             return wordsApi.deleteComments(deleteRequest)
@@ -632,12 +619,9 @@ describe("examples", () => {
     describe("exampleDeleteCustomXmlPart", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            const remoteFileName = "Sample.docx";
-
             const deleteRequest = new model.DeleteCustomXmlPartRequest({
-                name: remoteFileName,
-                customXmlPartIndex: 0,
-                destFileName: remoteFileName
+                name: "Sample.docx",
+                customXmlPartIndex: 0
             });
 
             return wordsApi.deleteCustomXmlPart(deleteRequest)
@@ -668,11 +652,8 @@ describe("examples", () => {
     describe("exampleDeleteCustomXmlParts", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            const remoteFileName = "Sample.docx";
-
             const deleteRequest = new model.DeleteCustomXmlPartsRequest({
-                name: remoteFileName,
-                destFileName: remoteFileName
+                name: "Sample.docx"
             });
 
             return wordsApi.deleteCustomXmlParts(deleteRequest)
@@ -702,12 +683,9 @@ describe("examples", () => {
     describe("exampleDeleteDocumentProperty", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            const remoteFileName = "Sample.docx";
-
             const deleteRequest = new model.DeleteDocumentPropertyRequest({
-                name: remoteFileName,
-                propertyName: "testProp",
-                destFileName: remoteFileName
+                name: "Sample.docx",
+                propertyName: "testProp"
             });
 
             return wordsApi.deleteDocumentProperty(deleteRequest)
@@ -899,12 +877,9 @@ describe("examples", () => {
     describe("exampleDeleteFormField", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            const remoteFileName = "Sample.docx";
-
             const deleteRequest = new model.DeleteFormFieldRequest({
-                name: remoteFileName,
-                index: 0,
-                destFileName: remoteFileName
+                name: "Sample.docx",
+                index: 0
             });
 
             return wordsApi.deleteFormField(deleteRequest)
@@ -955,7 +930,7 @@ describe("examples", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
             const deleteRequest = new model.DeleteHeaderFooterOnlineRequest({
-                document: fs.createReadStream(documentsDir + "DocumentElements/HeaderFooters/HeadersFooters.doc"),
+                document: fs.createReadStream(documentsDir + "Sample.doc"),
                 sectionPath: "",
                 index: 0
             });
@@ -989,7 +964,7 @@ describe("examples", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
             const deleteRequest = new model.DeleteHeadersFootersOnlineRequest({
-                document: fs.createReadStream(documentsDir + "DocumentElements/HeaderFooters/HeadersFooters.doc"),
+                document: fs.createReadStream(documentsDir + "Sample.doc"),
                 sectionPath: ""
             });
 
@@ -1188,7 +1163,7 @@ describe("examples", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
             const deleteRequest = new model.DeleteRunOnlineRequest({
-                document: fs.createReadStream(documentsDir + "DocumentElements/Runs/Run.doc"),
+                document: fs.createReadStream(documentsDir + "Sample.doc"),
                 paragraphPath: "paragraphs/1",
                 index: 0
             });
@@ -1340,11 +1315,8 @@ describe("examples", () => {
     describe("exampleDeleteWatermark", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            const remoteFileName = "Sample.docx";
-
             const deleteRequest = new model.DeleteWatermarkRequest({
-                name: remoteFileName,
-                destFileName: remoteFileName
+                name: "Sample.docx"
             });
 
             return wordsApi.deleteWatermark(deleteRequest)
@@ -1389,12 +1361,9 @@ describe("examples", () => {
     describe("exampleExecuteMailMerge", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            const remoteFileName = "Sample.docx";
-
             const mailMergeRequest = new model.ExecuteMailMergeRequest({
-                name: remoteFileName,
-                data: "TestExecuteTemplateData.txt",
-                destFileName: remoteFileName
+                name: "Sample.docx",
+                data: "TestExecuteTemplateData.txt"
             });
 
             return wordsApi.executeMailMerge(mailMergeRequest)
@@ -2333,7 +2302,7 @@ describe("examples", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
             const request = new model.GetHeaderFooterOfSectionOnlineRequest({
-                document: fs.createReadStream(documentsDir + "DocumentElements/HeaderFooters/HeadersFooters.doc"),
+                document: fs.createReadStream(documentsDir + "Sample.doc"),
                 headerFooterIndex: 0,
                 sectionIndex: 0
             });
@@ -2351,7 +2320,7 @@ describe("examples", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
             const request = new model.GetHeaderFooterOnlineRequest({
-                document: fs.createReadStream(documentsDir + "DocumentElements/HeaderFooters/HeadersFooters.doc"),
+                document: fs.createReadStream(documentsDir + "Sample.doc"),
                 headerFooterIndex: 0
             });
 
@@ -2384,7 +2353,7 @@ describe("examples", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
             const request = new model.GetHeaderFootersOnlineRequest({
-                document: fs.createReadStream(documentsDir + "DocumentElements/HeaderFooters/HeadersFooters.doc"),
+                document: fs.createReadStream(documentsDir + "Sample.doc"),
                 sectionPath: ""
             });
 
@@ -2417,7 +2386,7 @@ describe("examples", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
             const request = new model.GetListOnlineRequest({
-                document: fs.createReadStream(documentsDir + "DocumentElements/Lists/ListsGet.doc"),
+                document: fs.createReadStream(documentsDir + "Sample.doc"),
                 listId: 1
             });
 
@@ -2449,7 +2418,7 @@ describe("examples", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
             const request = new model.GetListsOnlineRequest({
-                document: fs.createReadStream(documentsDir + "DocumentElements/Lists/ListsGet.doc")
+                document: fs.createReadStream(documentsDir + "Sample.doc")
             });
 
             return wordsApi.getListsOnline(request)
@@ -2725,7 +2694,7 @@ describe("examples", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
             const request = new model.GetRangeTextOnlineRequest({
-                document: fs.createReadStream(documentsDir + "DocumentElements/Range/RangeGet.doc"),
+                document: fs.createReadStream(documentsDir + "Sample.doc"),
                 rangeStartIdentifier: "id0.0.0",
                 rangeEndIdentifier: "id0.0.1"
             });
@@ -3508,10 +3477,8 @@ describe("examples", () => {
     describe("exampleInsertFormField", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            const remoteFileName = "Sample.docx";
-
             const insertRequest = new model.InsertFormFieldRequest({
-                name: remoteFileName,
+                name: "Sample.docx",
                 formField: new model.FormFieldTextInput({
                     name: "FullName",
                     enabled: true,
@@ -3520,8 +3487,7 @@ describe("examples", () => {
                     textInputType: model.FormFieldTextInput.TextInputTypeEnum.Regular,
                     textInputDefault: "123",
                     textInputFormat: "UPPERCASE"
-                }),
-                destFileName: remoteFileName
+                })
             });
 
             return wordsApi.insertFormField(insertRequest)
@@ -3580,7 +3546,7 @@ describe("examples", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
             const insertRequest = new model.InsertHeaderFooterOnlineRequest({
-                document: fs.createReadStream(documentsDir + "DocumentElements/HeaderFooters/HeadersFooters.doc"),
+                document: fs.createReadStream(documentsDir + "Sample.doc"),
                 sectionPath: "",
                 headerFooterType: "FooterEven"
             });
@@ -3616,7 +3582,7 @@ describe("examples", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
             const insertRequest = new model.InsertListOnlineRequest({
-                document: fs.createReadStream(documentsDir + "DocumentElements/Lists/ListsGet.doc"),
+                document: fs.createReadStream(documentsDir + "Sample.doc"),
                 listInsert: new model.ListInsert({
                     template: model.ListInsert.TemplateEnum.OutlineLegal
                 })
@@ -3676,15 +3642,12 @@ describe("examples", () => {
     describe("exampleInsertPageNumbers", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            const remoteFileName = "Sample.docx";
-
             const insertRequest = new model.InsertPageNumbersRequest({
-                name: remoteFileName,
+                name: "Sample.docx",
                 pageNumber: new model.PageNumber({
                     alignment: "center",
                     format: "{PAGE} of {NUMPAGES}"
-                }),
-                destFileName: remoteFileName
+                })
             });
 
             return wordsApi.insertPageNumbers(insertRequest)
@@ -3777,7 +3740,7 @@ describe("examples", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
             const insertRequest = new model.InsertRunOnlineRequest({
-                document: fs.createReadStream(documentsDir + "DocumentElements/Runs/Run.doc"),
+                document: fs.createReadStream(documentsDir + "Sample.doc"),
                 paragraphPath: "paragraphs/1",
                 run: new model.RunInsert({
                     text: "run with text"
@@ -3950,12 +3913,9 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
-            const remoteFileName = "Sample.docx";
-
             const insertRequest = new model.InsertWatermarkImageRequest({
-                name: remoteFileName,
+                name: "Sample.docx",
                 imageFile: undefined,
-                destFileName: remoteFileName,
                 image: "Sample.png"
             });
 
@@ -3987,15 +3947,12 @@ describe("examples", () => {
     describe("exampleInsertWatermarkText", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            const remoteFileName = "Sample.docx";
-
             const insertRequest = new model.InsertWatermarkTextRequest({
-                name: remoteFileName,
+                name: "Sample.docx",
                 watermarkText: new model.WatermarkText({
                     text: "This is the text",
                     rotationAngle: 90.0
-                }),
-                destFileName: remoteFileName
+                })
             });
 
             return wordsApi.insertWatermarkText(insertRequest)
@@ -4123,15 +4080,12 @@ describe("examples", () => {
     describe("exampleProtectDocument", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            const remoteFileName = "Sample.docx";
-
             const protectRequest = new model.ProtectDocumentRequest({
-                name: remoteFileName,
+                name: "Sample.docx",
                 protectionRequest: new model.ProtectionRequest({
                     password: "123",
                     protectionType: "ReadOnly"
-                }),
-                destFileName: remoteFileName
+                })
             });
 
             return wordsApi.protectDocument(protectRequest)
@@ -4164,11 +4118,8 @@ describe("examples", () => {
     describe("exampleRejectAllRevisions", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            const remoteFileName = "Sample.docx";
-
             const rejectRequest = new model.RejectAllRevisionsRequest({
-                name: remoteFileName,
-                destFileName: remoteFileName
+                name: "Sample.docx"
             });
 
             return wordsApi.rejectAllRevisions(rejectRequest)
@@ -4217,7 +4168,7 @@ describe("examples", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
             const removeRequest = new model.RemoveRangeOnlineRequest({
-                document: fs.createReadStream(documentsDir + "DocumentElements/Range/RangeGet.doc"),
+                document: fs.createReadStream(documentsDir + "Sample.doc"),
                 rangeStartIdentifier: "id0.0.0",
                 rangeEndIdentifier: "id0.0.1"
             });
@@ -4323,7 +4274,7 @@ describe("examples", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
             const renderRequest = new model.RenderPageOnlineRequest({
-                document: fs.createReadStream(documentsDir + "DocumentElements/Text/SampleWordDocument.docx"),
+                document: fs.createReadStream(documentsDir + "Sample.docx"),
                 pageIndex: 1,
                 format: "bmp"
             });
@@ -4409,15 +4360,12 @@ describe("examples", () => {
     describe("exampleReplaceText", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            const remoteFileName = "Sample.docx";
-
             const replaceRequest = new model.ReplaceTextRequest({
-                name: remoteFileName,
+                name: "Sample.docx",
                 replaceText: new model.ReplaceTextParameters({
                     oldValue: "Testing",
                     newValue: "Aspose testing"
-                }),
-                destFileName: remoteFileName
+                })
             });
 
             return wordsApi.replaceText(replaceRequest)
@@ -4473,7 +4421,7 @@ describe("examples", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
             const replaceRequest = new model.ReplaceWithTextOnlineRequest({
-                document: fs.createReadStream(documentsDir + "DocumentElements/Range/RangeGet.doc"),
+                document: fs.createReadStream(documentsDir + "Sample.doc"),
                 rangeStartIdentifier: "id0.0.0",
                 rangeText: new model.ReplaceRange({
                     text: "Replaced header"
@@ -4567,7 +4515,7 @@ describe("examples", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
             const saveRequest = new model.SaveAsRangeOnlineRequest({
-                document: fs.createReadStream(documentsDir + "DocumentElements/Range/RangeGet.doc"),
+                document: fs.createReadStream(documentsDir + "Sample.doc"),
                 rangeStartIdentifier: "id0.0.0",
                 documentParameters: new model.RangeDocument({
                     documentName: "/NewDoc.docx"
@@ -4735,16 +4683,14 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const bookmarkName = "aspose";
-            const remoteFileName = "Sample.docx";
 
             const updateRequest = new model.UpdateBookmarkRequest({
-                name: remoteFileName,
+                name: "Sample.docx",
                 bookmarkName: bookmarkName,
                 bookmarkData: new model.BookmarkData({
                     name: bookmarkName,
                     text: "This will be the text for Aspose"
-                }),
-                destFileName: remoteFileName
+                })
             });
 
             return wordsApi.updateBookmark(updateRequest)
@@ -5096,10 +5042,8 @@ describe("examples", () => {
     describe("exampleUpdateFormField", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            const remoteFileName = "Sample.docx";
-
             const updateRequest = new model.UpdateFormFieldRequest({
-                name: remoteFileName,
+                name: "Sample.docx",
                 index: 0,
                 formField: new model.FormFieldTextInput({
                     name: "FullName",
@@ -5108,8 +5052,7 @@ describe("examples", () => {
                     statusText: "",
                     textInputType: model.FormFieldTextInput.TextInputTypeEnum.Regular,
                     textInputDefault: "No name"
-                }),
-                destFileName: remoteFileName
+                })
             });
 
             return wordsApi.updateFormField(updateRequest)
@@ -5190,7 +5133,7 @@ describe("examples", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
             const updateRequest = new model.UpdateListLevelOnlineRequest({
-                document: fs.createReadStream(documentsDir + "DocumentElements/Lists/ListsGet.doc"),
+                document: fs.createReadStream(documentsDir + "Sample.doc"),
                 listId: 1,
                 listLevel: 1,
                 listUpdate: new model.ListLevelUpdate({
@@ -5211,7 +5154,7 @@ describe("examples", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
             const updateRequest = new model.UpdateListOnlineRequest({
-                document: fs.createReadStream(documentsDir + "DocumentElements/Lists/ListsGet.doc"),
+                document: fs.createReadStream(documentsDir + "Sample.doc"),
                 listId: 1,
                 listUpdate: new model.ListUpdate({
                     isRestartAtEachSection: true
@@ -5327,16 +5270,13 @@ describe("examples", () => {
     describe("exampleUpdateRunFont", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            const remoteFileName = "Sample.docx";
-
             const updateRequest = new model.UpdateRunFontRequest({
-                name: remoteFileName,
+                name: "Sample.docx",
                 fontDto: new model.Font({
                     bold: true
                 }),
                 paragraphPath: "paragraphs/0",
-                index: 0,
-                destFileName: remoteFileName
+                index: 0
             });
 
             return wordsApi.updateRunFont(updateRequest)
@@ -5373,7 +5313,7 @@ describe("examples", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
             const updateRequest = new model.UpdateRunOnlineRequest({
-                document: fs.createReadStream(documentsDir + "DocumentElements/Runs/Run.doc"),
+                document: fs.createReadStream(documentsDir + "Sample.doc"),
                 run: new model.RunUpdate({
                     text: "run with text"
                 }),

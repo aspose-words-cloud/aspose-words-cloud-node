@@ -3,7 +3,7 @@ const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
 const documentsDir = "./";
 const renderRequest = new model.RenderPageOnlineRequest({
-    document: fs.createReadStream(documentsDir + "DocumentElements/Text/SampleWordDocument.docx"),
+    document: fs.createReadStream(documentsDir + "Sample.docx"),
     pageIndex: 1,
     format: "bmp"
 });

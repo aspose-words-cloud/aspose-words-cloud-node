@@ -2,12 +2,9 @@ const clientId = "####-####-####-####-####";
 const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
 const documentsDir = "./";
-const remoteFileName = "Sample.docx";
-
 const insertRequest = new model.InsertWatermarkImageRequest({
-    name: remoteFileName,
+    name: "Sample.docx",
     imageFile: undefined,
-    destFileName: remoteFileName,
     image: "Sample.png"
 });
 

@@ -13,8 +13,7 @@ const insertRequest = new model.InsertDrawingObjectOnlineRequest({
         relativeVerticalPosition: model.DrawingObjectInsert.RelativeVerticalPositionEnum.Margin,
         wrapType: model.DrawingObjectInsert.WrapTypeEnum.Inline
     }),
-    imageFile: fs.createReadStream(documentsDir + "Common/aspose-cloud.png"),
-    nodePath: ""
+    imageFile: fs.createReadStream(documentsDir + "Common/aspose-cloud.png")
 });
 
 return wordsApi.insertDrawingObjectOnline(insertRequest)

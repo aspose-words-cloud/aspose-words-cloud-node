@@ -3,7 +3,7 @@ const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
 const documentsDir = "./";
 const convertRequest = new model.ConvertDocumentRequest({
-    document: fs.createReadStream(documentsDir + "/test_uploadfile.docx"),
+    document: fs.createReadStream(documentsDir + "Sample.docx"),
     format: "pdf"
 });
 

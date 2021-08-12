@@ -7,8 +7,7 @@ const updateRequest = new model.UpdateParagraphFormatOnlineRequest({
     index: 0,
     paragraphFormatDto: new model.ParagraphFormatUpdate({
         alignment: model.ParagraphFormatUpdate.AlignmentEnum.Right
-    }),
-    nodePath: ""
+    })
 });
 
 return wordsApi.updateParagraphFormatOnline(updateRequest)

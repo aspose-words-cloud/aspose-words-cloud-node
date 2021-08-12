@@ -4,8 +4,7 @@ const wordsApi = new WordsApi(clientId, secret);
 const documentsDir = "./";
 const deleteRequest = new model.DeleteTableOnlineRequest({
     document: fs.createReadStream(documentsDir + "Sample.docx"),
-    index: 1,
-    nodePath: ""
+    index: 1
 });
 
 return wordsApi.deleteTableOnline(deleteRequest)

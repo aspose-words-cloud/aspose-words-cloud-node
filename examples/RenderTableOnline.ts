@@ -5,8 +5,7 @@ const documentsDir = "./";
 const renderRequest = new model.RenderTableOnlineRequest({
     document: fs.createReadStream(documentsDir + "Sample.docx"),
     format: "png",
-    index: 0,
-    nodePath: ""
+    index: 0
 });
 
 return wordsApi.renderTableOnline(renderRequest)

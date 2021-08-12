@@ -3,7 +3,7 @@ const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
 const documentsDir = "./";
 const insertRequest = new model.InsertFormFieldOnlineRequest({
-    document: fs.createReadStream(documentsDir + "/FormFilled.docx"),
+    document: fs.createReadStream(documentsDir + "Sample.docx"),
     formField: new model.FormFieldTextInput({
         name: "FullName",
         enabled: true,

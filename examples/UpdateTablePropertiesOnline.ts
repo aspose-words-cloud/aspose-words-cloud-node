@@ -12,8 +12,7 @@ const updateRequest = new model.UpdateTablePropertiesOnlineRequest({
         cellSpacing: 2,
         styleOptions: model.TableProperties.StyleOptionsEnum.ColumnBands
     }),
-    index: 1,
-    nodePath: ""
+    index: 1
 });
 
 return wordsApi.updateTablePropertiesOnline(updateRequest)

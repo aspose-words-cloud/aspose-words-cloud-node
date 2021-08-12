@@ -7,8 +7,7 @@ const insertRequest = new model.InsertTableOnlineRequest({
     table: new model.TableInsert({
         columnsCount: 5,
         rowsCount: 4
-    }),
-    nodePath: ""
+    })
 });
 
 return wordsApi.insertTableOnline(insertRequest)

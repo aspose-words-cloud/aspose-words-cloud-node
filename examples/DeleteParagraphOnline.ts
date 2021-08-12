@@ -4,8 +4,7 @@ const wordsApi = new WordsApi(clientId, secret);
 const documentsDir = "./";
 const deleteRequest = new model.DeleteParagraphOnlineRequest({
     document: fs.createReadStream(documentsDir + "Sample.docx"),
-    index: 0,
-    nodePath: ""
+    index: 0
 });
 
 return wordsApi.deleteParagraphOnline(deleteRequest)

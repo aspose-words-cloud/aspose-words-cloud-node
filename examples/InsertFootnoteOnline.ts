@@ -3,12 +3,11 @@ const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
 const documentsDir = "./";
 const insertRequest = new model.InsertFootnoteOnlineRequest({
-    document: fs.createReadStream(documentsDir + "/Footnote.doc"),
+    document: fs.createReadStream(documentsDir + "Sample.doc"),
     footnoteDto: new model.FootnoteInsert({
         footnoteType: model.FootnoteInsert.FootnoteTypeEnum.Endnote,
         text: "test endnote"
-    }),
-    nodePath: ""
+    })
 });
 
 return wordsApi.insertFootnoteOnline(insertRequest)

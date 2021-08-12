@@ -3,7 +3,7 @@ const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
 const documentsDir = "./";
 const request = new model.GetFieldsOnlineRequest({
-    document: fs.createReadStream(documentsDir + "/GetField.docx"),
+    document: fs.createReadStream(documentsDir + "Sample.docx"),
     nodePath: "sections/0"
 });
 

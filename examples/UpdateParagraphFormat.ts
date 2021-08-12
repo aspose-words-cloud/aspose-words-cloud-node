@@ -6,8 +6,7 @@ const updateRequest = new model.UpdateParagraphFormatRequest({
     index: 0,
     paragraphFormatDto: new model.ParagraphFormatUpdate({
         alignment: model.ParagraphFormatUpdate.AlignmentEnum.Right
-    }),
-    nodePath: ""
+    })
 });
 
 return wordsApi.updateParagraphFormat(updateRequest)

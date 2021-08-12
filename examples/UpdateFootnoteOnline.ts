@@ -3,12 +3,11 @@ const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
 const documentsDir = "./";
 const updateRequest = new model.UpdateFootnoteOnlineRequest({
-    document: fs.createReadStream(documentsDir + "/Footnote.doc"),
+    document: fs.createReadStream(documentsDir + "Sample.doc"),
     index: 0,
     footnoteDto: new model.FootnoteUpdate({
         text: "new text is here"
-    }),
-    nodePath: ""
+    })
 });
 
 return wordsApi.updateFootnoteOnline(updateRequest)

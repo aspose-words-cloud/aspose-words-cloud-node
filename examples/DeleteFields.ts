@@ -2,8 +2,7 @@ const clientId = "####-####-####-####-####";
 const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
 const deleteRequest = new model.DeleteFieldsRequest({
-    name: "Sample.docx",
-    nodePath: ""
+    name: "Sample.docx"
 });
 
 return wordsApi.deleteFields(deleteRequest)

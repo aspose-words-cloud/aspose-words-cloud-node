@@ -3,7 +3,7 @@ const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
 const documentsDir = "./";
 const insertRequest = new model.InsertFieldOnlineRequest({
-    document: fs.createReadStream(documentsDir + "/GetField.docx"),
+    document: fs.createReadStream(documentsDir + "Sample.docx"),
     field: new model.FieldInsert({
         fieldCode: "{ NUMPAGES }"
     }),

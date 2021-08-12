@@ -8,8 +8,7 @@ const updateRequest = new model.UpdateDrawingObjectOnlineRequest({
         left: 0
     }),
     imageFile: fs.createReadStream(documentsDir + "Common/aspose-cloud.png"),
-    index: 0,
-    nodePath: ""
+    index: 0
 });
 
 return wordsApi.updateDrawingObjectOnline(updateRequest)

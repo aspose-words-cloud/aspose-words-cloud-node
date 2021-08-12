@@ -303,7 +303,7 @@ describe("examples", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
             const convertRequest = new model.ConvertDocumentRequest({
-                document: fs.createReadStream(documentsDir + "/test_uploadfile.docx"),
+                document: fs.createReadStream(documentsDir + "Sample.docx"),
                 format: "pdf"
             });
 
@@ -479,9 +479,8 @@ describe("examples", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
             const deleteRequest = new model.DeleteAllParagraphTabStopsOnlineRequest({
-                document: fs.createReadStream(documentsDir + "/ParagraphTabStops.docx"),
-                index: 0,
-                nodePath: ""
+                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                index: 0
             });
 
             return wordsApi.deleteAllParagraphTabStopsOnline(deleteRequest)
@@ -758,8 +757,7 @@ describe("examples", () => {
             const documentsDir = './ExamplesData/';
             const deleteRequest = new model.DeleteDrawingObjectOnlineRequest({
                 document: fs.createReadStream(documentsDir + "Sample.docx"),
-                index: 0,
-                nodePath: ""
+                index: 0
             });
 
             return wordsApi.deleteDrawingObjectOnline(deleteRequest)
@@ -791,7 +789,7 @@ describe("examples", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
             const deleteRequest = new model.DeleteFieldOnlineRequest({
-                document: fs.createReadStream(documentsDir + "/GetField.docx"),
+                document: fs.createReadStream(documentsDir + "Sample.docx"),
                 index: 0,
                 nodePath: "sections/0/paragraphs/0"
             });
@@ -808,8 +806,7 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const deleteRequest = new model.DeleteFieldsRequest({
-                name: "Sample.docx",
-                nodePath: ""
+                name: "Sample.docx"
             });
 
             return wordsApi.deleteFields(deleteRequest)
@@ -825,8 +822,7 @@ describe("examples", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
             const deleteRequest = new model.DeleteFieldsOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
-                nodePath: ""
+                document: fs.createReadStream(documentsDir + "Sample.docx")
             });
 
             return wordsApi.deleteFieldsOnline(deleteRequest)
@@ -888,9 +884,8 @@ describe("examples", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
             const deleteRequest = new model.DeleteFootnoteOnlineRequest({
-                document: fs.createReadStream(documentsDir + "/Footnote.doc"),
-                index: 0,
-                nodePath: ""
+                document: fs.createReadStream(documentsDir + "Sample.doc"),
+                index: 0
             });
 
             return wordsApi.deleteFootnoteOnline(deleteRequest)
@@ -925,7 +920,7 @@ describe("examples", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
             const deleteRequest = new model.DeleteFormFieldOnlineRequest({
-                document: fs.createReadStream(documentsDir + "/FormFilled.docx"),
+                document: fs.createReadStream(documentsDir + "Sample.docx"),
                 index: 0,
                 nodePath: "sections/0"
             });
@@ -1059,8 +1054,7 @@ describe("examples", () => {
             const documentsDir = './ExamplesData/';
             const deleteRequest = new model.DeleteOfficeMathObjectOnlineRequest({
                 document: fs.createReadStream(documentsDir + "Sample.docx"),
-                index: 0,
-                nodePath: ""
+                index: 0
             });
 
             return wordsApi.deleteOfficeMathObjectOnline(deleteRequest)
@@ -1108,9 +1102,8 @@ describe("examples", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
             const deleteRequest = new model.DeleteParagraphListFormatOnlineRequest({
-                document: fs.createReadStream(documentsDir + "/ParagraphDeleteListFormat.doc"),
-                index: 0,
-                nodePath: ""
+                document: fs.createReadStream(documentsDir + "Sample.doc"),
+                index: 0
             });
 
             return wordsApi.deleteParagraphListFormatOnline(deleteRequest)
@@ -1127,8 +1120,7 @@ describe("examples", () => {
             const documentsDir = './ExamplesData/';
             const deleteRequest = new model.DeleteParagraphOnlineRequest({
                 document: fs.createReadStream(documentsDir + "Sample.docx"),
-                index: 0,
-                nodePath: ""
+                index: 0
             });
 
             return wordsApi.deleteParagraphOnline(deleteRequest)
@@ -1161,10 +1153,9 @@ describe("examples", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
             const deleteRequest = new model.DeleteParagraphTabStopOnlineRequest({
-                document: fs.createReadStream(documentsDir + "/ParagraphTabStops.docx"),
+                document: fs.createReadStream(documentsDir + "Sample.docx"),
                 position: 72.0,
-                index: 0,
-                nodePath: ""
+                index: 0
             });
 
             return wordsApi.deleteParagraphTabStopOnline(deleteRequest)
@@ -1300,8 +1291,7 @@ describe("examples", () => {
             const documentsDir = './ExamplesData/';
             const deleteRequest = new model.DeleteTableOnlineRequest({
                 document: fs.createReadStream(documentsDir + "Sample.docx"),
-                index: 1,
-                nodePath: ""
+                index: 1
             });
 
             return wordsApi.deleteTableOnline(deleteRequest)
@@ -2115,7 +2105,7 @@ describe("examples", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
             const request = new model.GetFieldOnlineRequest({
-                document: fs.createReadStream(documentsDir + "/GetField.docx"),
+                document: fs.createReadStream(documentsDir + "Sample.docx"),
                 index: 0,
                 nodePath: "sections/0/paragraphs/0"
             });
@@ -2148,7 +2138,7 @@ describe("examples", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
             const request = new model.GetFieldsOnlineRequest({
-                document: fs.createReadStream(documentsDir + "/GetField.docx"),
+                document: fs.createReadStream(documentsDir + "Sample.docx"),
                 nodePath: "sections/0"
             });
 
@@ -2196,9 +2186,8 @@ describe("examples", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
             const request = new model.GetFootnoteOnlineRequest({
-                document: fs.createReadStream(documentsDir + "/Footnote.doc"),
-                index: 0,
-                nodePath: ""
+                document: fs.createReadStream(documentsDir + "Sample.doc"),
+                index: 0
             });
 
             return wordsApi.getFootnoteOnline(request)
@@ -2229,8 +2218,7 @@ describe("examples", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
             const request = new model.GetFootnotesOnlineRequest({
-                document: fs.createReadStream(documentsDir + "/Footnote.doc"),
-                nodePath: ""
+                document: fs.createReadStream(documentsDir + "Sample.doc")
             });
 
             return wordsApi.getFootnotesOnline(request)
@@ -2262,7 +2250,7 @@ describe("examples", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
             const request = new model.GetFormFieldOnlineRequest({
-                document: fs.createReadStream(documentsDir + "/FormFilled.docx"),
+                document: fs.createReadStream(documentsDir + "Sample.docx"),
                 index: 0,
                 nodePath: "sections/0"
             });
@@ -2295,7 +2283,7 @@ describe("examples", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
             const request = new model.GetFormFieldsOnlineRequest({
-                document: fs.createReadStream(documentsDir + "/FormFilled.docx"),
+                document: fs.createReadStream(documentsDir + "Sample.docx"),
                 nodePath: "sections/0"
             });
 
@@ -2494,8 +2482,7 @@ describe("examples", () => {
             const documentsDir = './ExamplesData/';
             const request = new model.GetOfficeMathObjectOnlineRequest({
                 document: fs.createReadStream(documentsDir + "Sample.docx"),
-                index: 0,
-                nodePath: ""
+                index: 0
             });
 
             return wordsApi.getOfficeMathObjectOnline(request)
@@ -2526,8 +2513,7 @@ describe("examples", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
             const request = new model.GetOfficeMathObjectsOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
-                nodePath: ""
+                document: fs.createReadStream(documentsDir + "Sample.docx")
             });
 
             return wordsApi.getOfficeMathObjectsOnline(request)
@@ -2576,8 +2562,7 @@ describe("examples", () => {
             const documentsDir = './ExamplesData/';
             const request = new model.GetParagraphFormatOnlineRequest({
                 document: fs.createReadStream(documentsDir + "Sample.docx"),
-                index: 0,
-                nodePath: ""
+                index: 0
             });
 
             return wordsApi.getParagraphFormatOnline(request)
@@ -2609,9 +2594,8 @@ describe("examples", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
             const request = new model.GetParagraphListFormatOnlineRequest({
-                document: fs.createReadStream(documentsDir + "/ParagraphGetListFormat.doc"),
-                index: 0,
-                nodePath: ""
+                document: fs.createReadStream(documentsDir + "Sample.doc"),
+                index: 0
             });
 
             return wordsApi.getParagraphListFormatOnline(request)
@@ -2693,9 +2677,8 @@ describe("examples", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
             const request = new model.GetParagraphTabStopsOnlineRequest({
-                document: fs.createReadStream(documentsDir + "/ParagraphTabStops.docx"),
-                index: 0,
-                nodePath: ""
+                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                index: 0
             });
 
             return wordsApi.getParagraphTabStopsOnline(request)
@@ -3144,8 +3127,7 @@ describe("examples", () => {
             const documentsDir = './ExamplesData/';
             const request = new model.GetTableOnlineRequest({
                 document: fs.createReadStream(documentsDir + "Sample.docx"),
-                index: 1,
-                nodePath: ""
+                index: 1
             });
 
             return wordsApi.getTableOnline(request)
@@ -3178,8 +3160,7 @@ describe("examples", () => {
             const documentsDir = './ExamplesData/';
             const request = new model.GetTablePropertiesOnlineRequest({
                 document: fs.createReadStream(documentsDir + "Sample.docx"),
-                index: 1,
-                nodePath: ""
+                index: 1
             });
 
             return wordsApi.getTablePropertiesOnline(request)
@@ -3280,8 +3261,7 @@ describe("examples", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
             const request = new model.GetTablesOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
-                nodePath: ""
+                document: fs.createReadStream(documentsDir + "Sample.docx")
             });
 
             return wordsApi.getTablesOnline(request)
@@ -3437,8 +3417,7 @@ describe("examples", () => {
                     relativeVerticalPosition: model.DrawingObjectInsert.RelativeVerticalPositionEnum.Margin,
                     wrapType: model.DrawingObjectInsert.WrapTypeEnum.Inline
                 }),
-                imageFile: fs.createReadStream(documentsDir + "Common/aspose-cloud.png"),
-                nodePath: ""
+                imageFile: fs.createReadStream(documentsDir + "Common/aspose-cloud.png")
             });
 
             return wordsApi.insertDrawingObjectOnline(insertRequest)
@@ -3472,7 +3451,7 @@ describe("examples", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
             const insertRequest = new model.InsertFieldOnlineRequest({
-                document: fs.createReadStream(documentsDir + "/GetField.docx"),
+                document: fs.createReadStream(documentsDir + "Sample.docx"),
                 field: new model.FieldInsert({
                     fieldCode: "{ NUMPAGES }"
                 }),
@@ -3511,12 +3490,11 @@ describe("examples", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
             const insertRequest = new model.InsertFootnoteOnlineRequest({
-                document: fs.createReadStream(documentsDir + "/Footnote.doc"),
+                document: fs.createReadStream(documentsDir + "Sample.doc"),
                 footnoteDto: new model.FootnoteInsert({
                     footnoteType: model.FootnoteInsert.FootnoteTypeEnum.Endnote,
                     text: "test endnote"
-                }),
-                nodePath: ""
+                })
             });
 
             return wordsApi.insertFootnoteOnline(insertRequest)
@@ -3559,7 +3537,7 @@ describe("examples", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
             const insertRequest = new model.InsertFormFieldOnlineRequest({
-                document: fs.createReadStream(documentsDir + "/FormFilled.docx"),
+                document: fs.createReadStream(documentsDir + "Sample.docx"),
                 formField: new model.FormFieldTextInput({
                     name: "FullName",
                     enabled: true,
@@ -3678,14 +3656,13 @@ describe("examples", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
             const insertRequest = new model.InsertOrUpdateParagraphTabStopOnlineRequest({
-                document: fs.createReadStream(documentsDir + "/ParagraphTabStops.docx"),
+                document: fs.createReadStream(documentsDir + "Sample.docx"),
                 tabStopInsertDto: new model.TabStopInsert({
                     alignment: model.TabStopInsert.AlignmentEnum.Left,
                     leader: model.TabStopInsert.LeaderEnum.None,
                     position: 72
                 }),
-                index: 0,
-                nodePath: ""
+                index: 0
             });
 
             return wordsApi.insertOrUpdateParagraphTabStopOnline(insertRequest)
@@ -3919,8 +3896,7 @@ describe("examples", () => {
                 table: new model.TableInsert({
                     columnsCount: 5,
                     rowsCount: 4
-                }),
-                nodePath: ""
+                })
             });
 
             return wordsApi.insertTableOnline(insertRequest)
@@ -4314,8 +4290,7 @@ describe("examples", () => {
             const renderRequest = new model.RenderMathObjectOnlineRequest({
                 document: fs.createReadStream(documentsDir + "Sample.docx"),
                 format: "png",
-                index: 0,
-                nodePath: ""
+                index: 0
             });
 
             return wordsApi.renderMathObjectOnline(renderRequest)
@@ -4385,8 +4360,7 @@ describe("examples", () => {
             const renderRequest = new model.RenderParagraphOnlineRequest({
                 document: fs.createReadStream(documentsDir + "Sample.docx"),
                 format: "png",
-                index: 0,
-                nodePath: ""
+                index: 0
             });
 
             return wordsApi.renderParagraphOnline(renderRequest)
@@ -4421,8 +4395,7 @@ describe("examples", () => {
             const renderRequest = new model.RenderTableOnlineRequest({
                 document: fs.createReadStream(documentsDir + "Sample.docx"),
                 format: "png",
-                index: 0,
-                nodePath: ""
+                index: 0
             });
 
             return wordsApi.renderTableOnline(renderRequest)
@@ -4998,8 +4971,7 @@ describe("examples", () => {
                     left: 0
                 }),
                 imageFile: fs.createReadStream(documentsDir + "Common/aspose-cloud.png"),
-                index: 0,
-                nodePath: ""
+                index: 0
             });
 
             return wordsApi.updateDrawingObjectOnline(updateRequest)
@@ -5035,7 +5007,7 @@ describe("examples", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
             const updateRequest = new model.UpdateFieldOnlineRequest({
-                document: fs.createReadStream(documentsDir + "/GetField.docx"),
+                document: fs.createReadStream(documentsDir + "Sample.docx"),
                 index: 0,
                 field: new model.FieldUpdate({
                     fieldCode: "{ NUMPAGES }"
@@ -5106,12 +5078,11 @@ describe("examples", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
             const updateRequest = new model.UpdateFootnoteOnlineRequest({
-                document: fs.createReadStream(documentsDir + "/Footnote.doc"),
+                document: fs.createReadStream(documentsDir + "Sample.doc"),
                 index: 0,
                 footnoteDto: new model.FootnoteUpdate({
                     text: "new text is here"
-                }),
-                nodePath: ""
+                })
             });
 
             return wordsApi.updateFootnoteOnline(updateRequest)
@@ -5154,7 +5125,7 @@ describe("examples", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
             const updateRequest = new model.UpdateFormFieldOnlineRequest({
-                document: fs.createReadStream(documentsDir + "/FormFilled.docx"),
+                document: fs.createReadStream(documentsDir + "Sample.docx"),
                 index: 0,
                 formField: new model.FormFieldTextInput({
                     name: "FullName",
@@ -5263,8 +5234,7 @@ describe("examples", () => {
                 index: 0,
                 paragraphFormatDto: new model.ParagraphFormatUpdate({
                     alignment: model.ParagraphFormatUpdate.AlignmentEnum.Right
-                }),
-                nodePath: ""
+                })
             });
 
             return wordsApi.updateParagraphFormat(updateRequest)
@@ -5284,8 +5254,7 @@ describe("examples", () => {
                 index: 0,
                 paragraphFormatDto: new model.ParagraphFormatUpdate({
                     alignment: model.ParagraphFormatUpdate.AlignmentEnum.Right
-                }),
-                nodePath: ""
+                })
             });
 
             return wordsApi.updateParagraphFormatOnline(updateRequest)
@@ -5320,12 +5289,11 @@ describe("examples", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
             const updateRequest = new model.UpdateParagraphListFormatOnlineRequest({
-                document: fs.createReadStream(documentsDir + "/ParagraphUpdateListFormat.doc"),
+                document: fs.createReadStream(documentsDir + "Sample.doc"),
                 listFormatDto: new model.ListFormatUpdate({
                     listId: 2
                 }),
-                index: 0,
-                nodePath: ""
+                index: 0
             });
 
             return wordsApi.updateParagraphListFormatOnline(updateRequest)
@@ -5590,8 +5558,7 @@ describe("examples", () => {
                     cellSpacing: 2,
                     styleOptions: model.TableProperties.StyleOptionsEnum.ColumnBands
                 }),
-                index: 1,
-                nodePath: ""
+                index: 1
             });
 
             return wordsApi.updateTablePropertiesOnline(updateRequest)

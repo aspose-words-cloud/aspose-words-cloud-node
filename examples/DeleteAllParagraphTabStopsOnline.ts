@@ -3,9 +3,8 @@ const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
 const documentsDir = "./";
 const deleteRequest = new model.DeleteAllParagraphTabStopsOnlineRequest({
-    document: fs.createReadStream(documentsDir + "/ParagraphTabStops.docx"),
-    index: 0,
-    nodePath: ""
+    document: fs.createReadStream(documentsDir + "Sample.docx"),
+    index: 0
 });
 
 return wordsApi.deleteAllParagraphTabStopsOnline(deleteRequest)

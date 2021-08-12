@@ -5,8 +5,7 @@ const documentsDir = "./";
 const renderRequest = new model.RenderMathObjectOnlineRequest({
     document: fs.createReadStream(documentsDir + "Sample.docx"),
     format: "png",
-    index: 0,
-    nodePath: ""
+    index: 0
 });
 
 return wordsApi.renderMathObjectOnline(renderRequest)

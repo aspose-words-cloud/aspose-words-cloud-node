@@ -3,7 +3,7 @@ const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
 const documentsDir = "./";
 const deleteRequest = new model.DeleteFormFieldOnlineRequest({
-    document: fs.createReadStream(documentsDir + "/FormFilled.docx"),
+    document: fs.createReadStream(documentsDir + "Sample.docx"),
     index: 0,
     nodePath: "sections/0"
 });

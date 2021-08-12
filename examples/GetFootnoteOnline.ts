@@ -3,9 +3,8 @@ const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
 const documentsDir = "./";
 const request = new model.GetFootnoteOnlineRequest({
-    document: fs.createReadStream(documentsDir + "/Footnote.doc"),
-    index: 0,
-    nodePath: ""
+    document: fs.createReadStream(documentsDir + "Sample.doc"),
+    index: 0
 });
 
 return wordsApi.getFootnoteOnline(request)

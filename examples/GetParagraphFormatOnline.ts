@@ -4,8 +4,7 @@ const wordsApi = new WordsApi(clientId, secret);
 const documentsDir = "./";
 const request = new model.GetParagraphFormatOnlineRequest({
     document: fs.createReadStream(documentsDir + "Sample.docx"),
-    index: 0,
-    nodePath: ""
+    index: 0
 });
 
 return wordsApi.getParagraphFormatOnline(request)

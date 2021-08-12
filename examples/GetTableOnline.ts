@@ -4,8 +4,7 @@ const wordsApi = new WordsApi(clientId, secret);
 const documentsDir = "./";
 const request = new model.GetTableOnlineRequest({
     document: fs.createReadStream(documentsDir + "Sample.docx"),
-    index: 1,
-    nodePath: ""
+    index: 1
 });
 
 return wordsApi.getTableOnline(request)

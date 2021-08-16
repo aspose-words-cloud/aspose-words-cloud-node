@@ -71,8 +71,9 @@ describe("bookmark", () => {
     describe("getBookmarksOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.GetBookmarksOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile)
+                document: requestDocument
             });
 
             // Act
@@ -118,8 +119,9 @@ describe("bookmark", () => {
     describe("getBookmarkByNameOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.GetBookmarkByNameOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                document: requestDocument,
                 bookmarkName: bookmarkName
             });
 
@@ -148,10 +150,7 @@ describe("bookmark", () => {
                 const request = new model.UpdateBookmarkRequest({
                     name: remoteFileName,
                     bookmarkName: bookmarkName,
-                    bookmarkData: new model.BookmarkData({
-                        name: bookmarkName,
-                        text: bookmarkText
-                    }),
+                    bookmarkData: requestBookmarkData,
                     folder: remoteDataFolder,
                     destFileName: BaseTest.remoteBaseTestOutFolder + "/" + remoteFileName
                 });
@@ -174,13 +173,12 @@ describe("bookmark", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const remoteFileName = "TestUpdateDocumentBookmark.docx";
 
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+
             const request = new model.UpdateBookmarkOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                document: requestDocument,
                 bookmarkName: bookmarkName,
-                bookmarkData: new model.BookmarkData({
-                    name: bookmarkName,
-                    text: "This will be the text for Aspose"
-                }),
+                bookmarkData: requestBookmarkData,
                 destFileName: BaseTest.remoteBaseTestOutFolder + "/" + remoteFileName
             });
 

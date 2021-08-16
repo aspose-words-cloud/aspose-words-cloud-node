@@ -5,8 +5,9 @@ const documentsDir = "./";
 const fileName  = "test_doc.docx";
 
 // Calls AcceptAllRevisionsOnline method for document in cloud.
+let requestDocument = fs.createReadStream(documentsDir + fileName);
 const request = new model.AcceptAllRevisionsOnlineRequest({
-    document: fs.createReadStream(documentsDir + fileName)
+    document: requestDocument
 });
 
 return wordsApi.acceptAllRevisionsOnline(request)

@@ -74,8 +74,9 @@ describe("headerFooter", () => {
     describe("getHeaderFootersOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.GetHeaderFootersOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                document: requestDocument,
                 sectionPath: ""
             });
 
@@ -126,8 +127,9 @@ describe("headerFooter", () => {
     describe("getHeaderFooterOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.GetHeaderFooterOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                document: requestDocument,
                 headerFooterIndex: 0
             });
 
@@ -179,8 +181,9 @@ describe("headerFooter", () => {
     describe("getHeaderFooterOfSectionOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.GetHeaderFooterOfSectionOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                document: requestDocument,
                 headerFooterIndex: 0,
                 sectionIndex: 0
             });
@@ -229,8 +232,9 @@ describe("headerFooter", () => {
     describe("deleteHeaderFooterOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.DeleteHeaderFooterOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                document: requestDocument,
                 sectionPath: "",
                 index: 0
             });
@@ -278,8 +282,9 @@ describe("headerFooter", () => {
     describe("deleteHeadersFootersOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.DeleteHeadersFootersOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                document: requestDocument,
                 sectionPath: ""
             });
 
@@ -327,8 +332,9 @@ describe("headerFooter", () => {
     describe("insertHeaderFooterOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.InsertHeaderFooterOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                document: requestDocument,
                 sectionPath: "",
                 headerFooterType: "FooterEven"
             });

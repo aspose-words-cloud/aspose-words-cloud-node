@@ -40,17 +40,7 @@ describe("loadWebDocument", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const request = new model.LoadWebDocumentRequest({
-                data: new model.LoadWebDocumentData({
-                    loadingDocumentUrl: "http://google.com",
-                    saveOptions: new model.SaveOptionsData({
-                        fileName: "google.doc",
-                        saveFormat: "doc",
-                        dmlEffectsRenderingMode: "1",
-                        dmlRenderingMode: "1",
-                        updateSdtContent: false,
-                        zipOutput: false
-                    })
-                })
+                data: requestData
             });
 
             // Act

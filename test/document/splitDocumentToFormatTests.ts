@@ -77,8 +77,9 @@ describe("splitDocumentToFormat", () => {
     describe("splitDocumentOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.SplitDocumentOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                document: requestDocument,
                 format: "text",
                 destFileName: BaseTest.remoteBaseTestOutFolder + "/TestSplitDocument.text",
                 from: 1,

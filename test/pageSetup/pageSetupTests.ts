@@ -74,8 +74,9 @@ describe("pageSetup", () => {
     describe("getSectionPageSetupOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.GetSectionPageSetupOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                document: requestDocument,
                 sectionIndex: 0
             });
 
@@ -103,12 +104,7 @@ describe("pageSetup", () => {
                 const request = new model.UpdateSectionPageSetupRequest({
                     name: remoteFileName,
                     sectionIndex: 0,
-                    pageSetup: new model.PageSetup({
-                        rtlGutter: true,
-                        leftMargin: 10.0,
-                        orientation: model.PageSetup.OrientationEnum.Landscape,
-                        paperSize: model.PageSetup.PaperSizeEnum.A5
-                    }),
+                    pageSetup: requestPageSetup,
                     folder: remoteDataFolder
                 });
 
@@ -132,15 +128,12 @@ describe("pageSetup", () => {
     describe("updateSectionPageSetupOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+
             const request = new model.UpdateSectionPageSetupOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                document: requestDocument,
                 sectionIndex: 0,
-                pageSetup: new model.PageSetup({
-                    rtlGutter: true,
-                    leftMargin: 10,
-                    orientation: model.PageSetup.OrientationEnum.Landscape,
-                    paperSize: model.PageSetup.PaperSizeEnum.A5
-                })
+                pageSetup: requestPageSetup
             });
 
             // Act
@@ -187,8 +180,9 @@ describe("pageSetup", () => {
     describe("getRenderPageOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localTextFile);
             const request = new model.RenderPageOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localTextFile),
+                document: requestDocument,
                 pageIndex: 1,
                 format: "bmp"
             });

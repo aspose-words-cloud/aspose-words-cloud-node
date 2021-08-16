@@ -74,8 +74,9 @@ describe("lists", () => {
     describe("getListsOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.GetListsOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile)
+                document: requestDocument
             });
 
             // Act
@@ -123,8 +124,9 @@ describe("lists", () => {
     describe("getListOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.GetListOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                document: requestDocument,
                 listId: 1
             });
 
@@ -152,9 +154,7 @@ describe("lists", () => {
                 const request = new model.UpdateListRequest({
                     name: remoteFileName,
                     listId: 1,
-                    listUpdate: new model.ListUpdate({
-                        isRestartAtEachSection: true
-                    }),
+                    listUpdate: requestListUpdate,
                     folder: remoteDataFolder
                 });
 
@@ -174,12 +174,12 @@ describe("lists", () => {
     describe("updateListOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+
             const request = new model.UpdateListOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                document: requestDocument,
                 listId: 1,
-                listUpdate: new model.ListUpdate({
-                    isRestartAtEachSection: true
-                })
+                listUpdate: requestListUpdate
             });
 
             // Act
@@ -210,9 +210,7 @@ describe("lists", () => {
                     name: remoteFileName,
                     listId: 1,
                     listLevel: 1,
-                    listUpdate: new model.ListLevelUpdate({
-                        alignment: model.ListLevelUpdate.AlignmentEnum.Right
-                    }),
+                    listUpdate: requestListUpdate,
                     folder: remoteDataFolder
                 });
 
@@ -232,13 +230,13 @@ describe("lists", () => {
     describe("updateListLevelOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+
             const request = new model.UpdateListLevelOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                document: requestDocument,
                 listId: 1,
                 listLevel: 1,
-                listUpdate: new model.ListLevelUpdate({
-                    alignment: model.ListLevelUpdate.AlignmentEnum.Right
-                })
+                listUpdate: requestListUpdate
             });
 
             // Act
@@ -269,9 +267,7 @@ describe("lists", () => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.InsertListRequest({
                     name: remoteFileName,
-                    listInsert: new model.ListInsert({
-                        template: model.ListInsert.TemplateEnum.OutlineLegal
-                    }),
+                    listInsert: requestListInsert,
                     folder: remoteDataFolder
                 });
 
@@ -293,11 +289,11 @@ describe("lists", () => {
     describe("insertListOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+
             const request = new model.InsertListOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
-                listInsert: new model.ListInsert({
-                    template: model.ListInsert.TemplateEnum.OutlineLegal
-                })
+                document: requestDocument,
+                listInsert: requestListInsert
             });
 
             // Act

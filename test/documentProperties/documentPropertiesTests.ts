@@ -76,8 +76,9 @@ describe("documentProperties", () => {
     describe("getDocumentPropertiesOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.GetDocumentPropertiesOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile)
+                document: requestDocument
             });
 
             // Act
@@ -126,8 +127,9 @@ describe("documentProperties", () => {
     describe("getDocumentPropertyOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.GetDocumentPropertyOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                document: requestDocument,
                 propertyName: "Author"
             });
 
@@ -175,8 +177,9 @@ describe("documentProperties", () => {
     describe("deleteDocumentPropertyOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.DeleteDocumentPropertyOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                document: requestDocument,
                 propertyName: "testProp"
             });
 
@@ -204,9 +207,7 @@ describe("documentProperties", () => {
                 const request = new model.CreateOrUpdateDocumentPropertyRequest({
                     name: remoteFileName,
                     propertyName: "AsposeAuthor",
-                    property: new model.DocumentPropertyCreateOrUpdate({
-                        value: "Imran Anwar"
-                    }),
+                    property: requestProperty,
                     folder: remoteDataFolder,
                     destFileName: BaseTest.remoteBaseTestOutFolder + "/" + remoteFileName
                 });
@@ -230,12 +231,12 @@ describe("documentProperties", () => {
     describe("updateDocumentPropertyOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+
             const request = new model.CreateOrUpdateDocumentPropertyOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                document: requestDocument,
                 propertyName: "AsposeAuthor",
-                property: new model.DocumentPropertyCreateOrUpdate({
-                    value: "Imran Anwar"
-                })
+                property: requestProperty
             });
 
             // Act

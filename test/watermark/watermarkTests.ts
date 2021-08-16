@@ -57,7 +57,7 @@ describe("watermark", () => {
                     expect(result1.response.statusMessage).to.equal("OK");
                     const request = new model.InsertWatermarkImageRequest({
                         name: remoteFileName,
-                        imageFile: undefined,
+                        imageFile: requestImageFile,
                         folder: remoteDataFolder,
                         destFileName: BaseTest.remoteBaseTestOutFolder + "/" + remoteFileName,
                         image: remoteImagePath
@@ -83,9 +83,11 @@ describe("watermark", () => {
     describe("insertWatermarkImageOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            let requestImageFile = fs.createReadStream(BaseTest.localBaseTestDataFolder + "Common/aspose-cloud.png");
             const request = new model.InsertWatermarkImageOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
-                imageFile: fs.createReadStream(BaseTest.localBaseTestDataFolder + "Common/aspose-cloud.png")
+                document: requestDocument,
+                imageFile: requestImageFile
             });
 
             // Act
@@ -111,10 +113,7 @@ describe("watermark", () => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.InsertWatermarkTextRequest({
                     name: remoteFileName,
-                    watermarkText: new model.WatermarkText({
-                        text: "This is the text",
-                        rotationAngle: 90.0
-                    }),
+                    watermarkText: requestWatermarkText,
                     folder: remoteDataFolder,
                     destFileName: BaseTest.remoteBaseTestOutFolder + "/" + remoteFileName
                 });
@@ -137,12 +136,11 @@ describe("watermark", () => {
     describe("insertWatermarkTextOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+
             const request = new model.InsertWatermarkTextOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
-                watermarkText: new model.WatermarkText({
-                    text: "This is the text",
-                    rotationAngle: 90
-                })
+                document: requestDocument,
+                watermarkText: requestWatermarkText
             });
 
             // Act
@@ -190,8 +188,9 @@ describe("watermark", () => {
     describe("deleteWatermarkOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.DeleteWatermarkOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile)
+                document: requestDocument
             });
 
             // Act

@@ -998,9 +998,11 @@ describe("table", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestCell = new model.TableCellInsert({
+                })
                 const request = new model.InsertTableCellRequest({
                     name: remoteFileName,
-                    cell: undefined,
+                    cell: requestCell,
                     tableRowPath: "sections/0/tables/2/rows/0",
                     folder: remoteDataFolder
                 });
@@ -1024,10 +1026,11 @@ describe("table", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-
+            let requestCell = new model.TableCellInsert({
+            })
             const request = new model.InsertTableCellOnlineRequest({
                 document: requestDocument,
-                cell: undefined,
+                cell: requestCell,
                 tableRowPath: "sections/0/tables/2/rows/0"
             });
 

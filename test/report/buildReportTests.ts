@@ -46,7 +46,10 @@ describe("buildReport", () => {
             const localDataFile = fs.readFileSync(BaseTest.localBaseTestDataFolder + reportingFolder + "/ReportData.json", 'utf8');
 
             let requestTemplate = fs.createReadStream(BaseTest.localBaseTestDataFolder + reportingFolder + "/" + localDocumentFile);
-
+            let requestReportEngineSettings = new model.ReportEngineSettings({
+                dataSourceType: model.ReportEngineSettings.DataSourceTypeEnum.Json,
+                dataSourceName: "persons"
+            })
             const request = new model.BuildReportOnlineRequest({
                 template: requestTemplate,
                 data: localDataFile,
@@ -76,6 +79,14 @@ describe("buildReport", () => {
                 BaseTest.localBaseTestDataFolder + reportingFolder + "/" + localDocumentFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestReportEngineSettingsReportBuildOptions = [
+                    model.ReportBuildOptions.AllowMissingMembers,
+                    model.ReportBuildOptions.RemoveEmptyParagraphs
+                ]
+                let requestReportEngineSettings = new model.ReportEngineSettings({
+                    dataSourceType: model.ReportEngineSettings.DataSourceTypeEnum.Json,
+                    reportBuildOptions: requestReportEngineSettingsReportBuildOptions
+                })
                 const request = new model.BuildReportRequest({
                     name: remoteFileName,
                     data: localDataFile,

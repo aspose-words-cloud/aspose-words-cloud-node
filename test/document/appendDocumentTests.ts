@@ -49,6 +49,16 @@ describe("appendDocument", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestDocumentListDocumentEntries0 = new model.DocumentEntry({
+                    href: remoteDataFolder + "/" + remoteFileName,
+                    importFormatMode: "KeepSourceFormatting"
+                })
+                let requestDocumentListDocumentEntries = [
+                    requestDocumentListDocumentEntries0
+                ]
+                let requestDocumentList = new model.DocumentEntryList({
+                    documentEntries: requestDocumentListDocumentEntries
+                })
                 const request = new model.AppendDocumentRequest({
                     name: remoteFileName,
                     documentList: requestDocumentList,
@@ -82,9 +92,16 @@ describe("appendDocument", () => {
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-
-
-
+                let requestDocumentListDocumentEntries0 = new model.DocumentEntry({
+                    href: remoteDataFolder + "/" + remoteFileName,
+                    importFormatMode: "KeepSourceFormatting"
+                })
+                let requestDocumentListDocumentEntries = [
+                    requestDocumentListDocumentEntries0
+                ]
+                let requestDocumentList = new model.DocumentEntryList({
+                    documentEntries: requestDocumentListDocumentEntries
+                })
                 const request = new model.AppendDocumentOnlineRequest({
                     document: requestDocument,
                     documentList: requestDocumentList

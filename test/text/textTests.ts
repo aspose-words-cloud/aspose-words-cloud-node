@@ -49,6 +49,10 @@ describe("text", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestReplaceText = new model.ReplaceTextParameters({
+                    oldValue: "Testing",
+                    newValue: "Aspose testing"
+                })
                 const request = new model.ReplaceTextRequest({
                     name: remoteFileName,
                     replaceText: requestReplaceText,
@@ -76,7 +80,10 @@ describe("text", () => {
             const localFile = "Common/test_multi_pages.docx";
 
             let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-
+            let requestReplaceText = new model.ReplaceTextParameters({
+                oldValue: "aspose",
+                newValue: "aspose new"
+            })
             const request = new model.ReplaceTextOnlineRequest({
                 document: requestDocument,
                 replaceText: requestReplaceText

@@ -101,6 +101,12 @@ describe("pageSetup", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestPageSetup = new model.PageSetup({
+                    rtlGutter: true,
+                    leftMargin: 10.0,
+                    orientation: model.PageSetup.OrientationEnum.Landscape,
+                    paperSize: model.PageSetup.PaperSizeEnum.A5
+                })
                 const request = new model.UpdateSectionPageSetupRequest({
                     name: remoteFileName,
                     sectionIndex: 0,
@@ -129,7 +135,12 @@ describe("pageSetup", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-
+            let requestPageSetup = new model.PageSetup({
+                rtlGutter: true,
+                leftMargin: 10,
+                orientation: model.PageSetup.OrientationEnum.Landscape,
+                paperSize: model.PageSetup.PaperSizeEnum.A5
+            })
             const request = new model.UpdateSectionPageSetupOnlineRequest({
                 document: requestDocument,
                 sectionIndex: 0,

@@ -49,6 +49,10 @@ describe("footnote", () => {
                 BaseTest.localBaseTestDataFolder + footnoteFolder + "/Footnote.doc"
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestFootnoteDto = new model.FootnoteInsert({
+                    footnoteType: model.FootnoteInsert.FootnoteTypeEnum.Endnote,
+                    text: "test endnote"
+                })
                 const request = new model.InsertFootnoteRequest({
                     name: remoteFileName,
                     footnoteDto: requestFootnoteDto,
@@ -76,7 +80,10 @@ describe("footnote", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + footnoteFolder + "/Footnote.doc");
-
+            let requestFootnoteDto = new model.FootnoteInsert({
+                footnoteType: model.FootnoteInsert.FootnoteTypeEnum.Endnote,
+                text: "test endnote"
+            })
             const request = new model.InsertFootnoteOnlineRequest({
                 document: requestDocument,
                 footnoteDto: requestFootnoteDto,
@@ -104,6 +111,10 @@ describe("footnote", () => {
                 BaseTest.localBaseTestDataFolder + footnoteFolder + "/Footnote.doc"
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestFootnoteDto = new model.FootnoteInsert({
+                    footnoteType: model.FootnoteInsert.FootnoteTypeEnum.Endnote,
+                    text: "test endnote"
+                })
                 const request = new model.InsertFootnoteRequest({
                     name: remoteFileName,
                     footnoteDto: requestFootnoteDto,
@@ -385,6 +396,9 @@ describe("footnote", () => {
                 BaseTest.localBaseTestDataFolder + footnoteFolder + "/Footnote.doc"
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestFootnoteDto = new model.FootnoteUpdate({
+                    text: "new text is here"
+                })
                 const request = new model.UpdateFootnoteRequest({
                     name: remoteFileName,
                     index: 0,
@@ -412,7 +426,9 @@ describe("footnote", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + footnoteFolder + "/Footnote.doc");
-
+            let requestFootnoteDto = new model.FootnoteUpdate({
+                text: "new text is here"
+            })
             const request = new model.UpdateFootnoteOnlineRequest({
                 document: requestDocument,
                 index: 0,
@@ -441,6 +457,9 @@ describe("footnote", () => {
                 BaseTest.localBaseTestDataFolder + footnoteFolder + "/Footnote.doc"
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestFootnoteDto = new model.FootnoteUpdate({
+                    text: "new text is here"
+                })
                 const request = new model.UpdateFootnoteRequest({
                     name: remoteFileName,
                     index: 0,

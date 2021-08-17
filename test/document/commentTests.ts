@@ -151,6 +151,27 @@ describe("comment", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestCommentRangeStartNode = new model.NodeLink({
+                    nodeId: "0.3.0.3"
+                })
+                let requestCommentRangeStart = new model.DocumentPosition({
+                    node: requestCommentRangeStartNode,
+                    offset: 0
+                })
+                let requestCommentRangeEndNode = new model.NodeLink({
+                    nodeId: "0.3.0.3"
+                })
+                let requestCommentRangeEnd = new model.DocumentPosition({
+                    node: requestCommentRangeEndNode,
+                    offset: 0
+                })
+                let requestComment = new model.CommentInsert({
+                    rangeStart: requestCommentRangeStart,
+                    rangeEnd: requestCommentRangeEnd,
+                    initial: "IA",
+                    author: "Imran Anwar",
+                    text: "A new Comment"
+                })
                 const request = new model.InsertCommentRequest({
                     name: remoteFileName,
                     comment: requestComment,
@@ -179,11 +200,27 @@ describe("comment", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-
-
-
-
-
+            let requestCommentRangeStartNode = new model.NodeLink({
+                nodeId: "0.3.0.3"
+            })
+            let requestCommentRangeStart = new model.DocumentPosition({
+                node: requestCommentRangeStartNode,
+                offset: 0
+            })
+            let requestCommentRangeEndNode = new model.NodeLink({
+                nodeId: "0.3.0.3"
+            })
+            let requestCommentRangeEnd = new model.DocumentPosition({
+                node: requestCommentRangeEndNode,
+                offset: 0
+            })
+            let requestComment = new model.CommentInsert({
+                rangeStart: requestCommentRangeStart,
+                rangeEnd: requestCommentRangeEnd,
+                initial: "IA",
+                author: "Imran Anwar",
+                text: "A new Comment"
+            })
             const request = new model.InsertCommentOnlineRequest({
                 document: requestDocument,
                 comment: requestComment
@@ -210,6 +247,27 @@ describe("comment", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestCommentRangeStartNode = new model.NodeLink({
+                    nodeId: "0.3.0"
+                })
+                let requestCommentRangeStart = new model.DocumentPosition({
+                    node: requestCommentRangeStartNode,
+                    offset: 0
+                })
+                let requestCommentRangeEndNode = new model.NodeLink({
+                    nodeId: "0.3.0"
+                })
+                let requestCommentRangeEnd = new model.DocumentPosition({
+                    node: requestCommentRangeEndNode,
+                    offset: 0
+                })
+                let requestComment = new model.CommentUpdate({
+                    rangeStart: requestCommentRangeStart,
+                    rangeEnd: requestCommentRangeEnd,
+                    initial: "IA",
+                    author: "Imran Anwar",
+                    text: "A new Comment"
+                })
                 const request = new model.UpdateCommentRequest({
                     name: remoteFileName,
                     commentIndex: 0,
@@ -239,11 +297,27 @@ describe("comment", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-
-
-
-
-
+            let requestCommentRangeStartNode = new model.NodeLink({
+                nodeId: "0.3.0"
+            })
+            let requestCommentRangeStart = new model.DocumentPosition({
+                node: requestCommentRangeStartNode,
+                offset: 0
+            })
+            let requestCommentRangeEndNode = new model.NodeLink({
+                nodeId: "0.3.0"
+            })
+            let requestCommentRangeEnd = new model.DocumentPosition({
+                node: requestCommentRangeEndNode,
+                offset: 0
+            })
+            let requestComment = new model.CommentUpdate({
+                rangeStart: requestCommentRangeStart,
+                rangeEnd: requestCommentRangeEnd,
+                initial: "IA",
+                author: "Imran Anwar",
+                text: "A new Comment"
+            })
             const request = new model.UpdateCommentOnlineRequest({
                 document: requestDocument,
                 commentIndex: 0,

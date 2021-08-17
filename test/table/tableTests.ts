@@ -304,6 +304,10 @@ describe("table", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestTable = new model.TableInsert({
+                    columnsCount: 5,
+                    rowsCount: 4
+                })
                 const request = new model.InsertTableRequest({
                     name: remoteFileName,
                     table: requestTable,
@@ -333,7 +337,10 @@ describe("table", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-
+            let requestTable = new model.TableInsert({
+                columnsCount: 5,
+                rowsCount: 4
+            })
             const request = new model.InsertTableOnlineRequest({
                 document: requestDocument,
                 table: requestTable,
@@ -361,6 +368,10 @@ describe("table", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestTable = new model.TableInsert({
+                    columnsCount: 5,
+                    rowsCount: 4
+                })
                 const request = new model.InsertTableRequest({
                     name: remoteFileName,
                     table: requestTable,
@@ -479,6 +490,14 @@ describe("table", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestProperties = new model.TableProperties({
+                    alignment: model.TableProperties.AlignmentEnum.Right,
+                    allowAutoFit: false,
+                    bidi: true,
+                    bottomPadding: 1,
+                    cellSpacing: 2.0,
+                    styleOptions: model.TableProperties.StyleOptionsEnum.ColumnBands
+                })
                 const request = new model.UpdateTablePropertiesRequest({
                     name: remoteFileName,
                     properties: requestProperties,
@@ -509,7 +528,14 @@ describe("table", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-
+            let requestProperties = new model.TableProperties({
+                alignment: model.TableProperties.AlignmentEnum.Right,
+                allowAutoFit: false,
+                bidi: true,
+                bottomPadding: 1,
+                cellSpacing: 2,
+                styleOptions: model.TableProperties.StyleOptionsEnum.ColumnBands
+            })
             const request = new model.UpdateTablePropertiesOnlineRequest({
                 document: requestDocument,
                 properties: requestProperties,
@@ -538,6 +564,14 @@ describe("table", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestProperties = new model.TableProperties({
+                    alignment: model.TableProperties.AlignmentEnum.Right,
+                    allowAutoFit: false,
+                    bidi: true,
+                    bottomPadding: 1.0,
+                    cellSpacing: 2.0,
+                    styleOptions: model.TableProperties.StyleOptionsEnum.ColumnBands
+                })
                 const request = new model.UpdateTablePropertiesRequest({
                     name: remoteFileName,
                     properties: requestProperties,
@@ -678,6 +712,9 @@ describe("table", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestRow = new model.TableRowInsert({
+                    columnsCount: 5
+                })
                 const request = new model.InsertTableRowRequest({
                     name: remoteFileName,
                     row: requestRow,
@@ -705,7 +742,9 @@ describe("table", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-
+            let requestRow = new model.TableRowInsert({
+                columnsCount: 5
+            })
             const request = new model.InsertTableRowOnlineRequest({
                 document: requestDocument,
                 row: requestRow,
@@ -786,6 +825,12 @@ describe("table", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestFormat = new model.TableRowFormat({
+                    allowBreakAcrossPages: true,
+                    headingFormat: true,
+                    height: 10.0,
+                    heightRule: model.TableRowFormat.HeightRuleEnum.Exactly
+                })
                 const request = new model.UpdateTableRowFormatRequest({
                     name: remoteFileName,
                     format: requestFormat,
@@ -815,7 +860,12 @@ describe("table", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-
+            let requestFormat = new model.TableRowFormat({
+                allowBreakAcrossPages: true,
+                headingFormat: true,
+                height: 10,
+                heightRule: model.TableRowFormat.HeightRuleEnum.Auto
+            })
             const request = new model.UpdateTableRowFormatOnlineRequest({
                 document: requestDocument,
                 format: requestFormat,
@@ -950,7 +1000,7 @@ describe("table", () => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.InsertTableCellRequest({
                     name: remoteFileName,
-                    cell: requestCell,
+                    cell: undefined,
                     tableRowPath: "sections/0/tables/2/rows/0",
                     folder: remoteDataFolder
                 });
@@ -977,7 +1027,7 @@ describe("table", () => {
 
             const request = new model.InsertTableCellOnlineRequest({
                 document: requestDocument,
-                cell: requestCell,
+                cell: undefined,
                 tableRowPath: "sections/0/tables/2/rows/0"
             });
 
@@ -1055,6 +1105,12 @@ describe("table", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestFormat = new model.TableCellFormat({
+                    bottomPadding: 5.0,
+                    fitText: true,
+                    horizontalMerge: model.TableCellFormat.HorizontalMergeEnum.First,
+                    wrapText: true
+                })
                 const request = new model.UpdateTableCellFormatRequest({
                     name: remoteFileName,
                     format: requestFormat,
@@ -1084,7 +1140,12 @@ describe("table", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-
+            let requestFormat = new model.TableCellFormat({
+                bottomPadding: 5,
+                fitText: true,
+                horizontalMerge: model.TableCellFormat.HorizontalMergeEnum.First,
+                wrapText: true
+            })
             const request = new model.UpdateTableCellFormatOnlineRequest({
                 document: requestDocument,
                 format: requestFormat,

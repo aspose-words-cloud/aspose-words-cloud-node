@@ -224,6 +224,9 @@ describe("field", () => {
                 BaseTest.localBaseTestDataFolder + textFolder + "/" + localFileName
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestField = new model.FieldInsert({
+                    fieldCode: "{ NUMPAGES }"
+                })
                 const request = new model.InsertFieldRequest({
                     name: remoteFileName,
                     field: requestField,
@@ -251,7 +254,9 @@ describe("field", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + fieldFolder + "/GetField.docx");
-
+            let requestField = new model.FieldInsert({
+                fieldCode: "{ NUMPAGES }"
+            })
             const request = new model.InsertFieldOnlineRequest({
                 document: requestDocument,
                 field: requestField,
@@ -280,6 +285,9 @@ describe("field", () => {
                 BaseTest.localBaseTestDataFolder + textFolder + "/" + localFileName
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestField = new model.FieldInsert({
+                    fieldCode: "{ NUMPAGES }"
+                })
                 const request = new model.InsertFieldRequest({
                     name: remoteFileName,
                     field: requestField,
@@ -313,6 +321,9 @@ describe("field", () => {
                 BaseTest.localBaseTestDataFolder + fieldFolder + "/" + localFileName
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestField = new model.FieldUpdate({
+                    fieldCode: "{ NUMPAGES }"
+                })
                 const request = new model.UpdateFieldRequest({
                     name: remoteFileName,
                     index: 0,
@@ -341,7 +352,9 @@ describe("field", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + fieldFolder + "/GetField.docx");
-
+            let requestField = new model.FieldUpdate({
+                fieldCode: "{ NUMPAGES }"
+            })
             const request = new model.UpdateFieldOnlineRequest({
                 document: requestDocument,
                 index: 0,
@@ -371,6 +384,10 @@ describe("field", () => {
                 BaseTest.localBaseTestDataFolder + "Common/" + localFileName
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestPageNumber = new model.PageNumber({
+                    alignment: "center",
+                    format: "{PAGE} of {NUMPAGES}"
+                })
                 const request = new model.InsertPageNumbersRequest({
                     name: remoteFileName,
                     pageNumber: requestPageNumber,
@@ -399,7 +416,10 @@ describe("field", () => {
             const localFileName = "test_multi_pages.docx";
 
             let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + "Common/" + localFileName);
-
+            let requestPageNumber = new model.PageNumber({
+                alignment: "center",
+                format: "{PAGE} of {NUMPAGES}"
+            })
             const request = new model.InsertPageNumbersOnlineRequest({
                 document: requestDocument,
                 pageNumber: requestPageNumber

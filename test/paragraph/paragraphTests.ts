@@ -379,6 +379,9 @@ describe("paragraph", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestFontDto = new model.Font({
+                    bold: true
+                })
                 const request = new model.UpdateRunFontRequest({
                     name: remoteFileName,
                     fontDto: requestFontDto,
@@ -407,7 +410,9 @@ describe("paragraph", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-
+            let requestFontDto = new model.Font({
+                bold: true
+            })
             const request = new model.UpdateRunFontOnlineRequest({
                 document: requestDocument,
                 fontDto: requestFontDto,
@@ -436,6 +441,9 @@ describe("paragraph", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestParagraph = new model.ParagraphInsert({
+                    text: "This is a new paragraph for your document"
+                })
                 const request = new model.InsertParagraphRequest({
                     name: remoteFileName,
                     paragraph: requestParagraph,
@@ -462,7 +470,9 @@ describe("paragraph", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-
+            let requestParagraph = new model.ParagraphInsert({
+                text: "This is a new paragraph for your document"
+            })
             const request = new model.InsertParagraphOnlineRequest({
                 document: requestDocument,
                 paragraph: requestParagraph,
@@ -490,6 +500,9 @@ describe("paragraph", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestParagraph = new model.ParagraphInsert({
+                    text: "This is a new paragraph for your document"
+                })
                 const request = new model.InsertParagraphRequest({
                     name: remoteFileName,
                     paragraph: requestParagraph,
@@ -688,6 +701,9 @@ describe("paragraph", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestParagraphFormatDto = new model.ParagraphFormatUpdate({
+                    alignment: model.ParagraphFormatUpdate.AlignmentEnum.Right
+                })
                 const request = new model.UpdateParagraphFormatRequest({
                     name: remoteFileName,
                     index: 0,
@@ -715,7 +731,9 @@ describe("paragraph", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-
+            let requestParagraphFormatDto = new model.ParagraphFormatUpdate({
+                alignment: model.ParagraphFormatUpdate.AlignmentEnum.Right
+            })
             const request = new model.UpdateParagraphFormatOnlineRequest({
                 document: requestDocument,
                 index: 0,
@@ -908,6 +926,9 @@ describe("paragraph", () => {
                 BaseTest.localBaseTestDataFolder + listFolder + "/ParagraphUpdateListFormat.doc"
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestListFormatDto = new model.ListFormatUpdate({
+                    listId: 2
+                })
                 const request = new model.UpdateParagraphListFormatRequest({
                     name: remoteFileName,
                     index: 0,
@@ -935,7 +956,9 @@ describe("paragraph", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + listFolder + "/ParagraphUpdateListFormat.doc");
-
+            let requestListFormatDto = new model.ListFormatUpdate({
+                listId: 2
+            })
             const request = new model.UpdateParagraphListFormatOnlineRequest({
                 document: requestDocument,
                 listFormatDto: requestListFormatDto,
@@ -964,6 +987,9 @@ describe("paragraph", () => {
                 BaseTest.localBaseTestDataFolder + listFolder + "/ParagraphUpdateListFormat.doc"
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestListFormatDto = new model.ListFormatUpdate({
+                    listId: 2
+                })
                 const request = new model.UpdateParagraphListFormatRequest({
                     name: remoteFileName,
                     index: 0,
@@ -1162,6 +1188,11 @@ describe("paragraph", () => {
                 BaseTest.localBaseTestDataFolder + tabStopFolder + "/ParagraphTabStops.docx"
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestTabStopInsertDto = new model.TabStopInsert({
+                    alignment: model.TabStopInsert.AlignmentEnum.Left,
+                    leader: model.TabStopInsert.LeaderEnum.None,
+                    position: 100.0
+                })
                 const request = new model.InsertOrUpdateParagraphTabStopRequest({
                     name: remoteFileName,
                     index: 0,
@@ -1192,7 +1223,11 @@ describe("paragraph", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + tabStopFolder + "/ParagraphTabStops.docx");
-
+            let requestTabStopInsertDto = new model.TabStopInsert({
+                alignment: model.TabStopInsert.AlignmentEnum.Left,
+                leader: model.TabStopInsert.LeaderEnum.None,
+                position: 72
+            })
             const request = new model.InsertOrUpdateParagraphTabStopOnlineRequest({
                 document: requestDocument,
                 tabStopInsertDto: requestTabStopInsertDto,
@@ -1221,6 +1256,11 @@ describe("paragraph", () => {
                 BaseTest.localBaseTestDataFolder + tabStopFolder + "/ParagraphTabStops.docx"
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestTabStopInsertDto = new model.TabStopInsert({
+                    alignment: model.TabStopInsert.AlignmentEnum.Left,
+                    leader: model.TabStopInsert.LeaderEnum.None,
+                    position: 100.0
+                })
                 const request = new model.InsertOrUpdateParagraphTabStopRequest({
                     name: remoteFileName,
                     index: 0,

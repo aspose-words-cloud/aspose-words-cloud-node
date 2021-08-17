@@ -152,6 +152,9 @@ describe("range", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestDocumentParameters = new model.RangeDocument({
+                    documentName: remoteDataFolder + "/NewDoc.docx"
+                })
                 const request = new model.SaveAsRangeRequest({
                     name: remoteFileName,
                     rangeStartIdentifier: "id0.0.0",
@@ -179,7 +182,9 @@ describe("range", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-
+            let requestDocumentParameters = new model.RangeDocument({
+                documentName: remoteDataFolder + "/NewDoc.docx"
+            })
             const request = new model.SaveAsRangeOnlineRequest({
                 document: requestDocument,
                 rangeStartIdentifier: "id0.0.0",
@@ -208,6 +213,9 @@ describe("range", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestRangeText = new model.ReplaceRange({
+                    text: "Replaced header"
+                })
                 const request = new model.ReplaceWithTextRequest({
                     name: remoteFileName,
                     rangeStartIdentifier: "id0.0.0",
@@ -235,7 +243,9 @@ describe("range", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-
+            let requestRangeText = new model.ReplaceRange({
+                text: "Replaced header"
+            })
             const request = new model.ReplaceWithTextOnlineRequest({
                 document: requestDocument,
                 rangeStartIdentifier: "id0.0.0",

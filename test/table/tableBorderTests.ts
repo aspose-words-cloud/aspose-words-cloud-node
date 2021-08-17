@@ -257,6 +257,17 @@ describe("tableBorder", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestBorderPropertiesColor = new model.XmlColor({
+                    web: "#AABBCC"
+                })
+                let requestBorderProperties = new model.Border({
+                    borderType: model.Border.BorderTypeEnum.Left,
+                    color: requestBorderPropertiesColor,
+                    distanceFromText: 6.0,
+                    lineStyle: model.Border.LineStyleEnum.DashDotStroker,
+                    lineWidth: 2.0,
+                    shadow: true
+                })
                 const request = new model.UpdateBorderRequest({
                     name: remoteFileName,
                     borderType: "left",
@@ -288,8 +299,17 @@ describe("tableBorder", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-
-
+            let requestBorderPropertiesColor = new model.XmlColor({
+                web: "#AABBCC"
+            })
+            let requestBorderProperties = new model.Border({
+                borderType: model.Border.BorderTypeEnum.Left,
+                color: requestBorderPropertiesColor,
+                distanceFromText: 6,
+                lineStyle: model.Border.LineStyleEnum.DashDotStroker,
+                lineWidth: 2,
+                shadow: true
+            })
             const request = new model.UpdateBorderOnlineRequest({
                 document: requestDocument,
                 borderProperties: requestBorderProperties,

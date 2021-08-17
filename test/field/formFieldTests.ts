@@ -49,6 +49,14 @@ describe("formField", () => {
                 BaseTest.localBaseTestDataFolder + fieldFolder + "/FormFilled.docx"
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestFormField = new model.FormFieldTextInput({
+                    name: "FullName",
+                    enabled: true,
+                    calculateOnExit: true,
+                    statusText: "",
+                    textInputType: model.FormFieldTextInput.TextInputTypeEnum.Regular,
+                    textInputDefault: "No name"
+                })
                 const request = new model.UpdateFormFieldRequest({
                     name: remoteFileName,
                     index: 0,
@@ -78,7 +86,14 @@ describe("formField", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + fieldFolder + "/FormFilled.docx");
-
+            let requestFormField = new model.FormFieldTextInput({
+                name: "FullName",
+                enabled: true,
+                calculateOnExit: true,
+                statusText: "",
+                textInputType: model.FormFieldTextInput.TextInputTypeEnum.Regular,
+                textInputDefault: "No name"
+            })
             const request = new model.UpdateFormFieldOnlineRequest({
                 document: requestDocument,
                 index: 0,
@@ -107,6 +122,14 @@ describe("formField", () => {
                 BaseTest.localBaseTestDataFolder + fieldFolder + "/FormFilled.docx"
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestFormField = new model.FormFieldTextInput({
+                    name: "FullName",
+                    enabled: true,
+                    calculateOnExit: true,
+                    statusText: "",
+                    textInputType: model.FormFieldTextInput.TextInputTypeEnum.Regular,
+                    textInputDefault: "No name"
+                })
                 const request = new model.UpdateFormFieldRequest({
                     name: remoteFileName,
                     index: 0,
@@ -310,6 +333,15 @@ describe("formField", () => {
                 BaseTest.localBaseTestDataFolder + "Common/test_multi_pages.docx"
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestFormField = new model.FormFieldTextInput({
+                    name: "FullName",
+                    enabled: true,
+                    calculateOnExit: true,
+                    statusText: "",
+                    textInputType: model.FormFieldTextInput.TextInputTypeEnum.Regular,
+                    textInputDefault: "123",
+                    textInputFormat: "UPPERCASE"
+                })
                 const request = new model.InsertFormFieldRequest({
                     name: remoteFileName,
                     formField: requestFormField,
@@ -338,7 +370,15 @@ describe("formField", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + fieldFolder + "/FormFilled.docx");
-
+            let requestFormField = new model.FormFieldTextInput({
+                name: "FullName",
+                enabled: true,
+                calculateOnExit: true,
+                statusText: "",
+                textInputType: model.FormFieldTextInput.TextInputTypeEnum.Regular,
+                textInputDefault: "123",
+                textInputFormat: "UPPERCASE"
+            })
             const request = new model.InsertFormFieldOnlineRequest({
                 document: requestDocument,
                 formField: requestFormField,
@@ -366,6 +406,15 @@ describe("formField", () => {
                 BaseTest.localBaseTestDataFolder + "Common/test_multi_pages.docx"
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestFormField = new model.FormFieldTextInput({
+                    name: "FullName",
+                    enabled: true,
+                    calculateOnExit: true,
+                    statusText: "",
+                    textInputType: model.FormFieldTextInput.TextInputTypeEnum.Regular,
+                    textInputDefault: "123",
+                    textInputFormat: "UPPERCASE"
+                })
                 const request = new model.InsertFormFieldRequest({
                     name: remoteFileName,
                     formField: requestFormField,

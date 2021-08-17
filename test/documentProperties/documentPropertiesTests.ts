@@ -204,6 +204,9 @@ describe("documentProperties", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestProperty = new model.DocumentPropertyCreateOrUpdate({
+                    value: "Imran Anwar"
+                })
                 const request = new model.CreateOrUpdateDocumentPropertyRequest({
                     name: remoteFileName,
                     propertyName: "AsposeAuthor",
@@ -232,7 +235,9 @@ describe("documentProperties", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-
+            let requestProperty = new model.DocumentPropertyCreateOrUpdate({
+                value: "Imran Anwar"
+            })
             const request = new model.CreateOrUpdateDocumentPropertyOnlineRequest({
                 document: requestDocument,
                 propertyName: "AsposeAuthor",

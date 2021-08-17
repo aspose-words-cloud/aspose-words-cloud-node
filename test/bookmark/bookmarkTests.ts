@@ -147,6 +147,10 @@ describe("bookmark", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestBookmarkData = new model.BookmarkData({
+                    name: bookmarkName,
+                    text: bookmarkText
+                })
                 const request = new model.UpdateBookmarkRequest({
                     name: remoteFileName,
                     bookmarkName: bookmarkName,
@@ -174,7 +178,10 @@ describe("bookmark", () => {
             const remoteFileName = "TestUpdateDocumentBookmark.docx";
 
             let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-
+            let requestBookmarkData = new model.BookmarkData({
+                name: bookmarkName,
+                text: "This will be the text for Aspose"
+            })
             const request = new model.UpdateBookmarkOnlineRequest({
                 document: requestDocument,
                 bookmarkName: bookmarkName,

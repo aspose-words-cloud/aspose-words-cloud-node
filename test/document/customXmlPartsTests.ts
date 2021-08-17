@@ -161,6 +161,10 @@ describe("customXmlParts", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestCustomXmlPart = new model.CustomXmlPartInsert({
+                    id: "hello",
+                    data: "<data>Hello world</data>"
+                })
                 const request = new model.InsertCustomXmlPartRequest({
                     name: remoteFileName,
                     customXmlPart: requestCustomXmlPart,
@@ -187,7 +191,10 @@ describe("customXmlParts", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-
+            let requestCustomXmlPart = new model.CustomXmlPartInsert({
+                id: "hello",
+                data: "<data>Hello world</data>"
+            })
             const request = new model.InsertCustomXmlPartOnlineRequest({
                 document: requestDocument,
                 customXmlPart: requestCustomXmlPart
@@ -217,6 +224,9 @@ describe("customXmlParts", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestCustomXmlPart = new model.CustomXmlPartUpdate({
+                    data: "<data>Hello world</data>"
+                })
                 const request = new model.UpdateCustomXmlPartRequest({
                     name: remoteFileName,
                     customXmlPartIndex: 0,
@@ -244,7 +254,9 @@ describe("customXmlParts", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-
+            let requestCustomXmlPart = new model.CustomXmlPartUpdate({
+                data: "<data>Hello world</data>"
+            })
             const request = new model.UpdateCustomXmlPartOnlineRequest({
                 document: requestDocument,
                 customXmlPartIndex: 0,

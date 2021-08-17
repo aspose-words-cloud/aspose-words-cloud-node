@@ -57,7 +57,7 @@ describe("watermark", () => {
                     expect(result1.response.statusMessage).to.equal("OK");
                     const request = new model.InsertWatermarkImageRequest({
                         name: remoteFileName,
-                        imageFile: requestImageFile,
+                        imageFile: undefined,
                         folder: remoteDataFolder,
                         destFileName: BaseTest.remoteBaseTestOutFolder + "/" + remoteFileName,
                         image: remoteImagePath
@@ -111,6 +111,10 @@ describe("watermark", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestWatermarkText = new model.WatermarkText({
+                    text: "This is the text",
+                    rotationAngle: 90.0
+                })
                 const request = new model.InsertWatermarkTextRequest({
                     name: remoteFileName,
                     watermarkText: requestWatermarkText,
@@ -137,7 +141,10 @@ describe("watermark", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-
+            let requestWatermarkText = new model.WatermarkText({
+                text: "This is the text",
+                rotationAngle: 90
+            })
             const request = new model.InsertWatermarkTextOnlineRequest({
                 document: requestDocument,
                 watermarkText: requestWatermarkText

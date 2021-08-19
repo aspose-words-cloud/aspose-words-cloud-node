@@ -3,11 +3,10 @@ import * as fs from "fs";
 const clientId = "####-####-####-####-####";
 const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
-const documentsDir = "./";
 const fileName  = "test_doc.docx";
 
 // Upload original document to cloud storage.
-let myVar1 = fs.createReadStream(documentsDir + fileName);
+let myVar1 = fs.createReadStream(fileName);
 let myVar2 = fileName;
 const uploadFileRequest = new model.UploadFileRequest({
     fileContent: myVar1,

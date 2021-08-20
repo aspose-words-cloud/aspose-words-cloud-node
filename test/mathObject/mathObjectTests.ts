@@ -75,8 +75,9 @@ describe("mathObject", () => {
     describe("getOfficeMathObjectsOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.GetOfficeMathObjectsOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                document: requestDocument,
                 nodePath: ""
             });
 
@@ -158,8 +159,9 @@ describe("mathObject", () => {
     describe("getOfficeMathObjectOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.GetOfficeMathObjectOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                document: requestDocument,
                 index: 0,
                 nodePath: ""
             });
@@ -240,8 +242,9 @@ describe("mathObject", () => {
     describe("renderMathObjectOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.RenderMathObjectOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                document: requestDocument,
                 format: "png",
                 index: 0,
                 nodePath: ""
@@ -321,8 +324,9 @@ describe("mathObject", () => {
     describe("deleteOfficeMathObjectOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.DeleteOfficeMathObjectOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                document: requestDocument,
                 index: 0,
                 nodePath: ""
             });

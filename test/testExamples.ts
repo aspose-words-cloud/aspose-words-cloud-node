@@ -53,21 +53,24 @@ describe("examples", () => {
             const fileName  = "test_doc.docx";
 
             // Upload original document to cloud storage.
+            let myVar1 = fs.createReadStream(documentsDir + fileName);
+            let myVar2 = fileName;
             const uploadFileRequest = new model.UploadFileRequest({
-                fileContent: fs.createReadStream(documentsDir + fileName),
-                path: fileName
+                fileContent: myVar1,
+                path: myVar2
             });
 
-            return wordsApi.uploadFile(uploadFileRequest)
+            wordsApi.uploadFile(uploadFileRequest)
             .then((uploadFileRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of UploadFileRequest: ", uploadFileRequestResult);
                 // Calls AcceptAllRevisions method for document in cloud.
+                let myVar3 = fileName;
                 const request = new model.AcceptAllRevisionsRequest({
-                    name: fileName
+                    name: myVar3
                 });
 
-                return wordsApi.acceptAllRevisions(request)
+                wordsApi.acceptAllRevisions(request)
                 .then((requestResult) => {
                     // tslint:disable-next-line:no-console
                     console.log("Result of Request: ", requestResult);
@@ -83,11 +86,12 @@ describe("examples", () => {
             const fileName  = "test_doc.docx";
 
             // Calls AcceptAllRevisionsOnline method for document in cloud.
+            let requestDocument = fs.createReadStream(documentsDir + fileName);
             const request = new model.AcceptAllRevisionsOnlineRequest({
-                document: fs.createReadStream(documentsDir + fileName)
+                document: requestDocument
             });
 
-            return wordsApi.acceptAllRevisionsOnline(request)
+            wordsApi.acceptAllRevisionsOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of Request: ", requestResult);

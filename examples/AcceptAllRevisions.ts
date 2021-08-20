@@ -13,7 +13,7 @@ const uploadFileRequest = new model.UploadFileRequest({
     path: myVar2
 });
 
-return wordsApi.uploadFile(uploadFileRequest)
+wordsApi.uploadFile(uploadFileRequest)
 .then((uploadFileRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of UploadFileRequest: ", uploadFileRequestResult);
@@ -23,7 +23,7 @@ return wordsApi.uploadFile(uploadFileRequest)
         name: myVar3
     });
 
-    return wordsApi.acceptAllRevisions(request)
+    wordsApi.acceptAllRevisions(request)
     .then((requestResult) => {
         // tslint:disable-next-line:no-console
         console.log("Result of Request: ", requestResult);

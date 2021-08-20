@@ -9,7 +9,7 @@ const request = new model.AcceptAllRevisionsOnlineRequest({
     document: requestDocument
 });
 
-return wordsApi.acceptAllRevisionsOnline(request)
+wordsApi.acceptAllRevisionsOnline(request)
 .then((requestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of Request: ", requestResult);

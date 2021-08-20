@@ -60,7 +60,7 @@ describe("examples", () => {
                 path: myVar2
             });
 
-            return wordsApi.uploadFile(uploadFileRequest)
+            wordsApi.uploadFile(uploadFileRequest)
             .then((uploadFileRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of UploadFileRequest: ", uploadFileRequestResult);
@@ -70,7 +70,7 @@ describe("examples", () => {
                     name: myVar3
                 });
 
-                return wordsApi.acceptAllRevisions(request)
+                wordsApi.acceptAllRevisions(request)
                 .then((requestResult) => {
                     // tslint:disable-next-line:no-console
                     console.log("Result of Request: ", requestResult);
@@ -91,7 +91,7 @@ describe("examples", () => {
                 document: requestDocument
             });
 
-            return wordsApi.acceptAllRevisionsOnline(request)
+            wordsApi.acceptAllRevisionsOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of Request: ", requestResult);

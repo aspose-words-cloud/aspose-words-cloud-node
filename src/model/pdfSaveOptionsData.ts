@@ -94,6 +94,11 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
             type: "boolean",
         },
         {
+            name: "exportLanguageToSpanTag",
+            baseName: "ExportLanguageToSpanTag",
+            type: "boolean",
+        },
+        {
             name: "fontEmbeddingMode",
             baseName: "FontEmbeddingMode",
             type: "string",
@@ -224,6 +229,11 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
      * Gets or sets a value indicating whether to export document structure.
      */
     public exportDocumentStructure: boolean;
+
+    /**
+     * Gets or sets a value determining whether or not to create a "Span" tag in the document structure to export the text language.
+     */
+    public exportLanguageToSpanTag: boolean;
 
     /**
      * Gets or sets the font embedding mode.

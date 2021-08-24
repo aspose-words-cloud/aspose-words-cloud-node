@@ -5,7 +5,7 @@ const request = new model.GetDocumentRequest({
     documentName: "Sample.docx"
 });
 
-return wordsApi.getDocument(request)
+wordsApi.getDocument(request)
 .then((requestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of request: ", requestResult);

@@ -1,17 +1,18 @@
 const clientId = "####-####-####-####-####";
 const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
-const documentsDir = "./";
+let requestTemplate = fs.createReadStream("Sample.docx");
+let requestReportEngineSettings = new model.ReportEngineSettings({
+    dataSourceType: model.ReportEngineSettings.DataSourceTypeEnum.Json,
+    dataSourceName: "persons"
+})
 const buildReportRequest = new model.BuildReportOnlineRequest({
-    template: fs.createReadStream(documentsDir + "Sample.docx"),
+    template: requestTemplate,
     data: "Data.json",
-    reportEngineSettings: new model.ReportEngineSettings({
-        dataSourceType: model.ReportEngineSettings.DataSourceTypeEnum.Json,
-        dataSourceName: "persons"
-    })
+    reportEngineSettings: requestReportEngineSettings
 });
 
-return wordsApi.buildReportOnline(buildReportRequest)
+wordsApi.buildReportOnline(buildReportRequest)
 .then((buildReportRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of buildReportRequest: ", buildReportRequestResult);

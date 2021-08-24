@@ -1,16 +1,17 @@
 const clientId = "####-####-####-####-####";
 const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
-const documentsDir = "./";
+let requestDocument = fs.createReadStream("Sample.doc");
+let requestRun = new model.RunInsert({
+    text: "run with text"
+})
 const insertRequest = new model.InsertRunOnlineRequest({
-    document: fs.createReadStream(documentsDir + "Sample.doc"),
+    document: requestDocument,
     paragraphPath: "paragraphs/1",
-    run: new model.RunInsert({
-        text: "run with text"
-    })
+    run: requestRun
 });
 
-return wordsApi.insertRunOnline(insertRequest)
+wordsApi.insertRunOnline(insertRequest)
 .then((insertRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of insertRequest: ", insertRequestResult);

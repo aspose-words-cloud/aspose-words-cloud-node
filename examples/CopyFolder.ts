@@ -8,7 +8,7 @@ const copyRequest = new model.CopyFolderRequest({
     srcPath: folderToCopy + "Src"
 });
 
-return wordsApi.copyFolder(copyRequest)
+wordsApi.copyFolder(copyRequest)
 .then((copyRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of copyRequest: ", copyRequestResult);

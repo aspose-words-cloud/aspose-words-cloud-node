@@ -5,7 +5,7 @@ const request = new model.GetCommentsRequest({
     name: "Sample.docx"
 });
 
-return wordsApi.getComments(request)
+wordsApi.getComments(request)
 .then((requestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of request: ", requestResult);

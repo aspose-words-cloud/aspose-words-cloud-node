@@ -73,8 +73,9 @@ describe("styles", () => {
     describe("getStylesOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.GetStylesOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile)
+                document: requestDocument
             });
 
             // Act
@@ -122,8 +123,9 @@ describe("styles", () => {
     describe("getStyleOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.GetStyleOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                document: requestDocument,
                 styleName: "Heading 1"
             });
 
@@ -148,11 +150,12 @@ describe("styles", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestStyleUpdate = new model.StyleUpdate({
+                    name: "My Style"
+                })
                 const request = new model.UpdateStyleRequest({
                     name: remoteFileName,
-                    styleUpdate: new model.StyleUpdate({
-                        name: "My Style"
-                    }),
+                    styleUpdate: requestStyleUpdate,
                     styleName: "Heading 1",
                     folder: remoteDataFolder
                 });
@@ -175,11 +178,13 @@ describe("styles", () => {
     describe("updateStyleOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            let requestStyleUpdate = new model.StyleUpdate({
+                name: "My Style"
+            })
             const request = new model.UpdateStyleOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
-                styleUpdate: new model.StyleUpdate({
-                    name: "My Style"
-                }),
+                document: requestDocument,
+                styleUpdate: requestStyleUpdate,
                 styleName: "Heading 1"
             });
 
@@ -204,12 +209,13 @@ describe("styles", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestStyleInsert = new model.StyleInsert({
+                    styleName: "My Style",
+                    styleType: model.StyleInsert.StyleTypeEnum.Paragraph
+                })
                 const request = new model.InsertStyleRequest({
                     name: remoteFileName,
-                    styleInsert: new model.StyleInsert({
-                        styleName: "My Style",
-                        styleType: model.StyleInsert.StyleTypeEnum.Paragraph
-                    }),
+                    styleInsert: requestStyleInsert,
                     folder: remoteDataFolder
                 });
 
@@ -231,12 +237,14 @@ describe("styles", () => {
     describe("insertStyleOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            let requestStyleInsert = new model.StyleInsert({
+                styleName: "My Style",
+                styleType: model.StyleInsert.StyleTypeEnum.Paragraph
+            })
             const request = new model.InsertStyleOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
-                styleInsert: new model.StyleInsert({
-                    styleName: "My Style",
-                    styleType: model.StyleInsert.StyleTypeEnum.Paragraph
-                })
+                document: requestDocument,
+                styleInsert: requestStyleInsert
             });
 
             // Act
@@ -260,11 +268,12 @@ describe("styles", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestStyleCopy = new model.StyleCopy({
+                    styleName: "Heading 1"
+                })
                 const request = new model.CopyStyleRequest({
                     name: remoteFileName,
-                    styleCopy: new model.StyleCopy({
-                        styleName: "Heading 1"
-                    }),
+                    styleCopy: requestStyleCopy,
                     folder: remoteDataFolder
                 });
 
@@ -286,11 +295,13 @@ describe("styles", () => {
     describe("copyStyleOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            let requestStyleCopy = new model.StyleCopy({
+                styleName: "Heading 1"
+            })
             const request = new model.CopyStyleOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
-                styleCopy: new model.StyleCopy({
-                    styleName: "Heading 1"
-                })
+                document: requestDocument,
+                styleCopy: requestStyleCopy
             });
 
             // Act
@@ -338,8 +349,9 @@ describe("styles", () => {
     describe("getStyleFromDocumentElementOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.GetStyleFromDocumentElementOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                document: requestDocument,
                 styledNodePath: "paragraphs/1/paragraphFormat"
             });
 
@@ -364,11 +376,12 @@ describe("styles", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestStyleApply = new model.StyleApply({
+                    styleName: "Heading 1"
+                })
                 const request = new model.ApplyStyleToDocumentElementRequest({
                     name: remoteFileName,
-                    styleApply: new model.StyleApply({
-                        styleName: "Heading 1"
-                    }),
+                    styleApply: requestStyleApply,
                     styledNodePath: "paragraphs/1/paragraphFormat",
                     folder: remoteDataFolder
                 });
@@ -389,11 +402,13 @@ describe("styles", () => {
     describe("applyStyleToDocumentElementOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            let requestStyleApply = new model.StyleApply({
+                styleName: "Heading 1"
+            })
             const request = new model.ApplyStyleToDocumentElementOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
-                styleApply: new model.StyleApply({
-                    styleName: "Heading 1"
-                }),
+                document: requestDocument,
+                styleApply: requestStyleApply,
                 styledNodePath: "paragraphs/1/paragraphFormat"
             });
 

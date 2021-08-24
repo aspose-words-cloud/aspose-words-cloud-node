@@ -6,7 +6,7 @@ const searchRequest = new model.SearchRequest({
     pattern: "aspose"
 });
 
-return wordsApi.search(searchRequest)
+wordsApi.search(searchRequest)
 .then((searchRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of searchRequest: ", searchRequestResult);

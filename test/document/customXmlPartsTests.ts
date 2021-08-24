@@ -74,8 +74,9 @@ describe("customXmlParts", () => {
     describe("getCustomXmlPartOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.GetCustomXmlPartOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                document: requestDocument,
                 customXmlPartIndex: 0
             });
 
@@ -129,8 +130,9 @@ describe("customXmlParts", () => {
     describe("getCustomXmlPartsOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.GetCustomXmlPartsOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile)
+                document: requestDocument
             });
 
             // Act
@@ -159,12 +161,13 @@ describe("customXmlParts", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestCustomXmlPart = new model.CustomXmlPartInsert({
+                    id: "hello",
+                    data: "<data>Hello world</data>"
+                })
                 const request = new model.InsertCustomXmlPartRequest({
                     name: remoteFileName,
-                    customXmlPart: new model.CustomXmlPartInsert({
-                        id: "hello",
-                        data: "<data>Hello world</data>"
-                    }),
+                    customXmlPart: requestCustomXmlPart,
                     folder: remoteDataFolder
                 });
 
@@ -187,12 +190,14 @@ describe("customXmlParts", () => {
     describe("insertCustomXmlPartOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            let requestCustomXmlPart = new model.CustomXmlPartInsert({
+                id: "hello",
+                data: "<data>Hello world</data>"
+            })
             const request = new model.InsertCustomXmlPartOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
-                customXmlPart: new model.CustomXmlPartInsert({
-                    id: "hello",
-                    data: "<data>Hello world</data>"
-                })
+                document: requestDocument,
+                customXmlPart: requestCustomXmlPart
             });
 
             // Act
@@ -219,12 +224,13 @@ describe("customXmlParts", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestCustomXmlPart = new model.CustomXmlPartUpdate({
+                    data: "<data>Hello world</data>"
+                })
                 const request = new model.UpdateCustomXmlPartRequest({
                     name: remoteFileName,
                     customXmlPartIndex: 0,
-                    customXmlPart: new model.CustomXmlPartUpdate({
-                        data: "<data>Hello world</data>"
-                    }),
+                    customXmlPart: requestCustomXmlPart,
                     folder: remoteDataFolder
                 });
 
@@ -247,12 +253,14 @@ describe("customXmlParts", () => {
     describe("updateCustomXmlPartOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            let requestCustomXmlPart = new model.CustomXmlPartUpdate({
+                data: "<data>Hello world</data>"
+            })
             const request = new model.UpdateCustomXmlPartOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                document: requestDocument,
                 customXmlPartIndex: 0,
-                customXmlPart: new model.CustomXmlPartUpdate({
-                    data: "<data>Hello world</data>"
-                })
+                customXmlPart: requestCustomXmlPart
             });
 
             // Act
@@ -302,8 +310,9 @@ describe("customXmlParts", () => {
     describe("deleteCustomXmlPartOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.DeleteCustomXmlPartOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                document: requestDocument,
                 customXmlPartIndex: 0
             });
 
@@ -350,8 +359,9 @@ describe("customXmlParts", () => {
     describe("deleteCustomXmlPartsOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.DeleteCustomXmlPartsOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile)
+                document: requestDocument
             });
 
             // Act

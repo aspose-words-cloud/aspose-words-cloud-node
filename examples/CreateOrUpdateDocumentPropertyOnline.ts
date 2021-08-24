@@ -1,16 +1,17 @@
 const clientId = "####-####-####-####-####";
 const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
-const documentsDir = "./";
+let requestDocument = fs.createReadStream("Sample.docx");
+let requestProperty = new model.DocumentPropertyCreateOrUpdate({
+    value: "Imran Anwar"
+})
 const createRequest = new model.CreateOrUpdateDocumentPropertyOnlineRequest({
-    document: fs.createReadStream(documentsDir + "Sample.docx"),
+    document: requestDocument,
     propertyName: "AsposeAuthor",
-    property: new model.DocumentPropertyCreateOrUpdate({
-        value: "Imran Anwar"
-    })
+    property: requestProperty
 });
 
-return wordsApi.createOrUpdateDocumentPropertyOnline(createRequest)
+wordsApi.createOrUpdateDocumentPropertyOnline(createRequest)
 .then((createRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of createRequest: ", createRequestResult);

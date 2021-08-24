@@ -5,7 +5,7 @@ const request = new model.GetFormFieldsRequest({
     name: "Sample.docx"
 });
 
-return wordsApi.getFormFields(request)
+wordsApi.getFormFields(request)
 .then((requestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of request: ", requestResult);

@@ -7,7 +7,7 @@ const renderRequest = new model.RenderTableRequest({
     index: 0
 });
 
-return wordsApi.renderTable(renderRequest)
+wordsApi.renderTable(renderRequest)
 .then((renderRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of renderRequest: ", renderRequestResult);

@@ -7,7 +7,7 @@ const request = new model.GetRunRequest({
     index: 0
 });
 
-return wordsApi.getRun(request)
+wordsApi.getRun(request)
 .then((requestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of request: ", requestResult);

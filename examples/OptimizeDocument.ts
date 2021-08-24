@@ -1,14 +1,15 @@
 const clientId = "####-####-####-####-####";
 const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
+let requestOptions = new model.OptimizationOptions({
+    msWordVersion: model.OptimizationOptions.MsWordVersionEnum.Word2002
+})
 const optimizeRequest = new model.OptimizeDocumentRequest({
     name: "Sample.docx",
-    options: new model.OptimizationOptions({
-        msWordVersion: model.OptimizationOptions.MsWordVersionEnum.Word2002
-    })
+    options: requestOptions
 });
 
-return wordsApi.optimizeDocument(optimizeRequest)
+wordsApi.optimizeDocument(optimizeRequest)
 .then((optimizeRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of optimizeRequest: ", optimizeRequestResult);

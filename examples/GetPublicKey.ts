@@ -4,7 +4,7 @@ const wordsApi = new WordsApi(clientId, secret);
 const request = new model.GetPublicKeyRequest({
 });
 
-return wordsApi.getPublicKey(request)
+wordsApi.getPublicKey(request)
 .then((requestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of request: ", requestResult);

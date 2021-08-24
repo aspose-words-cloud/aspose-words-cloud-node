@@ -5,7 +5,7 @@ const request = new model.GetParagraphsRequest({
     name: "Sample.docx"
 });
 
-return wordsApi.getParagraphs(request)
+wordsApi.getParagraphs(request)
 .then((requestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of request: ", requestResult);

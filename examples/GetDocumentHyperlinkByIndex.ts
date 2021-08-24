@@ -6,7 +6,7 @@ const request = new model.GetDocumentHyperlinkByIndexRequest({
     hyperlinkIndex: 0
 });
 
-return wordsApi.getDocumentHyperlinkByIndex(request)
+wordsApi.getDocumentHyperlinkByIndex(request)
 .then((requestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of request: ", requestResult);

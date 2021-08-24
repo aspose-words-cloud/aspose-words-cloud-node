@@ -6,7 +6,7 @@ const request = new model.GetFootnoteRequest({
     index: 0
 });
 
-return wordsApi.getFootnote(request)
+wordsApi.getFootnote(request)
 .then((requestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of request: ", requestResult);

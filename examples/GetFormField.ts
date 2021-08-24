@@ -6,7 +6,7 @@ const request = new model.GetFormFieldRequest({
     index: 0
 });
 
-return wordsApi.getFormField(request)
+wordsApi.getFormField(request)
 .then((requestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of request: ", requestResult);

@@ -1,15 +1,15 @@
 const clientId = "####-####-####-####-####";
 const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
-const documentsDir = "./";
+let requestDocument = fs.createReadStream("Sample.docx");
 const renderRequest = new model.RenderDrawingObjectOnlineRequest({
-    document: fs.createReadStream(documentsDir + "Sample.docx"),
+    document: requestDocument,
     format: "png",
     index: 0,
     nodePath: "sections/0"
 });
 
-return wordsApi.renderDrawingObjectOnline(renderRequest)
+wordsApi.renderDrawingObjectOnline(renderRequest)
 .then((renderRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of renderRequest: ", renderRequestResult);

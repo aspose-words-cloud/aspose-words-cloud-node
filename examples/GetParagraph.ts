@@ -6,7 +6,7 @@ const request = new model.GetParagraphRequest({
     index: 0
 });
 
-return wordsApi.getParagraph(request)
+wordsApi.getParagraph(request)
 .then((requestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of request: ", requestResult);

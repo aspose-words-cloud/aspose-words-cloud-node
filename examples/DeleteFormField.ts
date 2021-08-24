@@ -6,7 +6,7 @@ const deleteRequest = new model.DeleteFormFieldRequest({
     index: 0
 });
 
-return wordsApi.deleteFormField(deleteRequest)
+wordsApi.deleteFormField(deleteRequest)
 .then((deleteRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of deleteRequest: ", deleteRequestResult);

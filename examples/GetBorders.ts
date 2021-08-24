@@ -6,7 +6,7 @@ const request = new model.GetBordersRequest({
     nodePath: "tables/1/rows/0/cells/0"
 });
 
-return wordsApi.getBorders(request)
+wordsApi.getBorders(request)
 .then((requestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of request: ", requestResult);

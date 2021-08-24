@@ -1,20 +1,21 @@
 const clientId = "####-####-####-####-####";
 const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
-const documentsDir = "./";
+let requestDocument = fs.createReadStream("Sample.docx");
+let requestFormat = new model.TableCellFormat({
+    bottomPadding: 5,
+    fitText: true,
+    horizontalMerge: model.TableCellFormat.HorizontalMergeEnum.First,
+    wrapText: true
+})
 const updateRequest = new model.UpdateTableCellFormatOnlineRequest({
-    document: fs.createReadStream(documentsDir + "Sample.docx"),
-    format: new model.TableCellFormat({
-        bottomPadding: 5,
-        fitText: true,
-        horizontalMerge: model.TableCellFormat.HorizontalMergeEnum.First,
-        wrapText: true
-    }),
+    document: requestDocument,
+    format: requestFormat,
     tableRowPath: "sections/0/tables/2/rows/0",
     index: 0
 });
 
-return wordsApi.updateTableCellFormatOnline(updateRequest)
+wordsApi.updateTableCellFormatOnline(updateRequest)
 .then((updateRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of updateRequest: ", updateRequestResult);

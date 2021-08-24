@@ -7,7 +7,7 @@ const removeRequest = new model.RemoveRangeRequest({
     rangeEndIdentifier: "id0.0.1"
 });
 
-return wordsApi.removeRange(removeRequest)
+wordsApi.removeRange(removeRequest)
 .then((removeRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of removeRequest: ", removeRequestResult);

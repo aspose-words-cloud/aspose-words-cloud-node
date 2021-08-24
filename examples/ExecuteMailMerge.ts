@@ -6,7 +6,7 @@ const mailMergeRequest = new model.ExecuteMailMergeRequest({
     data: "TestExecuteTemplateData.txt"
 });
 
-return wordsApi.executeMailMerge(mailMergeRequest)
+wordsApi.executeMailMerge(mailMergeRequest)
 .then((mailMergeRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of mailMergeRequest: ", mailMergeRequestResult);

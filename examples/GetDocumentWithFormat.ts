@@ -7,7 +7,7 @@ const request = new model.GetDocumentWithFormatRequest({
     outPath: "/TestGetDocumentWithFormatAndOutPath.text"
 });
 
-return wordsApi.getDocumentWithFormat(request)
+wordsApi.getDocumentWithFormat(request)
 .then((requestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of request: ", requestResult);

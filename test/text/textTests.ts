@@ -49,12 +49,13 @@ describe("text", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestReplaceText = new model.ReplaceTextParameters({
+                    oldValue: "Testing",
+                    newValue: "Aspose testing"
+                })
                 const request = new model.ReplaceTextRequest({
                     name: remoteFileName,
-                    replaceText: new model.ReplaceTextParameters({
-                        oldValue: "Testing",
-                        newValue: "Aspose testing"
-                    }),
+                    replaceText: requestReplaceText,
                     folder: remoteDataFolder,
                     destFileName: BaseTest.remoteBaseTestOutFolder + "/" + remoteFileName
                 });
@@ -78,12 +79,14 @@ describe("text", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const localFile = "Common/test_multi_pages.docx";
 
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            let requestReplaceText = new model.ReplaceTextParameters({
+                oldValue: "aspose",
+                newValue: "aspose new"
+            })
             const request = new model.ReplaceTextOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
-                replaceText: new model.ReplaceTextParameters({
-                    oldValue: "aspose",
-                    newValue: "aspose new"
-                })
+                document: requestDocument,
+                replaceText: requestReplaceText
             });
 
             // Act
@@ -137,8 +140,9 @@ describe("text", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const localFile = "DocumentElements/Text/SampleWordDocument.docx";
 
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.SearchOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                document: requestDocument,
                 pattern: "aspose"
             });
 

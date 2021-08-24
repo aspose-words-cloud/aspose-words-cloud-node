@@ -4,7 +4,7 @@ const wordsApi = new WordsApi(clientId, secret);
 const resetRequest = new model.ResetCacheRequest({
 });
 
-return wordsApi.resetCache(resetRequest)
+wordsApi.resetCache(resetRequest)
 .then((resetRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of resetRequest: ", resetRequestResult);

@@ -7,7 +7,7 @@ const request = new model.GetTableCellFormatRequest({
     index: 0
 });
 
-return wordsApi.getTableCellFormat(request)
+wordsApi.getTableCellFormat(request)
 .then((requestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of request: ", requestResult);

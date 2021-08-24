@@ -7,7 +7,7 @@ const deleteRequest = new model.DeleteParagraphTabStopRequest({
     index: 0
 });
 
-return wordsApi.deleteParagraphTabStop(deleteRequest)
+wordsApi.deleteParagraphTabStop(deleteRequest)
 .then((deleteRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of deleteRequest: ", deleteRequestResult);

@@ -1,16 +1,17 @@
 const clientId = "####-####-####-####-####";
 const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
-const documentsDir = "./";
+let requestDocument = fs.createReadStream("Sample.docx");
+let requestStyleApply = new model.StyleApply({
+    styleName: "Heading 1"
+})
 const applyStyleRequest = new model.ApplyStyleToDocumentElementOnlineRequest({
-    document: fs.createReadStream(documentsDir + "Sample.docx"),
-    styleApply: new model.StyleApply({
-        styleName: "Heading 1"
-    }),
+    document: requestDocument,
+    styleApply: requestStyleApply,
     styledNodePath: "paragraphs/1/paragraphFormat"
 });
 
-return wordsApi.applyStyleToDocumentElementOnline(applyStyleRequest)
+wordsApi.applyStyleToDocumentElementOnline(applyStyleRequest)
 .then((applyStyleRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of applyStyleRequest: ", applyStyleRequestResult);

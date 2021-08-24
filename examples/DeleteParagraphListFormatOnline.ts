@@ -1,13 +1,13 @@
 const clientId = "####-####-####-####-####";
 const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
-const documentsDir = "./";
+let requestDocument = fs.createReadStream("Sample.doc");
 const deleteRequest = new model.DeleteParagraphListFormatOnlineRequest({
-    document: fs.createReadStream(documentsDir + "Sample.doc"),
+    document: requestDocument,
     index: 0
 });
 
-return wordsApi.deleteParagraphListFormatOnline(deleteRequest)
+wordsApi.deleteParagraphListFormatOnline(deleteRequest)
 .then((deleteRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of deleteRequest: ", deleteRequestResult);

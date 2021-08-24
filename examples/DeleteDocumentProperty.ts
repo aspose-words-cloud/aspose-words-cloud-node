@@ -6,7 +6,7 @@ const deleteRequest = new model.DeleteDocumentPropertyRequest({
     propertyName: "testProp"
 });
 
-return wordsApi.deleteDocumentProperty(deleteRequest)
+wordsApi.deleteDocumentProperty(deleteRequest)
 .then((deleteRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of deleteRequest: ", deleteRequestResult);

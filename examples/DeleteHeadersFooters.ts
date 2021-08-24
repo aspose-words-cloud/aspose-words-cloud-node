@@ -6,7 +6,7 @@ const deleteRequest = new model.DeleteHeadersFootersRequest({
     sectionPath: ""
 });
 
-return wordsApi.deleteHeadersFooters(deleteRequest)
+wordsApi.deleteHeadersFooters(deleteRequest)
 .then((deleteRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of deleteRequest: ", deleteRequestResult);

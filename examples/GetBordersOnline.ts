@@ -1,13 +1,13 @@
 const clientId = "####-####-####-####-####";
 const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
-const documentsDir = "./";
+let requestDocument = fs.createReadStream("Sample.docx");
 const request = new model.GetBordersOnlineRequest({
-    document: fs.createReadStream(documentsDir + "Sample.docx"),
+    document: requestDocument,
     nodePath: "tables/1/rows/0/cells/0"
 });
 
-return wordsApi.getBordersOnline(request)
+wordsApi.getBordersOnline(request)
 .then((requestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of request: ", requestResult);

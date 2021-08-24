@@ -1,17 +1,18 @@
 const clientId = "####-####-####-####-####";
 const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
-const documentsDir = "./";
+let requestDocument = fs.createReadStream("Sample.docx");
+let requestField = new model.FieldUpdate({
+    fieldCode: "{ NUMPAGES }"
+})
 const updateRequest = new model.UpdateFieldOnlineRequest({
-    document: fs.createReadStream(documentsDir + "Sample.docx"),
+    document: requestDocument,
     index: 0,
-    field: new model.FieldUpdate({
-        fieldCode: "{ NUMPAGES }"
-    }),
+    field: requestField,
     nodePath: "sections/0/paragraphs/0"
 });
 
-return wordsApi.updateFieldOnline(updateRequest)
+wordsApi.updateFieldOnline(updateRequest)
 .then((updateRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of updateRequest: ", updateRequestResult);

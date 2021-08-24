@@ -1,14 +1,14 @@
 const clientId = "####-####-####-####-####";
 const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
-const documentsDir = "./";
+let requestDocument = fs.createReadStream("Sample.doc");
 const insertRequest = new model.InsertHeaderFooterOnlineRequest({
-    document: fs.createReadStream(documentsDir + "Sample.doc"),
+    document: requestDocument,
     sectionPath: "",
     headerFooterType: "FooterEven"
 });
 
-return wordsApi.insertHeaderFooterOnline(insertRequest)
+wordsApi.insertHeaderFooterOnline(insertRequest)
 .then((insertRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of insertRequest: ", insertRequestResult);

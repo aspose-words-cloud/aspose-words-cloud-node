@@ -5,7 +5,7 @@ const createRequest = new model.CreateDocumentRequest({
     fileName: "Sample.docx"
 });
 
-return wordsApi.createDocument(createRequest)
+wordsApi.createDocument(createRequest)
 .then((createRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of createRequest: ", createRequestResult);

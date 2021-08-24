@@ -1,13 +1,13 @@
 const clientId = "####-####-####-####-####";
 const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
-const documentsDir = "./";
+let requestDocument = fs.createReadStream("Sample.docx");
 const request = new model.GetStyleFromDocumentElementOnlineRequest({
-    document: fs.createReadStream(documentsDir + "Sample.docx"),
+    document: requestDocument,
     styledNodePath: "paragraphs/1/paragraphFormat"
 });
 
-return wordsApi.getStyleFromDocumentElementOnline(request)
+wordsApi.getStyleFromDocumentElementOnline(request)
 .then((requestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of request: ", requestResult);

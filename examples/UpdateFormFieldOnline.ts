@@ -1,22 +1,23 @@
 const clientId = "####-####-####-####-####";
 const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
-const documentsDir = "./";
+let requestDocument = fs.createReadStream("Sample.docx");
+let requestFormField = new model.FormFieldTextInput({
+    name: "FullName",
+    enabled: true,
+    calculateOnExit: true,
+    statusText: "",
+    textInputType: model.FormFieldTextInput.TextInputTypeEnum.Regular,
+    textInputDefault: "No name"
+})
 const updateRequest = new model.UpdateFormFieldOnlineRequest({
-    document: fs.createReadStream(documentsDir + "Sample.docx"),
+    document: requestDocument,
     index: 0,
-    formField: new model.FormFieldTextInput({
-        name: "FullName",
-        enabled: true,
-        calculateOnExit: true,
-        statusText: "",
-        textInputType: model.FormFieldTextInput.TextInputTypeEnum.Regular,
-        textInputDefault: "No name"
-    }),
+    formField: requestFormField,
     nodePath: "sections/0"
 });
 
-return wordsApi.updateFormFieldOnline(updateRequest)
+wordsApi.updateFormFieldOnline(updateRequest)
 .then((updateRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of updateRequest: ", updateRequestResult);

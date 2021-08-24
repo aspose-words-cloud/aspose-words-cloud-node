@@ -6,7 +6,7 @@ const request = new model.GetRunsRequest({
     paragraphPath: "sections/0/paragraphs/0"
 });
 
-return wordsApi.getRuns(request)
+wordsApi.getRuns(request)
 .then((requestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of request: ", requestResult);

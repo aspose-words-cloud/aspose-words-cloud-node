@@ -1,17 +1,18 @@
 const clientId = "####-####-####-####-####";
 const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
-const documentsDir = "./";
+let requestDocument = fs.createReadStream("Sample.doc");
+let requestRun = new model.RunUpdate({
+    text: "run with text"
+})
 const updateRequest = new model.UpdateRunOnlineRequest({
-    document: fs.createReadStream(documentsDir + "Sample.doc"),
-    run: new model.RunUpdate({
-        text: "run with text"
-    }),
+    document: requestDocument,
+    run: requestRun,
     paragraphPath: "paragraphs/1",
     index: 0
 });
 
-return wordsApi.updateRunOnline(updateRequest)
+wordsApi.updateRunOnline(updateRequest)
 .then((updateRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of updateRequest: ", updateRequestResult);

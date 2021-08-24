@@ -5,7 +5,7 @@ const request = new model.GetStylesRequest({
     name: "Sample.docx"
 });
 
-return wordsApi.getStyles(request)
+wordsApi.getStyles(request)
 .then((requestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of request: ", requestResult);

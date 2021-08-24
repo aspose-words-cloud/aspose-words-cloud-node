@@ -1,13 +1,13 @@
 const clientId = "####-####-####-####-####";
 const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
-const documentsDir = "./";
+let requestDocument = fs.createReadStream("Sample.docx");
 const searchRequest = new model.SearchOnlineRequest({
-    document: fs.createReadStream(documentsDir + "Sample.docx"),
+    document: requestDocument,
     pattern: "aspose"
 });
 
-return wordsApi.searchOnline(searchRequest)
+wordsApi.searchOnline(searchRequest)
 .then((searchRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of searchRequest: ", searchRequestResult);

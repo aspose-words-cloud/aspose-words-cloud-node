@@ -1,14 +1,14 @@
 const clientId = "####-####-####-####-####";
 const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
-const documentsDir = "./";
+let requestDocument = fs.createReadStream("Sample.docx");
 const renderRequest = new model.RenderPageOnlineRequest({
-    document: fs.createReadStream(documentsDir + "Sample.docx"),
+    document: requestDocument,
     pageIndex: 1,
     format: "bmp"
 });
 
-return wordsApi.renderPageOnline(renderRequest)
+wordsApi.renderPageOnline(renderRequest)
 .then((renderRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of renderRequest: ", renderRequestResult);

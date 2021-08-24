@@ -7,7 +7,7 @@ const insertRequest = new model.InsertHeaderFooterRequest({
     headerFooterType: "FooterEven"
 });
 
-return wordsApi.insertHeaderFooter(insertRequest)
+wordsApi.insertHeaderFooter(insertRequest)
 .then((insertRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of insertRequest: ", insertRequestResult);

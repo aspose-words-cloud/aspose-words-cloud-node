@@ -6,7 +6,7 @@ const deleteRequest = new model.DeleteParagraphListFormatRequest({
     index: 0
 });
 
-return wordsApi.deleteParagraphListFormat(deleteRequest)
+wordsApi.deleteParagraphListFormat(deleteRequest)
 .then((deleteRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of deleteRequest: ", deleteRequestResult);

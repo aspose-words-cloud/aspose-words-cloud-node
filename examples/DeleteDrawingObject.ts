@@ -6,7 +6,7 @@ const deleteRequest = new model.DeleteDrawingObjectRequest({
     index: 0
 });
 
-return wordsApi.deleteDrawingObject(deleteRequest)
+wordsApi.deleteDrawingObject(deleteRequest)
 .then((deleteRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of deleteRequest: ", deleteRequestResult);

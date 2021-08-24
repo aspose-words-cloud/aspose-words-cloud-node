@@ -7,7 +7,7 @@ const deleteRequest = new model.DeleteBorderRequest({
     nodePath: "tables/1/rows/0/cells/0"
 });
 
-return wordsApi.deleteBorder(deleteRequest)
+wordsApi.deleteBorder(deleteRequest)
 .then((deleteRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of deleteRequest: ", deleteRequestResult);

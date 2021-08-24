@@ -6,7 +6,7 @@ const request = new model.GetStyleRequest({
     styleName: "Heading 1"
 });
 
-return wordsApi.getStyle(request)
+wordsApi.getStyle(request)
 .then((requestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of request: ", requestResult);

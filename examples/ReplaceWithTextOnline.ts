@@ -1,17 +1,18 @@
 const clientId = "####-####-####-####-####";
 const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
-const documentsDir = "./";
+let requestDocument = fs.createReadStream("Sample.doc");
+let requestRangeText = new model.ReplaceRange({
+    text: "Replaced header"
+})
 const replaceRequest = new model.ReplaceWithTextOnlineRequest({
-    document: fs.createReadStream(documentsDir + "Sample.doc"),
+    document: requestDocument,
     rangeStartIdentifier: "id0.0.0",
-    rangeText: new model.ReplaceRange({
-        text: "Replaced header"
-    }),
+    rangeText: requestRangeText,
     rangeEndIdentifier: "id0.0.1"
 });
 
-return wordsApi.replaceWithTextOnline(replaceRequest)
+wordsApi.replaceWithTextOnline(replaceRequest)
 .then((replaceRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of replaceRequest: ", replaceRequestResult);

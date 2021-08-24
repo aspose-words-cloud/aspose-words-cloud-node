@@ -5,7 +5,7 @@ const request = new model.GetDocumentStatisticsRequest({
     name: "Sample.docx"
 });
 
-return wordsApi.getDocumentStatistics(request)
+wordsApi.getDocumentStatistics(request)
 .then((requestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of request: ", requestResult);

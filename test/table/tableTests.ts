@@ -75,8 +75,9 @@ describe("table", () => {
     describe("getTablesOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.GetTablesOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                document: requestDocument,
                 nodePath: ""
             });
 
@@ -161,8 +162,9 @@ describe("table", () => {
     describe("getTableOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.GetTableOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                document: requestDocument,
                 index: 1,
                 nodePath: ""
             });
@@ -245,8 +247,9 @@ describe("table", () => {
     describe("deleteTableOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.DeleteTableOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                document: requestDocument,
                 index: 1,
                 nodePath: ""
             });
@@ -301,12 +304,13 @@ describe("table", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestTable = new model.TableInsert({
+                    columnsCount: 5,
+                    rowsCount: 4
+                })
                 const request = new model.InsertTableRequest({
                     name: remoteFileName,
-                    table: new model.TableInsert({
-                        columnsCount: 5,
-                        rowsCount: 4
-                    }),
+                    table: requestTable,
                     nodePath: "",
                     folder: remoteDataFolder
                 });
@@ -332,12 +336,14 @@ describe("table", () => {
     describe("insertTableOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            let requestTable = new model.TableInsert({
+                columnsCount: 5,
+                rowsCount: 4
+            })
             const request = new model.InsertTableOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
-                table: new model.TableInsert({
-                    columnsCount: 5,
-                    rowsCount: 4
-                }),
+                document: requestDocument,
+                table: requestTable,
                 nodePath: ""
             });
 
@@ -362,12 +368,13 @@ describe("table", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestTable = new model.TableInsert({
+                    columnsCount: 5,
+                    rowsCount: 4
+                })
                 const request = new model.InsertTableRequest({
                     name: remoteFileName,
-                    table: new model.TableInsert({
-                        columnsCount: 5,
-                        rowsCount: 4
-                    }),
+                    table: requestTable,
                     folder: remoteDataFolder
                 });
 
@@ -424,8 +431,9 @@ describe("table", () => {
     describe("getTablePropertiesOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.GetTablePropertiesOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                document: requestDocument,
                 index: 1,
                 nodePath: ""
             });
@@ -482,16 +490,17 @@ describe("table", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestProperties = new model.TableProperties({
+                    alignment: model.TableProperties.AlignmentEnum.Right,
+                    allowAutoFit: false,
+                    bidi: true,
+                    bottomPadding: 1,
+                    cellSpacing: 2.0,
+                    styleOptions: model.TableProperties.StyleOptionsEnum.ColumnBands
+                })
                 const request = new model.UpdateTablePropertiesRequest({
                     name: remoteFileName,
-                    properties: new model.TableProperties({
-                        alignment: model.TableProperties.AlignmentEnum.Right,
-                        allowAutoFit: false,
-                        bidi: true,
-                        bottomPadding: 1,
-                        cellSpacing: 2.0,
-                        styleOptions: model.TableProperties.StyleOptionsEnum.ColumnBands
-                    }),
+                    properties: requestProperties,
                     index: 1,
                     nodePath: "",
                     folder: remoteDataFolder
@@ -518,16 +527,18 @@ describe("table", () => {
     describe("updateTablePropertiesOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            let requestProperties = new model.TableProperties({
+                alignment: model.TableProperties.AlignmentEnum.Right,
+                allowAutoFit: false,
+                bidi: true,
+                bottomPadding: 1,
+                cellSpacing: 2,
+                styleOptions: model.TableProperties.StyleOptionsEnum.ColumnBands
+            })
             const request = new model.UpdateTablePropertiesOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
-                properties: new model.TableProperties({
-                    alignment: model.TableProperties.AlignmentEnum.Right,
-                    allowAutoFit: false,
-                    bidi: true,
-                    bottomPadding: 1,
-                    cellSpacing: 2,
-                    styleOptions: model.TableProperties.StyleOptionsEnum.ColumnBands
-                }),
+                document: requestDocument,
+                properties: requestProperties,
                 index: 1,
                 nodePath: ""
             });
@@ -553,16 +564,17 @@ describe("table", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestProperties = new model.TableProperties({
+                    alignment: model.TableProperties.AlignmentEnum.Right,
+                    allowAutoFit: false,
+                    bidi: true,
+                    bottomPadding: 1.0,
+                    cellSpacing: 2.0,
+                    styleOptions: model.TableProperties.StyleOptionsEnum.ColumnBands
+                })
                 const request = new model.UpdateTablePropertiesRequest({
                     name: remoteFileName,
-                    properties: new model.TableProperties({
-                        alignment: model.TableProperties.AlignmentEnum.Right,
-                        allowAutoFit: false,
-                        bidi: true,
-                        bottomPadding: 1.0,
-                        cellSpacing: 2.0,
-                        styleOptions: model.TableProperties.StyleOptionsEnum.ColumnBands
-                    }),
+                    properties: requestProperties,
                     index: 1,
                     folder: remoteDataFolder
                 });
@@ -621,8 +633,9 @@ describe("table", () => {
     describe("getTableRowOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.GetTableRowOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                document: requestDocument,
                 tablePath: "tables/1",
                 index: 0
             });
@@ -671,8 +684,9 @@ describe("table", () => {
     describe("deleteTableRowOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.DeleteTableRowOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                document: requestDocument,
                 tablePath: "tables/1",
                 index: 0
             });
@@ -698,11 +712,12 @@ describe("table", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestRow = new model.TableRowInsert({
+                    columnsCount: 5
+                })
                 const request = new model.InsertTableRowRequest({
                     name: remoteFileName,
-                    row: new model.TableRowInsert({
-                        columnsCount: 5
-                    }),
+                    row: requestRow,
                     tablePath: "sections/0/tables/2",
                     folder: remoteDataFolder
                 });
@@ -726,11 +741,13 @@ describe("table", () => {
     describe("insertTableRowOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            let requestRow = new model.TableRowInsert({
+                columnsCount: 5
+            })
             const request = new model.InsertTableRowOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
-                row: new model.TableRowInsert({
-                    columnsCount: 5
-                }),
+                document: requestDocument,
+                row: requestRow,
                 tablePath: "sections/0/tables/2"
             });
 
@@ -780,8 +797,9 @@ describe("table", () => {
     describe("getTableRowFormatOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.GetTableRowFormatOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                document: requestDocument,
                 tablePath: "sections/0/tables/2",
                 index: 0
             });
@@ -807,14 +825,15 @@ describe("table", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestFormat = new model.TableRowFormat({
+                    allowBreakAcrossPages: true,
+                    headingFormat: true,
+                    height: 10.0,
+                    heightRule: model.TableRowFormat.HeightRuleEnum.Exactly
+                })
                 const request = new model.UpdateTableRowFormatRequest({
                     name: remoteFileName,
-                    format: new model.TableRowFormat({
-                        allowBreakAcrossPages: true,
-                        headingFormat: true,
-                        height: 10.0,
-                        heightRule: model.TableRowFormat.HeightRuleEnum.Exactly
-                    }),
+                    format: requestFormat,
                     tablePath: "sections/0/tables/2",
                     index: 0,
                     folder: remoteDataFolder
@@ -840,14 +859,16 @@ describe("table", () => {
     describe("updateTableRowFormatOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            let requestFormat = new model.TableRowFormat({
+                allowBreakAcrossPages: true,
+                headingFormat: true,
+                height: 10,
+                heightRule: model.TableRowFormat.HeightRuleEnum.Auto
+            })
             const request = new model.UpdateTableRowFormatOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
-                format: new model.TableRowFormat({
-                    allowBreakAcrossPages: true,
-                    headingFormat: true,
-                    height: 10,
-                    heightRule: model.TableRowFormat.HeightRuleEnum.Auto
-                }),
+                document: requestDocument,
+                format: requestFormat,
                 tablePath: "sections/0/tables/2",
                 index: 0
             });
@@ -898,8 +919,9 @@ describe("table", () => {
     describe("getTableCellOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.GetTableCellOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                document: requestDocument,
                 tableRowPath: "sections/0/tables/2/rows/0",
                 index: 0
             });
@@ -948,8 +970,9 @@ describe("table", () => {
     describe("deleteTableCellOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.DeleteTableCellOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                document: requestDocument,
                 tableRowPath: "sections/0/tables/2/rows/0",
                 index: 0
             });
@@ -975,10 +998,11 @@ describe("table", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestCell = new model.TableCellInsert({
+                })
                 const request = new model.InsertTableCellRequest({
                     name: remoteFileName,
-                    cell: new model.TableCellInsert({
-                    }),
+                    cell: requestCell,
                     tableRowPath: "sections/0/tables/2/rows/0",
                     folder: remoteDataFolder
                 });
@@ -1001,10 +1025,12 @@ describe("table", () => {
     describe("insertTableCellOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            let requestCell = new model.TableCellInsert({
+            })
             const request = new model.InsertTableCellOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
-                cell: new model.TableCellInsert({
-                }),
+                document: requestDocument,
+                cell: requestCell,
                 tableRowPath: "sections/0/tables/2/rows/0"
             });
 
@@ -1054,8 +1080,9 @@ describe("table", () => {
     describe("getTableCellFormatOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.GetTableCellFormatOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                document: requestDocument,
                 tableRowPath: "sections/0/tables/2/rows/0",
                 index: 0
             });
@@ -1081,14 +1108,15 @@ describe("table", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestFormat = new model.TableCellFormat({
+                    bottomPadding: 5.0,
+                    fitText: true,
+                    horizontalMerge: model.TableCellFormat.HorizontalMergeEnum.First,
+                    wrapText: true
+                })
                 const request = new model.UpdateTableCellFormatRequest({
                     name: remoteFileName,
-                    format: new model.TableCellFormat({
-                        bottomPadding: 5.0,
-                        fitText: true,
-                        horizontalMerge: model.TableCellFormat.HorizontalMergeEnum.First,
-                        wrapText: true
-                    }),
+                    format: requestFormat,
                     tableRowPath: "sections/0/tables/2/rows/0",
                     index: 0,
                     folder: remoteDataFolder
@@ -1114,14 +1142,16 @@ describe("table", () => {
     describe("updateTableCellFormatOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            let requestFormat = new model.TableCellFormat({
+                bottomPadding: 5,
+                fitText: true,
+                horizontalMerge: model.TableCellFormat.HorizontalMergeEnum.First,
+                wrapText: true
+            })
             const request = new model.UpdateTableCellFormatOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
-                format: new model.TableCellFormat({
-                    bottomPadding: 5,
-                    fitText: true,
-                    horizontalMerge: model.TableCellFormat.HorizontalMergeEnum.First,
-                    wrapText: true
-                }),
+                document: requestDocument,
+                format: requestFormat,
                 tableRowPath: "sections/0/tables/2/rows/0",
                 index: 0
             });
@@ -1171,8 +1201,9 @@ describe("table", () => {
     describe("renderTableOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.RenderTableOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                document: requestDocument,
                 format: "png",
                 index: 0,
                 nodePath: ""

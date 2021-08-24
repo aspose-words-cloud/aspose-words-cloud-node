@@ -6,7 +6,7 @@ const request = new model.GetDocumentDrawingObjectOleDataRequest({
     index: 0
 });
 
-return wordsApi.getDocumentDrawingObjectOleData(request)
+wordsApi.getDocumentDrawingObjectOleData(request)
 .then((requestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of request: ", requestResult);

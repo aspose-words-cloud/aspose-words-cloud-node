@@ -6,7 +6,7 @@ const request = new model.GetDocumentPropertyRequest({
     propertyName: "Author"
 });
 
-return wordsApi.getDocumentProperty(request)
+wordsApi.getDocumentProperty(request)
 .then((requestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of request: ", requestResult);

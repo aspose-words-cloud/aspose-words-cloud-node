@@ -5,7 +5,7 @@ const request = new model.GetDocumentFieldNamesRequest({
     name: "Sample.docx"
 });
 
-return wordsApi.getDocumentFieldNames(request)
+wordsApi.getDocumentFieldNames(request)
 .then((requestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of request: ", requestResult);

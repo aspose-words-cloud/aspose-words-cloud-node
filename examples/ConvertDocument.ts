@@ -1,13 +1,13 @@
 const clientId = "####-####-####-####-####";
 const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
-const documentsDir = "./";
+let requestDocument = fs.createReadStream("Sample.docx");
 const convertRequest = new model.ConvertDocumentRequest({
-    document: fs.createReadStream(documentsDir + "Sample.docx"),
+    document: requestDocument,
     format: "pdf"
 });
 
-return wordsApi.convertDocument(convertRequest)
+wordsApi.convertDocument(convertRequest)
 .then((convertRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of convertRequest: ", convertRequestResult);

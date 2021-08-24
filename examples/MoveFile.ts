@@ -6,7 +6,7 @@ const moveRequest = new model.MoveFileRequest({
     srcPath: "Sample.docx"
 });
 
-return wordsApi.moveFile(moveRequest)
+wordsApi.moveFile(moveRequest)
 .then((moveRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of moveRequest: ", moveRequestResult);

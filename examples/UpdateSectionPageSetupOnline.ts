@@ -1,19 +1,20 @@
 const clientId = "####-####-####-####-####";
 const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
-const documentsDir = "./";
+let requestDocument = fs.createReadStream("Sample.docx");
+let requestPageSetup = new model.PageSetup({
+    rtlGutter: true,
+    leftMargin: 10,
+    orientation: model.PageSetup.OrientationEnum.Landscape,
+    paperSize: model.PageSetup.PaperSizeEnum.A5
+})
 const updateRequest = new model.UpdateSectionPageSetupOnlineRequest({
-    document: fs.createReadStream(documentsDir + "Sample.docx"),
+    document: requestDocument,
     sectionIndex: 0,
-    pageSetup: new model.PageSetup({
-        rtlGutter: true,
-        leftMargin: 10,
-        orientation: model.PageSetup.OrientationEnum.Landscape,
-        paperSize: model.PageSetup.PaperSizeEnum.A5
-    })
+    pageSetup: requestPageSetup
 });
 
-return wordsApi.updateSectionPageSetupOnline(updateRequest)
+wordsApi.updateSectionPageSetupOnline(updateRequest)
 .then((updateRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of updateRequest: ", updateRequestResult);

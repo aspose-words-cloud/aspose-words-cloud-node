@@ -6,7 +6,7 @@ const request = new model.GetStyleFromDocumentElementRequest({
     styledNodePath: "paragraphs/1/paragraphFormat"
 });
 
-return wordsApi.getStyleFromDocumentElement(request)
+wordsApi.getStyleFromDocumentElement(request)
 .then((requestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of request: ", requestResult);

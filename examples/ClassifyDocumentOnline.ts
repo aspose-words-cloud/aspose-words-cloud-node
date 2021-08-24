@@ -1,13 +1,13 @@
 const clientId = "####-####-####-####-####";
 const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
-const documentsDir = "./";
+let requestDocument = fs.createReadStream("Sample.docx");
 const classifyRequest = new model.ClassifyDocumentOnlineRequest({
-    document: fs.createReadStream(documentsDir + "Sample.docx"),
+    document: requestDocument,
     bestClassesCount: "3"
 });
 
-return wordsApi.classifyDocumentOnline(classifyRequest)
+wordsApi.classifyDocumentOnline(classifyRequest)
 .then((classifyRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of classifyRequest: ", classifyRequestResult);

@@ -5,7 +5,7 @@ const request = new model.GetFilesListRequest({
     path: ""
 });
 
-return wordsApi.getFilesList(request)
+wordsApi.getFilesList(request)
 .then((requestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of request: ", requestResult);

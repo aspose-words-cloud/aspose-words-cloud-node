@@ -9,7 +9,7 @@ const splitRequest = new model.SplitDocumentRequest({
     to: 2
 });
 
-return wordsApi.splitDocument(splitRequest)
+wordsApi.splitDocument(splitRequest)
 .then((splitRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of splitRequest: ", splitRequestResult);

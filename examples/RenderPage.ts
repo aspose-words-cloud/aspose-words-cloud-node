@@ -7,7 +7,7 @@ const renderRequest = new model.RenderPageRequest({
     format: "bmp"
 });
 
-return wordsApi.renderPage(renderRequest)
+wordsApi.renderPage(renderRequest)
 .then((renderRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of renderRequest: ", renderRequestResult);

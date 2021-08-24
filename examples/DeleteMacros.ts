@@ -5,7 +5,7 @@ const deleteRequest = new model.DeleteMacrosRequest({
     name: "Sample.docx"
 });
 
-return wordsApi.deleteMacros(deleteRequest)
+wordsApi.deleteMacros(deleteRequest)
 .then((deleteRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of deleteRequest: ", deleteRequestResult);

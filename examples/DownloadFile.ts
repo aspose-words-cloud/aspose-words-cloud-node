@@ -5,7 +5,7 @@ const downloadRequest = new model.DownloadFileRequest({
     path: "Sample.docx"
 });
 
-return wordsApi.downloadFile(downloadRequest)
+wordsApi.downloadFile(downloadRequest)
 .then((downloadRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of downloadRequest: ", downloadRequestResult);

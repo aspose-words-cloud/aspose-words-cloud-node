@@ -5,7 +5,7 @@ const request = new model.GetDocumentProtectionRequest({
     name: "Sample.docx"
 });
 
-return wordsApi.getDocumentProtection(request)
+wordsApi.getDocumentProtection(request)
 .then((requestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of request: ", requestResult);

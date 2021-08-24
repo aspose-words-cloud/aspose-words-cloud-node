@@ -1,13 +1,13 @@
 const clientId = "####-####-####-####-####";
 const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
-const documentsDir = "./";
+let requestTemplate = fs.createReadStream("Sample.docx");
 const request = new model.GetDocumentFieldNamesOnlineRequest({
-    template: fs.createReadStream(documentsDir + "Sample.docx"),
+    template: requestTemplate,
     useNonMergeFields: true
 });
 
-return wordsApi.getDocumentFieldNamesOnline(request)
+wordsApi.getDocumentFieldNamesOnline(request)
 .then((requestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of request: ", requestResult);

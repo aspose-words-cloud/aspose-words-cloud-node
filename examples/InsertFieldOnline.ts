@@ -1,16 +1,17 @@
 const clientId = "####-####-####-####-####";
 const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
-const documentsDir = "./";
+let requestDocument = fs.createReadStream("Sample.docx");
+let requestField = new model.FieldInsert({
+    fieldCode: "{ NUMPAGES }"
+})
 const insertRequest = new model.InsertFieldOnlineRequest({
-    document: fs.createReadStream(documentsDir + "Sample.docx"),
-    field: new model.FieldInsert({
-        fieldCode: "{ NUMPAGES }"
-    }),
+    document: requestDocument,
+    field: requestField,
     nodePath: "sections/0/paragraphs/0"
 });
 
-return wordsApi.insertFieldOnline(insertRequest)
+wordsApi.insertFieldOnline(insertRequest)
 .then((insertRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of insertRequest: ", insertRequestResult);

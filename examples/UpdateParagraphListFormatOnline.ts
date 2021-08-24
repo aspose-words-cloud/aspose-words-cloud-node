@@ -1,16 +1,17 @@
 const clientId = "####-####-####-####-####";
 const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
-const documentsDir = "./";
+let requestDocument = fs.createReadStream("Sample.doc");
+let requestListFormatDto = new model.ListFormatUpdate({
+    listId: 2
+})
 const updateRequest = new model.UpdateParagraphListFormatOnlineRequest({
-    document: fs.createReadStream(documentsDir + "Sample.doc"),
-    listFormatDto: new model.ListFormatUpdate({
-        listId: 2
-    }),
+    document: requestDocument,
+    listFormatDto: requestListFormatDto,
     index: 0
 });
 
-return wordsApi.updateParagraphListFormatOnline(updateRequest)
+wordsApi.updateParagraphListFormatOnline(updateRequest)
 .then((updateRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of updateRequest: ", updateRequestResult);

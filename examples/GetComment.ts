@@ -6,7 +6,7 @@ const request = new model.GetCommentRequest({
     commentIndex: 0
 });
 
-return wordsApi.getComment(request)
+wordsApi.getComment(request)
 .then((requestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of request: ", requestResult);

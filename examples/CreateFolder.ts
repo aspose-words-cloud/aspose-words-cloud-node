@@ -5,7 +5,7 @@ const createRequest = new model.CreateFolderRequest({
     path: "/TestCreateFolder"
 });
 
-return wordsApi.createFolder(createRequest)
+wordsApi.createFolder(createRequest)
 .then((createRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of createRequest: ", createRequestResult);

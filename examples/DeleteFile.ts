@@ -5,7 +5,7 @@ const deleteRequest = new model.DeleteFileRequest({
     path: "Sample.docx"
 });
 
-return wordsApi.deleteFile(deleteRequest)
+wordsApi.deleteFile(deleteRequest)
 .then((deleteRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of deleteRequest: ", deleteRequestResult);

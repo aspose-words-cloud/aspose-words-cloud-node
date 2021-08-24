@@ -6,7 +6,7 @@ const request = new model.GetOfficeMathObjectRequest({
     index: 0
 });
 
-return wordsApi.getOfficeMathObject(request)
+wordsApi.getOfficeMathObject(request)
 .then((requestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of request: ", requestResult);

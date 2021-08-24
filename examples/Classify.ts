@@ -6,7 +6,7 @@ const classifyRequest = new model.ClassifyRequest({
     bestClassesCount: "3"
 });
 
-return wordsApi.classify(classifyRequest)
+wordsApi.classify(classifyRequest)
 .then((classifyRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of classifyRequest: ", classifyRequestResult);

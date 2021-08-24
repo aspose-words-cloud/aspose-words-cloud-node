@@ -7,7 +7,7 @@ const renderRequest = new model.RenderParagraphRequest({
     index: 0
 });
 
-return wordsApi.renderParagraph(renderRequest)
+wordsApi.renderParagraph(renderRequest)
 .then((renderRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of renderRequest: ", renderRequestResult);

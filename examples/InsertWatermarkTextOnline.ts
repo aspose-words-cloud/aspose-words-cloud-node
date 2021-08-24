@@ -1,16 +1,17 @@
 const clientId = "####-####-####-####-####";
 const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
-const documentsDir = "./";
+let requestDocument = fs.createReadStream("Sample.docx");
+let requestWatermarkText = new model.WatermarkText({
+    text: "This is the text",
+    rotationAngle: 90
+})
 const insertRequest = new model.InsertWatermarkTextOnlineRequest({
-    document: fs.createReadStream(documentsDir + "Sample.docx"),
-    watermarkText: new model.WatermarkText({
-        text: "This is the text",
-        rotationAngle: 90
-    })
+    document: requestDocument,
+    watermarkText: requestWatermarkText
 });
 
-return wordsApi.insertWatermarkTextOnline(insertRequest)
+wordsApi.insertWatermarkTextOnline(insertRequest)
 .then((insertRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of insertRequest: ", insertRequestResult);

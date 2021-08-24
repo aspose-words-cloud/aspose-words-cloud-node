@@ -5,7 +5,7 @@ const deleteRequest = new model.DeleteWatermarkRequest({
     name: "Sample.docx"
 });
 
-return wordsApi.deleteWatermark(deleteRequest)
+wordsApi.deleteWatermark(deleteRequest)
 .then((deleteRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of deleteRequest: ", deleteRequestResult);

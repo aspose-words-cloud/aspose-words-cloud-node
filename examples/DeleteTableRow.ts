@@ -7,7 +7,7 @@ const deleteRequest = new model.DeleteTableRowRequest({
     index: 0
 });
 
-return wordsApi.deleteTableRow(deleteRequest)
+wordsApi.deleteTableRow(deleteRequest)
 .then((deleteRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of deleteRequest: ", deleteRequestResult);

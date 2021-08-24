@@ -6,7 +6,7 @@ const request = new model.GetSectionRequest({
     sectionIndex: 0
 });
 
-return wordsApi.getSection(request)
+wordsApi.getSection(request)
 .then((requestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of request: ", requestResult);

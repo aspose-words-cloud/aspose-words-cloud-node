@@ -7,7 +7,7 @@ const request = new model.GetRunFontRequest({
     index: 0
 });
 
-return wordsApi.getRunFont(request)
+wordsApi.getRunFont(request)
 .then((requestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of request: ", requestResult);

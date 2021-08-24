@@ -5,7 +5,7 @@ const request = new model.GetDocumentHyperlinksRequest({
     name: "Sample.docx"
 });
 
-return wordsApi.getDocumentHyperlinks(request)
+wordsApi.getDocumentHyperlinks(request)
 .then((requestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of request: ", requestResult);

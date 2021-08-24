@@ -1,16 +1,17 @@
 const clientId = "####-####-####-####-####";
 const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
-const documentsDir = "./";
+let requestDocument = fs.createReadStream("Sample.docx");
+let requestCustomXmlPart = new model.CustomXmlPartUpdate({
+    data: "<data>Hello world</data>"
+})
 const updateRequest = new model.UpdateCustomXmlPartOnlineRequest({
-    document: fs.createReadStream(documentsDir + "Sample.docx"),
+    document: requestDocument,
     customXmlPartIndex: 0,
-    customXmlPart: new model.CustomXmlPartUpdate({
-        data: "<data>Hello world</data>"
-    })
+    customXmlPart: requestCustomXmlPart
 });
 
-return wordsApi.updateCustomXmlPartOnline(updateRequest)
+wordsApi.updateCustomXmlPartOnline(updateRequest)
 .then((updateRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of updateRequest: ", updateRequestResult);

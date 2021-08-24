@@ -41,14 +41,32 @@ describe("examples", () => {
     describe("exampleAcceptAllRevisions", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            const acceptRequest = new model.AcceptAllRevisionsRequest({
-                name: "Sample.docx"
+            const documentsDir = './ExamplesData/';
+            const fileName  = "test_doc.docx";
+
+            // Upload original document to cloud storage.
+            let myVar1 = fs.createReadStream(documentsDir + fileName);
+            let myVar2 = fileName;
+            const uploadFileRequest = new model.UploadFileRequest({
+                fileContent: myVar1,
+                path: myVar2
             });
 
-            return wordsApi.acceptAllRevisions(acceptRequest)
-            .then((acceptRequestResult) => {
+            wordsApi.uploadFile(uploadFileRequest)
+            .then((uploadFileRequestResult) => {
                 // tslint:disable-next-line:no-console
-                console.log("Result of acceptRequest: ", acceptRequestResult);
+                console.log("Result of UploadFileRequest: ", uploadFileRequestResult);
+                // Calls AcceptAllRevisions method for document in cloud.
+                let myVar3 = fileName;
+                const request = new model.AcceptAllRevisionsRequest({
+                    name: myVar3
+                });
+
+                wordsApi.acceptAllRevisions(request)
+                .then((requestResult) => {
+                    // tslint:disable-next-line:no-console
+                    console.log("Result of Request: ", requestResult);
+                });
             });
         });
     });
@@ -57,11 +75,12 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const acceptRequest = new model.AcceptAllRevisionsOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx")
+                document: requestDocument
             });
 
-            return wordsApi.acceptAllRevisionsOnline(acceptRequest)
+            wordsApi.acceptAllRevisionsOnline(acceptRequest)
             .then((acceptRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of acceptRequest: ", acceptRequestResult);
@@ -74,19 +93,22 @@ describe("examples", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const remoteFileName = "Sample.docx";
 
+            let requestDocumentListDocumentEntries0 = new model.DocumentEntry({
+                href: remoteFileName,
+                importFormatMode: "KeepSourceFormatting"
+            })
+            let requestDocumentListDocumentEntries = [
+                requestDocumentListDocumentEntries0
+            ]
+            let requestDocumentList = new model.DocumentEntryList({
+                documentEntries: requestDocumentListDocumentEntries
+            })
             const appendRequest = new model.AppendDocumentRequest({
                 name: remoteFileName,
-                documentList: new model.DocumentEntryList({
-                    documentEntries: [
-                        new model.DocumentEntry({
-                            href: remoteFileName,
-                            importFormatMode: "KeepSourceFormatting"
-                        })
-                    ]
-                })
+                documentList: requestDocumentList
             });
 
-            return wordsApi.appendDocument(appendRequest)
+            wordsApi.appendDocument(appendRequest)
             .then((appendRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of appendRequest: ", appendRequestResult);
@@ -98,19 +120,23 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
+            let requestDocumentListDocumentEntries0 = new model.DocumentEntry({
+                href: "Sample.docx",
+                importFormatMode: "KeepSourceFormatting"
+            })
+            let requestDocumentListDocumentEntries = [
+                requestDocumentListDocumentEntries0
+            ]
+            let requestDocumentList = new model.DocumentEntryList({
+                documentEntries: requestDocumentListDocumentEntries
+            })
             const appendRequest = new model.AppendDocumentOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
-                documentList: new model.DocumentEntryList({
-                    documentEntries: [
-                        new model.DocumentEntry({
-                            href: "Sample.docx",
-                            importFormatMode: "KeepSourceFormatting"
-                        })
-                    ]
-                })
+                document: requestDocument,
+                documentList: requestDocumentList
             });
 
-            return wordsApi.appendDocumentOnline(appendRequest)
+            wordsApi.appendDocumentOnline(appendRequest)
             .then((appendRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of appendRequest: ", appendRequestResult);
@@ -121,15 +147,16 @@ describe("examples", () => {
     describe("exampleApplyStyleToDocumentElement", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestStyleApply = new model.StyleApply({
+                styleName: "Heading 1"
+            })
             const applyStyleRequest = new model.ApplyStyleToDocumentElementRequest({
                 name: "Sample.docx",
-                styleApply: new model.StyleApply({
-                    styleName: "Heading 1"
-                }),
+                styleApply: requestStyleApply,
                 styledNodePath: "paragraphs/1/paragraphFormat"
             });
 
-            return wordsApi.applyStyleToDocumentElement(applyStyleRequest)
+            wordsApi.applyStyleToDocumentElement(applyStyleRequest)
             .then((applyStyleRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of applyStyleRequest: ", applyStyleRequestResult);
@@ -141,15 +168,17 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
+            let requestStyleApply = new model.StyleApply({
+                styleName: "Heading 1"
+            })
             const applyStyleRequest = new model.ApplyStyleToDocumentElementOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
-                styleApply: new model.StyleApply({
-                    styleName: "Heading 1"
-                }),
+                document: requestDocument,
+                styleApply: requestStyleApply,
                 styledNodePath: "paragraphs/1/paragraphFormat"
             });
 
-            return wordsApi.applyStyleToDocumentElementOnline(applyStyleRequest)
+            wordsApi.applyStyleToDocumentElementOnline(applyStyleRequest)
             .then((applyStyleRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of applyStyleRequest: ", applyStyleRequestResult);
@@ -160,19 +189,21 @@ describe("examples", () => {
     describe("exampleBuildReport", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestReportEngineSettingsReportBuildOptions = [
+                model.ReportBuildOptions.AllowMissingMembers,
+                model.ReportBuildOptions.RemoveEmptyParagraphs
+            ]
+            let requestReportEngineSettings = new model.ReportEngineSettings({
+                dataSourceType: model.ReportEngineSettings.DataSourceTypeEnum.Json,
+                reportBuildOptions: requestReportEngineSettingsReportBuildOptions
+            })
             const buildReportRequest = new model.BuildReportRequest({
                 name: "Sample.docx",
                 data: "Data.json",
-                reportEngineSettings: new model.ReportEngineSettings({
-                    dataSourceType: model.ReportEngineSettings.DataSourceTypeEnum.Json,
-                    reportBuildOptions: [
-                        model.ReportBuildOptions.AllowMissingMembers,
-                        model.ReportBuildOptions.RemoveEmptyParagraphs
-                    ]
-                })
+                reportEngineSettings: requestReportEngineSettings
             });
 
-            return wordsApi.buildReport(buildReportRequest)
+            wordsApi.buildReport(buildReportRequest)
             .then((buildReportRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of buildReportRequest: ", buildReportRequestResult);
@@ -184,16 +215,18 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestTemplate = fs.createReadStream(documentsDir + "Sample.docx");
+            let requestReportEngineSettings = new model.ReportEngineSettings({
+                dataSourceType: model.ReportEngineSettings.DataSourceTypeEnum.Json,
+                dataSourceName: "persons"
+            })
             const buildReportRequest = new model.BuildReportOnlineRequest({
-                template: fs.createReadStream(documentsDir + "Sample.docx"),
+                template: requestTemplate,
                 data: "Data.json",
-                reportEngineSettings: new model.ReportEngineSettings({
-                    dataSourceType: model.ReportEngineSettings.DataSourceTypeEnum.Json,
-                    dataSourceName: "persons"
-                })
+                reportEngineSettings: requestReportEngineSettings
             });
 
-            return wordsApi.buildReportOnline(buildReportRequest)
+            wordsApi.buildReportOnline(buildReportRequest)
             .then((buildReportRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of buildReportRequest: ", buildReportRequestResult);
@@ -209,7 +242,7 @@ describe("examples", () => {
                 bestClassesCount: "3"
             });
 
-            return wordsApi.classify(classifyRequest)
+            wordsApi.classify(classifyRequest)
             .then((classifyRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of classifyRequest: ", classifyRequestResult);
@@ -225,7 +258,7 @@ describe("examples", () => {
                 bestClassesCount: "3"
             });
 
-            return wordsApi.classifyDocument(classifyRequest)
+            wordsApi.classifyDocument(classifyRequest)
             .then((classifyRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of classifyRequest: ", classifyRequestResult);
@@ -237,12 +270,13 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const classifyRequest = new model.ClassifyDocumentOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 bestClassesCount: "3"
             });
 
-            return wordsApi.classifyDocumentOnline(classifyRequest)
+            wordsApi.classifyDocumentOnline(classifyRequest)
             .then((classifyRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of classifyRequest: ", classifyRequestResult);
@@ -253,17 +287,18 @@ describe("examples", () => {
     describe("exampleCompareDocument", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestCompareData = new model.CompareData({
+                author: "author",
+                comparingWithDocument: "TestCompareDocument2.doc",
+                dateTime: new Date('2015-10-26T00:00:00Z')
+            })
             const compareRequest = new model.CompareDocumentRequest({
                 name: "TestCompareDocument1.doc",
-                compareData: new model.CompareData({
-                    author: "author",
-                    comparingWithDocument: "TestCompareDocument2.doc",
-                    dateTime: new Date('2015-10-26T00:00:00Z')
-                }),
+                compareData: requestCompareData,
                 destFileName: "/TestCompareDocumentOut.doc"
             });
 
-            return wordsApi.compareDocument(compareRequest)
+            wordsApi.compareDocument(compareRequest)
             .then((compareRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of compareRequest: ", compareRequestResult);
@@ -275,18 +310,21 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "compareTestDoc1.doc");
+            let requestCompareData = new model.CompareData({
+                author: "author",
+                comparingWithDocument: "TestCompareDocument2.doc",
+                dateTime: new Date('2015-10-26T00:00:00Z')
+            })
+            let requestComparingDocument = fs.createReadStream(documentsDir + "compareTestDoc2.doc");
             const compareRequest = new model.CompareDocumentOnlineRequest({
-                document: fs.createReadStream(documentsDir + "compareTestDoc1.doc"),
-                compareData: new model.CompareData({
-                    author: "author",
-                    comparingWithDocument: "TestCompareDocument2.doc",
-                    dateTime: new Date('2015-10-26T00:00:00Z')
-                }),
-                comparingDocument: fs.createReadStream(documentsDir + "compareTestDoc2.doc"),
+                document: requestDocument,
+                compareData: requestCompareData,
+                comparingDocument: requestComparingDocument,
                 destFileName: "/TestCompareDocumentOut.doc"
             });
 
-            return wordsApi.compareDocumentOnline(compareRequest)
+            wordsApi.compareDocumentOnline(compareRequest)
             .then((compareRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of compareRequest: ", compareRequestResult);
@@ -298,12 +336,13 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const convertRequest = new model.ConvertDocumentRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 format: "pdf"
             });
 
-            return wordsApi.convertDocument(convertRequest)
+            wordsApi.convertDocument(convertRequest)
             .then((convertRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of convertRequest: ", convertRequestResult);
@@ -319,7 +358,7 @@ describe("examples", () => {
                 srcPath: "Sample.docx"
             });
 
-            return wordsApi.copyFile(copyRequest)
+            wordsApi.copyFile(copyRequest)
             .then((copyRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of copyRequest: ", copyRequestResult);
@@ -337,7 +376,7 @@ describe("examples", () => {
                 srcPath: folderToCopy + "Src"
             });
 
-            return wordsApi.copyFolder(copyRequest)
+            wordsApi.copyFolder(copyRequest)
             .then((copyRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of copyRequest: ", copyRequestResult);
@@ -348,14 +387,15 @@ describe("examples", () => {
     describe("exampleCopyStyle", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestStyleCopy = new model.StyleCopy({
+                styleName: "Heading 1"
+            })
             const copyRequest = new model.CopyStyleRequest({
                 name: "Sample.docx",
-                styleCopy: new model.StyleCopy({
-                    styleName: "Heading 1"
-                })
+                styleCopy: requestStyleCopy
             });
 
-            return wordsApi.copyStyle(copyRequest)
+            wordsApi.copyStyle(copyRequest)
             .then((copyRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of copyRequest: ", copyRequestResult);
@@ -367,14 +407,16 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
+            let requestStyleCopy = new model.StyleCopy({
+                styleName: "Heading 1"
+            })
             const copyRequest = new model.CopyStyleOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
-                styleCopy: new model.StyleCopy({
-                    styleName: "Heading 1"
-                })
+                document: requestDocument,
+                styleCopy: requestStyleCopy
             });
 
-            return wordsApi.copyStyleOnline(copyRequest)
+            wordsApi.copyStyleOnline(copyRequest)
             .then((copyRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of copyRequest: ", copyRequestResult);
@@ -389,7 +431,7 @@ describe("examples", () => {
                 fileName: "Sample.docx"
             });
 
-            return wordsApi.createDocument(createRequest)
+            wordsApi.createDocument(createRequest)
             .then((createRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of createRequest: ", createRequestResult);
@@ -404,7 +446,7 @@ describe("examples", () => {
                 path: "/TestCreateFolder"
             });
 
-            return wordsApi.createFolder(createRequest)
+            wordsApi.createFolder(createRequest)
             .then((createRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of createRequest: ", createRequestResult);
@@ -415,15 +457,16 @@ describe("examples", () => {
     describe("exampleCreateOrUpdateDocumentProperty", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestProperty = new model.DocumentPropertyCreateOrUpdate({
+                value: "Imran Anwar"
+            })
             const createRequest = new model.CreateOrUpdateDocumentPropertyRequest({
                 name: "Sample.docx",
                 propertyName: "AsposeAuthor",
-                property: new model.DocumentPropertyCreateOrUpdate({
-                    value: "Imran Anwar"
-                })
+                property: requestProperty
             });
 
-            return wordsApi.createOrUpdateDocumentProperty(createRequest)
+            wordsApi.createOrUpdateDocumentProperty(createRequest)
             .then((createRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of createRequest: ", createRequestResult);
@@ -435,15 +478,17 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
+            let requestProperty = new model.DocumentPropertyCreateOrUpdate({
+                value: "Imran Anwar"
+            })
             const createRequest = new model.CreateOrUpdateDocumentPropertyOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 propertyName: "AsposeAuthor",
-                property: new model.DocumentPropertyCreateOrUpdate({
-                    value: "Imran Anwar"
-                })
+                property: requestProperty
             });
 
-            return wordsApi.createOrUpdateDocumentPropertyOnline(createRequest)
+            wordsApi.createOrUpdateDocumentPropertyOnline(createRequest)
             .then((createRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of createRequest: ", createRequestResult);
@@ -459,7 +504,7 @@ describe("examples", () => {
                 index: 0
             });
 
-            return wordsApi.deleteAllParagraphTabStops(deleteRequest)
+            wordsApi.deleteAllParagraphTabStops(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -471,12 +516,13 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const deleteRequest = new model.DeleteAllParagraphTabStopsOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 index: 0
             });
 
-            return wordsApi.deleteAllParagraphTabStopsOnline(deleteRequest)
+            wordsApi.deleteAllParagraphTabStopsOnline(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -493,7 +539,7 @@ describe("examples", () => {
                 nodePath: "tables/1/rows/0/cells/0"
             });
 
-            return wordsApi.deleteBorder(deleteRequest)
+            wordsApi.deleteBorder(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -505,13 +551,14 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const deleteRequest = new model.DeleteBorderOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 borderType: "left",
                 nodePath: "tables/1/rows/0/cells/0"
             });
 
-            return wordsApi.deleteBorderOnline(deleteRequest)
+            wordsApi.deleteBorderOnline(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -527,7 +574,7 @@ describe("examples", () => {
                 nodePath: "tables/1/rows/0/cells/0"
             });
 
-            return wordsApi.deleteBorders(deleteRequest)
+            wordsApi.deleteBorders(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -539,12 +586,13 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const deleteRequest = new model.DeleteBordersOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 nodePath: "tables/1/rows/0/cells/0"
             });
 
-            return wordsApi.deleteBordersOnline(deleteRequest)
+            wordsApi.deleteBordersOnline(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -560,7 +608,7 @@ describe("examples", () => {
                 commentIndex: 0
             });
 
-            return wordsApi.deleteComment(deleteRequest)
+            wordsApi.deleteComment(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -572,12 +620,13 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const deleteRequest = new model.DeleteCommentOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 commentIndex: 0
             });
 
-            return wordsApi.deleteCommentOnline(deleteRequest)
+            wordsApi.deleteCommentOnline(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -592,7 +641,7 @@ describe("examples", () => {
                 name: "Sample.docx"
             });
 
-            return wordsApi.deleteComments(deleteRequest)
+            wordsApi.deleteComments(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -604,11 +653,12 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const deleteRequest = new model.DeleteCommentsOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx")
+                document: requestDocument
             });
 
-            return wordsApi.deleteCommentsOnline(deleteRequest)
+            wordsApi.deleteCommentsOnline(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -624,7 +674,7 @@ describe("examples", () => {
                 customXmlPartIndex: 0
             });
 
-            return wordsApi.deleteCustomXmlPart(deleteRequest)
+            wordsApi.deleteCustomXmlPart(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -636,12 +686,13 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const deleteRequest = new model.DeleteCustomXmlPartOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 customXmlPartIndex: 0
             });
 
-            return wordsApi.deleteCustomXmlPartOnline(deleteRequest)
+            wordsApi.deleteCustomXmlPartOnline(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -656,7 +707,7 @@ describe("examples", () => {
                 name: "Sample.docx"
             });
 
-            return wordsApi.deleteCustomXmlParts(deleteRequest)
+            wordsApi.deleteCustomXmlParts(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -668,11 +719,12 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const deleteRequest = new model.DeleteCustomXmlPartsOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx")
+                document: requestDocument
             });
 
-            return wordsApi.deleteCustomXmlPartsOnline(deleteRequest)
+            wordsApi.deleteCustomXmlPartsOnline(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -688,7 +740,7 @@ describe("examples", () => {
                 propertyName: "testProp"
             });
 
-            return wordsApi.deleteDocumentProperty(deleteRequest)
+            wordsApi.deleteDocumentProperty(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -700,12 +752,13 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const deleteRequest = new model.DeleteDocumentPropertyOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 propertyName: "testProp"
             });
 
-            return wordsApi.deleteDocumentPropertyOnline(deleteRequest)
+            wordsApi.deleteDocumentPropertyOnline(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -721,7 +774,7 @@ describe("examples", () => {
                 index: 0
             });
 
-            return wordsApi.deleteDrawingObject(deleteRequest)
+            wordsApi.deleteDrawingObject(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -733,12 +786,13 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const deleteRequest = new model.DeleteDrawingObjectOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 index: 0
             });
 
-            return wordsApi.deleteDrawingObjectOnline(deleteRequest)
+            wordsApi.deleteDrawingObjectOnline(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -754,7 +808,7 @@ describe("examples", () => {
                 index: 0
             });
 
-            return wordsApi.deleteField(deleteRequest)
+            wordsApi.deleteField(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -766,13 +820,14 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const deleteRequest = new model.DeleteFieldOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 index: 0,
                 nodePath: "sections/0/paragraphs/0"
             });
 
-            return wordsApi.deleteFieldOnline(deleteRequest)
+            wordsApi.deleteFieldOnline(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -787,7 +842,7 @@ describe("examples", () => {
                 name: "Sample.docx"
             });
 
-            return wordsApi.deleteFields(deleteRequest)
+            wordsApi.deleteFields(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -799,11 +854,12 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const deleteRequest = new model.DeleteFieldsOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx")
+                document: requestDocument
             });
 
-            return wordsApi.deleteFieldsOnline(deleteRequest)
+            wordsApi.deleteFieldsOnline(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -818,7 +874,7 @@ describe("examples", () => {
                 path: "Sample.docx"
             });
 
-            return wordsApi.deleteFile(deleteRequest)
+            wordsApi.deleteFile(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -833,7 +889,7 @@ describe("examples", () => {
                 path: ""
             });
 
-            return wordsApi.deleteFolder(deleteRequest)
+            wordsApi.deleteFolder(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -849,7 +905,7 @@ describe("examples", () => {
                 index: 0
             });
 
-            return wordsApi.deleteFootnote(deleteRequest)
+            wordsApi.deleteFootnote(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -861,12 +917,13 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.doc");
             const deleteRequest = new model.DeleteFootnoteOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.doc"),
+                document: requestDocument,
                 index: 0
             });
 
-            return wordsApi.deleteFootnoteOnline(deleteRequest)
+            wordsApi.deleteFootnoteOnline(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -882,7 +939,7 @@ describe("examples", () => {
                 index: 0
             });
 
-            return wordsApi.deleteFormField(deleteRequest)
+            wordsApi.deleteFormField(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -894,13 +951,14 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const deleteRequest = new model.DeleteFormFieldOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 index: 0,
                 nodePath: "sections/0"
             });
 
-            return wordsApi.deleteFormFieldOnline(deleteRequest)
+            wordsApi.deleteFormFieldOnline(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -917,7 +975,7 @@ describe("examples", () => {
                 index: 0
             });
 
-            return wordsApi.deleteHeaderFooter(deleteRequest)
+            wordsApi.deleteHeaderFooter(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -929,13 +987,14 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.doc");
             const deleteRequest = new model.DeleteHeaderFooterOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.doc"),
+                document: requestDocument,
                 sectionPath: "",
                 index: 0
             });
 
-            return wordsApi.deleteHeaderFooterOnline(deleteRequest)
+            wordsApi.deleteHeaderFooterOnline(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -951,7 +1010,7 @@ describe("examples", () => {
                 sectionPath: ""
             });
 
-            return wordsApi.deleteHeadersFooters(deleteRequest)
+            wordsApi.deleteHeadersFooters(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -963,12 +1022,13 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.doc");
             const deleteRequest = new model.DeleteHeadersFootersOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.doc"),
+                document: requestDocument,
                 sectionPath: ""
             });
 
-            return wordsApi.deleteHeadersFootersOnline(deleteRequest)
+            wordsApi.deleteHeadersFootersOnline(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -983,7 +1043,7 @@ describe("examples", () => {
                 name: "Sample.docx"
             });
 
-            return wordsApi.deleteMacros(deleteRequest)
+            wordsApi.deleteMacros(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -995,11 +1055,12 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const deleteRequest = new model.DeleteMacrosOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx")
+                document: requestDocument
             });
 
-            return wordsApi.deleteMacrosOnline(deleteRequest)
+            wordsApi.deleteMacrosOnline(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -1015,7 +1076,7 @@ describe("examples", () => {
                 index: 0
             });
 
-            return wordsApi.deleteOfficeMathObject(deleteRequest)
+            wordsApi.deleteOfficeMathObject(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -1027,12 +1088,13 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const deleteRequest = new model.DeleteOfficeMathObjectOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 index: 0
             });
 
-            return wordsApi.deleteOfficeMathObjectOnline(deleteRequest)
+            wordsApi.deleteOfficeMathObjectOnline(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -1048,7 +1110,7 @@ describe("examples", () => {
                 index: 0
             });
 
-            return wordsApi.deleteParagraph(deleteRequest)
+            wordsApi.deleteParagraph(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -1064,7 +1126,7 @@ describe("examples", () => {
                 index: 0
             });
 
-            return wordsApi.deleteParagraphListFormat(deleteRequest)
+            wordsApi.deleteParagraphListFormat(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -1076,12 +1138,13 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.doc");
             const deleteRequest = new model.DeleteParagraphListFormatOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.doc"),
+                document: requestDocument,
                 index: 0
             });
 
-            return wordsApi.deleteParagraphListFormatOnline(deleteRequest)
+            wordsApi.deleteParagraphListFormatOnline(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -1093,12 +1156,13 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const deleteRequest = new model.DeleteParagraphOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 index: 0
             });
 
-            return wordsApi.deleteParagraphOnline(deleteRequest)
+            wordsApi.deleteParagraphOnline(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -1115,7 +1179,7 @@ describe("examples", () => {
                 index: 0
             });
 
-            return wordsApi.deleteParagraphTabStop(deleteRequest)
+            wordsApi.deleteParagraphTabStop(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -1127,13 +1191,14 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const deleteRequest = new model.DeleteParagraphTabStopOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 position: 72.0,
                 index: 0
             });
 
-            return wordsApi.deleteParagraphTabStopOnline(deleteRequest)
+            wordsApi.deleteParagraphTabStopOnline(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -1150,7 +1215,7 @@ describe("examples", () => {
                 index: 0
             });
 
-            return wordsApi.deleteRun(deleteRequest)
+            wordsApi.deleteRun(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -1162,13 +1227,14 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.doc");
             const deleteRequest = new model.DeleteRunOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.doc"),
+                document: requestDocument,
                 paragraphPath: "paragraphs/1",
                 index: 0
             });
 
-            return wordsApi.deleteRunOnline(deleteRequest)
+            wordsApi.deleteRunOnline(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -1184,7 +1250,7 @@ describe("examples", () => {
                 sectionIndex: 0
             });
 
-            return wordsApi.deleteSection(deleteRequest)
+            wordsApi.deleteSection(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -1196,12 +1262,13 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const deleteRequest = new model.DeleteSectionOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 sectionIndex: 0
             });
 
-            return wordsApi.deleteSectionOnline(deleteRequest)
+            wordsApi.deleteSectionOnline(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -1217,7 +1284,7 @@ describe("examples", () => {
                 index: 1
             });
 
-            return wordsApi.deleteTable(deleteRequest)
+            wordsApi.deleteTable(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -1234,7 +1301,7 @@ describe("examples", () => {
                 index: 0
             });
 
-            return wordsApi.deleteTableCell(deleteRequest)
+            wordsApi.deleteTableCell(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -1246,13 +1313,14 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const deleteRequest = new model.DeleteTableCellOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 tableRowPath: "sections/0/tables/2/rows/0",
                 index: 0
             });
 
-            return wordsApi.deleteTableCellOnline(deleteRequest)
+            wordsApi.deleteTableCellOnline(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -1264,12 +1332,13 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const deleteRequest = new model.DeleteTableOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 index: 1
             });
 
-            return wordsApi.deleteTableOnline(deleteRequest)
+            wordsApi.deleteTableOnline(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -1286,7 +1355,7 @@ describe("examples", () => {
                 index: 0
             });
 
-            return wordsApi.deleteTableRow(deleteRequest)
+            wordsApi.deleteTableRow(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -1298,13 +1367,14 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const deleteRequest = new model.DeleteTableRowOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 tablePath: "tables/1",
                 index: 0
             });
 
-            return wordsApi.deleteTableRowOnline(deleteRequest)
+            wordsApi.deleteTableRowOnline(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -1319,7 +1389,7 @@ describe("examples", () => {
                 name: "Sample.docx"
             });
 
-            return wordsApi.deleteWatermark(deleteRequest)
+            wordsApi.deleteWatermark(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -1331,11 +1401,12 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const deleteRequest = new model.DeleteWatermarkOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx")
+                document: requestDocument
             });
 
-            return wordsApi.deleteWatermarkOnline(deleteRequest)
+            wordsApi.deleteWatermarkOnline(deleteRequest)
             .then((deleteRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of deleteRequest: ", deleteRequestResult);
@@ -1350,7 +1421,7 @@ describe("examples", () => {
                 path: "Sample.docx"
             });
 
-            return wordsApi.downloadFile(downloadRequest)
+            wordsApi.downloadFile(downloadRequest)
             .then((downloadRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of downloadRequest: ", downloadRequestResult);
@@ -1366,7 +1437,7 @@ describe("examples", () => {
                 data: "TestExecuteTemplateData.txt"
             });
 
-            return wordsApi.executeMailMerge(mailMergeRequest)
+            wordsApi.executeMailMerge(mailMergeRequest)
             .then((mailMergeRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of mailMergeRequest: ", mailMergeRequestResult);
@@ -1378,12 +1449,14 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestTemplate = fs.createReadStream(documentsDir + "TestExecuteTemplate.doc");
+            let requestData = fs.createReadStream(documentsDir + "TestExecuteTemplateData.txt");
             const mailMergeRequest = new model.ExecuteMailMergeOnlineRequest({
-                template: fs.createReadStream(documentsDir + "TestExecuteTemplate.doc"),
-                data: fs.createReadStream(documentsDir + "TestExecuteTemplateData.txt")
+                template: requestTemplate,
+                data: requestData
             });
 
-            return wordsApi.executeMailMergeOnline(mailMergeRequest)
+            wordsApi.executeMailMergeOnline(mailMergeRequest)
             .then((mailMergeRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of mailMergeRequest: ", mailMergeRequestResult);
@@ -1397,7 +1470,7 @@ describe("examples", () => {
             const request = new model.GetAvailableFontsRequest({
             });
 
-            return wordsApi.getAvailableFonts(request)
+            wordsApi.getAvailableFonts(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -1413,7 +1486,7 @@ describe("examples", () => {
                 bookmarkName: "aspose"
             });
 
-            return wordsApi.getBookmarkByName(request)
+            wordsApi.getBookmarkByName(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -1425,12 +1498,13 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const request = new model.GetBookmarkByNameOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 bookmarkName: "aspose"
             });
 
-            return wordsApi.getBookmarkByNameOnline(request)
+            wordsApi.getBookmarkByNameOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -1445,7 +1519,7 @@ describe("examples", () => {
                 name: "Sample.docx"
             });
 
-            return wordsApi.getBookmarks(request)
+            wordsApi.getBookmarks(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -1457,11 +1531,12 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const request = new model.GetBookmarksOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx")
+                document: requestDocument
             });
 
-            return wordsApi.getBookmarksOnline(request)
+            wordsApi.getBookmarksOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -1478,7 +1553,7 @@ describe("examples", () => {
                 nodePath: "tables/1/rows/0/cells/0"
             });
 
-            return wordsApi.getBorder(request)
+            wordsApi.getBorder(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -1490,13 +1565,14 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const request = new model.GetBorderOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 borderType: "left",
                 nodePath: "tables/1/rows/0/cells/0"
             });
 
-            return wordsApi.getBorderOnline(request)
+            wordsApi.getBorderOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -1512,7 +1588,7 @@ describe("examples", () => {
                 nodePath: "tables/1/rows/0/cells/0"
             });
 
-            return wordsApi.getBorders(request)
+            wordsApi.getBorders(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -1524,12 +1600,13 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const request = new model.GetBordersOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 nodePath: "tables/1/rows/0/cells/0"
             });
 
-            return wordsApi.getBordersOnline(request)
+            wordsApi.getBordersOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -1545,7 +1622,7 @@ describe("examples", () => {
                 commentIndex: 0
             });
 
-            return wordsApi.getComment(request)
+            wordsApi.getComment(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -1557,12 +1634,13 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const request = new model.GetCommentOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 commentIndex: 0
             });
 
-            return wordsApi.getCommentOnline(request)
+            wordsApi.getCommentOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -1577,7 +1655,7 @@ describe("examples", () => {
                 name: "Sample.docx"
             });
 
-            return wordsApi.getComments(request)
+            wordsApi.getComments(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -1589,11 +1667,12 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const request = new model.GetCommentsOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx")
+                document: requestDocument
             });
 
-            return wordsApi.getCommentsOnline(request)
+            wordsApi.getCommentsOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -1609,7 +1688,7 @@ describe("examples", () => {
                 customXmlPartIndex: 0
             });
 
-            return wordsApi.getCustomXmlPart(request)
+            wordsApi.getCustomXmlPart(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -1621,12 +1700,13 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const request = new model.GetCustomXmlPartOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 customXmlPartIndex: 0
             });
 
-            return wordsApi.getCustomXmlPartOnline(request)
+            wordsApi.getCustomXmlPartOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -1641,7 +1721,7 @@ describe("examples", () => {
                 name: "Sample.docx"
             });
 
-            return wordsApi.getCustomXmlParts(request)
+            wordsApi.getCustomXmlParts(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -1653,11 +1733,12 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const request = new model.GetCustomXmlPartsOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx")
+                document: requestDocument
             });
 
-            return wordsApi.getCustomXmlPartsOnline(request)
+            wordsApi.getCustomXmlPartsOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -1672,7 +1753,7 @@ describe("examples", () => {
                 documentName: "Sample.docx"
             });
 
-            return wordsApi.getDocument(request)
+            wordsApi.getDocument(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -1688,7 +1769,7 @@ describe("examples", () => {
                 index: 0
             });
 
-            return wordsApi.getDocumentDrawingObjectByIndex(request)
+            wordsApi.getDocumentDrawingObjectByIndex(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -1700,13 +1781,14 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const request = new model.GetDocumentDrawingObjectByIndexOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 index: 0,
                 nodePath: "sections/0"
             });
 
-            return wordsApi.getDocumentDrawingObjectByIndexOnline(request)
+            wordsApi.getDocumentDrawingObjectByIndexOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -1722,7 +1804,7 @@ describe("examples", () => {
                 index: 0
             });
 
-            return wordsApi.getDocumentDrawingObjectImageData(request)
+            wordsApi.getDocumentDrawingObjectImageData(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -1734,13 +1816,14 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const request = new model.GetDocumentDrawingObjectImageDataOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 index: 0,
                 nodePath: "sections/0"
             });
 
-            return wordsApi.getDocumentDrawingObjectImageDataOnline(request)
+            wordsApi.getDocumentDrawingObjectImageDataOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -1756,7 +1839,7 @@ describe("examples", () => {
                 index: 0
             });
 
-            return wordsApi.getDocumentDrawingObjectOleData(request)
+            wordsApi.getDocumentDrawingObjectOleData(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -1768,13 +1851,14 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const request = new model.GetDocumentDrawingObjectOleDataOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 index: 0,
                 nodePath: "sections/0"
             });
 
-            return wordsApi.getDocumentDrawingObjectOleDataOnline(request)
+            wordsApi.getDocumentDrawingObjectOleDataOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -1789,7 +1873,7 @@ describe("examples", () => {
                 name: "Sample.docx"
             });
 
-            return wordsApi.getDocumentDrawingObjects(request)
+            wordsApi.getDocumentDrawingObjects(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -1801,12 +1885,13 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const request = new model.GetDocumentDrawingObjectsOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 nodePath: "sections/0"
             });
 
-            return wordsApi.getDocumentDrawingObjectsOnline(request)
+            wordsApi.getDocumentDrawingObjectsOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -1821,7 +1906,7 @@ describe("examples", () => {
                 name: "Sample.docx"
             });
 
-            return wordsApi.getDocumentFieldNames(request)
+            wordsApi.getDocumentFieldNames(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -1833,12 +1918,13 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestTemplate = fs.createReadStream(documentsDir + "Sample.docx");
             const request = new model.GetDocumentFieldNamesOnlineRequest({
-                template: fs.createReadStream(documentsDir + "Sample.docx"),
+                template: requestTemplate,
                 useNonMergeFields: true
             });
 
-            return wordsApi.getDocumentFieldNamesOnline(request)
+            wordsApi.getDocumentFieldNamesOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -1854,7 +1940,7 @@ describe("examples", () => {
                 hyperlinkIndex: 0
             });
 
-            return wordsApi.getDocumentHyperlinkByIndex(request)
+            wordsApi.getDocumentHyperlinkByIndex(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -1866,12 +1952,13 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const request = new model.GetDocumentHyperlinkByIndexOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 hyperlinkIndex: 0
             });
 
-            return wordsApi.getDocumentHyperlinkByIndexOnline(request)
+            wordsApi.getDocumentHyperlinkByIndexOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -1886,7 +1973,7 @@ describe("examples", () => {
                 name: "Sample.docx"
             });
 
-            return wordsApi.getDocumentHyperlinks(request)
+            wordsApi.getDocumentHyperlinks(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -1898,11 +1985,12 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const request = new model.GetDocumentHyperlinksOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx")
+                document: requestDocument
             });
 
-            return wordsApi.getDocumentHyperlinksOnline(request)
+            wordsApi.getDocumentHyperlinksOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -1917,7 +2005,7 @@ describe("examples", () => {
                 name: "Sample.docx"
             });
 
-            return wordsApi.getDocumentProperties(request)
+            wordsApi.getDocumentProperties(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -1929,11 +2017,12 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const request = new model.GetDocumentPropertiesOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx")
+                document: requestDocument
             });
 
-            return wordsApi.getDocumentPropertiesOnline(request)
+            wordsApi.getDocumentPropertiesOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -1949,7 +2038,7 @@ describe("examples", () => {
                 propertyName: "Author"
             });
 
-            return wordsApi.getDocumentProperty(request)
+            wordsApi.getDocumentProperty(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -1961,12 +2050,13 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const request = new model.GetDocumentPropertyOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 propertyName: "Author"
             });
 
-            return wordsApi.getDocumentPropertyOnline(request)
+            wordsApi.getDocumentPropertyOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -1981,7 +2071,7 @@ describe("examples", () => {
                 name: "Sample.docx"
             });
 
-            return wordsApi.getDocumentProtection(request)
+            wordsApi.getDocumentProtection(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -1993,11 +2083,12 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const request = new model.GetDocumentProtectionOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx")
+                document: requestDocument
             });
 
-            return wordsApi.getDocumentProtectionOnline(request)
+            wordsApi.getDocumentProtectionOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2012,7 +2103,7 @@ describe("examples", () => {
                 name: "Sample.docx"
             });
 
-            return wordsApi.getDocumentStatistics(request)
+            wordsApi.getDocumentStatistics(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2024,11 +2115,12 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const request = new model.GetDocumentStatisticsOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx")
+                document: requestDocument
             });
 
-            return wordsApi.getDocumentStatisticsOnline(request)
+            wordsApi.getDocumentStatisticsOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2045,7 +2137,7 @@ describe("examples", () => {
                 outPath: "/TestGetDocumentWithFormatAndOutPath.text"
             });
 
-            return wordsApi.getDocumentWithFormat(request)
+            wordsApi.getDocumentWithFormat(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2061,7 +2153,7 @@ describe("examples", () => {
                 index: 0
             });
 
-            return wordsApi.getField(request)
+            wordsApi.getField(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2073,13 +2165,14 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const request = new model.GetFieldOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 index: 0,
                 nodePath: "sections/0/paragraphs/0"
             });
 
-            return wordsApi.getFieldOnline(request)
+            wordsApi.getFieldOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2094,7 +2187,7 @@ describe("examples", () => {
                 name: "Sample.docx"
             });
 
-            return wordsApi.getFields(request)
+            wordsApi.getFields(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2106,12 +2199,13 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const request = new model.GetFieldsOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 nodePath: "sections/0"
             });
 
-            return wordsApi.getFieldsOnline(request)
+            wordsApi.getFieldsOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2126,7 +2220,7 @@ describe("examples", () => {
                 path: ""
             });
 
-            return wordsApi.getFilesList(request)
+            wordsApi.getFilesList(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2142,7 +2236,7 @@ describe("examples", () => {
                 index: 0
             });
 
-            return wordsApi.getFootnote(request)
+            wordsApi.getFootnote(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2154,12 +2248,13 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.doc");
             const request = new model.GetFootnoteOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.doc"),
+                document: requestDocument,
                 index: 0
             });
 
-            return wordsApi.getFootnoteOnline(request)
+            wordsApi.getFootnoteOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2174,7 +2269,7 @@ describe("examples", () => {
                 name: "Sample.docx"
             });
 
-            return wordsApi.getFootnotes(request)
+            wordsApi.getFootnotes(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2186,11 +2281,12 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.doc");
             const request = new model.GetFootnotesOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.doc")
+                document: requestDocument
             });
 
-            return wordsApi.getFootnotesOnline(request)
+            wordsApi.getFootnotesOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2206,7 +2302,7 @@ describe("examples", () => {
                 index: 0
             });
 
-            return wordsApi.getFormField(request)
+            wordsApi.getFormField(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2218,13 +2314,14 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const request = new model.GetFormFieldOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 index: 0,
                 nodePath: "sections/0"
             });
 
-            return wordsApi.getFormFieldOnline(request)
+            wordsApi.getFormFieldOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2239,7 +2336,7 @@ describe("examples", () => {
                 name: "Sample.docx"
             });
 
-            return wordsApi.getFormFields(request)
+            wordsApi.getFormFields(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2251,12 +2348,13 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const request = new model.GetFormFieldsOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 nodePath: "sections/0"
             });
 
-            return wordsApi.getFormFieldsOnline(request)
+            wordsApi.getFormFieldsOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2272,7 +2370,7 @@ describe("examples", () => {
                 headerFooterIndex: 0
             });
 
-            return wordsApi.getHeaderFooter(request)
+            wordsApi.getHeaderFooter(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2289,7 +2387,7 @@ describe("examples", () => {
                 sectionIndex: 0
             });
 
-            return wordsApi.getHeaderFooterOfSection(request)
+            wordsApi.getHeaderFooterOfSection(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2301,13 +2399,14 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.doc");
             const request = new model.GetHeaderFooterOfSectionOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.doc"),
+                document: requestDocument,
                 headerFooterIndex: 0,
                 sectionIndex: 0
             });
 
-            return wordsApi.getHeaderFooterOfSectionOnline(request)
+            wordsApi.getHeaderFooterOfSectionOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2319,12 +2418,13 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.doc");
             const request = new model.GetHeaderFooterOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.doc"),
+                document: requestDocument,
                 headerFooterIndex: 0
             });
 
-            return wordsApi.getHeaderFooterOnline(request)
+            wordsApi.getHeaderFooterOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2340,7 +2440,7 @@ describe("examples", () => {
                 sectionPath: ""
             });
 
-            return wordsApi.getHeaderFooters(request)
+            wordsApi.getHeaderFooters(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2352,12 +2452,13 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.doc");
             const request = new model.GetHeaderFootersOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.doc"),
+                document: requestDocument,
                 sectionPath: ""
             });
 
-            return wordsApi.getHeaderFootersOnline(request)
+            wordsApi.getHeaderFootersOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2373,7 +2474,7 @@ describe("examples", () => {
                 listId: 1
             });
 
-            return wordsApi.getList(request)
+            wordsApi.getList(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2385,12 +2486,13 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.doc");
             const request = new model.GetListOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.doc"),
+                document: requestDocument,
                 listId: 1
             });
 
-            return wordsApi.getListOnline(request)
+            wordsApi.getListOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2405,7 +2507,7 @@ describe("examples", () => {
                 name: "TestGetLists.doc"
             });
 
-            return wordsApi.getLists(request)
+            wordsApi.getLists(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2417,11 +2519,12 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.doc");
             const request = new model.GetListsOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.doc")
+                document: requestDocument
             });
 
-            return wordsApi.getListsOnline(request)
+            wordsApi.getListsOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2437,7 +2540,7 @@ describe("examples", () => {
                 index: 0
             });
 
-            return wordsApi.getOfficeMathObject(request)
+            wordsApi.getOfficeMathObject(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2449,12 +2552,13 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const request = new model.GetOfficeMathObjectOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 index: 0
             });
 
-            return wordsApi.getOfficeMathObjectOnline(request)
+            wordsApi.getOfficeMathObjectOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2469,7 +2573,7 @@ describe("examples", () => {
                 name: "Sample.docx"
             });
 
-            return wordsApi.getOfficeMathObjects(request)
+            wordsApi.getOfficeMathObjects(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2481,11 +2585,12 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const request = new model.GetOfficeMathObjectsOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx")
+                document: requestDocument
             });
 
-            return wordsApi.getOfficeMathObjectsOnline(request)
+            wordsApi.getOfficeMathObjectsOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2501,7 +2606,7 @@ describe("examples", () => {
                 index: 0
             });
 
-            return wordsApi.getParagraph(request)
+            wordsApi.getParagraph(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2517,7 +2622,7 @@ describe("examples", () => {
                 index: 0
             });
 
-            return wordsApi.getParagraphFormat(request)
+            wordsApi.getParagraphFormat(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2529,12 +2634,13 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const request = new model.GetParagraphFormatOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 index: 0
             });
 
-            return wordsApi.getParagraphFormatOnline(request)
+            wordsApi.getParagraphFormatOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2550,7 +2656,7 @@ describe("examples", () => {
                 index: 0
             });
 
-            return wordsApi.getParagraphListFormat(request)
+            wordsApi.getParagraphListFormat(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2562,12 +2668,13 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.doc");
             const request = new model.GetParagraphListFormatOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.doc"),
+                document: requestDocument,
                 index: 0
             });
 
-            return wordsApi.getParagraphListFormatOnline(request)
+            wordsApi.getParagraphListFormatOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2579,13 +2686,14 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const request = new model.GetParagraphOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 index: 0,
                 nodePath: "sections/0"
             });
 
-            return wordsApi.getParagraphOnline(request)
+            wordsApi.getParagraphOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2600,7 +2708,7 @@ describe("examples", () => {
                 name: "Sample.docx"
             });
 
-            return wordsApi.getParagraphs(request)
+            wordsApi.getParagraphs(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2612,12 +2720,13 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const request = new model.GetParagraphsOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 nodePath: "sections/0"
             });
 
-            return wordsApi.getParagraphsOnline(request)
+            wordsApi.getParagraphsOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2633,7 +2742,7 @@ describe("examples", () => {
                 index: 0
             });
 
-            return wordsApi.getParagraphTabStops(request)
+            wordsApi.getParagraphTabStops(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2645,12 +2754,13 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const request = new model.GetParagraphTabStopsOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 index: 0
             });
 
-            return wordsApi.getParagraphTabStopsOnline(request)
+            wordsApi.getParagraphTabStopsOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2664,7 +2774,7 @@ describe("examples", () => {
             const request = new model.GetPublicKeyRequest({
             });
 
-            return wordsApi.getPublicKey(request)
+            wordsApi.getPublicKey(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2681,7 +2791,7 @@ describe("examples", () => {
                 rangeEndIdentifier: "id0.0.1"
             });
 
-            return wordsApi.getRangeText(request)
+            wordsApi.getRangeText(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2693,13 +2803,14 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.doc");
             const request = new model.GetRangeTextOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.doc"),
+                document: requestDocument,
                 rangeStartIdentifier: "id0.0.0",
                 rangeEndIdentifier: "id0.0.1"
             });
 
-            return wordsApi.getRangeTextOnline(request)
+            wordsApi.getRangeTextOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2716,7 +2827,7 @@ describe("examples", () => {
                 index: 0
             });
 
-            return wordsApi.getRun(request)
+            wordsApi.getRun(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2733,7 +2844,7 @@ describe("examples", () => {
                 index: 0
             });
 
-            return wordsApi.getRunFont(request)
+            wordsApi.getRunFont(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2745,13 +2856,14 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const request = new model.GetRunFontOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 paragraphPath: "paragraphs/0",
                 index: 0
             });
 
-            return wordsApi.getRunFontOnline(request)
+            wordsApi.getRunFontOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2763,13 +2875,14 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const request = new model.GetRunOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 paragraphPath: "paragraphs/0",
                 index: 0
             });
 
-            return wordsApi.getRunOnline(request)
+            wordsApi.getRunOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2785,7 +2898,7 @@ describe("examples", () => {
                 paragraphPath: "sections/0/paragraphs/0"
             });
 
-            return wordsApi.getRuns(request)
+            wordsApi.getRuns(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2797,12 +2910,13 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const request = new model.GetRunsOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 paragraphPath: "sections/0/paragraphs/0"
             });
 
-            return wordsApi.getRunsOnline(request)
+            wordsApi.getRunsOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2818,7 +2932,7 @@ describe("examples", () => {
                 sectionIndex: 0
             });
 
-            return wordsApi.getSection(request)
+            wordsApi.getSection(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2830,12 +2944,13 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const request = new model.GetSectionOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 sectionIndex: 0
             });
 
-            return wordsApi.getSectionOnline(request)
+            wordsApi.getSectionOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2851,7 +2966,7 @@ describe("examples", () => {
                 sectionIndex: 0
             });
 
-            return wordsApi.getSectionPageSetup(request)
+            wordsApi.getSectionPageSetup(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2863,12 +2978,13 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const request = new model.GetSectionPageSetupOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 sectionIndex: 0
             });
 
-            return wordsApi.getSectionPageSetupOnline(request)
+            wordsApi.getSectionPageSetupOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2883,7 +2999,7 @@ describe("examples", () => {
                 name: "Sample.docx"
             });
 
-            return wordsApi.getSections(request)
+            wordsApi.getSections(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2895,11 +3011,12 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const request = new model.GetSectionsOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx")
+                document: requestDocument
             });
 
-            return wordsApi.getSectionsOnline(request)
+            wordsApi.getSectionsOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2915,7 +3032,7 @@ describe("examples", () => {
                 styleName: "Heading 1"
             });
 
-            return wordsApi.getStyle(request)
+            wordsApi.getStyle(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2931,7 +3048,7 @@ describe("examples", () => {
                 styledNodePath: "paragraphs/1/paragraphFormat"
             });
 
-            return wordsApi.getStyleFromDocumentElement(request)
+            wordsApi.getStyleFromDocumentElement(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2943,12 +3060,13 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const request = new model.GetStyleFromDocumentElementOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 styledNodePath: "paragraphs/1/paragraphFormat"
             });
 
-            return wordsApi.getStyleFromDocumentElementOnline(request)
+            wordsApi.getStyleFromDocumentElementOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2960,12 +3078,13 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const request = new model.GetStyleOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 styleName: "Heading 1"
             });
 
-            return wordsApi.getStyleOnline(request)
+            wordsApi.getStyleOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2980,7 +3099,7 @@ describe("examples", () => {
                 name: "Sample.docx"
             });
 
-            return wordsApi.getStyles(request)
+            wordsApi.getStyles(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -2992,11 +3111,12 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const request = new model.GetStylesOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx")
+                document: requestDocument
             });
 
-            return wordsApi.getStylesOnline(request)
+            wordsApi.getStylesOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -3012,7 +3132,7 @@ describe("examples", () => {
                 index: 1
             });
 
-            return wordsApi.getTable(request)
+            wordsApi.getTable(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -3029,7 +3149,7 @@ describe("examples", () => {
                 index: 0
             });
 
-            return wordsApi.getTableCell(request)
+            wordsApi.getTableCell(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -3046,7 +3166,7 @@ describe("examples", () => {
                 index: 0
             });
 
-            return wordsApi.getTableCellFormat(request)
+            wordsApi.getTableCellFormat(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -3058,13 +3178,14 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const request = new model.GetTableCellFormatOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 tableRowPath: "sections/0/tables/2/rows/0",
                 index: 0
             });
 
-            return wordsApi.getTableCellFormatOnline(request)
+            wordsApi.getTableCellFormatOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -3076,13 +3197,14 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const request = new model.GetTableCellOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 tableRowPath: "sections/0/tables/2/rows/0",
                 index: 0
             });
 
-            return wordsApi.getTableCellOnline(request)
+            wordsApi.getTableCellOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -3094,12 +3216,13 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const request = new model.GetTableOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 index: 1
             });
 
-            return wordsApi.getTableOnline(request)
+            wordsApi.getTableOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -3115,7 +3238,7 @@ describe("examples", () => {
                 index: 1
             });
 
-            return wordsApi.getTableProperties(request)
+            wordsApi.getTableProperties(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -3127,12 +3250,13 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const request = new model.GetTablePropertiesOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 index: 1
             });
 
-            return wordsApi.getTablePropertiesOnline(request)
+            wordsApi.getTablePropertiesOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -3149,7 +3273,7 @@ describe("examples", () => {
                 index: 0
             });
 
-            return wordsApi.getTableRow(request)
+            wordsApi.getTableRow(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -3166,7 +3290,7 @@ describe("examples", () => {
                 index: 0
             });
 
-            return wordsApi.getTableRowFormat(request)
+            wordsApi.getTableRowFormat(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -3178,13 +3302,14 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const request = new model.GetTableRowFormatOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 tablePath: "sections/0/tables/2",
                 index: 0
             });
 
-            return wordsApi.getTableRowFormatOnline(request)
+            wordsApi.getTableRowFormatOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -3196,13 +3321,14 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const request = new model.GetTableRowOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 tablePath: "tables/1",
                 index: 0
             });
 
-            return wordsApi.getTableRowOnline(request)
+            wordsApi.getTableRowOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -3217,7 +3343,7 @@ describe("examples", () => {
                 name: "Sample.docx"
             });
 
-            return wordsApi.getTables(request)
+            wordsApi.getTables(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -3229,11 +3355,12 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const request = new model.GetTablesOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx")
+                document: requestDocument
             });
 
-            return wordsApi.getTablesOnline(request)
+            wordsApi.getTablesOnline(request)
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of request: ", requestResult);
@@ -3244,28 +3371,33 @@ describe("examples", () => {
     describe("exampleInsertComment", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestCommentRangeStartNode = new model.NodeLink({
+                nodeId: "0.3.0.3"
+            })
+            let requestCommentRangeStart = new model.DocumentPosition({
+                node: requestCommentRangeStartNode,
+                offset: 0
+            })
+            let requestCommentRangeEndNode = new model.NodeLink({
+                nodeId: "0.3.0.3"
+            })
+            let requestCommentRangeEnd = new model.DocumentPosition({
+                node: requestCommentRangeEndNode,
+                offset: 0
+            })
+            let requestComment = new model.CommentInsert({
+                rangeStart: requestCommentRangeStart,
+                rangeEnd: requestCommentRangeEnd,
+                initial: "IA",
+                author: "Imran Anwar",
+                text: "A new Comment"
+            })
             const insertRequest = new model.InsertCommentRequest({
                 name: "Sample.docx",
-                comment: new model.CommentInsert({
-                    rangeStart: new model.DocumentPosition({
-                        node: new model.NodeLink({
-                            nodeId: "0.3.0.3"
-                        }),
-                        offset: 0
-                    }),
-                    rangeEnd: new model.DocumentPosition({
-                        node: new model.NodeLink({
-                            nodeId: "0.3.0.3"
-                        }),
-                        offset: 0
-                    }),
-                    initial: "IA",
-                    author: "Imran Anwar",
-                    text: "A new Comment"
-                })
+                comment: requestComment
             });
 
-            return wordsApi.insertComment(insertRequest)
+            wordsApi.insertComment(insertRequest)
             .then((insertRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of insertRequest: ", insertRequestResult);
@@ -3277,28 +3409,34 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
+            let requestCommentRangeStartNode = new model.NodeLink({
+                nodeId: "0.3.0.3"
+            })
+            let requestCommentRangeStart = new model.DocumentPosition({
+                node: requestCommentRangeStartNode,
+                offset: 0
+            })
+            let requestCommentRangeEndNode = new model.NodeLink({
+                nodeId: "0.3.0.3"
+            })
+            let requestCommentRangeEnd = new model.DocumentPosition({
+                node: requestCommentRangeEndNode,
+                offset: 0
+            })
+            let requestComment = new model.CommentInsert({
+                rangeStart: requestCommentRangeStart,
+                rangeEnd: requestCommentRangeEnd,
+                initial: "IA",
+                author: "Imran Anwar",
+                text: "A new Comment"
+            })
             const insertRequest = new model.InsertCommentOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
-                comment: new model.CommentInsert({
-                    rangeStart: new model.DocumentPosition({
-                        node: new model.NodeLink({
-                            nodeId: "0.3.0.3"
-                        }),
-                        offset: 0
-                    }),
-                    rangeEnd: new model.DocumentPosition({
-                        node: new model.NodeLink({
-                            nodeId: "0.3.0.3"
-                        }),
-                        offset: 0
-                    }),
-                    initial: "IA",
-                    author: "Imran Anwar",
-                    text: "A new Comment"
-                })
+                document: requestDocument,
+                comment: requestComment
             });
 
-            return wordsApi.insertCommentOnline(insertRequest)
+            wordsApi.insertCommentOnline(insertRequest)
             .then((insertRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of insertRequest: ", insertRequestResult);
@@ -3309,15 +3447,16 @@ describe("examples", () => {
     describe("exampleInsertCustomXmlPart", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestCustomXmlPart = new model.CustomXmlPartInsert({
+                id: "hello",
+                data: "<data>Hello world</data>"
+            })
             const insertRequest = new model.InsertCustomXmlPartRequest({
                 name: "Sample.docx",
-                customXmlPart: new model.CustomXmlPartInsert({
-                    id: "hello",
-                    data: "<data>Hello world</data>"
-                })
+                customXmlPart: requestCustomXmlPart
             });
 
-            return wordsApi.insertCustomXmlPart(insertRequest)
+            wordsApi.insertCustomXmlPart(insertRequest)
             .then((insertRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of insertRequest: ", insertRequestResult);
@@ -3329,15 +3468,17 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
+            let requestCustomXmlPart = new model.CustomXmlPartInsert({
+                id: "hello",
+                data: "<data>Hello world</data>"
+            })
             const insertRequest = new model.InsertCustomXmlPartOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
-                customXmlPart: new model.CustomXmlPartInsert({
-                    id: "hello",
-                    data: "<data>Hello world</data>"
-                })
+                document: requestDocument,
+                customXmlPart: requestCustomXmlPart
             });
 
-            return wordsApi.insertCustomXmlPartOnline(insertRequest)
+            wordsApi.insertCustomXmlPartOnline(insertRequest)
             .then((insertRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of insertRequest: ", insertRequestResult);
@@ -3349,21 +3490,23 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDrawingObject = new model.DrawingObjectInsert({
+                height: 0,
+                left: 0,
+                top: 0,
+                width: 0,
+                relativeHorizontalPosition: model.DrawingObjectInsert.RelativeHorizontalPositionEnum.Margin,
+                relativeVerticalPosition: model.DrawingObjectInsert.RelativeVerticalPositionEnum.Margin,
+                wrapType: model.DrawingObjectInsert.WrapTypeEnum.Inline
+            })
+            let requestImageFile = fs.createReadStream(documentsDir + "Common/aspose-cloud.png");
             const insertRequest = new model.InsertDrawingObjectRequest({
                 name: "Sample.docx",
-                drawingObject: new model.DrawingObjectInsert({
-                    height: 0,
-                    left: 0,
-                    top: 0,
-                    width: 0,
-                    relativeHorizontalPosition: model.DrawingObjectInsert.RelativeHorizontalPositionEnum.Margin,
-                    relativeVerticalPosition: model.DrawingObjectInsert.RelativeVerticalPositionEnum.Margin,
-                    wrapType: model.DrawingObjectInsert.WrapTypeEnum.Inline
-                }),
-                imageFile: fs.createReadStream(documentsDir + "Common/aspose-cloud.png")
+                drawingObject: requestDrawingObject,
+                imageFile: requestImageFile
             });
 
-            return wordsApi.insertDrawingObject(insertRequest)
+            wordsApi.insertDrawingObject(insertRequest)
             .then((insertRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of insertRequest: ", insertRequestResult);
@@ -3375,21 +3518,24 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
+            let requestDrawingObject = new model.DrawingObjectInsert({
+                height: 0,
+                left: 0,
+                top: 0,
+                width: 0,
+                relativeHorizontalPosition: model.DrawingObjectInsert.RelativeHorizontalPositionEnum.Margin,
+                relativeVerticalPosition: model.DrawingObjectInsert.RelativeVerticalPositionEnum.Margin,
+                wrapType: model.DrawingObjectInsert.WrapTypeEnum.Inline
+            })
+            let requestImageFile = fs.createReadStream(documentsDir + "Common/aspose-cloud.png");
             const insertRequest = new model.InsertDrawingObjectOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
-                drawingObject: new model.DrawingObjectInsert({
-                    height: 0,
-                    left: 0,
-                    top: 0,
-                    width: 0,
-                    relativeHorizontalPosition: model.DrawingObjectInsert.RelativeHorizontalPositionEnum.Margin,
-                    relativeVerticalPosition: model.DrawingObjectInsert.RelativeVerticalPositionEnum.Margin,
-                    wrapType: model.DrawingObjectInsert.WrapTypeEnum.Inline
-                }),
-                imageFile: fs.createReadStream(documentsDir + "Common/aspose-cloud.png")
+                document: requestDocument,
+                drawingObject: requestDrawingObject,
+                imageFile: requestImageFile
             });
 
-            return wordsApi.insertDrawingObjectOnline(insertRequest)
+            wordsApi.insertDrawingObjectOnline(insertRequest)
             .then((insertRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of insertRequest: ", insertRequestResult);
@@ -3400,14 +3546,15 @@ describe("examples", () => {
     describe("exampleInsertField", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestField = new model.FieldInsert({
+                fieldCode: "{ NUMPAGES }"
+            })
             const insertRequest = new model.InsertFieldRequest({
                 name: "Sample.docx",
-                field: new model.FieldInsert({
-                    fieldCode: "{ NUMPAGES }"
-                })
+                field: requestField
             });
 
-            return wordsApi.insertField(insertRequest)
+            wordsApi.insertField(insertRequest)
             .then((insertRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of insertRequest: ", insertRequestResult);
@@ -3419,15 +3566,17 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
+            let requestField = new model.FieldInsert({
+                fieldCode: "{ NUMPAGES }"
+            })
             const insertRequest = new model.InsertFieldOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
-                field: new model.FieldInsert({
-                    fieldCode: "{ NUMPAGES }"
-                }),
+                document: requestDocument,
+                field: requestField,
                 nodePath: "sections/0/paragraphs/0"
             });
 
-            return wordsApi.insertFieldOnline(insertRequest)
+            wordsApi.insertFieldOnline(insertRequest)
             .then((insertRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of insertRequest: ", insertRequestResult);
@@ -3438,15 +3587,16 @@ describe("examples", () => {
     describe("exampleInsertFootnote", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestFootnoteDto = new model.FootnoteInsert({
+                footnoteType: model.FootnoteInsert.FootnoteTypeEnum.Endnote,
+                text: "test endnote"
+            })
             const insertRequest = new model.InsertFootnoteRequest({
                 name: "Sample.docx",
-                footnoteDto: new model.FootnoteInsert({
-                    footnoteType: model.FootnoteInsert.FootnoteTypeEnum.Endnote,
-                    text: "test endnote"
-                })
+                footnoteDto: requestFootnoteDto
             });
 
-            return wordsApi.insertFootnote(insertRequest)
+            wordsApi.insertFootnote(insertRequest)
             .then((insertRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of insertRequest: ", insertRequestResult);
@@ -3458,15 +3608,17 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.doc");
+            let requestFootnoteDto = new model.FootnoteInsert({
+                footnoteType: model.FootnoteInsert.FootnoteTypeEnum.Endnote,
+                text: "test endnote"
+            })
             const insertRequest = new model.InsertFootnoteOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.doc"),
-                footnoteDto: new model.FootnoteInsert({
-                    footnoteType: model.FootnoteInsert.FootnoteTypeEnum.Endnote,
-                    text: "test endnote"
-                })
+                document: requestDocument,
+                footnoteDto: requestFootnoteDto
             });
 
-            return wordsApi.insertFootnoteOnline(insertRequest)
+            wordsApi.insertFootnoteOnline(insertRequest)
             .then((insertRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of insertRequest: ", insertRequestResult);
@@ -3477,20 +3629,21 @@ describe("examples", () => {
     describe("exampleInsertFormField", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestFormField = new model.FormFieldTextInput({
+                name: "FullName",
+                enabled: true,
+                calculateOnExit: true,
+                statusText: "",
+                textInputType: model.FormFieldTextInput.TextInputTypeEnum.Regular,
+                textInputDefault: "123",
+                textInputFormat: "UPPERCASE"
+            })
             const insertRequest = new model.InsertFormFieldRequest({
                 name: "Sample.docx",
-                formField: new model.FormFieldTextInput({
-                    name: "FullName",
-                    enabled: true,
-                    calculateOnExit: true,
-                    statusText: "",
-                    textInputType: model.FormFieldTextInput.TextInputTypeEnum.Regular,
-                    textInputDefault: "123",
-                    textInputFormat: "UPPERCASE"
-                })
+                formField: requestFormField
             });
 
-            return wordsApi.insertFormField(insertRequest)
+            wordsApi.insertFormField(insertRequest)
             .then((insertRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of insertRequest: ", insertRequestResult);
@@ -3502,21 +3655,23 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
+            let requestFormField = new model.FormFieldTextInput({
+                name: "FullName",
+                enabled: true,
+                calculateOnExit: true,
+                statusText: "",
+                textInputType: model.FormFieldTextInput.TextInputTypeEnum.Regular,
+                textInputDefault: "123",
+                textInputFormat: "UPPERCASE"
+            })
             const insertRequest = new model.InsertFormFieldOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
-                formField: new model.FormFieldTextInput({
-                    name: "FullName",
-                    enabled: true,
-                    calculateOnExit: true,
-                    statusText: "",
-                    textInputType: model.FormFieldTextInput.TextInputTypeEnum.Regular,
-                    textInputDefault: "123",
-                    textInputFormat: "UPPERCASE"
-                }),
+                document: requestDocument,
+                formField: requestFormField,
                 nodePath: "sections/0/paragraphs/0"
             });
 
-            return wordsApi.insertFormFieldOnline(insertRequest)
+            wordsApi.insertFormFieldOnline(insertRequest)
             .then((insertRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of insertRequest: ", insertRequestResult);
@@ -3533,7 +3688,7 @@ describe("examples", () => {
                 headerFooterType: "FooterEven"
             });
 
-            return wordsApi.insertHeaderFooter(insertRequest)
+            wordsApi.insertHeaderFooter(insertRequest)
             .then((insertRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of insertRequest: ", insertRequestResult);
@@ -3545,13 +3700,14 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.doc");
             const insertRequest = new model.InsertHeaderFooterOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.doc"),
+                document: requestDocument,
                 sectionPath: "",
                 headerFooterType: "FooterEven"
             });
 
-            return wordsApi.insertHeaderFooterOnline(insertRequest)
+            wordsApi.insertHeaderFooterOnline(insertRequest)
             .then((insertRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of insertRequest: ", insertRequestResult);
@@ -3562,14 +3718,15 @@ describe("examples", () => {
     describe("exampleInsertList", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestListInsert = new model.ListInsert({
+                template: model.ListInsert.TemplateEnum.OutlineLegal
+            })
             const insertRequest = new model.InsertListRequest({
                 name: "TestGetLists.doc",
-                listInsert: new model.ListInsert({
-                    template: model.ListInsert.TemplateEnum.OutlineLegal
-                })
+                listInsert: requestListInsert
             });
 
-            return wordsApi.insertList(insertRequest)
+            wordsApi.insertList(insertRequest)
             .then((insertRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of insertRequest: ", insertRequestResult);
@@ -3581,14 +3738,16 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.doc");
+            let requestListInsert = new model.ListInsert({
+                template: model.ListInsert.TemplateEnum.OutlineLegal
+            })
             const insertRequest = new model.InsertListOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.doc"),
-                listInsert: new model.ListInsert({
-                    template: model.ListInsert.TemplateEnum.OutlineLegal
-                })
+                document: requestDocument,
+                listInsert: requestListInsert
             });
 
-            return wordsApi.insertListOnline(insertRequest)
+            wordsApi.insertListOnline(insertRequest)
             .then((insertRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of insertRequest: ", insertRequestResult);
@@ -3599,17 +3758,18 @@ describe("examples", () => {
     describe("exampleInsertOrUpdateParagraphTabStop", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestTabStopInsertDto = new model.TabStopInsert({
+                alignment: model.TabStopInsert.AlignmentEnum.Left,
+                leader: model.TabStopInsert.LeaderEnum.None,
+                position: 100.0
+            })
             const insertRequest = new model.InsertOrUpdateParagraphTabStopRequest({
                 name: "Sample.docx",
                 index: 0,
-                tabStopInsertDto: new model.TabStopInsert({
-                    alignment: model.TabStopInsert.AlignmentEnum.Left,
-                    leader: model.TabStopInsert.LeaderEnum.None,
-                    position: 100.0
-                })
+                tabStopInsertDto: requestTabStopInsertDto
             });
 
-            return wordsApi.insertOrUpdateParagraphTabStop(insertRequest)
+            wordsApi.insertOrUpdateParagraphTabStop(insertRequest)
             .then((insertRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of insertRequest: ", insertRequestResult);
@@ -3621,17 +3781,19 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
+            let requestTabStopInsertDto = new model.TabStopInsert({
+                alignment: model.TabStopInsert.AlignmentEnum.Left,
+                leader: model.TabStopInsert.LeaderEnum.None,
+                position: 72
+            })
             const insertRequest = new model.InsertOrUpdateParagraphTabStopOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
-                tabStopInsertDto: new model.TabStopInsert({
-                    alignment: model.TabStopInsert.AlignmentEnum.Left,
-                    leader: model.TabStopInsert.LeaderEnum.None,
-                    position: 72
-                }),
+                document: requestDocument,
+                tabStopInsertDto: requestTabStopInsertDto,
                 index: 0
             });
 
-            return wordsApi.insertOrUpdateParagraphTabStopOnline(insertRequest)
+            wordsApi.insertOrUpdateParagraphTabStopOnline(insertRequest)
             .then((insertRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of insertRequest: ", insertRequestResult);
@@ -3642,15 +3804,16 @@ describe("examples", () => {
     describe("exampleInsertPageNumbers", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestPageNumber = new model.PageNumber({
+                alignment: "center",
+                format: "{PAGE} of {NUMPAGES}"
+            })
             const insertRequest = new model.InsertPageNumbersRequest({
                 name: "Sample.docx",
-                pageNumber: new model.PageNumber({
-                    alignment: "center",
-                    format: "{PAGE} of {NUMPAGES}"
-                })
+                pageNumber: requestPageNumber
             });
 
-            return wordsApi.insertPageNumbers(insertRequest)
+            wordsApi.insertPageNumbers(insertRequest)
             .then((insertRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of insertRequest: ", insertRequestResult);
@@ -3662,15 +3825,17 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Common/Sample.docx");
+            let requestPageNumber = new model.PageNumber({
+                alignment: "center",
+                format: "{PAGE} of {NUMPAGES}"
+            })
             const insertRequest = new model.InsertPageNumbersOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Common/Sample.docx"),
-                pageNumber: new model.PageNumber({
-                    alignment: "center",
-                    format: "{PAGE} of {NUMPAGES}"
-                })
+                document: requestDocument,
+                pageNumber: requestPageNumber
             });
 
-            return wordsApi.insertPageNumbersOnline(insertRequest)
+            wordsApi.insertPageNumbersOnline(insertRequest)
             .then((insertRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of insertRequest: ", insertRequestResult);
@@ -3681,14 +3846,15 @@ describe("examples", () => {
     describe("exampleInsertParagraph", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestParagraph = new model.ParagraphInsert({
+                text: "This is a new paragraph for your document"
+            })
             const insertRequest = new model.InsertParagraphRequest({
                 name: "Sample.docx",
-                paragraph: new model.ParagraphInsert({
-                    text: "This is a new paragraph for your document"
-                })
+                paragraph: requestParagraph
             });
 
-            return wordsApi.insertParagraph(insertRequest)
+            wordsApi.insertParagraph(insertRequest)
             .then((insertRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of insertRequest: ", insertRequestResult);
@@ -3700,15 +3866,17 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
+            let requestParagraph = new model.ParagraphInsert({
+                text: "This is a new paragraph for your document"
+            })
             const insertRequest = new model.InsertParagraphOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
-                paragraph: new model.ParagraphInsert({
-                    text: "This is a new paragraph for your document"
-                }),
+                document: requestDocument,
+                paragraph: requestParagraph,
                 nodePath: "sections/0"
             });
 
-            return wordsApi.insertParagraphOnline(insertRequest)
+            wordsApi.insertParagraphOnline(insertRequest)
             .then((insertRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of insertRequest: ", insertRequestResult);
@@ -3719,15 +3887,16 @@ describe("examples", () => {
     describe("exampleInsertRun", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestRun = new model.RunInsert({
+                text: "run with text"
+            })
             const insertRequest = new model.InsertRunRequest({
                 name: "Sample.docx",
                 paragraphPath: "paragraphs/1",
-                run: new model.RunInsert({
-                    text: "run with text"
-                })
+                run: requestRun
             });
 
-            return wordsApi.insertRun(insertRequest)
+            wordsApi.insertRun(insertRequest)
             .then((insertRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of insertRequest: ", insertRequestResult);
@@ -3739,15 +3908,17 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.doc");
+            let requestRun = new model.RunInsert({
+                text: "run with text"
+            })
             const insertRequest = new model.InsertRunOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.doc"),
+                document: requestDocument,
                 paragraphPath: "paragraphs/1",
-                run: new model.RunInsert({
-                    text: "run with text"
-                })
+                run: requestRun
             });
 
-            return wordsApi.insertRunOnline(insertRequest)
+            wordsApi.insertRunOnline(insertRequest)
             .then((insertRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of insertRequest: ", insertRequestResult);
@@ -3758,15 +3929,16 @@ describe("examples", () => {
     describe("exampleInsertStyle", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestStyleInsert = new model.StyleInsert({
+                styleName: "My Style",
+                styleType: model.StyleInsert.StyleTypeEnum.Paragraph
+            })
             const insertRequest = new model.InsertStyleRequest({
                 name: "Sample.docx",
-                styleInsert: new model.StyleInsert({
-                    styleName: "My Style",
-                    styleType: model.StyleInsert.StyleTypeEnum.Paragraph
-                })
+                styleInsert: requestStyleInsert
             });
 
-            return wordsApi.insertStyle(insertRequest)
+            wordsApi.insertStyle(insertRequest)
             .then((insertRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of insertRequest: ", insertRequestResult);
@@ -3778,15 +3950,17 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
+            let requestStyleInsert = new model.StyleInsert({
+                styleName: "My Style",
+                styleType: model.StyleInsert.StyleTypeEnum.Paragraph
+            })
             const insertRequest = new model.InsertStyleOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
-                styleInsert: new model.StyleInsert({
-                    styleName: "My Style",
-                    styleType: model.StyleInsert.StyleTypeEnum.Paragraph
-                })
+                document: requestDocument,
+                styleInsert: requestStyleInsert
             });
 
-            return wordsApi.insertStyleOnline(insertRequest)
+            wordsApi.insertStyleOnline(insertRequest)
             .then((insertRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of insertRequest: ", insertRequestResult);
@@ -3797,15 +3971,16 @@ describe("examples", () => {
     describe("exampleInsertTable", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestTable = new model.TableInsert({
+                columnsCount: 5,
+                rowsCount: 4
+            })
             const insertRequest = new model.InsertTableRequest({
                 name: "Sample.docx",
-                table: new model.TableInsert({
-                    columnsCount: 5,
-                    rowsCount: 4
-                })
+                table: requestTable
             });
 
-            return wordsApi.insertTable(insertRequest)
+            wordsApi.insertTable(insertRequest)
             .then((insertRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of insertRequest: ", insertRequestResult);
@@ -3816,14 +3991,15 @@ describe("examples", () => {
     describe("exampleInsertTableCell", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestCell = new model.TableCellInsert({
+            })
             const insertRequest = new model.InsertTableCellRequest({
                 name: "Sample.docx",
-                cell: new model.TableCellInsert({
-                }),
+                cell: requestCell,
                 tableRowPath: "sections/0/tables/2/rows/0"
             });
 
-            return wordsApi.insertTableCell(insertRequest)
+            wordsApi.insertTableCell(insertRequest)
             .then((insertRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of insertRequest: ", insertRequestResult);
@@ -3835,14 +4011,16 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
+            let requestCell = new model.TableCellInsert({
+            })
             const insertRequest = new model.InsertTableCellOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
-                cell: new model.TableCellInsert({
-                }),
+                document: requestDocument,
+                cell: requestCell,
                 tableRowPath: "sections/0/tables/2/rows/0"
             });
 
-            return wordsApi.insertTableCellOnline(insertRequest)
+            wordsApi.insertTableCellOnline(insertRequest)
             .then((insertRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of insertRequest: ", insertRequestResult);
@@ -3854,15 +4032,17 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
+            let requestTable = new model.TableInsert({
+                columnsCount: 5,
+                rowsCount: 4
+            })
             const insertRequest = new model.InsertTableOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
-                table: new model.TableInsert({
-                    columnsCount: 5,
-                    rowsCount: 4
-                })
+                document: requestDocument,
+                table: requestTable
             });
 
-            return wordsApi.insertTableOnline(insertRequest)
+            wordsApi.insertTableOnline(insertRequest)
             .then((insertRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of insertRequest: ", insertRequestResult);
@@ -3873,15 +4053,16 @@ describe("examples", () => {
     describe("exampleInsertTableRow", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestRow = new model.TableRowInsert({
+                columnsCount: 5
+            })
             const insertRequest = new model.InsertTableRowRequest({
                 name: "Sample.docx",
-                row: new model.TableRowInsert({
-                    columnsCount: 5
-                }),
+                row: requestRow,
                 tablePath: "sections/0/tables/2"
             });
 
-            return wordsApi.insertTableRow(insertRequest)
+            wordsApi.insertTableRow(insertRequest)
             .then((insertRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of insertRequest: ", insertRequestResult);
@@ -3893,15 +4074,17 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
+            let requestRow = new model.TableRowInsert({
+                columnsCount: 5
+            })
             const insertRequest = new model.InsertTableRowOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
-                row: new model.TableRowInsert({
-                    columnsCount: 5
-                }),
+                document: requestDocument,
+                row: requestRow,
                 tablePath: "sections/0/tables/2"
             });
 
-            return wordsApi.insertTableRowOnline(insertRequest)
+            wordsApi.insertTableRowOnline(insertRequest)
             .then((insertRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of insertRequest: ", insertRequestResult);
@@ -3919,7 +4102,7 @@ describe("examples", () => {
                 image: "Sample.png"
             });
 
-            return wordsApi.insertWatermarkImage(insertRequest)
+            wordsApi.insertWatermarkImage(insertRequest)
             .then((insertRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of insertRequest: ", insertRequestResult);
@@ -3931,12 +4114,14 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
+            let requestImageFile = fs.createReadStream(documentsDir + "Common/aspose-cloud.png");
             const insertRequest = new model.InsertWatermarkImageOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
-                imageFile: fs.createReadStream(documentsDir + "Common/aspose-cloud.png")
+                document: requestDocument,
+                imageFile: requestImageFile
             });
 
-            return wordsApi.insertWatermarkImageOnline(insertRequest)
+            wordsApi.insertWatermarkImageOnline(insertRequest)
             .then((insertRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of insertRequest: ", insertRequestResult);
@@ -3947,15 +4132,16 @@ describe("examples", () => {
     describe("exampleInsertWatermarkText", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestWatermarkText = new model.WatermarkText({
+                text: "This is the text",
+                rotationAngle: 90.0
+            })
             const insertRequest = new model.InsertWatermarkTextRequest({
                 name: "Sample.docx",
-                watermarkText: new model.WatermarkText({
-                    text: "This is the text",
-                    rotationAngle: 90.0
-                })
+                watermarkText: requestWatermarkText
             });
 
-            return wordsApi.insertWatermarkText(insertRequest)
+            wordsApi.insertWatermarkText(insertRequest)
             .then((insertRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of insertRequest: ", insertRequestResult);
@@ -3967,15 +4153,17 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
+            let requestWatermarkText = new model.WatermarkText({
+                text: "This is the text",
+                rotationAngle: 90
+            })
             const insertRequest = new model.InsertWatermarkTextOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
-                watermarkText: new model.WatermarkText({
-                    text: "This is the text",
-                    rotationAngle: 90
-                })
+                document: requestDocument,
+                watermarkText: requestWatermarkText
             });
 
-            return wordsApi.insertWatermarkTextOnline(insertRequest)
+            wordsApi.insertWatermarkTextOnline(insertRequest)
             .then((insertRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of insertRequest: ", insertRequestResult);
@@ -3986,21 +4174,23 @@ describe("examples", () => {
     describe("exampleLoadWebDocument", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDataSaveOptions = new model.SaveOptionsData({
+                fileName: "google.doc",
+                saveFormat: "doc",
+                dmlEffectsRenderingMode: "1",
+                dmlRenderingMode: "1",
+                updateSdtContent: false,
+                zipOutput: false
+            })
+            let requestData = new model.LoadWebDocumentData({
+                loadingDocumentUrl: "http://google.com",
+                saveOptions: requestDataSaveOptions
+            })
             const loadRequest = new model.LoadWebDocumentRequest({
-                data: new model.LoadWebDocumentData({
-                    loadingDocumentUrl: "http://google.com",
-                    saveOptions: new model.SaveOptionsData({
-                        fileName: "google.doc",
-                        saveFormat: "doc",
-                        dmlEffectsRenderingMode: "1",
-                        dmlRenderingMode: "1",
-                        updateSdtContent: false,
-                        zipOutput: false
-                    })
-                })
+                data: requestData
             });
 
-            return wordsApi.loadWebDocument(loadRequest)
+            wordsApi.loadWebDocument(loadRequest)
             .then((loadRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of loadRequest: ", loadRequestResult);
@@ -4016,7 +4206,7 @@ describe("examples", () => {
                 srcPath: "Sample.docx"
             });
 
-            return wordsApi.moveFile(moveRequest)
+            wordsApi.moveFile(moveRequest)
             .then((moveRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of moveRequest: ", moveRequestResult);
@@ -4032,7 +4222,7 @@ describe("examples", () => {
                 srcPath: "/TestMoveFolderSrc"
             });
 
-            return wordsApi.moveFolder(moveRequest)
+            wordsApi.moveFolder(moveRequest)
             .then((moveRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of moveRequest: ", moveRequestResult);
@@ -4043,14 +4233,15 @@ describe("examples", () => {
     describe("exampleOptimizeDocument", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestOptions = new model.OptimizationOptions({
+                msWordVersion: model.OptimizationOptions.MsWordVersionEnum.Word2002
+            })
             const optimizeRequest = new model.OptimizeDocumentRequest({
                 name: "Sample.docx",
-                options: new model.OptimizationOptions({
-                    msWordVersion: model.OptimizationOptions.MsWordVersionEnum.Word2002
-                })
+                options: requestOptions
             });
 
-            return wordsApi.optimizeDocument(optimizeRequest)
+            wordsApi.optimizeDocument(optimizeRequest)
             .then((optimizeRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of optimizeRequest: ", optimizeRequestResult);
@@ -4062,14 +4253,16 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
+            let requestOptions = new model.OptimizationOptions({
+                msWordVersion: model.OptimizationOptions.MsWordVersionEnum.Word2002
+            })
             const optimizeRequest = new model.OptimizeDocumentOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
-                options: new model.OptimizationOptions({
-                    msWordVersion: model.OptimizationOptions.MsWordVersionEnum.Word2002
-                })
+                document: requestDocument,
+                options: requestOptions
             });
 
-            return wordsApi.optimizeDocumentOnline(optimizeRequest)
+            wordsApi.optimizeDocumentOnline(optimizeRequest)
             .then((optimizeRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of optimizeRequest: ", optimizeRequestResult);
@@ -4080,15 +4273,16 @@ describe("examples", () => {
     describe("exampleProtectDocument", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestProtectionRequest = new model.ProtectionRequest({
+                password: "123",
+                protectionType: "ReadOnly"
+            })
             const protectRequest = new model.ProtectDocumentRequest({
                 name: "Sample.docx",
-                protectionRequest: new model.ProtectionRequest({
-                    password: "123",
-                    protectionType: "ReadOnly"
-                })
+                protectionRequest: requestProtectionRequest
             });
 
-            return wordsApi.protectDocument(protectRequest)
+            wordsApi.protectDocument(protectRequest)
             .then((protectRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of protectRequest: ", protectRequestResult);
@@ -4100,14 +4294,16 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
+            let requestProtectionRequest = new model.ProtectionRequest({
+                newPassword: "123"
+            })
             const protectRequest = new model.ProtectDocumentOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
-                protectionRequest: new model.ProtectionRequest({
-                    newPassword: "123"
-                })
+                document: requestDocument,
+                protectionRequest: requestProtectionRequest
             });
 
-            return wordsApi.protectDocumentOnline(protectRequest)
+            wordsApi.protectDocumentOnline(protectRequest)
             .then((protectRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of protectRequest: ", protectRequestResult);
@@ -4122,7 +4318,7 @@ describe("examples", () => {
                 name: "Sample.docx"
             });
 
-            return wordsApi.rejectAllRevisions(rejectRequest)
+            wordsApi.rejectAllRevisions(rejectRequest)
             .then((rejectRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of rejectRequest: ", rejectRequestResult);
@@ -4134,11 +4330,12 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const rejectRequest = new model.RejectAllRevisionsOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx")
+                document: requestDocument
             });
 
-            return wordsApi.rejectAllRevisionsOnline(rejectRequest)
+            wordsApi.rejectAllRevisionsOnline(rejectRequest)
             .then((rejectRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of rejectRequest: ", rejectRequestResult);
@@ -4155,7 +4352,7 @@ describe("examples", () => {
                 rangeEndIdentifier: "id0.0.1"
             });
 
-            return wordsApi.removeRange(removeRequest)
+            wordsApi.removeRange(removeRequest)
             .then((removeRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of removeRequest: ", removeRequestResult);
@@ -4167,13 +4364,14 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.doc");
             const removeRequest = new model.RemoveRangeOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.doc"),
+                document: requestDocument,
                 rangeStartIdentifier: "id0.0.0",
                 rangeEndIdentifier: "id0.0.1"
             });
 
-            return wordsApi.removeRangeOnline(removeRequest)
+            wordsApi.removeRangeOnline(removeRequest)
             .then((removeRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of removeRequest: ", removeRequestResult);
@@ -4190,7 +4388,7 @@ describe("examples", () => {
                 index: 0
             });
 
-            return wordsApi.renderDrawingObject(renderRequest)
+            wordsApi.renderDrawingObject(renderRequest)
             .then((renderRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of renderRequest: ", renderRequestResult);
@@ -4202,14 +4400,15 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const renderRequest = new model.RenderDrawingObjectOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 format: "png",
                 index: 0,
                 nodePath: "sections/0"
             });
 
-            return wordsApi.renderDrawingObjectOnline(renderRequest)
+            wordsApi.renderDrawingObjectOnline(renderRequest)
             .then((renderRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of renderRequest: ", renderRequestResult);
@@ -4226,7 +4425,7 @@ describe("examples", () => {
                 index: 0
             });
 
-            return wordsApi.renderMathObject(renderRequest)
+            wordsApi.renderMathObject(renderRequest)
             .then((renderRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of renderRequest: ", renderRequestResult);
@@ -4238,13 +4437,14 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const renderRequest = new model.RenderMathObjectOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 format: "png",
                 index: 0
             });
 
-            return wordsApi.renderMathObjectOnline(renderRequest)
+            wordsApi.renderMathObjectOnline(renderRequest)
             .then((renderRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of renderRequest: ", renderRequestResult);
@@ -4261,7 +4461,7 @@ describe("examples", () => {
                 format: "bmp"
             });
 
-            return wordsApi.renderPage(renderRequest)
+            wordsApi.renderPage(renderRequest)
             .then((renderRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of renderRequest: ", renderRequestResult);
@@ -4273,13 +4473,14 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const renderRequest = new model.RenderPageOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 pageIndex: 1,
                 format: "bmp"
             });
 
-            return wordsApi.renderPageOnline(renderRequest)
+            wordsApi.renderPageOnline(renderRequest)
             .then((renderRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of renderRequest: ", renderRequestResult);
@@ -4296,7 +4497,7 @@ describe("examples", () => {
                 index: 0
             });
 
-            return wordsApi.renderParagraph(renderRequest)
+            wordsApi.renderParagraph(renderRequest)
             .then((renderRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of renderRequest: ", renderRequestResult);
@@ -4308,13 +4509,14 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const renderRequest = new model.RenderParagraphOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 format: "png",
                 index: 0
             });
 
-            return wordsApi.renderParagraphOnline(renderRequest)
+            wordsApi.renderParagraphOnline(renderRequest)
             .then((renderRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of renderRequest: ", renderRequestResult);
@@ -4331,7 +4533,7 @@ describe("examples", () => {
                 index: 0
             });
 
-            return wordsApi.renderTable(renderRequest)
+            wordsApi.renderTable(renderRequest)
             .then((renderRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of renderRequest: ", renderRequestResult);
@@ -4343,13 +4545,14 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const renderRequest = new model.RenderTableOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 format: "png",
                 index: 0
             });
 
-            return wordsApi.renderTableOnline(renderRequest)
+            wordsApi.renderTableOnline(renderRequest)
             .then((renderRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of renderRequest: ", renderRequestResult);
@@ -4360,15 +4563,16 @@ describe("examples", () => {
     describe("exampleReplaceText", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestReplaceText = new model.ReplaceTextParameters({
+                oldValue: "Testing",
+                newValue: "Aspose testing"
+            })
             const replaceRequest = new model.ReplaceTextRequest({
                 name: "Sample.docx",
-                replaceText: new model.ReplaceTextParameters({
-                    oldValue: "Testing",
-                    newValue: "Aspose testing"
-                })
+                replaceText: requestReplaceText
             });
 
-            return wordsApi.replaceText(replaceRequest)
+            wordsApi.replaceText(replaceRequest)
             .then((replaceRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of replaceRequest: ", replaceRequestResult);
@@ -4380,15 +4584,17 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
+            let requestReplaceText = new model.ReplaceTextParameters({
+                oldValue: "aspose",
+                newValue: "aspose new"
+            })
             const replaceRequest = new model.ReplaceTextOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
-                replaceText: new model.ReplaceTextParameters({
-                    oldValue: "aspose",
-                    newValue: "aspose new"
-                })
+                document: requestDocument,
+                replaceText: requestReplaceText
             });
 
-            return wordsApi.replaceTextOnline(replaceRequest)
+            wordsApi.replaceTextOnline(replaceRequest)
             .then((replaceRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of replaceRequest: ", replaceRequestResult);
@@ -4399,16 +4605,17 @@ describe("examples", () => {
     describe("exampleReplaceWithText", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestRangeText = new model.ReplaceRange({
+                text: "Replaced header"
+            })
             const replaceRequest = new model.ReplaceWithTextRequest({
                 name: "Sample.docx",
                 rangeStartIdentifier: "id0.0.0",
-                rangeText: new model.ReplaceRange({
-                    text: "Replaced header"
-                }),
+                rangeText: requestRangeText,
                 rangeEndIdentifier: "id0.0.1"
             });
 
-            return wordsApi.replaceWithText(replaceRequest)
+            wordsApi.replaceWithText(replaceRequest)
             .then((replaceRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of replaceRequest: ", replaceRequestResult);
@@ -4420,16 +4627,18 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.doc");
+            let requestRangeText = new model.ReplaceRange({
+                text: "Replaced header"
+            })
             const replaceRequest = new model.ReplaceWithTextOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.doc"),
+                document: requestDocument,
                 rangeStartIdentifier: "id0.0.0",
-                rangeText: new model.ReplaceRange({
-                    text: "Replaced header"
-                }),
+                rangeText: requestRangeText,
                 rangeEndIdentifier: "id0.0.1"
             });
 
-            return wordsApi.replaceWithTextOnline(replaceRequest)
+            wordsApi.replaceWithTextOnline(replaceRequest)
             .then((replaceRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of replaceRequest: ", replaceRequestResult);
@@ -4443,7 +4652,7 @@ describe("examples", () => {
             const resetRequest = new model.ResetCacheRequest({
             });
 
-            return wordsApi.resetCache(resetRequest)
+            wordsApi.resetCache(resetRequest)
             .then((resetRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of resetRequest: ", resetRequestResult);
@@ -4454,15 +4663,16 @@ describe("examples", () => {
     describe("exampleSaveAs", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestSaveOptionsData = new model.SaveOptionsData({
+                saveFormat: "docx",
+                fileName: "/TestSaveAsFromPdfToDoc.docx"
+            })
             const saveRequest = new model.SaveAsRequest({
                 name: "Sample.docx",
-                saveOptionsData: new model.SaveOptionsData({
-                    saveFormat: "docx",
-                    fileName: "/TestSaveAsFromPdfToDoc.docx"
-                })
+                saveOptionsData: requestSaveOptionsData
             });
 
-            return wordsApi.saveAs(saveRequest)
+            wordsApi.saveAs(saveRequest)
             .then((saveRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of saveRequest: ", saveRequestResult);
@@ -4474,15 +4684,17 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Common/test_multi_pages.docx");
+            let requestSaveOptionsData = new model.SaveOptionsData({
+                saveFormat: "pdf",
+                fileName: "/TestSaveAs.pdf"
+            })
             const saveRequest = new model.SaveAsOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Common/test_multi_pages.docx"),
-                saveOptionsData: new model.SaveOptionsData({
-                    saveFormat: "pdf",
-                    fileName: "/TestSaveAs.pdf"
-                })
+                document: requestDocument,
+                saveOptionsData: requestSaveOptionsData
             });
 
-            return wordsApi.saveAsOnline(saveRequest)
+            wordsApi.saveAsOnline(saveRequest)
             .then((saveRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of saveRequest: ", saveRequestResult);
@@ -4493,16 +4705,17 @@ describe("examples", () => {
     describe("exampleSaveAsRange", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocumentParameters = new model.RangeDocument({
+                documentName: "/NewDoc.docx"
+            })
             const saveRequest = new model.SaveAsRangeRequest({
                 name: "Sample.docx",
                 rangeStartIdentifier: "id0.0.0",
-                documentParameters: new model.RangeDocument({
-                    documentName: "/NewDoc.docx"
-                }),
+                documentParameters: requestDocumentParameters,
                 rangeEndIdentifier: "id0.0.1"
             });
 
-            return wordsApi.saveAsRange(saveRequest)
+            wordsApi.saveAsRange(saveRequest)
             .then((saveRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of saveRequest: ", saveRequestResult);
@@ -4514,16 +4727,18 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.doc");
+            let requestDocumentParameters = new model.RangeDocument({
+                documentName: "/NewDoc.docx"
+            })
             const saveRequest = new model.SaveAsRangeOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.doc"),
+                document: requestDocument,
                 rangeStartIdentifier: "id0.0.0",
-                documentParameters: new model.RangeDocument({
-                    documentName: "/NewDoc.docx"
-                }),
+                documentParameters: requestDocumentParameters,
                 rangeEndIdentifier: "id0.0.1"
             });
 
-            return wordsApi.saveAsRangeOnline(saveRequest)
+            wordsApi.saveAsRangeOnline(saveRequest)
             .then((saveRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of saveRequest: ", saveRequestResult);
@@ -4534,15 +4749,16 @@ describe("examples", () => {
     describe("exampleSaveAsTiff", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestSaveOptions = new model.TiffSaveOptionsData({
+                saveFormat: "tiff",
+                fileName: "/abc.tiff"
+            })
             const saveRequest = new model.SaveAsTiffRequest({
                 name: "Sample.docx",
-                saveOptions: new model.TiffSaveOptionsData({
-                    saveFormat: "tiff",
-                    fileName: "/abc.tiff"
-                })
+                saveOptions: requestSaveOptions
             });
 
-            return wordsApi.saveAsTiff(saveRequest)
+            wordsApi.saveAsTiff(saveRequest)
             .then((saveRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of saveRequest: ", saveRequestResult);
@@ -4554,15 +4770,17 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Common/test_multi_pages.docx");
+            let requestSaveOptions = new model.TiffSaveOptionsData({
+                saveFormat: "tiff",
+                fileName: "/abc.tiff"
+            })
             const saveRequest = new model.SaveAsTiffOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Common/test_multi_pages.docx"),
-                saveOptions: new model.TiffSaveOptionsData({
-                    saveFormat: "tiff",
-                    fileName: "/abc.tiff"
-                })
+                document: requestDocument,
+                saveOptions: requestSaveOptions
             });
 
-            return wordsApi.saveAsTiffOnline(saveRequest)
+            wordsApi.saveAsTiffOnline(saveRequest)
             .then((saveRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of saveRequest: ", saveRequestResult);
@@ -4578,7 +4796,7 @@ describe("examples", () => {
                 pattern: "aspose"
             });
 
-            return wordsApi.search(searchRequest)
+            wordsApi.search(searchRequest)
             .then((searchRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of searchRequest: ", searchRequestResult);
@@ -4590,12 +4808,13 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const searchRequest = new model.SearchOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 pattern: "aspose"
             });
 
-            return wordsApi.searchOnline(searchRequest)
+            wordsApi.searchOnline(searchRequest)
             .then((searchRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of searchRequest: ", searchRequestResult);
@@ -4614,7 +4833,7 @@ describe("examples", () => {
                 to: 2
             });
 
-            return wordsApi.splitDocument(splitRequest)
+            wordsApi.splitDocument(splitRequest)
             .then((splitRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of splitRequest: ", splitRequestResult);
@@ -4626,15 +4845,16 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const splitRequest = new model.SplitDocumentOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 format: "text",
                 destFileName: "/TestSplitDocument.text",
                 from: 1,
                 to: 2
             });
 
-            return wordsApi.splitDocumentOnline(splitRequest)
+            wordsApi.splitDocumentOnline(splitRequest)
             .then((splitRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of splitRequest: ", splitRequestResult);
@@ -4645,14 +4865,15 @@ describe("examples", () => {
     describe("exampleUnprotectDocument", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestProtectionRequest = new model.ProtectionRequest({
+                password: "aspose"
+            })
             const unprotectRequest = new model.UnprotectDocumentRequest({
                 name: "Sample.docx",
-                protectionRequest: new model.ProtectionRequest({
-                    password: "aspose"
-                })
+                protectionRequest: requestProtectionRequest
             });
 
-            return wordsApi.unprotectDocument(unprotectRequest)
+            wordsApi.unprotectDocument(unprotectRequest)
             .then((unprotectRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of unprotectRequest: ", unprotectRequestResult);
@@ -4664,14 +4885,16 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
+            let requestProtectionRequest = new model.ProtectionRequest({
+                password: "aspose"
+            })
             const unprotectRequest = new model.UnprotectDocumentOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
-                protectionRequest: new model.ProtectionRequest({
-                    password: "aspose"
-                })
+                document: requestDocument,
+                protectionRequest: requestProtectionRequest
             });
 
-            return wordsApi.unprotectDocumentOnline(unprotectRequest)
+            wordsApi.unprotectDocumentOnline(unprotectRequest)
             .then((unprotectRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of unprotectRequest: ", unprotectRequestResult);
@@ -4684,16 +4907,17 @@ describe("examples", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const bookmarkName = "aspose";
 
+            let requestBookmarkData = new model.BookmarkData({
+                name: bookmarkName,
+                text: "This will be the text for Aspose"
+            })
             const updateRequest = new model.UpdateBookmarkRequest({
                 name: "Sample.docx",
                 bookmarkName: bookmarkName,
-                bookmarkData: new model.BookmarkData({
-                    name: bookmarkName,
-                    text: "This will be the text for Aspose"
-                })
+                bookmarkData: requestBookmarkData
             });
 
-            return wordsApi.updateBookmark(updateRequest)
+            wordsApi.updateBookmark(updateRequest)
             .then((updateRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of updateRequest: ", updateRequestResult);
@@ -4707,17 +4931,19 @@ describe("examples", () => {
             const documentsDir = './ExamplesData/';
             const bookmarkName = "aspose";
 
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
+            let requestBookmarkData = new model.BookmarkData({
+                name: bookmarkName,
+                text: "This will be the text for Aspose"
+            })
             const updateRequest = new model.UpdateBookmarkOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 bookmarkName: bookmarkName,
-                bookmarkData: new model.BookmarkData({
-                    name: bookmarkName,
-                    text: "This will be the text for Aspose"
-                }),
+                bookmarkData: requestBookmarkData,
                 destFileName: "Sample.docx"
             });
 
-            return wordsApi.updateBookmarkOnline(updateRequest)
+            wordsApi.updateBookmarkOnline(updateRequest)
             .then((updateRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of updateRequest: ", updateRequestResult);
@@ -4728,23 +4954,25 @@ describe("examples", () => {
     describe("exampleUpdateBorder", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestBorderPropertiesColor = new model.XmlColor({
+                web: "#AABBCC"
+            })
+            let requestBorderProperties = new model.Border({
+                borderType: model.Border.BorderTypeEnum.Left,
+                color: requestBorderPropertiesColor,
+                distanceFromText: 6.0,
+                lineStyle: model.Border.LineStyleEnum.DashDotStroker,
+                lineWidth: 2.0,
+                shadow: true
+            })
             const updateRequest = new model.UpdateBorderRequest({
                 name: "Sample.docx",
                 borderType: "left",
-                borderProperties: new model.Border({
-                    borderType: model.Border.BorderTypeEnum.Left,
-                    color: new model.XmlColor({
-                        web: "#AABBCC"
-                    }),
-                    distanceFromText: 6.0,
-                    lineStyle: model.Border.LineStyleEnum.DashDotStroker,
-                    lineWidth: 2.0,
-                    shadow: true
-                }),
+                borderProperties: requestBorderProperties,
                 nodePath: "tables/1/rows/0/cells/0"
             });
 
-            return wordsApi.updateBorder(updateRequest)
+            wordsApi.updateBorder(updateRequest)
             .then((updateRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of updateRequest: ", updateRequestResult);
@@ -4756,23 +4984,26 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
+            let requestBorderPropertiesColor = new model.XmlColor({
+                web: "#AABBCC"
+            })
+            let requestBorderProperties = new model.Border({
+                borderType: model.Border.BorderTypeEnum.Left,
+                color: requestBorderPropertiesColor,
+                distanceFromText: 6,
+                lineStyle: model.Border.LineStyleEnum.DashDotStroker,
+                lineWidth: 2,
+                shadow: true
+            })
             const updateRequest = new model.UpdateBorderOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
-                borderProperties: new model.Border({
-                    borderType: model.Border.BorderTypeEnum.Left,
-                    color: new model.XmlColor({
-                        web: "#AABBCC"
-                    }),
-                    distanceFromText: 6,
-                    lineStyle: model.Border.LineStyleEnum.DashDotStroker,
-                    lineWidth: 2,
-                    shadow: true
-                }),
+                document: requestDocument,
+                borderProperties: requestBorderProperties,
                 borderType: "left",
                 nodePath: "tables/1/rows/0/cells/0"
             });
 
-            return wordsApi.updateBorderOnline(updateRequest)
+            wordsApi.updateBorderOnline(updateRequest)
             .then((updateRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of updateRequest: ", updateRequestResult);
@@ -4783,29 +5014,34 @@ describe("examples", () => {
     describe("exampleUpdateComment", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestCommentRangeStartNode = new model.NodeLink({
+                nodeId: "0.3.0"
+            })
+            let requestCommentRangeStart = new model.DocumentPosition({
+                node: requestCommentRangeStartNode,
+                offset: 0
+            })
+            let requestCommentRangeEndNode = new model.NodeLink({
+                nodeId: "0.3.0"
+            })
+            let requestCommentRangeEnd = new model.DocumentPosition({
+                node: requestCommentRangeEndNode,
+                offset: 0
+            })
+            let requestComment = new model.CommentUpdate({
+                rangeStart: requestCommentRangeStart,
+                rangeEnd: requestCommentRangeEnd,
+                initial: "IA",
+                author: "Imran Anwar",
+                text: "A new Comment"
+            })
             const updateRequest = new model.UpdateCommentRequest({
                 name: "Sample.docx",
                 commentIndex: 0,
-                comment: new model.CommentUpdate({
-                    rangeStart: new model.DocumentPosition({
-                        node: new model.NodeLink({
-                            nodeId: "0.3.0"
-                        }),
-                        offset: 0
-                    }),
-                    rangeEnd: new model.DocumentPosition({
-                        node: new model.NodeLink({
-                            nodeId: "0.3.0"
-                        }),
-                        offset: 0
-                    }),
-                    initial: "IA",
-                    author: "Imran Anwar",
-                    text: "A new Comment"
-                })
+                comment: requestComment
             });
 
-            return wordsApi.updateComment(updateRequest)
+            wordsApi.updateComment(updateRequest)
             .then((updateRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of updateRequest: ", updateRequestResult);
@@ -4817,29 +5053,35 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
+            let requestCommentRangeStartNode = new model.NodeLink({
+                nodeId: "0.3.0"
+            })
+            let requestCommentRangeStart = new model.DocumentPosition({
+                node: requestCommentRangeStartNode,
+                offset: 0
+            })
+            let requestCommentRangeEndNode = new model.NodeLink({
+                nodeId: "0.3.0"
+            })
+            let requestCommentRangeEnd = new model.DocumentPosition({
+                node: requestCommentRangeEndNode,
+                offset: 0
+            })
+            let requestComment = new model.CommentUpdate({
+                rangeStart: requestCommentRangeStart,
+                rangeEnd: requestCommentRangeEnd,
+                initial: "IA",
+                author: "Imran Anwar",
+                text: "A new Comment"
+            })
             const updateRequest = new model.UpdateCommentOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 commentIndex: 0,
-                comment: new model.CommentUpdate({
-                    rangeStart: new model.DocumentPosition({
-                        node: new model.NodeLink({
-                            nodeId: "0.3.0"
-                        }),
-                        offset: 0
-                    }),
-                    rangeEnd: new model.DocumentPosition({
-                        node: new model.NodeLink({
-                            nodeId: "0.3.0"
-                        }),
-                        offset: 0
-                    }),
-                    initial: "IA",
-                    author: "Imran Anwar",
-                    text: "A new Comment"
-                })
+                comment: requestComment
             });
 
-            return wordsApi.updateCommentOnline(updateRequest)
+            wordsApi.updateCommentOnline(updateRequest)
             .then((updateRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of updateRequest: ", updateRequestResult);
@@ -4850,15 +5092,16 @@ describe("examples", () => {
     describe("exampleUpdateCustomXmlPart", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestCustomXmlPart = new model.CustomXmlPartUpdate({
+                data: "<data>Hello world</data>"
+            })
             const updateRequest = new model.UpdateCustomXmlPartRequest({
                 name: "Sample.docx",
                 customXmlPartIndex: 0,
-                customXmlPart: new model.CustomXmlPartUpdate({
-                    data: "<data>Hello world</data>"
-                })
+                customXmlPart: requestCustomXmlPart
             });
 
-            return wordsApi.updateCustomXmlPart(updateRequest)
+            wordsApi.updateCustomXmlPart(updateRequest)
             .then((updateRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of updateRequest: ", updateRequestResult);
@@ -4870,15 +5113,17 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
+            let requestCustomXmlPart = new model.CustomXmlPartUpdate({
+                data: "<data>Hello world</data>"
+            })
             const updateRequest = new model.UpdateCustomXmlPartOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 customXmlPartIndex: 0,
-                customXmlPart: new model.CustomXmlPartUpdate({
-                    data: "<data>Hello world</data>"
-                })
+                customXmlPart: requestCustomXmlPart
             });
 
-            return wordsApi.updateCustomXmlPartOnline(updateRequest)
+            wordsApi.updateCustomXmlPartOnline(updateRequest)
             .then((updateRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of updateRequest: ", updateRequestResult);
@@ -4890,16 +5135,18 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDrawingObject = new model.DrawingObjectUpdate({
+                left: 0
+            })
+            let requestImageFile = fs.createReadStream(documentsDir + "Common/aspose-cloud.png");
             const updateRequest = new model.UpdateDrawingObjectRequest({
                 name: "Sample.docx",
-                drawingObject: new model.DrawingObjectUpdate({
-                    left: 0
-                }),
-                imageFile: fs.createReadStream(documentsDir + "Common/aspose-cloud.png"),
+                drawingObject: requestDrawingObject,
+                imageFile: requestImageFile,
                 index: 0
             });
 
-            return wordsApi.updateDrawingObject(updateRequest)
+            wordsApi.updateDrawingObject(updateRequest)
             .then((updateRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of updateRequest: ", updateRequestResult);
@@ -4911,16 +5158,19 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
+            let requestDrawingObject = new model.DrawingObjectUpdate({
+                left: 0
+            })
+            let requestImageFile = fs.createReadStream(documentsDir + "Common/aspose-cloud.png");
             const updateRequest = new model.UpdateDrawingObjectOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
-                drawingObject: new model.DrawingObjectUpdate({
-                    left: 0
-                }),
-                imageFile: fs.createReadStream(documentsDir + "Common/aspose-cloud.png"),
+                document: requestDocument,
+                drawingObject: requestDrawingObject,
+                imageFile: requestImageFile,
                 index: 0
             });
 
-            return wordsApi.updateDrawingObjectOnline(updateRequest)
+            wordsApi.updateDrawingObjectOnline(updateRequest)
             .then((updateRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of updateRequest: ", updateRequestResult);
@@ -4931,16 +5181,17 @@ describe("examples", () => {
     describe("exampleUpdateField", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestField = new model.FieldUpdate({
+                fieldCode: "{ NUMPAGES }"
+            })
             const updateRequest = new model.UpdateFieldRequest({
                 name: "Sample.docx",
                 index: 0,
-                field: new model.FieldUpdate({
-                    fieldCode: "{ NUMPAGES }"
-                }),
+                field: requestField,
                 nodePath: "sections/0/paragraphs/0"
             });
 
-            return wordsApi.updateField(updateRequest)
+            wordsApi.updateField(updateRequest)
             .then((updateRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of updateRequest: ", updateRequestResult);
@@ -4952,16 +5203,18 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
+            let requestField = new model.FieldUpdate({
+                fieldCode: "{ NUMPAGES }"
+            })
             const updateRequest = new model.UpdateFieldOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 index: 0,
-                field: new model.FieldUpdate({
-                    fieldCode: "{ NUMPAGES }"
-                }),
+                field: requestField,
                 nodePath: "sections/0/paragraphs/0"
             });
 
-            return wordsApi.updateFieldOnline(updateRequest)
+            wordsApi.updateFieldOnline(updateRequest)
             .then((updateRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of updateRequest: ", updateRequestResult);
@@ -4976,7 +5229,7 @@ describe("examples", () => {
                 name: "Sample.docx"
             });
 
-            return wordsApi.updateFields(updateRequest)
+            wordsApi.updateFields(updateRequest)
             .then((updateRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of updateRequest: ", updateRequestResult);
@@ -4988,11 +5241,12 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
             const updateRequest = new model.UpdateFieldsOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx")
+                document: requestDocument
             });
 
-            return wordsApi.updateFieldsOnline(updateRequest)
+            wordsApi.updateFieldsOnline(updateRequest)
             .then((updateRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of updateRequest: ", updateRequestResult);
@@ -5003,15 +5257,16 @@ describe("examples", () => {
     describe("exampleUpdateFootnote", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestFootnoteDto = new model.FootnoteUpdate({
+                text: "new text is here"
+            })
             const updateRequest = new model.UpdateFootnoteRequest({
                 name: "Sample.docx",
                 index: 0,
-                footnoteDto: new model.FootnoteUpdate({
-                    text: "new text is here"
-                })
+                footnoteDto: requestFootnoteDto
             });
 
-            return wordsApi.updateFootnote(updateRequest)
+            wordsApi.updateFootnote(updateRequest)
             .then((updateRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of updateRequest: ", updateRequestResult);
@@ -5023,15 +5278,17 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.doc");
+            let requestFootnoteDto = new model.FootnoteUpdate({
+                text: "new text is here"
+            })
             const updateRequest = new model.UpdateFootnoteOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.doc"),
+                document: requestDocument,
                 index: 0,
-                footnoteDto: new model.FootnoteUpdate({
-                    text: "new text is here"
-                })
+                footnoteDto: requestFootnoteDto
             });
 
-            return wordsApi.updateFootnoteOnline(updateRequest)
+            wordsApi.updateFootnoteOnline(updateRequest)
             .then((updateRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of updateRequest: ", updateRequestResult);
@@ -5042,20 +5299,21 @@ describe("examples", () => {
     describe("exampleUpdateFormField", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestFormField = new model.FormFieldTextInput({
+                name: "FullName",
+                enabled: true,
+                calculateOnExit: true,
+                statusText: "",
+                textInputType: model.FormFieldTextInput.TextInputTypeEnum.Regular,
+                textInputDefault: "No name"
+            })
             const updateRequest = new model.UpdateFormFieldRequest({
                 name: "Sample.docx",
                 index: 0,
-                formField: new model.FormFieldTextInput({
-                    name: "FullName",
-                    enabled: true,
-                    calculateOnExit: true,
-                    statusText: "",
-                    textInputType: model.FormFieldTextInput.TextInputTypeEnum.Regular,
-                    textInputDefault: "No name"
-                })
+                formField: requestFormField
             });
 
-            return wordsApi.updateFormField(updateRequest)
+            wordsApi.updateFormField(updateRequest)
             .then((updateRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of updateRequest: ", updateRequestResult);
@@ -5067,21 +5325,23 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
+            let requestFormField = new model.FormFieldTextInput({
+                name: "FullName",
+                enabled: true,
+                calculateOnExit: true,
+                statusText: "",
+                textInputType: model.FormFieldTextInput.TextInputTypeEnum.Regular,
+                textInputDefault: "No name"
+            })
             const updateRequest = new model.UpdateFormFieldOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 index: 0,
-                formField: new model.FormFieldTextInput({
-                    name: "FullName",
-                    enabled: true,
-                    calculateOnExit: true,
-                    statusText: "",
-                    textInputType: model.FormFieldTextInput.TextInputTypeEnum.Regular,
-                    textInputDefault: "No name"
-                }),
+                formField: requestFormField,
                 nodePath: "sections/0"
             });
 
-            return wordsApi.updateFormFieldOnline(updateRequest)
+            wordsApi.updateFormFieldOnline(updateRequest)
             .then((updateRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of updateRequest: ", updateRequestResult);
@@ -5092,15 +5352,16 @@ describe("examples", () => {
     describe("exampleUpdateList", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestListUpdate = new model.ListUpdate({
+                isRestartAtEachSection: true
+            })
             const updateRequest = new model.UpdateListRequest({
                 name: "TestGetLists.doc",
                 listId: 1,
-                listUpdate: new model.ListUpdate({
-                    isRestartAtEachSection: true
-                })
+                listUpdate: requestListUpdate
             });
 
-            return wordsApi.updateList(updateRequest)
+            wordsApi.updateList(updateRequest)
             .then((updateRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of updateRequest: ", updateRequestResult);
@@ -5111,16 +5372,17 @@ describe("examples", () => {
     describe("exampleUpdateListLevel", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestListUpdate = new model.ListLevelUpdate({
+                alignment: model.ListLevelUpdate.AlignmentEnum.Right
+            })
             const updateRequest = new model.UpdateListLevelRequest({
                 name: "TestGetLists.doc",
                 listId: 1,
                 listLevel: 1,
-                listUpdate: new model.ListLevelUpdate({
-                    alignment: model.ListLevelUpdate.AlignmentEnum.Right
-                })
+                listUpdate: requestListUpdate
             });
 
-            return wordsApi.updateListLevel(updateRequest)
+            wordsApi.updateListLevel(updateRequest)
             .then((updateRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of updateRequest: ", updateRequestResult);
@@ -5132,16 +5394,18 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.doc");
+            let requestListUpdate = new model.ListLevelUpdate({
+                alignment: model.ListLevelUpdate.AlignmentEnum.Right
+            })
             const updateRequest = new model.UpdateListLevelOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.doc"),
+                document: requestDocument,
                 listId: 1,
                 listLevel: 1,
-                listUpdate: new model.ListLevelUpdate({
-                    alignment: model.ListLevelUpdate.AlignmentEnum.Right
-                })
+                listUpdate: requestListUpdate
             });
 
-            return wordsApi.updateListLevelOnline(updateRequest)
+            wordsApi.updateListLevelOnline(updateRequest)
             .then((updateRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of updateRequest: ", updateRequestResult);
@@ -5153,15 +5417,17 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.doc");
+            let requestListUpdate = new model.ListUpdate({
+                isRestartAtEachSection: true
+            })
             const updateRequest = new model.UpdateListOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.doc"),
+                document: requestDocument,
                 listId: 1,
-                listUpdate: new model.ListUpdate({
-                    isRestartAtEachSection: true
-                })
+                listUpdate: requestListUpdate
             });
 
-            return wordsApi.updateListOnline(updateRequest)
+            wordsApi.updateListOnline(updateRequest)
             .then((updateRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of updateRequest: ", updateRequestResult);
@@ -5172,15 +5438,16 @@ describe("examples", () => {
     describe("exampleUpdateParagraphFormat", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestParagraphFormatDto = new model.ParagraphFormatUpdate({
+                alignment: model.ParagraphFormatUpdate.AlignmentEnum.Right
+            })
             const updateRequest = new model.UpdateParagraphFormatRequest({
                 name: "Sample.docx",
                 index: 0,
-                paragraphFormatDto: new model.ParagraphFormatUpdate({
-                    alignment: model.ParagraphFormatUpdate.AlignmentEnum.Right
-                })
+                paragraphFormatDto: requestParagraphFormatDto
             });
 
-            return wordsApi.updateParagraphFormat(updateRequest)
+            wordsApi.updateParagraphFormat(updateRequest)
             .then((updateRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of updateRequest: ", updateRequestResult);
@@ -5192,15 +5459,17 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
+            let requestParagraphFormatDto = new model.ParagraphFormatUpdate({
+                alignment: model.ParagraphFormatUpdate.AlignmentEnum.Right
+            })
             const updateRequest = new model.UpdateParagraphFormatOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 index: 0,
-                paragraphFormatDto: new model.ParagraphFormatUpdate({
-                    alignment: model.ParagraphFormatUpdate.AlignmentEnum.Right
-                })
+                paragraphFormatDto: requestParagraphFormatDto
             });
 
-            return wordsApi.updateParagraphFormatOnline(updateRequest)
+            wordsApi.updateParagraphFormatOnline(updateRequest)
             .then((updateRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of updateRequest: ", updateRequestResult);
@@ -5211,15 +5480,16 @@ describe("examples", () => {
     describe("exampleUpdateParagraphListFormat", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestListFormatDto = new model.ListFormatUpdate({
+                listId: 2
+            })
             const updateRequest = new model.UpdateParagraphListFormatRequest({
                 name: "Sample.docx",
                 index: 0,
-                listFormatDto: new model.ListFormatUpdate({
-                    listId: 2
-                })
+                listFormatDto: requestListFormatDto
             });
 
-            return wordsApi.updateParagraphListFormat(updateRequest)
+            wordsApi.updateParagraphListFormat(updateRequest)
             .then((updateRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of updateRequest: ", updateRequestResult);
@@ -5231,15 +5501,17 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.doc");
+            let requestListFormatDto = new model.ListFormatUpdate({
+                listId: 2
+            })
             const updateRequest = new model.UpdateParagraphListFormatOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.doc"),
-                listFormatDto: new model.ListFormatUpdate({
-                    listId: 2
-                }),
+                document: requestDocument,
+                listFormatDto: requestListFormatDto,
                 index: 0
             });
 
-            return wordsApi.updateParagraphListFormatOnline(updateRequest)
+            wordsApi.updateParagraphListFormatOnline(updateRequest)
             .then((updateRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of updateRequest: ", updateRequestResult);
@@ -5250,16 +5522,17 @@ describe("examples", () => {
     describe("exampleUpdateRun", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestRun = new model.RunUpdate({
+                text: "run with text"
+            })
             const updateRequest = new model.UpdateRunRequest({
                 name: "Sample.docx",
-                run: new model.RunUpdate({
-                    text: "run with text"
-                }),
+                run: requestRun,
                 paragraphPath: "paragraphs/1",
                 index: 0
             });
 
-            return wordsApi.updateRun(updateRequest)
+            wordsApi.updateRun(updateRequest)
             .then((updateRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of updateRequest: ", updateRequestResult);
@@ -5270,16 +5543,17 @@ describe("examples", () => {
     describe("exampleUpdateRunFont", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestFontDto = new model.Font({
+                bold: true
+            })
             const updateRequest = new model.UpdateRunFontRequest({
                 name: "Sample.docx",
-                fontDto: new model.Font({
-                    bold: true
-                }),
+                fontDto: requestFontDto,
                 paragraphPath: "paragraphs/0",
                 index: 0
             });
 
-            return wordsApi.updateRunFont(updateRequest)
+            wordsApi.updateRunFont(updateRequest)
             .then((updateRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of updateRequest: ", updateRequestResult);
@@ -5291,16 +5565,18 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
+            let requestFontDto = new model.Font({
+                bold: true
+            })
             const updateRequest = new model.UpdateRunFontOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
-                fontDto: new model.Font({
-                    bold: true
-                }),
+                document: requestDocument,
+                fontDto: requestFontDto,
                 paragraphPath: "paragraphs/0",
                 index: 0
             });
 
-            return wordsApi.updateRunFontOnline(updateRequest)
+            wordsApi.updateRunFontOnline(updateRequest)
             .then((updateRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of updateRequest: ", updateRequestResult);
@@ -5312,16 +5588,18 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.doc");
+            let requestRun = new model.RunUpdate({
+                text: "run with text"
+            })
             const updateRequest = new model.UpdateRunOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.doc"),
-                run: new model.RunUpdate({
-                    text: "run with text"
-                }),
+                document: requestDocument,
+                run: requestRun,
                 paragraphPath: "paragraphs/1",
                 index: 0
             });
 
-            return wordsApi.updateRunOnline(updateRequest)
+            wordsApi.updateRunOnline(updateRequest)
             .then((updateRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of updateRequest: ", updateRequestResult);
@@ -5332,18 +5610,19 @@ describe("examples", () => {
     describe("exampleUpdateSectionPageSetup", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestPageSetup = new model.PageSetup({
+                rtlGutter: true,
+                leftMargin: 10.0,
+                orientation: model.PageSetup.OrientationEnum.Landscape,
+                paperSize: model.PageSetup.PaperSizeEnum.A5
+            })
             const updateRequest = new model.UpdateSectionPageSetupRequest({
                 name: "Sample.docx",
                 sectionIndex: 0,
-                pageSetup: new model.PageSetup({
-                    rtlGutter: true,
-                    leftMargin: 10.0,
-                    orientation: model.PageSetup.OrientationEnum.Landscape,
-                    paperSize: model.PageSetup.PaperSizeEnum.A5
-                })
+                pageSetup: requestPageSetup
             });
 
-            return wordsApi.updateSectionPageSetup(updateRequest)
+            wordsApi.updateSectionPageSetup(updateRequest)
             .then((updateRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of updateRequest: ", updateRequestResult);
@@ -5355,18 +5634,20 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
+            let requestPageSetup = new model.PageSetup({
+                rtlGutter: true,
+                leftMargin: 10,
+                orientation: model.PageSetup.OrientationEnum.Landscape,
+                paperSize: model.PageSetup.PaperSizeEnum.A5
+            })
             const updateRequest = new model.UpdateSectionPageSetupOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
+                document: requestDocument,
                 sectionIndex: 0,
-                pageSetup: new model.PageSetup({
-                    rtlGutter: true,
-                    leftMargin: 10,
-                    orientation: model.PageSetup.OrientationEnum.Landscape,
-                    paperSize: model.PageSetup.PaperSizeEnum.A5
-                })
+                pageSetup: requestPageSetup
             });
 
-            return wordsApi.updateSectionPageSetupOnline(updateRequest)
+            wordsApi.updateSectionPageSetupOnline(updateRequest)
             .then((updateRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of updateRequest: ", updateRequestResult);
@@ -5377,15 +5658,16 @@ describe("examples", () => {
     describe("exampleUpdateStyle", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestStyleUpdate = new model.StyleUpdate({
+                name: "My Style"
+            })
             const updateRequest = new model.UpdateStyleRequest({
                 name: "Sample.docx",
-                styleUpdate: new model.StyleUpdate({
-                    name: "My Style"
-                }),
+                styleUpdate: requestStyleUpdate,
                 styleName: "Heading 1"
             });
 
-            return wordsApi.updateStyle(updateRequest)
+            wordsApi.updateStyle(updateRequest)
             .then((updateRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of updateRequest: ", updateRequestResult);
@@ -5397,15 +5679,17 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
+            let requestStyleUpdate = new model.StyleUpdate({
+                name: "My Style"
+            })
             const updateRequest = new model.UpdateStyleOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
-                styleUpdate: new model.StyleUpdate({
-                    name: "My Style"
-                }),
+                document: requestDocument,
+                styleUpdate: requestStyleUpdate,
                 styleName: "Heading 1"
             });
 
-            return wordsApi.updateStyleOnline(updateRequest)
+            wordsApi.updateStyleOnline(updateRequest)
             .then((updateRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of updateRequest: ", updateRequestResult);
@@ -5416,19 +5700,20 @@ describe("examples", () => {
     describe("exampleUpdateTableCellFormat", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestFormat = new model.TableCellFormat({
+                bottomPadding: 5.0,
+                fitText: true,
+                horizontalMerge: model.TableCellFormat.HorizontalMergeEnum.First,
+                wrapText: true
+            })
             const updateRequest = new model.UpdateTableCellFormatRequest({
                 name: "Sample.docx",
-                format: new model.TableCellFormat({
-                    bottomPadding: 5.0,
-                    fitText: true,
-                    horizontalMerge: model.TableCellFormat.HorizontalMergeEnum.First,
-                    wrapText: true
-                }),
+                format: requestFormat,
                 tableRowPath: "sections/0/tables/2/rows/0",
                 index: 0
             });
 
-            return wordsApi.updateTableCellFormat(updateRequest)
+            wordsApi.updateTableCellFormat(updateRequest)
             .then((updateRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of updateRequest: ", updateRequestResult);
@@ -5440,19 +5725,21 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
+            let requestFormat = new model.TableCellFormat({
+                bottomPadding: 5,
+                fitText: true,
+                horizontalMerge: model.TableCellFormat.HorizontalMergeEnum.First,
+                wrapText: true
+            })
             const updateRequest = new model.UpdateTableCellFormatOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
-                format: new model.TableCellFormat({
-                    bottomPadding: 5,
-                    fitText: true,
-                    horizontalMerge: model.TableCellFormat.HorizontalMergeEnum.First,
-                    wrapText: true
-                }),
+                document: requestDocument,
+                format: requestFormat,
                 tableRowPath: "sections/0/tables/2/rows/0",
                 index: 0
             });
 
-            return wordsApi.updateTableCellFormatOnline(updateRequest)
+            wordsApi.updateTableCellFormatOnline(updateRequest)
             .then((updateRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of updateRequest: ", updateRequestResult);
@@ -5463,20 +5750,21 @@ describe("examples", () => {
     describe("exampleUpdateTableProperties", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestProperties = new model.TableProperties({
+                alignment: model.TableProperties.AlignmentEnum.Right,
+                allowAutoFit: false,
+                bidi: true,
+                bottomPadding: 1.0,
+                cellSpacing: 2.0,
+                styleOptions: model.TableProperties.StyleOptionsEnum.ColumnBands
+            })
             const updateRequest = new model.UpdateTablePropertiesRequest({
                 name: "Sample.docx",
-                properties: new model.TableProperties({
-                    alignment: model.TableProperties.AlignmentEnum.Right,
-                    allowAutoFit: false,
-                    bidi: true,
-                    bottomPadding: 1.0,
-                    cellSpacing: 2.0,
-                    styleOptions: model.TableProperties.StyleOptionsEnum.ColumnBands
-                }),
+                properties: requestProperties,
                 index: 1
             });
 
-            return wordsApi.updateTableProperties(updateRequest)
+            wordsApi.updateTableProperties(updateRequest)
             .then((updateRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of updateRequest: ", updateRequestResult);
@@ -5488,20 +5776,22 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
+            let requestProperties = new model.TableProperties({
+                alignment: model.TableProperties.AlignmentEnum.Right,
+                allowAutoFit: false,
+                bidi: true,
+                bottomPadding: 1,
+                cellSpacing: 2,
+                styleOptions: model.TableProperties.StyleOptionsEnum.ColumnBands
+            })
             const updateRequest = new model.UpdateTablePropertiesOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
-                properties: new model.TableProperties({
-                    alignment: model.TableProperties.AlignmentEnum.Right,
-                    allowAutoFit: false,
-                    bidi: true,
-                    bottomPadding: 1,
-                    cellSpacing: 2,
-                    styleOptions: model.TableProperties.StyleOptionsEnum.ColumnBands
-                }),
+                document: requestDocument,
+                properties: requestProperties,
                 index: 1
             });
 
-            return wordsApi.updateTablePropertiesOnline(updateRequest)
+            wordsApi.updateTablePropertiesOnline(updateRequest)
             .then((updateRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of updateRequest: ", updateRequestResult);
@@ -5512,19 +5802,20 @@ describe("examples", () => {
     describe("exampleUpdateTableRowFormat", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestFormat = new model.TableRowFormat({
+                allowBreakAcrossPages: true,
+                headingFormat: true,
+                height: 10.0,
+                heightRule: model.TableRowFormat.HeightRuleEnum.Exactly
+            })
             const updateRequest = new model.UpdateTableRowFormatRequest({
                 name: "Sample.docx",
-                format: new model.TableRowFormat({
-                    allowBreakAcrossPages: true,
-                    headingFormat: true,
-                    height: 10.0,
-                    heightRule: model.TableRowFormat.HeightRuleEnum.Exactly
-                }),
+                format: requestFormat,
                 tablePath: "sections/0/tables/2",
                 index: 0
             });
 
-            return wordsApi.updateTableRowFormat(updateRequest)
+            wordsApi.updateTableRowFormat(updateRequest)
             .then((updateRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of updateRequest: ", updateRequestResult);
@@ -5536,19 +5827,21 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestDocument = fs.createReadStream(documentsDir + "Sample.docx");
+            let requestFormat = new model.TableRowFormat({
+                allowBreakAcrossPages: true,
+                headingFormat: true,
+                height: 10,
+                heightRule: model.TableRowFormat.HeightRuleEnum.Auto
+            })
             const updateRequest = new model.UpdateTableRowFormatOnlineRequest({
-                document: fs.createReadStream(documentsDir + "Sample.docx"),
-                format: new model.TableRowFormat({
-                    allowBreakAcrossPages: true,
-                    headingFormat: true,
-                    height: 10,
-                    heightRule: model.TableRowFormat.HeightRuleEnum.Auto
-                }),
+                document: requestDocument,
+                format: requestFormat,
                 tablePath: "sections/0/tables/2",
                 index: 0
             });
 
-            return wordsApi.updateTableRowFormatOnline(updateRequest)
+            wordsApi.updateTableRowFormatOnline(updateRequest)
             .then((updateRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of updateRequest: ", updateRequestResult);
@@ -5560,12 +5853,13 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
+            let requestFileContent = fs.createReadStream(documentsDir + "Sample.docx");
             const uploadRequest = new model.UploadFileRequest({
-                fileContent: fs.createReadStream(documentsDir + "Sample.docx"),
+                fileContent: requestFileContent,
                 path: "Sample.docx"
             });
 
-            return wordsApi.uploadFile(uploadRequest)
+            wordsApi.uploadFile(uploadRequest)
             .then((uploadRequestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of uploadRequest: ", uploadRequestResult);

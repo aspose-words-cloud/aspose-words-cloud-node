@@ -1,15 +1,16 @@
 const clientId = "####-####-####-####-####";
 const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
+let requestReplaceText = new model.ReplaceTextParameters({
+    oldValue: "Testing",
+    newValue: "Aspose testing"
+})
 const replaceRequest = new model.ReplaceTextRequest({
     name: "Sample.docx",
-    replaceText: new model.ReplaceTextParameters({
-        oldValue: "Testing",
-        newValue: "Aspose testing"
-    })
+    replaceText: requestReplaceText
 });
 
-return wordsApi.replaceText(replaceRequest)
+wordsApi.replaceText(replaceRequest)
 .then((replaceRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of replaceRequest: ", replaceRequestResult);

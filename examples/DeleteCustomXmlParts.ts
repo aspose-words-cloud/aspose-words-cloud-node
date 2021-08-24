@@ -5,7 +5,7 @@ const deleteRequest = new model.DeleteCustomXmlPartsRequest({
     name: "Sample.docx"
 });
 
-return wordsApi.deleteCustomXmlParts(deleteRequest)
+wordsApi.deleteCustomXmlParts(deleteRequest)
 .then((deleteRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of deleteRequest: ", deleteRequestResult);

@@ -5,7 +5,7 @@ const deleteRequest = new model.DeleteCommentsRequest({
     name: "Sample.docx"
 });
 
-return wordsApi.deleteComments(deleteRequest)
+wordsApi.deleteComments(deleteRequest)
 .then((deleteRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of deleteRequest: ", deleteRequestResult);

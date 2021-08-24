@@ -6,7 +6,7 @@ const request = new model.GetTablePropertiesRequest({
     index: 1
 });
 
-return wordsApi.getTableProperties(request)
+wordsApi.getTableProperties(request)
 .then((requestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of request: ", requestResult);

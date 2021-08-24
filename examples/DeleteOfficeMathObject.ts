@@ -6,7 +6,7 @@ const deleteRequest = new model.DeleteOfficeMathObjectRequest({
     index: 0
 });
 
-return wordsApi.deleteOfficeMathObject(deleteRequest)
+wordsApi.deleteOfficeMathObject(deleteRequest)
 .then((deleteRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of deleteRequest: ", deleteRequestResult);

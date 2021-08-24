@@ -1,18 +1,19 @@
 const clientId = "####-####-####-####-####";
 const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
-const documentsDir = "./";
+let requestDocument = fs.createReadStream("Sample.docx");
+let requestTabStopInsertDto = new model.TabStopInsert({
+    alignment: model.TabStopInsert.AlignmentEnum.Left,
+    leader: model.TabStopInsert.LeaderEnum.None,
+    position: 72
+})
 const insertRequest = new model.InsertOrUpdateParagraphTabStopOnlineRequest({
-    document: fs.createReadStream(documentsDir + "Sample.docx"),
-    tabStopInsertDto: new model.TabStopInsert({
-        alignment: model.TabStopInsert.AlignmentEnum.Left,
-        leader: model.TabStopInsert.LeaderEnum.None,
-        position: 72
-    }),
+    document: requestDocument,
+    tabStopInsertDto: requestTabStopInsertDto,
     index: 0
 });
 
-return wordsApi.insertOrUpdateParagraphTabStopOnline(insertRequest)
+wordsApi.insertOrUpdateParagraphTabStopOnline(insertRequest)
 .then((insertRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of insertRequest: ", insertRequestResult);

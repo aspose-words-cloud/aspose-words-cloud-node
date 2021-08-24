@@ -6,7 +6,7 @@ const request = new model.GetBookmarkByNameRequest({
     bookmarkName: "aspose"
 });
 
-return wordsApi.getBookmarkByName(request)
+wordsApi.getBookmarkByName(request)
 .then((requestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of request: ", requestResult);

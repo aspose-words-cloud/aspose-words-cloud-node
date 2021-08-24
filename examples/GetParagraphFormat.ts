@@ -6,7 +6,7 @@ const request = new model.GetParagraphFormatRequest({
     index: 0
 });
 
-return wordsApi.getParagraphFormat(request)
+wordsApi.getParagraphFormat(request)
 .then((requestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of request: ", requestResult);

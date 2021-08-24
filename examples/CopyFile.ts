@@ -6,7 +6,7 @@ const copyRequest = new model.CopyFileRequest({
     srcPath: "Sample.docx"
 });
 
-return wordsApi.copyFile(copyRequest)
+wordsApi.copyFile(copyRequest)
 .then((copyRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of copyRequest: ", copyRequestResult);

@@ -1,12 +1,12 @@
 const clientId = "####-####-####-####-####";
 const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
-const documentsDir = "./";
+let requestDocument = fs.createReadStream("Sample.docx");
 const rejectRequest = new model.RejectAllRevisionsOnlineRequest({
-    document: fs.createReadStream(documentsDir + "Sample.docx")
+    document: requestDocument
 });
 
-return wordsApi.rejectAllRevisionsOnline(rejectRequest)
+wordsApi.rejectAllRevisionsOnline(rejectRequest)
 .then((rejectRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of rejectRequest: ", rejectRequestResult);

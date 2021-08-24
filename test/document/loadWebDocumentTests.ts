@@ -39,18 +39,20 @@ describe("loadWebDocument", () => {
     describe("loadWebDocument test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDataSaveOptions = new model.SaveOptionsData({
+                fileName: "google.doc",
+                saveFormat: "doc",
+                dmlEffectsRenderingMode: "1",
+                dmlRenderingMode: "1",
+                updateSdtContent: false,
+                zipOutput: false
+            })
+            let requestData = new model.LoadWebDocumentData({
+                loadingDocumentUrl: "http://google.com",
+                saveOptions: requestDataSaveOptions
+            })
             const request = new model.LoadWebDocumentRequest({
-                data: new model.LoadWebDocumentData({
-                    loadingDocumentUrl: "http://google.com",
-                    saveOptions: new model.SaveOptionsData({
-                        fileName: "google.doc",
-                        saveFormat: "doc",
-                        dmlEffectsRenderingMode: "1",
-                        dmlRenderingMode: "1",
-                        updateSdtContent: false,
-                        zipOutput: false
-                    })
-                })
+                data: requestData
             });
 
             // Act

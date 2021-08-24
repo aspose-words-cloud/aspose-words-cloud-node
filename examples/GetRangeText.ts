@@ -7,7 +7,7 @@ const request = new model.GetRangeTextRequest({
     rangeEndIdentifier: "id0.0.1"
 });
 
-return wordsApi.getRangeText(request)
+wordsApi.getRangeText(request)
 .then((requestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of request: ", requestResult);

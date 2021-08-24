@@ -6,7 +6,7 @@ const request = new model.GetHeaderFootersRequest({
     sectionPath: ""
 });
 
-return wordsApi.getHeaderFooters(request)
+wordsApi.getHeaderFooters(request)
 .then((requestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of request: ", requestResult);

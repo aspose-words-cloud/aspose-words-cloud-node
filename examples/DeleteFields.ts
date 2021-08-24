@@ -5,7 +5,7 @@ const deleteRequest = new model.DeleteFieldsRequest({
     name: "Sample.docx"
 });
 
-return wordsApi.deleteFields(deleteRequest)
+wordsApi.deleteFields(deleteRequest)
 .then((deleteRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of deleteRequest: ", deleteRequestResult);

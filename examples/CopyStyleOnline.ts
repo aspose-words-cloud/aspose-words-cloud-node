@@ -1,15 +1,16 @@
 const clientId = "####-####-####-####-####";
 const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
-const documentsDir = "./";
+let requestDocument = fs.createReadStream("Sample.docx");
+let requestStyleCopy = new model.StyleCopy({
+    styleName: "Heading 1"
+})
 const copyRequest = new model.CopyStyleOnlineRequest({
-    document: fs.createReadStream(documentsDir + "Sample.docx"),
-    styleCopy: new model.StyleCopy({
-        styleName: "Heading 1"
-    })
+    document: requestDocument,
+    styleCopy: requestStyleCopy
 });
 
-return wordsApi.copyStyleOnline(copyRequest)
+wordsApi.copyStyleOnline(copyRequest)
 .then((copyRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of copyRequest: ", copyRequestResult);

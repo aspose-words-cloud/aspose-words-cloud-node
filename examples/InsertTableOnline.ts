@@ -1,16 +1,17 @@
 const clientId = "####-####-####-####-####";
 const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
-const documentsDir = "./";
+let requestDocument = fs.createReadStream("Sample.docx");
+let requestTable = new model.TableInsert({
+    columnsCount: 5,
+    rowsCount: 4
+})
 const insertRequest = new model.InsertTableOnlineRequest({
-    document: fs.createReadStream(documentsDir + "Sample.docx"),
-    table: new model.TableInsert({
-        columnsCount: 5,
-        rowsCount: 4
-    })
+    document: requestDocument,
+    table: requestTable
 });
 
-return wordsApi.insertTableOnline(insertRequest)
+wordsApi.insertTableOnline(insertRequest)
 .then((insertRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of insertRequest: ", insertRequestResult);

@@ -1,12 +1,12 @@
 const clientId = "####-####-####-####-####";
 const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
-const documentsDir = "./";
+let requestDocument = fs.createReadStream("Sample.docx");
 const updateRequest = new model.UpdateFieldsOnlineRequest({
-    document: fs.createReadStream(documentsDir + "Sample.docx")
+    document: requestDocument
 });
 
-return wordsApi.updateFieldsOnline(updateRequest)
+wordsApi.updateFieldsOnline(updateRequest)
 .then((updateRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of updateRequest: ", updateRequestResult);

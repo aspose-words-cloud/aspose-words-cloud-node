@@ -6,7 +6,7 @@ const request = new model.GetDocumentDrawingObjectByIndexRequest({
     index: 0
 });
 
-return wordsApi.getDocumentDrawingObjectByIndex(request)
+wordsApi.getDocumentDrawingObjectByIndex(request)
 .then((requestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of request: ", requestResult);

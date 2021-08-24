@@ -6,7 +6,7 @@ const deleteRequest = new model.DeleteFootnoteRequest({
     index: 0
 });
 
-return wordsApi.deleteFootnote(deleteRequest)
+wordsApi.deleteFootnote(deleteRequest)
 .then((deleteRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of deleteRequest: ", deleteRequestResult);

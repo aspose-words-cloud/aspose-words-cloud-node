@@ -6,7 +6,7 @@ const moveRequest = new model.MoveFolderRequest({
     srcPath: "/TestMoveFolderSrc"
 });
 
-return wordsApi.moveFolder(moveRequest)
+wordsApi.moveFolder(moveRequest)
 .then((moveRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of moveRequest: ", moveRequestResult);

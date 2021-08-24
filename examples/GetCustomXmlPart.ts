@@ -6,7 +6,7 @@ const request = new model.GetCustomXmlPartRequest({
     customXmlPartIndex: 0
 });
 
-return wordsApi.getCustomXmlPart(request)
+wordsApi.getCustomXmlPart(request)
 .then((requestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of request: ", requestResult);

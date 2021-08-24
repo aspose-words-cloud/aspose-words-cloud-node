@@ -1,12 +1,31 @@
+import * as fs from "fs";
+
 const clientId = "####-####-####-####-####";
 const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
-const acceptRequest = new model.AcceptAllRevisionsRequest({
-    name: "Sample.docx"
+const fileName  = "test_doc.docx";
+
+// Upload original document to cloud storage.
+let myVar1 = fs.createReadStream(fileName);
+let myVar2 = fileName;
+const uploadFileRequest = new model.UploadFileRequest({
+    fileContent: myVar1,
+    path: myVar2
 });
 
-return wordsApi.acceptAllRevisions(acceptRequest)
-.then((acceptRequestResult) => {
+wordsApi.uploadFile(uploadFileRequest)
+.then((uploadFileRequestResult) => {
     // tslint:disable-next-line:no-console
-    console.log("Result of acceptRequest: ", acceptRequestResult);
+    console.log("Result of UploadFileRequest: ", uploadFileRequestResult);
+    // Calls AcceptAllRevisions method for document in cloud.
+    let myVar3 = fileName;
+    const request = new model.AcceptAllRevisionsRequest({
+        name: myVar3
+    });
+
+    wordsApi.acceptAllRevisions(request)
+    .then((requestResult) => {
+        // tslint:disable-next-line:no-console
+        console.log("Result of Request: ", requestResult);
+    });
 });

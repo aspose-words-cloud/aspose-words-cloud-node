@@ -1,15 +1,16 @@
 const clientId = "####-####-####-####-####";
 const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
-const documentsDir = "./";
+let requestDocument = fs.createReadStream("Sample.docx");
+let requestProtectionRequest = new model.ProtectionRequest({
+    password: "aspose"
+})
 const unprotectRequest = new model.UnprotectDocumentOnlineRequest({
-    document: fs.createReadStream(documentsDir + "Sample.docx"),
-    protectionRequest: new model.ProtectionRequest({
-        password: "aspose"
-    })
+    document: requestDocument,
+    protectionRequest: requestProtectionRequest
 });
 
-return wordsApi.unprotectDocumentOnline(unprotectRequest)
+wordsApi.unprotectDocumentOnline(unprotectRequest)
 .then((unprotectRequestResult) => {
     // tslint:disable-next-line:no-console
     console.log("Result of unprotectRequest: ", unprotectRequestResult);

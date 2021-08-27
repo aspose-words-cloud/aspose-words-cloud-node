@@ -72,8 +72,9 @@ describe("documentStatistics", () => {
     describe("getDocumentStatisticsOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.GetDocumentStatisticsOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile)
+                document: requestDocument
             });
 
             // Act

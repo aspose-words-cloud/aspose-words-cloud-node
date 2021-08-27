@@ -73,8 +73,9 @@ describe("revisions", () => {
     describe("acceptAllRevisionsOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.AcceptAllRevisionsOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile)
+                document: requestDocument
             });
 
             // Act
@@ -126,8 +127,9 @@ describe("revisions", () => {
     describe("rejectAllRevisionsOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.RejectAllRevisionsOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile)
+                document: requestDocument
             });
 
             // Act

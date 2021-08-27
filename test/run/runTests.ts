@@ -49,11 +49,12 @@ describe("run", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestRun = new model.RunUpdate({
+                    text: "run with text"
+                })
                 const request = new model.UpdateRunRequest({
                     name: remoteFileName,
-                    run: new model.RunUpdate({
-                        text: "run with text"
-                    }),
+                    run: requestRun,
                     paragraphPath: "paragraphs/1",
                     index: 0,
                     folder: remoteDataFolder
@@ -77,11 +78,13 @@ describe("run", () => {
     describe("updateRunOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            let requestRun = new model.RunUpdate({
+                text: "run with text"
+            })
             const request = new model.UpdateRunOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
-                run: new model.RunUpdate({
-                    text: "run with text"
-                }),
+                document: requestDocument,
+                run: requestRun,
                 paragraphPath: "paragraphs/1",
                 index: 0
             });
@@ -107,12 +110,13 @@ describe("run", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                let requestRun = new model.RunInsert({
+                    text: "run with text"
+                })
                 const request = new model.InsertRunRequest({
                     name: remoteFileName,
                     paragraphPath: "paragraphs/1",
-                    run: new model.RunInsert({
-                        text: "run with text"
-                    }),
+                    run: requestRun,
                     folder: remoteDataFolder
                 });
 
@@ -135,12 +139,14 @@ describe("run", () => {
     describe("insertRunOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            let requestRun = new model.RunInsert({
+                text: "run with text"
+            })
             const request = new model.InsertRunOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                document: requestDocument,
                 paragraphPath: "paragraphs/1",
-                run: new model.RunInsert({
-                    text: "run with text"
-                })
+                run: requestRun
             });
 
             // Act
@@ -187,8 +193,9 @@ describe("run", () => {
     describe("deleteRunOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.DeleteRunOnlineRequest({
-                document: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                document: requestDocument,
                 paragraphPath: "paragraphs/1",
                 index: 0
             });

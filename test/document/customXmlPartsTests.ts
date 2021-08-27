@@ -1,6 +1,6 @@
 /*
  * --------------------------------------------------------------------------------
- * <copyright company="Aspose" file="stylesTests.ts">
+ * <copyright company="Aspose" file="customXmlPartsTests.ts">
  *   Copyright (c) 2021 Aspose.Words for Cloud
  * </copyright>
  * <summary>
@@ -32,36 +32,37 @@ import * as fs from "fs";
 import * as model from "../../src/model/model";
 import * as BaseTest from "../baseTest";
 
-// Example of how to work with styles.
-describe("styles", () => {
+// Example of how to use custom xml parts in documents.
+describe("customXmlParts", () => {
     expect(fs);
-    const remoteDataFolder = BaseTest.remoteBaseTestDataFolder + "/DocumentElements/Styles";
-    const localFile = "DocumentElements/Styles/GetStyles.docx";
+    const remoteDataFolder = BaseTest.remoteBaseTestDataFolder + "/CustomXmlParts";
+    const localFile = "DocumentElements/CustomXmlParts/MultipleCustomXmlParts.docx";
 
-    // Test for getting styles from document.
-    describe("getStyles test", () => {
+    // Test for getting custom xml part by specified index.
+    describe("getCustomXmlPart test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            const remoteFileName = "TestGetStyles.docx";
+            const remoteFileName = "TestGetCustomXmlPart.docx";
 
             return wordsApi.uploadFileToStorage(
                 remoteDataFolder + "/" + remoteFileName,
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.GetStylesRequest({
+                const request = new model.GetCustomXmlPartRequest({
                     name: remoteFileName,
+                    customXmlPartIndex: 0,
                     folder: remoteDataFolder
                 });
 
                 // Act
-                return wordsApi.getStyles(request)
+                return wordsApi.getCustomXmlPart(request)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
-                    expect(resultApi.body.styles).to.exist;
-                    expect(resultApi.body.styles).to.have.lengthOf(22);
-                    expect(resultApi.body.styles[0].name).to.equal("Default Paragraph Font");
+                    expect(resultApi.body.customXmlPart).to.exist;
+                    expect(resultApi.body.customXmlPart.id).to.equal("aspose");
+                    expect(resultApi.body.customXmlPart.data).to.equal("<Metadata><Author>author1</Author><Initial>initial</Initial><DateTime>2015-01-22T00:00:00</DateTime><Text>text</Text></Metadata>");
                 });
 
             });
@@ -69,104 +70,115 @@ describe("styles", () => {
        });
     });
 
-    // Test for getting styles from document online.
-    describe("getStylesOnline test", () => {
+    // Test for getting custom xml part by specified index online.
+    describe("getCustomXmlPartOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-            const request = new model.GetStylesOnlineRequest({
+            const request = new model.GetCustomXmlPartOnlineRequest({
+                document: requestDocument,
+                customXmlPartIndex: 0
+            });
+
+            // Act
+            return wordsApi.getCustomXmlPartOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+                expect(resultApi.body.customXmlPart).to.exist;
+                expect(resultApi.body.customXmlPart.id).to.equal("aspose");
+                expect(resultApi.body.customXmlPart.data).to.equal("<Metadata><Author>author1</Author><Initial>initial</Initial><DateTime>2015-01-22T00:00:00</DateTime><Text>text</Text></Metadata>");
+            });
+
+       });
+    });
+
+    // Test for getting all custom xml parts from document.
+    describe("getCustomXmlParts test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const remoteFileName = "TestGetCustomXmlParts.docx";
+
+            return wordsApi.uploadFileToStorage(
+                remoteDataFolder + "/" + remoteFileName,
+                BaseTest.localBaseTestDataFolder + localFile
+            ).then((result0) => {
+                expect(result0.response.statusMessage).to.equal("OK");
+                const request = new model.GetCustomXmlPartsRequest({
+                    name: remoteFileName,
+                    folder: remoteDataFolder
+                });
+
+                // Act
+                return wordsApi.getCustomXmlParts(request)
+                .then((resultApi) => {
+                    // Assert
+                    expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.customXmlParts).to.exist;
+                    expect(resultApi.body.customXmlParts.customXmlPartsList).to.exist;
+                    expect(resultApi.body.customXmlParts.customXmlPartsList).to.have.lengthOf(2);
+                    expect(resultApi.body.customXmlParts.customXmlPartsList[0].id).to.equal("aspose");
+                    expect(resultApi.body.customXmlParts.customXmlPartsList[0].data).to.equal("<Metadata><Author>author1</Author><Initial>initial</Initial><DateTime>2015-01-22T00:00:00</DateTime><Text>text</Text></Metadata>");
+                });
+
+            });
+
+       });
+    });
+
+    // Test for getting all custom xml parts from document online.
+    describe("getCustomXmlPartsOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const request = new model.GetCustomXmlPartsOnlineRequest({
                 document: requestDocument
             });
 
             // Act
-            return wordsApi.getStylesOnline(request)
+            return wordsApi.getCustomXmlPartsOnline(request)
             .then((resultApi) => {
                 // Assert
                 expect(resultApi.response.statusCode).to.equal(200);
+                expect(resultApi.body.customXmlParts).to.exist;
+                expect(resultApi.body.customXmlParts.customXmlPartsList).to.exist;
+                expect(resultApi.body.customXmlParts.customXmlPartsList).to.have.lengthOf(2);
+                expect(resultApi.body.customXmlParts.customXmlPartsList[0].id).to.equal("aspose");
+                expect(resultApi.body.customXmlParts.customXmlPartsList[0].data).to.equal("<Metadata><Author>author1</Author><Initial>initial</Initial><DateTime>2015-01-22T00:00:00</DateTime><Text>text</Text></Metadata>");
             });
 
        });
     });
 
-    // Test for getting style from document.
-    describe("getStyle test", () => {
+    // Test for adding custom xml part.
+    describe("insertCustomXmlPart test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            const remoteFileName = "TestGetStyle.docx";
+            const remoteFileName = "TestInsertCustomXmlPart.docx";
 
             return wordsApi.uploadFileToStorage(
                 remoteDataFolder + "/" + remoteFileName,
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.GetStyleRequest({
-                    name: remoteFileName,
-                    styleName: "Heading 1",
-                    folder: remoteDataFolder
-                });
-
-                // Act
-                return wordsApi.getStyle(request)
-                .then((resultApi) => {
-                    // Assert
-                    expect(resultApi.response.statusCode).to.equal(200);
-                    expect(resultApi.body.style).to.exist;
-                    expect(resultApi.body.style.name).to.equal("Heading 1");
-                });
-
-            });
-
-       });
-    });
-
-    // Test for getting style from document online.
-    describe("getStyleOnline test", () => {
-        it("should return response with code 200", () => {
-            const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-            const request = new model.GetStyleOnlineRequest({
-                document: requestDocument,
-                styleName: "Heading 1"
-            });
-
-            // Act
-            return wordsApi.getStyleOnline(request)
-            .then((resultApi) => {
-                // Assert
-                expect(resultApi.response.statusCode).to.equal(200);
-            });
-
-       });
-    });
-
-    // Test for updating style from document.
-    describe("updateStyle test", () => {
-        it("should return response with code 200", () => {
-            const wordsApi = BaseTest.initializeWordsApi();
-            const remoteFileName = "TestUpdateStyle.docx";
-
-            return wordsApi.uploadFileToStorage(
-                remoteDataFolder + "/" + remoteFileName,
-                BaseTest.localBaseTestDataFolder + localFile
-            ).then((result0) => {
-                expect(result0.response.statusMessage).to.equal("OK");
-                let requestStyleUpdate = new model.StyleUpdate({
-                    name: "My Style"
+                let requestCustomXmlPart = new model.CustomXmlPartInsert({
+                    id: "hello",
+                    data: "<data>Hello world</data>"
                 })
-                const request = new model.UpdateStyleRequest({
+                const request = new model.InsertCustomXmlPartRequest({
                     name: remoteFileName,
-                    styleUpdate: requestStyleUpdate,
-                    styleName: "Heading 1",
+                    customXmlPart: requestCustomXmlPart,
                     folder: remoteDataFolder
                 });
 
                 // Act
-                return wordsApi.updateStyle(request)
+                return wordsApi.insertCustomXmlPart(request)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
-                    expect(resultApi.body.style).to.exist;
-                    expect(resultApi.body.style.name).to.equal("My Style");
+                    expect(resultApi.body.customXmlPart).to.exist;
+                    expect(resultApi.body.customXmlPart.id).to.equal("hello");
+                    expect(resultApi.body.customXmlPart.data).to.equal("<data>Hello world</data>");
                 });
 
             });
@@ -174,58 +186,62 @@ describe("styles", () => {
        });
     });
 
-    // Test for updating style from document online.
-    describe("updateStyleOnline test", () => {
+    // Test for adding custom xml part online.
+    describe("insertCustomXmlPartOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-            let requestStyleUpdate = new model.StyleUpdate({
-                name: "My Style"
+            let requestCustomXmlPart = new model.CustomXmlPartInsert({
+                id: "hello",
+                data: "<data>Hello world</data>"
             })
-            const request = new model.UpdateStyleOnlineRequest({
+            const request = new model.InsertCustomXmlPartOnlineRequest({
                 document: requestDocument,
-                styleUpdate: requestStyleUpdate,
-                styleName: "Heading 1"
+                customXmlPart: requestCustomXmlPart
             });
 
             // Act
-            return wordsApi.updateStyleOnline(request)
+            return wordsApi.insertCustomXmlPartOnline(request)
             .then((resultApi) => {
                 // Assert
                 expect(resultApi.response.statusCode).to.equal(200);
+                expect(resultApi.body.model.customXmlPart).to.exist;
+                expect(resultApi.body.model.customXmlPart.id).to.equal("hello");
+                expect(resultApi.body.model.customXmlPart.data).to.equal("<data>Hello world</data>");
             });
 
        });
     });
 
-    // Test for inserting style from document.
-    describe("insertStyle test", () => {
+    // Test for updating custom xml part.
+    describe("updateCustomXmlPart test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            const remoteFileName = "TestInsertStyle.docx";
+            const remoteFileName = "TestUpdateCustomXmlPart.docx";
 
             return wordsApi.uploadFileToStorage(
                 remoteDataFolder + "/" + remoteFileName,
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                let requestStyleInsert = new model.StyleInsert({
-                    styleName: "My Style",
-                    styleType: model.StyleInsert.StyleTypeEnum.Paragraph
+                let requestCustomXmlPart = new model.CustomXmlPartUpdate({
+                    data: "<data>Hello world</data>"
                 })
-                const request = new model.InsertStyleRequest({
+                const request = new model.UpdateCustomXmlPartRequest({
                     name: remoteFileName,
-                    styleInsert: requestStyleInsert,
+                    customXmlPartIndex: 0,
+                    customXmlPart: requestCustomXmlPart,
                     folder: remoteDataFolder
                 });
 
                 // Act
-                return wordsApi.insertStyle(request)
+                return wordsApi.updateCustomXmlPart(request)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
-                    expect(resultApi.body.style).to.exist;
-                    expect(resultApi.body.style.name).to.equal("My Style");
+                    expect(resultApi.body.customXmlPart).to.exist;
+                    expect(resultApi.body.customXmlPart.id).to.equal("aspose");
+                    expect(resultApi.body.customXmlPart.data).to.equal("<data>Hello world</data>");
                 });
 
             });
@@ -233,22 +249,75 @@ describe("styles", () => {
        });
     });
 
-    // Test for inserting style from document online.
-    describe("insertStyleOnline test", () => {
+    // Test for updating custom xml part online.
+    describe("updateCustomXmlPartOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-            let requestStyleInsert = new model.StyleInsert({
-                styleName: "My Style",
-                styleType: model.StyleInsert.StyleTypeEnum.Paragraph
+            let requestCustomXmlPart = new model.CustomXmlPartUpdate({
+                data: "<data>Hello world</data>"
             })
-            const request = new model.InsertStyleOnlineRequest({
+            const request = new model.UpdateCustomXmlPartOnlineRequest({
                 document: requestDocument,
-                styleInsert: requestStyleInsert
+                customXmlPartIndex: 0,
+                customXmlPart: requestCustomXmlPart
             });
 
             // Act
-            return wordsApi.insertStyleOnline(request)
+            return wordsApi.updateCustomXmlPartOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+                expect(resultApi.body.model.customXmlPart).to.exist;
+                expect(resultApi.body.model.customXmlPart.id).to.equal("aspose");
+                expect(resultApi.body.model.customXmlPart.data).to.equal("<data>Hello world</data>");
+            });
+
+       });
+    });
+
+    // A test for DeleteCustomXmlPart.
+    describe("deleteCustomXmlPart test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const remoteFileName = "TestDeleteCustomXmlPart.docx";
+
+            return wordsApi.uploadFileToStorage(
+                remoteDataFolder + "/" + remoteFileName,
+                BaseTest.localBaseTestDataFolder + localFile
+            ).then((result0) => {
+                expect(result0.response.statusMessage).to.equal("OK");
+                const request = new model.DeleteCustomXmlPartRequest({
+                    name: remoteFileName,
+                    customXmlPartIndex: 0,
+                    folder: remoteDataFolder,
+                    destFileName: BaseTest.remoteBaseTestOutFolder + "/" + remoteFileName
+                });
+
+                // Act
+                return wordsApi.deleteCustomXmlPart(request)
+                .then((resultApi) => {
+                    // Assert
+                    expect(resultApi.statusCode).to.equal(200);
+                });
+
+            });
+
+       });
+    });
+
+    // A test for DeleteCustomXmlPart online.
+    describe("deleteCustomXmlPartOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const request = new model.DeleteCustomXmlPartOnlineRequest({
+                document: requestDocument,
+                customXmlPartIndex: 0
+            });
+
+            // Act
+            return wordsApi.deleteCustomXmlPartOnline(request)
             .then((resultApi) => {
                 // Assert
                 expect(resultApi.response.statusCode).to.equal(200);
@@ -257,33 +326,28 @@ describe("styles", () => {
        });
     });
 
-    // Test for coping style from document.
-    describe("copyStyle test", () => {
+    // A test for DeleteCustomXmlParts.
+    describe("deleteCustomXmlParts test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            const remoteFileName = "TestCopyStyle.docx";
+            const remoteFileName = "TestDeleteCustomXmlPart.docx";
 
             return wordsApi.uploadFileToStorage(
                 remoteDataFolder + "/" + remoteFileName,
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                let requestStyleCopy = new model.StyleCopy({
-                    styleName: "Heading 1"
-                })
-                const request = new model.CopyStyleRequest({
+                const request = new model.DeleteCustomXmlPartsRequest({
                     name: remoteFileName,
-                    styleCopy: requestStyleCopy,
-                    folder: remoteDataFolder
+                    folder: remoteDataFolder,
+                    destFileName: BaseTest.remoteBaseTestOutFolder + "/" + remoteFileName
                 });
 
                 // Act
-                return wordsApi.copyStyle(request)
+                return wordsApi.deleteCustomXmlParts(request)
                 .then((resultApi) => {
                     // Assert
-                    expect(resultApi.response.statusCode).to.equal(200);
-                    expect(resultApi.body.style).to.exist;
-                    expect(resultApi.body.style.name).to.equal("Heading 1_0");
+                    expect(resultApi.statusCode).to.equal(200);
                 });
 
             });
@@ -291,129 +355,17 @@ describe("styles", () => {
        });
     });
 
-    // Test for coping style from document online.
-    describe("copyStyleOnline test", () => {
+    // A test for DeleteCustomXmlParts online.
+    describe("deleteCustomXmlPartsOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-            let requestStyleCopy = new model.StyleCopy({
-                styleName: "Heading 1"
-            })
-            const request = new model.CopyStyleOnlineRequest({
-                document: requestDocument,
-                styleCopy: requestStyleCopy
+            const request = new model.DeleteCustomXmlPartsOnlineRequest({
+                document: requestDocument
             });
 
             // Act
-            return wordsApi.copyStyleOnline(request)
-            .then((resultApi) => {
-                // Assert
-                expect(resultApi.response.statusCode).to.equal(200);
-            });
-
-       });
-    });
-
-    // Test for getting style from document element.
-    describe("getStyleFromDocumentElement test", () => {
-        it("should return response with code 200", () => {
-            const wordsApi = BaseTest.initializeWordsApi();
-            const remoteFileName = "TestGetStyleFromDocumentElement.docx";
-
-            return wordsApi.uploadFileToStorage(
-                remoteDataFolder + "/" + remoteFileName,
-                BaseTest.localBaseTestDataFolder + localFile
-            ).then((result0) => {
-                expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.GetStyleFromDocumentElementRequest({
-                    name: remoteFileName,
-                    styledNodePath: "paragraphs/1/paragraphFormat",
-                    folder: remoteDataFolder
-                });
-
-                // Act
-                return wordsApi.getStyleFromDocumentElement(request)
-                .then((resultApi) => {
-                    // Assert
-                    expect(resultApi.response.statusCode).to.equal(200);
-                    expect(resultApi.body.style).to.exist;
-                    expect(resultApi.body.style.name).to.equal("TOC 1");
-                });
-
-            });
-
-       });
-    });
-
-    // Test for getting style from document element online.
-    describe("getStyleFromDocumentElementOnline test", () => {
-        it("should return response with code 200", () => {
-            const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-            const request = new model.GetStyleFromDocumentElementOnlineRequest({
-                document: requestDocument,
-                styledNodePath: "paragraphs/1/paragraphFormat"
-            });
-
-            // Act
-            return wordsApi.getStyleFromDocumentElementOnline(request)
-            .then((resultApi) => {
-                // Assert
-                expect(resultApi.response.statusCode).to.equal(200);
-            });
-
-       });
-    });
-
-    // Test for applying style to document element.
-    describe("applyStyleToDocumentElement test", () => {
-        it("should return response with code 200", () => {
-            const wordsApi = BaseTest.initializeWordsApi();
-            const remoteFileName = "TestApplyStyleToDocumentElement.docx";
-
-            return wordsApi.uploadFileToStorage(
-                remoteDataFolder + "/" + remoteFileName,
-                BaseTest.localBaseTestDataFolder + localFile
-            ).then((result0) => {
-                expect(result0.response.statusMessage).to.equal("OK");
-                let requestStyleApply = new model.StyleApply({
-                    styleName: "Heading 1"
-                })
-                const request = new model.ApplyStyleToDocumentElementRequest({
-                    name: remoteFileName,
-                    styleApply: requestStyleApply,
-                    styledNodePath: "paragraphs/1/paragraphFormat",
-                    folder: remoteDataFolder
-                });
-
-                // Act
-                return wordsApi.applyStyleToDocumentElement(request)
-                .then((resultApi) => {
-                    // Assert
-                    expect(resultApi.response.statusCode).to.equal(200);
-                });
-
-            });
-
-       });
-    });
-
-    // Test for applying style to document element online.
-    describe("applyStyleToDocumentElementOnline test", () => {
-        it("should return response with code 200", () => {
-            const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-            let requestStyleApply = new model.StyleApply({
-                styleName: "Heading 1"
-            })
-            const request = new model.ApplyStyleToDocumentElementOnlineRequest({
-                document: requestDocument,
-                styleApply: requestStyleApply,
-                styledNodePath: "paragraphs/1/paragraphFormat"
-            });
-
-            // Act
-            return wordsApi.applyStyleToDocumentElementOnline(request)
+            return wordsApi.deleteCustomXmlPartsOnline(request)
             .then((resultApi) => {
                 // Assert
                 expect(resultApi.response.statusCode).to.equal(200);

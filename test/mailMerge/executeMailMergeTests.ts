@@ -45,9 +45,11 @@ describe("executeMailMerge", () => {
             const localDocumentFile = "SampleExecuteTemplate.docx";
             const localDataFile = "SampleExecuteTemplateData.txt";
 
+            let requestTemplate = fs.createReadStream(BaseTest.localBaseTestDataFolder + mailMergeFolder + "/" + localDocumentFile);
+            let requestData = fs.createReadStream(BaseTest.localBaseTestDataFolder + mailMergeFolder + "/" + localDataFile);
             const request = new model.ExecuteMailMergeOnlineRequest({
-                template: fs.createReadStream(BaseTest.localBaseTestDataFolder + mailMergeFolder + "/" + localDocumentFile),
-                data: fs.createReadStream(BaseTest.localBaseTestDataFolder + mailMergeFolder + "/" + localDataFile)
+                template: requestTemplate,
+                data: requestData
             });
 
             // Act

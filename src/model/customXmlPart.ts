@@ -1,6 +1,6 @@
 /*
  * --------------------------------------------------------------------------------
- * <copyright company="Aspose" file="compareData.ts">
+ * <copyright company="Aspose" file="customXmlPart.ts">
  *   Copyright (c) 2021 Aspose.Words for Cloud
  * </copyright>
  * <summary>
@@ -26,43 +26,28 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
-import { CompareOptions } from './compareOptions';
+import { CustomXmlPartLink } from './customXmlPartLink';
 
-export const importsMapCompareData = {
-    CompareOptions,
+export const importsMapCustomXmlPart = {
+    CustomXmlPartLink,
 };
 
 /**
- * Container class for compare documents.
+ * DTO container with a CustomXmlPart.
  */
-export class CompareData {
+export class CustomXmlPart extends CustomXmlPartLink {
     /**
      * Attribute type map
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "author",
-            baseName: "Author",
+            name: "data",
+            baseName: "Data",
             type: "string",
         },
         {
-            name: "compareOptions",
-            baseName: "CompareOptions",
-            type: "CompareOptions",
-        },
-        {
-            name: "comparingWithDocument",
-            baseName: "ComparingWithDocument",
-            type: "string",
-        },
-        {
-            name: "dateTime",
-            baseName: "DateTime",
-            type: "Date",
-        },
-        {
-            name: "resultDocumentFormat",
-            baseName: "ResultDocumentFormat",
+            name: "id",
+            baseName: "Id",
             type: "string",
         }
     ];
@@ -71,35 +56,21 @@ export class CompareData {
      * Returns attribute type map
      */
     public static getAttributeTypeMap() {
-        return CompareData.attributeTypeMap;
+        return super.getAttributeTypeMap().concat(CustomXmlPart.attributeTypeMap);
     }
 
     /**
-     * Gets or sets the initials of the author to use for revisions.
+     * Gets or sets the custom xml part data.
      */
-    public author: string;
+    public data: string;
 
     /**
-     * Gets or sets the compare options.
+     * Gets or sets the custom xml part id.
      */
-    public compareOptions: CompareOptions;
+    public id: string;
 
-    /**
-     * Gets or sets the path to document to compare at the server.
-     */
-    public comparingWithDocument: string;
-
-    /**
-     * Gets or sets the date and time to use for revisions.
-     */
-    public dateTime: Date;
-
-    /**
-     * Gets or sets the result document format.
-     */
-    public resultDocumentFormat: string;
-
-    public constructor(init?: Partial< CompareData >) {
+    public constructor(init?: Partial< CustomXmlPart >) {
+        super(init);
         Object.assign(this, init);
     }
 }

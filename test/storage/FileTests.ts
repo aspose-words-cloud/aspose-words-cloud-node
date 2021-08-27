@@ -44,8 +44,9 @@ describe("file", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const remoteFileName = "TestUploadFile.docx";
 
+            let requestFileContent = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.UploadFileRequest({
-                fileContent: fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile),
+                fileContent: requestFileContent,
                 path: remoteDataFolder + "/" + remoteFileName
             });
 

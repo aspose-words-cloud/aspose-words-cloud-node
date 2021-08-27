@@ -58,6 +58,13 @@ import * as importedCommentUpdate from './commentUpdate';
 import * as importedCompareData from './compareData';
 import * as importedCompareOptions from './compareOptions';
 import * as importedCsvDataLoadOptions from './csvDataLoadOptions';
+import * as importedCustomXmlPart from './customXmlPart';
+import * as importedCustomXmlPartInsert from './customXmlPartInsert';
+import * as importedCustomXmlPartLink from './customXmlPartLink';
+import * as importedCustomXmlPartResponse from './customXmlPartResponse';
+import * as importedCustomXmlPartsCollection from './customXmlPartsCollection';
+import * as importedCustomXmlPartsResponse from './customXmlPartsResponse';
+import * as importedCustomXmlPartUpdate from './customXmlPartUpdate';
 import * as importedDocSaveOptionsData from './docSaveOptionsData';
 import * as importedDocument from './document';
 import * as importedDocumentEntry from './documentEntry';
@@ -300,6 +307,13 @@ export * from './commentUpdate';
 export * from './compareData';
 export * from './compareOptions';
 export * from './csvDataLoadOptions';
+export * from './customXmlPart';
+export * from './customXmlPartInsert';
+export * from './customXmlPartLink';
+export * from './customXmlPartResponse';
+export * from './customXmlPartsCollection';
+export * from './customXmlPartsResponse';
+export * from './customXmlPartUpdate';
 export * from './docSaveOptionsData';
 export * from './document';
 export * from './documentEntry';
@@ -643,6 +657,13 @@ const typeMap = {
     CompareData: importedCompareData.CompareData,
     CompareOptions: importedCompareOptions.CompareOptions,
     CsvDataLoadOptions: importedCsvDataLoadOptions.CsvDataLoadOptions,
+    CustomXmlPart: importedCustomXmlPart.CustomXmlPart,
+    CustomXmlPartInsert: importedCustomXmlPartInsert.CustomXmlPartInsert,
+    CustomXmlPartLink: importedCustomXmlPartLink.CustomXmlPartLink,
+    CustomXmlPartResponse: importedCustomXmlPartResponse.CustomXmlPartResponse,
+    CustomXmlPartsCollection: importedCustomXmlPartsCollection.CustomXmlPartsCollection,
+    CustomXmlPartsResponse: importedCustomXmlPartsResponse.CustomXmlPartsResponse,
+    CustomXmlPartUpdate: importedCustomXmlPartUpdate.CustomXmlPartUpdate,
     DocSaveOptionsData: importedDocSaveOptionsData.DocSaveOptionsData,
     Document: importedDocument.Document,
     DocumentEntry: importedDocumentEntry.DocumentEntry,
@@ -4098,6 +4119,410 @@ export class DeleteCommentsOnlineRequest implements RequestInterface {
         // verify required parameter 'this.document' is not null
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling deleteCommentsOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        if (this.document !== undefined) {
+            formParams.Document = this.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+
+        return requestOptions;
+    }
+
+	/**
+	 * create response from string
+	 */
+	createResponse(_response: Buffer, _boundary?: string): any {
+        return _response;
+	}
+}
+
+/**
+ * Request model for DeleteCustomXmlPart operation.
+ * Removes the custom xml part from the document.
+ */
+export class DeleteCustomXmlPartRequest implements RequestInterface {
+
+    public constructor(init?: Partial< DeleteCustomXmlPartRequest >) {
+        Object.assign(this, init);
+    }
+
+    /**
+     * The filename of the input document.
+     */
+    public name: string;
+
+    /**
+     * The index of the custom xml part. This index is the number of the entry in the collection of custom xml parts, not the ID of the part.
+     */
+    public customXmlPartIndex: number;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+	/**
+	 * create the requst options for this request
+	 * @param configuration a configuration for the request
+	 */
+	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+        let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/customXmlParts/{customXmlPartIndex}"
+            .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
+            .replace("/{" + "customXmlPartIndex" + "}", (this.customXmlPartIndex !== null && this.customXmlPartIndex !== undefined) ? "/" + String(this.customXmlPartIndex) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'this.name' is not undefined
+        if (this.name === undefined) {
+            throw new Error('Required parameter "this.name" was undefined when calling deleteCustomXmlPart.');
+        }
+
+        // verify required parameter 'this.name' is not null
+        if (this.name === null) {
+            throw new Error('Required parameter "this.name" was null when calling deleteCustomXmlPart.');
+        }
+
+        // verify required parameter 'this.customXmlPartIndex' is not undefined
+        if (this.customXmlPartIndex === undefined) {
+            throw new Error('Required parameter "this.customXmlPartIndex" was undefined when calling deleteCustomXmlPart.');
+        }
+
+        // verify required parameter 'this.customXmlPartIndex' is not null
+        if (this.customXmlPartIndex === null) {
+            throw new Error('Required parameter "this.customXmlPartIndex" was null when calling deleteCustomXmlPart.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+
+        const requestOptions: request.Options = {
+            method: "DELETE",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+
+        return requestOptions;
+    }
+
+	/**
+	 * create response from string
+	 */
+	createResponse(_response: Buffer, _boundary?: string): any {
+        return null;
+	}
+}
+
+/**
+ * Request model for DeleteCustomXmlPartOnline operation.
+ * Removes the custom xml part from the document.
+ */
+export class DeleteCustomXmlPartOnlineRequest implements RequestInterface {
+
+    public constructor(init?: Partial< DeleteCustomXmlPartOnlineRequest >) {
+        Object.assign(this, init);
+    }
+
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The index of the custom xml part. This index is the number of the entry in the collection of custom xml parts, not the ID of the part.
+     */
+    public customXmlPartIndex: number;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+	/**
+	 * create the requst options for this request
+	 * @param configuration a configuration for the request
+	 */
+	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+        let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/customXmlParts/{customXmlPartIndex}"
+            .replace("/{" + "customXmlPartIndex" + "}", (this.customXmlPartIndex !== null && this.customXmlPartIndex !== undefined) ? "/" + String(this.customXmlPartIndex) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'this.document' is not undefined
+        if (this.document === undefined) {
+            throw new Error('Required parameter "this.document" was undefined when calling deleteCustomXmlPartOnline.');
+        }
+
+        // verify required parameter 'this.document' is not null
+        if (this.document === null) {
+            throw new Error('Required parameter "this.document" was null when calling deleteCustomXmlPartOnline.');
+        }
+
+        // verify required parameter 'this.customXmlPartIndex' is not undefined
+        if (this.customXmlPartIndex === undefined) {
+            throw new Error('Required parameter "this.customXmlPartIndex" was undefined when calling deleteCustomXmlPartOnline.');
+        }
+
+        // verify required parameter 'this.customXmlPartIndex' is not null
+        if (this.customXmlPartIndex === null) {
+            throw new Error('Required parameter "this.customXmlPartIndex" was null when calling deleteCustomXmlPartOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        if (this.document !== undefined) {
+            formParams.Document = this.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+
+        return requestOptions;
+    }
+
+	/**
+	 * create response from string
+	 */
+	createResponse(_response: Buffer, _boundary?: string): any {
+        return _response;
+	}
+}
+
+/**
+ * Request model for DeleteCustomXmlParts operation.
+ * Removes all custom xml parts from the document.
+ */
+export class DeleteCustomXmlPartsRequest implements RequestInterface {
+
+    public constructor(init?: Partial< DeleteCustomXmlPartsRequest >) {
+        Object.assign(this, init);
+    }
+
+    /**
+     * The filename of the input document.
+     */
+    public name: string;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+	/**
+	 * create the requst options for this request
+	 * @param configuration a configuration for the request
+	 */
+	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+        let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/customXmlParts"
+            .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'this.name' is not undefined
+        if (this.name === undefined) {
+            throw new Error('Required parameter "this.name" was undefined when calling deleteCustomXmlParts.');
+        }
+
+        // verify required parameter 'this.name' is not null
+        if (this.name === null) {
+            throw new Error('Required parameter "this.name" was null when calling deleteCustomXmlParts.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+
+        const requestOptions: request.Options = {
+            method: "DELETE",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+
+        return requestOptions;
+    }
+
+	/**
+	 * create response from string
+	 */
+	createResponse(_response: Buffer, _boundary?: string): any {
+        return null;
+	}
+}
+
+/**
+ * Request model for DeleteCustomXmlPartsOnline operation.
+ * Removes all custom xml parts from the document.
+ */
+export class DeleteCustomXmlPartsOnlineRequest implements RequestInterface {
+
+    public constructor(init?: Partial< DeleteCustomXmlPartsOnlineRequest >) {
+        Object.assign(this, init);
+    }
+
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+	/**
+	 * create the requst options for this request
+	 * @param configuration a configuration for the request
+	 */
+	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+        let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/customXmlParts"
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'this.document' is not undefined
+        if (this.document === undefined) {
+            throw new Error('Required parameter "this.document" was undefined when calling deleteCustomXmlPartsOnline.');
+        }
+
+        // verify required parameter 'this.document' is not null
+        if (this.document === null) {
+            throw new Error('Required parameter "this.document" was null when calling deleteCustomXmlPartsOnline.');
         }
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
@@ -9891,6 +10316,338 @@ export class GetCommentsOnlineRequest implements RequestInterface {
 	 */
 	createResponse(_response: Buffer, _boundary?: string): any {
         return ObjectSerializer.deserialize(_response, "CommentsResponse");
+	}
+}
+
+/**
+ * Request model for GetCustomXmlPart operation.
+ * Reads the custom xml part from the document.
+ */
+export class GetCustomXmlPartRequest implements RequestInterface {
+
+    public constructor(init?: Partial< GetCustomXmlPartRequest >) {
+        Object.assign(this, init);
+    }
+
+    /**
+     * The filename of the input document.
+     */
+    public name: string;
+
+    /**
+     * The index of the custom xml part. This index is the number of the entry in the collection of custom xml parts, not the ID of the part.
+     */
+    public customXmlPartIndex: number;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+	/**
+	 * create the requst options for this request
+	 * @param configuration a configuration for the request
+	 */
+	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+        let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/customXmlParts/{customXmlPartIndex}"
+            .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
+            .replace("/{" + "customXmlPartIndex" + "}", (this.customXmlPartIndex !== null && this.customXmlPartIndex !== undefined) ? "/" + String(this.customXmlPartIndex) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'this.name' is not undefined
+        if (this.name === undefined) {
+            throw new Error('Required parameter "this.name" was undefined when calling getCustomXmlPart.');
+        }
+
+        // verify required parameter 'this.name' is not null
+        if (this.name === null) {
+            throw new Error('Required parameter "this.name" was null when calling getCustomXmlPart.');
+        }
+
+        // verify required parameter 'this.customXmlPartIndex' is not undefined
+        if (this.customXmlPartIndex === undefined) {
+            throw new Error('Required parameter "this.customXmlPartIndex" was undefined when calling getCustomXmlPart.');
+        }
+
+        // verify required parameter 'this.customXmlPartIndex' is not null
+        if (this.customXmlPartIndex === null) {
+            throw new Error('Required parameter "this.customXmlPartIndex" was null when calling getCustomXmlPart.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+
+        return requestOptions;
+    }
+
+	/**
+	 * create response from string
+	 */
+	createResponse(_response: Buffer, _boundary?: string): any {
+        return ObjectSerializer.deserialize(_response, "CustomXmlPartResponse");
+	}
+}
+
+/**
+ * Request model for GetCustomXmlPartOnline operation.
+ * Reads the custom xml part from the document.
+ */
+export class GetCustomXmlPartOnlineRequest implements RequestInterface {
+
+    public constructor(init?: Partial< GetCustomXmlPartOnlineRequest >) {
+        Object.assign(this, init);
+    }
+
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The index of the custom xml part. This index is the number of the entry in the collection of custom xml parts, not the ID of the part.
+     */
+    public customXmlPartIndex: number;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+	/**
+	 * create the requst options for this request
+	 * @param configuration a configuration for the request
+	 */
+	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+        let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/customXmlParts/{customXmlPartIndex}"
+            .replace("/{" + "customXmlPartIndex" + "}", (this.customXmlPartIndex !== null && this.customXmlPartIndex !== undefined) ? "/" + String(this.customXmlPartIndex) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'this.document' is not undefined
+        if (this.document === undefined) {
+            throw new Error('Required parameter "this.document" was undefined when calling getCustomXmlPartOnline.');
+        }
+
+        // verify required parameter 'this.document' is not null
+        if (this.document === null) {
+            throw new Error('Required parameter "this.document" was null when calling getCustomXmlPartOnline.');
+        }
+
+        // verify required parameter 'this.customXmlPartIndex' is not undefined
+        if (this.customXmlPartIndex === undefined) {
+            throw new Error('Required parameter "this.customXmlPartIndex" was undefined when calling getCustomXmlPartOnline.');
+        }
+
+        // verify required parameter 'this.customXmlPartIndex' is not null
+        if (this.customXmlPartIndex === null) {
+            throw new Error('Required parameter "this.customXmlPartIndex" was null when calling getCustomXmlPartOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        if (this.document !== undefined) {
+            formParams.Document = this.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+
+        return requestOptions;
+    }
+
+	/**
+	 * create response from string
+	 */
+	createResponse(_response: Buffer, _boundary?: string): any {
+        return ObjectSerializer.deserialize(_response, "CustomXmlPartResponse");
+	}
+}
+
+/**
+ * Request model for GetCustomXmlParts operation.
+ * Reads custom xml parts from the document.
+ */
+export class GetCustomXmlPartsRequest implements RequestInterface {
+
+    public constructor(init?: Partial< GetCustomXmlPartsRequest >) {
+        Object.assign(this, init);
+    }
+
+    /**
+     * The filename of the input document.
+     */
+    public name: string;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+	/**
+	 * create the requst options for this request
+	 * @param configuration a configuration for the request
+	 */
+	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+        let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/customXmlParts"
+            .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'this.name' is not undefined
+        if (this.name === undefined) {
+            throw new Error('Required parameter "this.name" was undefined when calling getCustomXmlParts.');
+        }
+
+        // verify required parameter 'this.name' is not null
+        if (this.name === null) {
+            throw new Error('Required parameter "this.name" was null when calling getCustomXmlParts.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+
+        return requestOptions;
+    }
+
+	/**
+	 * create response from string
+	 */
+	createResponse(_response: Buffer, _boundary?: string): any {
+        return ObjectSerializer.deserialize(_response, "CustomXmlPartsResponse");
+	}
+}
+
+/**
+ * Request model for GetCustomXmlPartsOnline operation.
+ * Reads custom xml parts from the document.
+ */
+export class GetCustomXmlPartsOnlineRequest implements RequestInterface {
+
+    public constructor(init?: Partial< GetCustomXmlPartsOnlineRequest >) {
+        Object.assign(this, init);
+    }
+
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+	/**
+	 * create the requst options for this request
+	 * @param configuration a configuration for the request
+	 */
+	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+        let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/customXmlParts"
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'this.document' is not undefined
+        if (this.document === undefined) {
+            throw new Error('Required parameter "this.document" was undefined when calling getCustomXmlPartsOnline.');
+        }
+
+        // verify required parameter 'this.document' is not null
+        if (this.document === null) {
+            throw new Error('Required parameter "this.document" was null when calling getCustomXmlPartsOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        if (this.document !== undefined) {
+            formParams.Document = this.document;
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+
+        return requestOptions;
+    }
+
+	/**
+	 * create response from string
+	 */
+	createResponse(_response: Buffer, _boundary?: string): any {
+        return ObjectSerializer.deserialize(_response, "CustomXmlPartsResponse");
 	}
 }
 
@@ -18768,6 +19525,233 @@ export class InsertCommentOnlineRequest implements RequestInterface {
         const result = new InsertCommentOnlineResponse();    
         const parts = parseMultipartBody(_response, _boundary, false);
         result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "CommentResponse");
+
+
+        result.document = parts[1].body;
+
+        return result;
+	}
+}
+
+/**
+ * Request model for InsertCustomXmlPart operation.
+ * Inserts a new custom xml part to the document.
+ */
+export class InsertCustomXmlPartRequest implements RequestInterface {
+
+    public constructor(init?: Partial< InsertCustomXmlPartRequest >) {
+        Object.assign(this, init);
+    }
+
+    /**
+     * The filename of the input document.
+     */
+    public name: string;
+
+    /**
+     * Custom xml part.
+     */
+    public customXmlPart: importedCustomXmlPartInsert.CustomXmlPartInsert;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+	/**
+	 * create the requst options for this request
+	 * @param configuration a configuration for the request
+	 */
+	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+        let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/customXmlParts"
+            .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'this.name' is not undefined
+        if (this.name === undefined) {
+            throw new Error('Required parameter "this.name" was undefined when calling insertCustomXmlPart.');
+        }
+
+        // verify required parameter 'this.name' is not null
+        if (this.name === null) {
+            throw new Error('Required parameter "this.name" was null when calling insertCustomXmlPart.');
+        }
+
+        // verify required parameter 'this.customXmlPart' is not undefined
+        if (this.customXmlPart === undefined) {
+            throw new Error('Required parameter "this.customXmlPart" was undefined when calling insertCustomXmlPart.');
+        }
+
+        // verify required parameter 'this.customXmlPart' is not null
+        if (this.customXmlPart === null) {
+            throw new Error('Required parameter "this.customXmlPart" was null when calling insertCustomXmlPart.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+            body: ObjectSerializer.serialize(this.customXmlPart, this.customXmlPart.constructor.name === "Object" ? "importedCustomXmlPartInsert.CustomXmlPartInsert" : this.customXmlPart.constructor.name),
+        };
+
+
+        return requestOptions;
+    }
+
+	/**
+	 * create response from string
+	 */
+	createResponse(_response: Buffer, _boundary?: string): any {
+        return ObjectSerializer.deserialize(_response, "CustomXmlPartResponse");
+	}
+}
+
+/**
+ * Request model for InsertCustomXmlPartOnline operation.
+ * Inserts a new custom xml part to the document.
+ */
+export class InsertCustomXmlPartOnlineRequest implements RequestInterface {
+
+    public constructor(init?: Partial< InsertCustomXmlPartOnlineRequest >) {
+        Object.assign(this, init);
+    }
+
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Custom xml part.
+     */
+    public customXmlPart: importedCustomXmlPartInsert.CustomXmlPartInsert;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+	/**
+	 * create the requst options for this request
+	 * @param configuration a configuration for the request
+	 */
+	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+        let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/customXmlParts"
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'this.document' is not undefined
+        if (this.document === undefined) {
+            throw new Error('Required parameter "this.document" was undefined when calling insertCustomXmlPartOnline.');
+        }
+
+        // verify required parameter 'this.document' is not null
+        if (this.document === null) {
+            throw new Error('Required parameter "this.document" was null when calling insertCustomXmlPartOnline.');
+        }
+
+        // verify required parameter 'this.customXmlPart' is not undefined
+        if (this.customXmlPart === undefined) {
+            throw new Error('Required parameter "this.customXmlPart" was undefined when calling insertCustomXmlPartOnline.');
+        }
+
+        // verify required parameter 'this.customXmlPart' is not null
+        if (this.customXmlPart === null) {
+            throw new Error('Required parameter "this.customXmlPart" was null when calling insertCustomXmlPartOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        if (this.document !== undefined) {
+            formParams.Document = this.document;
+        }
+        if (this.customXmlPart !== undefined) {
+            formParams.CustomXmlPart = JSON.stringify(ObjectSerializer.serialize(this.customXmlPart, this.customXmlPart.constructor.name));
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+
+        return requestOptions;
+    }
+
+	/**
+	 * create response from string
+	 */
+	createResponse(_response: Buffer, _boundary?: string): any {
+        const result = new InsertCustomXmlPartOnlineResponse();    
+        const parts = parseMultipartBody(_response, _boundary, false);
+        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "CustomXmlPartResponse");
 
 
         result.document = parts[1].body;
@@ -27721,6 +28705,265 @@ export class UpdateCommentOnlineRequest implements RequestInterface {
 }
 
 /**
+ * Request model for UpdateCustomXmlPart operation.
+ * Updates the custom xml part in the document.
+ */
+export class UpdateCustomXmlPartRequest implements RequestInterface {
+
+    public constructor(init?: Partial< UpdateCustomXmlPartRequest >) {
+        Object.assign(this, init);
+    }
+
+    /**
+     * The filename of the input document.
+     */
+    public name: string;
+
+    /**
+     * The index of the custom xml part. This index is the number of the entry in the collection of custom xml parts, not the ID of the part.
+     */
+    public customXmlPartIndex: number;
+
+    /**
+     * Custom xml part.
+     */
+    public customXmlPart: importedCustomXmlPartUpdate.CustomXmlPartUpdate;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+	/**
+	 * create the requst options for this request
+	 * @param configuration a configuration for the request
+	 */
+	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+        let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/customXmlParts/{customXmlPartIndex}"
+            .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
+            .replace("/{" + "customXmlPartIndex" + "}", (this.customXmlPartIndex !== null && this.customXmlPartIndex !== undefined) ? "/" + String(this.customXmlPartIndex) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'this.name' is not undefined
+        if (this.name === undefined) {
+            throw new Error('Required parameter "this.name" was undefined when calling updateCustomXmlPart.');
+        }
+
+        // verify required parameter 'this.name' is not null
+        if (this.name === null) {
+            throw new Error('Required parameter "this.name" was null when calling updateCustomXmlPart.');
+        }
+
+        // verify required parameter 'this.customXmlPartIndex' is not undefined
+        if (this.customXmlPartIndex === undefined) {
+            throw new Error('Required parameter "this.customXmlPartIndex" was undefined when calling updateCustomXmlPart.');
+        }
+
+        // verify required parameter 'this.customXmlPartIndex' is not null
+        if (this.customXmlPartIndex === null) {
+            throw new Error('Required parameter "this.customXmlPartIndex" was null when calling updateCustomXmlPart.');
+        }
+
+        // verify required parameter 'this.customXmlPart' is not undefined
+        if (this.customXmlPart === undefined) {
+            throw new Error('Required parameter "this.customXmlPart" was undefined when calling updateCustomXmlPart.');
+        }
+
+        // verify required parameter 'this.customXmlPart' is not null
+        if (this.customXmlPart === null) {
+            throw new Error('Required parameter "this.customXmlPart" was null when calling updateCustomXmlPart.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+            body: ObjectSerializer.serialize(this.customXmlPart, this.customXmlPart.constructor.name === "Object" ? "importedCustomXmlPartUpdate.CustomXmlPartUpdate" : this.customXmlPart.constructor.name),
+        };
+
+
+        return requestOptions;
+    }
+
+	/**
+	 * create response from string
+	 */
+	createResponse(_response: Buffer, _boundary?: string): any {
+        return ObjectSerializer.deserialize(_response, "CustomXmlPartResponse");
+	}
+}
+
+/**
+ * Request model for UpdateCustomXmlPartOnline operation.
+ * Updates the custom xml part in the document.
+ */
+export class UpdateCustomXmlPartOnlineRequest implements RequestInterface {
+
+    public constructor(init?: Partial< UpdateCustomXmlPartOnlineRequest >) {
+        Object.assign(this, init);
+    }
+
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The index of the custom xml part. This index is the number of the entry in the collection of custom xml parts, not the ID of the part.
+     */
+    public customXmlPartIndex: number;
+
+    /**
+     * Custom xml part.
+     */
+    public customXmlPart: importedCustomXmlPartUpdate.CustomXmlPartUpdate;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password for opening an encrypted document.
+     */
+    public password: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+	/**
+	 * create the requst options for this request
+	 * @param configuration a configuration for the request
+	 */
+	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+        let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/customXmlParts/{customXmlPartIndex}"
+            .replace("/{" + "customXmlPartIndex" + "}", (this.customXmlPartIndex !== null && this.customXmlPartIndex !== undefined) ? "/" + String(this.customXmlPartIndex) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        const formParams: any = {};
+        // verify required parameter 'this.document' is not undefined
+        if (this.document === undefined) {
+            throw new Error('Required parameter "this.document" was undefined when calling updateCustomXmlPartOnline.');
+        }
+
+        // verify required parameter 'this.document' is not null
+        if (this.document === null) {
+            throw new Error('Required parameter "this.document" was null when calling updateCustomXmlPartOnline.');
+        }
+
+        // verify required parameter 'this.customXmlPartIndex' is not undefined
+        if (this.customXmlPartIndex === undefined) {
+            throw new Error('Required parameter "this.customXmlPartIndex" was undefined when calling updateCustomXmlPartOnline.');
+        }
+
+        // verify required parameter 'this.customXmlPartIndex' is not null
+        if (this.customXmlPartIndex === null) {
+            throw new Error('Required parameter "this.customXmlPartIndex" was null when calling updateCustomXmlPartOnline.');
+        }
+
+        // verify required parameter 'this.customXmlPart' is not undefined
+        if (this.customXmlPart === undefined) {
+            throw new Error('Required parameter "this.customXmlPart" was undefined when calling updateCustomXmlPartOnline.');
+        }
+
+        // verify required parameter 'this.customXmlPart' is not null
+        if (this.customXmlPart === null) {
+            throw new Error('Required parameter "this.customXmlPart" was null when calling updateCustomXmlPartOnline.');
+        }
+
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        if (this.document !== undefined) {
+            formParams.Document = this.document;
+        }
+        if (this.customXmlPart !== undefined) {
+            formParams.CustomXmlPart = JSON.stringify(ObjectSerializer.serialize(this.customXmlPart, this.customXmlPart.constructor.name));
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            encoding: null,
+        };
+
+        if (Object.keys(formParams).length > 0) {
+            requestOptions.formData = formParams;
+        }
+
+        return requestOptions;
+    }
+
+	/**
+	 * create response from string
+	 */
+	createResponse(_response: Buffer, _boundary?: string): any {
+        const result = new UpdateCustomXmlPartOnlineResponse();    
+        const parts = parseMultipartBody(_response, _boundary, false);
+        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "CustomXmlPartResponse");
+
+
+        result.document = parts[1].body;
+
+        return result;
+	}
+}
+
+/**
  * Request model for UpdateDrawingObject operation.
  * Updates a DrawingObject in the document node.
  */
@@ -32313,6 +33556,22 @@ export class InsertCommentOnlineResponse {
 }
 
 /**
+ * Response model for InsertCustomXmlPartOnline operation.
+ * Inserts a new custom xml part to the document.
+ */
+export class InsertCustomXmlPartOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedCustomXmlPartResponse.CustomXmlPartResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
  * Response model for InsertDrawingObjectOnline operation.
  * Inserts a new DrawingObject to the document node.
  */
@@ -32769,6 +34028,22 @@ export class UpdateCommentOnlineResponse {
      * The response model.
      */
     public model: importedCommentResponse.CommentResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Buffer;
+}
+
+/**
+ * Response model for UpdateCustomXmlPartOnline operation.
+ * Updates the custom xml part in the document.
+ */
+export class UpdateCustomXmlPartOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedCustomXmlPartResponse.CustomXmlPartResponse;
 
     /**
      * The document after modification.

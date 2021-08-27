@@ -1,6 +1,6 @@
 /*
  * --------------------------------------------------------------------------------
- * <copyright company="Aspose" file="compareData.ts">
+ * <copyright company="Aspose" file="customXmlPartLink.ts">
  *   Copyright (c) 2021 Aspose.Words for Cloud
  * </copyright>
  * <summary>
@@ -26,80 +26,32 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
-import { CompareOptions } from './compareOptions';
+import { LinkElement } from './linkElement';
 
-export const importsMapCompareData = {
-    CompareOptions,
+export const importsMapCustomXmlPartLink = {
+    LinkElement,
 };
 
 /**
- * Container class for compare documents.
+ * CustomXmlPart link.
  */
-export class CompareData {
+export class CustomXmlPartLink extends LinkElement {
     /**
      * Attribute type map
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
-        {
-            name: "author",
-            baseName: "Author",
-            type: "string",
-        },
-        {
-            name: "compareOptions",
-            baseName: "CompareOptions",
-            type: "CompareOptions",
-        },
-        {
-            name: "comparingWithDocument",
-            baseName: "ComparingWithDocument",
-            type: "string",
-        },
-        {
-            name: "dateTime",
-            baseName: "DateTime",
-            type: "Date",
-        },
-        {
-            name: "resultDocumentFormat",
-            baseName: "ResultDocumentFormat",
-            type: "string",
-        }
     ];
 
     /**
      * Returns attribute type map
      */
     public static getAttributeTypeMap() {
-        return CompareData.attributeTypeMap;
+        return super.getAttributeTypeMap().concat(CustomXmlPartLink.attributeTypeMap);
     }
 
-    /**
-     * Gets or sets the initials of the author to use for revisions.
-     */
-    public author: string;
 
-    /**
-     * Gets or sets the compare options.
-     */
-    public compareOptions: CompareOptions;
-
-    /**
-     * Gets or sets the path to document to compare at the server.
-     */
-    public comparingWithDocument: string;
-
-    /**
-     * Gets or sets the date and time to use for revisions.
-     */
-    public dateTime: Date;
-
-    /**
-     * Gets or sets the result document format.
-     */
-    public resultDocumentFormat: string;
-
-    public constructor(init?: Partial< CompareData >) {
+    public constructor(init?: Partial< CustomXmlPartLink >) {
+        super(init);
         Object.assign(this, init);
     }
 }

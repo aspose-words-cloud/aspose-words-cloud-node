@@ -1,6 +1,6 @@
 /*
  * --------------------------------------------------------------------------------
- * <copyright company="Aspose" file="compareData.ts">
+ * <copyright company="Aspose" file="customXmlPartsResponse.ts">
  *   Copyright (c) 2021 Aspose.Words for Cloud
  * </copyright>
  * <summary>
@@ -26,44 +26,26 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
-import { CompareOptions } from './compareOptions';
+import { CustomXmlPartsCollection } from './customXmlPartsCollection';
+import { WordsResponse } from './wordsResponse';
 
-export const importsMapCompareData = {
-    CompareOptions,
+export const importsMapCustomXmlPartsResponse = {
+    CustomXmlPartsCollection,
+    WordsResponse,
 };
 
 /**
- * Container class for compare documents.
+ * The REST response with a collection of custom xml parts.
  */
-export class CompareData {
+export class CustomXmlPartsResponse extends WordsResponse {
     /**
      * Attribute type map
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "author",
-            baseName: "Author",
-            type: "string",
-        },
-        {
-            name: "compareOptions",
-            baseName: "CompareOptions",
-            type: "CompareOptions",
-        },
-        {
-            name: "comparingWithDocument",
-            baseName: "ComparingWithDocument",
-            type: "string",
-        },
-        {
-            name: "dateTime",
-            baseName: "DateTime",
-            type: "Date",
-        },
-        {
-            name: "resultDocumentFormat",
-            baseName: "ResultDocumentFormat",
-            type: "string",
+            name: "customXmlParts",
+            baseName: "CustomXmlParts",
+            type: "CustomXmlPartsCollection",
         }
     ];
 
@@ -71,35 +53,16 @@ export class CompareData {
      * Returns attribute type map
      */
     public static getAttributeTypeMap() {
-        return CompareData.attributeTypeMap;
+        return super.getAttributeTypeMap().concat(CustomXmlPartsResponse.attributeTypeMap);
     }
 
     /**
-     * Gets or sets the initials of the author to use for revisions.
+     * Gets or sets the collection of comments.
      */
-    public author: string;
+    public customXmlParts: CustomXmlPartsCollection;
 
-    /**
-     * Gets or sets the compare options.
-     */
-    public compareOptions: CompareOptions;
-
-    /**
-     * Gets or sets the path to document to compare at the server.
-     */
-    public comparingWithDocument: string;
-
-    /**
-     * Gets or sets the date and time to use for revisions.
-     */
-    public dateTime: Date;
-
-    /**
-     * Gets or sets the result document format.
-     */
-    public resultDocumentFormat: string;
-
-    public constructor(init?: Partial< CompareData >) {
+    public constructor(init?: Partial< CustomXmlPartsResponse >) {
+        super(init);
         Object.assign(this, init);
     }
 }

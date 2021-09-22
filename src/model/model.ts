@@ -125,7 +125,6 @@ import * as importedFormFieldResponse from './formFieldResponse';
 import * as importedFormFieldsResponse from './formFieldsResponse';
 import * as importedFormFieldTextInput from './formFieldTextInput';
 import * as importedGifSaveOptionsData from './gifSaveOptionsData';
-import * as importedGraphicsQualityOptionsData from './graphicsQualityOptionsData';
 import * as importedHeaderFooter from './headerFooter';
 import * as importedHeaderFooterLink from './headerFooterLink';
 import * as importedHeaderFooterLinkCollection from './headerFooterLinkCollection';
@@ -229,7 +228,6 @@ import * as importedSplitDocumentResult from './splitDocumentResult';
 import * as importedStatDataResponse from './statDataResponse';
 import * as importedStorageFile from './storageFile';
 import * as importedStoryChildNodes from './storyChildNodes';
-import * as importedStringFormatData from './stringFormatData';
 import * as importedStyle from './style';
 import * as importedStyleApply from './styleApply';
 import * as importedStyleCopy from './styleCopy';
@@ -374,7 +372,6 @@ export * from './formFieldResponse';
 export * from './formFieldsResponse';
 export * from './formFieldTextInput';
 export * from './gifSaveOptionsData';
-export * from './graphicsQualityOptionsData';
 export * from './headerFooter';
 export * from './headerFooterLink';
 export * from './headerFooterLinkCollection';
@@ -478,7 +475,6 @@ export * from './splitDocumentResult';
 export * from './statDataResponse';
 export * from './storageFile';
 export * from './storyChildNodes';
-export * from './stringFormatData';
 export * from './style';
 export * from './styleApply';
 export * from './styleCopy';
@@ -564,11 +560,6 @@ const enumsMap = {
     "Footnote.FootnoteTypeEnum": importedFootnote.Footnote.FootnoteTypeEnum,
     "FootnoteBase.FootnoteTypeEnum": importedFootnoteBase.FootnoteBase.FootnoteTypeEnum,
     "FormFieldTextInput.TextInputTypeEnum": importedFormFieldTextInput.FormFieldTextInput.TextInputTypeEnum,
-    "GraphicsQualityOptionsData.CompositingModeEnum": importedGraphicsQualityOptionsData.GraphicsQualityOptionsData.CompositingModeEnum,
-    "GraphicsQualityOptionsData.CompositingQualityEnum": importedGraphicsQualityOptionsData.GraphicsQualityOptionsData.CompositingQualityEnum,
-    "GraphicsQualityOptionsData.InterpolationModeEnum": importedGraphicsQualityOptionsData.GraphicsQualityOptionsData.InterpolationModeEnum,
-    "GraphicsQualityOptionsData.SmoothingModeEnum": importedGraphicsQualityOptionsData.GraphicsQualityOptionsData.SmoothingModeEnum,
-    "GraphicsQualityOptionsData.TextRenderingHintEnum": importedGraphicsQualityOptionsData.GraphicsQualityOptionsData.TextRenderingHintEnum,
     "HeaderFooterLink.TypeEnum": importedHeaderFooterLink.HeaderFooterLink.TypeEnum,
     "HtmlSaveOptionsData.HtmlVersionEnum": importedHtmlSaveOptionsData.HtmlSaveOptionsData.HtmlVersionEnum,
     "HtmlSaveOptionsData.MetafileFormatEnum": importedHtmlSaveOptionsData.HtmlSaveOptionsData.MetafileFormatEnum,
@@ -607,11 +598,6 @@ const enumsMap = {
     "ReportEngineSettings.DataSourceTypeEnum": importedReportEngineSettings.ReportEngineSettings.DataSourceTypeEnum,
     "SaveOptionsData.Dml3DEffectsRenderingModeEnum": importedSaveOptionsData.SaveOptionsData.Dml3DEffectsRenderingModeEnum,
     "Shading.TextureEnum": importedShading.Shading.TextureEnum,
-    "StringFormatData.AlignmentEnum": importedStringFormatData.StringFormatData.AlignmentEnum,
-    "StringFormatData.FormatFlagsEnum": importedStringFormatData.StringFormatData.FormatFlagsEnum,
-    "StringFormatData.HotkeyPrefixEnum": importedStringFormatData.StringFormatData.HotkeyPrefixEnum,
-    "StringFormatData.LineAlignmentEnum": importedStringFormatData.StringFormatData.LineAlignmentEnum,
-    "StringFormatData.TrimmingEnum": importedStringFormatData.StringFormatData.TrimmingEnum,
     "Style.StyleIdentifierEnum": importedStyle.Style.StyleIdentifierEnum,
     "Style.TypeEnum": importedStyle.Style.TypeEnum,
     "StyleInsert.StyleTypeEnum": importedStyleInsert.StyleInsert.StyleTypeEnum,
@@ -724,7 +710,6 @@ const typeMap = {
     FormFieldsResponse: importedFormFieldsResponse.FormFieldsResponse,
     FormFieldTextInput: importedFormFieldTextInput.FormFieldTextInput,
     GifSaveOptionsData: importedGifSaveOptionsData.GifSaveOptionsData,
-    GraphicsQualityOptionsData: importedGraphicsQualityOptionsData.GraphicsQualityOptionsData,
     HeaderFooter: importedHeaderFooter.HeaderFooter,
     HeaderFooterLink: importedHeaderFooterLink.HeaderFooterLink,
     HeaderFooterLinkCollection: importedHeaderFooterLinkCollection.HeaderFooterLinkCollection,
@@ -828,7 +813,6 @@ const typeMap = {
     StatDataResponse: importedStatDataResponse.StatDataResponse,
     StorageFile: importedStorageFile.StorageFile,
     StoryChildNodes: importedStoryChildNodes.StoryChildNodes,
-    StringFormatData: importedStringFormatData.StringFormatData,
     Style: importedStyle.Style,
     StyleApply: importedStyleApply.StyleApply,
     StyleCopy: importedStyleCopy.StyleCopy,

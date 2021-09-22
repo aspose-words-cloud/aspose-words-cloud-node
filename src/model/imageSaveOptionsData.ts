@@ -27,11 +27,9 @@
 
 import { AttributeInfo } from '../internal/attributeInfo';
 import { FixedPageSaveOptionsData } from './fixedPageSaveOptionsData';
-import { GraphicsQualityOptionsData } from './graphicsQualityOptionsData';
 
 export const importsMapImageSaveOptionsData = {
     FixedPageSaveOptionsData,
-    GraphicsQualityOptionsData,
 };
 
 /**
@@ -42,11 +40,6 @@ export class ImageSaveOptionsData extends FixedPageSaveOptionsData {
      * Attribute type map
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
-        {
-            name: "graphicsQualityOptions",
-            baseName: "GraphicsQualityOptions",
-            type: "GraphicsQualityOptionsData",
-        },
         {
             name: "horizontalResolution",
             baseName: "HorizontalResolution",
@@ -115,11 +108,6 @@ export class ImageSaveOptionsData extends FixedPageSaveOptionsData {
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(ImageSaveOptionsData.attributeTypeMap);
     }
-
-    /**
-     * Gets or sets the additional System.Drawing.Graphics quality options.
-     */
-    public graphicsQualityOptions: GraphicsQualityOptionsData;
 
     /**
      * Gets or sets the horizontal resolution in dots per inch for the generated images.

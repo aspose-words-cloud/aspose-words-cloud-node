@@ -40,8 +40,8 @@ describe("examples", () => {
         return wordsApi.uploadFileToStorage(
             'test_doc.docx',
             './ExamplesData/test_doc.docx'
-        ).then((result1037131313) => {
-            expect(result1037131313.response.statusMessage).to.equal("OK");
+        ).then((result924406875) => {
+            expect(result924406875.response.statusMessage).to.equal("OK");
         });
 
     });

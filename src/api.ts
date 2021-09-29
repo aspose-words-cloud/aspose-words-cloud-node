@@ -5501,15 +5501,24 @@ export class WordsApi {
      * Batch request.
      * @param requests contains requests parameters
      */
-    public async batch(...requests: BatchPartRequest[]): Promise<model.WordsIncomingMessage<any[]> > {
-        return batch(false, requests);
+     public async batch(...requests: BatchPartRequest[]): Promise<model.WordsIncomingMessage<any[]> > {
+         return this.batchInternal(true, ...requests);
+     }
+
+    /**
+     * Batch request withoit returning of intermediate results.
+     * @param requests contains requests parameters
+     */
+       public async batchWithoutIntermediateResults(...requests: BatchPartRequest[]): Promise<model.WordsIncomingMessage<any[]> > {
+        return this.batchInternal(false, ...requests);
     }
 
     /**
      * Batch request.
+     * @param displayIntermediateResults display intermediate results or not
      * @param requests contains requests parameters
      */
-    public async batch(displayIntermediateResults: bool, ...requests: BatchPartRequest[]): Promise<model.WordsIncomingMessage<any[]> > {
+    private async batchInternal(displayIntermediateResults:boolean = true, ...requests: BatchPartRequest[]): Promise<model.WordsIncomingMessage<any[]> > {
         if (requests === null || requests.length === 0) {
             throw new Error('Required parameter "requests" was null or empty.');
         }
@@ -5522,7 +5531,7 @@ export class WordsApi {
 
         const url = this.configuration.getApiBaseUrl() + "/words/batch";
         if(!displayIntermediateResults){
-            utl += '?displayIntermediateResults=false';
+            url += '?displayIntermediateResults=false';
         }
 
         // create a batch request

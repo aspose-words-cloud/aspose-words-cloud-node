@@ -290,7 +290,7 @@ describe("batch tests", () => {
                     })
                 }));
 
-                return wordsApi.batch(false, request1, request2, request3, request4, request5)
+                return wordsApi.batchWithoutIntermediateResults(request1, request2, request3, request4, request5)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);

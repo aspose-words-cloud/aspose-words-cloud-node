@@ -240,6 +240,71 @@ describe("batch tests", () => {
         }); 
     });
 
+    describe("Run Full Batch Request without intermediate responses test ", () => {
+        const remoteFileName = "TestGetFullBatchRequest.docx";
+        const reportingFolder = "DocumentActions/Reporting";
+        const localFile = "Common/test_multi_pages.docx";
+
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            return wordsApi.uploadFileToStorage(
+                remoteDataFolder + "/" + remoteFileName,
+                BaseTest.localBaseTestDataFolder + localFile
+            ).then((result0) => {
+                expect(result0.response.statusMessage).to.equal("OK");
+                const request1 = new BatchPartRequest(new model.GetParagraphsRequest({
+                    name: remoteFileName,
+                    nodePath: "sections/0",
+                    folder: remoteDataFolder
+                }));
+               const request2 = new BatchPartRequest(new model.GetParagraphRequest({
+                    name: remoteFileName,
+                    index: 0,
+                    nodePath: "sections/0",
+                    folder: remoteDataFolder
+                }));
+                const request3 = new BatchPartRequest(new model.InsertParagraphRequest({
+                    name: remoteFileName,
+                    paragraph: new model.ParagraphInsert({
+                        text: "This is a new paragraph for your document"
+                    }),
+                    nodePath: "sections/0",
+                    folder: remoteDataFolder
+                }));
+                const request4 = new BatchPartRequest(new model.DeleteParagraphRequest({
+                    name: remoteFileName,
+                    index: 0,
+                    nodePath: "",
+                    folder: remoteDataFolder
+                }));
+
+                const localDocumentFile = "ReportTemplate.docx";
+                const localDataFile = fs.readFileSync(BaseTest.localBaseTestDataFolder + reportingFolder + "/ReportData.json", 'utf8');
+
+                const request5 = new BatchPartRequest(new model.BuildReportOnlineRequest({
+                    template: fs.createReadStream(BaseTest.localBaseTestDataFolder + reportingFolder + "/" + localDocumentFile),
+                    data: localDataFile,
+                    reportEngineSettings: new model.ReportEngineSettings({
+                        dataSourceType: model.ReportEngineSettings.DataSourceTypeEnum.Json,
+                        dataSourceName: "persons"
+                    })
+                }));
+
+                return wordsApi.batch(false, request1, request2, request3, request4, request5)
+                .then((resultApi) => {
+                    // Assert
+                    expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.length).to.equal(5);
+                    expect(resultApi.body[0].constructor.name).to.equal("ParagraphLinkCollectionResponse"); // GetParagraphs
+                    expect(resultApi.body[1].constructor.name).to.equal("ParagraphResponse"); // GetParagraph
+                    expect(resultApi.body[2].constructor.name).to.equal("ParagraphResponse"); // InsertParagraph
+                    expect(resultApi.body[3]).to.be.null; // DeleteParagraph
+                    expect(resultApi.body[4].constructor.name).to.equal("Buffer"); // BuildReportOnline
+                });
+            });
+        }); 
+    });
+
     describe("Run batch request with depenency tree test", () => {
         const remoteFileName = "TestGetFullBatchRequest.docx";
         const localFile = "Common/test_multi_pages.docx";

@@ -5502,6 +5502,14 @@ export class WordsApi {
      * @param requests contains requests parameters
      */
     public async batch(...requests: BatchPartRequest[]): Promise<model.WordsIncomingMessage<any[]> > {
+        return batch(false, requests);
+    }
+
+    /**
+     * Batch request.
+     * @param requests contains requests parameters
+     */
+    public async batch(displayIntermediateResults: bool, ...requests: BatchPartRequest[]): Promise<model.WordsIncomingMessage<any[]> > {
         if (requests === null || requests.length === 0) {
             throw new Error('Required parameter "requests" was null or empty.');
         }
@@ -5511,6 +5519,11 @@ export class WordsApi {
             map[obj.id]=obj;
             return map;
         }, {});
+
+        const url = this.configuration.getApiBaseUrl() + "/words/batch";
+        if(!displayIntermediateResults){
+            utl += '?displayIntermediateResults=false';
+        }
 
         // create a batch request
         const requestOptions: request.Options = {
@@ -5530,8 +5543,6 @@ export class WordsApi {
             let bodyString = options.method + " " + options.uri.toString().replace(this.configuration.getApiBaseUrl() + "/words/", "") + (Object.keys(options.qs).length ? '?' + querystring.stringify(options.qs) : "") + "\r\n";
 
             if (options.formData == null) {
-
-
                 if (options.body != null) {
                     bodyString += "Content-Type: application/json; charset=utf-8\r\n";
                 }
@@ -5630,7 +5641,7 @@ export class WordsApi {
         const responseParts = parseMultipartBody(response.body, getBoundary(response.headers), true);
 
         const data = new Array();
-        for (let i = 0; i < requests.length; i++) {
+        for (let i = 0; i < responseParts.length; i++) {
             if (responseParts[i].code < 200 && responseParts[i].code > 299) {
                 const bodyContent = JSON.parse(response.body);
                 data.push(ObjectSerializer.deserialize(bodyContent, "WordsApiErrorResponse"));

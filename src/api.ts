@@ -5529,7 +5529,7 @@ export class WordsApi {
             return map;
         }, {});
 
-        const url = this.configuration.getApiBaseUrl() + "/words/batch";
+        var url = this.configuration.getApiBaseUrl() + "/words/batch";
         if(!displayIntermediateResults){
             url += '?displayIntermediateResults=false';
         }

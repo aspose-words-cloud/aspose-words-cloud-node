@@ -29,6 +29,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { Readable } from "stream";
 import { IncomingMessage } from 'http';
 import request = require("request");
+import RSA = require('node-rsa');
 import { Configuration } from "../internal/configuration";
 import { addQueryParameterToUrl, parseMultipartBody } from "../internal/requestHelper";
 import { ObjectSerializer } from "../internal/objectSerializer";
@@ -871,8 +872,9 @@ export interface RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri;
+	createRequestOptions(configuration: Configuration, key: RSA) : request.OptionsWithUri;
 
 	/**
 	 * create response from string
@@ -932,8 +934,9 @@ export class AcceptAllRevisionsRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/revisions/acceptAll"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -948,11 +951,11 @@ export class AcceptAllRevisionsRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling acceptAllRevisions.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -1006,8 +1009,9 @@ export class AcceptAllRevisionsOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/revisions/acceptAll"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -1022,9 +1026,9 @@ export class AcceptAllRevisionsOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling acceptAllRevisionsOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -1116,8 +1120,9 @@ export class AppendDocumentRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/appendDocument"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -1142,13 +1147,13 @@ export class AppendDocumentRequest implements RequestInterface {
             throw new Error('Required parameter "this.documentList" was null when calling appendDocument.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -1218,8 +1223,9 @@ export class AppendDocumentOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/appendDocument"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -1244,11 +1250,11 @@ export class AppendDocumentOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.documentList" was null when calling appendDocumentOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -1348,8 +1354,9 @@ export class ApplyStyleToDocumentElementRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{styledNodePath}/style"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "styledNodePath" + "}", (this.styledNodePath !== null && this.styledNodePath !== undefined) ? "/" + String(this.styledNodePath) : "")
@@ -1385,13 +1392,13 @@ export class ApplyStyleToDocumentElementRequest implements RequestInterface {
             throw new Error('Required parameter "this.styleApply" was null when calling applyStyleToDocumentElement.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -1466,8 +1473,9 @@ export class ApplyStyleToDocumentElementOnlineRequest implements RequestInterfac
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/{styledNodePath}/style"
             .replace("/{" + "styledNodePath" + "}", (this.styledNodePath !== null && this.styledNodePath !== undefined) ? "/" + String(this.styledNodePath) : "")
             .replace("//", "/");
@@ -1503,11 +1511,11 @@ export class ApplyStyleToDocumentElementOnlineRequest implements RequestInterfac
             throw new Error('Required parameter "this.styleApply" was null when calling applyStyleToDocumentElementOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -1597,8 +1605,9 @@ export class BuildReportRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/buildReport"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -1634,11 +1643,11 @@ export class BuildReportRequest implements RequestInterface {
             throw new Error('Required parameter "this.reportEngineSettings" was null when calling buildReport.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         if (this.data !== undefined) {
             formParams.Data = ObjectSerializer.serialize(this.data, "string");
         }
@@ -1701,8 +1710,9 @@ export class BuildReportOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/buildReport"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -1737,7 +1747,7 @@ export class BuildReportOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.reportEngineSettings" was null when calling buildReportOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "documentFileName", this.documentFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "documentFileName", this.documentFileName, _key);
         if (this.template !== undefined) {
             formParams.Template = this.template;
         }
@@ -1793,8 +1803,9 @@ export class ClassifyRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/classify"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -1808,7 +1819,7 @@ export class ClassifyRequest implements RequestInterface {
             throw new Error('Required parameter "this.text" was null when calling classify.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "bestClassesCount", this.bestClassesCount);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "bestClassesCount", this.bestClassesCount, _key);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -1878,8 +1889,9 @@ export class ClassifyDocumentRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/classify"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -1894,12 +1906,12 @@ export class ClassifyDocumentRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling classifyDocument.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "bestClassesCount", this.bestClassesCount);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "taxonomy", this.taxonomy);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "bestClassesCount", this.bestClassesCount, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "taxonomy", this.taxonomy, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -1958,8 +1970,9 @@ export class ClassifyDocumentOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/classify"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -1974,10 +1987,10 @@ export class ClassifyDocumentOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling classifyDocumentOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "bestClassesCount", this.bestClassesCount);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "taxonomy", this.taxonomy);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "bestClassesCount", this.bestClassesCount, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "taxonomy", this.taxonomy, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -2052,8 +2065,9 @@ export class CompareDocumentRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/compareDocument"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -2078,11 +2092,11 @@ export class CompareDocumentRequest implements RequestInterface {
             throw new Error('Required parameter "this.compareData" was null when calling compareDocument.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -2147,8 +2161,9 @@ export class CompareDocumentOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/compareDocument"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -2173,9 +2188,9 @@ export class CompareDocumentOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.compareData" was null when calling compareDocumentOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -2258,8 +2273,9 @@ export class ConvertDocumentRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/convert"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -2284,11 +2300,11 @@ export class ConvertDocumentRequest implements RequestInterface {
             throw new Error('Required parameter "this.format" was null when calling convertDocument.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", this.outPath);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fileNameFieldValue", this.fileNameFieldValue);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", this.outPath, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fileNameFieldValue", this.fileNameFieldValue, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -2353,8 +2369,9 @@ export class CopyFileRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/storage/file/copy/{srcPath}"
             .replace("/{" + "srcPath" + "}", (this.srcPath !== null && this.srcPath !== undefined) ? "/" + String(this.srcPath) : "")
             .replace("//", "/");
@@ -2374,10 +2391,10 @@ export class CopyFileRequest implements RequestInterface {
             throw new Error('Required parameter "this.srcPath" was null when calling copyFile.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destPath", this.destPath);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "srcStorageName", this.srcStorageName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destStorageName", this.destStorageName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "versionId", this.versionId);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destPath", this.destPath, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "srcStorageName", this.srcStorageName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destStorageName", this.destStorageName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "versionId", this.versionId, _key);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -2431,8 +2448,9 @@ export class CopyFolderRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/storage/folder/copy/{srcPath}"
             .replace("/{" + "srcPath" + "}", (this.srcPath !== null && this.srcPath !== undefined) ? "/" + String(this.srcPath) : "")
             .replace("//", "/");
@@ -2452,9 +2470,9 @@ export class CopyFolderRequest implements RequestInterface {
             throw new Error('Required parameter "this.srcPath" was null when calling copyFolder.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destPath", this.destPath);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "srcStorageName", this.srcStorageName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destStorageName", this.destStorageName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destPath", this.destPath, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "srcStorageName", this.srcStorageName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destStorageName", this.destStorageName, _key);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -2533,8 +2551,9 @@ export class CopyStyleRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/styles/copy"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -2559,13 +2578,13 @@ export class CopyStyleRequest implements RequestInterface {
             throw new Error('Required parameter "this.styleCopy" was null when calling copyStyle.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "POST",
@@ -2635,8 +2654,9 @@ export class CopyStyleOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/styles/copy"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -2661,11 +2681,11 @@ export class CopyStyleOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.styleCopy" was null when calling copyStyleOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -2730,14 +2750,15 @@ export class CreateDocumentRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/create"
             .replace("//", "/");
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fileName", this.fileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fileName", this.fileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -2781,8 +2802,9 @@ export class CreateFolderRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/storage/folder/{path}"
             .replace("/{" + "path" + "}", (this.path !== null && this.path !== undefined) ? "/" + String(this.path) : "")
             .replace("//", "/");
@@ -2797,7 +2819,7 @@ export class CreateFolderRequest implements RequestInterface {
             throw new Error('Required parameter "this.path" was null when calling createFolder.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storageName", this.storageName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storageName", this.storageName, _key);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -2881,8 +2903,9 @@ export class CreateOrUpdateDocumentPropertyRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/documentProperties/{propertyName}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "propertyName" + "}", (this.propertyName !== null && this.propertyName !== undefined) ? "/" + String(this.propertyName) : "")
@@ -2918,13 +2941,13 @@ export class CreateOrUpdateDocumentPropertyRequest implements RequestInterface {
             throw new Error('Required parameter "this.property" was null when calling createOrUpdateDocumentProperty.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -2999,8 +3022,9 @@ export class CreateOrUpdateDocumentPropertyOnlineRequest implements RequestInter
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/documentProperties/{propertyName}"
             .replace("/{" + "propertyName" + "}", (this.propertyName !== null && this.propertyName !== undefined) ? "/" + String(this.propertyName) : "")
             .replace("//", "/");
@@ -3036,11 +3060,11 @@ export class CreateOrUpdateDocumentPropertyOnlineRequest implements RequestInter
             throw new Error('Required parameter "this.property" was null when calling createOrUpdateDocumentPropertyOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -3130,8 +3154,9 @@ export class DeleteAllParagraphTabStopsRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}/tabstops"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -3158,11 +3183,11 @@ export class DeleteAllParagraphTabStopsRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling deleteAllParagraphTabStops.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -3226,8 +3251,9 @@ export class DeleteAllParagraphTabStopsOnlineRequest implements RequestInterface
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/{nodePath}/paragraphs/{index}/tabstops"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -3254,9 +3280,9 @@ export class DeleteAllParagraphTabStopsOnlineRequest implements RequestInterface
             throw new Error('Required parameter "this.index" was null when calling deleteAllParagraphTabStopsOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -3353,8 +3379,9 @@ export class DeleteBorderRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/borders/{borderType}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "borderType" + "}", (this.borderType !== null && this.borderType !== undefined) ? "/" + String(this.borderType) : "")
@@ -3381,13 +3408,13 @@ export class DeleteBorderRequest implements RequestInterface {
             throw new Error('Required parameter "this.borderType" was null when calling deleteBorder.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -3461,8 +3488,9 @@ export class DeleteBorderOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/{nodePath}/borders/{borderType}"
             .replace("/{" + "borderType" + "}", (this.borderType !== null && this.borderType !== undefined) ? "/" + String(this.borderType) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -3489,11 +3517,11 @@ export class DeleteBorderOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.borderType" was null when calling deleteBorderOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -3585,8 +3613,9 @@ export class DeleteBordersRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/borders"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -3602,13 +3631,13 @@ export class DeleteBordersRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling deleteBorders.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -3677,8 +3706,9 @@ export class DeleteBordersOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/{nodePath}/borders"
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
@@ -3694,11 +3724,11 @@ export class DeleteBordersOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling deleteBordersOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -3790,8 +3820,9 @@ export class DeleteCommentRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/comments/{commentIndex}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "commentIndex" + "}", (this.commentIndex !== null && this.commentIndex !== undefined) ? "/" + String(this.commentIndex) : "")
@@ -3817,13 +3848,13 @@ export class DeleteCommentRequest implements RequestInterface {
             throw new Error('Required parameter "this.commentIndex" was null when calling deleteComment.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -3892,8 +3923,9 @@ export class DeleteCommentOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/comments/{commentIndex}"
             .replace("/{" + "commentIndex" + "}", (this.commentIndex !== null && this.commentIndex !== undefined) ? "/" + String(this.commentIndex) : "")
             .replace("//", "/");
@@ -3919,11 +3951,11 @@ export class DeleteCommentOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.commentIndex" was null when calling deleteCommentOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -4003,8 +4035,9 @@ export class DeleteCommentsRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/comments"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -4019,13 +4052,13 @@ export class DeleteCommentsRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling deleteComments.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -4089,8 +4122,9 @@ export class DeleteCommentsOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/comments"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -4105,11 +4139,11 @@ export class DeleteCommentsOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling deleteCommentsOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -4194,8 +4228,9 @@ export class DeleteCustomXmlPartRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/customXmlParts/{customXmlPartIndex}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "customXmlPartIndex" + "}", (this.customXmlPartIndex !== null && this.customXmlPartIndex !== undefined) ? "/" + String(this.customXmlPartIndex) : "")
@@ -4221,13 +4256,13 @@ export class DeleteCustomXmlPartRequest implements RequestInterface {
             throw new Error('Required parameter "this.customXmlPartIndex" was null when calling deleteCustomXmlPart.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -4296,8 +4331,9 @@ export class DeleteCustomXmlPartOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/customXmlParts/{customXmlPartIndex}"
             .replace("/{" + "customXmlPartIndex" + "}", (this.customXmlPartIndex !== null && this.customXmlPartIndex !== undefined) ? "/" + String(this.customXmlPartIndex) : "")
             .replace("//", "/");
@@ -4323,11 +4359,11 @@ export class DeleteCustomXmlPartOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.customXmlPartIndex" was null when calling deleteCustomXmlPartOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -4407,8 +4443,9 @@ export class DeleteCustomXmlPartsRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/customXmlParts"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -4423,13 +4460,13 @@ export class DeleteCustomXmlPartsRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling deleteCustomXmlParts.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -4493,8 +4530,9 @@ export class DeleteCustomXmlPartsOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/customXmlParts"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -4509,11 +4547,11 @@ export class DeleteCustomXmlPartsOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling deleteCustomXmlPartsOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -4598,8 +4636,9 @@ export class DeleteDocumentPropertyRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/documentProperties/{propertyName}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "propertyName" + "}", (this.propertyName !== null && this.propertyName !== undefined) ? "/" + String(this.propertyName) : "")
@@ -4625,13 +4664,13 @@ export class DeleteDocumentPropertyRequest implements RequestInterface {
             throw new Error('Required parameter "this.propertyName" was null when calling deleteDocumentProperty.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -4700,8 +4739,9 @@ export class DeleteDocumentPropertyOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/documentProperties/{propertyName}"
             .replace("/{" + "propertyName" + "}", (this.propertyName !== null && this.propertyName !== undefined) ? "/" + String(this.propertyName) : "")
             .replace("//", "/");
@@ -4727,11 +4767,11 @@ export class DeleteDocumentPropertyOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.propertyName" was null when calling deleteDocumentPropertyOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -4821,8 +4861,9 @@ export class DeleteDrawingObjectRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects/{index}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -4849,13 +4890,13 @@ export class DeleteDrawingObjectRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling deleteDrawingObject.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -4929,8 +4970,9 @@ export class DeleteDrawingObjectOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/{nodePath}/drawingObjects/{index}"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -4957,11 +4999,11 @@ export class DeleteDrawingObjectOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling deleteDrawingObjectOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -5051,8 +5093,9 @@ export class DeleteFieldRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/fields/{index}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -5079,13 +5122,13 @@ export class DeleteFieldRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling deleteField.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -5159,8 +5202,9 @@ export class DeleteFieldOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/{nodePath}/fields/{index}"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -5187,11 +5231,11 @@ export class DeleteFieldOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling deleteFieldOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -5276,8 +5320,9 @@ export class DeleteFieldsRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/fields"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -5293,13 +5338,13 @@ export class DeleteFieldsRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling deleteFields.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -5368,8 +5413,9 @@ export class DeleteFieldsOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/{nodePath}/fields"
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
@@ -5385,11 +5431,11 @@ export class DeleteFieldsOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling deleteFieldsOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -5444,8 +5490,9 @@ export class DeleteFileRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/storage/file/{path}"
             .replace("/{" + "path" + "}", (this.path !== null && this.path !== undefined) ? "/" + String(this.path) : "")
             .replace("//", "/");
@@ -5460,8 +5507,8 @@ export class DeleteFileRequest implements RequestInterface {
             throw new Error('Required parameter "this.path" was null when calling deleteFile.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storageName", this.storageName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "versionId", this.versionId);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storageName", this.storageName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "versionId", this.versionId, _key);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -5510,8 +5557,9 @@ export class DeleteFolderRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/storage/folder/{path}"
             .replace("/{" + "path" + "}", (this.path !== null && this.path !== undefined) ? "/" + String(this.path) : "")
             .replace("//", "/");
@@ -5526,8 +5574,8 @@ export class DeleteFolderRequest implements RequestInterface {
             throw new Error('Required parameter "this.path" was null when calling deleteFolder.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storageName", this.storageName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "recursive", this.recursive);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storageName", this.storageName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "recursive", this.recursive, _key);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -5611,8 +5659,9 @@ export class DeleteFootnoteRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/footnotes/{index}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -5639,13 +5688,13 @@ export class DeleteFootnoteRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling deleteFootnote.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -5719,8 +5768,9 @@ export class DeleteFootnoteOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/{nodePath}/footnotes/{index}"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -5747,11 +5797,11 @@ export class DeleteFootnoteOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling deleteFootnoteOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -5841,8 +5891,9 @@ export class DeleteFormFieldRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/formfields/{index}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -5869,13 +5920,13 @@ export class DeleteFormFieldRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling deleteFormField.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -5949,8 +6000,9 @@ export class DeleteFormFieldOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/{nodePath}/formfields/{index}"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -5977,11 +6029,11 @@ export class DeleteFormFieldOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling deleteFormFieldOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -6071,8 +6123,9 @@ export class DeleteHeaderFooterRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{sectionPath}/headersfooters/{index}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "sectionPath" + "}", (this.sectionPath !== null && this.sectionPath !== undefined) ? "/" + String(this.sectionPath) : "")
@@ -6104,13 +6157,13 @@ export class DeleteHeaderFooterRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling deleteHeaderFooter.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -6184,8 +6237,9 @@ export class DeleteHeaderFooterOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/{sectionPath}/headersfooters/{index}"
             .replace("/{" + "sectionPath" + "}", (this.sectionPath !== null && this.sectionPath !== undefined) ? "/" + String(this.sectionPath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -6217,11 +6271,11 @@ export class DeleteHeaderFooterOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling deleteHeaderFooterOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -6311,8 +6365,9 @@ export class DeleteHeadersFootersRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{sectionPath}/headersfooters"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "sectionPath" + "}", (this.sectionPath !== null && this.sectionPath !== undefined) ? "/" + String(this.sectionPath) : "")
@@ -6333,14 +6388,14 @@ export class DeleteHeadersFootersRequest implements RequestInterface {
             throw new Error('Required parameter "this.sectionPath" was undefined when calling deleteHeadersFooters.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "headersFootersTypes", this.headersFootersTypes);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "headersFootersTypes", this.headersFootersTypes, _key);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -6414,8 +6469,9 @@ export class DeleteHeadersFootersOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/{sectionPath}/headersfooters"
             .replace("/{" + "sectionPath" + "}", (this.sectionPath !== null && this.sectionPath !== undefined) ? "/" + String(this.sectionPath) : "")
             .replace("//", "/");
@@ -6436,12 +6492,12 @@ export class DeleteHeadersFootersOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.sectionPath" was undefined when calling deleteHeadersFootersOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "headersFootersTypes", this.headersFootersTypes);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "headersFootersTypes", this.headersFootersTypes, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -6521,8 +6577,9 @@ export class DeleteMacrosRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/macros"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -6537,13 +6594,13 @@ export class DeleteMacrosRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling deleteMacros.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -6607,8 +6664,9 @@ export class DeleteMacrosOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/macros"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -6623,11 +6681,11 @@ export class DeleteMacrosOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling deleteMacrosOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -6717,8 +6775,9 @@ export class DeleteOfficeMathObjectRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/OfficeMathObjects/{index}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -6745,13 +6804,13 @@ export class DeleteOfficeMathObjectRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling deleteOfficeMathObject.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -6825,8 +6884,9 @@ export class DeleteOfficeMathObjectOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/{nodePath}/OfficeMathObjects/{index}"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -6853,11 +6913,11 @@ export class DeleteOfficeMathObjectOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling deleteOfficeMathObjectOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -6947,8 +7007,9 @@ export class DeleteParagraphRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -6975,13 +7036,13 @@ export class DeleteParagraphRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling deleteParagraph.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -7065,8 +7126,9 @@ export class DeleteParagraphListFormatRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}/listFormat"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -7093,13 +7155,13 @@ export class DeleteParagraphListFormatRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling deleteParagraphListFormat.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -7173,8 +7235,9 @@ export class DeleteParagraphListFormatOnlineRequest implements RequestInterface 
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/{nodePath}/paragraphs/{index}/listFormat"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -7201,11 +7264,11 @@ export class DeleteParagraphListFormatOnlineRequest implements RequestInterface 
             throw new Error('Required parameter "this.index" was null when calling deleteParagraphListFormatOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -7292,8 +7355,9 @@ export class DeleteParagraphOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/{nodePath}/paragraphs/{index}"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -7320,11 +7384,11 @@ export class DeleteParagraphOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling deleteParagraphOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -7409,8 +7473,9 @@ export class DeleteParagraphTabStopRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}/tabstop"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -7447,12 +7512,12 @@ export class DeleteParagraphTabStopRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling deleteParagraphTabStop.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "position", this.position);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "position", this.position, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -7521,8 +7586,9 @@ export class DeleteParagraphTabStopOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/{nodePath}/paragraphs/{index}/tabstop"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -7559,10 +7625,10 @@ export class DeleteParagraphTabStopOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling deleteParagraphTabStopOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "position", this.position);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "position", this.position, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -7659,8 +7725,9 @@ export class DeleteRunRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{paragraphPath}/runs/{index}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "paragraphPath" + "}", (this.paragraphPath !== null && this.paragraphPath !== undefined) ? "/" + String(this.paragraphPath) : "")
@@ -7692,13 +7759,13 @@ export class DeleteRunRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling deleteRun.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -7772,8 +7839,9 @@ export class DeleteRunOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/{paragraphPath}/runs/{index}"
             .replace("/{" + "paragraphPath" + "}", (this.paragraphPath !== null && this.paragraphPath !== undefined) ? "/" + String(this.paragraphPath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -7805,11 +7873,11 @@ export class DeleteRunOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling deleteRunOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -7894,8 +7962,9 @@ export class DeleteSectionRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/sections/{sectionIndex}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "sectionIndex" + "}", (this.sectionIndex !== null && this.sectionIndex !== undefined) ? "/" + String(this.sectionIndex) : "")
@@ -7921,13 +7990,13 @@ export class DeleteSectionRequest implements RequestInterface {
             throw new Error('Required parameter "this.sectionIndex" was null when calling deleteSection.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -7996,8 +8065,9 @@ export class DeleteSectionOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/sections/{sectionIndex}"
             .replace("/{" + "sectionIndex" + "}", (this.sectionIndex !== null && this.sectionIndex !== undefined) ? "/" + String(this.sectionIndex) : "")
             .replace("//", "/");
@@ -8023,11 +8093,11 @@ export class DeleteSectionOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.sectionIndex" was null when calling deleteSectionOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -8117,8 +8187,9 @@ export class DeleteTableRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/tables/{index}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -8145,13 +8216,13 @@ export class DeleteTableRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling deleteTable.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -8235,8 +8306,9 @@ export class DeleteTableCellRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{tableRowPath}/cells/{index}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "tableRowPath" + "}", (this.tableRowPath !== null && this.tableRowPath !== undefined) ? "/" + String(this.tableRowPath) : "")
@@ -8268,13 +8340,13 @@ export class DeleteTableCellRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling deleteTableCell.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -8348,8 +8420,9 @@ export class DeleteTableCellOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/{tableRowPath}/cells/{index}"
             .replace("/{" + "tableRowPath" + "}", (this.tableRowPath !== null && this.tableRowPath !== undefined) ? "/" + String(this.tableRowPath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -8381,11 +8454,11 @@ export class DeleteTableCellOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling deleteTableCellOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -8465,8 +8538,9 @@ export class DeleteTableOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/{nodePath}/tables/{index}"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -8493,11 +8567,11 @@ export class DeleteTableOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling deleteTableOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -8587,8 +8661,9 @@ export class DeleteTableRowRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{tablePath}/rows/{index}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "tablePath" + "}", (this.tablePath !== null && this.tablePath !== undefined) ? "/" + String(this.tablePath) : "")
@@ -8620,13 +8695,13 @@ export class DeleteTableRowRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling deleteTableRow.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -8700,8 +8775,9 @@ export class DeleteTableRowOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/{tablePath}/rows/{index}"
             .replace("/{" + "tablePath" + "}", (this.tablePath !== null && this.tablePath !== undefined) ? "/" + String(this.tablePath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -8733,11 +8809,11 @@ export class DeleteTableRowOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling deleteTableRowOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -8817,8 +8893,9 @@ export class DeleteWatermarkRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/watermarks/deleteLast"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -8833,13 +8910,13 @@ export class DeleteWatermarkRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling deleteWatermark.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "POST",
@@ -8903,8 +8980,9 @@ export class DeleteWatermarkOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/watermarks/deleteLast"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -8919,11 +8997,11 @@ export class DeleteWatermarkOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling deleteWatermarkOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -8985,8 +9063,9 @@ export class DownloadFileRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/storage/file/{path}"
             .replace("/{" + "path" + "}", (this.path !== null && this.path !== undefined) ? "/" + String(this.path) : "")
             .replace("//", "/");
@@ -9001,8 +9080,8 @@ export class DownloadFileRequest implements RequestInterface {
             throw new Error('Required parameter "this.path" was null when calling downloadFile.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storageName", this.storageName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "versionId", this.versionId);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storageName", this.storageName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "versionId", this.versionId, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -9091,8 +9170,9 @@ export class ExecuteMailMergeRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/MailMerge"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -9108,15 +9188,15 @@ export class ExecuteMailMergeRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling executeMailMerge.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "withRegions", this.withRegions);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "mailMergeDataFile", this.mailMergeDataFile);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "cleanup", this.cleanup);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "useWholeParagraphAsRegion", this.useWholeParagraphAsRegion);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "withRegions", this.withRegions, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "mailMergeDataFile", this.mailMergeDataFile, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "cleanup", this.cleanup, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "useWholeParagraphAsRegion", this.useWholeParagraphAsRegion, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         if (this.data !== undefined) {
             formParams.Data = ObjectSerializer.serialize(this.data, "string");
         }
@@ -9181,8 +9261,9 @@ export class ExecuteMailMergeOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/MailMerge"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -9207,9 +9288,9 @@ export class ExecuteMailMergeOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.data" was null when calling executeMailMergeOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "withRegions", this.withRegions);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "cleanup", this.cleanup);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "documentFileName", this.documentFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "withRegions", this.withRegions, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "cleanup", this.cleanup, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "documentFileName", this.documentFileName, _key);
         if (this.template !== undefined) {
             formParams.Template = this.template;
         }
@@ -9257,12 +9338,13 @@ export class GetAvailableFontsRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/fonts/available"
             .replace("//", "/");
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -9326,8 +9408,9 @@ export class GetBookmarkByNameRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/bookmarks/{bookmarkName}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "bookmarkName" + "}", (this.bookmarkName !== null && this.bookmarkName !== undefined) ? "/" + String(this.bookmarkName) : "")
@@ -9353,10 +9436,10 @@ export class GetBookmarkByNameRequest implements RequestInterface {
             throw new Error('Required parameter "this.bookmarkName" was null when calling getBookmarkByName.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -9410,8 +9493,9 @@ export class GetBookmarkByNameOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/bookmarks/{bookmarkName}"
             .replace("/{" + "bookmarkName" + "}", (this.bookmarkName !== null && this.bookmarkName !== undefined) ? "/" + String(this.bookmarkName) : "")
             .replace("//", "/");
@@ -9437,8 +9521,8 @@ export class GetBookmarkByNameOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.bookmarkName" was null when calling getBookmarkByNameOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -9503,8 +9587,9 @@ export class GetBookmarksRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/bookmarks"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -9519,10 +9604,10 @@ export class GetBookmarksRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling getBookmarks.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -9571,8 +9656,9 @@ export class GetBookmarksOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/bookmarks"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -9587,8 +9673,8 @@ export class GetBookmarksOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling getBookmarksOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -9663,8 +9749,9 @@ export class GetBorderRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/borders/{borderType}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "borderType" + "}", (this.borderType !== null && this.borderType !== undefined) ? "/" + String(this.borderType) : "")
@@ -9691,10 +9778,10 @@ export class GetBorderRequest implements RequestInterface {
             throw new Error('Required parameter "this.borderType" was null when calling getBorder.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -9753,8 +9840,9 @@ export class GetBorderOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/borders/{borderType}"
             .replace("/{" + "borderType" + "}", (this.borderType !== null && this.borderType !== undefined) ? "/" + String(this.borderType) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -9781,8 +9869,8 @@ export class GetBorderOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.borderType" was null when calling getBorderOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -9852,8 +9940,9 @@ export class GetBordersRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/borders"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -9869,10 +9958,10 @@ export class GetBordersRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling getBorders.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -9926,8 +10015,9 @@ export class GetBordersOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/borders"
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
@@ -9943,8 +10033,8 @@ export class GetBordersOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling getBordersOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -10014,8 +10104,9 @@ export class GetCommentRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/comments/{commentIndex}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "commentIndex" + "}", (this.commentIndex !== null && this.commentIndex !== undefined) ? "/" + String(this.commentIndex) : "")
@@ -10041,10 +10132,10 @@ export class GetCommentRequest implements RequestInterface {
             throw new Error('Required parameter "this.commentIndex" was null when calling getComment.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -10098,8 +10189,9 @@ export class GetCommentOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/comments/{commentIndex}"
             .replace("/{" + "commentIndex" + "}", (this.commentIndex !== null && this.commentIndex !== undefined) ? "/" + String(this.commentIndex) : "")
             .replace("//", "/");
@@ -10125,8 +10217,8 @@ export class GetCommentOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.commentIndex" was null when calling getCommentOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -10191,8 +10283,9 @@ export class GetCommentsRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/comments"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -10207,10 +10300,10 @@ export class GetCommentsRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling getComments.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -10259,8 +10352,9 @@ export class GetCommentsOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/comments"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -10275,8 +10369,8 @@ export class GetCommentsOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling getCommentsOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -10346,8 +10440,9 @@ export class GetCustomXmlPartRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/customXmlParts/{customXmlPartIndex}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "customXmlPartIndex" + "}", (this.customXmlPartIndex !== null && this.customXmlPartIndex !== undefined) ? "/" + String(this.customXmlPartIndex) : "")
@@ -10373,10 +10468,10 @@ export class GetCustomXmlPartRequest implements RequestInterface {
             throw new Error('Required parameter "this.customXmlPartIndex" was null when calling getCustomXmlPart.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -10430,8 +10525,9 @@ export class GetCustomXmlPartOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/customXmlParts/{customXmlPartIndex}"
             .replace("/{" + "customXmlPartIndex" + "}", (this.customXmlPartIndex !== null && this.customXmlPartIndex !== undefined) ? "/" + String(this.customXmlPartIndex) : "")
             .replace("//", "/");
@@ -10457,8 +10553,8 @@ export class GetCustomXmlPartOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.customXmlPartIndex" was null when calling getCustomXmlPartOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -10523,8 +10619,9 @@ export class GetCustomXmlPartsRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/customXmlParts"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -10539,10 +10636,10 @@ export class GetCustomXmlPartsRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling getCustomXmlParts.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -10591,8 +10688,9 @@ export class GetCustomXmlPartsOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/customXmlParts"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -10607,8 +10705,8 @@ export class GetCustomXmlPartsOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling getCustomXmlPartsOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -10673,8 +10771,9 @@ export class GetDocumentRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{documentName}"
             .replace("/{" + "documentName" + "}", (this.documentName !== null && this.documentName !== undefined) ? "/" + String(this.documentName) : "")
             .replace("//", "/");
@@ -10689,10 +10788,10 @@ export class GetDocumentRequest implements RequestInterface {
             throw new Error('Required parameter "this.documentName" was null when calling getDocument.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -10761,8 +10860,9 @@ export class GetDocumentDrawingObjectByIndexRequest implements RequestInterface 
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects/{index}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -10789,10 +10889,10 @@ export class GetDocumentDrawingObjectByIndexRequest implements RequestInterface 
             throw new Error('Required parameter "this.index" was null when calling getDocumentDrawingObjectByIndex.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -10851,8 +10951,9 @@ export class GetDocumentDrawingObjectByIndexOnlineRequest implements RequestInte
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/drawingObjects/{index}"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -10879,8 +10980,8 @@ export class GetDocumentDrawingObjectByIndexOnlineRequest implements RequestInte
             throw new Error('Required parameter "this.index" was null when calling getDocumentDrawingObjectByIndexOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -10955,8 +11056,9 @@ export class GetDocumentDrawingObjectImageDataRequest implements RequestInterfac
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects/{index}/imageData"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -10983,10 +11085,10 @@ export class GetDocumentDrawingObjectImageDataRequest implements RequestInterfac
             throw new Error('Required parameter "this.index" was null when calling getDocumentDrawingObjectImageData.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -11045,8 +11147,9 @@ export class GetDocumentDrawingObjectImageDataOnlineRequest implements RequestIn
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/drawingObjects/{index}/imageData"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -11073,8 +11176,8 @@ export class GetDocumentDrawingObjectImageDataOnlineRequest implements RequestIn
             throw new Error('Required parameter "this.index" was null when calling getDocumentDrawingObjectImageDataOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -11149,8 +11252,9 @@ export class GetDocumentDrawingObjectOleDataRequest implements RequestInterface 
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects/{index}/oleData"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -11177,10 +11281,10 @@ export class GetDocumentDrawingObjectOleDataRequest implements RequestInterface 
             throw new Error('Required parameter "this.index" was null when calling getDocumentDrawingObjectOleData.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -11239,8 +11343,9 @@ export class GetDocumentDrawingObjectOleDataOnlineRequest implements RequestInte
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/drawingObjects/{index}/oleData"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -11267,8 +11372,8 @@ export class GetDocumentDrawingObjectOleDataOnlineRequest implements RequestInte
             throw new Error('Required parameter "this.index" was null when calling getDocumentDrawingObjectOleDataOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -11338,8 +11443,9 @@ export class GetDocumentDrawingObjectsRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -11355,10 +11461,10 @@ export class GetDocumentDrawingObjectsRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling getDocumentDrawingObjects.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -11412,8 +11518,9 @@ export class GetDocumentDrawingObjectsOnlineRequest implements RequestInterface 
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/drawingObjects"
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
@@ -11429,8 +11536,8 @@ export class GetDocumentDrawingObjectsOnlineRequest implements RequestInterface 
             throw new Error('Required parameter "this.document" was null when calling getDocumentDrawingObjectsOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -11500,8 +11607,9 @@ export class GetDocumentFieldNamesRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/mailMerge/FieldNames"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -11516,11 +11624,11 @@ export class GetDocumentFieldNamesRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling getDocumentFieldNames.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "useNonMergeFields", this.useNonMergeFields);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "useNonMergeFields", this.useNonMergeFields, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -11574,8 +11682,9 @@ export class GetDocumentFieldNamesOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/mailMerge/FieldNames"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -11590,9 +11699,9 @@ export class GetDocumentFieldNamesOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.template" was null when calling getDocumentFieldNamesOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "useNonMergeFields", this.useNonMergeFields);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "useNonMergeFields", this.useNonMergeFields, _key);
         if (this.template !== undefined) {
             formParams.Template = this.template;
         }
@@ -11662,8 +11771,9 @@ export class GetDocumentHyperlinkByIndexRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/hyperlinks/{hyperlinkIndex}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "hyperlinkIndex" + "}", (this.hyperlinkIndex !== null && this.hyperlinkIndex !== undefined) ? "/" + String(this.hyperlinkIndex) : "")
@@ -11689,10 +11799,10 @@ export class GetDocumentHyperlinkByIndexRequest implements RequestInterface {
             throw new Error('Required parameter "this.hyperlinkIndex" was null when calling getDocumentHyperlinkByIndex.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -11746,8 +11856,9 @@ export class GetDocumentHyperlinkByIndexOnlineRequest implements RequestInterfac
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/hyperlinks/{hyperlinkIndex}"
             .replace("/{" + "hyperlinkIndex" + "}", (this.hyperlinkIndex !== null && this.hyperlinkIndex !== undefined) ? "/" + String(this.hyperlinkIndex) : "")
             .replace("//", "/");
@@ -11773,8 +11884,8 @@ export class GetDocumentHyperlinkByIndexOnlineRequest implements RequestInterfac
             throw new Error('Required parameter "this.hyperlinkIndex" was null when calling getDocumentHyperlinkByIndexOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -11839,8 +11950,9 @@ export class GetDocumentHyperlinksRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/hyperlinks"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -11855,10 +11967,10 @@ export class GetDocumentHyperlinksRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling getDocumentHyperlinks.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -11907,8 +12019,9 @@ export class GetDocumentHyperlinksOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/hyperlinks"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -11923,8 +12036,8 @@ export class GetDocumentHyperlinksOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling getDocumentHyperlinksOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -11989,8 +12102,9 @@ export class GetDocumentPropertiesRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/documentProperties"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -12005,10 +12119,10 @@ export class GetDocumentPropertiesRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling getDocumentProperties.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -12057,8 +12171,9 @@ export class GetDocumentPropertiesOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/documentProperties"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -12073,8 +12188,8 @@ export class GetDocumentPropertiesOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling getDocumentPropertiesOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -12144,8 +12259,9 @@ export class GetDocumentPropertyRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/documentProperties/{propertyName}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "propertyName" + "}", (this.propertyName !== null && this.propertyName !== undefined) ? "/" + String(this.propertyName) : "")
@@ -12171,10 +12287,10 @@ export class GetDocumentPropertyRequest implements RequestInterface {
             throw new Error('Required parameter "this.propertyName" was null when calling getDocumentProperty.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -12228,8 +12344,9 @@ export class GetDocumentPropertyOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/documentProperties/{propertyName}"
             .replace("/{" + "propertyName" + "}", (this.propertyName !== null && this.propertyName !== undefined) ? "/" + String(this.propertyName) : "")
             .replace("//", "/");
@@ -12255,8 +12372,8 @@ export class GetDocumentPropertyOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.propertyName" was null when calling getDocumentPropertyOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -12321,8 +12438,9 @@ export class GetDocumentProtectionRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/protection"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -12337,10 +12455,10 @@ export class GetDocumentProtectionRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling getDocumentProtection.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -12389,8 +12507,9 @@ export class GetDocumentProtectionOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/protection"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -12405,8 +12524,8 @@ export class GetDocumentProtectionOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling getDocumentProtectionOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -12486,8 +12605,9 @@ export class GetDocumentStatisticsRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/statistics"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -12502,13 +12622,13 @@ export class GetDocumentStatisticsRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling getDocumentStatistics.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeComments", this.includeComments);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeFootnotes", this.includeFootnotes);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeTextInShapes", this.includeTextInShapes);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeComments", this.includeComments, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeFootnotes", this.includeFootnotes, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeTextInShapes", this.includeTextInShapes, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -12572,8 +12692,9 @@ export class GetDocumentStatisticsOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/statistics"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -12588,11 +12709,11 @@ export class GetDocumentStatisticsOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling getDocumentStatisticsOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeComments", this.includeComments);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeFootnotes", this.includeFootnotes);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeTextInShapes", this.includeTextInShapes);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeComments", this.includeComments, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeFootnotes", this.includeFootnotes, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeTextInShapes", this.includeTextInShapes, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -12672,8 +12793,9 @@ export class GetDocumentWithFormatRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -12698,13 +12820,13 @@ export class GetDocumentWithFormatRequest implements RequestInterface {
             throw new Error('Required parameter "this.format" was null when calling getDocumentWithFormat.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", this.outPath);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", this.outPath, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -12773,8 +12895,9 @@ export class GetFieldRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/fields/{index}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -12801,10 +12924,10 @@ export class GetFieldRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getField.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -12863,8 +12986,9 @@ export class GetFieldOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/fields/{index}"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -12891,8 +13015,8 @@ export class GetFieldOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getFieldOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -12962,8 +13086,9 @@ export class GetFieldsRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/fields"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -12979,10 +13104,10 @@ export class GetFieldsRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling getFields.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -13036,8 +13161,9 @@ export class GetFieldsOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/fields"
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
@@ -13053,8 +13179,8 @@ export class GetFieldsOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling getFieldsOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -13104,8 +13230,9 @@ export class GetFilesListRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/storage/folder/{path}"
             .replace("/{" + "path" + "}", (this.path !== null && this.path !== undefined) ? "/" + String(this.path) : "")
             .replace("//", "/");
@@ -13120,7 +13247,7 @@ export class GetFilesListRequest implements RequestInterface {
             throw new Error('Required parameter "this.path" was null when calling getFilesList.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storageName", this.storageName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storageName", this.storageName, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -13189,8 +13316,9 @@ export class GetFootnoteRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/footnotes/{index}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -13217,10 +13345,10 @@ export class GetFootnoteRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getFootnote.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -13279,8 +13407,9 @@ export class GetFootnoteOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/footnotes/{index}"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -13307,8 +13436,8 @@ export class GetFootnoteOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getFootnoteOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -13378,8 +13507,9 @@ export class GetFootnotesRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/footnotes"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -13395,10 +13525,10 @@ export class GetFootnotesRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling getFootnotes.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -13452,8 +13582,9 @@ export class GetFootnotesOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/footnotes"
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
@@ -13469,8 +13600,8 @@ export class GetFootnotesOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling getFootnotesOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -13545,8 +13676,9 @@ export class GetFormFieldRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/formfields/{index}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -13573,10 +13705,10 @@ export class GetFormFieldRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getFormField.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -13635,8 +13767,9 @@ export class GetFormFieldOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/formfields/{index}"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -13663,8 +13796,8 @@ export class GetFormFieldOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getFormFieldOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -13734,8 +13867,9 @@ export class GetFormFieldsRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/formfields"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -13751,10 +13885,10 @@ export class GetFormFieldsRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling getFormFields.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -13808,8 +13942,9 @@ export class GetFormFieldsOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/formfields"
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
@@ -13825,8 +13960,8 @@ export class GetFormFieldsOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling getFormFieldsOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -13901,8 +14036,9 @@ export class GetHeaderFooterRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/headersfooters/{headerFooterIndex}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "headerFooterIndex" + "}", (this.headerFooterIndex !== null && this.headerFooterIndex !== undefined) ? "/" + String(this.headerFooterIndex) : "")
@@ -13928,11 +14064,11 @@ export class GetHeaderFooterRequest implements RequestInterface {
             throw new Error('Required parameter "this.headerFooterIndex" was null when calling getHeaderFooter.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", this.filterByType);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", this.filterByType, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -14006,8 +14142,9 @@ export class GetHeaderFooterOfSectionRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/sections/{sectionIndex}/headersfooters/{headerFooterIndex}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "headerFooterIndex" + "}", (this.headerFooterIndex !== null && this.headerFooterIndex !== undefined) ? "/" + String(this.headerFooterIndex) : "")
@@ -14044,11 +14181,11 @@ export class GetHeaderFooterOfSectionRequest implements RequestInterface {
             throw new Error('Required parameter "this.sectionIndex" was null when calling getHeaderFooterOfSection.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", this.filterByType);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", this.filterByType, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -14112,8 +14249,9 @@ export class GetHeaderFooterOfSectionOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/sections/{sectionIndex}/headersfooters/{headerFooterIndex}"
             .replace("/{" + "headerFooterIndex" + "}", (this.headerFooterIndex !== null && this.headerFooterIndex !== undefined) ? "/" + String(this.headerFooterIndex) : "")
             .replace("/{" + "sectionIndex" + "}", (this.sectionIndex !== null && this.sectionIndex !== undefined) ? "/" + String(this.sectionIndex) : "")
@@ -14150,9 +14288,9 @@ export class GetHeaderFooterOfSectionOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.sectionIndex" was null when calling getHeaderFooterOfSectionOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", this.filterByType);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", this.filterByType, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -14217,8 +14355,9 @@ export class GetHeaderFooterOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/headersfooters/{headerFooterIndex}"
             .replace("/{" + "headerFooterIndex" + "}", (this.headerFooterIndex !== null && this.headerFooterIndex !== undefined) ? "/" + String(this.headerFooterIndex) : "")
             .replace("//", "/");
@@ -14244,9 +14383,9 @@ export class GetHeaderFooterOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.headerFooterIndex" was null when calling getHeaderFooterOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", this.filterByType);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", this.filterByType, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -14321,8 +14460,9 @@ export class GetHeaderFootersRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{sectionPath}/headersfooters"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "sectionPath" + "}", (this.sectionPath !== null && this.sectionPath !== undefined) ? "/" + String(this.sectionPath) : "")
@@ -14343,11 +14483,11 @@ export class GetHeaderFootersRequest implements RequestInterface {
             throw new Error('Required parameter "this.sectionPath" was undefined when calling getHeaderFooters.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", this.filterByType);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", this.filterByType, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -14406,8 +14546,9 @@ export class GetHeaderFootersOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{sectionPath}/headersfooters"
             .replace("/{" + "sectionPath" + "}", (this.sectionPath !== null && this.sectionPath !== undefined) ? "/" + String(this.sectionPath) : "")
             .replace("//", "/");
@@ -14428,9 +14569,9 @@ export class GetHeaderFootersOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.sectionPath" was undefined when calling getHeaderFootersOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", this.filterByType);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", this.filterByType, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -14500,8 +14641,9 @@ export class GetListRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/lists/{listId}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "listId" + "}", (this.listId !== null && this.listId !== undefined) ? "/" + String(this.listId) : "")
@@ -14527,10 +14669,10 @@ export class GetListRequest implements RequestInterface {
             throw new Error('Required parameter "this.listId" was null when calling getList.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -14584,8 +14726,9 @@ export class GetListOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/lists/{listId}"
             .replace("/{" + "listId" + "}", (this.listId !== null && this.listId !== undefined) ? "/" + String(this.listId) : "")
             .replace("//", "/");
@@ -14611,8 +14754,8 @@ export class GetListOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.listId" was null when calling getListOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -14677,8 +14820,9 @@ export class GetListsRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/lists"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -14693,10 +14837,10 @@ export class GetListsRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling getLists.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -14745,8 +14889,9 @@ export class GetListsOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/lists"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -14761,8 +14906,8 @@ export class GetListsOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling getListsOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -14837,8 +14982,9 @@ export class GetOfficeMathObjectRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/OfficeMathObjects/{index}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -14865,10 +15011,10 @@ export class GetOfficeMathObjectRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getOfficeMathObject.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -14927,8 +15073,9 @@ export class GetOfficeMathObjectOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/OfficeMathObjects/{index}"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -14955,8 +15102,8 @@ export class GetOfficeMathObjectOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getOfficeMathObjectOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -15026,8 +15173,9 @@ export class GetOfficeMathObjectsRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/OfficeMathObjects"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -15043,10 +15191,10 @@ export class GetOfficeMathObjectsRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling getOfficeMathObjects.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -15100,8 +15248,9 @@ export class GetOfficeMathObjectsOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/OfficeMathObjects"
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
@@ -15117,8 +15266,8 @@ export class GetOfficeMathObjectsOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling getOfficeMathObjectsOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -15193,8 +15342,9 @@ export class GetParagraphRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -15221,10 +15371,10 @@ export class GetParagraphRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getParagraph.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -15293,8 +15443,9 @@ export class GetParagraphFormatRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}/format"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -15321,10 +15472,10 @@ export class GetParagraphFormatRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getParagraphFormat.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -15383,8 +15534,9 @@ export class GetParagraphFormatOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/paragraphs/{index}/format"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -15411,8 +15563,8 @@ export class GetParagraphFormatOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getParagraphFormatOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -15487,8 +15639,9 @@ export class GetParagraphListFormatRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}/listFormat"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -15515,10 +15668,10 @@ export class GetParagraphListFormatRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getParagraphListFormat.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -15577,8 +15730,9 @@ export class GetParagraphListFormatOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/paragraphs/{index}/listFormat"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -15605,8 +15759,8 @@ export class GetParagraphListFormatOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getParagraphListFormatOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -15671,8 +15825,9 @@ export class GetParagraphOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/paragraphs/{index}"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -15699,8 +15854,8 @@ export class GetParagraphOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getParagraphOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -15770,8 +15925,9 @@ export class GetParagraphsRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -15787,10 +15943,10 @@ export class GetParagraphsRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling getParagraphs.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -15844,8 +16000,9 @@ export class GetParagraphsOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/paragraphs"
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
@@ -15861,8 +16018,8 @@ export class GetParagraphsOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling getParagraphsOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -15937,8 +16094,9 @@ export class GetParagraphTabStopsRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}/tabstops"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -15965,10 +16123,10 @@ export class GetParagraphTabStopsRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getParagraphTabStops.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -16027,8 +16185,9 @@ export class GetParagraphTabStopsOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/paragraphs/{index}/tabstops"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -16055,8 +16214,8 @@ export class GetParagraphTabStopsOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getParagraphTabStopsOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -16097,8 +16256,9 @@ export class GetPublicKeyRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         const localVarPath = configuration.getApiBaseUrl() + "/words/encryption/publickey"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -16170,8 +16330,9 @@ export class GetRangeTextRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/range/{rangeStartIdentifier}/{rangeEndIdentifier}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "rangeStartIdentifier" + "}", (this.rangeStartIdentifier !== null && this.rangeStartIdentifier !== undefined) ? "/" + String(this.rangeStartIdentifier) : "")
@@ -16198,10 +16359,10 @@ export class GetRangeTextRequest implements RequestInterface {
             throw new Error('Required parameter "this.rangeStartIdentifier" was null when calling getRangeText.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -16260,8 +16421,9 @@ export class GetRangeTextOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/range/{rangeStartIdentifier}/{rangeEndIdentifier}"
             .replace("/{" + "rangeStartIdentifier" + "}", (this.rangeStartIdentifier !== null && this.rangeStartIdentifier !== undefined) ? "/" + String(this.rangeStartIdentifier) : "")
             .replace("/{" + "rangeEndIdentifier" + "}", (this.rangeEndIdentifier !== null && this.rangeEndIdentifier !== undefined) ? "/" + String(this.rangeEndIdentifier) : "")
@@ -16288,8 +16450,8 @@ export class GetRangeTextOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.rangeStartIdentifier" was null when calling getRangeTextOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -16364,8 +16526,9 @@ export class GetRunRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{paragraphPath}/runs/{index}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "paragraphPath" + "}", (this.paragraphPath !== null && this.paragraphPath !== undefined) ? "/" + String(this.paragraphPath) : "")
@@ -16397,10 +16560,10 @@ export class GetRunRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getRun.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -16469,8 +16632,9 @@ export class GetRunFontRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{paragraphPath}/runs/{index}/font"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "paragraphPath" + "}", (this.paragraphPath !== null && this.paragraphPath !== undefined) ? "/" + String(this.paragraphPath) : "")
@@ -16502,10 +16666,10 @@ export class GetRunFontRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getRunFont.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -16564,8 +16728,9 @@ export class GetRunFontOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{paragraphPath}/runs/{index}/font"
             .replace("/{" + "paragraphPath" + "}", (this.paragraphPath !== null && this.paragraphPath !== undefined) ? "/" + String(this.paragraphPath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -16597,8 +16762,8 @@ export class GetRunFontOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getRunFontOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -16663,8 +16828,9 @@ export class GetRunOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{paragraphPath}/runs/{index}"
             .replace("/{" + "paragraphPath" + "}", (this.paragraphPath !== null && this.paragraphPath !== undefined) ? "/" + String(this.paragraphPath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -16696,8 +16862,8 @@ export class GetRunOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getRunOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -16767,8 +16933,9 @@ export class GetRunsRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{paragraphPath}/runs"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "paragraphPath" + "}", (this.paragraphPath !== null && this.paragraphPath !== undefined) ? "/" + String(this.paragraphPath) : "")
@@ -16789,10 +16956,10 @@ export class GetRunsRequest implements RequestInterface {
             throw new Error('Required parameter "this.paragraphPath" was undefined when calling getRuns.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -16846,8 +17013,9 @@ export class GetRunsOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{paragraphPath}/runs"
             .replace("/{" + "paragraphPath" + "}", (this.paragraphPath !== null && this.paragraphPath !== undefined) ? "/" + String(this.paragraphPath) : "")
             .replace("//", "/");
@@ -16868,8 +17036,8 @@ export class GetRunsOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.paragraphPath" was undefined when calling getRunsOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -16939,8 +17107,9 @@ export class GetSectionRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/sections/{sectionIndex}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "sectionIndex" + "}", (this.sectionIndex !== null && this.sectionIndex !== undefined) ? "/" + String(this.sectionIndex) : "")
@@ -16966,10 +17135,10 @@ export class GetSectionRequest implements RequestInterface {
             throw new Error('Required parameter "this.sectionIndex" was null when calling getSection.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -17023,8 +17192,9 @@ export class GetSectionOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/sections/{sectionIndex}"
             .replace("/{" + "sectionIndex" + "}", (this.sectionIndex !== null && this.sectionIndex !== undefined) ? "/" + String(this.sectionIndex) : "")
             .replace("//", "/");
@@ -17050,8 +17220,8 @@ export class GetSectionOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.sectionIndex" was null when calling getSectionOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -17121,8 +17291,9 @@ export class GetSectionPageSetupRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/sections/{sectionIndex}/pageSetup"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "sectionIndex" + "}", (this.sectionIndex !== null && this.sectionIndex !== undefined) ? "/" + String(this.sectionIndex) : "")
@@ -17148,10 +17319,10 @@ export class GetSectionPageSetupRequest implements RequestInterface {
             throw new Error('Required parameter "this.sectionIndex" was null when calling getSectionPageSetup.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -17205,8 +17376,9 @@ export class GetSectionPageSetupOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/sections/{sectionIndex}/pageSetup"
             .replace("/{" + "sectionIndex" + "}", (this.sectionIndex !== null && this.sectionIndex !== undefined) ? "/" + String(this.sectionIndex) : "")
             .replace("//", "/");
@@ -17232,8 +17404,8 @@ export class GetSectionPageSetupOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.sectionIndex" was null when calling getSectionPageSetupOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -17298,8 +17470,9 @@ export class GetSectionsRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/sections"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -17314,10 +17487,10 @@ export class GetSectionsRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling getSections.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -17366,8 +17539,9 @@ export class GetSectionsOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/sections"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -17382,8 +17556,8 @@ export class GetSectionsOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling getSectionsOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -17453,8 +17627,9 @@ export class GetStyleRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/styles/{styleName}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "styleName" + "}", (this.styleName !== null && this.styleName !== undefined) ? "/" + String(this.styleName) : "")
@@ -17480,10 +17655,10 @@ export class GetStyleRequest implements RequestInterface {
             throw new Error('Required parameter "this.styleName" was null when calling getStyle.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -17547,8 +17722,9 @@ export class GetStyleFromDocumentElementRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{styledNodePath}/style"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "styledNodePath" + "}", (this.styledNodePath !== null && this.styledNodePath !== undefined) ? "/" + String(this.styledNodePath) : "")
@@ -17574,10 +17750,10 @@ export class GetStyleFromDocumentElementRequest implements RequestInterface {
             throw new Error('Required parameter "this.styledNodePath" was null when calling getStyleFromDocumentElement.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -17631,8 +17807,9 @@ export class GetStyleFromDocumentElementOnlineRequest implements RequestInterfac
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{styledNodePath}/style"
             .replace("/{" + "styledNodePath" + "}", (this.styledNodePath !== null && this.styledNodePath !== undefined) ? "/" + String(this.styledNodePath) : "")
             .replace("//", "/");
@@ -17658,8 +17835,8 @@ export class GetStyleFromDocumentElementOnlineRequest implements RequestInterfac
             throw new Error('Required parameter "this.styledNodePath" was null when calling getStyleFromDocumentElementOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -17719,8 +17896,9 @@ export class GetStyleOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/styles/{styleName}"
             .replace("/{" + "styleName" + "}", (this.styleName !== null && this.styleName !== undefined) ? "/" + String(this.styleName) : "")
             .replace("//", "/");
@@ -17746,8 +17924,8 @@ export class GetStyleOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.styleName" was null when calling getStyleOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -17812,8 +17990,9 @@ export class GetStylesRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/styles"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -17828,10 +18007,10 @@ export class GetStylesRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling getStyles.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -17880,8 +18059,9 @@ export class GetStylesOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/styles"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -17896,8 +18076,8 @@ export class GetStylesOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling getStylesOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -17972,8 +18152,9 @@ export class GetTableRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/tables/{index}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -18000,10 +18181,10 @@ export class GetTableRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getTable.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -18072,8 +18253,9 @@ export class GetTableCellRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{tableRowPath}/cells/{index}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "tableRowPath" + "}", (this.tableRowPath !== null && this.tableRowPath !== undefined) ? "/" + String(this.tableRowPath) : "")
@@ -18105,10 +18287,10 @@ export class GetTableCellRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getTableCell.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -18177,8 +18359,9 @@ export class GetTableCellFormatRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{tableRowPath}/cells/{index}/cellformat"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "tableRowPath" + "}", (this.tableRowPath !== null && this.tableRowPath !== undefined) ? "/" + String(this.tableRowPath) : "")
@@ -18210,10 +18393,10 @@ export class GetTableCellFormatRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getTableCellFormat.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -18272,8 +18455,9 @@ export class GetTableCellFormatOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{tableRowPath}/cells/{index}/cellformat"
             .replace("/{" + "tableRowPath" + "}", (this.tableRowPath !== null && this.tableRowPath !== undefined) ? "/" + String(this.tableRowPath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -18305,8 +18489,8 @@ export class GetTableCellFormatOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getTableCellFormatOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -18371,8 +18555,9 @@ export class GetTableCellOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{tableRowPath}/cells/{index}"
             .replace("/{" + "tableRowPath" + "}", (this.tableRowPath !== null && this.tableRowPath !== undefined) ? "/" + String(this.tableRowPath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -18404,8 +18589,8 @@ export class GetTableCellOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getTableCellOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -18470,8 +18655,9 @@ export class GetTableOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/tables/{index}"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -18498,8 +18684,8 @@ export class GetTableOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getTableOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -18574,8 +18760,9 @@ export class GetTablePropertiesRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/tables/{index}/properties"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -18602,10 +18789,10 @@ export class GetTablePropertiesRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getTableProperties.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -18664,8 +18851,9 @@ export class GetTablePropertiesOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/tables/{index}/properties"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -18692,8 +18880,8 @@ export class GetTablePropertiesOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getTablePropertiesOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -18768,8 +18956,9 @@ export class GetTableRowRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{tablePath}/rows/{index}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "tablePath" + "}", (this.tablePath !== null && this.tablePath !== undefined) ? "/" + String(this.tablePath) : "")
@@ -18801,10 +18990,10 @@ export class GetTableRowRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getTableRow.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -18873,8 +19062,9 @@ export class GetTableRowFormatRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{tablePath}/rows/{index}/rowformat"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "tablePath" + "}", (this.tablePath !== null && this.tablePath !== undefined) ? "/" + String(this.tablePath) : "")
@@ -18906,10 +19096,10 @@ export class GetTableRowFormatRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getTableRowFormat.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -18968,8 +19158,9 @@ export class GetTableRowFormatOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{tablePath}/rows/{index}/rowformat"
             .replace("/{" + "tablePath" + "}", (this.tablePath !== null && this.tablePath !== undefined) ? "/" + String(this.tablePath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -19001,8 +19192,8 @@ export class GetTableRowFormatOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getTableRowFormatOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -19067,8 +19258,9 @@ export class GetTableRowOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{tablePath}/rows/{index}"
             .replace("/{" + "tablePath" + "}", (this.tablePath !== null && this.tablePath !== undefined) ? "/" + String(this.tablePath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -19100,8 +19292,8 @@ export class GetTableRowOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getTableRowOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -19171,8 +19363,9 @@ export class GetTablesRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/tables"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -19188,10 +19381,10 @@ export class GetTablesRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling getTables.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -19245,8 +19438,9 @@ export class GetTablesOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/tables"
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
@@ -19262,8 +19456,8 @@ export class GetTablesOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling getTablesOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -19348,8 +19542,9 @@ export class InsertCommentRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/comments"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -19374,13 +19569,13 @@ export class InsertCommentRequest implements RequestInterface {
             throw new Error('Required parameter "this.comment" was null when calling insertComment.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "POST",
@@ -19450,8 +19645,9 @@ export class InsertCommentOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/comments"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -19476,11 +19672,11 @@ export class InsertCommentOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.comment" was null when calling insertCommentOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -19575,8 +19771,9 @@ export class InsertCustomXmlPartRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/customXmlParts"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -19601,13 +19798,13 @@ export class InsertCustomXmlPartRequest implements RequestInterface {
             throw new Error('Required parameter "this.customXmlPart" was null when calling insertCustomXmlPart.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "POST",
@@ -19677,8 +19874,9 @@ export class InsertCustomXmlPartOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/customXmlParts"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -19703,11 +19901,11 @@ export class InsertCustomXmlPartOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.customXmlPart" was null when calling insertCustomXmlPartOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -19812,8 +20010,9 @@ export class InsertDrawingObjectRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -19850,13 +20049,13 @@ export class InsertDrawingObjectRequest implements RequestInterface {
             throw new Error('Required parameter "this.imageFile" was null when calling insertDrawingObject.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.drawingObject !== undefined) {
             formParams.DrawingObject = JSON.stringify(this.drawingObject);
         }
@@ -19944,8 +20143,9 @@ export class InsertDrawingObjectOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/{nodePath}/drawingObjects"
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
@@ -19981,11 +20181,11 @@ export class InsertDrawingObjectOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.imageFile" was null when calling insertDrawingObjectOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -20093,8 +20293,9 @@ export class InsertFieldRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/fields"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -20120,14 +20321,14 @@ export class InsertFieldRequest implements RequestInterface {
             throw new Error('Required parameter "this.field" was null when calling insertField.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", this.insertBeforeNode);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", this.insertBeforeNode, _key);
 
         const requestOptions: request.Options = {
             method: "POST",
@@ -20207,8 +20408,9 @@ export class InsertFieldOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/{nodePath}/fields"
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
@@ -20234,12 +20436,12 @@ export class InsertFieldOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.field" was null when calling insertFieldOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", this.insertBeforeNode);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", this.insertBeforeNode, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -20339,8 +20541,9 @@ export class InsertFootnoteRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/footnotes"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -20366,13 +20569,13 @@ export class InsertFootnoteRequest implements RequestInterface {
             throw new Error('Required parameter "this.footnoteDto" was null when calling insertFootnote.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "POST",
@@ -20447,8 +20650,9 @@ export class InsertFootnoteOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/{nodePath}/footnotes"
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
@@ -20474,11 +20678,11 @@ export class InsertFootnoteOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.footnoteDto" was null when calling insertFootnoteOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -20583,8 +20787,9 @@ export class InsertFormFieldRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/formfields"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -20610,14 +20815,14 @@ export class InsertFormFieldRequest implements RequestInterface {
             throw new Error('Required parameter "this.formField" was null when calling insertFormField.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", this.insertBeforeNode);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", this.insertBeforeNode, _key);
 
         const requestOptions: request.Options = {
             method: "POST",
@@ -20697,8 +20902,9 @@ export class InsertFormFieldOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/{nodePath}/formfields"
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
@@ -20724,12 +20930,12 @@ export class InsertFormFieldOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.formField" was null when calling insertFormFieldOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", this.insertBeforeNode);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", this.insertBeforeNode, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -20829,8 +21035,9 @@ export class InsertHeaderFooterRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{sectionPath}/headersfooters"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "sectionPath" + "}", (this.sectionPath !== null && this.sectionPath !== undefined) ? "/" + String(this.sectionPath) : "")
@@ -20861,13 +21068,13 @@ export class InsertHeaderFooterRequest implements RequestInterface {
             throw new Error('Required parameter "this.headerFooterType" was null when calling insertHeaderFooter.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -20942,8 +21149,9 @@ export class InsertHeaderFooterOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/{sectionPath}/headersfooters"
             .replace("/{" + "sectionPath" + "}", (this.sectionPath !== null && this.sectionPath !== undefined) ? "/" + String(this.sectionPath) : "")
             .replace("//", "/");
@@ -20974,11 +21182,11 @@ export class InsertHeaderFooterOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.headerFooterType" was null when calling insertHeaderFooterOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -21073,8 +21281,9 @@ export class InsertListRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/lists"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -21099,13 +21308,13 @@ export class InsertListRequest implements RequestInterface {
             throw new Error('Required parameter "this.listInsert" was null when calling insertList.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "POST",
@@ -21175,8 +21384,9 @@ export class InsertListOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/lists"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -21201,11 +21411,11 @@ export class InsertListOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.listInsert" was null when calling insertListOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -21300,8 +21510,9 @@ export class InsertOrUpdateParagraphTabStopRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}/tabstops"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -21338,11 +21549,11 @@ export class InsertOrUpdateParagraphTabStopRequest implements RequestInterface {
             throw new Error('Required parameter "this.tabStopInsertDto" was null when calling insertOrUpdateParagraphTabStop.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
 
         const requestOptions: request.Options = {
             method: "POST",
@@ -21412,8 +21623,9 @@ export class InsertOrUpdateParagraphTabStopOnlineRequest implements RequestInter
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/{nodePath}/paragraphs/{index}/tabstops"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -21450,9 +21662,9 @@ export class InsertOrUpdateParagraphTabStopOnlineRequest implements RequestInter
             throw new Error('Required parameter "this.index" was null when calling insertOrUpdateParagraphTabStopOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -21547,8 +21759,9 @@ export class InsertPageNumbersRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/PageNumbers"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -21573,13 +21786,13 @@ export class InsertPageNumbersRequest implements RequestInterface {
             throw new Error('Required parameter "this.pageNumber" was null when calling insertPageNumbers.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -21649,8 +21862,9 @@ export class InsertPageNumbersOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/PageNumbers"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -21675,11 +21889,11 @@ export class InsertPageNumbersOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.pageNumber" was null when calling insertPageNumbersOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -21784,8 +21998,9 @@ export class InsertParagraphRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -21811,14 +22026,14 @@ export class InsertParagraphRequest implements RequestInterface {
             throw new Error('Required parameter "this.paragraph" was null when calling insertParagraph.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", this.insertBeforeNode);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", this.insertBeforeNode, _key);
 
         const requestOptions: request.Options = {
             method: "POST",
@@ -21898,8 +22113,9 @@ export class InsertParagraphOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/{nodePath}/paragraphs"
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
@@ -21925,12 +22141,12 @@ export class InsertParagraphOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.paragraph" was null when calling insertParagraphOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", this.insertBeforeNode);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", this.insertBeforeNode, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -22035,8 +22251,9 @@ export class InsertRunRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{paragraphPath}/runs"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "paragraphPath" + "}", (this.paragraphPath !== null && this.paragraphPath !== undefined) ? "/" + String(this.paragraphPath) : "")
@@ -22067,14 +22284,14 @@ export class InsertRunRequest implements RequestInterface {
             throw new Error('Required parameter "this.run" was null when calling insertRun.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", this.insertBeforeNode);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", this.insertBeforeNode, _key);
 
         const requestOptions: request.Options = {
             method: "POST",
@@ -22154,8 +22371,9 @@ export class InsertRunOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/{paragraphPath}/runs"
             .replace("/{" + "paragraphPath" + "}", (this.paragraphPath !== null && this.paragraphPath !== undefined) ? "/" + String(this.paragraphPath) : "")
             .replace("//", "/");
@@ -22186,12 +22404,12 @@ export class InsertRunOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.run" was null when calling insertRunOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", this.insertBeforeNode);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", this.insertBeforeNode, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -22286,8 +22504,9 @@ export class InsertStyleRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/styles/insert"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -22312,13 +22531,13 @@ export class InsertStyleRequest implements RequestInterface {
             throw new Error('Required parameter "this.styleInsert" was null when calling insertStyle.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "POST",
@@ -22388,8 +22607,9 @@ export class InsertStyleOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/styles/insert"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -22414,11 +22634,11 @@ export class InsertStyleOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.styleInsert" was null when calling insertStyleOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -22518,8 +22738,9 @@ export class InsertTableRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/tables"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -22545,13 +22766,13 @@ export class InsertTableRequest implements RequestInterface {
             throw new Error('Required parameter "this.table" was null when calling insertTable.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "POST",
@@ -22636,8 +22857,9 @@ export class InsertTableCellRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{tableRowPath}/cells"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "tableRowPath" + "}", (this.tableRowPath !== null && this.tableRowPath !== undefined) ? "/" + String(this.tableRowPath) : "")
@@ -22668,13 +22890,13 @@ export class InsertTableCellRequest implements RequestInterface {
             throw new Error('Required parameter "this.cell" was null when calling insertTableCell.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "POST",
@@ -22749,8 +22971,9 @@ export class InsertTableCellOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/{tableRowPath}/cells"
             .replace("/{" + "tableRowPath" + "}", (this.tableRowPath !== null && this.tableRowPath !== undefined) ? "/" + String(this.tableRowPath) : "")
             .replace("//", "/");
@@ -22781,11 +23004,11 @@ export class InsertTableCellOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.cell" was null when calling insertTableCellOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -22875,8 +23098,9 @@ export class InsertTableOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/{nodePath}/tables"
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
@@ -22902,11 +23126,11 @@ export class InsertTableOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.table" was null when calling insertTableOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -23006,8 +23230,9 @@ export class InsertTableRowRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{tablePath}/rows"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "tablePath" + "}", (this.tablePath !== null && this.tablePath !== undefined) ? "/" + String(this.tablePath) : "")
@@ -23038,13 +23263,13 @@ export class InsertTableRowRequest implements RequestInterface {
             throw new Error('Required parameter "this.row" was null when calling insertTableRow.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "POST",
@@ -23119,8 +23344,9 @@ export class InsertTableRowOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/{tablePath}/rows"
             .replace("/{" + "tablePath" + "}", (this.tablePath !== null && this.tablePath !== undefined) ? "/" + String(this.tablePath) : "")
             .replace("//", "/");
@@ -23151,11 +23377,11 @@ export class InsertTableRowOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.row" was null when calling insertTableRowOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -23260,8 +23486,9 @@ export class InsertWatermarkImageRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/watermarks/images"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -23277,15 +23504,15 @@ export class InsertWatermarkImageRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling insertWatermarkImage.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "rotationAngle", this.rotationAngle);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "image", this.image);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "rotationAngle", this.rotationAngle, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "image", this.image, _key);
         if (this.imageFile !== undefined) {
             formParams.ImageFile = this.imageFile;
         }
@@ -23370,8 +23597,9 @@ export class InsertWatermarkImageOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/watermarks/images"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -23396,13 +23624,13 @@ export class InsertWatermarkImageOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.imageFile" was null when calling insertWatermarkImageOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "rotationAngle", this.rotationAngle);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "image", this.image);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "rotationAngle", this.rotationAngle, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "image", this.image, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -23497,8 +23725,9 @@ export class InsertWatermarkTextRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/watermarks/texts"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -23523,13 +23752,13 @@ export class InsertWatermarkTextRequest implements RequestInterface {
             throw new Error('Required parameter "this.watermarkText" was null when calling insertWatermarkText.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "POST",
@@ -23599,8 +23828,9 @@ export class InsertWatermarkTextOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/watermarks/texts"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -23625,11 +23855,11 @@ export class InsertWatermarkTextOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.watermarkText" was null when calling insertWatermarkTextOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -23689,8 +23919,9 @@ export class LoadWebDocumentRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/loadWebDocument"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -23704,7 +23935,7 @@ export class LoadWebDocumentRequest implements RequestInterface {
             throw new Error('Required parameter "this.data" was null when calling loadWebDocument.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -23764,8 +23995,9 @@ export class MoveFileRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/storage/file/move/{srcPath}"
             .replace("/{" + "srcPath" + "}", (this.srcPath !== null && this.srcPath !== undefined) ? "/" + String(this.srcPath) : "")
             .replace("//", "/");
@@ -23785,10 +24017,10 @@ export class MoveFileRequest implements RequestInterface {
             throw new Error('Required parameter "this.srcPath" was null when calling moveFile.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destPath", this.destPath);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "srcStorageName", this.srcStorageName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destStorageName", this.destStorageName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "versionId", this.versionId);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destPath", this.destPath, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "srcStorageName", this.srcStorageName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destStorageName", this.destStorageName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "versionId", this.versionId, _key);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -23842,8 +24074,9 @@ export class MoveFolderRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/storage/folder/move/{srcPath}"
             .replace("/{" + "srcPath" + "}", (this.srcPath !== null && this.srcPath !== undefined) ? "/" + String(this.srcPath) : "")
             .replace("//", "/");
@@ -23863,9 +24096,9 @@ export class MoveFolderRequest implements RequestInterface {
             throw new Error('Required parameter "this.srcPath" was null when calling moveFolder.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destPath", this.destPath);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "srcStorageName", this.srcStorageName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destStorageName", this.destStorageName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destPath", this.destPath, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "srcStorageName", this.srcStorageName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destStorageName", this.destStorageName, _key);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -23944,8 +24177,9 @@ export class OptimizeDocumentRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/compatibility/optimize"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -23970,13 +24204,13 @@ export class OptimizeDocumentRequest implements RequestInterface {
             throw new Error('Required parameter "this.options" was null when calling optimizeDocument.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -24046,8 +24280,9 @@ export class OptimizeDocumentOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/compatibility/optimize"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -24072,11 +24307,11 @@ export class OptimizeDocumentOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.options" was null when calling optimizeDocumentOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -24154,8 +24389,9 @@ export class ProtectDocumentRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/protection"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -24180,11 +24416,11 @@ export class ProtectDocumentRequest implements RequestInterface {
             throw new Error('Required parameter "this.protectionRequest" was null when calling protectDocument.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -24244,8 +24480,9 @@ export class ProtectDocumentOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/protection"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -24270,9 +24507,9 @@ export class ProtectDocumentOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.protectionRequest" was null when calling protectDocumentOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -24352,8 +24589,9 @@ export class RejectAllRevisionsRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/revisions/rejectAll"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -24368,11 +24606,11 @@ export class RejectAllRevisionsRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling rejectAllRevisions.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -24426,8 +24664,9 @@ export class RejectAllRevisionsOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/revisions/rejectAll"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -24442,9 +24681,9 @@ export class RejectAllRevisionsOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling rejectAllRevisionsOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -24531,8 +24770,9 @@ export class RemoveRangeRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/range/{rangeStartIdentifier}/{rangeEndIdentifier}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "rangeStartIdentifier" + "}", (this.rangeStartIdentifier !== null && this.rangeStartIdentifier !== undefined) ? "/" + String(this.rangeStartIdentifier) : "")
@@ -24559,11 +24799,11 @@ export class RemoveRangeRequest implements RequestInterface {
             throw new Error('Required parameter "this.rangeStartIdentifier" was null when calling removeRange.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -24627,8 +24867,9 @@ export class RemoveRangeOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/range/{rangeStartIdentifier}/{rangeEndIdentifier}"
             .replace("/{" + "rangeStartIdentifier" + "}", (this.rangeStartIdentifier !== null && this.rangeStartIdentifier !== undefined) ? "/" + String(this.rangeStartIdentifier) : "")
             .replace("/{" + "rangeEndIdentifier" + "}", (this.rangeEndIdentifier !== null && this.rangeEndIdentifier !== undefined) ? "/" + String(this.rangeEndIdentifier) : "")
@@ -24655,9 +24896,9 @@ export class RemoveRangeOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.rangeStartIdentifier" was null when calling removeRangeOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -24754,8 +24995,9 @@ export class RenderDrawingObjectRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects/{index}/render"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -24792,13 +25034,13 @@ export class RenderDrawingObjectRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling renderDrawingObject.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -24872,8 +25114,9 @@ export class RenderDrawingObjectOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/drawingObjects/{index}/render"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -24910,11 +25153,11 @@ export class RenderDrawingObjectOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling renderDrawingObjectOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -25004,8 +25247,9 @@ export class RenderMathObjectRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/OfficeMathObjects/{index}/render"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -25042,13 +25286,13 @@ export class RenderMathObjectRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling renderMathObject.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -25122,8 +25366,9 @@ export class RenderMathObjectOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/OfficeMathObjects/{index}/render"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -25160,11 +25405,11 @@ export class RenderMathObjectOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling renderMathObjectOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -25244,8 +25489,9 @@ export class RenderPageRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/pages/{pageIndex}/render"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "pageIndex" + "}", (this.pageIndex !== null && this.pageIndex !== undefined) ? "/" + String(this.pageIndex) : "")
@@ -25281,12 +25527,12 @@ export class RenderPageRequest implements RequestInterface {
             throw new Error('Required parameter "this.format" was null when calling renderPage.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -25350,8 +25596,9 @@ export class RenderPageOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/pages/{pageIndex}/render"
             .replace("/{" + "pageIndex" + "}", (this.pageIndex !== null && this.pageIndex !== undefined) ? "/" + String(this.pageIndex) : "")
             .replace("//", "/");
@@ -25387,10 +25634,10 @@ export class RenderPageOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.format" was null when calling renderPageOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -25480,8 +25727,9 @@ export class RenderParagraphRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}/render"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -25518,13 +25766,13 @@ export class RenderParagraphRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling renderParagraph.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -25598,8 +25846,9 @@ export class RenderParagraphOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/paragraphs/{index}/render"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -25636,11 +25885,11 @@ export class RenderParagraphOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling renderParagraphOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -25730,8 +25979,9 @@ export class RenderTableRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/tables/{index}/render"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -25768,13 +26018,13 @@ export class RenderTableRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling renderTable.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -25848,8 +26098,9 @@ export class RenderTableOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/tables/{index}/render"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -25886,11 +26137,11 @@ export class RenderTableOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling renderTableOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -25975,8 +26226,9 @@ export class ReplaceTextRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/replaceText"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -26001,13 +26253,13 @@ export class ReplaceTextRequest implements RequestInterface {
             throw new Error('Required parameter "this.replaceText" was null when calling replaceText.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -26077,8 +26329,9 @@ export class ReplaceTextOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/replaceText"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -26103,11 +26356,11 @@ export class ReplaceTextOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.replaceText" was null when calling replaceTextOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -26202,8 +26455,9 @@ export class ReplaceWithTextRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/range/{rangeStartIdentifier}/{rangeEndIdentifier}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "rangeStartIdentifier" + "}", (this.rangeStartIdentifier !== null && this.rangeStartIdentifier !== undefined) ? "/" + String(this.rangeStartIdentifier) : "")
@@ -26240,11 +26494,11 @@ export class ReplaceWithTextRequest implements RequestInterface {
             throw new Error('Required parameter "this.rangeText" was null when calling replaceWithText.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
 
         const requestOptions: request.Options = {
             method: "POST",
@@ -26314,8 +26568,9 @@ export class ReplaceWithTextOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/range/{rangeStartIdentifier}/{rangeEndIdentifier}"
             .replace("/{" + "rangeStartIdentifier" + "}", (this.rangeStartIdentifier !== null && this.rangeStartIdentifier !== undefined) ? "/" + String(this.rangeStartIdentifier) : "")
             .replace("/{" + "rangeEndIdentifier" + "}", (this.rangeEndIdentifier !== null && this.rangeEndIdentifier !== undefined) ? "/" + String(this.rangeEndIdentifier) : "")
@@ -26352,9 +26607,9 @@ export class ReplaceWithTextOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.rangeText" was null when calling replaceWithTextOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -26405,8 +26660,9 @@ export class ResetCacheRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         const localVarPath = configuration.getApiBaseUrl() + "/words/fonts/cache"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -26478,8 +26734,9 @@ export class SaveAsRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/saveAs"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -26504,11 +26761,11 @@ export class SaveAsRequest implements RequestInterface {
             throw new Error('Required parameter "this.saveOptionsData" was null when calling saveAs.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _key);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -26568,8 +26825,9 @@ export class SaveAsOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/saveAs"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -26594,9 +26852,9 @@ export class SaveAsOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.saveOptionsData" was null when calling saveAsOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -26686,8 +26944,9 @@ export class SaveAsRangeRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/range/{rangeStartIdentifier}/{rangeEndIdentifier}/SaveAs"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "rangeStartIdentifier" + "}", (this.rangeStartIdentifier !== null && this.rangeStartIdentifier !== undefined) ? "/" + String(this.rangeStartIdentifier) : "")
@@ -26724,10 +26983,10 @@ export class SaveAsRangeRequest implements RequestInterface {
             throw new Error('Required parameter "this.documentParameters" was null when calling saveAsRange.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
 
         const requestOptions: request.Options = {
             method: "POST",
@@ -26792,8 +27051,9 @@ export class SaveAsRangeOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/range/{rangeStartIdentifier}/{rangeEndIdentifier}/SaveAs"
             .replace("/{" + "rangeStartIdentifier" + "}", (this.rangeStartIdentifier !== null && this.rangeStartIdentifier !== undefined) ? "/" + String(this.rangeStartIdentifier) : "")
             .replace("/{" + "rangeEndIdentifier" + "}", (this.rangeEndIdentifier !== null && this.rangeEndIdentifier !== undefined) ? "/" + String(this.rangeEndIdentifier) : "")
@@ -26830,8 +27090,8 @@ export class SaveAsRangeOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.documentParameters" was null when calling saveAsRangeOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -27001,8 +27261,9 @@ export class SaveAsTiffRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/saveAs/tiff"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -27027,28 +27288,28 @@ export class SaveAsTiffRequest implements RequestInterface {
             throw new Error('Required parameter "this.saveOptions" was null when calling saveAsTiff.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "useAntiAliasing", this.useAntiAliasing);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "useHighQualityRendering", this.useHighQualityRendering);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "imageBrightness", this.imageBrightness);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "imageColorMode", this.imageColorMode);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "imageContrast", this.imageContrast);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "numeralFormat", this.numeralFormat);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "pageCount", this.pageCount);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "pageIndex", this.pageIndex);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "paperColor", this.paperColor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "pixelFormat", this.pixelFormat);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "resolution", this.resolution);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "scale", this.scale);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "tiffCompression", this.tiffCompression);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "dmlRenderingMode", this.dmlRenderingMode);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "dmlEffectsRenderingMode", this.dmlEffectsRenderingMode);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "tiffBinarizationMethod", this.tiffBinarizationMethod);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "zipOutput", this.zipOutput);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "useAntiAliasing", this.useAntiAliasing, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "useHighQualityRendering", this.useHighQualityRendering, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "imageBrightness", this.imageBrightness, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "imageColorMode", this.imageColorMode, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "imageContrast", this.imageContrast, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "numeralFormat", this.numeralFormat, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "pageCount", this.pageCount, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "pageIndex", this.pageIndex, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "paperColor", this.paperColor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "pixelFormat", this.pixelFormat, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "resolution", this.resolution, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "scale", this.scale, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "tiffCompression", this.tiffCompression, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "dmlRenderingMode", this.dmlRenderingMode, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "dmlEffectsRenderingMode", this.dmlEffectsRenderingMode, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "tiffBinarizationMethod", this.tiffBinarizationMethod, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "zipOutput", this.zipOutput, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _key);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -27193,8 +27454,9 @@ export class SaveAsTiffOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/saveAs/tiff"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -27219,26 +27481,26 @@ export class SaveAsTiffOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.saveOptions" was null when calling saveAsTiffOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "useAntiAliasing", this.useAntiAliasing);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "useHighQualityRendering", this.useHighQualityRendering);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "imageBrightness", this.imageBrightness);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "imageColorMode", this.imageColorMode);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "imageContrast", this.imageContrast);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "numeralFormat", this.numeralFormat);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "pageCount", this.pageCount);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "pageIndex", this.pageIndex);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "paperColor", this.paperColor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "pixelFormat", this.pixelFormat);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "resolution", this.resolution);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "scale", this.scale);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "tiffCompression", this.tiffCompression);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "dmlRenderingMode", this.dmlRenderingMode);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "dmlEffectsRenderingMode", this.dmlEffectsRenderingMode);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "tiffBinarizationMethod", this.tiffBinarizationMethod);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "zipOutput", this.zipOutput);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "useAntiAliasing", this.useAntiAliasing, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "useHighQualityRendering", this.useHighQualityRendering, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "imageBrightness", this.imageBrightness, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "imageColorMode", this.imageColorMode, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "imageContrast", this.imageContrast, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "numeralFormat", this.numeralFormat, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "pageCount", this.pageCount, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "pageIndex", this.pageIndex, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "paperColor", this.paperColor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "pixelFormat", this.pixelFormat, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "resolution", this.resolution, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "scale", this.scale, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "tiffCompression", this.tiffCompression, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "dmlRenderingMode", this.dmlRenderingMode, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "dmlEffectsRenderingMode", this.dmlEffectsRenderingMode, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "tiffBinarizationMethod", this.tiffBinarizationMethod, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "zipOutput", this.zipOutput, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -27318,8 +27580,9 @@ export class SearchRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/search"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -27339,11 +27602,11 @@ export class SearchRequest implements RequestInterface {
             throw new Error('Required parameter "this.pattern" was undefined when calling search.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "pattern", this.pattern);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "pattern", this.pattern, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -27397,8 +27660,9 @@ export class SearchOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/search"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -27418,9 +27682,9 @@ export class SearchOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.pattern" was undefined when calling searchOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "pattern", this.pattern);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "pattern", this.pattern, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -27515,8 +27779,9 @@ export class SplitDocumentRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/split"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -27541,16 +27806,16 @@ export class SplitDocumentRequest implements RequestInterface {
             throw new Error('Required parameter "this.format" was null when calling splitDocument.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "from", this.from);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "to", this.to);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "zipOutput", this.zipOutput);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "from", this.from, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "to", this.to, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "zipOutput", this.zipOutput, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _key);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -27629,8 +27894,9 @@ export class SplitDocumentOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/split"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -27655,14 +27921,14 @@ export class SplitDocumentOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.format" was null when calling splitDocumentOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "from", this.from);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "to", this.to);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "zipOutput", this.zipOutput);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "from", this.from, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "to", this.to, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "zipOutput", this.zipOutput, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -27744,8 +28010,9 @@ export class UnprotectDocumentRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/protection"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -27770,11 +28037,11 @@ export class UnprotectDocumentRequest implements RequestInterface {
             throw new Error('Required parameter "this.protectionRequest" was null when calling unprotectDocument.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -27834,8 +28101,9 @@ export class UnprotectDocumentOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/protection"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -27860,9 +28128,9 @@ export class UnprotectDocumentOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.protectionRequest" was null when calling unprotectDocumentOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -27962,8 +28230,9 @@ export class UpdateBookmarkRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/bookmarks/{bookmarkName}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "bookmarkName" + "}", (this.bookmarkName !== null && this.bookmarkName !== undefined) ? "/" + String(this.bookmarkName) : "")
@@ -27999,13 +28268,13 @@ export class UpdateBookmarkRequest implements RequestInterface {
             throw new Error('Required parameter "this.bookmarkData" was null when calling updateBookmark.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -28080,8 +28349,9 @@ export class UpdateBookmarkOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/bookmarks/{bookmarkName}"
             .replace("/{" + "bookmarkName" + "}", (this.bookmarkName !== null && this.bookmarkName !== undefined) ? "/" + String(this.bookmarkName) : "")
             .replace("//", "/");
@@ -28117,11 +28387,11 @@ export class UpdateBookmarkOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.bookmarkData" was null when calling updateBookmarkOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -28226,8 +28496,9 @@ export class UpdateBorderRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/borders/{borderType}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "borderType" + "}", (this.borderType !== null && this.borderType !== undefined) ? "/" + String(this.borderType) : "")
@@ -28264,13 +28535,13 @@ export class UpdateBorderRequest implements RequestInterface {
             throw new Error('Required parameter "this.borderProperties" was null when calling updateBorder.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -28350,8 +28621,9 @@ export class UpdateBorderOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/{nodePath}/borders/{borderType}"
             .replace("/{" + "borderType" + "}", (this.borderType !== null && this.borderType !== undefined) ? "/" + String(this.borderType) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -28388,11 +28660,11 @@ export class UpdateBorderOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.borderType" was null when calling updateBorderOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -28492,8 +28764,9 @@ export class UpdateCommentRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/comments/{commentIndex}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "commentIndex" + "}", (this.commentIndex !== null && this.commentIndex !== undefined) ? "/" + String(this.commentIndex) : "")
@@ -28529,13 +28802,13 @@ export class UpdateCommentRequest implements RequestInterface {
             throw new Error('Required parameter "this.comment" was null when calling updateComment.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -28610,8 +28883,9 @@ export class UpdateCommentOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/comments/{commentIndex}"
             .replace("/{" + "commentIndex" + "}", (this.commentIndex !== null && this.commentIndex !== undefined) ? "/" + String(this.commentIndex) : "")
             .replace("//", "/");
@@ -28647,11 +28921,11 @@ export class UpdateCommentOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.comment" was null when calling updateCommentOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -28751,8 +29025,9 @@ export class UpdateCustomXmlPartRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/customXmlParts/{customXmlPartIndex}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "customXmlPartIndex" + "}", (this.customXmlPartIndex !== null && this.customXmlPartIndex !== undefined) ? "/" + String(this.customXmlPartIndex) : "")
@@ -28788,13 +29063,13 @@ export class UpdateCustomXmlPartRequest implements RequestInterface {
             throw new Error('Required parameter "this.customXmlPart" was null when calling updateCustomXmlPart.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -28869,8 +29144,9 @@ export class UpdateCustomXmlPartOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/customXmlParts/{customXmlPartIndex}"
             .replace("/{" + "customXmlPartIndex" + "}", (this.customXmlPartIndex !== null && this.customXmlPartIndex !== undefined) ? "/" + String(this.customXmlPartIndex) : "")
             .replace("//", "/");
@@ -28906,11 +29182,11 @@ export class UpdateCustomXmlPartOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.customXmlPart" was null when calling updateCustomXmlPartOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -29020,8 +29296,9 @@ export class UpdateDrawingObjectRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects/{index}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -29069,13 +29346,13 @@ export class UpdateDrawingObjectRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling updateDrawingObject.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.drawingObject !== undefined) {
             formParams.DrawingObject = JSON.stringify(this.drawingObject);
         }
@@ -29168,8 +29445,9 @@ export class UpdateDrawingObjectOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/{nodePath}/drawingObjects/{index}"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -29216,11 +29494,11 @@ export class UpdateDrawingObjectOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling updateDrawingObjectOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -29328,8 +29606,9 @@ export class UpdateFieldRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/fields/{index}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -29366,13 +29645,13 @@ export class UpdateFieldRequest implements RequestInterface {
             throw new Error('Required parameter "this.field" was null when calling updateField.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -29452,8 +29731,9 @@ export class UpdateFieldOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/{nodePath}/fields/{index}"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -29490,11 +29770,11 @@ export class UpdateFieldOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling updateFieldOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -29574,8 +29854,9 @@ export class UpdateFieldsRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/updateFields"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -29590,11 +29871,11 @@ export class UpdateFieldsRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling updateFields.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -29648,8 +29929,9 @@ export class UpdateFieldsOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/updateFields"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -29664,9 +29946,9 @@ export class UpdateFieldsOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling updateFieldsOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -29768,8 +30050,9 @@ export class UpdateFootnoteRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/footnotes/{index}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -29806,13 +30089,13 @@ export class UpdateFootnoteRequest implements RequestInterface {
             throw new Error('Required parameter "this.footnoteDto" was null when calling updateFootnote.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -29892,8 +30175,9 @@ export class UpdateFootnoteOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/{nodePath}/footnotes/{index}"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -29930,11 +30214,11 @@ export class UpdateFootnoteOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling updateFootnoteOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -30039,8 +30323,9 @@ export class UpdateFormFieldRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/formfields/{index}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -30077,13 +30362,13 @@ export class UpdateFormFieldRequest implements RequestInterface {
             throw new Error('Required parameter "this.formField" was null when calling updateFormField.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -30163,8 +30448,9 @@ export class UpdateFormFieldOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/{nodePath}/formfields/{index}"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -30201,11 +30487,11 @@ export class UpdateFormFieldOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling updateFormFieldOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -30305,8 +30591,9 @@ export class UpdateListRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/lists/{listId}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "listId" + "}", (this.listId !== null && this.listId !== undefined) ? "/" + String(this.listId) : "")
@@ -30342,13 +30629,13 @@ export class UpdateListRequest implements RequestInterface {
             throw new Error('Required parameter "this.listUpdate" was null when calling updateList.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -30438,8 +30725,9 @@ export class UpdateListLevelRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/lists/{listId}/listLevels/{listLevel}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "listId" + "}", (this.listId !== null && this.listId !== undefined) ? "/" + String(this.listId) : "")
@@ -30486,13 +30774,13 @@ export class UpdateListLevelRequest implements RequestInterface {
             throw new Error('Required parameter "this.listUpdate" was null when calling updateListLevel.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -30572,8 +30860,9 @@ export class UpdateListLevelOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/lists/{listId}/listLevels/{listLevel}"
             .replace("/{" + "listId" + "}", (this.listId !== null && this.listId !== undefined) ? "/" + String(this.listId) : "")
             .replace("/{" + "listLevel" + "}", (this.listLevel !== null && this.listLevel !== undefined) ? "/" + String(this.listLevel) : "")
@@ -30620,11 +30909,11 @@ export class UpdateListLevelOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.listLevel" was null when calling updateListLevelOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -30714,8 +31003,9 @@ export class UpdateListOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/lists/{listId}"
             .replace("/{" + "listId" + "}", (this.listId !== null && this.listId !== undefined) ? "/" + String(this.listId) : "")
             .replace("//", "/");
@@ -30751,11 +31041,11 @@ export class UpdateListOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.listUpdate" was null when calling updateListOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -30860,8 +31150,9 @@ export class UpdateParagraphFormatRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}/format"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -30898,13 +31189,13 @@ export class UpdateParagraphFormatRequest implements RequestInterface {
             throw new Error('Required parameter "this.paragraphFormatDto" was null when calling updateParagraphFormat.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -30984,8 +31275,9 @@ export class UpdateParagraphFormatOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/{nodePath}/paragraphs/{index}/format"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -31022,11 +31314,11 @@ export class UpdateParagraphFormatOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling updateParagraphFormatOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -31131,8 +31423,9 @@ export class UpdateParagraphListFormatRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}/listFormat"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -31169,13 +31462,13 @@ export class UpdateParagraphListFormatRequest implements RequestInterface {
             throw new Error('Required parameter "this.listFormatDto" was null when calling updateParagraphListFormat.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -31255,8 +31548,9 @@ export class UpdateParagraphListFormatOnlineRequest implements RequestInterface 
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/{nodePath}/paragraphs/{index}/listFormat"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -31293,11 +31587,11 @@ export class UpdateParagraphListFormatOnlineRequest implements RequestInterface 
             throw new Error('Required parameter "this.index" was null when calling updateParagraphListFormatOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -31402,8 +31696,9 @@ export class UpdateRunRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{paragraphPath}/runs/{index}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "paragraphPath" + "}", (this.paragraphPath !== null && this.paragraphPath !== undefined) ? "/" + String(this.paragraphPath) : "")
@@ -31445,13 +31740,13 @@ export class UpdateRunRequest implements RequestInterface {
             throw new Error('Required parameter "this.run" was null when calling updateRun.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -31541,8 +31836,9 @@ export class UpdateRunFontRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{paragraphPath}/runs/{index}/font"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "paragraphPath" + "}", (this.paragraphPath !== null && this.paragraphPath !== undefined) ? "/" + String(this.paragraphPath) : "")
@@ -31584,13 +31880,13 @@ export class UpdateRunFontRequest implements RequestInterface {
             throw new Error('Required parameter "this.fontDto" was null when calling updateRunFont.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -31670,8 +31966,9 @@ export class UpdateRunFontOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/{paragraphPath}/runs/{index}/font"
             .replace("/{" + "paragraphPath" + "}", (this.paragraphPath !== null && this.paragraphPath !== undefined) ? "/" + String(this.paragraphPath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -31713,11 +32010,11 @@ export class UpdateRunFontOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling updateRunFontOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -31812,8 +32109,9 @@ export class UpdateRunOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/{paragraphPath}/runs/{index}"
             .replace("/{" + "paragraphPath" + "}", (this.paragraphPath !== null && this.paragraphPath !== undefined) ? "/" + String(this.paragraphPath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -31855,11 +32153,11 @@ export class UpdateRunOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling updateRunOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -31959,8 +32257,9 @@ export class UpdateSectionPageSetupRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/sections/{sectionIndex}/pageSetup"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "sectionIndex" + "}", (this.sectionIndex !== null && this.sectionIndex !== undefined) ? "/" + String(this.sectionIndex) : "")
@@ -31996,13 +32295,13 @@ export class UpdateSectionPageSetupRequest implements RequestInterface {
             throw new Error('Required parameter "this.pageSetup" was null when calling updateSectionPageSetup.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -32077,8 +32376,9 @@ export class UpdateSectionPageSetupOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/sections/{sectionIndex}/pageSetup"
             .replace("/{" + "sectionIndex" + "}", (this.sectionIndex !== null && this.sectionIndex !== undefined) ? "/" + String(this.sectionIndex) : "")
             .replace("//", "/");
@@ -32114,11 +32414,11 @@ export class UpdateSectionPageSetupOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.pageSetup" was null when calling updateSectionPageSetupOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -32218,8 +32518,9 @@ export class UpdateStyleRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/styles/{styleName}/update"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "styleName" + "}", (this.styleName !== null && this.styleName !== undefined) ? "/" + String(this.styleName) : "")
@@ -32255,13 +32556,13 @@ export class UpdateStyleRequest implements RequestInterface {
             throw new Error('Required parameter "this.styleUpdate" was null when calling updateStyle.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -32336,8 +32637,9 @@ export class UpdateStyleOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/styles/{styleName}/update"
             .replace("/{" + "styleName" + "}", (this.styleName !== null && this.styleName !== undefined) ? "/" + String(this.styleName) : "")
             .replace("//", "/");
@@ -32373,11 +32675,11 @@ export class UpdateStyleOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.styleUpdate" was null when calling updateStyleOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -32482,8 +32784,9 @@ export class UpdateTableCellFormatRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{tableRowPath}/cells/{index}/cellformat"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "tableRowPath" + "}", (this.tableRowPath !== null && this.tableRowPath !== undefined) ? "/" + String(this.tableRowPath) : "")
@@ -32525,13 +32828,13 @@ export class UpdateTableCellFormatRequest implements RequestInterface {
             throw new Error('Required parameter "this.format" was null when calling updateTableCellFormat.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -32611,8 +32914,9 @@ export class UpdateTableCellFormatOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/{tableRowPath}/cells/{index}/cellformat"
             .replace("/{" + "tableRowPath" + "}", (this.tableRowPath !== null && this.tableRowPath !== undefined) ? "/" + String(this.tableRowPath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -32654,11 +32958,11 @@ export class UpdateTableCellFormatOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling updateTableCellFormatOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -32763,8 +33067,9 @@ export class UpdateTablePropertiesRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/tables/{index}/properties"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -32801,13 +33106,13 @@ export class UpdateTablePropertiesRequest implements RequestInterface {
             throw new Error('Required parameter "this.properties" was null when calling updateTableProperties.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -32887,8 +33192,9 @@ export class UpdateTablePropertiesOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/{nodePath}/tables/{index}/properties"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -32925,11 +33231,11 @@ export class UpdateTablePropertiesOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling updateTablePropertiesOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -33034,8 +33340,9 @@ export class UpdateTableRowFormatRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{tablePath}/rows/{index}/rowformat"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "tablePath" + "}", (this.tablePath !== null && this.tablePath !== undefined) ? "/" + String(this.tablePath) : "")
@@ -33077,13 +33384,13 @@ export class UpdateTableRowFormatRequest implements RequestInterface {
             throw new Error('Required parameter "this.format" was null when calling updateTableRowFormat.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -33163,8 +33470,9 @@ export class UpdateTableRowFormatOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/{tablePath}/rows/{index}/rowformat"
             .replace("/{" + "tablePath" + "}", (this.tablePath !== null && this.tablePath !== undefined) ? "/" + String(this.tablePath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -33206,11 +33514,11 @@ export class UpdateTableRowFormatOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling updateTableRowFormatOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -33277,8 +33585,9 @@ export class UploadFileRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
         let localVarPath = configuration.getApiBaseUrl() + "/words/storage/file/{path}"
             .replace("/{" + "path" + "}", (this.path !== null && this.path !== undefined) ? "/" + String(this.path) : "")
             .replace("//", "/");
@@ -33304,7 +33613,7 @@ export class UploadFileRequest implements RequestInterface {
             throw new Error('Required parameter "this.path" was null when calling uploadFile.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storageName", this.storageName);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storageName", this.storageName, _key);
         if (this.fileContent !== undefined) {
             formParams.FileContent = this.fileContent;
         }

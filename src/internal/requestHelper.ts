@@ -28,6 +28,7 @@
 import http = require("http");
 import request = require("request");
 import requestDebug = require("request-debug");
+import RSA = require('node-rsa');
 import { Configuration } from "./configuration";
 import { ObjectSerializer } from "./objectSerializer";
 
@@ -85,9 +86,16 @@ export async function invokeApiMethod(requestOptions: request.OptionsWithUri, co
  * @param queryParameters queryParameters
  * @param parameterName parameterName
  * @param parameterValue parameterValue
+ * @param key RSA key
  */
-export function addQueryParameterToUrl(url, queryParameters, parameterName, parameterValue) {
+export function addQueryParameterToUrl(url, queryParameters, parameterName, parameterValue, key: RSA) {
     if (parameterValue !== undefined) {
+        if (parameterName == "password")
+        {
+            parameterName = "encryptedPassword";
+            parameterValue = encrypt(parameterValue, key);
+        }
+
         if (url.indexOf("{" + parameterName + "}") >= 0) {
             url = url.replace("{" + parameterName + "}", String(parameterValue));
         } else {
@@ -98,6 +106,11 @@ export function addQueryParameterToUrl(url, queryParameters, parameterName, para
     }
 
     return url;
+}
+
+function encrypt(parameterValue: string, key: RSA) : string {
+
+    return key.encrypt(Buffer.from(parameterValue, 'utf8'), 'base64');
 }
 
 /**

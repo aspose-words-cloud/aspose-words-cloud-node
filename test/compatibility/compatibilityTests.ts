@@ -49,7 +49,7 @@ describe("compatibility", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                let requestOptions = new model.OptimizationOptions({
+                const requestOptions = new model.OptimizationOptions({
                     msWordVersion: model.OptimizationOptions.MsWordVersionEnum.Word2002
                 })
                 const request = new model.OptimizeDocumentRequest({
@@ -74,8 +74,8 @@ describe("compatibility", () => {
     describe("optimizeDocumentOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-            let requestOptions = new model.OptimizationOptions({
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestOptions = new model.OptimizationOptions({
                 msWordVersion: model.OptimizationOptions.MsWordVersionEnum.Word2002
             })
             const request = new model.OptimizeDocumentOnlineRequest({

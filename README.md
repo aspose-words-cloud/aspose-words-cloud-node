@@ -16,6 +16,12 @@ Feel free to explore the [Developer's Guide](https://docs.aspose.cloud/display/w
 - Add & remove watermarks and protection.
 - Read & write access to Document Object Model.
 
+## Enhancements in Version 21.10
+
+- Removed 'GraphicsQualityOptions' image save option as it no longer supported.
+- Added query parameter 'displayIntermediateResults' for batch requests. If 'false', the last response in batch will be returned only. Default is 'true'
+
+
 ## Enhancements in Version 21.8
 
 - Added new api methods to get, insert, update or delete custom xml parts from documents.

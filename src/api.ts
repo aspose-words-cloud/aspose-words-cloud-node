@@ -5665,37 +5665,37 @@ export class WordsApi {
         const responseParts = parseMultipartBody(response.body, getBoundary(response.headers), true);
 
         const data = new Array();
-        for (let i = 0; i < responseParts.length; i++) {
-            if (responseParts[i].code < 200 && responseParts[i].code > 299) {
+        for (const responsePart of responseParts) {
+            if (responsePart.code < 200 && responsePart.code > 299) {
                 const bodyContent = JSON.parse(response.body);
                 data.push(ObjectSerializer.deserialize(bodyContent, "WordsApiErrorResponse"));
             }
             else {
-                if (responseParts[i].body != null) {
+                if (responsePart.body != null) {
                     /* tslint:disable-next-line:no-string-literal */
-                    const id = responseParts[i].headers["requestid"];
+                    const id = responsePart.headers["requestid"];
 
-                    if (parseInt(responseParts[i].headers["content-length"], 10) === 0) {
+                    if (parseInt(responsePart.headers["content-length"], 10) === 0) {
                         data.push(null);
                         continue;
                     }
 
-                    switch (responseParts[i].headers["content-type"].split(';')[0]) {
+                    switch (responsePart.headers["content-type"].split(';')[0]) {
                         case "application/json": {
-                            data.push(requestMap[id].createResponse(JSON.parse(responseParts[i].body)));
+                            data.push(requestMap[id].createResponse(JSON.parse(responsePart.body)));
                             break;
                         }
                         case "application/octet-stream": {
-                            data.push(requestMap[id].createResponse(responseParts[i].body));
+                            data.push(requestMap[id].createResponse(responsePart.body));
                             break;
                         }
                         case "multipart/mixed": {
-                            const partBoundary = getBoundary(responseParts[i].headers);
-                            data.push(requestMap[id].createResponse(responseParts[i].body, partBoundary));
+                            const partBoundary = getBoundary(responsePart.headers);
+                            data.push(requestMap[id].createResponse(responsePart.body, partBoundary));
                             break;
                         }
                         default: {
-                            throw new Error("Unknown response type: " + responseParts[i].headers["content-type"]);
+                            throw new Error("Unknown response type: " + responsePart.headers["content-type"]);
                         }
                     }
                 }

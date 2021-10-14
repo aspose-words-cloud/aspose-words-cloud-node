@@ -90,7 +90,7 @@ export async function invokeApiMethod(requestOptions: request.OptionsWithUri, co
  */
 export function addQueryParameterToUrl(url, queryParameters, parameterName, parameterValue, key: RSA) {
     if (parameterValue !== undefined) {
-        if (parameterName == "password")
+        if (parameterName === "password")
         {
             parameterName = "encryptedPassword";
             parameterValue = encrypt(parameterValue, key);
@@ -108,6 +108,11 @@ export function addQueryParameterToUrl(url, queryParameters, parameterName, para
     return url;
 }
 
+/**
+ * Encrypt a string
+ * @parameterValue string to encrypt
+ * @key RSA key
+ */
 function encrypt(parameterValue: string, key: RSA) : string {
 
     return key.encrypt(Buffer.from(parameterValue, 'utf8'), 'base64');

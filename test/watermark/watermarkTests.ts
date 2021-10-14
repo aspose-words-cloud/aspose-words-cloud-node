@@ -83,8 +83,8 @@ describe("watermark", () => {
     describe("insertWatermarkImageOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-            let requestImageFile = fs.createReadStream(BaseTest.localBaseTestDataFolder + "Common/aspose-cloud.png");
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestImageFile = fs.createReadStream(BaseTest.localBaseTestDataFolder + "Common/aspose-cloud.png");
             const request = new model.InsertWatermarkImageOnlineRequest({
                 document: requestDocument,
                 imageFile: requestImageFile
@@ -111,7 +111,7 @@ describe("watermark", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                let requestWatermarkText = new model.WatermarkText({
+                const requestWatermarkText = new model.WatermarkText({
                     text: "This is the text",
                     rotationAngle: 90.0
                 })
@@ -140,8 +140,8 @@ describe("watermark", () => {
     describe("insertWatermarkTextOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-            let requestWatermarkText = new model.WatermarkText({
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestWatermarkText = new model.WatermarkText({
                 text: "This is the text",
                 rotationAngle: 90
             })
@@ -195,7 +195,7 @@ describe("watermark", () => {
     describe("deleteWatermarkOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.DeleteWatermarkOnlineRequest({
                 document: requestDocument
             });

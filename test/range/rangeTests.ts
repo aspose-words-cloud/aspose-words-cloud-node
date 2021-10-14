@@ -73,7 +73,7 @@ describe("range", () => {
     describe("getRangeTextOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.GetRangeTextOnlineRequest({
                 document: requestDocument,
                 rangeStartIdentifier: "id0.0.0",
@@ -124,7 +124,7 @@ describe("range", () => {
     describe("removeRangeOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.RemoveRangeOnlineRequest({
                 document: requestDocument,
                 rangeStartIdentifier: "id0.0.0",
@@ -152,7 +152,7 @@ describe("range", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                let requestDocumentParameters = new model.RangeDocument({
+                const requestDocumentParameters = new model.RangeDocument({
                     documentName: remoteDataFolder + "/NewDoc.docx"
                 })
                 const request = new model.SaveAsRangeRequest({
@@ -181,8 +181,8 @@ describe("range", () => {
     describe("saveAsRangeOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-            let requestDocumentParameters = new model.RangeDocument({
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestDocumentParameters = new model.RangeDocument({
                 documentName: remoteDataFolder + "/NewDoc.docx"
             })
             const request = new model.SaveAsRangeOnlineRequest({
@@ -213,7 +213,7 @@ describe("range", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                let requestRangeText = new model.ReplaceRange({
+                const requestRangeText = new model.ReplaceRange({
                     text: "Replaced header"
                 })
                 const request = new model.ReplaceWithTextRequest({
@@ -242,8 +242,8 @@ describe("range", () => {
     describe("replaceWithTextOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-            let requestRangeText = new model.ReplaceRange({
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestRangeText = new model.ReplaceRange({
                 text: "Replaced header"
             })
             const request = new model.ReplaceWithTextOnlineRequest({

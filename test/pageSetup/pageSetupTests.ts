@@ -74,7 +74,7 @@ describe("pageSetup", () => {
     describe("getSectionPageSetupOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.GetSectionPageSetupOnlineRequest({
                 document: requestDocument,
                 sectionIndex: 0
@@ -101,7 +101,7 @@ describe("pageSetup", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                let requestPageSetup = new model.PageSetup({
+                const requestPageSetup = new model.PageSetup({
                     rtlGutter: true,
                     leftMargin: 10.0,
                     orientation: model.PageSetup.OrientationEnum.Landscape,
@@ -134,8 +134,8 @@ describe("pageSetup", () => {
     describe("updateSectionPageSetupOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-            let requestPageSetup = new model.PageSetup({
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestPageSetup = new model.PageSetup({
                 rtlGutter: true,
                 leftMargin: 10,
                 orientation: model.PageSetup.OrientationEnum.Landscape,
@@ -191,7 +191,7 @@ describe("pageSetup", () => {
     describe("getRenderPageOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localTextFile);
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localTextFile);
             const request = new model.RenderPageOnlineRequest({
                 document: requestDocument,
                 pageIndex: 1,

@@ -76,7 +76,7 @@ describe("paragraph", () => {
     describe("getDocumentParagraphOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.GetParagraphOnlineRequest({
                 document: requestDocument,
                 index: 0,
@@ -161,7 +161,7 @@ describe("paragraph", () => {
     describe("getDocumentParagraphsOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.GetParagraphsOnlineRequest({
                 document: requestDocument,
                 nodePath: "sections/0"
@@ -245,7 +245,7 @@ describe("paragraph", () => {
     describe("getDocumentParagraphRunOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.GetRunOnlineRequest({
                 document: requestDocument,
                 paragraphPath: "paragraphs/0",
@@ -298,7 +298,7 @@ describe("paragraph", () => {
     describe("getDocumentParagraphRunFontOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.GetRunFontOnlineRequest({
                 document: requestDocument,
                 paragraphPath: "paragraphs/0",
@@ -352,7 +352,7 @@ describe("paragraph", () => {
     describe("getParagraphRunsOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.GetRunsOnlineRequest({
                 document: requestDocument,
                 paragraphPath: "sections/0/paragraphs/0"
@@ -379,7 +379,7 @@ describe("paragraph", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                let requestFontDto = new model.Font({
+                const requestFontDto = new model.Font({
                     bold: true
                 })
                 const request = new model.UpdateRunFontRequest({
@@ -409,8 +409,8 @@ describe("paragraph", () => {
     describe("updateRunFontOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-            let requestFontDto = new model.Font({
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestFontDto = new model.Font({
                 bold: true
             })
             const request = new model.UpdateRunFontOnlineRequest({
@@ -441,7 +441,7 @@ describe("paragraph", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                let requestParagraph = new model.ParagraphInsert({
+                const requestParagraph = new model.ParagraphInsert({
                     text: "This is a new paragraph for your document"
                 })
                 const request = new model.InsertParagraphRequest({
@@ -469,8 +469,8 @@ describe("paragraph", () => {
     describe("insertParagraphOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-            let requestParagraph = new model.ParagraphInsert({
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestParagraph = new model.ParagraphInsert({
                 text: "This is a new paragraph for your document"
             })
             const request = new model.InsertParagraphOnlineRequest({
@@ -500,7 +500,7 @@ describe("paragraph", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                let requestParagraph = new model.ParagraphInsert({
+                const requestParagraph = new model.ParagraphInsert({
                     text: "This is a new paragraph for your document"
                 })
                 const request = new model.InsertParagraphRequest({
@@ -558,7 +558,7 @@ describe("paragraph", () => {
     describe("renderParagraphOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.RenderParagraphOnlineRequest({
                 document: requestDocument,
                 format: "png",
@@ -642,7 +642,7 @@ describe("paragraph", () => {
     describe("getParagraphFormatOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.GetParagraphFormatOnlineRequest({
                 document: requestDocument,
                 index: 0,
@@ -701,7 +701,7 @@ describe("paragraph", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                let requestParagraphFormatDto = new model.ParagraphFormatUpdate({
+                const requestParagraphFormatDto = new model.ParagraphFormatUpdate({
                     alignment: model.ParagraphFormatUpdate.AlignmentEnum.Right
                 })
                 const request = new model.UpdateParagraphFormatRequest({
@@ -730,8 +730,8 @@ describe("paragraph", () => {
     describe("updateParagraphFormatOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-            let requestParagraphFormatDto = new model.ParagraphFormatUpdate({
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestParagraphFormatDto = new model.ParagraphFormatUpdate({
                 alignment: model.ParagraphFormatUpdate.AlignmentEnum.Right
             })
             const request = new model.UpdateParagraphFormatOnlineRequest({
@@ -785,7 +785,7 @@ describe("paragraph", () => {
     describe("deleteParagraphOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.DeleteParagraphOnlineRequest({
                 document: requestDocument,
                 index: 0,
@@ -867,7 +867,7 @@ describe("paragraph", () => {
     describe("getParagraphListFormatOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + listFolder + "/ParagraphGetListFormat.doc");
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + listFolder + "/ParagraphGetListFormat.doc");
             const request = new model.GetParagraphListFormatOnlineRequest({
                 document: requestDocument,
                 index: 0,
@@ -926,7 +926,7 @@ describe("paragraph", () => {
                 BaseTest.localBaseTestDataFolder + listFolder + "/ParagraphUpdateListFormat.doc"
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                let requestListFormatDto = new model.ListFormatUpdate({
+                const requestListFormatDto = new model.ListFormatUpdate({
                     listId: 2
                 })
                 const request = new model.UpdateParagraphListFormatRequest({
@@ -955,8 +955,8 @@ describe("paragraph", () => {
     describe("updateParagraphListFormatOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + listFolder + "/ParagraphUpdateListFormat.doc");
-            let requestListFormatDto = new model.ListFormatUpdate({
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + listFolder + "/ParagraphUpdateListFormat.doc");
+            const requestListFormatDto = new model.ListFormatUpdate({
                 listId: 2
             })
             const request = new model.UpdateParagraphListFormatOnlineRequest({
@@ -987,7 +987,7 @@ describe("paragraph", () => {
                 BaseTest.localBaseTestDataFolder + listFolder + "/ParagraphUpdateListFormat.doc"
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                let requestListFormatDto = new model.ListFormatUpdate({
+                const requestListFormatDto = new model.ListFormatUpdate({
                     listId: 2
                 })
                 const request = new model.UpdateParagraphListFormatRequest({
@@ -1045,7 +1045,7 @@ describe("paragraph", () => {
     describe("deleteParagraphListFormatOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + listFolder + "/ParagraphDeleteListFormat.doc");
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + listFolder + "/ParagraphDeleteListFormat.doc");
             const request = new model.DeleteParagraphListFormatOnlineRequest({
                 document: requestDocument,
                 index: 0,
@@ -1128,7 +1128,7 @@ describe("paragraph", () => {
     describe("getParagraphTabStopsOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + tabStopFolder + "/ParagraphTabStops.docx");
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + tabStopFolder + "/ParagraphTabStops.docx");
             const request = new model.GetParagraphTabStopsOnlineRequest({
                 document: requestDocument,
                 index: 0,
@@ -1188,7 +1188,7 @@ describe("paragraph", () => {
                 BaseTest.localBaseTestDataFolder + tabStopFolder + "/ParagraphTabStops.docx"
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                let requestTabStopInsertDto = new model.TabStopInsert({
+                const requestTabStopInsertDto = new model.TabStopInsert({
                     alignment: model.TabStopInsert.AlignmentEnum.Left,
                     leader: model.TabStopInsert.LeaderEnum.None,
                     position: 100.0
@@ -1222,8 +1222,8 @@ describe("paragraph", () => {
     describe("insertParagraphTabStopsOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + tabStopFolder + "/ParagraphTabStops.docx");
-            let requestTabStopInsertDto = new model.TabStopInsert({
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + tabStopFolder + "/ParagraphTabStops.docx");
+            const requestTabStopInsertDto = new model.TabStopInsert({
                 alignment: model.TabStopInsert.AlignmentEnum.Left,
                 leader: model.TabStopInsert.LeaderEnum.None,
                 position: 72
@@ -1256,7 +1256,7 @@ describe("paragraph", () => {
                 BaseTest.localBaseTestDataFolder + tabStopFolder + "/ParagraphTabStops.docx"
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                let requestTabStopInsertDto = new model.TabStopInsert({
+                const requestTabStopInsertDto = new model.TabStopInsert({
                     alignment: model.TabStopInsert.AlignmentEnum.Left,
                     leader: model.TabStopInsert.LeaderEnum.None,
                     position: 100.0
@@ -1321,7 +1321,7 @@ describe("paragraph", () => {
     describe("deleteAllParagraphTabStopsOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + tabStopFolder + "/ParagraphTabStops.docx");
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + tabStopFolder + "/ParagraphTabStops.docx");
             const request = new model.DeleteAllParagraphTabStopsOnlineRequest({
                 document: requestDocument,
                 index: 0,
@@ -1406,7 +1406,7 @@ describe("paragraph", () => {
     describe("deleteParagraphTabStopOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + tabStopFolder + "/ParagraphTabStops.docx");
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + tabStopFolder + "/ParagraphTabStops.docx");
             const request = new model.DeleteParagraphTabStopOnlineRequest({
                 document: requestDocument,
                 position: 72.0,

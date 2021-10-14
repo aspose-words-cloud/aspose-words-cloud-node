@@ -4,7 +4,7 @@ const wordsApi = new WordsApi(clientId, secret);
 const fileName  = "test_doc.docx";
 
 // Calls AcceptAllRevisionsOnline method for document in cloud.
-let requestDocument = fs.createReadStream(fileName);
+const requestDocument = fs.createReadStream(fileName);
 const request = new model.AcceptAllRevisionsOnlineRequest({
     document: requestDocument
 });

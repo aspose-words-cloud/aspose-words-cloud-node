@@ -49,7 +49,7 @@ describe("formField", () => {
                 BaseTest.localBaseTestDataFolder + fieldFolder + "/FormFilled.docx"
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                let requestFormField = new model.FormFieldTextInput({
+                const requestFormField = new model.FormFieldTextInput({
                     name: "FullName",
                     enabled: true,
                     calculateOnExit: true,
@@ -85,8 +85,8 @@ describe("formField", () => {
     describe("updateFormFieldOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + fieldFolder + "/FormFilled.docx");
-            let requestFormField = new model.FormFieldTextInput({
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + fieldFolder + "/FormFilled.docx");
+            const requestFormField = new model.FormFieldTextInput({
                 name: "FullName",
                 enabled: true,
                 calculateOnExit: true,
@@ -122,7 +122,7 @@ describe("formField", () => {
                 BaseTest.localBaseTestDataFolder + fieldFolder + "/FormFilled.docx"
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                let requestFormField = new model.FormFieldTextInput({
+                const requestFormField = new model.FormFieldTextInput({
                     name: "FullName",
                     enabled: true,
                     calculateOnExit: true,
@@ -189,7 +189,7 @@ describe("formField", () => {
     describe("getFormFieldOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + fieldFolder + "/FormFilled.docx");
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + fieldFolder + "/FormFilled.docx");
             const request = new model.GetFormFieldOnlineRequest({
                 document: requestDocument,
                 index: 0,
@@ -274,7 +274,7 @@ describe("formField", () => {
     describe("getFormFieldsOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + fieldFolder + "/FormFilled.docx");
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + fieldFolder + "/FormFilled.docx");
             const request = new model.GetFormFieldsOnlineRequest({
                 document: requestDocument,
                 nodePath: "sections/0"
@@ -333,7 +333,7 @@ describe("formField", () => {
                 BaseTest.localBaseTestDataFolder + "Common/test_multi_pages.docx"
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                let requestFormField = new model.FormFieldTextInput({
+                const requestFormField = new model.FormFieldTextInput({
                     name: "FullName",
                     enabled: true,
                     calculateOnExit: true,
@@ -369,8 +369,8 @@ describe("formField", () => {
     describe("insertFormFieldOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + fieldFolder + "/FormFilled.docx");
-            let requestFormField = new model.FormFieldTextInput({
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + fieldFolder + "/FormFilled.docx");
+            const requestFormField = new model.FormFieldTextInput({
                 name: "FullName",
                 enabled: true,
                 calculateOnExit: true,
@@ -406,7 +406,7 @@ describe("formField", () => {
                 BaseTest.localBaseTestDataFolder + "Common/test_multi_pages.docx"
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                let requestFormField = new model.FormFieldTextInput({
+                const requestFormField = new model.FormFieldTextInput({
                     name: "FullName",
                     enabled: true,
                     calculateOnExit: true,
@@ -472,7 +472,7 @@ describe("formField", () => {
     describe("deleteFormFieldOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + fieldFolder + "/FormFilled.docx");
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + fieldFolder + "/FormFilled.docx");
             const request = new model.DeleteFormFieldOnlineRequest({
                 document: requestDocument,
                 index: 0,

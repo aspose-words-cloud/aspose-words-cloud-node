@@ -50,7 +50,7 @@ describe("convertDocument", () => {
                 BaseTest.localBaseTestDataFolder + "Common/" + localName
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                let requestSaveOptionsData = new model.SaveOptionsData({
+                const requestSaveOptionsData = new model.SaveOptionsData({
                     saveFormat: "pdf",
                     fileName: BaseTest.remoteBaseTestOutFolder + "/TestSaveAs.pdf"
                 })
@@ -80,8 +80,8 @@ describe("convertDocument", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const localName = "test_multi_pages.docx";
 
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + "Common/" + localName);
-            let requestSaveOptionsData = new model.SaveOptionsData({
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + "Common/" + localName);
+            const requestSaveOptionsData = new model.SaveOptionsData({
                 saveFormat: "pdf",
                 fileName: BaseTest.remoteBaseTestOutFolder + "/TestSaveAs.pdf"
             })
@@ -112,7 +112,7 @@ describe("convertDocument", () => {
                 BaseTest.localBaseTestDataFolder + localFolder + "/" + localName
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                let requestSaveOptionsData = new model.SaveOptionsData({
+                const requestSaveOptionsData = new model.SaveOptionsData({
                     saveFormat: "docx",
                     fileName: BaseTest.remoteBaseTestOutFolder + "/TestSaveAsFromPdfToDoc.docx"
                 })
@@ -148,7 +148,7 @@ describe("convertDocument", () => {
                 BaseTest.localBaseTestDataFolder + "Common/" + localName
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                let requestSaveOptions = new model.TiffSaveOptionsData({
+                const requestSaveOptions = new model.TiffSaveOptionsData({
                     saveFormat: "tiff",
                     fileName: BaseTest.remoteBaseTestOutFolder + "/abc.tiff"
                 })
@@ -178,8 +178,8 @@ describe("convertDocument", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const localName = "test_multi_pages.docx";
 
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + "Common/" + localName);
-            let requestSaveOptions = new model.TiffSaveOptionsData({
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + "Common/" + localName);
+            const requestSaveOptions = new model.TiffSaveOptionsData({
                 saveFormat: "tiff",
                 fileName: BaseTest.remoteBaseTestOutFolder + "/abc.tiff"
             })
@@ -202,7 +202,7 @@ describe("convertDocument", () => {
     describe("convertDocument test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFolder + "/test_uploadfile.docx");
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFolder + "/test_uploadfile.docx");
             const request = new model.ConvertDocumentRequest({
                 document: requestDocument,
                 format: "pdf"

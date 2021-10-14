@@ -49,7 +49,7 @@ describe("footnote", () => {
                 BaseTest.localBaseTestDataFolder + footnoteFolder + "/Footnote.doc"
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                let requestFootnoteDto = new model.FootnoteInsert({
+                const requestFootnoteDto = new model.FootnoteInsert({
                     footnoteType: model.FootnoteInsert.FootnoteTypeEnum.Endnote,
                     text: "test endnote"
                 })
@@ -79,8 +79,8 @@ describe("footnote", () => {
     describe("insertFootnoteOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + footnoteFolder + "/Footnote.doc");
-            let requestFootnoteDto = new model.FootnoteInsert({
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + footnoteFolder + "/Footnote.doc");
+            const requestFootnoteDto = new model.FootnoteInsert({
                 footnoteType: model.FootnoteInsert.FootnoteTypeEnum.Endnote,
                 text: "test endnote"
             })
@@ -111,7 +111,7 @@ describe("footnote", () => {
                 BaseTest.localBaseTestDataFolder + footnoteFolder + "/Footnote.doc"
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                let requestFootnoteDto = new model.FootnoteInsert({
+                const requestFootnoteDto = new model.FootnoteInsert({
                     footnoteType: model.FootnoteInsert.FootnoteTypeEnum.Endnote,
                     text: "test endnote"
                 })
@@ -170,7 +170,7 @@ describe("footnote", () => {
     describe("deleteFootnoteOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + footnoteFolder + "/Footnote.doc");
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + footnoteFolder + "/Footnote.doc");
             const request = new model.DeleteFootnoteOnlineRequest({
                 document: requestDocument,
                 index: 0,
@@ -253,7 +253,7 @@ describe("footnote", () => {
     describe("getFootnotesOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + footnoteFolder + "/Footnote.doc");
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + footnoteFolder + "/Footnote.doc");
             const request = new model.GetFootnotesOnlineRequest({
                 document: requestDocument,
                 nodePath: ""
@@ -337,7 +337,7 @@ describe("footnote", () => {
     describe("getFootnoteOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + footnoteFolder + "/Footnote.doc");
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + footnoteFolder + "/Footnote.doc");
             const request = new model.GetFootnoteOnlineRequest({
                 document: requestDocument,
                 index: 0,
@@ -396,7 +396,7 @@ describe("footnote", () => {
                 BaseTest.localBaseTestDataFolder + footnoteFolder + "/Footnote.doc"
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                let requestFootnoteDto = new model.FootnoteUpdate({
+                const requestFootnoteDto = new model.FootnoteUpdate({
                     text: "new text is here"
                 })
                 const request = new model.UpdateFootnoteRequest({
@@ -425,8 +425,8 @@ describe("footnote", () => {
     describe("updateFootnoteOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + footnoteFolder + "/Footnote.doc");
-            let requestFootnoteDto = new model.FootnoteUpdate({
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + footnoteFolder + "/Footnote.doc");
+            const requestFootnoteDto = new model.FootnoteUpdate({
                 text: "new text is here"
             })
             const request = new model.UpdateFootnoteOnlineRequest({
@@ -457,7 +457,7 @@ describe("footnote", () => {
                 BaseTest.localBaseTestDataFolder + footnoteFolder + "/Footnote.doc"
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                let requestFootnoteDto = new model.FootnoteUpdate({
+                const requestFootnoteDto = new model.FootnoteUpdate({
                     text: "new text is here"
                 })
                 const request = new model.UpdateFootnoteRequest({

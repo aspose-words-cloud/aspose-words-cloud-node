@@ -6,8 +6,8 @@ const wordsApi = new WordsApi(clientId, secret);
 const fileName  = "test_doc.docx";
 
 // Upload original document to cloud storage.
-let myVar1 = fs.createReadStream(fileName);
-let myVar2 = fileName;
+const myVar1 = fs.createReadStream(fileName);
+const myVar2 = fileName;
 const uploadFileRequest = new model.UploadFileRequest({
     fileContent: myVar1,
     path: myVar2
@@ -18,7 +18,7 @@ wordsApi.uploadFile(uploadFileRequest)
     // tslint:disable-next-line:no-console
     console.log("Result of UploadFileRequest: ", uploadFileRequestResult);
     // Calls AcceptAllRevisions method for document in cloud.
-    let myVar3 = fileName;
+    const myVar3 = fileName;
     const request = new model.AcceptAllRevisionsRequest({
         name: myVar3
     });

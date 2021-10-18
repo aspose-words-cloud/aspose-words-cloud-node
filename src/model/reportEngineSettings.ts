@@ -27,11 +27,15 @@
 
 import { AttributeInfo } from '../internal/attributeInfo';
 import { CsvDataLoadOptions } from './csvDataLoadOptions';
+import { JsonDataLoadOptions } from './jsonDataLoadOptions';
 import { ReportBuildOptions } from './reportBuildOptions';
+import { XmlDataLoadOptions } from './xmlDataLoadOptions';
 
 export const importsMapReportEngineSettings = {
     CsvDataLoadOptions,
+    JsonDataLoadOptions,
     ReportBuildOptions,
+    XmlDataLoadOptions,
 };
 
 /**
@@ -58,9 +62,19 @@ export class ReportEngineSettings {
             type: "ReportEngineSettings.DataSourceTypeEnum",
         },
         {
+            name: "jsonDataLoadOptions",
+            baseName: "JsonDataLoadOptions",
+            type: "JsonDataLoadOptions",
+        },
+        {
             name: "reportBuildOptions",
             baseName: "ReportBuildOptions",
             type: "Array<ReportBuildOptions>",
+        },
+        {
+            name: "xmlDataLoadOptions",
+            baseName: "XmlDataLoadOptions",
+            type: "XmlDataLoadOptions",
         }
     ];
 
@@ -87,9 +101,19 @@ export class ReportEngineSettings {
     public dataSourceType: ReportEngineSettings.DataSourceTypeEnum;
 
     /**
+     * Gets or sets the options for parsing JSON data.
+     */
+    public jsonDataLoadOptions: JsonDataLoadOptions;
+
+    /**
      * Gets or sets type of options to build report.
      */
     public reportBuildOptions: Array<ReportBuildOptions>;
+
+    /**
+     * Gets or sets the options for parsing XML data.
+     */
+    public xmlDataLoadOptions: XmlDataLoadOptions;
 
     public constructor(init?: Partial< ReportEngineSettings >) {
         Object.assign(this, init);

@@ -20,6 +20,7 @@ Feel free to explore the [Developer's Guide](https://docs.aspose.cloud/display/w
 
 - Removed 'GraphicsQualityOptions' image save option as it no longer supported.
 - Added query parameter 'displayIntermediateResults' for batch requests. If 'false', the last response in batch will be returned only. Default is 'true'
+- Added 'JsonDataLoadOptions' and 'XmlDataLoadOptions' to 'ReportEngineSettings'
 
 
 ## Enhancements in Version 21.8

@@ -139,6 +139,7 @@ import * as importedHyperlinks from './hyperlinks';
 import * as importedHyperlinksResponse from './hyperlinksResponse';
 import * as importedImageSaveOptionsData from './imageSaveOptionsData';
 import * as importedJpegSaveOptionsData from './jpegSaveOptionsData';
+import * as importedJsonDataLoadOptions from './jsonDataLoadOptions';
 import * as importedLink from './link';
 import * as importedLinkElement from './linkElement';
 import * as importedListFormat from './listFormat';
@@ -277,6 +278,7 @@ import * as importedWordsResponse from './wordsResponse';
 import * as importedXamlFixedSaveOptionsData from './xamlFixedSaveOptionsData';
 import * as importedXamlFlowSaveOptionsData from './xamlFlowSaveOptionsData';
 import * as importedXmlColor from './xmlColor';
+import * as importedXmlDataLoadOptions from './xmlDataLoadOptions';
 import * as importedXpsSaveOptionsData from './xpsSaveOptionsData';
 
 export { AttributeInfo } from '../internal/attributeInfo';
@@ -386,6 +388,7 @@ export * from './hyperlinks';
 export * from './hyperlinksResponse';
 export * from './imageSaveOptionsData';
 export * from './jpegSaveOptionsData';
+export * from './jsonDataLoadOptions';
 export * from './link';
 export * from './linkElement';
 export * from './listFormat';
@@ -524,6 +527,7 @@ export * from './wordsResponse';
 export * from './xamlFixedSaveOptionsData';
 export * from './xamlFlowSaveOptionsData';
 export * from './xmlColor';
+export * from './xmlDataLoadOptions';
 export * from './xpsSaveOptionsData';
 
 /**
@@ -565,6 +569,7 @@ const enumsMap = {
     "HtmlSaveOptionsData.HtmlVersionEnum": importedHtmlSaveOptionsData.HtmlSaveOptionsData.HtmlVersionEnum,
     "HtmlSaveOptionsData.MetafileFormatEnum": importedHtmlSaveOptionsData.HtmlSaveOptionsData.MetafileFormatEnum,
     "HtmlSaveOptionsData.OfficeMathOutputModeEnum": importedHtmlSaveOptionsData.HtmlSaveOptionsData.OfficeMathOutputModeEnum,
+    "JsonDataLoadOptions.SimpleValueParseModeEnum": importedJsonDataLoadOptions.JsonDataLoadOptions.SimpleValueParseModeEnum,
     "ListInsert.TemplateEnum": importedListInsert.ListInsert.TemplateEnum,
     "ListLevel.AlignmentEnum": importedListLevel.ListLevel.AlignmentEnum,
     "ListLevel.NumberStyleEnum": importedListLevel.ListLevel.NumberStyleEnum,
@@ -724,6 +729,7 @@ const typeMap = {
     HyperlinksResponse: importedHyperlinksResponse.HyperlinksResponse,
     ImageSaveOptionsData: importedImageSaveOptionsData.ImageSaveOptionsData,
     JpegSaveOptionsData: importedJpegSaveOptionsData.JpegSaveOptionsData,
+    JsonDataLoadOptions: importedJsonDataLoadOptions.JsonDataLoadOptions,
     Link: importedLink.Link,
     LinkElement: importedLinkElement.LinkElement,
     ListFormat: importedListFormat.ListFormat,
@@ -862,6 +868,7 @@ const typeMap = {
     XamlFixedSaveOptionsData: importedXamlFixedSaveOptionsData.XamlFixedSaveOptionsData,
     XamlFlowSaveOptionsData: importedXamlFlowSaveOptionsData.XamlFlowSaveOptionsData,
     XmlColor: importedXmlColor.XmlColor,
+    XmlDataLoadOptions: importedXmlDataLoadOptions.XmlDataLoadOptions,
     XpsSaveOptionsData: importedXpsSaveOptionsData.XpsSaveOptionsData
 };
 

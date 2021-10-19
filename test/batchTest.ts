@@ -294,12 +294,8 @@ describe("batch tests", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
-                    expect(resultApi.body.length).to.equal(5);
-                    expect(resultApi.body[0].constructor.name).to.equal("ParagraphLinkCollectionResponse"); // GetParagraphs
-                    expect(resultApi.body[1].constructor.name).to.equal("ParagraphResponse"); // GetParagraph
-                    expect(resultApi.body[2].constructor.name).to.equal("ParagraphResponse"); // InsertParagraph
-                    expect(resultApi.body[3]).to.be.null; // DeleteParagraph
-                    expect(resultApi.body[4].constructor.name).to.equal("Buffer"); // BuildReportOnline
+                    expect(resultApi.body.length).to.equal(1);
+                    expect(resultApi.body[0].constructor.name).to.equal("Buffer"); // BuildReportOnline
                 });
             });
         }); 

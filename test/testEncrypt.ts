@@ -1,6 +1,6 @@
 /*
  * --------------------------------------------------------------------------------
- * <copyright company="Aspose" file="splitDocumentToFormatTests.ts">
+ * <copyright company="Aspose" file="testUrlEncode.ts">
  *   Copyright (c) 2021 Aspose.Words for Cloud
  * </copyright>
  * <summary>
@@ -29,68 +29,43 @@ import { expect } from "chai";
 import "mocha";
 
 import * as fs from "fs";
-import * as model from "../../src/model/model";
-import * as BaseTest from "../baseTest";
+import * as model from "../src/model/model";
+import * as BaseTest from "./baseTest";
 
-// Example of how to split document and return result with specified format and page range.
-describe("splitDocumentToFormat", () => {
+// test for an encypted document.
+describe("open encypted document", () => {
     expect(fs);
-    const remoteDataFolder = BaseTest.remoteBaseTestDataFolder + "/DocumentActions/SplitDocument";
-    const localFile = "Common/test_multi_pages.docx";
+    const remoteDataFolder = BaseTest.remoteBaseTestDataFolder + "/Encryption";
+    const localFile = "Common/DocWithPassword.docx";
 
-    // Test for document splitting.
-    describe("splitDocument test", () => {
+    // Test for getting all paragraphs.
+    describe("getEncryptedDocumentParagraphs test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            const remoteFileName = "TestSplitDocument.docx";
+            const remoteFileName = "TestGetEncryptedDocumentParagraphs.docx";
 
             return wordsApi.uploadFileToStorage(
                 remoteDataFolder + "/" + remoteFileName,
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const request = new model.SplitDocumentRequest({
+                const request = new model.GetParagraphsRequest({
                     name: remoteFileName,
-                    format: "text",
+                    nodePath: "sections/0",
                     folder: remoteDataFolder,
-                    destFileName: BaseTest.remoteBaseTestOutFolder + "/TestSplitDocument.text",
-                    from: 1,
-                    to: 2
+                    password: "12345"
                 });
 
                 // Act
-                return wordsApi.splitDocument(request)
+                return wordsApi.getParagraphs(request)
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
-                    expect(resultApi.body.splitResult).to.exist;
-                    expect(resultApi.body.splitResult.pages).to.exist;
-                    expect(resultApi.body.splitResult.pages).to.have.lengthOf(2);
+                    expect(resultApi.body.paragraphs).to.exist;
+                    expect(resultApi.body.paragraphs.paragraphLinkList).to.exist;
+                    expect(resultApi.body.paragraphs.paragraphLinkList).to.have.lengthOf(2);
                 });
 
-            });
-
-       });
-    });
-
-    // Test for document splitting online.
-    describe("splitDocumentOnline test", () => {
-        it("should return response with code 200", () => {
-            const wordsApi = BaseTest.initializeWordsApi();
-            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-            const request = new model.SplitDocumentOnlineRequest({
-                document: requestDocument,
-                format: "text",
-                destFileName: BaseTest.remoteBaseTestOutFolder + "/TestSplitDocument.text",
-                from: 1,
-                to: 2
-            });
-
-            // Act
-            return wordsApi.splitDocumentOnline(request)
-            .then((resultApi) => {
-                // Assert
-                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });

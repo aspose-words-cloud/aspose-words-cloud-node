@@ -49,7 +49,7 @@ describe("documentProtection", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                let requestProtectionRequest = new model.ProtectionRequest({
+                const requestProtectionRequest = new model.ProtectionRequest({
                     password: "123",
                     protectionType: "ReadOnly"
                 })
@@ -78,8 +78,8 @@ describe("documentProtection", () => {
     describe("protectDocumentOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-            let requestProtectionRequest = new model.ProtectionRequest({
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestProtectionRequest = new model.ProtectionRequest({
                 newPassword: "123"
             })
             const request = new model.ProtectDocumentOnlineRequest({
@@ -130,7 +130,7 @@ describe("documentProtection", () => {
     describe("getDocumentProtectionOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.GetDocumentProtectionOnlineRequest({
                 document: requestDocument
             });
@@ -157,7 +157,7 @@ describe("documentProtection", () => {
                 BaseTest.localBaseTestDataFolder + localFilePath
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                let requestProtectionRequest = new model.ProtectionRequest({
+                const requestProtectionRequest = new model.ProtectionRequest({
                     password: "aspose"
                 })
                 const request = new model.UnprotectDocumentRequest({
@@ -186,8 +186,8 @@ describe("documentProtection", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const localFilePath = "DocumentActions/DocumentProtection/SampleProtectedBlankWordDocument.docx";
 
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFilePath);
-            let requestProtectionRequest = new model.ProtectionRequest({
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFilePath);
+            const requestProtectionRequest = new model.ProtectionRequest({
                 password: "aspose"
             })
             const request = new model.UnprotectDocumentOnlineRequest({

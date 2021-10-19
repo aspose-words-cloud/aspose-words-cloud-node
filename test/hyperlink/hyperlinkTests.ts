@@ -73,7 +73,7 @@ describe("hyperlink", () => {
     describe("getDocumentHyperlinkByIndexOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.GetDocumentHyperlinkByIndexOnlineRequest({
                 document: requestDocument,
                 hyperlinkIndex: 0
@@ -125,7 +125,7 @@ describe("hyperlink", () => {
     describe("getDocumentHyperlinksOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.GetDocumentHyperlinksOnlineRequest({
                 document: requestDocument
             });

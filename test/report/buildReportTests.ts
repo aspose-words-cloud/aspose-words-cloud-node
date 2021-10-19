@@ -45,8 +45,8 @@ describe("buildReport", () => {
             const localDocumentFile = "ReportTemplate.docx";
             const localDataFile = fs.readFileSync(BaseTest.localBaseTestDataFolder + reportingFolder + "/ReportData.json", 'utf8');
 
-            let requestTemplate = fs.createReadStream(BaseTest.localBaseTestDataFolder + reportingFolder + "/" + localDocumentFile);
-            let requestReportEngineSettings = new model.ReportEngineSettings({
+            const requestTemplate = fs.createReadStream(BaseTest.localBaseTestDataFolder + reportingFolder + "/" + localDocumentFile);
+            const requestReportEngineSettings = new model.ReportEngineSettings({
                 dataSourceType: model.ReportEngineSettings.DataSourceTypeEnum.Json,
                 dataSourceName: "persons"
             })
@@ -79,11 +79,11 @@ describe("buildReport", () => {
                 BaseTest.localBaseTestDataFolder + reportingFolder + "/" + localDocumentFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                let requestReportEngineSettingsReportBuildOptions = [
+                const requestReportEngineSettingsReportBuildOptions = [
                     model.ReportBuildOptions.AllowMissingMembers,
                     model.ReportBuildOptions.RemoveEmptyParagraphs
                 ]
-                let requestReportEngineSettings = new model.ReportEngineSettings({
+                const requestReportEngineSettings = new model.ReportEngineSettings({
                     dataSourceType: model.ReportEngineSettings.DataSourceTypeEnum.Json,
                     reportBuildOptions: requestReportEngineSettingsReportBuildOptions
                 })

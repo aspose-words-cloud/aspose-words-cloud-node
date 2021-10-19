@@ -49,7 +49,7 @@ describe("text", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                let requestReplaceText = new model.ReplaceTextParameters({
+                const requestReplaceText = new model.ReplaceTextParameters({
                     oldValue: "Testing",
                     newValue: "Aspose testing"
                 })
@@ -79,8 +79,8 @@ describe("text", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const localFile = "Common/test_multi_pages.docx";
 
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-            let requestReplaceText = new model.ReplaceTextParameters({
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestReplaceText = new model.ReplaceTextParameters({
                 oldValue: "aspose",
                 newValue: "aspose new"
             })
@@ -140,7 +140,7 @@ describe("text", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const localFile = "DocumentElements/Text/SampleWordDocument.docx";
 
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.SearchOnlineRequest({
                 document: requestDocument,
                 pattern: "aspose"

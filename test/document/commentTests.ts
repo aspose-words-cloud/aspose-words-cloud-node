@@ -73,7 +73,7 @@ describe("comment", () => {
     describe("getCommentOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.GetCommentOnlineRequest({
                 document: requestDocument,
                 commentIndex: 0
@@ -125,7 +125,7 @@ describe("comment", () => {
     describe("getCommentsOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.GetCommentsOnlineRequest({
                 document: requestDocument
             });
@@ -151,21 +151,21 @@ describe("comment", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                let requestCommentRangeStartNode = new model.NodeLink({
+                const requestCommentRangeStartNode = new model.NodeLink({
                     nodeId: "0.3.0.3"
                 })
-                let requestCommentRangeStart = new model.DocumentPosition({
+                const requestCommentRangeStart = new model.DocumentPosition({
                     node: requestCommentRangeStartNode,
                     offset: 0
                 })
-                let requestCommentRangeEndNode = new model.NodeLink({
+                const requestCommentRangeEndNode = new model.NodeLink({
                     nodeId: "0.3.0.3"
                 })
-                let requestCommentRangeEnd = new model.DocumentPosition({
+                const requestCommentRangeEnd = new model.DocumentPosition({
                     node: requestCommentRangeEndNode,
                     offset: 0
                 })
-                let requestComment = new model.CommentInsert({
+                const requestComment = new model.CommentInsert({
                     rangeStart: requestCommentRangeStart,
                     rangeEnd: requestCommentRangeEnd,
                     initial: "IA",
@@ -199,22 +199,22 @@ describe("comment", () => {
     describe("insertCommentOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-            let requestCommentRangeStartNode = new model.NodeLink({
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestCommentRangeStartNode = new model.NodeLink({
                 nodeId: "0.3.0.3"
             })
-            let requestCommentRangeStart = new model.DocumentPosition({
+            const requestCommentRangeStart = new model.DocumentPosition({
                 node: requestCommentRangeStartNode,
                 offset: 0
             })
-            let requestCommentRangeEndNode = new model.NodeLink({
+            const requestCommentRangeEndNode = new model.NodeLink({
                 nodeId: "0.3.0.3"
             })
-            let requestCommentRangeEnd = new model.DocumentPosition({
+            const requestCommentRangeEnd = new model.DocumentPosition({
                 node: requestCommentRangeEndNode,
                 offset: 0
             })
-            let requestComment = new model.CommentInsert({
+            const requestComment = new model.CommentInsert({
                 rangeStart: requestCommentRangeStart,
                 rangeEnd: requestCommentRangeEnd,
                 initial: "IA",
@@ -247,21 +247,21 @@ describe("comment", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                let requestCommentRangeStartNode = new model.NodeLink({
+                const requestCommentRangeStartNode = new model.NodeLink({
                     nodeId: "0.3.0"
                 })
-                let requestCommentRangeStart = new model.DocumentPosition({
+                const requestCommentRangeStart = new model.DocumentPosition({
                     node: requestCommentRangeStartNode,
                     offset: 0
                 })
-                let requestCommentRangeEndNode = new model.NodeLink({
+                const requestCommentRangeEndNode = new model.NodeLink({
                     nodeId: "0.3.0"
                 })
-                let requestCommentRangeEnd = new model.DocumentPosition({
+                const requestCommentRangeEnd = new model.DocumentPosition({
                     node: requestCommentRangeEndNode,
                     offset: 0
                 })
-                let requestComment = new model.CommentUpdate({
+                const requestComment = new model.CommentUpdate({
                     rangeStart: requestCommentRangeStart,
                     rangeEnd: requestCommentRangeEnd,
                     initial: "IA",
@@ -296,22 +296,22 @@ describe("comment", () => {
     describe("updateCommentOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-            let requestCommentRangeStartNode = new model.NodeLink({
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestCommentRangeStartNode = new model.NodeLink({
                 nodeId: "0.3.0"
             })
-            let requestCommentRangeStart = new model.DocumentPosition({
+            const requestCommentRangeStart = new model.DocumentPosition({
                 node: requestCommentRangeStartNode,
                 offset: 0
             })
-            let requestCommentRangeEndNode = new model.NodeLink({
+            const requestCommentRangeEndNode = new model.NodeLink({
                 nodeId: "0.3.0"
             })
-            let requestCommentRangeEnd = new model.DocumentPosition({
+            const requestCommentRangeEnd = new model.DocumentPosition({
                 node: requestCommentRangeEndNode,
                 offset: 0
             })
-            let requestComment = new model.CommentUpdate({
+            const requestComment = new model.CommentUpdate({
                 rangeStart: requestCommentRangeStart,
                 rangeEnd: requestCommentRangeEnd,
                 initial: "IA",
@@ -368,7 +368,7 @@ describe("comment", () => {
     describe("deleteCommentOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.DeleteCommentOnlineRequest({
                 document: requestDocument,
                 commentIndex: 0
@@ -417,7 +417,7 @@ describe("comment", () => {
     describe("deleteCommentsOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.DeleteCommentsOnlineRequest({
                 document: requestDocument
             });

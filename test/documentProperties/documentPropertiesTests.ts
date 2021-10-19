@@ -76,7 +76,7 @@ describe("documentProperties", () => {
     describe("getDocumentPropertiesOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.GetDocumentPropertiesOnlineRequest({
                 document: requestDocument
             });
@@ -127,7 +127,7 @@ describe("documentProperties", () => {
     describe("getDocumentPropertyOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.GetDocumentPropertyOnlineRequest({
                 document: requestDocument,
                 propertyName: "Author"
@@ -177,7 +177,7 @@ describe("documentProperties", () => {
     describe("deleteDocumentPropertyOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.DeleteDocumentPropertyOnlineRequest({
                 document: requestDocument,
                 propertyName: "testProp"
@@ -204,7 +204,7 @@ describe("documentProperties", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                let requestProperty = new model.DocumentPropertyCreateOrUpdate({
+                const requestProperty = new model.DocumentPropertyCreateOrUpdate({
                     value: "Imran Anwar"
                 })
                 const request = new model.CreateOrUpdateDocumentPropertyRequest({
@@ -234,8 +234,8 @@ describe("documentProperties", () => {
     describe("updateDocumentPropertyOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-            let requestProperty = new model.DocumentPropertyCreateOrUpdate({
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestProperty = new model.DocumentPropertyCreateOrUpdate({
                 value: "Imran Anwar"
             })
             const request = new model.CreateOrUpdateDocumentPropertyOnlineRequest({

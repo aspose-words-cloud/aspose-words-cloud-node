@@ -74,7 +74,7 @@ describe("lists", () => {
     describe("getListsOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.GetListsOnlineRequest({
                 document: requestDocument
             });
@@ -124,7 +124,7 @@ describe("lists", () => {
     describe("getListOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.GetListOnlineRequest({
                 document: requestDocument,
                 listId: 1
@@ -151,7 +151,7 @@ describe("lists", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                let requestListUpdate = new model.ListUpdate({
+                const requestListUpdate = new model.ListUpdate({
                     isRestartAtEachSection: true
                 })
                 const request = new model.UpdateListRequest({
@@ -177,8 +177,8 @@ describe("lists", () => {
     describe("updateListOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-            let requestListUpdate = new model.ListUpdate({
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestListUpdate = new model.ListUpdate({
                 isRestartAtEachSection: true
             })
             const request = new model.UpdateListOnlineRequest({
@@ -211,7 +211,7 @@ describe("lists", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                let requestListUpdate = new model.ListLevelUpdate({
+                const requestListUpdate = new model.ListLevelUpdate({
                     alignment: model.ListLevelUpdate.AlignmentEnum.Right
                 })
                 const request = new model.UpdateListLevelRequest({
@@ -238,8 +238,8 @@ describe("lists", () => {
     describe("updateListLevelOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-            let requestListUpdate = new model.ListLevelUpdate({
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestListUpdate = new model.ListLevelUpdate({
                 alignment: model.ListLevelUpdate.AlignmentEnum.Right
             })
             const request = new model.UpdateListLevelOnlineRequest({
@@ -275,7 +275,7 @@ describe("lists", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                let requestListInsert = new model.ListInsert({
+                const requestListInsert = new model.ListInsert({
                     template: model.ListInsert.TemplateEnum.OutlineLegal
                 })
                 const request = new model.InsertListRequest({
@@ -302,8 +302,8 @@ describe("lists", () => {
     describe("insertListOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-            let requestListInsert = new model.ListInsert({
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestListInsert = new model.ListInsert({
                 template: model.ListInsert.TemplateEnum.OutlineLegal
             })
             const request = new model.InsertListOnlineRequest({

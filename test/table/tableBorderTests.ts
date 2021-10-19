@@ -76,7 +76,7 @@ describe("tableBorder", () => {
     describe("getBordersOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.GetBordersOnlineRequest({
                 document: requestDocument,
                 nodePath: "tables/1/rows/0/cells/0"
@@ -129,7 +129,7 @@ describe("tableBorder", () => {
     describe("getBorderOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.GetBorderOnlineRequest({
                 document: requestDocument,
                 borderType: "left",
@@ -179,7 +179,7 @@ describe("tableBorder", () => {
     describe("deleteBordersOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.DeleteBordersOnlineRequest({
                 document: requestDocument,
                 nodePath: "tables/1/rows/0/cells/0"
@@ -229,7 +229,7 @@ describe("tableBorder", () => {
     describe("deleteBorderOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.DeleteBorderOnlineRequest({
                 document: requestDocument,
                 borderType: "left",
@@ -257,10 +257,10 @@ describe("tableBorder", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                let requestBorderPropertiesColor = new model.XmlColor({
+                const requestBorderPropertiesColor = new model.XmlColor({
                     web: "#AABBCC"
                 })
-                let requestBorderProperties = new model.Border({
+                const requestBorderProperties = new model.Border({
                     borderType: model.Border.BorderTypeEnum.Left,
                     color: requestBorderPropertiesColor,
                     distanceFromText: 6.0,
@@ -298,11 +298,11 @@ describe("tableBorder", () => {
     describe("updateBorderOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-            let requestBorderPropertiesColor = new model.XmlColor({
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestBorderPropertiesColor = new model.XmlColor({
                 web: "#AABBCC"
             })
-            let requestBorderProperties = new model.Border({
+            const requestBorderProperties = new model.Border({
                 borderType: model.Border.BorderTypeEnum.Left,
                 color: requestBorderPropertiesColor,
                 distanceFromText: 6,

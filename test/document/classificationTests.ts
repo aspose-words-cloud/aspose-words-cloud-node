@@ -96,7 +96,7 @@ describe("classification", () => {
     describe("classifyDocumentOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.ClassifyDocumentOnlineRequest({
                 document: requestDocument,
                 bestClassesCount: "3"

@@ -27,6 +27,7 @@
 
 import { Readable } from 'stream';
 import request = require('request');
+import RSA = require('node-rsa');
 import { Configuration } from "../internal/configuration";
 import { RequestInterface } from './model';
 import { v4 as uuidv4 } from 'uuid';
@@ -65,9 +66,10 @@ export class BatchPartRequest {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
+	 * @param key a RSA key     
 	 */
-	createRequestOptions(configuration: Configuration) : request.OptionsWithUri {
-        return this.innerRequest.createRequestOptions(configuration);
+	createRequestOptions(configuration: Configuration, key: RSA) : request.OptionsWithUri {
+        return this.innerRequest.createRequestOptions(configuration, key);
     }
 
 	/**

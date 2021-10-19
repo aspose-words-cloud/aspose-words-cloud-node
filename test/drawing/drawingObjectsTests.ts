@@ -72,7 +72,7 @@ describe("drawingObjects", () => {
     describe("getDocumentDrawingObjectsOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.GetDocumentDrawingObjectsOnlineRequest({
                 document: requestDocument,
                 nodePath: "sections/0"
@@ -150,7 +150,7 @@ describe("drawingObjects", () => {
     describe("getDocumentDrawingObjectByIndexOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.GetDocumentDrawingObjectByIndexOnlineRequest({
                 document: requestDocument,
                 index: 0,
@@ -231,7 +231,7 @@ describe("drawingObjects", () => {
     describe("renderDrawingObjectOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.RenderDrawingObjectOnlineRequest({
                 document: requestDocument,
                 format: "png",
@@ -313,7 +313,7 @@ describe("drawingObjects", () => {
     describe("getDocumentDrawingObjectImageDataOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.GetDocumentDrawingObjectImageDataOnlineRequest({
                 document: requestDocument,
                 index: 0,
@@ -393,7 +393,7 @@ describe("drawingObjects", () => {
     describe("getDocumentDrawingObjectOleDataOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localDrawingFile);
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localDrawingFile);
             const request = new model.GetDocumentDrawingObjectOleDataOnlineRequest({
                 document: requestDocument,
                 index: 0,
@@ -450,7 +450,7 @@ describe("drawingObjects", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                let requestDrawingObject = new model.DrawingObjectInsert({
+                const requestDrawingObject = new model.DrawingObjectInsert({
                     height: 0,
                     left: 0,
                     top: 0,
@@ -459,7 +459,7 @@ describe("drawingObjects", () => {
                     relativeVerticalPosition: model.DrawingObjectInsert.RelativeVerticalPositionEnum.Margin,
                     wrapType: model.DrawingObjectInsert.WrapTypeEnum.Inline
                 })
-                let requestImageFile = fs.createReadStream(BaseTest.localBaseTestDataFolder + "Common/aspose-cloud.png");
+                const requestImageFile = fs.createReadStream(BaseTest.localBaseTestDataFolder + "Common/aspose-cloud.png");
                 const request = new model.InsertDrawingObjectRequest({
                     name: remoteFileName,
                     drawingObject: requestDrawingObject,
@@ -484,8 +484,8 @@ describe("drawingObjects", () => {
     describe("insertDrawingObjectOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-            let requestDrawingObject = new model.DrawingObjectInsert({
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestDrawingObject = new model.DrawingObjectInsert({
                 height: 0,
                 left: 0,
                 top: 0,
@@ -494,7 +494,7 @@ describe("drawingObjects", () => {
                 relativeVerticalPosition: model.DrawingObjectInsert.RelativeVerticalPositionEnum.Margin,
                 wrapType: model.DrawingObjectInsert.WrapTypeEnum.Inline
             })
-            let requestImageFile = fs.createReadStream(BaseTest.localBaseTestDataFolder + "Common/aspose-cloud.png");
+            const requestImageFile = fs.createReadStream(BaseTest.localBaseTestDataFolder + "Common/aspose-cloud.png");
             const request = new model.InsertDrawingObjectOnlineRequest({
                 document: requestDocument,
                 drawingObject: requestDrawingObject,
@@ -523,7 +523,7 @@ describe("drawingObjects", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                let requestDrawingObject = new model.DrawingObjectInsert({
+                const requestDrawingObject = new model.DrawingObjectInsert({
                     height: 0,
                     left: 0,
                     top: 0,
@@ -532,7 +532,7 @@ describe("drawingObjects", () => {
                     relativeVerticalPosition: model.DrawingObjectInsert.RelativeVerticalPositionEnum.Margin,
                     wrapType: model.DrawingObjectInsert.WrapTypeEnum.Inline
                 })
-                let requestImageFile = fs.createReadStream(BaseTest.localBaseTestDataFolder + "Common/aspose-cloud.png");
+                const requestImageFile = fs.createReadStream(BaseTest.localBaseTestDataFolder + "Common/aspose-cloud.png");
                 const request = new model.InsertDrawingObjectRequest({
                     name: remoteFileName,
                     drawingObject: requestDrawingObject,
@@ -586,7 +586,7 @@ describe("drawingObjects", () => {
     describe("deleteDrawingObjectOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.DeleteDrawingObjectOnlineRequest({
                 document: requestDocument,
                 index: 0,
@@ -643,10 +643,10 @@ describe("drawingObjects", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                let requestDrawingObject = new model.DrawingObjectUpdate({
+                const requestDrawingObject = new model.DrawingObjectUpdate({
                     left: 0
                 })
-                let requestImageFile = fs.createReadStream(BaseTest.localBaseTestDataFolder + "Common/aspose-cloud.png");
+                const requestImageFile = fs.createReadStream(BaseTest.localBaseTestDataFolder + "Common/aspose-cloud.png");
                 const request = new model.UpdateDrawingObjectRequest({
                     name: remoteFileName,
                     drawingObject: requestDrawingObject,
@@ -672,11 +672,11 @@ describe("drawingObjects", () => {
     describe("updateDrawingObjectOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-            let requestDrawingObject = new model.DrawingObjectUpdate({
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestDrawingObject = new model.DrawingObjectUpdate({
                 left: 0
             })
-            let requestImageFile = fs.createReadStream(BaseTest.localBaseTestDataFolder + "Common/aspose-cloud.png");
+            const requestImageFile = fs.createReadStream(BaseTest.localBaseTestDataFolder + "Common/aspose-cloud.png");
             const request = new model.UpdateDrawingObjectOnlineRequest({
                 document: requestDocument,
                 drawingObject: requestDrawingObject,
@@ -706,10 +706,10 @@ describe("drawingObjects", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                let requestDrawingObject = new model.DrawingObjectUpdate({
+                const requestDrawingObject = new model.DrawingObjectUpdate({
                     left: 0
                 })
-                let requestImageFile = fs.createReadStream(BaseTest.localBaseTestDataFolder + "Common/aspose-cloud.png");
+                const requestImageFile = fs.createReadStream(BaseTest.localBaseTestDataFolder + "Common/aspose-cloud.png");
                 const request = new model.UpdateDrawingObjectRequest({
                     name: remoteFileName,
                     drawingObject: requestDrawingObject,

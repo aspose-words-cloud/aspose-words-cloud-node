@@ -1,6 +1,6 @@
 {
   "name": "asposewordscloud",
-  "version": "21.9.0",
+  "version": "21.10.0",
   "description": "Aspose.Words Cloud SDK for Node.js",
   "homepage": "https://products.aspose.cloud/words/cloud",
   "author": {
@@ -30,17 +30,19 @@
     "gulp": "gulp"
   },
   "dependencies": {
-    "@types/request": "^2.48.4",
+    "@types/node-rsa": "^1.1.1",
+    "@types/request": "^2.48.7",
     "blob": "^0.1.0",
     "form-data": "^4.0.0",
     "lodash": "^4.17.15",
     "lodash.template": "^4.5.0",
+    "node-rsa": "^1.1.1",
     "request": "^2.88.2",
     "request-debug": "^0.2.0",
     "uuid": "^7.0.3"
   },
   "devDependencies": {
-    "@types/chai": "^4.2.11",
+    "@types/chai": "^4.2.22",
     "@types/mocha": "^7.0.2",
     "asposestoragecloud": "^1.0.5",
     "chai": "^4.2.0",
@@ -53,11 +55,11 @@
     "gulp-util": "^3.0.8",
     "mocha": "^7.1.1",
     "mocha-cases": "^0.3.0",
-    "mocha-jenkins-reporter": "^0.4.3",
+    "mocha-jenkins-reporter": "^0.4.7",
     "mocha-sinon": "^2.1.2",
     "sinon": "^9.0.2",
     "ts-node": "^8.8.2",
     "tslint": "6.1.1",
-    "typescript": "^3.8.3"
+    "typescript": "^3.9.10"
   }
 }

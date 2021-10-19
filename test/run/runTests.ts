@@ -49,7 +49,7 @@ describe("run", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                let requestRun = new model.RunUpdate({
+                const requestRun = new model.RunUpdate({
                     text: "run with text"
                 })
                 const request = new model.UpdateRunRequest({
@@ -78,8 +78,8 @@ describe("run", () => {
     describe("updateRunOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-            let requestRun = new model.RunUpdate({
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestRun = new model.RunUpdate({
                 text: "run with text"
             })
             const request = new model.UpdateRunOnlineRequest({
@@ -110,7 +110,7 @@ describe("run", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                let requestRun = new model.RunInsert({
+                const requestRun = new model.RunInsert({
                     text: "run with text"
                 })
                 const request = new model.InsertRunRequest({
@@ -139,8 +139,8 @@ describe("run", () => {
     describe("insertRunOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-            let requestRun = new model.RunInsert({
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestRun = new model.RunInsert({
                 text: "run with text"
             })
             const request = new model.InsertRunOnlineRequest({
@@ -193,7 +193,7 @@ describe("run", () => {
     describe("deleteRunOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            let requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const request = new model.DeleteRunOnlineRequest({
                 document: requestDocument,
                 paragraphPath: "paragraphs/1",

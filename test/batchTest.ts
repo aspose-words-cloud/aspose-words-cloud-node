@@ -295,7 +295,7 @@ describe("batch tests", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.length).to.equal(1);
-                    expect(resultApi.body[0].constructor.name).to.equal("Buffer"); // BuildReportOnline
+                    expect(resultApi.body[4].constructor.name).to.equal("Buffer"); // BuildReportOnline
                 });
             });
         }); 

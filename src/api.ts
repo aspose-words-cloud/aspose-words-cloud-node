@@ -5552,7 +5552,7 @@ export class WordsApi {
         // create a batch request
         const requestOptions: request.Options = {
             method: "PUT",
-            uri: this.configuration.getApiBaseUrl() + "/words/batch",
+            uri: url,
             headers: {
                 "Content-Type": "multipart/mixed",
             },

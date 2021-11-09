@@ -734,6 +734,10 @@ export namespace ParagraphFormatBase {
         ListTable6ColorfulAccent6 = 'ListTable6ColorfulAccent6' as any,
         ListTable7ColorfulAccent6 = 'ListTable7ColorfulAccent6' as any,
         SmartLink = 'SmartLink' as any,
+        Mention = 'Mention' as any,
+        SmartHyperlink = 'SmartHyperlink' as any,
+        Hashtag = 'Hashtag' as any,
+        UnresolvedMention = 'UnresolvedMention' as any,
         User = 'User' as any,
         Nil = 'Nil' as any
     }

@@ -59,18 +59,25 @@ export class WordsApi {
      */
     constructor(clientId: string, clientSecret: string, baseUrl?: string, debugMode?: boolean) {
         this.configuration = new Configuration(clientId, clientSecret, baseUrl, debugMode);
+    }
 
-        this.getPublicKey(new model.GetPublicKeyRequest({}))
-            .then((resultApi) => {
-                this.key = new RSA();
-                this.key.importKey({
-                    n: Buffer.from(resultApi.body.modulus, "base64"),
-                    e: Buffer.from(resultApi.body.exponent, "base64")
-                }, 'components-public');
-                this.key.setOptions({
-                    encryptionScheme: 'pkcs1'
-                });
+    private async getKey() : Promise<RSA> {
+        if (this.key === undefined) {
+            this.key = null;
+
+            const resultApi = await this.getPublicKey(new model.GetPublicKeyRequest({}))
+
+            this.key = new RSA();
+            this.key.importKey({
+                n: Buffer.from(resultApi.body.modulus, "base64"),
+                e: Buffer.from(resultApi.body.exponent, "base64")
+            }, 'components-public');
+            this.key.setOptions({
+                encryptionScheme: 'pkcs1'
             });
+        }
+
+        return Promise.resolve(this.key);
     }
 
     /**
@@ -82,7 +89,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling acceptAllRevisions.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.RevisionsModificationResponse >();    
@@ -100,7 +107,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling acceptAllRevisionsOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.AcceptAllRevisionsOnlineResponse >();
@@ -118,7 +125,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling appendDocument.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DocumentResponse >();    
@@ -136,7 +143,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling appendDocumentOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.AppendDocumentOnlineResponse >();
@@ -154,7 +161,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling applyStyleToDocumentElement.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.WordsResponse >();    
@@ -172,7 +179,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling applyStyleToDocumentElementOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ApplyStyleToDocumentElementOnlineResponse >();
@@ -190,7 +197,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling buildReport.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DocumentResponse >();    
@@ -208,7 +215,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling buildReportOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
@@ -226,7 +233,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling classify.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ClassificationResponse >();    
@@ -244,7 +251,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling classifyDocument.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ClassificationResponse >();    
@@ -262,7 +269,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling classifyDocumentOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ClassificationResponse >();    
@@ -280,7 +287,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling compareDocument.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DocumentResponse >();    
@@ -298,7 +305,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling compareDocumentOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.CompareDocumentOnlineResponse >();
@@ -316,7 +323,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling convertDocument.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
@@ -334,7 +341,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling copyFile.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         return Promise.resolve(response);
@@ -349,7 +356,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling copyFolder.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         return Promise.resolve(response);
@@ -364,7 +371,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling copyStyle.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.StyleResponse >();    
@@ -382,7 +389,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling copyStyleOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.CopyStyleOnlineResponse >();
@@ -400,7 +407,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling createDocument.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DocumentResponse >();    
@@ -418,7 +425,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling createFolder.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         return Promise.resolve(response);
@@ -433,7 +440,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling createOrUpdateDocumentProperty.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DocumentPropertyResponse >();    
@@ -451,7 +458,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling createOrUpdateDocumentPropertyOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.CreateOrUpdateDocumentPropertyOnlineResponse >();
@@ -469,7 +476,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteAllParagraphTabStops.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.TabStopsResponse >();    
@@ -487,7 +494,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteAllParagraphTabStopsOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DeleteAllParagraphTabStopsOnlineResponse >();
@@ -505,7 +512,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteBorder.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.BorderResponse >();    
@@ -523,7 +530,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteBorderOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DeleteBorderOnlineResponse >();
@@ -541,7 +548,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteBorders.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.BordersResponse >();    
@@ -559,7 +566,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteBordersOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DeleteBordersOnlineResponse >();
@@ -577,7 +584,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteComment.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         return Promise.resolve(response);
@@ -592,7 +599,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteCommentOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
@@ -610,7 +617,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteComments.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         return Promise.resolve(response);
@@ -625,7 +632,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteCommentsOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
@@ -643,7 +650,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteCustomXmlPart.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         return Promise.resolve(response);
@@ -658,7 +665,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteCustomXmlPartOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
@@ -676,7 +683,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteCustomXmlParts.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         return Promise.resolve(response);
@@ -691,7 +698,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteCustomXmlPartsOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
@@ -709,7 +716,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteDocumentProperty.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         return Promise.resolve(response);
@@ -724,7 +731,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteDocumentPropertyOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
@@ -742,7 +749,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteDrawingObject.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         return Promise.resolve(response);
@@ -757,7 +764,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteDrawingObjectOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
@@ -775,7 +782,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteField.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         return Promise.resolve(response);
@@ -790,7 +797,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteFieldOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
@@ -808,7 +815,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteFields.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         return Promise.resolve(response);
@@ -823,7 +830,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteFieldsOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
@@ -841,7 +848,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteFile.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         return Promise.resolve(response);
@@ -856,7 +863,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteFolder.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         return Promise.resolve(response);
@@ -871,7 +878,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteFootnote.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         return Promise.resolve(response);
@@ -886,7 +893,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteFootnoteOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
@@ -904,7 +911,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteFormField.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         return Promise.resolve(response);
@@ -919,7 +926,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteFormFieldOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
@@ -937,7 +944,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteHeaderFooter.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         return Promise.resolve(response);
@@ -952,7 +959,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteHeaderFooterOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
@@ -970,7 +977,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteHeadersFooters.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         return Promise.resolve(response);
@@ -985,7 +992,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteHeadersFootersOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
@@ -1003,7 +1010,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteMacros.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         return Promise.resolve(response);
@@ -1018,7 +1025,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteMacrosOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
@@ -1036,7 +1043,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteOfficeMathObject.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         return Promise.resolve(response);
@@ -1051,7 +1058,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteOfficeMathObjectOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
@@ -1069,7 +1076,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteParagraph.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         return Promise.resolve(response);
@@ -1084,7 +1091,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteParagraphListFormat.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ParagraphListFormatResponse >();    
@@ -1102,7 +1109,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteParagraphListFormatOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DeleteParagraphListFormatOnlineResponse >();
@@ -1120,7 +1127,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteParagraphOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
@@ -1138,7 +1145,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteParagraphTabStop.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.TabStopsResponse >();    
@@ -1156,7 +1163,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteParagraphTabStopOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DeleteParagraphTabStopOnlineResponse >();
@@ -1174,7 +1181,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteRun.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         return Promise.resolve(response);
@@ -1189,7 +1196,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteRunOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
@@ -1207,7 +1214,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteSection.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         return Promise.resolve(response);
@@ -1222,7 +1229,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteSectionOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
@@ -1240,7 +1247,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteTable.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         return Promise.resolve(response);
@@ -1255,7 +1262,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteTableCell.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         return Promise.resolve(response);
@@ -1270,7 +1277,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteTableCellOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
@@ -1288,7 +1295,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteTableOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
@@ -1306,7 +1313,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteTableRow.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         return Promise.resolve(response);
@@ -1321,7 +1328,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteTableRowOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
@@ -1339,7 +1346,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteWatermark.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DocumentResponse >();    
@@ -1357,7 +1364,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling deleteWatermarkOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DeleteWatermarkOnlineResponse >();
@@ -1375,7 +1382,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling downloadFile.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
@@ -1393,7 +1400,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling executeMailMerge.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DocumentResponse >();    
@@ -1411,7 +1418,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling executeMailMergeOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
@@ -1429,7 +1436,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getAvailableFonts.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.AvailableFontsResponse >();    
@@ -1447,7 +1454,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getBookmarkByName.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.BookmarkResponse >();    
@@ -1465,7 +1472,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getBookmarkByNameOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.BookmarkResponse >();    
@@ -1483,7 +1490,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getBookmarks.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.BookmarksResponse >();    
@@ -1501,7 +1508,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getBookmarksOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.BookmarksResponse >();    
@@ -1519,7 +1526,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getBorder.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.BorderResponse >();    
@@ -1537,7 +1544,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getBorderOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.BorderResponse >();    
@@ -1555,7 +1562,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getBorders.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.BordersResponse >();    
@@ -1573,7 +1580,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getBordersOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.BordersResponse >();    
@@ -1591,7 +1598,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getComment.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.CommentResponse >();    
@@ -1609,7 +1616,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getCommentOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.CommentResponse >();    
@@ -1627,7 +1634,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getComments.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.CommentsResponse >();    
@@ -1645,7 +1652,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getCommentsOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.CommentsResponse >();    
@@ -1663,7 +1670,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getCustomXmlPart.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.CustomXmlPartResponse >();    
@@ -1681,7 +1688,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getCustomXmlPartOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.CustomXmlPartResponse >();    
@@ -1699,7 +1706,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getCustomXmlParts.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.CustomXmlPartsResponse >();    
@@ -1717,7 +1724,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getCustomXmlPartsOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.CustomXmlPartsResponse >();    
@@ -1735,7 +1742,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getDocument.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DocumentResponse >();    
@@ -1753,7 +1760,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getDocumentDrawingObjectByIndex.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DrawingObjectResponse >();    
@@ -1771,7 +1778,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getDocumentDrawingObjectByIndexOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DrawingObjectResponse >();    
@@ -1789,7 +1796,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getDocumentDrawingObjectImageData.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
@@ -1807,7 +1814,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getDocumentDrawingObjectImageDataOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
@@ -1825,7 +1832,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getDocumentDrawingObjectOleData.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
@@ -1843,7 +1850,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getDocumentDrawingObjectOleDataOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
@@ -1861,7 +1868,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getDocumentDrawingObjects.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DrawingObjectsResponse >();    
@@ -1879,7 +1886,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getDocumentDrawingObjectsOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DrawingObjectsResponse >();    
@@ -1897,7 +1904,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getDocumentFieldNames.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.FieldNamesResponse >();    
@@ -1915,7 +1922,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getDocumentFieldNamesOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.FieldNamesResponse >();    
@@ -1933,7 +1940,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getDocumentHyperlinkByIndex.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.HyperlinkResponse >();    
@@ -1951,7 +1958,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getDocumentHyperlinkByIndexOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.HyperlinkResponse >();    
@@ -1969,7 +1976,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getDocumentHyperlinks.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.HyperlinksResponse >();    
@@ -1987,7 +1994,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getDocumentHyperlinksOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.HyperlinksResponse >();    
@@ -2005,7 +2012,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getDocumentProperties.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DocumentPropertiesResponse >();    
@@ -2023,7 +2030,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getDocumentPropertiesOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DocumentPropertiesResponse >();    
@@ -2041,7 +2048,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getDocumentProperty.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DocumentPropertyResponse >();    
@@ -2059,7 +2066,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getDocumentPropertyOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DocumentPropertyResponse >();    
@@ -2077,7 +2084,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getDocumentProtection.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ProtectionDataResponse >();    
@@ -2095,7 +2102,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getDocumentProtectionOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ProtectionDataResponse >();    
@@ -2113,7 +2120,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getDocumentStatistics.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.StatDataResponse >();    
@@ -2131,7 +2138,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getDocumentStatisticsOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.StatDataResponse >();    
@@ -2149,7 +2156,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getDocumentWithFormat.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
@@ -2167,7 +2174,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getField.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.FieldResponse >();    
@@ -2185,7 +2192,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getFieldOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.FieldResponse >();    
@@ -2203,7 +2210,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getFields.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.FieldsResponse >();    
@@ -2221,7 +2228,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getFieldsOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.FieldsResponse >();    
@@ -2239,7 +2246,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getFilesList.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.FilesList >();    
@@ -2257,7 +2264,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getFootnote.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.FootnoteResponse >();    
@@ -2275,7 +2282,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getFootnoteOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.FootnoteResponse >();    
@@ -2293,7 +2300,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getFootnotes.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.FootnotesResponse >();    
@@ -2311,7 +2318,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getFootnotesOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.FootnotesResponse >();    
@@ -2329,7 +2336,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getFormField.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.FormFieldResponse >();    
@@ -2347,7 +2354,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getFormFieldOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.FormFieldResponse >();    
@@ -2365,7 +2372,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getFormFields.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.FormFieldsResponse >();    
@@ -2383,7 +2390,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getFormFieldsOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.FormFieldsResponse >();    
@@ -2401,7 +2408,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getHeaderFooter.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.HeaderFooterResponse >();    
@@ -2419,7 +2426,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getHeaderFooterOfSection.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.HeaderFooterResponse >();    
@@ -2437,7 +2444,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getHeaderFooterOfSectionOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.HeaderFooterResponse >();    
@@ -2455,7 +2462,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getHeaderFooterOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.HeaderFooterResponse >();    
@@ -2473,7 +2480,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getHeaderFooters.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.HeaderFootersResponse >();    
@@ -2491,7 +2498,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getHeaderFootersOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.HeaderFootersResponse >();    
@@ -2509,7 +2516,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getList.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ListResponse >();    
@@ -2527,7 +2534,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getListOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ListResponse >();    
@@ -2545,7 +2552,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getLists.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ListsResponse >();    
@@ -2563,7 +2570,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getListsOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ListsResponse >();    
@@ -2581,7 +2588,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getOfficeMathObject.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.OfficeMathObjectResponse >();    
@@ -2599,7 +2606,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getOfficeMathObjectOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.OfficeMathObjectResponse >();    
@@ -2617,7 +2624,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getOfficeMathObjects.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.OfficeMathObjectsResponse >();    
@@ -2635,7 +2642,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getOfficeMathObjectsOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.OfficeMathObjectsResponse >();    
@@ -2653,7 +2660,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getParagraph.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ParagraphResponse >();    
@@ -2671,7 +2678,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getParagraphFormat.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ParagraphFormatResponse >();    
@@ -2689,7 +2696,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getParagraphFormatOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ParagraphFormatResponse >();    
@@ -2707,7 +2714,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getParagraphListFormat.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ParagraphListFormatResponse >();    
@@ -2725,7 +2732,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getParagraphListFormatOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ParagraphListFormatResponse >();    
@@ -2743,7 +2750,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getParagraphOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ParagraphResponse >();    
@@ -2761,7 +2768,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getParagraphs.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ParagraphLinkCollectionResponse >();    
@@ -2779,7 +2786,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getParagraphsOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ParagraphLinkCollectionResponse >();    
@@ -2797,7 +2804,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getParagraphTabStops.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.TabStopsResponse >();    
@@ -2815,7 +2822,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getParagraphTabStopsOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.TabStopsResponse >();    
@@ -2833,7 +2840,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getPublicKey.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.PublicKeyResponse >();    
@@ -2851,7 +2858,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getRangeText.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.RangeTextResponse >();    
@@ -2869,7 +2876,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getRangeTextOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.RangeTextResponse >();    
@@ -2887,7 +2894,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getRun.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.RunResponse >();    
@@ -2905,7 +2912,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getRunFont.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.FontResponse >();    
@@ -2923,7 +2930,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getRunFontOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.FontResponse >();    
@@ -2941,7 +2948,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getRunOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.RunResponse >();    
@@ -2959,7 +2966,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getRuns.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.RunsResponse >();    
@@ -2977,7 +2984,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getRunsOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.RunsResponse >();    
@@ -2995,7 +3002,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getSection.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.SectionResponse >();    
@@ -3013,7 +3020,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getSectionOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.SectionResponse >();    
@@ -3031,7 +3038,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getSectionPageSetup.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.SectionPageSetupResponse >();    
@@ -3049,7 +3056,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getSectionPageSetupOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.SectionPageSetupResponse >();    
@@ -3067,7 +3074,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getSections.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.SectionLinkCollectionResponse >();    
@@ -3085,7 +3092,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getSectionsOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.SectionLinkCollectionResponse >();    
@@ -3103,7 +3110,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getStyle.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.StyleResponse >();    
@@ -3121,7 +3128,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getStyleFromDocumentElement.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.StyleResponse >();    
@@ -3139,7 +3146,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getStyleFromDocumentElementOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.StyleResponse >();    
@@ -3157,7 +3164,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getStyleOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.StyleResponse >();    
@@ -3175,7 +3182,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getStyles.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.StylesResponse >();    
@@ -3193,7 +3200,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getStylesOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.StylesResponse >();    
@@ -3211,7 +3218,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getTable.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.TableResponse >();    
@@ -3229,7 +3236,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getTableCell.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.TableCellResponse >();    
@@ -3247,7 +3254,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getTableCellFormat.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.TableCellFormatResponse >();    
@@ -3265,7 +3272,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getTableCellFormatOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.TableCellFormatResponse >();    
@@ -3283,7 +3290,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getTableCellOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.TableCellResponse >();    
@@ -3301,7 +3308,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getTableOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.TableResponse >();    
@@ -3319,7 +3326,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getTableProperties.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.TablePropertiesResponse >();    
@@ -3337,7 +3344,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getTablePropertiesOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.TablePropertiesResponse >();    
@@ -3355,7 +3362,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getTableRow.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.TableRowResponse >();    
@@ -3373,7 +3380,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getTableRowFormat.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.TableRowFormatResponse >();    
@@ -3391,7 +3398,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getTableRowFormatOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.TableRowFormatResponse >();    
@@ -3409,7 +3416,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getTableRowOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.TableRowResponse >();    
@@ -3427,7 +3434,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getTables.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.TableLinkCollectionResponse >();    
@@ -3445,7 +3452,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling getTablesOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.TableLinkCollectionResponse >();    
@@ -3463,7 +3470,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling insertComment.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.CommentResponse >();    
@@ -3481,7 +3488,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling insertCommentOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.InsertCommentOnlineResponse >();
@@ -3499,7 +3506,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling insertCustomXmlPart.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.CustomXmlPartResponse >();    
@@ -3517,7 +3524,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling insertCustomXmlPartOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.InsertCustomXmlPartOnlineResponse >();
@@ -3535,7 +3542,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling insertDrawingObject.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DrawingObjectResponse >();    
@@ -3553,7 +3560,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling insertDrawingObjectOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.InsertDrawingObjectOnlineResponse >();
@@ -3571,7 +3578,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling insertField.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.FieldResponse >();    
@@ -3589,7 +3596,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling insertFieldOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.InsertFieldOnlineResponse >();
@@ -3607,7 +3614,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling insertFootnote.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.FootnoteResponse >();    
@@ -3625,7 +3632,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling insertFootnoteOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.InsertFootnoteOnlineResponse >();
@@ -3643,7 +3650,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling insertFormField.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.FormFieldResponse >();    
@@ -3661,7 +3668,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling insertFormFieldOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.InsertFormFieldOnlineResponse >();
@@ -3679,7 +3686,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling insertHeaderFooter.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.HeaderFooterResponse >();    
@@ -3697,7 +3704,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling insertHeaderFooterOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.InsertHeaderFooterOnlineResponse >();
@@ -3715,7 +3722,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling insertList.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ListResponse >();    
@@ -3733,7 +3740,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling insertListOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.InsertListOnlineResponse >();
@@ -3751,7 +3758,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling insertOrUpdateParagraphTabStop.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.TabStopsResponse >();    
@@ -3769,7 +3776,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling insertOrUpdateParagraphTabStopOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.InsertOrUpdateParagraphTabStopOnlineResponse >();
@@ -3787,7 +3794,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling insertPageNumbers.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DocumentResponse >();    
@@ -3805,7 +3812,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling insertPageNumbersOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.InsertPageNumbersOnlineResponse >();
@@ -3823,7 +3830,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling insertParagraph.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ParagraphResponse >();    
@@ -3841,7 +3848,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling insertParagraphOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.InsertParagraphOnlineResponse >();
@@ -3859,7 +3866,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling insertRun.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.RunResponse >();    
@@ -3877,7 +3884,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling insertRunOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.InsertRunOnlineResponse >();
@@ -3895,7 +3902,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling insertStyle.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.StyleResponse >();    
@@ -3913,7 +3920,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling insertStyleOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.InsertStyleOnlineResponse >();
@@ -3931,7 +3938,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling insertTable.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.TableResponse >();    
@@ -3949,7 +3956,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling insertTableCell.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.TableCellResponse >();    
@@ -3967,7 +3974,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling insertTableCellOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.InsertTableCellOnlineResponse >();
@@ -3985,7 +3992,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling insertTableOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.InsertTableOnlineResponse >();
@@ -4003,7 +4010,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling insertTableRow.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.TableRowResponse >();    
@@ -4021,7 +4028,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling insertTableRowOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.InsertTableRowOnlineResponse >();
@@ -4039,7 +4046,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling insertWatermarkImage.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DocumentResponse >();    
@@ -4057,7 +4064,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling insertWatermarkImageOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.InsertWatermarkImageOnlineResponse >();
@@ -4075,7 +4082,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling insertWatermarkText.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DocumentResponse >();    
@@ -4093,7 +4100,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling insertWatermarkTextOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.InsertWatermarkTextOnlineResponse >();
@@ -4111,7 +4118,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling loadWebDocument.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.SaveResponse >();    
@@ -4129,7 +4136,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling moveFile.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         return Promise.resolve(response);
@@ -4144,7 +4151,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling moveFolder.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         return Promise.resolve(response);
@@ -4159,7 +4166,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling optimizeDocument.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         return Promise.resolve(response);
@@ -4174,7 +4181,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling optimizeDocumentOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
@@ -4192,7 +4199,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling protectDocument.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ProtectionDataResponse >();    
@@ -4210,7 +4217,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling protectDocumentOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ProtectDocumentOnlineResponse >();
@@ -4228,7 +4235,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling rejectAllRevisions.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.RevisionsModificationResponse >();    
@@ -4246,7 +4253,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling rejectAllRevisionsOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.RejectAllRevisionsOnlineResponse >();
@@ -4264,7 +4271,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling removeRange.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DocumentResponse >();    
@@ -4282,7 +4289,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling removeRangeOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.RemoveRangeOnlineResponse >();
@@ -4300,7 +4307,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling renderDrawingObject.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
@@ -4318,7 +4325,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling renderDrawingObjectOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
@@ -4336,7 +4343,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling renderMathObject.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
@@ -4354,7 +4361,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling renderMathObjectOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
@@ -4372,7 +4379,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling renderPage.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
@@ -4390,7 +4397,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling renderPageOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
@@ -4408,7 +4415,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling renderParagraph.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
@@ -4426,7 +4433,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling renderParagraphOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
@@ -4444,7 +4451,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling renderTable.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
@@ -4462,7 +4469,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling renderTableOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
@@ -4480,7 +4487,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling replaceText.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ReplaceTextResponse >();    
@@ -4498,7 +4505,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling replaceTextOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ReplaceTextOnlineResponse >();
@@ -4516,7 +4523,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling replaceWithText.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DocumentResponse >();    
@@ -4534,7 +4541,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling replaceWithTextOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ReplaceWithTextOnlineResponse >();
@@ -4552,7 +4559,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling resetCache.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         return Promise.resolve(response);
@@ -4567,7 +4574,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling saveAs.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.SaveResponse >();    
@@ -4585,7 +4592,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling saveAsOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.SaveAsOnlineResponse >();
@@ -4603,7 +4610,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling saveAsRange.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DocumentResponse >();    
@@ -4621,7 +4628,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling saveAsRangeOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.SaveAsRangeOnlineResponse >();
@@ -4639,7 +4646,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling saveAsTiff.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.SaveResponse >();    
@@ -4657,7 +4664,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling saveAsTiffOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.SaveAsTiffOnlineResponse >();
@@ -4675,7 +4682,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling search.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.SearchResponse >();    
@@ -4693,7 +4700,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling searchOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.SearchResponse >();    
@@ -4711,7 +4718,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling splitDocument.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.SplitDocumentResponse >();    
@@ -4729,7 +4736,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling splitDocumentOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.SplitDocumentOnlineResponse >();
@@ -4747,7 +4754,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling unprotectDocument.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ProtectionDataResponse >();    
@@ -4765,7 +4772,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling unprotectDocumentOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.UnprotectDocumentOnlineResponse >();
@@ -4783,7 +4790,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling updateBookmark.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.BookmarkResponse >();    
@@ -4801,7 +4808,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling updateBookmarkOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.UpdateBookmarkOnlineResponse >();
@@ -4819,7 +4826,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling updateBorder.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.BorderResponse >();    
@@ -4837,7 +4844,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling updateBorderOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.UpdateBorderOnlineResponse >();
@@ -4855,7 +4862,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling updateComment.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.CommentResponse >();    
@@ -4873,7 +4880,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling updateCommentOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.UpdateCommentOnlineResponse >();
@@ -4891,7 +4898,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling updateCustomXmlPart.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.CustomXmlPartResponse >();    
@@ -4909,7 +4916,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling updateCustomXmlPartOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.UpdateCustomXmlPartOnlineResponse >();
@@ -4927,7 +4934,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling updateDrawingObject.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DrawingObjectResponse >();    
@@ -4945,7 +4952,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling updateDrawingObjectOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.UpdateDrawingObjectOnlineResponse >();
@@ -4963,7 +4970,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling updateField.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.FieldResponse >();    
@@ -4981,7 +4988,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling updateFieldOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.UpdateFieldOnlineResponse >();
@@ -4999,7 +5006,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling updateFields.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DocumentResponse >();    
@@ -5017,7 +5024,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling updateFieldsOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.UpdateFieldsOnlineResponse >();
@@ -5035,7 +5042,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling updateFootnote.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.FootnoteResponse >();    
@@ -5053,7 +5060,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling updateFootnoteOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.UpdateFootnoteOnlineResponse >();
@@ -5071,7 +5078,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling updateFormField.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.FormFieldResponse >();    
@@ -5089,7 +5096,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling updateFormFieldOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.UpdateFormFieldOnlineResponse >();
@@ -5107,7 +5114,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling updateList.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ListResponse >();    
@@ -5125,7 +5132,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling updateListLevel.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ListResponse >();    
@@ -5143,7 +5150,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling updateListLevelOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.UpdateListLevelOnlineResponse >();
@@ -5161,7 +5168,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling updateListOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.UpdateListOnlineResponse >();
@@ -5179,7 +5186,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling updateParagraphFormat.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ParagraphFormatResponse >();    
@@ -5197,7 +5204,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling updateParagraphFormatOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.UpdateParagraphFormatOnlineResponse >();
@@ -5215,7 +5222,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling updateParagraphListFormat.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ParagraphListFormatResponse >();    
@@ -5233,7 +5240,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling updateParagraphListFormatOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.UpdateParagraphListFormatOnlineResponse >();
@@ -5251,7 +5258,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling updateRun.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.RunResponse >();    
@@ -5269,7 +5276,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling updateRunFont.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.FontResponse >();    
@@ -5287,7 +5294,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling updateRunFontOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.UpdateRunFontOnlineResponse >();
@@ -5305,7 +5312,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling updateRunOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.UpdateRunOnlineResponse >();
@@ -5323,7 +5330,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling updateSectionPageSetup.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.SectionPageSetupResponse >();    
@@ -5341,7 +5348,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling updateSectionPageSetupOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.UpdateSectionPageSetupOnlineResponse >();
@@ -5359,7 +5366,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling updateStyle.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.StyleResponse >();    
@@ -5377,7 +5384,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling updateStyleOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.UpdateStyleOnlineResponse >();
@@ -5395,7 +5402,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling updateTableCellFormat.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.TableCellFormatResponse >();    
@@ -5413,7 +5420,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling updateTableCellFormatOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.UpdateTableCellFormatOnlineResponse >();
@@ -5431,7 +5438,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling updateTableProperties.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.TablePropertiesResponse >();    
@@ -5449,7 +5456,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling updateTablePropertiesOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.UpdateTablePropertiesOnlineResponse >();
@@ -5467,7 +5474,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling updateTableRowFormat.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.TableRowFormatResponse >();    
@@ -5485,7 +5492,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling updateTableRowFormatOnline.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.UpdateTableRowFormatOnlineResponse >();
@@ -5503,7 +5510,7 @@ export class WordsApi {
             throw new Error('Required parameter "request" was null or undefined when calling uploadFile.');
         }
 
-        const requestOptions = requestObj.createRequestOptions(this.configuration, this.key); 
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this.getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.FilesUploadResult >();    
@@ -5562,7 +5569,7 @@ export class WordsApi {
         const requestParts = [];
 
         for (const requestObj of requests) {
-            const options = requestObj.createRequestOptions(this.configuration, this.key);
+            const options = requestObj.createRequestOptions(this.configuration, await this.getKey());
 
             let bodyString = options.method + " " + options.uri.toString().replace(this.configuration.getApiBaseUrl() + "/words/", "") + (Object.keys(options.qs).length ? '?' + querystring.stringify(options.qs) : "") + "\r\n";
 

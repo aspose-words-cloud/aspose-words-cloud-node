@@ -72,7 +72,7 @@ const getAllMethods = (obj) => {
                 p !== "constructor" &&           // not the constructor
                 (i === 0 || p !== arr[i - 1]) &&  // not overriding in this prototype
                 props.indexOf(p) === -1 &&       // not overridden in a child
-                p !== "batchInternal");
+                !p.startsWith("_"));
 
         props = props.concat(l);
         obj = Object.getPrototypeOf(obj); // walk-up the prototype chain

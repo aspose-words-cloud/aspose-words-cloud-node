@@ -26,7 +26,7 @@ import { When } from "cucumber";
 import { GetDocumentWithFormatRequest } from "../../../src/model/model";
 import * as BaseTest from "../../../test/baseTest";
 
-When(/^I execute conversion from storage \(GET document with format\)$/, async function() {
+When(/^I execute conversion from storage \(GET document with format\)$/, {timeout: 60000}, async function() {
     const wordsApi = BaseTest.initializeWordsApi();
     const request = new GetDocumentWithFormatRequest(this.request);
         

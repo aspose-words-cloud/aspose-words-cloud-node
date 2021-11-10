@@ -26,7 +26,7 @@ import { When } from "cucumber";
 import { ExecuteMailMergeOnlineRequest } from "../../../src/model/model";
 import * as BaseTest from "../../../test/baseTest";
 
-When(/^I execute mail merge online$/, async function() {
+When(/^I execute mail merge online$/, {timeout: 60000}, async function() {
     const wordsApi = BaseTest.initializeWordsApi();
     const request = new ExecuteMailMergeOnlineRequest(this.request);
         

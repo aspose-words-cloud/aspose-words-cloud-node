@@ -29,7 +29,7 @@ import * as BaseTest from "../../../test/baseTest";
 
 const testFolder = "DocumentActions/MailMerge/";
 
-Given(/^I have specified a template file (.*) in request$/, function(templateName) {
+Given(/^I have specified a template file (.*) in request$/, {timeout: 60000}, function(templateName) {
     this.request.template = fs.readFileSync(BaseTest.localBaseTestDataFolder + testFolder + templateName);
 });
 

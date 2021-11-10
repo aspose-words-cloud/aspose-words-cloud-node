@@ -27,7 +27,7 @@ import { Given, Then } from "cucumber";
 import * as BaseTest from "../../../test/baseTest";
 import { DeleteFileRequest, DownloadFileRequest } from "../../../src/api";
 
-Given(/^I have uploaded document with name (.*) and subfolder is (.*) to storage$/, async function (documentName, folder) {
+Given(/^I have uploaded document with name (.*) and subfolder is (.*) to storage$/, {timeout: 60000}, async function (documentName, folder) {
 
     const wordsApi = BaseTest.initializeWordsApi();
 
@@ -38,7 +38,7 @@ Given(/^I have uploaded document with name (.*) and subfolder is (.*) to storage
     expect(result.response.statusMessage).to.equal("OK");
 });
 
-Given(/^There is no file (.*) on storage in (.*) folder$/, async function (documentName, folder) {
+Given(/^There is no file (.*) on storage in (.*) folder$/, {timeout: 60000}, async function (documentName, folder) {
 
     const wordsApi = BaseTest.initializeWordsApi();
 
@@ -54,7 +54,7 @@ Given(/^There is no file (.*) on storage in (.*) folder$/, async function (docum
     expect(result.statusMessage).to.equal("OK");
 });
 
-Then(/^document (.*) is existed on storage in (.*) folder$/, async function (documentName, folder) {
+Then(/^document (.*) is existed on storage in (.*) folder$/, {timeout: 60000}, async function (documentName, folder) {
 
     const wordsApi = BaseTest.initializeWordsApi();
 

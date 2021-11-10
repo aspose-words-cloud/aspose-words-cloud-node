@@ -30,7 +30,7 @@ import * as BaseTest from "../../../test/baseTest";
 
 const testFolder = "DocumentActions/MailMerge/";
 
-Given(/^I have specified a template file name (.*) in storage$/, async function(templateName) {
+Given(/^I have specified a template file name (.*) in storage$/, {timeout: 60000}, async function(templateName) {
 
     const worsApi = BaseTest.initializeWordsApi();
 
@@ -48,7 +48,7 @@ Given(/^I have specified a body (.*)$/, function(fileWithBodyContent) {
     this.request.data = fs.readFileSync(BaseTest.localBaseTestDataFolder + testFolder + fileWithBodyContent);
 });
 
-When(/^I execute template$/, async function() {
+When(/^I execute template$/, {timeout: 60000}, async function() {
     const wordsApi = BaseTest.initializeWordsApi();
     const request = new ExecuteMailMergeRequest(this.request);
 
@@ -57,7 +57,7 @@ When(/^I execute template$/, async function() {
     return result;
 });
 
-Then(/^image should be rendered$/, async function() {
+Then(/^image should be rendered$/, {timeout: 60000}, async function() {
     const wordsApi = BaseTest.initializeWordsApi();
     const request = new GetDocumentDrawingObjectsRequest({
         folder: BaseTest.remoteBaseFolder + "DocumentActions/MailMerge",

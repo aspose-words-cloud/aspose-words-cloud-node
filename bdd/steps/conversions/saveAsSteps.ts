@@ -39,7 +39,7 @@ Given(/^I have specified destFileName (.*)$/, function(destFileName) {
     this.request.saveOptionsData.fileName = destFileName;
 });
 
-When(/^I execute conversion from storage \(POST SaveAs\)$/, async function() {
+When(/^I execute conversion from storage \(POST SaveAs\)$/, {timeout: 60000}, async function() {
     const wordsApi = BaseTest.initializeWordsApi();
     const request = new SaveAsRequest(this.request);
 
@@ -49,9 +49,9 @@ When(/^I execute conversion from storage \(POST SaveAs\)$/, async function() {
     return result;
 });
 
-Then(/^symbols of document (.*) in (.*) are encoded properly$/, async function(_documentName, _folder) {  
+Then(/^symbols of document (.*) in (.*) are encoded properly$/, {timeout: 60000}, async function(_documentName, _folder) {  
 
-    const wordsApi = BaseTest.initializeWordsApi(true);
+    const wordsApi = BaseTest.initializeWordsApi();
     const request = new GetRunsRequest({
         folder: BaseTest.remoteBaseFolder + "DocumentActions/ConvertDocument/out/saveas",
         name: "TableDocumentDoc.doc",

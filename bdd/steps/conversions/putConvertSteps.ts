@@ -27,7 +27,7 @@ import * as fs from "fs";
 import { ConvertDocumentRequest } from "../../../src/model/model";
 import * as BaseTest from "../../../test/baseTest";
 
-Given(/^I have specified document (.*) to send it in request body$/, function(documentName) {
+Given(/^I have specified document (.*) to send it in request body$/, {timeout: 60000}, function(documentName) {
     const localPath = BaseTest.localBaseTestDataFolder + "DocumentActions/ConvertDocument/" + documentName;
     this.request.document = fs.readFileSync(localPath);    
 });

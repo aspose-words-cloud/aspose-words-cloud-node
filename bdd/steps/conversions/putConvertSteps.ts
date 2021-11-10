@@ -32,12 +32,11 @@ Given(/^I have specified document (.*) to send it in request body$/, function(do
     this.request.document = fs.readFileSync(localPath);    
 });
 
-When(/^I execute conversion \(PUT convert\)$/, function() {
+When(/^I execute conversion \(PUT convert\)$/, async function() {
     const wordsApi = BaseTest.initializeWordsApi();
     const request = new ConvertDocumentRequest(this.request);
         
-    return wordsApi.convertDocument(request)
-        .then((result) => {                        
-            this.response = result;
-        });
+    const result = await wordsApi.convertDocument(request);
+    this.response = result;
+    return result;
 });

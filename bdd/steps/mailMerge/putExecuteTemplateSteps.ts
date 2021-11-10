@@ -33,12 +33,12 @@ Given(/^I have specified a template file (.*) in request$/, function(templateNam
     this.request.template = fs.readFileSync(BaseTest.localBaseTestDataFolder + testFolder + templateName);
 });
 
-When(/^I execute template online$/, function() {
+When(/^I execute template online$/, async function() {
     const wordsApi = BaseTest.initializeWordsApi();
     const request = new ExecuteMailMergeOnlineRequest(this.request);
         
-    return wordsApi.executeMailMergeOnline(request)
-        .then((result) => {                        
-            this.response = result;            
-        });
+    const result =  await wordsApi.executeMailMergeOnline(request)
+    this.response = result;
+
+    return result;
 });

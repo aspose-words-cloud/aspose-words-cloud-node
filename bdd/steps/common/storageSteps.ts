@@ -27,21 +27,18 @@ import { Given, Then } from "cucumber";
 import * as BaseTest from "../../../test/baseTest";
 import { DeleteFileRequest, DownloadFileRequest } from "../../../src/api";
 
-Given(/^I have uploaded document with name (.*) and subfolder is (.*) to storage$/, function (documentName, folder, callback) {
+Given(/^I have uploaded document with name (.*) and subfolder is (.*) to storage$/, async function (documentName, folder) {
 
     const wordsApi = BaseTest.initializeWordsApi();
 
     const remotePath = BaseTest.remoteBaseFolder + folder;
     const localPath = BaseTest.localBaseTestDataFolder + folder + documentName;
 
-    wordsApi.uploadFileToStorage(remotePath + documentName, localPath)
-        .then((result) => {
-            expect(result.response.statusMessage).to.equal("OK");
-            callback();
-        });
+    const result = await wordsApi.uploadFileToStorage(remotePath + documentName, localPath);
+    expect(result.response.statusMessage).to.equal("OK");
 });
 
-Given(/^There is no file (.*) on storage in (.*) folder$/, function (documentName, folder, callback) {
+Given(/^There is no file (.*) on storage in (.*) folder$/, async function (documentName, folder) {
 
     const wordsApi = BaseTest.initializeWordsApi();
 
@@ -53,14 +50,11 @@ Given(/^There is no file (.*) on storage in (.*) folder$/, function (documentNam
     const request = new DeleteFileRequest();
     request.path = remotePath;
 
-    wordsApi.deleteFile(request)
-    .then((result) => {
-        expect(result.statusMessage).to.equal("OK");
-        callback();
-    });
+    const result = await wordsApi.deleteFile(request);
+    expect(result.statusMessage).to.equal("OK");
 });
 
-Then(/^document (.*) is existed on storage in (.*) folder$/, function (documentName, folder, callback) {
+Then(/^document (.*) is existed on storage in (.*) folder$/, async function (documentName, folder) {
 
     const wordsApi = BaseTest.initializeWordsApi();
 
@@ -73,9 +67,6 @@ Then(/^document (.*) is existed on storage in (.*) folder$/, function (documentN
     const request =  new DownloadFileRequest();
     request.path = remotePath;
 
-    wordsApi.downloadFile(request).
-    then((result) => {
-        expect(result.response.statusMessage).to.equal("OK");
-        callback();
-    });
+    const result = await wordsApi.downloadFile(request);
+    expect(result.response.statusMessage).to.equal("OK");
 });

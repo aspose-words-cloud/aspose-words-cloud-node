@@ -32,7 +32,6 @@ Scenario Outline: Convert document with specified encoding form storage and save
 	And I have specified encoding <LoadEncoding>
 	When I execute conversion from storage (POST SaveAs)
 	Then document <OutPath> is existed on storage in <SubFolder> folder	
-	And symbols are encoded properly
 	
 	Examples: 
 	| DocName                  | DestFormat | OutPath                         | LoadEncoding | SubFolder 						|

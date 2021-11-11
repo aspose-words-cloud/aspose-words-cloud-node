@@ -39,17 +39,18 @@ Given(/^I have specified destFileName (.*)$/, function(destFileName) {
     this.request.saveOptionsData.fileName = destFileName;
 });
 
-When(/^I execute conversion from storage \(POST SaveAs\)$/, function() {
+When(/^I execute conversion from storage \(POST SaveAs\)$/, {timeout: 60000}, async function() {
     const wordsApi = BaseTest.initializeWordsApi();
     const request = new SaveAsRequest(this.request);
 
-    return wordsApi.saveAs(request)
-        .then((result) => {
-            this.response = result;            
-        });
+    const result = await wordsApi.saveAs(request)
+    this.response = result; 
+
+    return result;
 });
 
-Then(/^symbols are encoded properly$/, function() {    
+Then(/^symbols of document (.*) in (.*) are encoded properly$/, {timeout: 60000}, async function(_documentName, _folder) {  
+
     const wordsApi = BaseTest.initializeWordsApi();
     const request = new GetRunsRequest({
         folder: BaseTest.remoteBaseFolder + "DocumentActions/ConvertDocument/out/saveas",
@@ -57,7 +58,6 @@ Then(/^symbols are encoded properly$/, function() {
         paragraphPath: null
     });
 
-    wordsApi.getRuns(request).then((result) => {
-        expect(result.body.runs.list[0].text).to.equal("строка");        
-    });
+    const result = await wordsApi.getRuns(request);
+    expect(result.body.runs.list[0].text).to.equal("строка");        
 });

@@ -26,12 +26,11 @@ import { When } from "cucumber";
 import { ExecuteMailMergeOnlineRequest } from "../../../src/model/model";
 import * as BaseTest from "../../../test/baseTest";
 
-When(/^I execute mail merge online$/, function() {
+When(/^I execute mail merge online$/, {timeout: 60000}, async function() {
     const wordsApi = BaseTest.initializeWordsApi();
     const request = new ExecuteMailMergeOnlineRequest(this.request);
         
-    return wordsApi.executeMailMergeOnline(request)
-        .then((result) => {                        
-            this.response = result;            
-        });
+    const result = await wordsApi.executeMailMergeOnline(request)
+    this.response = result;
+    return result;
 });

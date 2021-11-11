@@ -30,7 +30,7 @@ import * as BaseTest from "../../../test/baseTest";
 
 const testFolder = "DocumentActions/MailMerge/";
 
-Given(/^I have specified a template file name (.*) in storage$/, function(templateName, callback) {
+Given(/^I have specified a template file name (.*) in storage$/, {timeout: 60000}, async function(templateName) {
 
     const worsApi = BaseTest.initializeWordsApi();
 
@@ -40,28 +40,24 @@ Given(/^I have specified a template file name (.*) in storage$/, function(templa
     this.request.name = templateName;
     this.request.folder = remotePath.slice(0, -1);
 
-    worsApi.uploadFileToStorage(remotePath + templateName, localPath)
-    .then((result) => {
-        expect(result.response.statusMessage).to.equal("OK");
-        callback();
-    });
+    const result =  await worsApi.uploadFileToStorage(remotePath + templateName, localPath)
+    expect(result.response.statusMessage).to.equal("OK");
 });
 
 Given(/^I have specified a body (.*)$/, function(fileWithBodyContent) {
     this.request.data = fs.readFileSync(BaseTest.localBaseTestDataFolder + testFolder + fileWithBodyContent);
 });
 
-When(/^I execute template$/, function() {
+When(/^I execute template$/, {timeout: 60000}, async function() {
     const wordsApi = BaseTest.initializeWordsApi();
     const request = new ExecuteMailMergeRequest(this.request);
 
-    return wordsApi.executeMailMerge(request)
-        .then((result) => {
-            this.response = result;
-        });
+    const result =  await wordsApi.executeMailMerge(request)
+    this.response = result;
+    return result;
 });
 
-Then(/^image should be rendered$/, function(callback) {
+Then(/^image should be rendered$/, {timeout: 60000}, async function() {
     const wordsApi = BaseTest.initializeWordsApi();
     const request = new GetDocumentDrawingObjectsRequest({
         folder: BaseTest.remoteBaseFolder + "DocumentActions/MailMerge",
@@ -69,8 +65,6 @@ Then(/^image should be rendered$/, function(callback) {
         nodePath: null
     });
 
-    wordsApi.getDocumentDrawingObjects(request).then((result) => {
-        expect(result.body.drawingObjects.list.length).to.greaterThan(0);
-        callback();
-    });
+    const result = await wordsApi.getDocumentDrawingObjects(request);
+    expect(result.body.drawingObjects.list.length).to.greaterThan(0);
 });

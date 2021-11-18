@@ -2508,6 +2508,24 @@ export class WordsApi {
     }
 
     /**
+     * Returns application info.
+     * @param requestObj contains request parameters
+     */
+    public async getInfo(requestObj: model.GetInfoRequest): Promise< model.WordsIncomingMessage< model.InfoResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling getInfo.');
+        }
+
+        const requestOptions = requestObj.createRequestOptions(this.configuration, await this._getKey()); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = new model.WordsIncomingMessage< model.InfoResponse >();    
+        result.response = response;
+        result.body = requestObj.createResponse(response.body);
+        return Promise.resolve(result);
+    }
+
+    /**
      * Reads a list from the document.
      * @param requestObj contains request parameters
      */

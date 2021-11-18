@@ -138,6 +138,8 @@ import * as importedHyperlinkResponse from './hyperlinkResponse';
 import * as importedHyperlinks from './hyperlinks';
 import * as importedHyperlinksResponse from './hyperlinksResponse';
 import * as importedImageSaveOptionsData from './imageSaveOptionsData';
+import * as importedInfoAdditionalItem from './infoAdditionalItem';
+import * as importedInfoResponse from './infoResponse';
 import * as importedJpegSaveOptionsData from './jpegSaveOptionsData';
 import * as importedJsonDataLoadOptions from './jsonDataLoadOptions';
 import * as importedLink from './link';
@@ -387,6 +389,8 @@ export * from './hyperlinkResponse';
 export * from './hyperlinks';
 export * from './hyperlinksResponse';
 export * from './imageSaveOptionsData';
+export * from './infoAdditionalItem';
+export * from './infoResponse';
 export * from './jpegSaveOptionsData';
 export * from './jsonDataLoadOptions';
 export * from './link';
@@ -728,6 +732,8 @@ const typeMap = {
     Hyperlinks: importedHyperlinks.Hyperlinks,
     HyperlinksResponse: importedHyperlinksResponse.HyperlinksResponse,
     ImageSaveOptionsData: importedImageSaveOptionsData.ImageSaveOptionsData,
+    InfoAdditionalItem: importedInfoAdditionalItem.InfoAdditionalItem,
+    InfoResponse: importedInfoResponse.InfoResponse,
     JpegSaveOptionsData: importedJpegSaveOptionsData.JpegSaveOptionsData,
     JsonDataLoadOptions: importedJsonDataLoadOptions.JsonDataLoadOptions,
     Link: importedLink.Link,
@@ -14602,6 +14608,46 @@ export class GetHeaderFootersOnlineRequest implements RequestInterface {
 	 */
 	createResponse(_response: Buffer, _boundary?: string): any {
         return ObjectSerializer.deserialize(_response, "HeaderFootersResponse");
+	}
+}
+
+/**
+ * Request model for GetInfo operation.
+ * Returns application info.
+ */
+export class GetInfoRequest implements RequestInterface {
+
+    public constructor(init?: Partial< GetInfoRequest >) {
+        Object.assign(this, init);
+    }
+
+
+	/**
+	 * create the requst options for this request
+	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
+	 */
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+        const localVarPath = configuration.getApiBaseUrl() + "/words/info"
+            .replace("//", "/");
+        const queryParameters: any = {};
+
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+
+        return requestOptions;
+    }
+
+	/**
+	 * create response from string
+	 */
+	createResponse(_response: Buffer, _boundary?: string): any {
+        return ObjectSerializer.deserialize(_response, "InfoResponse");
 	}
 }
 

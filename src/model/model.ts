@@ -98,6 +98,7 @@ import * as importedFieldInsert from './fieldInsert';
 import * as importedFieldLink from './fieldLink';
 import * as importedFieldNames from './fieldNames';
 import * as importedFieldNamesResponse from './fieldNamesResponse';
+import * as importedFieldOptions from './fieldOptions';
 import * as importedFieldResponse from './fieldResponse';
 import * as importedFieldsResponse from './fieldsResponse';
 import * as importedFieldUpdate from './fieldUpdate';
@@ -272,6 +273,7 @@ import * as importedTextSaveOptionsData from './textSaveOptionsData';
 import * as importedTiffSaveOptionsData from './tiffSaveOptionsData';
 import * as importedTimeZoneInfoData from './timeZoneInfoData';
 import * as importedTxtSaveOptionsBaseData from './txtSaveOptionsBaseData';
+import * as importedUserInformation from './userInformation';
 import * as importedWatermarkText from './watermarkText';
 import * as importedWordMLSaveOptionsData from './wordMLSaveOptionsData';
 import * as importedWordsApiErrorResponse from './wordsApiErrorResponse';
@@ -349,6 +351,7 @@ export * from './fieldInsert';
 export * from './fieldLink';
 export * from './fieldNames';
 export * from './fieldNamesResponse';
+export * from './fieldOptions';
 export * from './fieldResponse';
 export * from './fieldsResponse';
 export * from './fieldUpdate';
@@ -523,6 +526,7 @@ export * from './textSaveOptionsData';
 export * from './tiffSaveOptionsData';
 export * from './timeZoneInfoData';
 export * from './txtSaveOptionsBaseData';
+export * from './userInformation';
 export * from './watermarkText';
 export * from './wordMLSaveOptionsData';
 export * from './wordsApiErrorResponse';
@@ -563,6 +567,8 @@ const enumsMap = {
     "DrawingObjectUpdate.RelativeHorizontalPositionEnum": importedDrawingObjectUpdate.DrawingObjectUpdate.RelativeHorizontalPositionEnum,
     "DrawingObjectUpdate.RelativeVerticalPositionEnum": importedDrawingObjectUpdate.DrawingObjectUpdate.RelativeVerticalPositionEnum,
     "DrawingObjectUpdate.WrapTypeEnum": importedDrawingObjectUpdate.DrawingObjectUpdate.WrapTypeEnum,
+    "FieldOptions.FieldIndexFormatEnum": importedFieldOptions.FieldOptions.FieldIndexFormatEnum,
+    "FieldOptions.FieldUpdateCultureSourceEnum": importedFieldOptions.FieldOptions.FieldUpdateCultureSourceEnum,
     "Font.StyleIdentifierEnum": importedFont.Font.StyleIdentifierEnum,
     "Font.TextEffectEnum": importedFont.Font.TextEffectEnum,
     "Font.UnderlineEnum": importedFont.Font.UnderlineEnum,
@@ -692,6 +698,7 @@ const typeMap = {
     FieldLink: importedFieldLink.FieldLink,
     FieldNames: importedFieldNames.FieldNames,
     FieldNamesResponse: importedFieldNamesResponse.FieldNamesResponse,
+    FieldOptions: importedFieldOptions.FieldOptions,
     FieldResponse: importedFieldResponse.FieldResponse,
     FieldsResponse: importedFieldsResponse.FieldsResponse,
     FieldUpdate: importedFieldUpdate.FieldUpdate,
@@ -866,6 +873,7 @@ const typeMap = {
     TiffSaveOptionsData: importedTiffSaveOptionsData.TiffSaveOptionsData,
     TimeZoneInfoData: importedTimeZoneInfoData.TimeZoneInfoData,
     TxtSaveOptionsBaseData: importedTxtSaveOptionsBaseData.TxtSaveOptionsBaseData,
+    UserInformation: importedUserInformation.UserInformation,
     WatermarkText: importedWatermarkText.WatermarkText,
     WordMLSaveOptionsData: importedWordMLSaveOptionsData.WordMLSaveOptionsData,
     WordsApiErrorResponse: importedWordsApiErrorResponse.WordsApiErrorResponse,
@@ -9136,6 +9144,11 @@ export class ExecuteMailMergeRequest implements RequestInterface {
     public data: string;
 
     /**
+     * Mail merge options.
+     */
+    public options: importedFieldOptions.FieldOptions;
+
+    /**
      * Original document folder.
      */
     public folder: string;
@@ -9213,6 +9226,9 @@ export class ExecuteMailMergeRequest implements RequestInterface {
         if (this.data !== undefined) {
             formParams.Data = ObjectSerializer.serialize(this.data, "string");
         }
+        if (this.options !== undefined) {
+            formParams.Options = JSON.stringify(this.options);
+        }
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -9255,6 +9271,11 @@ export class ExecuteMailMergeOnlineRequest implements RequestInterface {
      * File with mailmerge data.
      */
     public data: Readable;
+
+    /**
+     * Mail merge options.
+     */
+    public options: importedFieldOptions.FieldOptions;
 
     /**
      * The flag indicating whether to execute Mail Merge operation with regions.
@@ -9309,6 +9330,9 @@ export class ExecuteMailMergeOnlineRequest implements RequestInterface {
         }
         if (this.data !== undefined) {
             formParams.Data = this.data;
+        }
+        if (this.options !== undefined) {
+            formParams.Options = JSON.stringify(this.options);
         }
 
         const requestOptions: request.Options = {

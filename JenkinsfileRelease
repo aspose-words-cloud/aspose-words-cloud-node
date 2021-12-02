@@ -76,6 +76,26 @@ node('words-linux') {
 						}
 					}
 				}
+                
+				gitlabCommitStatus("save health check branch") {
+                    sh "git stash"
+                    
+                    sh "git config user.email 'jenkins.aspose@gmail.com'"
+                    sh "git config user.name 'jenkins'"
+                    
+                    withCredentials([usernamePassword(credentialsId: '361885ba-9425-4230-950e-0af201d90547', passwordVariable: 'gitPass', usernameVariable: 'gitUsername')]) {
+                        sh "git push -d https://$gitUsername:$gitPass@git.auckland.dynabic.com/words-cloud/words-cloud-node.git health_check"
+                    }
+                    sh "git branch -D health_check"
+                    
+                    sh "git checkout -b health_check"
+                    sh "git stash pop"
+                    sh 'git commit -am "Create health check branch" || exit 0'
+			
+                    withCredentials([usernamePassword(credentialsId: '361885ba-9425-4230-950e-0af201d90547', passwordVariable: 'gitPass', usernameVariable: 'gitUsername')]) {
+                        sh "git push -u https://$gitUsername:$gitPass@git.auckland.dynabic.com/words-cloud/words-cloud-node.git health_check"
+                    }
+                }
 			}
 		}			                
     } finally {                       

@@ -76,6 +76,12 @@ node('words-linux') {
 						}
 					}
 				}
+                
+				gitlabCommitStatus("audit security") {
+					stage('audit security'){												
+						sh "npm audit --audit-level=moderate"
+                    }
+                }
 			}
 		}			                
     } finally {                       

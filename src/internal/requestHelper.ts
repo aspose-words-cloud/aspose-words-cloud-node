@@ -31,6 +31,7 @@ import requestDebug = require("request-debug");
 import RSA = require('node-rsa');
 import { Configuration } from "./configuration";
 import { ObjectSerializer } from "./objectSerializer";
+import { config } from "chai";
 
 /**
  * Get boundary for IncomingHttpHeaders
@@ -137,6 +138,8 @@ async function invokeApiMethodInternal(requestOptions: request.OptionsWithUri, c
     if (!requestOptions.headers) {
         requestOptions.headers = {};
     }
+
+    requestOptions.timeout = 1000 * confguration.timeout;
 
     requestOptions.headers["x-aspose-client"] = "nodejs sdk";
     requestOptions.headers["x-aspose-client-version"] = "21.11";

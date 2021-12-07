@@ -57,6 +57,11 @@ export class Configuration {
      */
     public debugMode: boolean;
 
+    /**
+     * Timeout in seconds. Default value is 100 seconds.
+     */
+    public timeout: number = 100;
+
     constructor(clientId: string, clientSecret: string, baseUrl?: string, debugMode?: boolean) {
         if (baseUrl) {
             this.baseUrl = baseUrl;

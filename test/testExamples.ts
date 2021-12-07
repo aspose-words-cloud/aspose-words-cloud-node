@@ -50,7 +50,7 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
-            const fileName  = "test_doc.docx";
+            const fileName = "test_doc.docx";
 
             // Upload original document to cloud storage.
             const myVar1 = fs.createReadStream(documentsDir + fileName);
@@ -83,7 +83,7 @@ describe("examples", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const documentsDir = './ExamplesData/';
-            const fileName  = "test_doc.docx";
+            const fileName = "test_doc.docx";
 
             // Calls AcceptAllRevisionsOnline method for document in cloud.
             const requestDocument = fs.createReadStream(documentsDir + fileName);

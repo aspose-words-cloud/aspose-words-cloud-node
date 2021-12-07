@@ -29,5 +29,6 @@ export enum ReportBuildOptions {
     None = 'None' as any,
     AllowMissingMembers = 'AllowMissingMembers' as any,
     RemoveEmptyParagraphs = 'RemoveEmptyParagraphs' as any,
-    InlineErrorMessages = 'InlineErrorMessages' as any
+    InlineErrorMessages = 'InlineErrorMessages' as any,
+    UseLegacyHeaderFooterVisiting = 'UseLegacyHeaderFooterVisiting' as any
 }

@@ -9144,7 +9144,7 @@ export class ExecuteMailMergeRequest implements RequestInterface {
     public data: string;
 
     /**
-     * Mail merge options.
+     * Field options.
      */
     public options: importedFieldOptions.FieldOptions;
 
@@ -9273,7 +9273,7 @@ export class ExecuteMailMergeOnlineRequest implements RequestInterface {
     public data: Readable;
 
     /**
-     * Mail merge options.
+     * Field options.
      */
     public options: importedFieldOptions.FieldOptions;
 

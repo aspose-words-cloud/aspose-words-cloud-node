@@ -1,6 +1,6 @@
 /*
  * --------------------------------------------------------------------------------
- * <copyright company="Aspose" file="reportBuildOptions.ts">
+ * <copyright company="Aspose" file="infoAdditionalItem.ts">
  *   Copyright (c) 2021 Aspose.Words for Cloud
  * </copyright>
  * <summary>
@@ -25,10 +25,50 @@
  * --------------------------------------------------------------------------------
  */
 
-export enum ReportBuildOptions {
-    None = 'None' as any,
-    AllowMissingMembers = 'AllowMissingMembers' as any,
-    RemoveEmptyParagraphs = 'RemoveEmptyParagraphs' as any,
-    InlineErrorMessages = 'InlineErrorMessages' as any,
-    UseLegacyHeaderFooterVisiting = 'UseLegacyHeaderFooterVisiting' as any
+import { AttributeInfo } from '../internal/attributeInfo';
+
+export const importsMapInfoAdditionalItem = {
+};
+
+/**
+ * Info additional item.
+ */
+export class InfoAdditionalItem {
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<AttributeInfo> = [
+        {
+            name: "key",
+            baseName: "Key",
+            type: "string",
+        },
+        {
+            name: "value",
+            baseName: "Value",
+            type: "string",
+        }
+    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return InfoAdditionalItem.attributeTypeMap;
+    }
+
+    /**
+     * Gets or sets Key.
+     */
+    public key: string;
+
+    /**
+     * Gets or sets Value.
+     */
+    public value: string;
+
+    public constructor(init?: Partial< InfoAdditionalItem >) {
+        Object.assign(this, init);
+    }
 }
+

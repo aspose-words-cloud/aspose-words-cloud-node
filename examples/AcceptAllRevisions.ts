@@ -3,7 +3,7 @@ import * as fs from "fs";
 const clientId = "####-####-####-####-####";
 const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
-const fileName  = "test_doc.docx";
+const fileName = "test_doc.docx";
 
 // Upload original document to cloud storage.
 const myVar1 = fs.createReadStream(fileName);

@@ -1,6 +1,6 @@
 /*
  * --------------------------------------------------------------------------------
- * <copyright company="Aspose" file="reportBuildOptions.ts">
+ * <copyright company="Aspose" file="infoTests.ts">
  *   Copyright (c) 2021 Aspose.Words for Cloud
  * </copyright>
  * <summary>
@@ -25,10 +25,30 @@
  * --------------------------------------------------------------------------------
  */
 
-export enum ReportBuildOptions {
-    None = 'None' as any,
-    AllowMissingMembers = 'AllowMissingMembers' as any,
-    RemoveEmptyParagraphs = 'RemoveEmptyParagraphs' as any,
-    InlineErrorMessages = 'InlineErrorMessages' as any,
-    UseLegacyHeaderFooterVisiting = 'UseLegacyHeaderFooterVisiting' as any
-}
+import { expect } from "chai";
+import "mocha";
+
+import * as fs from "fs";
+import * as model from "../../src/model/model";
+import * as BaseTest from "../baseTest";
+
+// Example of how to work api info.
+describe("info", () => {
+    expect(fs);
+    // Test for getting api info.
+    describe("getInfo test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.GetInfoRequest({
+            });
+
+            // Act
+            return wordsApi.getInfo(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+            });
+
+       });
+    });
+});

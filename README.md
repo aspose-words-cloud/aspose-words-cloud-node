@@ -16,6 +16,12 @@ Feel free to explore the [Developer's Guide](https://docs.aspose.cloud/display/w
 - Add & remove watermarks and protection.
 - Read & write access to Document Object Model.
 
+## Enhancements in Version 21.12
+
+- Added FieldOptions parameter to mail merge operations
+- Added timeout parameter to api configuration
+
+
 ## Enhancements in Version 21.11
 
 

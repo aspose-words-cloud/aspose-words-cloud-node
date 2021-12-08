@@ -98,6 +98,7 @@ import * as importedFieldInsert from './fieldInsert';
 import * as importedFieldLink from './fieldLink';
 import * as importedFieldNames from './fieldNames';
 import * as importedFieldNamesResponse from './fieldNamesResponse';
+import * as importedFieldOptions from './fieldOptions';
 import * as importedFieldResponse from './fieldResponse';
 import * as importedFieldsResponse from './fieldsResponse';
 import * as importedFieldUpdate from './fieldUpdate';
@@ -138,6 +139,8 @@ import * as importedHyperlinkResponse from './hyperlinkResponse';
 import * as importedHyperlinks from './hyperlinks';
 import * as importedHyperlinksResponse from './hyperlinksResponse';
 import * as importedImageSaveOptionsData from './imageSaveOptionsData';
+import * as importedInfoAdditionalItem from './infoAdditionalItem';
+import * as importedInfoResponse from './infoResponse';
 import * as importedJpegSaveOptionsData from './jpegSaveOptionsData';
 import * as importedJsonDataLoadOptions from './jsonDataLoadOptions';
 import * as importedLink from './link';
@@ -270,6 +273,7 @@ import * as importedTextSaveOptionsData from './textSaveOptionsData';
 import * as importedTiffSaveOptionsData from './tiffSaveOptionsData';
 import * as importedTimeZoneInfoData from './timeZoneInfoData';
 import * as importedTxtSaveOptionsBaseData from './txtSaveOptionsBaseData';
+import * as importedUserInformation from './userInformation';
 import * as importedWatermarkText from './watermarkText';
 import * as importedWordMLSaveOptionsData from './wordMLSaveOptionsData';
 import * as importedWordsApiErrorResponse from './wordsApiErrorResponse';
@@ -347,6 +351,7 @@ export * from './fieldInsert';
 export * from './fieldLink';
 export * from './fieldNames';
 export * from './fieldNamesResponse';
+export * from './fieldOptions';
 export * from './fieldResponse';
 export * from './fieldsResponse';
 export * from './fieldUpdate';
@@ -387,6 +392,8 @@ export * from './hyperlinkResponse';
 export * from './hyperlinks';
 export * from './hyperlinksResponse';
 export * from './imageSaveOptionsData';
+export * from './infoAdditionalItem';
+export * from './infoResponse';
 export * from './jpegSaveOptionsData';
 export * from './jsonDataLoadOptions';
 export * from './link';
@@ -519,6 +526,7 @@ export * from './textSaveOptionsData';
 export * from './tiffSaveOptionsData';
 export * from './timeZoneInfoData';
 export * from './txtSaveOptionsBaseData';
+export * from './userInformation';
 export * from './watermarkText';
 export * from './wordMLSaveOptionsData';
 export * from './wordsApiErrorResponse';
@@ -559,6 +567,8 @@ const enumsMap = {
     "DrawingObjectUpdate.RelativeHorizontalPositionEnum": importedDrawingObjectUpdate.DrawingObjectUpdate.RelativeHorizontalPositionEnum,
     "DrawingObjectUpdate.RelativeVerticalPositionEnum": importedDrawingObjectUpdate.DrawingObjectUpdate.RelativeVerticalPositionEnum,
     "DrawingObjectUpdate.WrapTypeEnum": importedDrawingObjectUpdate.DrawingObjectUpdate.WrapTypeEnum,
+    "FieldOptions.FieldIndexFormatEnum": importedFieldOptions.FieldOptions.FieldIndexFormatEnum,
+    "FieldOptions.FieldUpdateCultureSourceEnum": importedFieldOptions.FieldOptions.FieldUpdateCultureSourceEnum,
     "Font.StyleIdentifierEnum": importedFont.Font.StyleIdentifierEnum,
     "Font.TextEffectEnum": importedFont.Font.TextEffectEnum,
     "Font.UnderlineEnum": importedFont.Font.UnderlineEnum,
@@ -688,6 +698,7 @@ const typeMap = {
     FieldLink: importedFieldLink.FieldLink,
     FieldNames: importedFieldNames.FieldNames,
     FieldNamesResponse: importedFieldNamesResponse.FieldNamesResponse,
+    FieldOptions: importedFieldOptions.FieldOptions,
     FieldResponse: importedFieldResponse.FieldResponse,
     FieldsResponse: importedFieldsResponse.FieldsResponse,
     FieldUpdate: importedFieldUpdate.FieldUpdate,
@@ -728,6 +739,8 @@ const typeMap = {
     Hyperlinks: importedHyperlinks.Hyperlinks,
     HyperlinksResponse: importedHyperlinksResponse.HyperlinksResponse,
     ImageSaveOptionsData: importedImageSaveOptionsData.ImageSaveOptionsData,
+    InfoAdditionalItem: importedInfoAdditionalItem.InfoAdditionalItem,
+    InfoResponse: importedInfoResponse.InfoResponse,
     JpegSaveOptionsData: importedJpegSaveOptionsData.JpegSaveOptionsData,
     JsonDataLoadOptions: importedJsonDataLoadOptions.JsonDataLoadOptions,
     Link: importedLink.Link,
@@ -860,6 +873,7 @@ const typeMap = {
     TiffSaveOptionsData: importedTiffSaveOptionsData.TiffSaveOptionsData,
     TimeZoneInfoData: importedTimeZoneInfoData.TimeZoneInfoData,
     TxtSaveOptionsBaseData: importedTxtSaveOptionsBaseData.TxtSaveOptionsBaseData,
+    UserInformation: importedUserInformation.UserInformation,
     WatermarkText: importedWatermarkText.WatermarkText,
     WordMLSaveOptionsData: importedWordMLSaveOptionsData.WordMLSaveOptionsData,
     WordsApiErrorResponse: importedWordsApiErrorResponse.WordsApiErrorResponse,
@@ -9130,6 +9144,11 @@ export class ExecuteMailMergeRequest implements RequestInterface {
     public data: string;
 
     /**
+     * Field options.
+     */
+    public options: importedFieldOptions.FieldOptions;
+
+    /**
      * Original document folder.
      */
     public folder: string;
@@ -9207,6 +9226,9 @@ export class ExecuteMailMergeRequest implements RequestInterface {
         if (this.data !== undefined) {
             formParams.Data = ObjectSerializer.serialize(this.data, "string");
         }
+        if (this.options !== undefined) {
+            formParams.Options = JSON.stringify(this.options);
+        }
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -9249,6 +9271,11 @@ export class ExecuteMailMergeOnlineRequest implements RequestInterface {
      * File with mailmerge data.
      */
     public data: Readable;
+
+    /**
+     * Field options.
+     */
+    public options: importedFieldOptions.FieldOptions;
 
     /**
      * The flag indicating whether to execute Mail Merge operation with regions.
@@ -9303,6 +9330,9 @@ export class ExecuteMailMergeOnlineRequest implements RequestInterface {
         }
         if (this.data !== undefined) {
             formParams.Data = this.data;
+        }
+        if (this.options !== undefined) {
+            formParams.Options = JSON.stringify(this.options);
         }
 
         const requestOptions: request.Options = {
@@ -14602,6 +14632,46 @@ export class GetHeaderFootersOnlineRequest implements RequestInterface {
 	 */
 	createResponse(_response: Buffer, _boundary?: string): any {
         return ObjectSerializer.deserialize(_response, "HeaderFootersResponse");
+	}
+}
+
+/**
+ * Request model for GetInfo operation.
+ * Returns application info.
+ */
+export class GetInfoRequest implements RequestInterface {
+
+    public constructor(init?: Partial< GetInfoRequest >) {
+        Object.assign(this, init);
+    }
+
+
+	/**
+	 * create the requst options for this request
+	 * @param configuration a configuration for the request
+	 * @param _key a RSA key 
+	 */
+	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+        const localVarPath = configuration.getApiBaseUrl() + "/words/info"
+            .replace("//", "/");
+        const queryParameters: any = {};
+
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+
+        return requestOptions;
+    }
+
+	/**
+	 * create response from string
+	 */
+	createResponse(_response: Buffer, _boundary?: string): any {
+        return ObjectSerializer.deserialize(_response, "InfoResponse");
 	}
 }
 

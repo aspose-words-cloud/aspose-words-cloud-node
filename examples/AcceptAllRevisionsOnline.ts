@@ -1,7 +1,7 @@
 const clientId = "####-####-####-####-####";
 const secret = "##################";
 const wordsApi = new WordsApi(clientId, secret);
-const fileName  = "test_doc.docx";
+const fileName = "test_doc.docx";
 
 // Calls AcceptAllRevisionsOnline method for document in cloud.
 const requestDocument = fs.createReadStream(fileName);

@@ -1,6 +1,6 @@
 /*
  * --------------------------------------------------------------------------------
- * <copyright company="Aspose" file="reportBuildOptions.ts">
+ * <copyright company="Aspose" file="userInformation.ts">
  *   Copyright (c) 2021 Aspose.Words for Cloud
  * </copyright>
  * <summary>
@@ -25,10 +25,60 @@
  * --------------------------------------------------------------------------------
  */
 
-export enum ReportBuildOptions {
-    None = 'None' as any,
-    AllowMissingMembers = 'AllowMissingMembers' as any,
-    RemoveEmptyParagraphs = 'RemoveEmptyParagraphs' as any,
-    InlineErrorMessages = 'InlineErrorMessages' as any,
-    UseLegacyHeaderFooterVisiting = 'UseLegacyHeaderFooterVisiting' as any
+import { AttributeInfo } from '../internal/attributeInfo';
+
+export const importsMapUserInformation = {
+};
+
+/**
+ * DTO for user information.
+ */
+export class UserInformation {
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<AttributeInfo> = [
+        {
+            name: "address",
+            baseName: "Address",
+            type: "string",
+        },
+        {
+            name: "initials",
+            baseName: "Initials",
+            type: "string",
+        },
+        {
+            name: "name",
+            baseName: "Name",
+            type: "string",
+        }
+    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return UserInformation.attributeTypeMap;
+    }
+
+    /**
+     * Gets or sets user address.
+     */
+    public address: string;
+
+    /**
+     * Gets or sets user initials.
+     */
+    public initials: string;
+
+    /**
+     * Gets or sets user name.
+     */
+    public name: string;
+
+    public constructor(init?: Partial< UserInformation >) {
+        Object.assign(this, init);
+    }
 }
+

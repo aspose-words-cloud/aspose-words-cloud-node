@@ -49,6 +49,7 @@ def runtests(dockerImageVersion)
                                 sh "rm -rf src"
                                 sh "find test -type f -name \"*.ts\" -exec sed -i 's+\".*/src/.*\"+\"asposewordscloud\"+g' {} +"
                                 sh "find bdd -type f -name \"*.ts\" -exec sed -i 's+\".*/src/.*\"+\"asposewordscloud\"+g' {} +"
+                                sh "npm install asposewordscloud" 
                             }
                         }
                     }

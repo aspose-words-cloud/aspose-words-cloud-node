@@ -6,11 +6,13 @@ properties([
 			[$class: 'StringParameterDefinition', name: 'apiUrl', defaultValue: 'https://api-qa.aspose.cloud', description: 'api url'],
             [$class: 'BooleanParameterDefinition', name: 'ignoreCiSkip', defaultValue: false, description: 'ignore CI Skip'],
             [$class: 'StringParameterDefinition', name: 'credentialsId', defaultValue: '6839cbe8-39fa-40c0-86ce-90706f0bae5d', description: 'credentials id'],
+            [$class: 'BooleanParameterDefinition', name: 'packageTesting', defaultValue: false, description: 'Testing package from repository without local sources. Used for prodhealthcheck'],
 		]
 	]
 ])
 
 def needToBuild = false
+def packageTesting = false
 
 def runtests(dockerImageVersion)
 {
@@ -23,7 +25,8 @@ def runtests(dockerImageVersion)
                     sh 'git show -s HEAD > gitMessage'
                     def commitMessage = readFile('gitMessage').trim()
                     echo commitMessage
-                    needToBuild = params.ignoreCiSkip || !commitMessage.contains('[ci skip]')               
+                    needToBuild = params.ignoreCiSkip || !commitMessage.contains('[ci skip]')
+                    packageTesting = params.packageTesting                    
                     sh 'git clean -fdx'
                     
                     def apiUrl = params.apiUrl
@@ -38,6 +41,18 @@ def runtests(dockerImageVersion)
             
             if (needToBuild) {
                 docker.image('node:' + dockerImageVersion).inside{
+                    if (packageTesting) {
+                        gitlabCommitStatus("remove sources and redefine referencies") {
+                            stage('remove sources and redefine referencies'){
+                                sh "npm uninstall asposewordscloud"
+                                sh "sed -i 's/asposewordscloud/asposewordscloudtest/g' package.json"
+                                sh "rm -rf src"
+                                sh "find test -type f -name \"*.ts\" -exec sed -i 's+\".*/src/.*\"+\"asposewordscloud\"+g' {} +"
+                                sh "find bdd -type f -name \"*.ts\" -exec sed -i 's+\".*/src/.*\"+\"asposewordscloud\"+g' {} +"
+                            }
+                        }
+                    }
+                
                     gitlabCommitStatus("build") {
                         stage('build'){
                             withEnv([

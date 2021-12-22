@@ -66,6 +66,11 @@ export class FieldOptions {
             type: "FieldOptions.FieldIndexFormatEnum",
         },
         {
+            name: "fieldUpdateCultureName",
+            baseName: "FieldUpdateCultureName",
+            type: "string",
+        },
+        {
             name: "fieldUpdateCultureSource",
             baseName: "FieldUpdateCultureSource",
             type: "FieldOptions.FieldUpdateCultureSourceEnum",
@@ -135,6 +140,12 @@ export class FieldOptions {
     public fieldIndexFormat: FieldOptions.FieldIndexFormatEnum;
 
     /**
+     * Gets or sets Field Update Culture Name.
+     * It is used for all fields if FieldUpdateCultureSource is FieldCode.
+     */
+    public fieldUpdateCultureName: string;
+
+    /**
      * Gets or sets Field Update Culture Source.
      */
     public fieldUpdateCultureSource: FieldOptions.FieldUpdateCultureSourceEnum;
@@ -156,6 +167,7 @@ export class FieldOptions {
 
     /**
      * Gets or sets PreProcess Culture Name.
+     * It is a culture code for DOC fields.
      */
     public preProcessCultureName: string;
 

@@ -1,7 +1,7 @@
 /*
  * --------------------------------------------------------------------------------
  * <copyright company="Aspose" file="documentEntry.ts">
- *   Copyright (c) 2021 Aspose.Words for Cloud
+ *   Copyright (c) 2022 Aspose.Words for Cloud
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -47,6 +47,11 @@ export class DocumentEntry {
             name: "importFormatMode",
             baseName: "ImportFormatMode",
             type: "string",
+        },
+        {
+            name: "password",
+            baseName: "Password",
+            type: "string",
         }
     ];
 
@@ -66,6 +71,11 @@ export class DocumentEntry {
      * Gets or sets the option that controls formatting will be used: appended or destination document. Can be KeepSourceFormatting or UseDestinationStyles.
      */
     public importFormatMode: string;
+
+    /**
+     * Gets or sets document password encrypted on API public key. The default value is null (the document has no password).
+     */
+    public password: string;
 
     public constructor(init?: Partial< DocumentEntry >) {
         Object.assign(this, init);

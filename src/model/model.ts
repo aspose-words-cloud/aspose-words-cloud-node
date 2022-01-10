@@ -1,7 +1,7 @@
 /*
  * --------------------------------------------------------------------------------
  * <copyright company="Aspose" file="model.ts">
- *   Copyright (c) 2021 Aspose.Words for Cloud
+ *   Copyright (c) 2022 Aspose.Words for Cloud
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -943,9 +943,14 @@ export class AcceptAllRevisionsRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -976,6 +981,7 @@ export class AcceptAllRevisionsRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
 
         const requestOptions: request.Options = {
@@ -1018,9 +1024,14 @@ export class AcceptAllRevisionsOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -1049,6 +1060,7 @@ export class AcceptAllRevisionsOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
@@ -1119,9 +1131,14 @@ export class AppendDocumentRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -1172,6 +1189,7 @@ export class AppendDocumentRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -1222,9 +1240,14 @@ export class AppendDocumentOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -1273,6 +1296,7 @@ export class AppendDocumentOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -1353,9 +1377,14 @@ export class ApplyStyleToDocumentElementRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -1417,6 +1446,7 @@ export class ApplyStyleToDocumentElementRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -1472,9 +1502,14 @@ export class ApplyStyleToDocumentElementOnlineRequest implements RequestInterfac
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -1534,6 +1569,7 @@ export class ApplyStyleToDocumentElementOnlineRequest implements RequestInterfac
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -1614,9 +1650,14 @@ export class BuildReportRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * The filename of the output document. If this parameter is omitted, the result will be saved with autogenerated name.
@@ -1668,6 +1709,7 @@ export class BuildReportRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         if (this.data !== undefined) {
             formParams.Data = ObjectSerializer.serialize(this.data, "string");
@@ -1893,9 +1935,14 @@ export class ClassifyDocumentRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * The number of the best classes to return.
@@ -1931,6 +1978,7 @@ export class ClassifyDocumentRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "bestClassesCount", this.bestClassesCount, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "taxonomy", this.taxonomy, _key);
 
@@ -1974,9 +2022,14 @@ export class ClassifyDocumentOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * The number of the best classes to return.
@@ -2010,6 +2063,7 @@ export class ClassifyDocumentOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "bestClassesCount", this.bestClassesCount, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "taxonomy", this.taxonomy, _key);
         if (this.document !== undefined) {
@@ -2074,14 +2128,24 @@ export class CompareDocumentRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
+
+    /**
+     * encrypted password for the second document.
+     */
+    public encryptedPassword2: string;
 
 	/**
 	 * create the requst options for this request
@@ -2117,7 +2181,9 @@ export class CompareDocumentRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword2", this.encryptedPassword2, _key);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -2170,14 +2236,24 @@ export class CompareDocumentOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
+
+    /**
+     * encrypted password for the second document.
+     */
+    public encryptedPassword2: string;
 
 	/**
 	 * create the requst options for this request
@@ -2211,7 +2287,9 @@ export class CompareDocumentOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword2", this.encryptedPassword2, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -2550,9 +2628,14 @@ export class CopyStyleRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -2603,6 +2686,7 @@ export class CopyStyleRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -2653,9 +2737,14 @@ export class CopyStyleOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -2704,6 +2793,7 @@ export class CopyStyleOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -2902,9 +2992,14 @@ export class CreateOrUpdateDocumentPropertyRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -2966,6 +3061,7 @@ export class CreateOrUpdateDocumentPropertyRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -3021,9 +3117,14 @@ export class CreateOrUpdateDocumentPropertyOnlineRequest implements RequestInter
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -3083,6 +3184,7 @@ export class CreateOrUpdateDocumentPropertyOnlineRequest implements RequestInter
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -3163,9 +3265,14 @@ export class DeleteAllParagraphTabStopsRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -3208,6 +3315,7 @@ export class DeleteAllParagraphTabStopsRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
 
         const requestOptions: request.Options = {
@@ -3260,9 +3368,14 @@ export class DeleteAllParagraphTabStopsOnlineRequest implements RequestInterface
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -3303,6 +3416,7 @@ export class DeleteAllParagraphTabStopsOnlineRequest implements RequestInterface
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
@@ -3378,9 +3492,14 @@ export class DeleteBorderRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -3433,6 +3552,7 @@ export class DeleteBorderRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -3487,9 +3607,14 @@ export class DeleteBorderOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -3540,6 +3665,7 @@ export class DeleteBorderOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -3612,9 +3738,14 @@ export class DeleteBordersRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -3656,6 +3787,7 @@ export class DeleteBordersRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -3705,9 +3837,14 @@ export class DeleteBordersOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -3747,6 +3884,7 @@ export class DeleteBordersOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -3819,9 +3957,14 @@ export class DeleteCommentRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -3873,6 +4016,7 @@ export class DeleteCommentRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -3922,9 +4066,14 @@ export class DeleteCommentOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -3974,6 +4123,7 @@ export class DeleteCommentOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -4034,9 +4184,14 @@ export class DeleteCommentsRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -4077,6 +4232,7 @@ export class DeleteCommentsRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -4121,9 +4277,14 @@ export class DeleteCommentsOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -4162,6 +4323,7 @@ export class DeleteCommentsOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -4227,9 +4389,14 @@ export class DeleteCustomXmlPartRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -4281,6 +4448,7 @@ export class DeleteCustomXmlPartRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -4330,9 +4498,14 @@ export class DeleteCustomXmlPartOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -4382,6 +4555,7 @@ export class DeleteCustomXmlPartOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -4442,9 +4616,14 @@ export class DeleteCustomXmlPartsRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -4485,6 +4664,7 @@ export class DeleteCustomXmlPartsRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -4529,9 +4709,14 @@ export class DeleteCustomXmlPartsOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -4570,6 +4755,7 @@ export class DeleteCustomXmlPartsOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -4635,9 +4821,14 @@ export class DeleteDocumentPropertyRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -4689,6 +4880,7 @@ export class DeleteDocumentPropertyRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -4738,9 +4930,14 @@ export class DeleteDocumentPropertyOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -4790,6 +4987,7 @@ export class DeleteDocumentPropertyOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -4860,9 +5058,14 @@ export class DeleteDrawingObjectRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -4915,6 +5118,7 @@ export class DeleteDrawingObjectRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -4969,9 +5173,14 @@ export class DeleteDrawingObjectOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -5022,6 +5231,7 @@ export class DeleteDrawingObjectOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -5092,9 +5302,14 @@ export class DeleteFieldRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -5147,6 +5362,7 @@ export class DeleteFieldRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -5201,9 +5417,14 @@ export class DeleteFieldOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -5254,6 +5475,7 @@ export class DeleteFieldOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -5319,9 +5541,14 @@ export class DeleteFieldsRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -5363,6 +5590,7 @@ export class DeleteFieldsRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -5412,9 +5640,14 @@ export class DeleteFieldsOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -5454,6 +5687,7 @@ export class DeleteFieldsOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -5658,9 +5892,14 @@ export class DeleteFootnoteRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -5713,6 +5952,7 @@ export class DeleteFootnoteRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -5767,9 +6007,14 @@ export class DeleteFootnoteOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -5820,6 +6065,7 @@ export class DeleteFootnoteOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -5890,9 +6136,14 @@ export class DeleteFormFieldRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -5945,6 +6196,7 @@ export class DeleteFormFieldRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -5999,9 +6251,14 @@ export class DeleteFormFieldOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -6052,6 +6309,7 @@ export class DeleteFormFieldOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -6122,9 +6380,14 @@ export class DeleteHeaderFooterRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -6182,6 +6445,7 @@ export class DeleteHeaderFooterRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -6236,9 +6500,14 @@ export class DeleteHeaderFooterOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -6294,6 +6563,7 @@ export class DeleteHeaderFooterOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -6359,9 +6629,14 @@ export class DeleteHeadersFootersRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -6413,6 +6688,7 @@ export class DeleteHeadersFootersRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -6463,9 +6739,14 @@ export class DeleteHeadersFootersOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -6515,6 +6796,7 @@ export class DeleteHeadersFootersOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -6576,9 +6858,14 @@ export class DeleteMacrosRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -6619,6 +6906,7 @@ export class DeleteMacrosRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -6663,9 +6951,14 @@ export class DeleteMacrosOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -6704,6 +6997,7 @@ export class DeleteMacrosOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -6774,9 +7068,14 @@ export class DeleteOfficeMathObjectRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -6829,6 +7128,7 @@ export class DeleteOfficeMathObjectRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -6883,9 +7183,14 @@ export class DeleteOfficeMathObjectOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -6936,6 +7241,7 @@ export class DeleteOfficeMathObjectOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -7006,9 +7312,14 @@ export class DeleteParagraphRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -7061,6 +7372,7 @@ export class DeleteParagraphRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -7125,9 +7437,14 @@ export class DeleteParagraphListFormatRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -7180,6 +7497,7 @@ export class DeleteParagraphListFormatRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -7234,9 +7552,14 @@ export class DeleteParagraphListFormatOnlineRequest implements RequestInterface 
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -7287,6 +7610,7 @@ export class DeleteParagraphListFormatOnlineRequest implements RequestInterface 
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -7354,9 +7678,14 @@ export class DeleteParagraphOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -7407,6 +7736,7 @@ export class DeleteParagraphOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -7482,9 +7812,14 @@ export class DeleteParagraphTabStopRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -7538,6 +7873,7 @@ export class DeleteParagraphTabStopRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
 
         const requestOptions: request.Options = {
@@ -7595,9 +7931,14 @@ export class DeleteParagraphTabStopOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -7649,6 +7990,7 @@ export class DeleteParagraphTabStopOnlineRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "position", this.position, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
@@ -7724,9 +8066,14 @@ export class DeleteRunRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -7784,6 +8131,7 @@ export class DeleteRunRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -7838,9 +8186,14 @@ export class DeleteRunOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -7896,6 +8249,7 @@ export class DeleteRunOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -7961,9 +8315,14 @@ export class DeleteSectionRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -8015,6 +8374,7 @@ export class DeleteSectionRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -8064,9 +8424,14 @@ export class DeleteSectionOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -8116,6 +8481,7 @@ export class DeleteSectionOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -8186,9 +8552,14 @@ export class DeleteTableRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -8241,6 +8612,7 @@ export class DeleteTableRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -8305,9 +8677,14 @@ export class DeleteTableCellRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -8365,6 +8742,7 @@ export class DeleteTableCellRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -8419,9 +8797,14 @@ export class DeleteTableCellOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -8477,6 +8860,7 @@ export class DeleteTableCellOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -8537,9 +8921,14 @@ export class DeleteTableOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -8590,6 +8979,7 @@ export class DeleteTableOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -8660,9 +9050,14 @@ export class DeleteTableRowRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -8720,6 +9115,7 @@ export class DeleteTableRowRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -8774,9 +9170,14 @@ export class DeleteTableRowOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -8832,6 +9233,7 @@ export class DeleteTableRowOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -8892,9 +9294,14 @@ export class DeleteWatermarkRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -8935,6 +9342,7 @@ export class DeleteWatermarkRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -8979,9 +9387,14 @@ export class DeleteWatermarkOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -9020,6 +9433,7 @@ export class DeleteWatermarkOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -9164,9 +9578,14 @@ export class ExecuteMailMergeRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * The flag indicating whether to execute Mail Merge operation with regions.
@@ -9218,6 +9637,7 @@ export class ExecuteMailMergeRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "withRegions", this.withRegions, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "mailMergeDataFile", this.mailMergeDataFile, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "cleanup", this.cleanup, _key);
@@ -9438,9 +9858,14 @@ export class GetBookmarkByNameRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -9477,6 +9902,7 @@ export class GetBookmarkByNameRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -9523,9 +9949,14 @@ export class GetBookmarkByNameOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -9560,6 +9991,7 @@ export class GetBookmarkByNameOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -9617,9 +10049,14 @@ export class GetBookmarksRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -9645,6 +10082,7 @@ export class GetBookmarksRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -9686,9 +10124,14 @@ export class GetBookmarksOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -9712,6 +10155,7 @@ export class GetBookmarksOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -9779,9 +10223,14 @@ export class GetBorderRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -9819,6 +10268,7 @@ export class GetBorderRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -9870,9 +10320,14 @@ export class GetBorderOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -9908,6 +10363,7 @@ export class GetBorderOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -9970,9 +10426,14 @@ export class GetBordersRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -9999,6 +10460,7 @@ export class GetBordersRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -10045,9 +10507,14 @@ export class GetBordersOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -10072,6 +10539,7 @@ export class GetBordersOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -10134,9 +10602,14 @@ export class GetCommentRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -10173,6 +10646,7 @@ export class GetCommentRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -10219,9 +10693,14 @@ export class GetCommentOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -10256,6 +10735,7 @@ export class GetCommentOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -10313,9 +10793,14 @@ export class GetCommentsRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -10341,6 +10826,7 @@ export class GetCommentsRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -10382,9 +10868,14 @@ export class GetCommentsOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -10408,6 +10899,7 @@ export class GetCommentsOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -10470,9 +10962,14 @@ export class GetCustomXmlPartRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -10509,6 +11006,7 @@ export class GetCustomXmlPartRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -10555,9 +11053,14 @@ export class GetCustomXmlPartOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -10592,6 +11095,7 @@ export class GetCustomXmlPartOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -10649,9 +11153,14 @@ export class GetCustomXmlPartsRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -10677,6 +11186,7 @@ export class GetCustomXmlPartsRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -10718,9 +11228,14 @@ export class GetCustomXmlPartsOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -10744,6 +11259,7 @@ export class GetCustomXmlPartsOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -10801,9 +11317,14 @@ export class GetDocumentRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -10829,6 +11350,7 @@ export class GetDocumentRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -10890,9 +11412,14 @@ export class GetDocumentDrawingObjectByIndexRequest implements RequestInterface 
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -10930,6 +11457,7 @@ export class GetDocumentDrawingObjectByIndexRequest implements RequestInterface 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -10981,9 +11509,14 @@ export class GetDocumentDrawingObjectByIndexOnlineRequest implements RequestInte
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -11019,6 +11552,7 @@ export class GetDocumentDrawingObjectByIndexOnlineRequest implements RequestInte
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -11086,9 +11620,14 @@ export class GetDocumentDrawingObjectImageDataRequest implements RequestInterfac
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -11126,6 +11665,7 @@ export class GetDocumentDrawingObjectImageDataRequest implements RequestInterfac
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -11177,9 +11717,14 @@ export class GetDocumentDrawingObjectImageDataOnlineRequest implements RequestIn
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -11215,6 +11760,7 @@ export class GetDocumentDrawingObjectImageDataOnlineRequest implements RequestIn
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -11282,9 +11828,14 @@ export class GetDocumentDrawingObjectOleDataRequest implements RequestInterface 
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -11322,6 +11873,7 @@ export class GetDocumentDrawingObjectOleDataRequest implements RequestInterface 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -11373,9 +11925,14 @@ export class GetDocumentDrawingObjectOleDataOnlineRequest implements RequestInte
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -11411,6 +11968,7 @@ export class GetDocumentDrawingObjectOleDataOnlineRequest implements RequestInte
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -11473,9 +12031,14 @@ export class GetDocumentDrawingObjectsRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -11502,6 +12065,7 @@ export class GetDocumentDrawingObjectsRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -11548,9 +12112,14 @@ export class GetDocumentDrawingObjectsOnlineRequest implements RequestInterface 
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -11575,6 +12144,7 @@ export class GetDocumentDrawingObjectsOnlineRequest implements RequestInterface 
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -11632,9 +12202,14 @@ export class GetDocumentFieldNamesRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * The flag indicating whether to use non merge fields. If true, result includes "mustache" field names.
@@ -11665,6 +12240,7 @@ export class GetDocumentFieldNamesRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "useNonMergeFields", this.useNonMergeFields, _key);
 
         const requestOptions: request.Options = {
@@ -11707,9 +12283,14 @@ export class GetDocumentFieldNamesOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * The flag indicating whether to use non merge fields. If true, result includes "mustache" field names.
@@ -11738,6 +12319,7 @@ export class GetDocumentFieldNamesOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "useNonMergeFields", this.useNonMergeFields, _key);
         if (this.template !== undefined) {
             formParams.Template = this.template;
@@ -11801,9 +12383,14 @@ export class GetDocumentHyperlinkByIndexRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -11840,6 +12427,7 @@ export class GetDocumentHyperlinkByIndexRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -11886,9 +12474,14 @@ export class GetDocumentHyperlinkByIndexOnlineRequest implements RequestInterfac
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -11923,6 +12516,7 @@ export class GetDocumentHyperlinkByIndexOnlineRequest implements RequestInterfac
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -11980,9 +12574,14 @@ export class GetDocumentHyperlinksRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -12008,6 +12607,7 @@ export class GetDocumentHyperlinksRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -12049,9 +12649,14 @@ export class GetDocumentHyperlinksOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -12075,6 +12680,7 @@ export class GetDocumentHyperlinksOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -12132,9 +12738,14 @@ export class GetDocumentPropertiesRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -12160,6 +12771,7 @@ export class GetDocumentPropertiesRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -12201,9 +12813,14 @@ export class GetDocumentPropertiesOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -12227,6 +12844,7 @@ export class GetDocumentPropertiesOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -12289,9 +12907,14 @@ export class GetDocumentPropertyRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -12328,6 +12951,7 @@ export class GetDocumentPropertyRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -12374,9 +12998,14 @@ export class GetDocumentPropertyOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -12411,6 +13040,7 @@ export class GetDocumentPropertyOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -12468,9 +13098,14 @@ export class GetDocumentProtectionRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -12496,6 +13131,7 @@ export class GetDocumentProtectionRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -12537,9 +13173,14 @@ export class GetDocumentProtectionOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -12563,6 +13204,7 @@ export class GetDocumentProtectionOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -12620,9 +13262,14 @@ export class GetDocumentStatisticsRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * The flag indicating whether to include comments from the WordCount. The default value is "false".
@@ -12663,6 +13310,7 @@ export class GetDocumentStatisticsRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeComments", this.includeComments, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeFootnotes", this.includeFootnotes, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeTextInShapes", this.includeTextInShapes, _key);
@@ -12707,9 +13355,14 @@ export class GetDocumentStatisticsOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * The flag indicating whether to include comments from the WordCount. The default value is "false".
@@ -12748,6 +13401,7 @@ export class GetDocumentStatisticsOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeComments", this.includeComments, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeFootnotes", this.includeFootnotes, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeTextInShapes", this.includeTextInShapes, _key);
@@ -12813,9 +13467,14 @@ export class GetDocumentWithFormatRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * The path to the output document.
@@ -12862,6 +13521,7 @@ export class GetDocumentWithFormatRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", this.outPath, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _key);
 
@@ -12925,9 +13585,14 @@ export class GetFieldRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -12965,6 +13630,7 @@ export class GetFieldRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -13016,9 +13682,14 @@ export class GetFieldOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -13054,6 +13725,7 @@ export class GetFieldOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -13116,9 +13788,14 @@ export class GetFieldsRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -13145,6 +13822,7 @@ export class GetFieldsRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -13191,9 +13869,14 @@ export class GetFieldsOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -13218,6 +13901,7 @@ export class GetFieldsOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -13346,9 +14030,14 @@ export class GetFootnoteRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -13386,6 +14075,7 @@ export class GetFootnoteRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -13437,9 +14127,14 @@ export class GetFootnoteOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -13475,6 +14170,7 @@ export class GetFootnoteOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -13537,9 +14233,14 @@ export class GetFootnotesRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -13566,6 +14267,7 @@ export class GetFootnotesRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -13612,9 +14314,14 @@ export class GetFootnotesOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -13639,6 +14346,7 @@ export class GetFootnotesOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -13706,9 +14414,14 @@ export class GetFormFieldRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -13746,6 +14459,7 @@ export class GetFormFieldRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -13797,9 +14511,14 @@ export class GetFormFieldOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -13835,6 +14554,7 @@ export class GetFormFieldOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -13897,9 +14617,14 @@ export class GetFormFieldsRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -13926,6 +14651,7 @@ export class GetFormFieldsRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -13972,9 +14698,14 @@ export class GetFormFieldsOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -13999,6 +14730,7 @@ export class GetFormFieldsOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -14061,9 +14793,14 @@ export class GetHeaderFooterRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * The list of HeaderFooter types.
@@ -14105,6 +14842,7 @@ export class GetHeaderFooterRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", this.filterByType, _key);
 
         const requestOptions: request.Options = {
@@ -14167,9 +14905,14 @@ export class GetHeaderFooterOfSectionRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * The list of HeaderFooter types.
@@ -14222,6 +14965,7 @@ export class GetHeaderFooterOfSectionRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", this.filterByType, _key);
 
         const requestOptions: request.Options = {
@@ -14274,9 +15018,14 @@ export class GetHeaderFooterOfSectionOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * The list of HeaderFooter types.
@@ -14327,6 +15076,7 @@ export class GetHeaderFooterOfSectionOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", this.filterByType, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
@@ -14380,9 +15130,14 @@ export class GetHeaderFooterOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * The list of HeaderFooter types.
@@ -14422,6 +15177,7 @@ export class GetHeaderFooterOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", this.filterByType, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
@@ -14485,9 +15241,14 @@ export class GetHeaderFootersRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * The list of HeaderFooter types.
@@ -14524,6 +15285,7 @@ export class GetHeaderFootersRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", this.filterByType, _key);
 
         const requestOptions: request.Options = {
@@ -14571,9 +15333,14 @@ export class GetHeaderFootersOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * The list of HeaderFooter types.
@@ -14608,6 +15375,7 @@ export class GetHeaderFootersOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", this.filterByType, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
@@ -14711,9 +15479,14 @@ export class GetListRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -14750,6 +15523,7 @@ export class GetListRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -14796,9 +15570,14 @@ export class GetListOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -14833,6 +15612,7 @@ export class GetListOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -14890,9 +15670,14 @@ export class GetListsRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -14918,6 +15703,7 @@ export class GetListsRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -14959,9 +15745,14 @@ export class GetListsOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -14985,6 +15776,7 @@ export class GetListsOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -15052,9 +15844,14 @@ export class GetOfficeMathObjectRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -15092,6 +15889,7 @@ export class GetOfficeMathObjectRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -15143,9 +15941,14 @@ export class GetOfficeMathObjectOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -15181,6 +15984,7 @@ export class GetOfficeMathObjectOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -15243,9 +16047,14 @@ export class GetOfficeMathObjectsRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -15272,6 +16081,7 @@ export class GetOfficeMathObjectsRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -15318,9 +16128,14 @@ export class GetOfficeMathObjectsOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -15345,6 +16160,7 @@ export class GetOfficeMathObjectsOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -15412,9 +16228,14 @@ export class GetParagraphRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -15452,6 +16273,7 @@ export class GetParagraphRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -15513,9 +16335,14 @@ export class GetParagraphFormatRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -15553,6 +16380,7 @@ export class GetParagraphFormatRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -15604,9 +16432,14 @@ export class GetParagraphFormatOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -15642,6 +16475,7 @@ export class GetParagraphFormatOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -15709,9 +16543,14 @@ export class GetParagraphListFormatRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -15749,6 +16588,7 @@ export class GetParagraphListFormatRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -15800,9 +16640,14 @@ export class GetParagraphListFormatOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -15838,6 +16683,7 @@ export class GetParagraphListFormatOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -15895,9 +16741,14 @@ export class GetParagraphOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -15933,6 +16784,7 @@ export class GetParagraphOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -15995,9 +16847,14 @@ export class GetParagraphsRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -16024,6 +16881,7 @@ export class GetParagraphsRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -16070,9 +16928,14 @@ export class GetParagraphsOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -16097,6 +16960,7 @@ export class GetParagraphsOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -16164,9 +17028,14 @@ export class GetParagraphTabStopsRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -16204,6 +17073,7 @@ export class GetParagraphTabStopsRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -16255,9 +17125,14 @@ export class GetParagraphTabStopsOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -16293,6 +17168,7 @@ export class GetParagraphTabStopsOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -16400,9 +17276,14 @@ export class GetRangeTextRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -16440,6 +17321,7 @@ export class GetRangeTextRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -16491,9 +17373,14 @@ export class GetRangeTextOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -16529,6 +17416,7 @@ export class GetRangeTextOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -16596,9 +17484,14 @@ export class GetRunRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -16641,6 +17534,7 @@ export class GetRunRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -16702,9 +17596,14 @@ export class GetRunFontRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -16747,6 +17646,7 @@ export class GetRunFontRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -16798,9 +17698,14 @@ export class GetRunFontOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -16841,6 +17746,7 @@ export class GetRunFontOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -16898,9 +17804,14 @@ export class GetRunOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -16941,6 +17852,7 @@ export class GetRunOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -17003,9 +17915,14 @@ export class GetRunsRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -17037,6 +17954,7 @@ export class GetRunsRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -17083,9 +18001,14 @@ export class GetRunsOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -17115,6 +18038,7 @@ export class GetRunsOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -17177,9 +18101,14 @@ export class GetSectionRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -17216,6 +18145,7 @@ export class GetSectionRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -17262,9 +18192,14 @@ export class GetSectionOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -17299,6 +18234,7 @@ export class GetSectionOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -17361,9 +18297,14 @@ export class GetSectionPageSetupRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -17400,6 +18341,7 @@ export class GetSectionPageSetupRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -17446,9 +18388,14 @@ export class GetSectionPageSetupOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -17483,6 +18430,7 @@ export class GetSectionPageSetupOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -17540,9 +18488,14 @@ export class GetSectionsRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -17568,6 +18521,7 @@ export class GetSectionsRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -17609,9 +18563,14 @@ export class GetSectionsOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -17635,6 +18594,7 @@ export class GetSectionsOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -17697,9 +18657,14 @@ export class GetStyleRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -17736,6 +18701,7 @@ export class GetStyleRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -17792,9 +18758,14 @@ export class GetStyleFromDocumentElementRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -17831,6 +18802,7 @@ export class GetStyleFromDocumentElementRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -17877,9 +18849,14 @@ export class GetStyleFromDocumentElementOnlineRequest implements RequestInterfac
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -17914,6 +18891,7 @@ export class GetStyleFromDocumentElementOnlineRequest implements RequestInterfac
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -17966,9 +18944,14 @@ export class GetStyleOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -18003,6 +18986,7 @@ export class GetStyleOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -18060,9 +19044,14 @@ export class GetStylesRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -18088,6 +19077,7 @@ export class GetStylesRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -18129,9 +19119,14 @@ export class GetStylesOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -18155,6 +19150,7 @@ export class GetStylesOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -18222,9 +19218,14 @@ export class GetTableRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -18262,6 +19263,7 @@ export class GetTableRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -18323,9 +19325,14 @@ export class GetTableCellRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -18368,6 +19375,7 @@ export class GetTableCellRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -18429,9 +19437,14 @@ export class GetTableCellFormatRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -18474,6 +19487,7 @@ export class GetTableCellFormatRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -18525,9 +19539,14 @@ export class GetTableCellFormatOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -18568,6 +19587,7 @@ export class GetTableCellFormatOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -18625,9 +19645,14 @@ export class GetTableCellOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -18668,6 +19693,7 @@ export class GetTableCellOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -18725,9 +19751,14 @@ export class GetTableOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -18763,6 +19794,7 @@ export class GetTableOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -18830,9 +19862,14 @@ export class GetTablePropertiesRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -18870,6 +19907,7 @@ export class GetTablePropertiesRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -18921,9 +19959,14 @@ export class GetTablePropertiesOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -18959,6 +20002,7 @@ export class GetTablePropertiesOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -19026,9 +20070,14 @@ export class GetTableRowRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -19071,6 +20120,7 @@ export class GetTableRowRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -19132,9 +20182,14 @@ export class GetTableRowFormatRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -19177,6 +20232,7 @@ export class GetTableRowFormatRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -19228,9 +20284,14 @@ export class GetTableRowFormatOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -19271,6 +20332,7 @@ export class GetTableRowFormatOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -19328,9 +20390,14 @@ export class GetTableRowOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -19371,6 +20438,7 @@ export class GetTableRowOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -19433,9 +20501,14 @@ export class GetTablesRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -19462,6 +20535,7 @@ export class GetTablesRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -19508,9 +20582,14 @@ export class GetTablesOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -19535,6 +20614,7 @@ export class GetTablesOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -19597,9 +20677,14 @@ export class InsertCommentRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -19650,6 +20735,7 @@ export class InsertCommentRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -19700,9 +20786,14 @@ export class InsertCommentOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -19751,6 +20842,7 @@ export class InsertCommentOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -19826,9 +20918,14 @@ export class InsertCustomXmlPartRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -19879,6 +20976,7 @@ export class InsertCustomXmlPartRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -19929,9 +21027,14 @@ export class InsertCustomXmlPartOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -19980,6 +21083,7 @@ export class InsertCustomXmlPartOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -20065,9 +21169,14 @@ export class InsertDrawingObjectRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -20130,6 +21239,7 @@ export class InsertDrawingObjectRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -20198,9 +21308,14 @@ export class InsertDrawingObjectOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -20260,6 +21375,7 @@ export class InsertDrawingObjectOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -20343,9 +21459,14 @@ export class InsertFieldRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -20402,6 +21523,7 @@ export class InsertFieldRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -20458,9 +21580,14 @@ export class InsertFieldOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -20515,6 +21642,7 @@ export class InsertFieldOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -20596,9 +21724,14 @@ export class InsertFootnoteRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -20650,6 +21783,7 @@ export class InsertFootnoteRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -20705,9 +21839,14 @@ export class InsertFootnoteOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -20757,6 +21896,7 @@ export class InsertFootnoteOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -20837,9 +21977,14 @@ export class InsertFormFieldRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -20896,6 +22041,7 @@ export class InsertFormFieldRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -20952,9 +22098,14 @@ export class InsertFormFieldOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -21009,6 +22160,7 @@ export class InsertFormFieldOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -21090,9 +22242,14 @@ export class InsertHeaderFooterRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -21149,6 +22306,7 @@ export class InsertHeaderFooterRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -21204,9 +22362,14 @@ export class InsertHeaderFooterOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -21261,6 +22424,7 @@ export class InsertHeaderFooterOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -21336,9 +22500,14 @@ export class InsertListRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -21389,6 +22558,7 @@ export class InsertListRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -21439,9 +22609,14 @@ export class InsertListOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -21490,6 +22665,7 @@ export class InsertListOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -21575,9 +22751,14 @@ export class InsertOrUpdateParagraphTabStopRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -21630,6 +22811,7 @@ export class InsertOrUpdateParagraphTabStopRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
 
         const requestOptions: request.Options = {
@@ -21688,9 +22870,14 @@ export class InsertOrUpdateParagraphTabStopOnlineRequest implements RequestInter
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -21741,6 +22928,7 @@ export class InsertOrUpdateParagraphTabStopOnlineRequest implements RequestInter
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
@@ -21814,9 +23002,14 @@ export class InsertPageNumbersRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -21867,6 +23060,7 @@ export class InsertPageNumbersRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -21917,9 +23111,14 @@ export class InsertPageNumbersOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -21968,6 +23167,7 @@ export class InsertPageNumbersOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -22048,9 +23248,14 @@ export class InsertParagraphRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -22107,6 +23312,7 @@ export class InsertParagraphRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -22163,9 +23369,14 @@ export class InsertParagraphOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -22220,6 +23431,7 @@ export class InsertParagraphOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -22301,9 +23513,14 @@ export class InsertRunRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -22365,6 +23582,7 @@ export class InsertRunRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -22421,9 +23639,14 @@ export class InsertRunOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -22483,6 +23706,7 @@ export class InsertRunOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -22559,9 +23783,14 @@ export class InsertStyleRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -22612,6 +23841,7 @@ export class InsertStyleRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -22662,9 +23892,14 @@ export class InsertStyleOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -22713,6 +23948,7 @@ export class InsertStyleOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -22793,9 +24029,14 @@ export class InsertTableRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -22847,6 +24088,7 @@ export class InsertTableRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -22912,9 +24154,14 @@ export class InsertTableCellRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -22971,6 +24218,7 @@ export class InsertTableCellRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -23026,9 +24274,14 @@ export class InsertTableCellOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -23083,6 +24336,7 @@ export class InsertTableCellOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -23153,9 +24407,14 @@ export class InsertTableOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -23205,6 +24464,7 @@ export class InsertTableOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -23285,9 +24545,14 @@ export class InsertTableRowRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -23344,6 +24609,7 @@ export class InsertTableRowRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -23399,9 +24665,14 @@ export class InsertTableRowOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -23456,6 +24727,7 @@ export class InsertTableRowOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -23531,9 +24803,14 @@ export class InsertWatermarkImageRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -23585,6 +24862,7 @@ export class InsertWatermarkImageRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -23642,9 +24920,14 @@ export class InsertWatermarkImageOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -23703,6 +24986,7 @@ export class InsertWatermarkImageOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -23780,9 +25064,14 @@ export class InsertWatermarkTextRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -23833,6 +25122,7 @@ export class InsertWatermarkTextRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -23883,9 +25173,14 @@ export class InsertWatermarkTextOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -23934,6 +25229,7 @@ export class InsertWatermarkTextOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -24232,9 +25528,14 @@ export class OptimizeDocumentRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -24285,6 +25586,7 @@ export class OptimizeDocumentRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -24335,9 +25637,14 @@ export class OptimizeDocumentOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -24386,6 +25693,7 @@ export class OptimizeDocumentOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -24454,9 +25762,14 @@ export class ProtectDocumentRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -24497,6 +25810,7 @@ export class ProtectDocumentRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
 
         const requestOptions: request.Options = {
@@ -24545,9 +25859,14 @@ export class ProtectDocumentOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -24586,6 +25905,7 @@ export class ProtectDocumentOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
@@ -24654,9 +25974,14 @@ export class RejectAllRevisionsRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -24687,6 +26012,7 @@ export class RejectAllRevisionsRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
 
         const requestOptions: request.Options = {
@@ -24729,9 +26055,14 @@ export class RejectAllRevisionsOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -24760,6 +26091,7 @@ export class RejectAllRevisionsOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
@@ -24835,9 +26167,14 @@ export class RemoveRangeRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -24880,6 +26217,7 @@ export class RemoveRangeRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
 
         const requestOptions: request.Options = {
@@ -24932,9 +26270,14 @@ export class RemoveRangeOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -24975,6 +26318,7 @@ export class RemoveRangeOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
@@ -25055,9 +26399,14 @@ export class RenderDrawingObjectRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -25116,6 +26465,7 @@ export class RenderDrawingObjectRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _key);
 
@@ -25174,9 +26524,14 @@ export class RenderDrawingObjectOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -25233,6 +26588,7 @@ export class RenderDrawingObjectOnlineRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _key);
         if (this.document !== undefined) {
@@ -25307,9 +26663,14 @@ export class RenderMathObjectRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -25368,6 +26729,7 @@ export class RenderMathObjectRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _key);
 
@@ -25426,9 +26788,14 @@ export class RenderMathObjectOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -25485,6 +26852,7 @@ export class RenderMathObjectOnlineRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _key);
         if (this.document !== undefined) {
@@ -25554,9 +26922,14 @@ export class RenderPageRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Folder in filestorage with custom fonts.
@@ -25609,6 +26982,7 @@ export class RenderPageRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _key);
 
         const requestOptions: request.Options = {
@@ -25661,9 +27035,14 @@ export class RenderPageOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Folder in filestorage with custom fonts.
@@ -25714,6 +27093,7 @@ export class RenderPageOnlineRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
@@ -25787,9 +27167,14 @@ export class RenderParagraphRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -25848,6 +27233,7 @@ export class RenderParagraphRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _key);
 
@@ -25906,9 +27292,14 @@ export class RenderParagraphOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -25965,6 +27356,7 @@ export class RenderParagraphOnlineRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _key);
         if (this.document !== undefined) {
@@ -26039,9 +27431,14 @@ export class RenderTableRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -26100,6 +27497,7 @@ export class RenderTableRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _key);
 
@@ -26158,9 +27556,14 @@ export class RenderTableOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -26217,6 +27620,7 @@ export class RenderTableOnlineRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _key);
         if (this.document !== undefined) {
@@ -26281,9 +27685,14 @@ export class ReplaceTextRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -26334,6 +27743,7 @@ export class ReplaceTextRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -26384,9 +27794,14 @@ export class ReplaceTextOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -26435,6 +27850,7 @@ export class ReplaceTextOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -26520,9 +27936,14 @@ export class ReplaceWithTextRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -26575,6 +27996,7 @@ export class ReplaceWithTextRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
 
         const requestOptions: request.Options = {
@@ -26633,9 +28055,14 @@ export class ReplaceWithTextOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -26686,6 +28113,7 @@ export class ReplaceWithTextOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
@@ -26799,9 +28227,14 @@ export class SaveAsRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Folder in filestorage with custom fonts.
@@ -26842,6 +28275,7 @@ export class SaveAsRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _key);
 
         const requestOptions: request.Options = {
@@ -26890,9 +28324,14 @@ export class SaveAsOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Folder in filestorage with custom fonts.
@@ -26931,6 +28370,7 @@ export class SaveAsOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
@@ -27014,9 +28454,14 @@ export class SaveAsRangeRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -27064,6 +28509,7 @@ export class SaveAsRangeRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
 
         const requestOptions: request.Options = {
             method: "POST",
@@ -27121,9 +28567,14 @@ export class SaveAsRangeOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -27169,6 +28620,7 @@ export class SaveAsRangeOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -27241,9 +28693,14 @@ export class SaveAsTiffRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * The flag indicating whether to use antialiasing.
@@ -27369,6 +28826,7 @@ export class SaveAsTiffRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "useAntiAliasing", this.useAntiAliasing, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "useHighQualityRendering", this.useHighQualityRendering, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "imageBrightness", this.imageBrightness, _key);
@@ -27434,9 +28892,14 @@ export class SaveAsTiffOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * The flag indicating whether to use antialiasing.
@@ -27560,6 +29023,7 @@ export class SaveAsTiffOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "useAntiAliasing", this.useAntiAliasing, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "useHighQualityRendering", this.useHighQualityRendering, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "imageBrightness", this.imageBrightness, _key);
@@ -27650,9 +29114,14 @@ export class SearchRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -27684,6 +29153,7 @@ export class SearchRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -27730,9 +29200,14 @@ export class SearchOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
 	/**
 	 * create the requst options for this request
@@ -27762,6 +29237,7 @@ export class SearchOnlineRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "pattern", this.pattern, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -27824,9 +29300,14 @@ export class SplitDocumentRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -27888,6 +29369,7 @@ export class SplitDocumentRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "from", this.from, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "to", this.to, _key);
@@ -27939,9 +29421,14 @@ export class SplitDocumentOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -28001,6 +29488,7 @@ export class SplitDocumentOnlineRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "from", this.from, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "to", this.to, _key);
@@ -28075,9 +29563,14 @@ export class UnprotectDocumentRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -28118,6 +29611,7 @@ export class UnprotectDocumentRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
 
         const requestOptions: request.Options = {
@@ -28166,9 +29660,14 @@ export class UnprotectDocumentOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -28207,6 +29706,7 @@ export class UnprotectDocumentOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
@@ -28285,9 +29785,14 @@ export class UpdateBookmarkRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -28349,6 +29854,7 @@ export class UpdateBookmarkRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -28404,9 +29910,14 @@ export class UpdateBookmarkOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -28466,6 +29977,7 @@ export class UpdateBookmarkOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -28551,9 +30063,14 @@ export class UpdateBorderRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -28616,6 +30133,7 @@ export class UpdateBorderRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -28676,9 +30194,14 @@ export class UpdateBorderOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -28739,6 +30262,7 @@ export class UpdateBorderOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -28819,9 +30343,14 @@ export class UpdateCommentRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -28883,6 +30412,7 @@ export class UpdateCommentRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -28938,9 +30468,14 @@ export class UpdateCommentOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -29000,6 +30535,7 @@ export class UpdateCommentOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -29080,9 +30616,14 @@ export class UpdateCustomXmlPartRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -29144,6 +30685,7 @@ export class UpdateCustomXmlPartRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -29199,9 +30741,14 @@ export class UpdateCustomXmlPartOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -29261,6 +30808,7 @@ export class UpdateCustomXmlPartOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -29351,9 +30899,14 @@ export class UpdateDrawingObjectRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -29427,6 +30980,7 @@ export class UpdateDrawingObjectRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -29500,9 +31054,14 @@ export class UpdateDrawingObjectOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -29573,6 +31132,7 @@ export class UpdateDrawingObjectOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -29661,9 +31221,14 @@ export class UpdateFieldRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -29726,6 +31291,7 @@ export class UpdateFieldRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -29786,9 +31352,14 @@ export class UpdateFieldOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -29849,6 +31420,7 @@ export class UpdateFieldOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -29919,9 +31491,14 @@ export class UpdateFieldsRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -29952,6 +31529,7 @@ export class UpdateFieldsRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
 
         const requestOptions: request.Options = {
@@ -29994,9 +31572,14 @@ export class UpdateFieldsOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -30025,6 +31608,7 @@ export class UpdateFieldsOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         if (this.document !== undefined) {
             formParams.Document = this.document;
@@ -30105,9 +31689,14 @@ export class UpdateFootnoteRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -30170,6 +31759,7 @@ export class UpdateFootnoteRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -30230,9 +31820,14 @@ export class UpdateFootnoteOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -30293,6 +31888,7 @@ export class UpdateFootnoteOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -30378,9 +31974,14 @@ export class UpdateFormFieldRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -30443,6 +32044,7 @@ export class UpdateFormFieldRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -30503,9 +32105,14 @@ export class UpdateFormFieldOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -30566,6 +32173,7 @@ export class UpdateFormFieldOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -30646,9 +32254,14 @@ export class UpdateListRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -30710,6 +32323,7 @@ export class UpdateListRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -30780,9 +32394,14 @@ export class UpdateListLevelRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -30855,6 +32474,7 @@ export class UpdateListLevelRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -30915,9 +32535,14 @@ export class UpdateListLevelOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -30988,6 +32613,7 @@ export class UpdateListLevelOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -31058,9 +32684,14 @@ export class UpdateListOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -31120,6 +32751,7 @@ export class UpdateListOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -31205,9 +32837,14 @@ export class UpdateParagraphFormatRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -31270,6 +32907,7 @@ export class UpdateParagraphFormatRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -31330,9 +32968,14 @@ export class UpdateParagraphFormatOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -31393,6 +33036,7 @@ export class UpdateParagraphFormatOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -31478,9 +33122,14 @@ export class UpdateParagraphListFormatRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -31543,6 +33192,7 @@ export class UpdateParagraphListFormatRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -31603,9 +33253,14 @@ export class UpdateParagraphListFormatOnlineRequest implements RequestInterface 
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -31666,6 +33321,7 @@ export class UpdateParagraphListFormatOnlineRequest implements RequestInterface 
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -31751,9 +33407,14 @@ export class UpdateRunRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -31821,6 +33482,7 @@ export class UpdateRunRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -31891,9 +33553,14 @@ export class UpdateRunFontRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -31961,6 +33628,7 @@ export class UpdateRunFontRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -32021,9 +33689,14 @@ export class UpdateRunFontOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -32089,6 +33762,7 @@ export class UpdateRunFontOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -32164,9 +33838,14 @@ export class UpdateRunOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -32232,6 +33911,7 @@ export class UpdateRunOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -32312,9 +33992,14 @@ export class UpdateSectionPageSetupRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -32376,6 +34061,7 @@ export class UpdateSectionPageSetupRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -32431,9 +34117,14 @@ export class UpdateSectionPageSetupOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -32493,6 +34184,7 @@ export class UpdateSectionPageSetupOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -32573,9 +34265,14 @@ export class UpdateStyleRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -32637,6 +34334,7 @@ export class UpdateStyleRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -32692,9 +34390,14 @@ export class UpdateStyleOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -32754,6 +34457,7 @@ export class UpdateStyleOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -32839,9 +34543,14 @@ export class UpdateTableCellFormatRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -32909,6 +34618,7 @@ export class UpdateTableCellFormatRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -32969,9 +34679,14 @@ export class UpdateTableCellFormatOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -33037,6 +34752,7 @@ export class UpdateTableCellFormatOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -33122,9 +34838,14 @@ export class UpdateTablePropertiesRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -33187,6 +34908,7 @@ export class UpdateTablePropertiesRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -33247,9 +34969,14 @@ export class UpdateTablePropertiesOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -33310,6 +35037,7 @@ export class UpdateTablePropertiesOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -33395,9 +35123,14 @@ export class UpdateTableRowFormatRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -33465,6 +35198,7 @@ export class UpdateTableRowFormatRequest implements RequestInterface {
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
@@ -33525,9 +35259,14 @@ export class UpdateTableRowFormatOnlineRequest implements RequestInterface {
     public loadEncoding: string;
 
     /**
-     * Password for opening an encrypted document.
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
      */
     public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
 
     /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
@@ -33593,6 +35332,7 @@ export class UpdateTableRowFormatOnlineRequest implements RequestInterface {
 
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
+        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);

@@ -16,13 +16,6 @@ Feel free to explore the [Developer's Guide](https://docs.aspose.cloud/display/w
 - Add & remove watermarks and protection.
 - Read & write access to Document Object Model.
 
-## Enhancements in Version 22.1
-
-- Added 'FieldOptions.FieldUpdateCultureName' to set Culture for fields
-- Added 'DocumentEntry.Password' to set an encrypted password for appending document
-- Added 'encryptedPassword2' query parameter to CompareDocuments to set an encrypted password for the second comparing document
-
-
 ## Enhancements in Version 21.12
 
 - Added FieldOptions parameter to mail merge operations

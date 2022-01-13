@@ -1,7 +1,7 @@
 /*
  * --------------------------------------------------------------------------------
  * <copyright company="Aspose" file="fieldOptions.ts">
- *   Copyright (c) 2021 Aspose.Words for Cloud
+ *   Copyright (c) 2022 Aspose.Words for Cloud
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -64,6 +64,11 @@ export class FieldOptions {
             name: "fieldIndexFormat",
             baseName: "FieldIndexFormat",
             type: "FieldOptions.FieldIndexFormatEnum",
+        },
+        {
+            name: "fieldUpdateCultureName",
+            baseName: "FieldUpdateCultureName",
+            type: "string",
         },
         {
             name: "fieldUpdateCultureSource",
@@ -135,6 +140,12 @@ export class FieldOptions {
     public fieldIndexFormat: FieldOptions.FieldIndexFormatEnum;
 
     /**
+     * Gets or sets Field Update Culture Name.
+     * It is used for all fields if FieldUpdateCultureSource is FieldCode.
+     */
+    public fieldUpdateCultureName: string;
+
+    /**
      * Gets or sets Field Update Culture Source.
      */
     public fieldUpdateCultureSource: FieldOptions.FieldUpdateCultureSourceEnum;
@@ -156,6 +167,7 @@ export class FieldOptions {
 
     /**
      * Gets or sets PreProcess Culture Name.
+     * It is a culture code for DOC fields.
      */
     public preProcessCultureName: string;
 

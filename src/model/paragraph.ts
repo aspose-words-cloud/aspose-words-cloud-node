@@ -57,7 +57,22 @@ export class Paragraph extends NodeLink {
     /**
      * Gets or sets the list of child nodes.
      */
-    public childNodes: Array<NodeLink>;
+    private _childNodes: Array<NodeLink>;
+
+    /**
+     * Gets or sets the list of child nodes.
+     */
+    public get childNodes(): Array<NodeLink> {
+        return this._childNodes;
+    }
+
+    /**
+     * Gets or sets the list of child nodes.
+     */
+    public set childNodes(value: Array<NodeLink>) {
+        this._childNodes = value;
+    }
+
 
     public constructor(init?: Partial< Paragraph >) {
         super(init);

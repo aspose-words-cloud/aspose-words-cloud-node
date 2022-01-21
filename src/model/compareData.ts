@@ -77,27 +77,102 @@ export class CompareData {
     /**
      * Gets or sets the initials of the author to use for revisions.
      */
-    public author: string;
+    private _author: string;
+
+    /**
+     * Gets or sets the initials of the author to use for revisions.
+     */
+    public get author(): string {
+        return this._author;
+    }
+
+    /**
+     * Gets or sets the initials of the author to use for revisions.
+     */
+    public set author(value: string) {
+        this._author = value;
+    }
+
 
     /**
      * Gets or sets the compare options.
      */
-    public compareOptions: CompareOptions;
+    private _compareOptions: CompareOptions;
+
+    /**
+     * Gets or sets the compare options.
+     */
+    public get compareOptions(): CompareOptions {
+        return this._compareOptions;
+    }
+
+    /**
+     * Gets or sets the compare options.
+     */
+    public set compareOptions(value: CompareOptions) {
+        this._compareOptions = value;
+    }
+
 
     /**
      * Gets or sets the path to document to compare at the server.
      */
-    public comparingWithDocument: string;
+    private _comparingWithDocument: string;
+
+    /**
+     * Gets or sets the path to document to compare at the server.
+     */
+    public get comparingWithDocument(): string {
+        return this._comparingWithDocument;
+    }
+
+    /**
+     * Gets or sets the path to document to compare at the server.
+     */
+    public set comparingWithDocument(value: string) {
+        this._comparingWithDocument = value;
+    }
+
 
     /**
      * Gets or sets the date and time to use for revisions.
      */
-    public dateTime: Date;
+    private _dateTime: Date;
+
+    /**
+     * Gets or sets the date and time to use for revisions.
+     */
+    public get dateTime(): Date {
+        return this._dateTime;
+    }
+
+    /**
+     * Gets or sets the date and time to use for revisions.
+     */
+    public set dateTime(value: Date) {
+        this._dateTime = value;
+    }
+
 
     /**
      * Gets or sets the result document format.
      */
-    public resultDocumentFormat: string;
+    private _resultDocumentFormat: string;
+
+    /**
+     * Gets or sets the result document format.
+     */
+    public get resultDocumentFormat(): string {
+        return this._resultDocumentFormat;
+    }
+
+    /**
+     * Gets or sets the result document format.
+     */
+    public set resultDocumentFormat(value: string) {
+        this._resultDocumentFormat = value;
+    }
+
 
     public constructor(init?: Partial< CompareData >) {
         Object.assign(this, init);

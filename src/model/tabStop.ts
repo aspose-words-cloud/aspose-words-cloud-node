@@ -57,7 +57,22 @@ export class TabStop extends TabStopBase {
     /**
      * Gets or sets a value indicating whether this tab stop clears any existing tab stops in this position.
      */
-    public isClear: boolean;
+    private _isClear: boolean;
+
+    /**
+     * Gets or sets a value indicating whether this tab stop clears any existing tab stops in this position.
+     */
+    public get isClear(): boolean {
+        return this._isClear;
+    }
+
+    /**
+     * Gets or sets a value indicating whether this tab stop clears any existing tab stops in this position.
+     */
+    public set isClear(value: boolean) {
+        this._isClear = value;
+    }
+
 
     public constructor(init?: Partial< TabStop >) {
         super(init);

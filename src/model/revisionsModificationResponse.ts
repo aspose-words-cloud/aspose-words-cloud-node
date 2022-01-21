@@ -59,7 +59,22 @@ export class RevisionsModificationResponse extends WordsResponse {
     /**
      * Gets or sets the result of the modification operations for the revisions collection.
      */
-    public result: ModificationOperationResult;
+    private _result: ModificationOperationResult;
+
+    /**
+     * Gets or sets the result of the modification operations for the revisions collection.
+     */
+    public get result(): ModificationOperationResult {
+        return this._result;
+    }
+
+    /**
+     * Gets or sets the result of the modification operations for the revisions collection.
+     */
+    public set result(value: ModificationOperationResult) {
+        this._result = value;
+    }
+
 
     public constructor(init?: Partial< RevisionsModificationResponse >) {
         super(init);

@@ -59,7 +59,22 @@ export class Lists extends LinkElement {
     /**
      * Gets or sets the array of document lists.
      */
-    public listInfo: Array<ListInfo>;
+    private _listInfo: Array<ListInfo>;
+
+    /**
+     * Gets or sets the array of document lists.
+     */
+    public get listInfo(): Array<ListInfo> {
+        return this._listInfo;
+    }
+
+    /**
+     * Gets or sets the array of document lists.
+     */
+    public set listInfo(value: Array<ListInfo>) {
+        this._listInfo = value;
+    }
+
 
     public constructor(init?: Partial< Lists >) {
         super(init);

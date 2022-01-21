@@ -59,7 +59,22 @@ export class ListLevels extends LinkElement {
     /**
      * Gets or sets the collection of list levels for this list.
      */
-    public listLevel: Array<ListLevel>;
+    private _listLevel: Array<ListLevel>;
+
+    /**
+     * Gets or sets the collection of list levels for this list.
+     */
+    public get listLevel(): Array<ListLevel> {
+        return this._listLevel;
+    }
+
+    /**
+     * Gets or sets the collection of list levels for this list.
+     */
+    public set listLevel(value: Array<ListLevel>) {
+        this._listLevel = value;
+    }
+
 
     public constructor(init?: Partial< ListLevels >) {
         super(init);

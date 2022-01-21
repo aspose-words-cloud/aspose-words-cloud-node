@@ -216,9 +216,8 @@ The complete source code is available at [GitHub Repository](https://github.com/
                 // save the file as pdf in the cloud
                 const request = new SaveAsRequest({
                     name: "uploaded.docx",
-                    saveOptionsData: new SaveOptionsData(
+                    saveOptionsData: new PdfSaveOptionsData(
                         {
-                            saveFormat: "pdf",
                             fileName: "destination.pdf"
                         })
                 });

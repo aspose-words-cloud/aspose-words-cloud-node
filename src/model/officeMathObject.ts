@@ -74,22 +74,82 @@ export class OfficeMathObject extends OfficeMathLink {
     /**
      * Gets or sets the content of a footnote.
      */
-    public content: StoryChildNodes;
+    private _content: StoryChildNodes;
+
+    /**
+     * Gets or sets the content of a footnote.
+     */
+    public get content(): StoryChildNodes {
+        return this._content;
+    }
+
+    /**
+     * Gets or sets the content of a footnote.
+     */
+    public set content(value: StoryChildNodes) {
+        this._content = value;
+    }
+
 
     /**
      * Gets or sets the display format type of the OfficeMath object. This display format defines whether an equation is displayed inline with the text or displayed on its own line.
      */
-    public displayType: OfficeMathObject.DisplayTypeEnum;
+    private _displayType: OfficeMathObject.DisplayTypeEnum;
+
+    /**
+     * Gets or sets the display format type of the OfficeMath object. This display format defines whether an equation is displayed inline with the text or displayed on its own line.
+     */
+    public get displayType(): OfficeMathObject.DisplayTypeEnum {
+        return this._displayType;
+    }
+
+    /**
+     * Gets or sets the display format type of the OfficeMath object. This display format defines whether an equation is displayed inline with the text or displayed on its own line.
+     */
+    public set displayType(value: OfficeMathObject.DisplayTypeEnum) {
+        this._displayType = value;
+    }
+
 
     /**
      * Gets or sets the justification of the OfficeMath object.
      */
-    public justification: OfficeMathObject.JustificationEnum;
+    private _justification: OfficeMathObject.JustificationEnum;
+
+    /**
+     * Gets or sets the justification of the OfficeMath object.
+     */
+    public get justification(): OfficeMathObject.JustificationEnum {
+        return this._justification;
+    }
+
+    /**
+     * Gets or sets the justification of the OfficeMath object.
+     */
+    public set justification(value: OfficeMathObject.JustificationEnum) {
+        this._justification = value;
+    }
+
 
     /**
      * Gets or sets the type of the OfficeMath object.
      */
-    public mathObjectType: OfficeMathObject.MathObjectTypeEnum;
+    private _mathObjectType: OfficeMathObject.MathObjectTypeEnum;
+
+    /**
+     * Gets or sets the type of the OfficeMath object.
+     */
+    public get mathObjectType(): OfficeMathObject.MathObjectTypeEnum {
+        return this._mathObjectType;
+    }
+
+    /**
+     * Gets or sets the type of the OfficeMath object.
+     */
+    public set mathObjectType(value: OfficeMathObject.MathObjectTypeEnum) {
+        this._mathObjectType = value;
+    }
+
 
     public constructor(init?: Partial< OfficeMathObject >) {
         super(init);

@@ -59,7 +59,22 @@ export class TableRowFormatResponse extends WordsResponse {
     /**
      * Gets or sets the formatting properties of a table row.
      */
-    public rowFormat: TableRowFormat;
+    private _rowFormat: TableRowFormat;
+
+    /**
+     * Gets or sets the formatting properties of a table row.
+     */
+    public get rowFormat(): TableRowFormat {
+        return this._rowFormat;
+    }
+
+    /**
+     * Gets or sets the formatting properties of a table row.
+     */
+    public set rowFormat(value: TableRowFormat) {
+        this._rowFormat = value;
+    }
+
 
     public constructor(init?: Partial< TableRowFormatResponse >) {
         super(init);

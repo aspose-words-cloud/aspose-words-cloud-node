@@ -72,22 +72,82 @@ export class PageStatData {
     /**
      * Gets or sets the detailed statistics on the footnotes.
      */
-    public footnotesStatData: FootnotesStatData;
+    private _footnotesStatData: FootnotesStatData;
+
+    /**
+     * Gets or sets the detailed statistics on the footnotes.
+     */
+    public get footnotesStatData(): FootnotesStatData {
+        return this._footnotesStatData;
+    }
+
+    /**
+     * Gets or sets the detailed statistics on the footnotes.
+     */
+    public set footnotesStatData(value: FootnotesStatData) {
+        this._footnotesStatData = value;
+    }
+
 
     /**
      * Gets or sets the page number.
      */
-    public pageNumber: number;
+    private _pageNumber: number;
+
+    /**
+     * Gets or sets the page number.
+     */
+    public get pageNumber(): number {
+        return this._pageNumber;
+    }
+
+    /**
+     * Gets or sets the page number.
+     */
+    public set pageNumber(value: number) {
+        this._pageNumber = value;
+    }
+
 
     /**
      * Gets or sets the total count of paragraphs in the page.
      */
-    public paragraphCount: number;
+    private _paragraphCount: number;
+
+    /**
+     * Gets or sets the total count of paragraphs in the page.
+     */
+    public get paragraphCount(): number {
+        return this._paragraphCount;
+    }
+
+    /**
+     * Gets or sets the total count of paragraphs in the page.
+     */
+    public set paragraphCount(value: number) {
+        this._paragraphCount = value;
+    }
+
 
     /**
      * Gets or sets the total count of words in the page.
      */
-    public wordCount: number;
+    private _wordCount: number;
+
+    /**
+     * Gets or sets the total count of words in the page.
+     */
+    public get wordCount(): number {
+        return this._wordCount;
+    }
+
+    /**
+     * Gets or sets the total count of words in the page.
+     */
+    public set wordCount(value: number) {
+        this._wordCount = value;
+    }
+
 
     public constructor(init?: Partial< PageStatData >) {
         Object.assign(this, init);

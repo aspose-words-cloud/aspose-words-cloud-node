@@ -57,7 +57,22 @@ export class DrawingObjectCollection extends LinkElement {
     /**
      * Gets or sets the collection of DrawingObjects links.
      */
-    public list: Array<LinkElement>;
+    private _list: Array<LinkElement>;
+
+    /**
+     * Gets or sets the collection of DrawingObjects links.
+     */
+    public get list(): Array<LinkElement> {
+        return this._list;
+    }
+
+    /**
+     * Gets or sets the collection of DrawingObjects links.
+     */
+    public set list(value: Array<LinkElement>) {
+        this._list = value;
+    }
+
 
     public constructor(init?: Partial< DrawingObjectCollection >) {
         super(init);

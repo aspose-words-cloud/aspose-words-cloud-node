@@ -57,7 +57,22 @@ export class ParagraphLink extends NodeLink {
     /**
      * Gets or sets the paragraph's text.
      */
-    public text: string;
+    private _text: string;
+
+    /**
+     * Gets or sets the paragraph's text.
+     */
+    public get text(): string {
+        return this._text;
+    }
+
+    /**
+     * Gets or sets the paragraph's text.
+     */
+    public set text(value: string) {
+        this._text = value;
+    }
+
 
     public constructor(init?: Partial< ParagraphLink >) {
         super(init);

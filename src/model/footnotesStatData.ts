@@ -60,12 +60,42 @@ export class FootnotesStatData {
     /**
      * Gets or sets the total count of paragraphs in footnotes.
      */
-    public paragraphCount: number;
+    private _paragraphCount: number;
+
+    /**
+     * Gets or sets the total count of paragraphs in footnotes.
+     */
+    public get paragraphCount(): number {
+        return this._paragraphCount;
+    }
+
+    /**
+     * Gets or sets the total count of paragraphs in footnotes.
+     */
+    public set paragraphCount(value: number) {
+        this._paragraphCount = value;
+    }
+
 
     /**
      * Gets or sets the total count of words in footnotes.
      */
-    public wordCount: number;
+    private _wordCount: number;
+
+    /**
+     * Gets or sets the total count of words in footnotes.
+     */
+    public get wordCount(): number {
+        return this._wordCount;
+    }
+
+    /**
+     * Gets or sets the total count of words in footnotes.
+     */
+    public set wordCount(value: number) {
+        this._wordCount = value;
+    }
+
 
     public constructor(init?: Partial< FootnotesStatData >) {
         Object.assign(this, init);

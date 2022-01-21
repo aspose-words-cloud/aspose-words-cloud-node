@@ -75,28 +75,105 @@ export class MetafileRenderingOptionsData {
     /**
      * Gets or sets the option that controls how EMF+ Dual metafiles should be rendered.
      */
-    public emfPlusDualRenderingMode: string;
+    private _emfPlusDualRenderingMode: string;
+
+    /**
+     * Gets or sets the option that controls how EMF+ Dual metafiles should be rendered.
+     */
+    public get emfPlusDualRenderingMode(): string {
+        return this._emfPlusDualRenderingMode;
+    }
+
+    /**
+     * Gets or sets the option that controls how EMF+ Dual metafiles should be rendered.
+     */
+    public set emfPlusDualRenderingMode(value: string) {
+        this._emfPlusDualRenderingMode = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether the raster operations should be emulated.
      */
-    public emulateRasterOperations: boolean;
+    private _emulateRasterOperations: boolean;
+
+    /**
+     * Gets or sets a value indicating whether the raster operations should be emulated.
+     */
+    public get emulateRasterOperations(): boolean {
+        return this._emulateRasterOperations;
+    }
+
+    /**
+     * Gets or sets a value indicating whether the raster operations should be emulated.
+     */
+    public set emulateRasterOperations(value: boolean) {
+        this._emulateRasterOperations = value;
+    }
+
 
     /**
      * Gets or sets the option that controls how metafile images should be rendered.
      */
-    public renderingMode: string;
+    private _renderingMode: string;
+
+    /**
+     * Gets or sets the option that controls how metafile images should be rendered.
+     */
+    public get renderingMode(): string {
+        return this._renderingMode;
+    }
+
+    /**
+     * Gets or sets the option that controls how metafile images should be rendered.
+     */
+    public set renderingMode(value: string) {
+        this._renderingMode = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether to scale fonts in WMF metafile according to metafile size on the page.
      * The default value is true.
      */
-    public scaleWmfFontsToMetafileSize: boolean;
+    private _scaleWmfFontsToMetafileSize: boolean;
+
+    /**
+     * Gets or sets a value indicating whether to scale fonts in WMF metafile according to metafile size on the page.
+     * The default value is true.
+     */
+    public get scaleWmfFontsToMetafileSize(): boolean {
+        return this._scaleWmfFontsToMetafileSize;
+    }
+
+    /**
+     * Gets or sets a value indicating whether to scale fonts in WMF metafile according to metafile size on the page.
+     * The default value is true.
+     */
+    public set scaleWmfFontsToMetafileSize(value: boolean) {
+        this._scaleWmfFontsToMetafileSize = value;
+    }
+
 
     /**
      * Gets or sets the flag, that controls how WMF metafiles with embedded EMF metafiles should be rendered.
      */
-    public useEmfEmbeddedToWmf: boolean;
+    private _useEmfEmbeddedToWmf: boolean;
+
+    /**
+     * Gets or sets the flag, that controls how WMF metafiles with embedded EMF metafiles should be rendered.
+     */
+    public get useEmfEmbeddedToWmf(): boolean {
+        return this._useEmfEmbeddedToWmf;
+    }
+
+    /**
+     * Gets or sets the flag, that controls how WMF metafiles with embedded EMF metafiles should be rendered.
+     */
+    public set useEmfEmbeddedToWmf(value: boolean) {
+        this._useEmfEmbeddedToWmf = value;
+    }
+
 
     public constructor(init?: Partial< MetafileRenderingOptionsData >) {
         Object.assign(this, init);

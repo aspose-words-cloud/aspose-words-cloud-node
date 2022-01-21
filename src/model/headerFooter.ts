@@ -71,17 +71,62 @@ export class HeaderFooter extends HeaderFooterLink {
     /**
      * Gets or sets the child nodes.
      */
-    public childNodes: Array<NodeLink>;
+    private _childNodes: Array<NodeLink>;
+
+    /**
+     * Gets or sets the child nodes.
+     */
+    public get childNodes(): Array<NodeLink> {
+        return this._childNodes;
+    }
+
+    /**
+     * Gets or sets the child nodes.
+     */
+    public set childNodes(value: Array<NodeLink>) {
+        this._childNodes = value;
+    }
+
 
     /**
      * Gets or sets the link to DrawingObjects resource.
      */
-    public drawingObjects: LinkElement;
+    private _drawingObjects: LinkElement;
+
+    /**
+     * Gets or sets the link to DrawingObjects resource.
+     */
+    public get drawingObjects(): LinkElement {
+        return this._drawingObjects;
+    }
+
+    /**
+     * Gets or sets the link to DrawingObjects resource.
+     */
+    public set drawingObjects(value: LinkElement) {
+        this._drawingObjects = value;
+    }
+
 
     /**
      * Gets or sets the link to Paragraphs resource.
      */
-    public paragraphs: LinkElement;
+    private _paragraphs: LinkElement;
+
+    /**
+     * Gets or sets the link to Paragraphs resource.
+     */
+    public get paragraphs(): LinkElement {
+        return this._paragraphs;
+    }
+
+    /**
+     * Gets or sets the link to Paragraphs resource.
+     */
+    public set paragraphs(value: LinkElement) {
+        this._paragraphs = value;
+    }
+
 
     public constructor(init?: Partial< HeaderFooter >) {
         super(init);

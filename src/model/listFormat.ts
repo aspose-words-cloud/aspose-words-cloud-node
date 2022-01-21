@@ -67,17 +67,62 @@ export class ListFormat extends LinkElement {
     /**
      * Gets or sets a value indicating whether the paragraph has bulleted or numbered formatting applied to it.
      */
-    public isListItem: boolean;
+    private _isListItem: boolean;
+
+    /**
+     * Gets or sets a value indicating whether the paragraph has bulleted or numbered formatting applied to it.
+     */
+    public get isListItem(): boolean {
+        return this._isListItem;
+    }
+
+    /**
+     * Gets or sets a value indicating whether the paragraph has bulleted or numbered formatting applied to it.
+     */
+    public set isListItem(value: boolean) {
+        this._isListItem = value;
+    }
+
 
     /**
      * Gets or sets the list id of this paragraph.
      */
-    public listId: number;
+    private _listId: number;
+
+    /**
+     * Gets or sets the list id of this paragraph.
+     */
+    public get listId(): number {
+        return this._listId;
+    }
+
+    /**
+     * Gets or sets the list id of this paragraph.
+     */
+    public set listId(value: number) {
+        this._listId = value;
+    }
+
 
     /**
      * Gets or sets the list level number (0 to 8) for the paragraph.
      */
-    public listLevelNumber: number;
+    private _listLevelNumber: number;
+
+    /**
+     * Gets or sets the list level number (0 to 8) for the paragraph.
+     */
+    public get listLevelNumber(): number {
+        return this._listLevelNumber;
+    }
+
+    /**
+     * Gets or sets the list level number (0 to 8) for the paragraph.
+     */
+    public set listLevelNumber(value: number) {
+        this._listLevelNumber = value;
+    }
+
 
     public constructor(init?: Partial< ListFormat >) {
         super(init);

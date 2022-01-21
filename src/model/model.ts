@@ -66,6 +66,7 @@ import * as importedCustomXmlPartResponse from './customXmlPartResponse';
 import * as importedCustomXmlPartsCollection from './customXmlPartsCollection';
 import * as importedCustomXmlPartsResponse from './customXmlPartsResponse';
 import * as importedCustomXmlPartUpdate from './customXmlPartUpdate';
+import * as importedDocmSaveOptionsData from './docmSaveOptionsData';
 import * as importedDocSaveOptionsData from './docSaveOptionsData';
 import * as importedDocument from './document';
 import * as importedDocumentEntry from './documentEntry';
@@ -79,6 +80,10 @@ import * as importedDocumentPropertyCreateOrUpdate from './documentPropertyCreat
 import * as importedDocumentPropertyResponse from './documentPropertyResponse';
 import * as importedDocumentResponse from './documentResponse';
 import * as importedDocumentStatData from './documentStatData';
+import * as importedDocxSaveOptionsData from './docxSaveOptionsData';
+import * as importedDotmSaveOptionsData from './dotmSaveOptionsData';
+import * as importedDotSaveOptionsData from './dotSaveOptionsData';
+import * as importedDotxSaveOptionsData from './dotxSaveOptionsData';
 import * as importedDownsampleOptionsData from './downsampleOptionsData';
 import * as importedDrawingObject from './drawingObject';
 import * as importedDrawingObjectCollection from './drawingObjectCollection';
@@ -106,6 +111,10 @@ import * as importedFileLink from './fileLink';
 import * as importedFilesList from './filesList';
 import * as importedFilesUploadResult from './filesUploadResult';
 import * as importedFixedPageSaveOptionsData from './fixedPageSaveOptionsData';
+import * as importedFlatOpcMacroSaveOptionsData from './flatOpcMacroSaveOptionsData';
+import * as importedFlatOpcSaveOptionsData from './flatOpcSaveOptionsData';
+import * as importedFlatOpcTemplateMacroSaveOptionsData from './flatOpcTemplateMacroSaveOptionsData';
+import * as importedFlatOpcTemplateSaveOptionsData from './flatOpcTemplateSaveOptionsData';
 import * as importedFont from './font';
 import * as importedFontDto from './fontDto';
 import * as importedFontInfo from './fontInfo';
@@ -170,6 +179,7 @@ import * as importedOfficeMathObjectsCollection from './officeMathObjectsCollect
 import * as importedOfficeMathObjectsResponse from './officeMathObjectsResponse';
 import * as importedOoxmlSaveOptionsData from './ooxmlSaveOptionsData';
 import * as importedOptimizationOptions from './optimizationOptions';
+import * as importedOttSaveOptionsData from './ottSaveOptionsData';
 import * as importedOutlineOptionsData from './outlineOptionsData';
 import * as importedPageNumber from './pageNumber';
 import * as importedPageSetup from './pageSetup';
@@ -280,6 +290,7 @@ import * as importedWordsApiErrorResponse from './wordsApiErrorResponse';
 import * as importedWordsApiLink from './wordsApiLink';
 import * as importedWordsResponse from './wordsResponse';
 import * as importedXamlFixedSaveOptionsData from './xamlFixedSaveOptionsData';
+import * as importedXamlFlowPackSaveOptionsData from './xamlFlowPackSaveOptionsData';
 import * as importedXamlFlowSaveOptionsData from './xamlFlowSaveOptionsData';
 import * as importedXmlColor from './xmlColor';
 import * as importedXmlDataLoadOptions from './xmlDataLoadOptions';
@@ -319,6 +330,7 @@ export * from './customXmlPartResponse';
 export * from './customXmlPartsCollection';
 export * from './customXmlPartsResponse';
 export * from './customXmlPartUpdate';
+export * from './docmSaveOptionsData';
 export * from './docSaveOptionsData';
 export * from './document';
 export * from './documentEntry';
@@ -332,6 +344,10 @@ export * from './documentPropertyCreateOrUpdate';
 export * from './documentPropertyResponse';
 export * from './documentResponse';
 export * from './documentStatData';
+export * from './docxSaveOptionsData';
+export * from './dotmSaveOptionsData';
+export * from './dotSaveOptionsData';
+export * from './dotxSaveOptionsData';
 export * from './downsampleOptionsData';
 export * from './drawingObject';
 export * from './drawingObjectCollection';
@@ -359,6 +375,10 @@ export * from './fileLink';
 export * from './filesList';
 export * from './filesUploadResult';
 export * from './fixedPageSaveOptionsData';
+export * from './flatOpcMacroSaveOptionsData';
+export * from './flatOpcSaveOptionsData';
+export * from './flatOpcTemplateMacroSaveOptionsData';
+export * from './flatOpcTemplateSaveOptionsData';
 export * from './font';
 export * from './fontDto';
 export * from './fontInfo';
@@ -423,6 +443,7 @@ export * from './officeMathObjectsCollection';
 export * from './officeMathObjectsResponse';
 export * from './ooxmlSaveOptionsData';
 export * from './optimizationOptions';
+export * from './ottSaveOptionsData';
 export * from './outlineOptionsData';
 export * from './pageNumber';
 export * from './pageSetup';
@@ -533,6 +554,7 @@ export * from './wordsApiErrorResponse';
 export * from './wordsApiLink';
 export * from './wordsResponse';
 export * from './xamlFixedSaveOptionsData';
+export * from './xamlFlowPackSaveOptionsData';
 export * from './xamlFlowSaveOptionsData';
 export * from './xmlColor';
 export * from './xmlDataLoadOptions';
@@ -666,6 +688,7 @@ const typeMap = {
     CustomXmlPartsCollection: importedCustomXmlPartsCollection.CustomXmlPartsCollection,
     CustomXmlPartsResponse: importedCustomXmlPartsResponse.CustomXmlPartsResponse,
     CustomXmlPartUpdate: importedCustomXmlPartUpdate.CustomXmlPartUpdate,
+    DocmSaveOptionsData: importedDocmSaveOptionsData.DocmSaveOptionsData,
     DocSaveOptionsData: importedDocSaveOptionsData.DocSaveOptionsData,
     Document: importedDocument.Document,
     DocumentEntry: importedDocumentEntry.DocumentEntry,
@@ -679,6 +702,10 @@ const typeMap = {
     DocumentPropertyResponse: importedDocumentPropertyResponse.DocumentPropertyResponse,
     DocumentResponse: importedDocumentResponse.DocumentResponse,
     DocumentStatData: importedDocumentStatData.DocumentStatData,
+    DocxSaveOptionsData: importedDocxSaveOptionsData.DocxSaveOptionsData,
+    DotmSaveOptionsData: importedDotmSaveOptionsData.DotmSaveOptionsData,
+    DotSaveOptionsData: importedDotSaveOptionsData.DotSaveOptionsData,
+    DotxSaveOptionsData: importedDotxSaveOptionsData.DotxSaveOptionsData,
     DownsampleOptionsData: importedDownsampleOptionsData.DownsampleOptionsData,
     DrawingObject: importedDrawingObject.DrawingObject,
     DrawingObjectCollection: importedDrawingObjectCollection.DrawingObjectCollection,
@@ -706,6 +733,10 @@ const typeMap = {
     FilesList: importedFilesList.FilesList,
     FilesUploadResult: importedFilesUploadResult.FilesUploadResult,
     FixedPageSaveOptionsData: importedFixedPageSaveOptionsData.FixedPageSaveOptionsData,
+    FlatOpcMacroSaveOptionsData: importedFlatOpcMacroSaveOptionsData.FlatOpcMacroSaveOptionsData,
+    FlatOpcSaveOptionsData: importedFlatOpcSaveOptionsData.FlatOpcSaveOptionsData,
+    FlatOpcTemplateMacroSaveOptionsData: importedFlatOpcTemplateMacroSaveOptionsData.FlatOpcTemplateMacroSaveOptionsData,
+    FlatOpcTemplateSaveOptionsData: importedFlatOpcTemplateSaveOptionsData.FlatOpcTemplateSaveOptionsData,
     Font: importedFont.Font,
     FontDto: importedFontDto.FontDto,
     FontInfo: importedFontInfo.FontInfo,
@@ -770,6 +801,7 @@ const typeMap = {
     OfficeMathObjectsResponse: importedOfficeMathObjectsResponse.OfficeMathObjectsResponse,
     OoxmlSaveOptionsData: importedOoxmlSaveOptionsData.OoxmlSaveOptionsData,
     OptimizationOptions: importedOptimizationOptions.OptimizationOptions,
+    OttSaveOptionsData: importedOttSaveOptionsData.OttSaveOptionsData,
     OutlineOptionsData: importedOutlineOptionsData.OutlineOptionsData,
     PageNumber: importedPageNumber.PageNumber,
     PageSetup: importedPageSetup.PageSetup,
@@ -880,6 +912,7 @@ const typeMap = {
     WordsApiLink: importedWordsApiLink.WordsApiLink,
     WordsResponse: importedWordsResponse.WordsResponse,
     XamlFixedSaveOptionsData: importedXamlFixedSaveOptionsData.XamlFixedSaveOptionsData,
+    XamlFlowPackSaveOptionsData: importedXamlFlowPackSaveOptionsData.XamlFlowPackSaveOptionsData,
     XamlFlowSaveOptionsData: importedXamlFlowSaveOptionsData.XamlFlowSaveOptionsData,
     XmlColor: importedXmlColor.XmlColor,
     XmlDataLoadOptions: importedXmlDataLoadOptions.XmlDataLoadOptions,

@@ -72,22 +72,82 @@ export class TableRowFormat extends LinkElement {
     /**
      * Gets or sets a value indicating whether the text in a table row is allowed to split across a page break.
      */
-    public allowBreakAcrossPages: boolean;
+    private _allowBreakAcrossPages: boolean;
+
+    /**
+     * Gets or sets a value indicating whether the text in a table row is allowed to split across a page break.
+     */
+    public get allowBreakAcrossPages(): boolean {
+        return this._allowBreakAcrossPages;
+    }
+
+    /**
+     * Gets or sets a value indicating whether the text in a table row is allowed to split across a page break.
+     */
+    public set allowBreakAcrossPages(value: boolean) {
+        this._allowBreakAcrossPages = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether the row is repeated as a table heading on every page when the table spans more than one page.
      */
-    public headingFormat: boolean;
+    private _headingFormat: boolean;
+
+    /**
+     * Gets or sets a value indicating whether the row is repeated as a table heading on every page when the table spans more than one page.
+     */
+    public get headingFormat(): boolean {
+        return this._headingFormat;
+    }
+
+    /**
+     * Gets or sets a value indicating whether the row is repeated as a table heading on every page when the table spans more than one page.
+     */
+    public set headingFormat(value: boolean) {
+        this._headingFormat = value;
+    }
+
 
     /**
      * Gets or sets the height of the table row in points.
      */
-    public height: number;
+    private _height: number;
+
+    /**
+     * Gets or sets the height of the table row in points.
+     */
+    public get height(): number {
+        return this._height;
+    }
+
+    /**
+     * Gets or sets the height of the table row in points.
+     */
+    public set height(value: number) {
+        this._height = value;
+    }
+
 
     /**
      * Gets or sets the rule for determining the height of the table row.
      */
-    public heightRule: TableRowFormat.HeightRuleEnum;
+    private _heightRule: TableRowFormat.HeightRuleEnum;
+
+    /**
+     * Gets or sets the rule for determining the height of the table row.
+     */
+    public get heightRule(): TableRowFormat.HeightRuleEnum {
+        return this._heightRule;
+    }
+
+    /**
+     * Gets or sets the rule for determining the height of the table row.
+     */
+    public set heightRule(value: TableRowFormat.HeightRuleEnum) {
+        this._heightRule = value;
+    }
+
 
     public constructor(init?: Partial< TableRowFormat >) {
         super(init);

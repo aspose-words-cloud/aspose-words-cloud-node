@@ -59,7 +59,22 @@ export class RunsResponse extends WordsResponse {
     /**
      * Gets or sets the collection of Run elements.
      */
-    public runs: Runs;
+    private _runs: Runs;
+
+    /**
+     * Gets or sets the collection of Run elements.
+     */
+    public get runs(): Runs {
+        return this._runs;
+    }
+
+    /**
+     * Gets or sets the collection of Run elements.
+     */
+    public set runs(value: Runs) {
+        this._runs = value;
+    }
+
 
     public constructor(init?: Partial< RunsResponse >) {
         super(init);

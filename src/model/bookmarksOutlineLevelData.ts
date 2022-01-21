@@ -60,12 +60,42 @@ export class BookmarksOutlineLevelData {
     /**
      * Gets or sets the bookmark's level.
      */
-    public bookmarksOutlineLevel: number;
+    private _bookmarksOutlineLevel: number;
+
+    /**
+     * Gets or sets the bookmark's level.
+     */
+    public get bookmarksOutlineLevel(): number {
+        return this._bookmarksOutlineLevel;
+    }
+
+    /**
+     * Gets or sets the bookmark's level.
+     */
+    public set bookmarksOutlineLevel(value: number) {
+        this._bookmarksOutlineLevel = value;
+    }
+
 
     /**
      * Gets or sets the bookmark's name.
      */
-    public name: string;
+    private _name: string;
+
+    /**
+     * Gets or sets the bookmark's name.
+     */
+    public get name(): string {
+        return this._name;
+    }
+
+    /**
+     * Gets or sets the bookmark's name.
+     */
+    public set name(value: string) {
+        this._name = value;
+    }
+
 
     public constructor(init?: Partial< BookmarksOutlineLevelData >) {
         Object.assign(this, init);

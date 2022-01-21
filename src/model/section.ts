@@ -79,27 +79,102 @@ export class Section extends LinkElement {
     /**
      * Gets or sets the list of child nodes.
      */
-    public childNodes: Array<NodeLink>;
+    private _childNodes: Array<NodeLink>;
+
+    /**
+     * Gets or sets the list of child nodes.
+     */
+    public get childNodes(): Array<NodeLink> {
+        return this._childNodes;
+    }
+
+    /**
+     * Gets or sets the list of child nodes.
+     */
+    public set childNodes(value: Array<NodeLink>) {
+        this._childNodes = value;
+    }
+
 
     /**
      * Gets or sets the link to HeaderFooters resource.
      */
-    public headerFooters: LinkElement;
+    private _headerFooters: LinkElement;
+
+    /**
+     * Gets or sets the link to HeaderFooters resource.
+     */
+    public get headerFooters(): LinkElement {
+        return this._headerFooters;
+    }
+
+    /**
+     * Gets or sets the link to HeaderFooters resource.
+     */
+    public set headerFooters(value: LinkElement) {
+        this._headerFooters = value;
+    }
+
 
     /**
      * Gets or sets the link to PageSetup resource.
      */
-    public pageSetup: LinkElement;
+    private _pageSetup: LinkElement;
+
+    /**
+     * Gets or sets the link to PageSetup resource.
+     */
+    public get pageSetup(): LinkElement {
+        return this._pageSetup;
+    }
+
+    /**
+     * Gets or sets the link to PageSetup resource.
+     */
+    public set pageSetup(value: LinkElement) {
+        this._pageSetup = value;
+    }
+
 
     /**
      * Gets or sets the link to Paragraphs resource.
      */
-    public paragraphs: LinkElement;
+    private _paragraphs: LinkElement;
+
+    /**
+     * Gets or sets the link to Paragraphs resource.
+     */
+    public get paragraphs(): LinkElement {
+        return this._paragraphs;
+    }
+
+    /**
+     * Gets or sets the link to Paragraphs resource.
+     */
+    public set paragraphs(value: LinkElement) {
+        this._paragraphs = value;
+    }
+
 
     /**
      * Gets or sets the link to Tables resource.
      */
-    public tables: LinkElement;
+    private _tables: LinkElement;
+
+    /**
+     * Gets or sets the link to Tables resource.
+     */
+    public get tables(): LinkElement {
+        return this._tables;
+    }
+
+    /**
+     * Gets or sets the link to Tables resource.
+     */
+    public set tables(value: LinkElement) {
+        this._tables = value;
+    }
+
 
     public constructor(init?: Partial< Section >) {
         super(init);

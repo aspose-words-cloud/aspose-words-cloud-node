@@ -59,7 +59,22 @@ export class ListResponse extends WordsResponse {
     /**
      * Gets or sets the list information.
      */
-    public list: ListInfo;
+    private _list: ListInfo;
+
+    /**
+     * Gets or sets the list information.
+     */
+    public get list(): ListInfo {
+        return this._list;
+    }
+
+    /**
+     * Gets or sets the list information.
+     */
+    public set list(value: ListInfo) {
+        this._list = value;
+    }
+
 
     public constructor(init?: Partial< ListResponse >) {
         super(init);

@@ -59,7 +59,22 @@ export class ParagraphLinkCollection extends LinkElement {
     /**
      * Gets or sets the collection of paragraph's links.
      */
-    public paragraphLinkList: Array<ParagraphLink>;
+    private _paragraphLinkList: Array<ParagraphLink>;
+
+    /**
+     * Gets or sets the collection of paragraph's links.
+     */
+    public get paragraphLinkList(): Array<ParagraphLink> {
+        return this._paragraphLinkList;
+    }
+
+    /**
+     * Gets or sets the collection of paragraph's links.
+     */
+    public set paragraphLinkList(value: Array<ParagraphLink>) {
+        this._paragraphLinkList = value;
+    }
+
 
     public constructor(init?: Partial< ParagraphLinkCollection >) {
         super(init);

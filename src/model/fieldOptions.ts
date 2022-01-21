@@ -117,69 +117,268 @@ export class FieldOptions {
     /**
      * Gets or sets BuiltIn Templates Paths.
      */
-    public builtInTemplatesPaths: Array<string>;
+    private _builtInTemplatesPaths: Array<string>;
+
+    /**
+     * Gets or sets BuiltIn Templates Paths.
+     */
+    public get builtInTemplatesPaths(): Array<string> {
+        return this._builtInTemplatesPaths;
+    }
+
+    /**
+     * Gets or sets BuiltIn Templates Paths.
+     */
+    public set builtInTemplatesPaths(value: Array<string>) {
+        this._builtInTemplatesPaths = value;
+    }
+
 
     /**
      * Gets or sets Curren tUser.
      */
-    public currentUser: UserInformation;
+    private _currentUser: UserInformation;
+
+    /**
+     * Gets or sets Curren tUser.
+     */
+    public get currentUser(): UserInformation {
+        return this._currentUser;
+    }
+
+    /**
+     * Gets or sets Curren tUser.
+     */
+    public set currentUser(value: UserInformation) {
+        this._currentUser = value;
+    }
+
 
     /**
      * Gets or sets Custom Toc Style Separator.
      */
-    public customTocStyleSeparator: string;
+    private _customTocStyleSeparator: string;
+
+    /**
+     * Gets or sets Custom Toc Style Separator.
+     */
+    public get customTocStyleSeparator(): string {
+        return this._customTocStyleSeparator;
+    }
+
+    /**
+     * Gets or sets Custom Toc Style Separator.
+     */
+    public set customTocStyleSeparator(value: string) {
+        this._customTocStyleSeparator = value;
+    }
+
 
     /**
      * Gets or sets Default Document Author.
      */
-    public defaultDocumentAuthor: string;
+    private _defaultDocumentAuthor: string;
+
+    /**
+     * Gets or sets Default Document Author.
+     */
+    public get defaultDocumentAuthor(): string {
+        return this._defaultDocumentAuthor;
+    }
+
+    /**
+     * Gets or sets Default Document Author.
+     */
+    public set defaultDocumentAuthor(value: string) {
+        this._defaultDocumentAuthor = value;
+    }
+
 
     /**
      * Gets or sets Field Index Format.
      */
-    public fieldIndexFormat: FieldOptions.FieldIndexFormatEnum;
+    private _fieldIndexFormat: FieldOptions.FieldIndexFormatEnum;
+
+    /**
+     * Gets or sets Field Index Format.
+     */
+    public get fieldIndexFormat(): FieldOptions.FieldIndexFormatEnum {
+        return this._fieldIndexFormat;
+    }
+
+    /**
+     * Gets or sets Field Index Format.
+     */
+    public set fieldIndexFormat(value: FieldOptions.FieldIndexFormatEnum) {
+        this._fieldIndexFormat = value;
+    }
+
 
     /**
      * Gets or sets Field Update Culture Name.
      * It is used for all fields if FieldUpdateCultureSource is FieldCode.
      */
-    public fieldUpdateCultureName: string;
+    private _fieldUpdateCultureName: string;
+
+    /**
+     * Gets or sets Field Update Culture Name.
+     * It is used for all fields if FieldUpdateCultureSource is FieldCode.
+     */
+    public get fieldUpdateCultureName(): string {
+        return this._fieldUpdateCultureName;
+    }
+
+    /**
+     * Gets or sets Field Update Culture Name.
+     * It is used for all fields if FieldUpdateCultureSource is FieldCode.
+     */
+    public set fieldUpdateCultureName(value: string) {
+        this._fieldUpdateCultureName = value;
+    }
+
 
     /**
      * Gets or sets Field Update Culture Source.
      */
-    public fieldUpdateCultureSource: FieldOptions.FieldUpdateCultureSourceEnum;
+    private _fieldUpdateCultureSource: FieldOptions.FieldUpdateCultureSourceEnum;
+
+    /**
+     * Gets or sets Field Update Culture Source.
+     */
+    public get fieldUpdateCultureSource(): FieldOptions.FieldUpdateCultureSourceEnum {
+        return this._fieldUpdateCultureSource;
+    }
+
+    /**
+     * Gets or sets Field Update Culture Source.
+     */
+    public set fieldUpdateCultureSource(value: FieldOptions.FieldUpdateCultureSourceEnum) {
+        this._fieldUpdateCultureSource = value;
+    }
+
 
     /**
      * Gets or sets File Name.
      */
-    public fileName: string;
+    private _fileName: string;
+
+    /**
+     * Gets or sets File Name.
+     */
+    public get fileName(): string {
+        return this._fileName;
+    }
+
+    /**
+     * Gets or sets File Name.
+     */
+    public set fileName(value: string) {
+        this._fileName = value;
+    }
+
 
     /**
      * Gets or sets if Bidi Text Supported OnUpdate.
      */
-    public isBidiTextSupportedOnUpdate: boolean;
+    private _isBidiTextSupportedOnUpdate: boolean;
+
+    /**
+     * Gets or sets if Bidi Text Supported OnUpdate.
+     */
+    public get isBidiTextSupportedOnUpdate(): boolean {
+        return this._isBidiTextSupportedOnUpdate;
+    }
+
+    /**
+     * Gets or sets if Bidi Text Supported OnUpdate.
+     */
+    public set isBidiTextSupportedOnUpdate(value: boolean) {
+        this._isBidiTextSupportedOnUpdate = value;
+    }
+
 
     /**
      * Gets or sets if Legacy Number Format.
      */
-    public legacyNumberFormat: boolean;
+    private _legacyNumberFormat: boolean;
+
+    /**
+     * Gets or sets if Legacy Number Format.
+     */
+    public get legacyNumberFormat(): boolean {
+        return this._legacyNumberFormat;
+    }
+
+    /**
+     * Gets or sets if Legacy Number Format.
+     */
+    public set legacyNumberFormat(value: boolean) {
+        this._legacyNumberFormat = value;
+    }
+
 
     /**
      * Gets or sets PreProcess Culture Name.
      * It is a culture code for DOC fields.
      */
-    public preProcessCultureName: string;
+    private _preProcessCultureName: string;
+
+    /**
+     * Gets or sets PreProcess Culture Name.
+     * It is a culture code for DOC fields.
+     */
+    public get preProcessCultureName(): string {
+        return this._preProcessCultureName;
+    }
+
+    /**
+     * Gets or sets PreProcess Culture Name.
+     * It is a culture code for DOC fields.
+     */
+    public set preProcessCultureName(value: string) {
+        this._preProcessCultureName = value;
+    }
+
 
     /**
      * Gets or sets Template Name.
      */
-    public templateName: string;
+    private _templateName: string;
+
+    /**
+     * Gets or sets Template Name.
+     */
+    public get templateName(): string {
+        return this._templateName;
+    }
+
+    /**
+     * Gets or sets Template Name.
+     */
+    public set templateName(value: string) {
+        this._templateName = value;
+    }
+
 
     /**
      * Gets or sets if Use Invariant Culture Number Format.
      */
-    public useInvariantCultureNumberFormat: boolean;
+    private _useInvariantCultureNumberFormat: boolean;
+
+    /**
+     * Gets or sets if Use Invariant Culture Number Format.
+     */
+    public get useInvariantCultureNumberFormat(): boolean {
+        return this._useInvariantCultureNumberFormat;
+    }
+
+    /**
+     * Gets or sets if Use Invariant Culture Number Format.
+     */
+    public set useInvariantCultureNumberFormat(value: boolean) {
+        this._useInvariantCultureNumberFormat = value;
+    }
+
 
     public constructor(init?: Partial< FieldOptions >) {
         Object.assign(this, init);

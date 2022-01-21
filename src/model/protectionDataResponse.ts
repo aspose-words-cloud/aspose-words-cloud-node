@@ -66,12 +66,42 @@ export class ProtectionDataResponse extends WordsResponse {
     /**
      * Gets or sets the link to the document.
      */
-    public documentLink: FileLink;
+    private _documentLink: FileLink;
+
+    /**
+     * Gets or sets the link to the document.
+     */
+    public get documentLink(): FileLink {
+        return this._documentLink;
+    }
+
+    /**
+     * Gets or sets the link to the document.
+     */
+    public set documentLink(value: FileLink) {
+        this._documentLink = value;
+    }
+
 
     /**
      * Gets or sets the protection properties of the document.
      */
-    public protectionData: ProtectionData;
+    private _protectionData: ProtectionData;
+
+    /**
+     * Gets or sets the protection properties of the document.
+     */
+    public get protectionData(): ProtectionData {
+        return this._protectionData;
+    }
+
+    /**
+     * Gets or sets the protection properties of the document.
+     */
+    public set protectionData(value: ProtectionData) {
+        this._protectionData = value;
+    }
+
 
     public constructor(init?: Partial< ProtectionDataResponse >) {
         super(init);

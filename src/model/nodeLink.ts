@@ -57,7 +57,22 @@ export class NodeLink extends LinkElement {
     /**
      * Gets or sets the node id.
      */
-    public nodeId: string;
+    private _nodeId: string;
+
+    /**
+     * Gets or sets the node id.
+     */
+    public get nodeId(): string {
+        return this._nodeId;
+    }
+
+    /**
+     * Gets or sets the node id.
+     */
+    public set nodeId(value: string) {
+        this._nodeId = value;
+    }
+
 
     public constructor(init?: Partial< NodeLink >) {
         super(init);

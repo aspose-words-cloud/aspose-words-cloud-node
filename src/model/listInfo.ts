@@ -91,37 +91,142 @@ export class ListInfo extends LinkElement {
     /**
      * Gets or sets a value indicating whether this list is a definition of a list style.
      */
-    public isListStyleDefinition: boolean;
+    private _isListStyleDefinition: boolean;
+
+    /**
+     * Gets or sets a value indicating whether this list is a definition of a list style.
+     */
+    public get isListStyleDefinition(): boolean {
+        return this._isListStyleDefinition;
+    }
+
+    /**
+     * Gets or sets a value indicating whether this list is a definition of a list style.
+     */
+    public set isListStyleDefinition(value: boolean) {
+        this._isListStyleDefinition = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether this list is a reference to a list style.
      */
-    public isListStyleReference: boolean;
+    private _isListStyleReference: boolean;
+
+    /**
+     * Gets or sets a value indicating whether this list is a reference to a list style.
+     */
+    public get isListStyleReference(): boolean {
+        return this._isListStyleReference;
+    }
+
+    /**
+     * Gets or sets a value indicating whether this list is a reference to a list style.
+     */
+    public set isListStyleReference(value: boolean) {
+        this._isListStyleReference = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether the list contains 9 levels; false when 1 level.
      */
-    public isMultiLevel: boolean;
+    private _isMultiLevel: boolean;
+
+    /**
+     * Gets or sets a value indicating whether the list contains 9 levels; false when 1 level.
+     */
+    public get isMultiLevel(): boolean {
+        return this._isMultiLevel;
+    }
+
+    /**
+     * Gets or sets a value indicating whether the list contains 9 levels; false when 1 level.
+     */
+    public set isMultiLevel(value: boolean) {
+        this._isMultiLevel = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether list should be restarted at each section. The default value is false.
      */
-    public isRestartAtEachSection: boolean;
+    private _isRestartAtEachSection: boolean;
+
+    /**
+     * Gets or sets a value indicating whether list should be restarted at each section. The default value is false.
+     */
+    public get isRestartAtEachSection(): boolean {
+        return this._isRestartAtEachSection;
+    }
+
+    /**
+     * Gets or sets a value indicating whether list should be restarted at each section. The default value is false.
+     */
+    public set isRestartAtEachSection(value: boolean) {
+        this._isRestartAtEachSection = value;
+    }
+
 
     /**
      * Gets or sets the unique identifier of the list.
      */
-    public listId: number;
+    private _listId: number;
+
+    /**
+     * Gets or sets the unique identifier of the list.
+     */
+    public get listId(): number {
+        return this._listId;
+    }
+
+    /**
+     * Gets or sets the unique identifier of the list.
+     */
+    public set listId(value: number) {
+        this._listId = value;
+    }
+
 
     /**
      * Gets or sets the collection of list levels for this list.
      */
-    public listLevels: ListLevels;
+    private _listLevels: ListLevels;
+
+    /**
+     * Gets or sets the collection of list levels for this list.
+     */
+    public get listLevels(): ListLevels {
+        return this._listLevels;
+    }
+
+    /**
+     * Gets or sets the collection of list levels for this list.
+     */
+    public set listLevels(value: ListLevels) {
+        this._listLevels = value;
+    }
+
 
     /**
      * Gets or sets the list style that this list references or defines.
      */
-    public style: Style;
+    private _style: Style;
+
+    /**
+     * Gets or sets the list style that this list references or defines.
+     */
+    public get style(): Style {
+        return this._style;
+    }
+
+    /**
+     * Gets or sets the list style that this list references or defines.
+     */
+    public set style(value: Style) {
+        this._style = value;
+    }
+
 
     public constructor(init?: Partial< ListInfo >) {
         super(init);

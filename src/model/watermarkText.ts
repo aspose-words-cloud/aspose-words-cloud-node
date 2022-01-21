@@ -60,12 +60,42 @@ export class WatermarkText {
     /**
      * Gets or sets the watermark rotation angle.
      */
-    public rotationAngle: number;
+    private _rotationAngle: number;
+
+    /**
+     * Gets or sets the watermark rotation angle.
+     */
+    public get rotationAngle(): number {
+        return this._rotationAngle;
+    }
+
+    /**
+     * Gets or sets the watermark rotation angle.
+     */
+    public set rotationAngle(value: number) {
+        this._rotationAngle = value;
+    }
+
 
     /**
      * Gets or sets the watermark text.
      */
-    public text: string;
+    private _text: string;
+
+    /**
+     * Gets or sets the watermark text.
+     */
+    public get text(): string {
+        return this._text;
+    }
+
+    /**
+     * Gets or sets the watermark text.
+     */
+    public set text(value: string) {
+        this._text = value;
+    }
+
 
     public constructor(init?: Partial< WatermarkText >) {
         Object.assign(this, init);

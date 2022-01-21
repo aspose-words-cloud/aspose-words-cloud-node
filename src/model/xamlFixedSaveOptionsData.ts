@@ -63,15 +63,49 @@ export class XamlFixedSaveOptionsData extends FixedPageSaveOptionsData {
      * Gets or sets the physical folder where resources (images and fonts) are saved when exporting a document to fixed page Xaml format.
      * The default value is null.
      */
-    public resourcesFolder: string;
+    private _resourcesFolder: string;
+
+    /**
+     * Gets or sets the physical folder where resources (images and fonts) are saved when exporting a document to fixed page Xaml format.
+     * The default value is null.
+     */
+    public get resourcesFolder(): string {
+        return this._resourcesFolder;
+    }
+
+    /**
+     * Gets or sets the physical folder where resources (images and fonts) are saved when exporting a document to fixed page Xaml format.
+     * The default value is null.
+     */
+    public set resourcesFolder(value: string) {
+        this._resourcesFolder = value;
+    }
+
 
     /**
      * Gets or sets the name of the folder used to construct image URIs written into an fixed page Xaml document. The default value is null.
      */
-    public resourcesFolderAlias: string;
+    private _resourcesFolderAlias: string;
+
+    /**
+     * Gets or sets the name of the folder used to construct image URIs written into an fixed page Xaml document. The default value is null.
+     */
+    public get resourcesFolderAlias(): string {
+        return this._resourcesFolderAlias;
+    }
+
+    /**
+     * Gets or sets the name of the folder used to construct image URIs written into an fixed page Xaml document. The default value is null.
+     */
+    public set resourcesFolderAlias(value: string) {
+        this._resourcesFolderAlias = value;
+    }
+
 
     public constructor(init?: Partial< XamlFixedSaveOptionsData >) {
         super(init);
+        saveFormat = 'xamlfixed';
+
         Object.assign(this, init);
     }
 }

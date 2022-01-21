@@ -69,17 +69,62 @@ export class InfoResponse extends WordsResponse {
     /**
      * Gets or sets additional info.
      */
-    public additionalInfo: Array<InfoAdditionalItem>;
+    private _additionalInfo: Array<InfoAdditionalItem>;
+
+    /**
+     * Gets or sets additional info.
+     */
+    public get additionalInfo(): Array<InfoAdditionalItem> {
+        return this._additionalInfo;
+    }
+
+    /**
+     * Gets or sets additional info.
+     */
+    public set additionalInfo(value: Array<InfoAdditionalItem>) {
+        this._additionalInfo = value;
+    }
+
 
     /**
      * Gets or sets application name.
      */
-    public name: string;
+    private _name: string;
+
+    /**
+     * Gets or sets application name.
+     */
+    public get name(): string {
+        return this._name;
+    }
+
+    /**
+     * Gets or sets application name.
+     */
+    public set name(value: string) {
+        this._name = value;
+    }
+
 
     /**
      * Gets or sets version.
      */
-    public version: string;
+    private _version: string;
+
+    /**
+     * Gets or sets version.
+     */
+    public get version(): string {
+        return this._version;
+    }
+
+    /**
+     * Gets or sets version.
+     */
+    public set version(value: string) {
+        this._version = value;
+    }
+
 
     public constructor(init?: Partial< InfoResponse >) {
         super(init);

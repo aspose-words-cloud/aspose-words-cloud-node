@@ -57,7 +57,22 @@ export class FieldNames extends LinkElement {
     /**
      * Gets or sets the collection of fields names.
      */
-    public names: Array<string>;
+    private _names: Array<string>;
+
+    /**
+     * Gets or sets the collection of fields names.
+     */
+    public get names(): Array<string> {
+        return this._names;
+    }
+
+    /**
+     * Gets or sets the collection of fields names.
+     */
+    public set names(value: Array<string>) {
+        this._names = value;
+    }
+
 
     public constructor(init?: Partial< FieldNames >) {
         super(init);

@@ -65,17 +65,62 @@ export class ProtectionRequest {
     /**
      * Gets or sets the new password.
      */
-    public newPassword: string;
+    private _newPassword: string;
+
+    /**
+     * Gets or sets the new password.
+     */
+    public get newPassword(): string {
+        return this._newPassword;
+    }
+
+    /**
+     * Gets or sets the new password.
+     */
+    public set newPassword(value: string) {
+        this._newPassword = value;
+    }
+
 
     /**
      * Gets or sets the current password.
      */
-    public password: string;
+    private _password: string;
+
+    /**
+     * Gets or sets the current password.
+     */
+    public get password(): string {
+        return this._password;
+    }
+
+    /**
+     * Gets or sets the current password.
+     */
+    public set password(value: string) {
+        this._password = value;
+    }
+
 
     /**
      * Gets or sets the new type of protection.
      */
-    public protectionType: string;
+    private _protectionType: string;
+
+    /**
+     * Gets or sets the new type of protection.
+     */
+    public get protectionType(): string {
+        return this._protectionType;
+    }
+
+    /**
+     * Gets or sets the new type of protection.
+     */
+    public set protectionType(value: string) {
+        this._protectionType = value;
+    }
+
 
     public constructor(init?: Partial< ProtectionRequest >) {
         Object.assign(this, init);

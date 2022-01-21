@@ -59,7 +59,22 @@ export class CustomXmlPartResponse extends WordsResponse {
     /**
      * Gets or sets the custom xml part.
      */
-    public customXmlPart: CustomXmlPart;
+    private _customXmlPart: CustomXmlPart;
+
+    /**
+     * Gets or sets the custom xml part.
+     */
+    public get customXmlPart(): CustomXmlPart {
+        return this._customXmlPart;
+    }
+
+    /**
+     * Gets or sets the custom xml part.
+     */
+    public set customXmlPart(value: CustomXmlPart) {
+        this._customXmlPart = value;
+    }
+
 
     public constructor(init?: Partial< CustomXmlPartResponse >) {
         super(init);

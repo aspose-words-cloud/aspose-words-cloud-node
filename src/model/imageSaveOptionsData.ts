@@ -114,66 +114,258 @@ export class ImageSaveOptionsData extends FixedPageSaveOptionsData {
      * This property has effect only when saving to raster image formats.
      * The default value is 96.
      */
-    public horizontalResolution: number;
+    private _horizontalResolution: number;
+
+    /**
+     * Gets or sets the horizontal resolution in dots per inch for the generated images.
+     * This property has effect only when saving to raster image formats.
+     * The default value is 96.
+     */
+    public get horizontalResolution(): number {
+        return this._horizontalResolution;
+    }
+
+    /**
+     * Gets or sets the horizontal resolution in dots per inch for the generated images.
+     * This property has effect only when saving to raster image formats.
+     * The default value is 96.
+     */
+    public set horizontalResolution(value: number) {
+        this._horizontalResolution = value;
+    }
+
 
     /**
      * Gets or sets the brightness level of the image.
      */
-    public imageBrightness: number;
+    private _imageBrightness: number;
+
+    /**
+     * Gets or sets the brightness level of the image.
+     */
+    public get imageBrightness(): number {
+        return this._imageBrightness;
+    }
+
+    /**
+     * Gets or sets the brightness level of the image.
+     */
+    public set imageBrightness(value: number) {
+        this._imageBrightness = value;
+    }
+
 
     /**
      * Gets or sets the color mode of the image.
      */
-    public imageColorMode: string;
+    private _imageColorMode: string;
+
+    /**
+     * Gets or sets the color mode of the image.
+     */
+    public get imageColorMode(): string {
+        return this._imageColorMode;
+    }
+
+    /**
+     * Gets or sets the color mode of the image.
+     */
+    public set imageColorMode(value: string) {
+        this._imageColorMode = value;
+    }
+
 
     /**
      * Gets or sets the contrast level of the image.
      */
-    public imageContrast: number;
+    private _imageContrast: number;
+
+    /**
+     * Gets or sets the contrast level of the image.
+     */
+    public get imageContrast(): number {
+        return this._imageContrast;
+    }
+
+    /**
+     * Gets or sets the contrast level of the image.
+     */
+    public set imageContrast(value: number) {
+        this._imageContrast = value;
+    }
+
 
     /**
      * Gets or sets the background (paper) color of the image.
      */
-    public paperColor: string;
+    private _paperColor: string;
+
+    /**
+     * Gets or sets the background (paper) color of the image.
+     */
+    public get paperColor(): string {
+        return this._paperColor;
+    }
+
+    /**
+     * Gets or sets the background (paper) color of the image.
+     */
+    public set paperColor(value: string) {
+        this._paperColor = value;
+    }
+
 
     /**
      * Gets or sets the pixel format of the image.
      */
-    public pixelFormat: string;
+    private _pixelFormat: string;
+
+    /**
+     * Gets or sets the pixel format of the image.
+     */
+    public get pixelFormat(): string {
+        return this._pixelFormat;
+    }
+
+    /**
+     * Gets or sets the pixel format of the image.
+     */
+    public set pixelFormat(value: string) {
+        this._pixelFormat = value;
+    }
+
 
     /**
      * Gets or sets both horizontal and vertical resolution in dots per inch for the generated images.
      * This property has effect only when saving to raster image formats.
      * The default value is 96.
      */
-    public resolution: number;
+    private _resolution: number;
+
+    /**
+     * Gets or sets both horizontal and vertical resolution in dots per inch for the generated images.
+     * This property has effect only when saving to raster image formats.
+     * The default value is 96.
+     */
+    public get resolution(): number {
+        return this._resolution;
+    }
+
+    /**
+     * Gets or sets both horizontal and vertical resolution in dots per inch for the generated images.
+     * This property has effect only when saving to raster image formats.
+     * The default value is 96.
+     */
+    public set resolution(value: number) {
+        this._resolution = value;
+    }
+
 
     /**
      * Gets or sets the zoom factor of the image.
      */
-    public scale: number;
+    private _scale: number;
+
+    /**
+     * Gets or sets the zoom factor of the image.
+     */
+    public get scale(): number {
+        return this._scale;
+    }
+
+    /**
+     * Gets or sets the zoom factor of the image.
+     */
+    public set scale(value: number) {
+        this._scale = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether to use anti-aliasing for rendering.
      */
-    public useAntiAliasing: boolean;
+    private _useAntiAliasing: boolean;
+
+    /**
+     * Gets or sets a value indicating whether to use anti-aliasing for rendering.
+     */
+    public get useAntiAliasing(): boolean {
+        return this._useAntiAliasing;
+    }
+
+    /**
+     * Gets or sets a value indicating whether to use anti-aliasing for rendering.
+     */
+    public set useAntiAliasing(value: boolean) {
+        this._useAntiAliasing = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether to use GDI+ or Aspose.Words metafile renderer when saving to EMF.
      */
-    public useGdiEmfRenderer: boolean;
+    private _useGdiEmfRenderer: boolean;
+
+    /**
+     * Gets or sets a value indicating whether to use GDI+ or Aspose.Words metafile renderer when saving to EMF.
+     */
+    public get useGdiEmfRenderer(): boolean {
+        return this._useGdiEmfRenderer;
+    }
+
+    /**
+     * Gets or sets a value indicating whether to use GDI+ or Aspose.Words metafile renderer when saving to EMF.
+     */
+    public set useGdiEmfRenderer(value: boolean) {
+        this._useGdiEmfRenderer = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether to use high quality (i.e. slow) rendering algorithms.
      */
-    public useHighQualityRendering: boolean;
+    private _useHighQualityRendering: boolean;
+
+    /**
+     * Gets or sets a value indicating whether to use high quality (i.e. slow) rendering algorithms.
+     */
+    public get useHighQualityRendering(): boolean {
+        return this._useHighQualityRendering;
+    }
+
+    /**
+     * Gets or sets a value indicating whether to use high quality (i.e. slow) rendering algorithms.
+     */
+    public set useHighQualityRendering(value: boolean) {
+        this._useHighQualityRendering = value;
+    }
+
 
     /**
      * Gets or sets the vertical resolution in dots per inch for the generated images.
      * This property has effect only when saving to raster image formats.
      * The default value is 96.
      */
-    public verticalResolution: number;
+    private _verticalResolution: number;
+
+    /**
+     * Gets or sets the vertical resolution in dots per inch for the generated images.
+     * This property has effect only when saving to raster image formats.
+     * The default value is 96.
+     */
+    public get verticalResolution(): number {
+        return this._verticalResolution;
+    }
+
+    /**
+     * Gets or sets the vertical resolution in dots per inch for the generated images.
+     * This property has effect only when saving to raster image formats.
+     * The default value is 96.
+     */
+    public set verticalResolution(value: number) {
+        this._verticalResolution = value;
+    }
+
 
     public constructor(init?: Partial< ImageSaveOptionsData >) {
         super(init);

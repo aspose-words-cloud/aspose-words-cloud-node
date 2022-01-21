@@ -59,7 +59,22 @@ export class HeaderFooterResponse extends WordsResponse {
     /**
      * Gets or sets the HeaderFooter.
      */
-    public headerFooter: HeaderFooter;
+    private _headerFooter: HeaderFooter;
+
+    /**
+     * Gets or sets the HeaderFooter.
+     */
+    public get headerFooter(): HeaderFooter {
+        return this._headerFooter;
+    }
+
+    /**
+     * Gets or sets the HeaderFooter.
+     */
+    public set headerFooter(value: HeaderFooter) {
+        this._headerFooter = value;
+    }
+
 
     public constructor(init?: Partial< HeaderFooterResponse >) {
         super(init);

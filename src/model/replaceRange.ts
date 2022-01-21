@@ -60,12 +60,42 @@ export class ReplaceRange {
     /**
      * Gets or sets the range's text.
      */
-    public text: string;
+    private _text: string;
+
+    /**
+     * Gets or sets the range's text.
+     */
+    public get text(): string {
+        return this._text;
+    }
+
+    /**
+     * Gets or sets the range's text.
+     */
+    public set text(value: string) {
+        this._text = value;
+    }
+
 
     /**
      * Gets or sets the range's text type.
      */
-    public textType: ReplaceRange.TextTypeEnum;
+    private _textType: ReplaceRange.TextTypeEnum;
+
+    /**
+     * Gets or sets the range's text type.
+     */
+    public get textType(): ReplaceRange.TextTypeEnum {
+        return this._textType;
+    }
+
+    /**
+     * Gets or sets the range's text type.
+     */
+    public set textType(value: ReplaceRange.TextTypeEnum) {
+        this._textType = value;
+    }
+
 
     public constructor(init?: Partial< ReplaceRange >) {
         Object.assign(this, init);

@@ -256,203 +256,805 @@ export class Font extends LinkElement {
     /**
      * Gets or sets a value indicating whether the font is formatted as all capital letters.
      */
-    public allCaps: boolean;
+    private _allCaps: boolean;
+
+    /**
+     * Gets or sets a value indicating whether the font is formatted as all capital letters.
+     */
+    public get allCaps(): boolean {
+        return this._allCaps;
+    }
+
+    /**
+     * Gets or sets a value indicating whether the font is formatted as all capital letters.
+     */
+    public set allCaps(value: boolean) {
+        this._allCaps = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether the contents of this run shall have right-to-left characteristics.
      */
-    public bidi: boolean;
+    private _bidi: boolean;
+
+    /**
+     * Gets or sets a value indicating whether the contents of this run shall have right-to-left characteristics.
+     */
+    public get bidi(): boolean {
+        return this._bidi;
+    }
+
+    /**
+     * Gets or sets a value indicating whether the contents of this run shall have right-to-left characteristics.
+     */
+    public set bidi(value: boolean) {
+        this._bidi = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether the font is formatted as bold.
      */
-    public bold: boolean;
+    private _bold: boolean;
+
+    /**
+     * Gets or sets a value indicating whether the font is formatted as bold.
+     */
+    public get bold(): boolean {
+        return this._bold;
+    }
+
+    /**
+     * Gets or sets a value indicating whether the font is formatted as bold.
+     */
+    public set bold(value: boolean) {
+        this._bold = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether the right-to-left text is formatted as bold.
      */
-    public boldBi: boolean;
+    private _boldBi: boolean;
+
+    /**
+     * Gets or sets a value indicating whether the right-to-left text is formatted as bold.
+     */
+    public get boldBi(): boolean {
+        return this._boldBi;
+    }
+
+    /**
+     * Gets or sets a value indicating whether the right-to-left text is formatted as bold.
+     */
+    public set boldBi(value: boolean) {
+        this._boldBi = value;
+    }
+
 
     /**
      * Gets or sets the border object, that specifies border for the font.
      */
-    public border: Border;
+    private _border: Border;
+
+    /**
+     * Gets or sets the border object, that specifies border for the font.
+     */
+    public get border(): Border {
+        return this._border;
+    }
+
+    /**
+     * Gets or sets the border object, that specifies border for the font.
+     */
+    public set border(value: Border) {
+        this._border = value;
+    }
+
 
     /**
      * Gets or sets the color of the font.
      */
-    public color: XmlColor;
+    private _color: XmlColor;
+
+    /**
+     * Gets or sets the color of the font.
+     */
+    public get color(): XmlColor {
+        return this._color;
+    }
+
+    /**
+     * Gets or sets the color of the font.
+     */
+    public set color(value: XmlColor) {
+        this._color = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether the contents of this run shall be treated as complex script text regardless of their Unicode character values when determining the formatting for this run.
      */
-    public complexScript: boolean;
+    private _complexScript: boolean;
+
+    /**
+     * Gets or sets a value indicating whether the contents of this run shall be treated as complex script text regardless of their Unicode character values when determining the formatting for this run.
+     */
+    public get complexScript(): boolean {
+        return this._complexScript;
+    }
+
+    /**
+     * Gets or sets a value indicating whether the contents of this run shall be treated as complex script text regardless of their Unicode character values when determining the formatting for this run.
+     */
+    public set complexScript(value: boolean) {
+        this._complexScript = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether the font is formatted as double strikethrough text.
      */
-    public doubleStrikeThrough: boolean;
+    private _doubleStrikeThrough: boolean;
+
+    /**
+     * Gets or sets a value indicating whether the font is formatted as double strikethrough text.
+     */
+    public get doubleStrikeThrough(): boolean {
+        return this._doubleStrikeThrough;
+    }
+
+    /**
+     * Gets or sets a value indicating whether the font is formatted as double strikethrough text.
+     */
+    public set doubleStrikeThrough(value: boolean) {
+        this._doubleStrikeThrough = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether the font is formatted as embossed.
      */
-    public emboss: boolean;
+    private _emboss: boolean;
+
+    /**
+     * Gets or sets a value indicating whether the font is formatted as embossed.
+     */
+    public get emboss(): boolean {
+        return this._emboss;
+    }
+
+    /**
+     * Gets or sets a value indicating whether the font is formatted as embossed.
+     */
+    public set emboss(value: boolean) {
+        this._emboss = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether the font is formatted as engraved.
      */
-    public engrave: boolean;
+    private _engrave: boolean;
+
+    /**
+     * Gets or sets a value indicating whether the font is formatted as engraved.
+     */
+    public get engrave(): boolean {
+        return this._engrave;
+    }
+
+    /**
+     * Gets or sets a value indicating whether the font is formatted as engraved.
+     */
+    public set engrave(value: boolean) {
+        this._engrave = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether the font is formatted as hidden text.
      */
-    public hidden: boolean;
+    private _hidden: boolean;
+
+    /**
+     * Gets or sets a value indicating whether the font is formatted as hidden text.
+     */
+    public get hidden(): boolean {
+        return this._hidden;
+    }
+
+    /**
+     * Gets or sets a value indicating whether the font is formatted as hidden text.
+     */
+    public set hidden(value: boolean) {
+        this._hidden = value;
+    }
+
 
     /**
      * Gets or sets the highlight (marker) color.
      */
-    public highlightColor: XmlColor;
+    private _highlightColor: XmlColor;
+
+    /**
+     * Gets or sets the highlight (marker) color.
+     */
+    public get highlightColor(): XmlColor {
+        return this._highlightColor;
+    }
+
+    /**
+     * Gets or sets the highlight (marker) color.
+     */
+    public set highlightColor(value: XmlColor) {
+        this._highlightColor = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether the font is formatted as italic.
      */
-    public italic: boolean;
+    private _italic: boolean;
+
+    /**
+     * Gets or sets a value indicating whether the font is formatted as italic.
+     */
+    public get italic(): boolean {
+        return this._italic;
+    }
+
+    /**
+     * Gets or sets a value indicating whether the font is formatted as italic.
+     */
+    public set italic(value: boolean) {
+        this._italic = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether the right-to-left text is formatted as italic.
      */
-    public italicBi: boolean;
+    private _italicBi: boolean;
+
+    /**
+     * Gets or sets a value indicating whether the right-to-left text is formatted as italic.
+     */
+    public get italicBi(): boolean {
+        return this._italicBi;
+    }
+
+    /**
+     * Gets or sets a value indicating whether the right-to-left text is formatted as italic.
+     */
+    public set italicBi(value: boolean) {
+        this._italicBi = value;
+    }
+
 
     /**
      * Gets or sets the font size at which kerning starts.
      */
-    public kerning: number;
+    private _kerning: number;
+
+    /**
+     * Gets or sets the font size at which kerning starts.
+     */
+    public get kerning(): number {
+        return this._kerning;
+    }
+
+    /**
+     * Gets or sets the font size at which kerning starts.
+     */
+    public set kerning(value: number) {
+        this._kerning = value;
+    }
+
 
     /**
      * Gets or sets the locale identifier (language) of the formatted characters.
      */
-    public localeId: number;
+    private _localeId: number;
+
+    /**
+     * Gets or sets the locale identifier (language) of the formatted characters.
+     */
+    public get localeId(): number {
+        return this._localeId;
+    }
+
+    /**
+     * Gets or sets the locale identifier (language) of the formatted characters.
+     */
+    public set localeId(value: number) {
+        this._localeId = value;
+    }
+
 
     /**
      * Gets or sets the locale identifier (language) of the formatted right-to-left characters.
      */
-    public localeIdBi: number;
+    private _localeIdBi: number;
+
+    /**
+     * Gets or sets the locale identifier (language) of the formatted right-to-left characters.
+     */
+    public get localeIdBi(): number {
+        return this._localeIdBi;
+    }
+
+    /**
+     * Gets or sets the locale identifier (language) of the formatted right-to-left characters.
+     */
+    public set localeIdBi(value: number) {
+        this._localeIdBi = value;
+    }
+
 
     /**
      * Gets or sets the locale identifier (language) of the formatted Asian characters.
      */
-    public localeIdFarEast: number;
+    private _localeIdFarEast: number;
+
+    /**
+     * Gets or sets the locale identifier (language) of the formatted Asian characters.
+     */
+    public get localeIdFarEast(): number {
+        return this._localeIdFarEast;
+    }
+
+    /**
+     * Gets or sets the locale identifier (language) of the formatted Asian characters.
+     */
+    public set localeIdFarEast(value: number) {
+        this._localeIdFarEast = value;
+    }
+
 
     /**
      * Gets or sets the name of the font.
      */
-    public name: string;
+    private _name: string;
+
+    /**
+     * Gets or sets the name of the font.
+     */
+    public get name(): string {
+        return this._name;
+    }
+
+    /**
+     * Gets or sets the name of the font.
+     */
+    public set name(value: string) {
+        this._name = value;
+    }
+
 
     /**
      * Gets or sets the font used for Latin text (characters with character codes from 0 (zero) through 127).
      */
-    public nameAscii: string;
+    private _nameAscii: string;
+
+    /**
+     * Gets or sets the font used for Latin text (characters with character codes from 0 (zero) through 127).
+     */
+    public get nameAscii(): string {
+        return this._nameAscii;
+    }
+
+    /**
+     * Gets or sets the font used for Latin text (characters with character codes from 0 (zero) through 127).
+     */
+    public set nameAscii(value: string) {
+        this._nameAscii = value;
+    }
+
 
     /**
      * Gets or sets the name of the font in a right-to-left language document.
      */
-    public nameBi: string;
+    private _nameBi: string;
+
+    /**
+     * Gets or sets the name of the font in a right-to-left language document.
+     */
+    public get nameBi(): string {
+        return this._nameBi;
+    }
+
+    /**
+     * Gets or sets the name of the font in a right-to-left language document.
+     */
+    public set nameBi(value: string) {
+        this._nameBi = value;
+    }
+
 
     /**
      * Gets or sets the East Asian font name.
      */
-    public nameFarEast: string;
+    private _nameFarEast: string;
+
+    /**
+     * Gets or sets the East Asian font name.
+     */
+    public get nameFarEast(): string {
+        return this._nameFarEast;
+    }
+
+    /**
+     * Gets or sets the East Asian font name.
+     */
+    public set nameFarEast(value: string) {
+        this._nameFarEast = value;
+    }
+
 
     /**
      * Gets or sets the font used for characters with character codes from 128 through 255.
      */
-    public nameOther: string;
+    private _nameOther: string;
+
+    /**
+     * Gets or sets the font used for characters with character codes from 128 through 255.
+     */
+    public get nameOther(): string {
+        return this._nameOther;
+    }
+
+    /**
+     * Gets or sets the font used for characters with character codes from 128 through 255.
+     */
+    public set nameOther(value: string) {
+        this._nameOther = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether the formatted characters are not to be spell checked.
      */
-    public noProofing: boolean;
+    private _noProofing: boolean;
+
+    /**
+     * Gets or sets a value indicating whether the formatted characters are not to be spell checked.
+     */
+    public get noProofing(): boolean {
+        return this._noProofing;
+    }
+
+    /**
+     * Gets or sets a value indicating whether the formatted characters are not to be spell checked.
+     */
+    public set noProofing(value: boolean) {
+        this._noProofing = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether the font is formatted as outline.
      */
-    public outline: boolean;
+    private _outline: boolean;
+
+    /**
+     * Gets or sets a value indicating whether the font is formatted as outline.
+     */
+    public get outline(): boolean {
+        return this._outline;
+    }
+
+    /**
+     * Gets or sets a value indicating whether the font is formatted as outline.
+     */
+    public set outline(value: boolean) {
+        this._outline = value;
+    }
+
 
     /**
      * Gets or sets the position of text (in points) relative to the base line.
      * A positive number raises the text, and a negative number lowers it.
      */
-    public position: number;
+    private _position: number;
+
+    /**
+     * Gets or sets the position of text (in points) relative to the base line.
+     * A positive number raises the text, and a negative number lowers it.
+     */
+    public get position(): number {
+        return this._position;
+    }
+
+    /**
+     * Gets or sets the position of text (in points) relative to the base line.
+     * A positive number raises the text, and a negative number lowers it.
+     */
+    public set position(value: number) {
+        this._position = value;
+    }
+
 
     /**
      * Gets or sets character width scaling in percent.
      */
-    public scaling: number;
+    private _scaling: number;
+
+    /**
+     * Gets or sets character width scaling in percent.
+     */
+    public get scaling(): number {
+        return this._scaling;
+    }
+
+    /**
+     * Gets or sets character width scaling in percent.
+     */
+    public set scaling(value: number) {
+        this._scaling = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether the font is formatted as shadowed.
      */
-    public shadow: boolean;
+    private _shadow: boolean;
+
+    /**
+     * Gets or sets a value indicating whether the font is formatted as shadowed.
+     */
+    public get shadow(): boolean {
+        return this._shadow;
+    }
+
+    /**
+     * Gets or sets a value indicating whether the font is formatted as shadowed.
+     */
+    public set shadow(value: boolean) {
+        this._shadow = value;
+    }
+
 
     /**
      * Gets or sets the font size in points.
      */
-    public size: number;
+    private _size: number;
+
+    /**
+     * Gets or sets the font size in points.
+     */
+    public get size(): number {
+        return this._size;
+    }
+
+    /**
+     * Gets or sets the font size in points.
+     */
+    public set size(value: number) {
+        this._size = value;
+    }
+
 
     /**
      * Gets or sets the font size in points used in a right-to-left document.
      */
-    public sizeBi: number;
+    private _sizeBi: number;
+
+    /**
+     * Gets or sets the font size in points used in a right-to-left document.
+     */
+    public get sizeBi(): number {
+        return this._sizeBi;
+    }
+
+    /**
+     * Gets or sets the font size in points used in a right-to-left document.
+     */
+    public set sizeBi(value: number) {
+        this._sizeBi = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether the font is formatted as small capital letters.
      */
-    public smallCaps: boolean;
+    private _smallCaps: boolean;
+
+    /**
+     * Gets or sets a value indicating whether the font is formatted as small capital letters.
+     */
+    public get smallCaps(): boolean {
+        return this._smallCaps;
+    }
+
+    /**
+     * Gets or sets a value indicating whether the font is formatted as small capital letters.
+     */
+    public set smallCaps(value: boolean) {
+        this._smallCaps = value;
+    }
+
 
     /**
      * Gets or sets the spacing (in points) between characters.
      */
-    public spacing: number;
+    private _spacing: number;
+
+    /**
+     * Gets or sets the spacing (in points) between characters.
+     */
+    public get spacing(): number {
+        return this._spacing;
+    }
+
+    /**
+     * Gets or sets the spacing (in points) between characters.
+     */
+    public set spacing(value: number) {
+        this._spacing = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether the font is formatted as strikethrough text.
      */
-    public strikeThrough: boolean;
+    private _strikeThrough: boolean;
+
+    /**
+     * Gets or sets a value indicating whether the font is formatted as strikethrough text.
+     */
+    public get strikeThrough(): boolean {
+        return this._strikeThrough;
+    }
+
+    /**
+     * Gets or sets a value indicating whether the font is formatted as strikethrough text.
+     */
+    public set strikeThrough(value: boolean) {
+        this._strikeThrough = value;
+    }
+
 
     /**
      * Gets or sets the locale independent style identifier of the character style applied to this formatting.
      */
-    public styleIdentifier: Font.StyleIdentifierEnum;
+    private _styleIdentifier: Font.StyleIdentifierEnum;
+
+    /**
+     * Gets or sets the locale independent style identifier of the character style applied to this formatting.
+     */
+    public get styleIdentifier(): Font.StyleIdentifierEnum {
+        return this._styleIdentifier;
+    }
+
+    /**
+     * Gets or sets the locale independent style identifier of the character style applied to this formatting.
+     */
+    public set styleIdentifier(value: Font.StyleIdentifierEnum) {
+        this._styleIdentifier = value;
+    }
+
 
     /**
      * Gets or sets the name of the character style applied to this formatting.
      */
-    public styleName: string;
+    private _styleName: string;
+
+    /**
+     * Gets or sets the name of the character style applied to this formatting.
+     */
+    public get styleName(): string {
+        return this._styleName;
+    }
+
+    /**
+     * Gets or sets the name of the character style applied to this formatting.
+     */
+    public set styleName(value: string) {
+        this._styleName = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether the font is formatted as subscript.
      */
-    public subscript: boolean;
+    private _subscript: boolean;
+
+    /**
+     * Gets or sets a value indicating whether the font is formatted as subscript.
+     */
+    public get subscript(): boolean {
+        return this._subscript;
+    }
+
+    /**
+     * Gets or sets a value indicating whether the font is formatted as subscript.
+     */
+    public set subscript(value: boolean) {
+        this._subscript = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether the font is formatted as superscript.
      */
-    public superscript: boolean;
+    private _superscript: boolean;
+
+    /**
+     * Gets or sets a value indicating whether the font is formatted as superscript.
+     */
+    public get superscript(): boolean {
+        return this._superscript;
+    }
+
+    /**
+     * Gets or sets a value indicating whether the font is formatted as superscript.
+     */
+    public set superscript(value: boolean) {
+        this._superscript = value;
+    }
+
 
     /**
      * Gets or sets the font animation effect.
      */
-    public textEffect: Font.TextEffectEnum;
+    private _textEffect: Font.TextEffectEnum;
+
+    /**
+     * Gets or sets the font animation effect.
+     */
+    public get textEffect(): Font.TextEffectEnum {
+        return this._textEffect;
+    }
+
+    /**
+     * Gets or sets the font animation effect.
+     */
+    public set textEffect(value: Font.TextEffectEnum) {
+        this._textEffect = value;
+    }
+
 
     /**
      * Gets or sets the type of underline applied to the font.
      */
-    public underline: Font.UnderlineEnum;
+    private _underline: Font.UnderlineEnum;
+
+    /**
+     * Gets or sets the type of underline applied to the font.
+     */
+    public get underline(): Font.UnderlineEnum {
+        return this._underline;
+    }
+
+    /**
+     * Gets or sets the type of underline applied to the font.
+     */
+    public set underline(value: Font.UnderlineEnum) {
+        this._underline = value;
+    }
+
 
     /**
      * Gets or sets the color of the underline applied to the font.
      */
-    public underlineColor: XmlColor;
+    private _underlineColor: XmlColor;
+
+    /**
+     * Gets or sets the color of the underline applied to the font.
+     */
+    public get underlineColor(): XmlColor {
+        return this._underlineColor;
+    }
+
+    /**
+     * Gets or sets the color of the underline applied to the font.
+     */
+    public set underlineColor(value: XmlColor) {
+        this._underlineColor = value;
+    }
+
 
     public constructor(init?: Partial< Font >) {
         super(init);

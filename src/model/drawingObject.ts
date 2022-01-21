@@ -104,52 +104,202 @@ export class DrawingObject extends DrawingObjectLink {
     /**
      * Gets or sets the height of the DrawingObject in points.
      */
-    public height: number;
+    private _height: number;
+
+    /**
+     * Gets or sets the height of the DrawingObject in points.
+     */
+    public get height(): number {
+        return this._height;
+    }
+
+    /**
+     * Gets or sets the height of the DrawingObject in points.
+     */
+    public set height(value: number) {
+        this._height = value;
+    }
+
 
     /**
      * Gets or sets the link to image data. Can be null if shape does not have an image.
      */
-    public imageDataLink: WordsApiLink;
+    private _imageDataLink: WordsApiLink;
+
+    /**
+     * Gets or sets the link to image data. Can be null if shape does not have an image.
+     */
+    public get imageDataLink(): WordsApiLink {
+        return this._imageDataLink;
+    }
+
+    /**
+     * Gets or sets the link to image data. Can be null if shape does not have an image.
+     */
+    public set imageDataLink(value: WordsApiLink) {
+        this._imageDataLink = value;
+    }
+
 
     /**
      * Gets or sets the distance in points from the origin to the left side of the image.
      */
-    public left: number;
+    private _left: number;
+
+    /**
+     * Gets or sets the distance in points from the origin to the left side of the image.
+     */
+    public get left(): number {
+        return this._left;
+    }
+
+    /**
+     * Gets or sets the distance in points from the origin to the left side of the image.
+     */
+    public set left(value: number) {
+        this._left = value;
+    }
+
 
     /**
      * Gets or sets the link to OLE object. Can be null if shape does not have OLE data.
      */
-    public oleDataLink: WordsApiLink;
+    private _oleDataLink: WordsApiLink;
+
+    /**
+     * Gets or sets the link to OLE object. Can be null if shape does not have OLE data.
+     */
+    public get oleDataLink(): WordsApiLink {
+        return this._oleDataLink;
+    }
+
+    /**
+     * Gets or sets the link to OLE object. Can be null if shape does not have OLE data.
+     */
+    public set oleDataLink(value: WordsApiLink) {
+        this._oleDataLink = value;
+    }
+
 
     /**
      * Gets or sets the relative horizontal position, from which the distance to the image is measured.
      */
-    public relativeHorizontalPosition: DrawingObject.RelativeHorizontalPositionEnum;
+    private _relativeHorizontalPosition: DrawingObject.RelativeHorizontalPositionEnum;
+
+    /**
+     * Gets or sets the relative horizontal position, from which the distance to the image is measured.
+     */
+    public get relativeHorizontalPosition(): DrawingObject.RelativeHorizontalPositionEnum {
+        return this._relativeHorizontalPosition;
+    }
+
+    /**
+     * Gets or sets the relative horizontal position, from which the distance to the image is measured.
+     */
+    public set relativeHorizontalPosition(value: DrawingObject.RelativeHorizontalPositionEnum) {
+        this._relativeHorizontalPosition = value;
+    }
+
 
     /**
      * Gets or sets the relative vertical position, from which the distance to the image is measured.
      */
-    public relativeVerticalPosition: DrawingObject.RelativeVerticalPositionEnum;
+    private _relativeVerticalPosition: DrawingObject.RelativeVerticalPositionEnum;
+
+    /**
+     * Gets or sets the relative vertical position, from which the distance to the image is measured.
+     */
+    public get relativeVerticalPosition(): DrawingObject.RelativeVerticalPositionEnum {
+        return this._relativeVerticalPosition;
+    }
+
+    /**
+     * Gets or sets the relative vertical position, from which the distance to the image is measured.
+     */
+    public set relativeVerticalPosition(value: DrawingObject.RelativeVerticalPositionEnum) {
+        this._relativeVerticalPosition = value;
+    }
+
 
     /**
      * Gets or sets the list of links that originate from this DrawingObjectDto.
      */
-    public renderLinks: Array<WordsApiLink>;
+    private _renderLinks: Array<WordsApiLink>;
+
+    /**
+     * Gets or sets the list of links that originate from this DrawingObjectDto.
+     */
+    public get renderLinks(): Array<WordsApiLink> {
+        return this._renderLinks;
+    }
+
+    /**
+     * Gets or sets the list of links that originate from this DrawingObjectDto.
+     */
+    public set renderLinks(value: Array<WordsApiLink>) {
+        this._renderLinks = value;
+    }
+
 
     /**
      * Gets or sets the distance in points from the origin to the top side of the image.
      */
-    public top: number;
+    private _top: number;
+
+    /**
+     * Gets or sets the distance in points from the origin to the top side of the image.
+     */
+    public get top(): number {
+        return this._top;
+    }
+
+    /**
+     * Gets or sets the distance in points from the origin to the top side of the image.
+     */
+    public set top(value: number) {
+        this._top = value;
+    }
+
 
     /**
      * Gets or sets the width of the DrawingObjects in points.
      */
-    public width: number;
+    private _width: number;
+
+    /**
+     * Gets or sets the width of the DrawingObjects in points.
+     */
+    public get width(): number {
+        return this._width;
+    }
+
+    /**
+     * Gets or sets the width of the DrawingObjects in points.
+     */
+    public set width(value: number) {
+        this._width = value;
+    }
+
 
     /**
      * Gets or sets the option that controls how to wrap text around the image.
      */
-    public wrapType: DrawingObject.WrapTypeEnum;
+    private _wrapType: DrawingObject.WrapTypeEnum;
+
+    /**
+     * Gets or sets the option that controls how to wrap text around the image.
+     */
+    public get wrapType(): DrawingObject.WrapTypeEnum {
+        return this._wrapType;
+    }
+
+    /**
+     * Gets or sets the option that controls how to wrap text around the image.
+     */
+    public set wrapType(value: DrawingObject.WrapTypeEnum) {
+        this._wrapType = value;
+    }
+
 
     public constructor(init?: Partial< DrawingObject >) {
         super(init);

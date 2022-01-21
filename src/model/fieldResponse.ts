@@ -59,7 +59,22 @@ export class FieldResponse extends WordsResponse {
     /**
      * Gets or sets the field.
      */
-    public field: Field;
+    private _field: Field;
+
+    /**
+     * Gets or sets the field.
+     */
+    public get field(): Field {
+        return this._field;
+    }
+
+    /**
+     * Gets or sets the field.
+     */
+    public set field(value: Field) {
+        this._field = value;
+    }
+
 
     public constructor(init?: Partial< FieldResponse >) {
         super(init);

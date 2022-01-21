@@ -66,12 +66,42 @@ export class StatDataResponse extends WordsResponse {
     /**
      * Gets or sets the link to the document.
      */
-    public documentLink: FileLink;
+    private _documentLink: FileLink;
+
+    /**
+     * Gets or sets the link to the document.
+     */
+    public get documentLink(): FileLink {
+        return this._documentLink;
+    }
+
+    /**
+     * Gets or sets the link to the document.
+     */
+    public set documentLink(value: FileLink) {
+        this._documentLink = value;
+    }
+
 
     /**
      * Gets or sets the statistical data of the document.
      */
-    public statData: DocumentStatData;
+    private _statData: DocumentStatData;
+
+    /**
+     * Gets or sets the statistical data of the document.
+     */
+    public get statData(): DocumentStatData {
+        return this._statData;
+    }
+
+    /**
+     * Gets or sets the statistical data of the document.
+     */
+    public set statData(value: DocumentStatData) {
+        this._statData = value;
+    }
+
 
     public constructor(init?: Partial< StatDataResponse >) {
         super(init);

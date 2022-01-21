@@ -72,22 +72,82 @@ export class Error {
     /**
      * Code.
      */
-    public code: string;
+    private _code: string;
+
+    /**
+     * Code.
+     */
+    public get code(): string {
+        return this._code;
+    }
+
+    /**
+     * Code.
+     */
+    public set code(value: string) {
+        this._code = value;
+    }
+
 
     /**
      * Description.
      */
-    public description: string;
+    private _description: string;
+
+    /**
+     * Description.
+     */
+    public get description(): string {
+        return this._description;
+    }
+
+    /**
+     * Description.
+     */
+    public set description(value: string) {
+        this._description = value;
+    }
+
 
     /**
      * Inner Error.
      */
-    public innerError: ErrorDetails;
+    private _innerError: ErrorDetails;
+
+    /**
+     * Inner Error.
+     */
+    public get innerError(): ErrorDetails {
+        return this._innerError;
+    }
+
+    /**
+     * Inner Error.
+     */
+    public set innerError(value: ErrorDetails) {
+        this._innerError = value;
+    }
+
 
     /**
      * Message.
      */
-    public message: string;
+    private _message: string;
+
+    /**
+     * Message.
+     */
+    public get message(): string {
+        return this._message;
+    }
+
+    /**
+     * Message.
+     */
+    public set message(value: string) {
+        this._message = value;
+    }
+
 
     public constructor(init?: Partial< Error >) {
         Object.assign(this, init);

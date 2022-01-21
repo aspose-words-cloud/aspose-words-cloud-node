@@ -57,7 +57,22 @@ export class FilesList {
     /**
      * Files and folders contained by folder StorageFile.
      */
-    public value: Array<StorageFile>;
+    private _value: Array<StorageFile>;
+
+    /**
+     * Files and folders contained by folder StorageFile.
+     */
+    public get value(): Array<StorageFile> {
+        return this._value;
+    }
+
+    /**
+     * Files and folders contained by folder StorageFile.
+     */
+    public set value(value: Array<StorageFile>) {
+        this._value = value;
+    }
+
 
     public constructor(init?: Partial< FilesList >) {
         Object.assign(this, init);

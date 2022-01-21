@@ -57,10 +57,27 @@ export class EpubSaveOptionsData extends HtmlSaveOptionsData {
     /**
      * Gets or sets the maximum level of headings populated to the navigation map when exporting.
      */
-    public epubNavigationMapLevel: number;
+    private _epubNavigationMapLevel: number;
+
+    /**
+     * Gets or sets the maximum level of headings populated to the navigation map when exporting.
+     */
+    public get epubNavigationMapLevel(): number {
+        return this._epubNavigationMapLevel;
+    }
+
+    /**
+     * Gets or sets the maximum level of headings populated to the navigation map when exporting.
+     */
+    public set epubNavigationMapLevel(value: number) {
+        this._epubNavigationMapLevel = value;
+    }
+
 
     public constructor(init?: Partial< EpubSaveOptionsData >) {
         super(init);
+        saveFormat = 'epub';
+
         Object.assign(this, init);
     }
 }

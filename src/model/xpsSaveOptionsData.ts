@@ -74,25 +74,87 @@ export class XpsSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets the level in the XPS document outline at which to display Word bookmarks.
      */
-    public bookmarksOutlineLevel: number;
+    private _bookmarksOutlineLevel: number;
+
+    /**
+     * Gets or sets the level in the XPS document outline at which to display Word bookmarks.
+     */
+    public get bookmarksOutlineLevel(): number {
+        return this._bookmarksOutlineLevel;
+    }
+
+    /**
+     * Gets or sets the level in the XPS document outline at which to display Word bookmarks.
+     */
+    public set bookmarksOutlineLevel(value: number) {
+        this._bookmarksOutlineLevel = value;
+    }
+
 
     /**
      * Gets or sets the number of heading levels (paragraphs formatted with the Heading styles) to include in the XPS document outline.
      */
-    public headingsOutlineLevels: number;
+    private _headingsOutlineLevels: number;
+
+    /**
+     * Gets or sets the number of heading levels (paragraphs formatted with the Heading styles) to include in the XPS document outline.
+     */
+    public get headingsOutlineLevels(): number {
+        return this._headingsOutlineLevels;
+    }
+
+    /**
+     * Gets or sets the number of heading levels (paragraphs formatted with the Heading styles) to include in the XPS document outline.
+     */
+    public set headingsOutlineLevels(value: number) {
+        this._headingsOutlineLevels = value;
+    }
+
 
     /**
      * Gets or sets the outline options.
      */
-    public outlineOptions: OutlineOptionsData;
+    private _outlineOptions: OutlineOptionsData;
+
+    /**
+     * Gets or sets the outline options.
+     */
+    public get outlineOptions(): OutlineOptionsData {
+        return this._outlineOptions;
+    }
+
+    /**
+     * Gets or sets the outline options.
+     */
+    public set outlineOptions(value: OutlineOptionsData) {
+        this._outlineOptions = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether the document should be saved using a booklet printing layout.
      */
-    public useBookFoldPrintingSettings: boolean;
+    private _useBookFoldPrintingSettings: boolean;
+
+    /**
+     * Gets or sets a value indicating whether the document should be saved using a booklet printing layout.
+     */
+    public get useBookFoldPrintingSettings(): boolean {
+        return this._useBookFoldPrintingSettings;
+    }
+
+    /**
+     * Gets or sets a value indicating whether the document should be saved using a booklet printing layout.
+     */
+    public set useBookFoldPrintingSettings(value: boolean) {
+        this._useBookFoldPrintingSettings = value;
+    }
+
 
     public constructor(init?: Partial< XpsSaveOptionsData >) {
         super(init);
+        saveFormat = 'xps';
+
         Object.assign(this, init);
     }
 }

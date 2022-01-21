@@ -62,12 +62,42 @@ export class DocumentEntryList {
     /**
      * Gets or sets a value indicating whether to apply headers and footers from base document to appending documents. The default value is true.
      */
-    public applyBaseDocumentHeadersAndFootersToAppendingDocuments: boolean;
+    private _applyBaseDocumentHeadersAndFootersToAppendingDocuments: boolean;
+
+    /**
+     * Gets or sets a value indicating whether to apply headers and footers from base document to appending documents. The default value is true.
+     */
+    public get applyBaseDocumentHeadersAndFootersToAppendingDocuments(): boolean {
+        return this._applyBaseDocumentHeadersAndFootersToAppendingDocuments;
+    }
+
+    /**
+     * Gets or sets a value indicating whether to apply headers and footers from base document to appending documents. The default value is true.
+     */
+    public set applyBaseDocumentHeadersAndFootersToAppendingDocuments(value: boolean) {
+        this._applyBaseDocumentHeadersAndFootersToAppendingDocuments = value;
+    }
+
 
     /**
      * Gets or sets the list of documents.
      */
-    public documentEntries: Array<DocumentEntry>;
+    private _documentEntries: Array<DocumentEntry>;
+
+    /**
+     * Gets or sets the list of documents.
+     */
+    public get documentEntries(): Array<DocumentEntry> {
+        return this._documentEntries;
+    }
+
+    /**
+     * Gets or sets the list of documents.
+     */
+    public set documentEntries(value: Array<DocumentEntry>) {
+        this._documentEntries = value;
+    }
+
 
     public constructor(init?: Partial< DocumentEntryList >) {
         Object.assign(this, init);

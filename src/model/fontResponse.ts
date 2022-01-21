@@ -59,7 +59,22 @@ export class FontResponse extends WordsResponse {
     /**
      * Gets or sets the font.
      */
-    public font: Font;
+    private _font: Font;
+
+    /**
+     * Gets or sets the font.
+     */
+    public get font(): Font {
+        return this._font;
+    }
+
+    /**
+     * Gets or sets the font.
+     */
+    public set font(value: Font) {
+        this._font = value;
+    }
+
 
     public constructor(init?: Partial< FontResponse >) {
         super(init);

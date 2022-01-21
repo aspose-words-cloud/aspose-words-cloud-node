@@ -55,7 +55,22 @@ export class ListInsert {
     /**
      * Gets or sets the option that controls how list should be restarted at each section.
      */
-    public template: ListInsert.TemplateEnum;
+    private _template: ListInsert.TemplateEnum;
+
+    /**
+     * Gets or sets the option that controls how list should be restarted at each section.
+     */
+    public get template(): ListInsert.TemplateEnum {
+        return this._template;
+    }
+
+    /**
+     * Gets or sets the option that controls how list should be restarted at each section.
+     */
+    public set template(value: ListInsert.TemplateEnum) {
+        this._template = value;
+    }
+
 
     public constructor(init?: Partial< ListInsert >) {
         Object.assign(this, init);

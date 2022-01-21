@@ -62,12 +62,42 @@ export class ParagraphFormat extends ParagraphFormatBase {
     /**
      * Gets or sets a value indicating whether the paragraph style is one of the built-in Heading styles.
      */
-    public isHeading: boolean;
+    private _isHeading: boolean;
+
+    /**
+     * Gets or sets a value indicating whether the paragraph style is one of the built-in Heading styles.
+     */
+    public get isHeading(): boolean {
+        return this._isHeading;
+    }
+
+    /**
+     * Gets or sets a value indicating whether the paragraph style is one of the built-in Heading styles.
+     */
+    public set isHeading(value: boolean) {
+        this._isHeading = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether the paragraph is an item in a bulleted or numbered list.
      */
-    public isListItem: boolean;
+    private _isListItem: boolean;
+
+    /**
+     * Gets or sets a value indicating whether the paragraph is an item in a bulleted or numbered list.
+     */
+    public get isListItem(): boolean {
+        return this._isListItem;
+    }
+
+    /**
+     * Gets or sets a value indicating whether the paragraph is an item in a bulleted or numbered list.
+     */
+    public set isListItem(value: boolean) {
+        this._isListItem = value;
+    }
+
 
     public constructor(init?: Partial< ParagraphFormat >) {
         super(init);

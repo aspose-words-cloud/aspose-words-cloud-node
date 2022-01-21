@@ -184,133 +184,525 @@ export class ParagraphFormatBase extends LinkElement {
     /**
      * Gets or sets a value indicating whether inter-character spacing is automatically adjusted between regions of Latin text and regions of East Asian text in the current paragraph.
      */
-    public addSpaceBetweenFarEastAndAlpha: boolean;
+    private _addSpaceBetweenFarEastAndAlpha: boolean;
+
+    /**
+     * Gets or sets a value indicating whether inter-character spacing is automatically adjusted between regions of Latin text and regions of East Asian text in the current paragraph.
+     */
+    public get addSpaceBetweenFarEastAndAlpha(): boolean {
+        return this._addSpaceBetweenFarEastAndAlpha;
+    }
+
+    /**
+     * Gets or sets a value indicating whether inter-character spacing is automatically adjusted between regions of Latin text and regions of East Asian text in the current paragraph.
+     */
+    public set addSpaceBetweenFarEastAndAlpha(value: boolean) {
+        this._addSpaceBetweenFarEastAndAlpha = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether inter-character spacing is automatically adjusted between regions of numbers and regions of East Asian text in the current paragraph.
      */
-    public addSpaceBetweenFarEastAndDigit: boolean;
+    private _addSpaceBetweenFarEastAndDigit: boolean;
+
+    /**
+     * Gets or sets a value indicating whether inter-character spacing is automatically adjusted between regions of numbers and regions of East Asian text in the current paragraph.
+     */
+    public get addSpaceBetweenFarEastAndDigit(): boolean {
+        return this._addSpaceBetweenFarEastAndDigit;
+    }
+
+    /**
+     * Gets or sets a value indicating whether inter-character spacing is automatically adjusted between regions of numbers and regions of East Asian text in the current paragraph.
+     */
+    public set addSpaceBetweenFarEastAndDigit(value: boolean) {
+        this._addSpaceBetweenFarEastAndDigit = value;
+    }
+
 
     /**
      * Gets or sets text alignment for the paragraph.
      */
-    public alignment: ParagraphFormatBase.AlignmentEnum;
+    private _alignment: ParagraphFormatBase.AlignmentEnum;
+
+    /**
+     * Gets or sets text alignment for the paragraph.
+     */
+    public get alignment(): ParagraphFormatBase.AlignmentEnum {
+        return this._alignment;
+    }
+
+    /**
+     * Gets or sets text alignment for the paragraph.
+     */
+    public set alignment(value: ParagraphFormatBase.AlignmentEnum) {
+        this._alignment = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether this is a right-to-left paragraph.
      */
-    public bidi: boolean;
+    private _bidi: boolean;
+
+    /**
+     * Gets or sets a value indicating whether this is a right-to-left paragraph.
+     */
+    public get bidi(): boolean {
+        return this._bidi;
+    }
+
+    /**
+     * Gets or sets a value indicating whether this is a right-to-left paragraph.
+     */
+    public set bidi(value: boolean) {
+        this._bidi = value;
+    }
+
 
     /**
      * Gets or sets the position for a drop cap text.
      */
-    public dropCapPosition: ParagraphFormatBase.DropCapPositionEnum;
+    private _dropCapPosition: ParagraphFormatBase.DropCapPositionEnum;
+
+    /**
+     * Gets or sets the position for a drop cap text.
+     */
+    public get dropCapPosition(): ParagraphFormatBase.DropCapPositionEnum {
+        return this._dropCapPosition;
+    }
+
+    /**
+     * Gets or sets the position for a drop cap text.
+     */
+    public set dropCapPosition(value: ParagraphFormatBase.DropCapPositionEnum) {
+        this._dropCapPosition = value;
+    }
+
 
     /**
      * Gets or sets the value (in points) for a first line or hanging indent.
      * Use a positive value to set a first-line indent, and use a negative value to set a hanging indent.
      */
-    public firstLineIndent: number;
+    private _firstLineIndent: number;
+
+    /**
+     * Gets or sets the value (in points) for a first line or hanging indent.
+     * Use a positive value to set a first-line indent, and use a negative value to set a hanging indent.
+     */
+    public get firstLineIndent(): number {
+        return this._firstLineIndent;
+    }
+
+    /**
+     * Gets or sets the value (in points) for a first line or hanging indent.
+     * Use a positive value to set a first-line indent, and use a negative value to set a hanging indent.
+     */
+    public set firstLineIndent(value: number) {
+        this._firstLineIndent = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether all lines in the paragraph are to remain on the same page.
      */
-    public keepTogether: boolean;
+    private _keepTogether: boolean;
+
+    /**
+     * Gets or sets a value indicating whether all lines in the paragraph are to remain on the same page.
+     */
+    public get keepTogether(): boolean {
+        return this._keepTogether;
+    }
+
+    /**
+     * Gets or sets a value indicating whether all lines in the paragraph are to remain on the same page.
+     */
+    public set keepTogether(value: boolean) {
+        this._keepTogether = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether the paragraph is to remains on the same page as the paragraph that follows it.
      */
-    public keepWithNext: boolean;
+    private _keepWithNext: boolean;
+
+    /**
+     * Gets or sets a value indicating whether the paragraph is to remains on the same page as the paragraph that follows it.
+     */
+    public get keepWithNext(): boolean {
+        return this._keepWithNext;
+    }
+
+    /**
+     * Gets or sets a value indicating whether the paragraph is to remains on the same page as the paragraph that follows it.
+     */
+    public set keepWithNext(value: boolean) {
+        this._keepWithNext = value;
+    }
+
 
     /**
      * Gets or sets the value (in points), that represents the left indent for paragraph.
      */
-    public leftIndent: number;
+    private _leftIndent: number;
+
+    /**
+     * Gets or sets the value (in points), that represents the left indent for paragraph.
+     */
+    public get leftIndent(): number {
+        return this._leftIndent;
+    }
+
+    /**
+     * Gets or sets the value (in points), that represents the left indent for paragraph.
+     */
+    public set leftIndent(value: number) {
+        this._leftIndent = value;
+    }
+
 
     /**
      * Gets or sets the line spacing (in points) for the paragraph.
      */
-    public lineSpacing: number;
+    private _lineSpacing: number;
+
+    /**
+     * Gets or sets the line spacing (in points) for the paragraph.
+     */
+    public get lineSpacing(): number {
+        return this._lineSpacing;
+    }
+
+    /**
+     * Gets or sets the line spacing (in points) for the paragraph.
+     */
+    public set lineSpacing(value: number) {
+        this._lineSpacing = value;
+    }
+
 
     /**
      * Gets or sets the line spacing for the paragraph.
      */
-    public lineSpacingRule: ParagraphFormatBase.LineSpacingRuleEnum;
+    private _lineSpacingRule: ParagraphFormatBase.LineSpacingRuleEnum;
+
+    /**
+     * Gets or sets the line spacing for the paragraph.
+     */
+    public get lineSpacingRule(): ParagraphFormatBase.LineSpacingRuleEnum {
+        return this._lineSpacingRule;
+    }
+
+    /**
+     * Gets or sets the line spacing for the paragraph.
+     */
+    public set lineSpacingRule(value: ParagraphFormatBase.LineSpacingRuleEnum) {
+        this._lineSpacingRule = value;
+    }
+
 
     /**
      * Gets or sets the number of lines of the paragraph text used to calculate the drop cap height.
      */
-    public linesToDrop: number;
+    private _linesToDrop: number;
+
+    /**
+     * Gets or sets the number of lines of the paragraph text used to calculate the drop cap height.
+     */
+    public get linesToDrop(): number {
+        return this._linesToDrop;
+    }
+
+    /**
+     * Gets or sets the number of lines of the paragraph text used to calculate the drop cap height.
+     */
+    public set linesToDrop(value: number) {
+        this._linesToDrop = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether SpaceBefore and SpaceAfter will be ignored between the paragraphs of the same style.
      */
-    public noSpaceBetweenParagraphsOfSameStyle: boolean;
+    private _noSpaceBetweenParagraphsOfSameStyle: boolean;
+
+    /**
+     * Gets or sets a value indicating whether SpaceBefore and SpaceAfter will be ignored between the paragraphs of the same style.
+     */
+    public get noSpaceBetweenParagraphsOfSameStyle(): boolean {
+        return this._noSpaceBetweenParagraphsOfSameStyle;
+    }
+
+    /**
+     * Gets or sets a value indicating whether SpaceBefore and SpaceAfter will be ignored between the paragraphs of the same style.
+     */
+    public set noSpaceBetweenParagraphsOfSameStyle(value: boolean) {
+        this._noSpaceBetweenParagraphsOfSameStyle = value;
+    }
+
 
     /**
      * Gets or sets the outline level of the paragraph in the document.
      */
-    public outlineLevel: ParagraphFormatBase.OutlineLevelEnum;
+    private _outlineLevel: ParagraphFormatBase.OutlineLevelEnum;
+
+    /**
+     * Gets or sets the outline level of the paragraph in the document.
+     */
+    public get outlineLevel(): ParagraphFormatBase.OutlineLevelEnum {
+        return this._outlineLevel;
+    }
+
+    /**
+     * Gets or sets the outline level of the paragraph in the document.
+     */
+    public set outlineLevel(value: ParagraphFormatBase.OutlineLevelEnum) {
+        this._outlineLevel = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether a page break is forced before the paragraph.
      */
-    public pageBreakBefore: boolean;
+    private _pageBreakBefore: boolean;
+
+    /**
+     * Gets or sets a value indicating whether a page break is forced before the paragraph.
+     */
+    public get pageBreakBefore(): boolean {
+        return this._pageBreakBefore;
+    }
+
+    /**
+     * Gets or sets a value indicating whether a page break is forced before the paragraph.
+     */
+    public set pageBreakBefore(value: boolean) {
+        this._pageBreakBefore = value;
+    }
+
 
     /**
      * Gets or sets the value (in points) that represents the right indent for paragraph.
      */
-    public rightIndent: number;
+    private _rightIndent: number;
+
+    /**
+     * Gets or sets the value (in points) that represents the right indent for paragraph.
+     */
+    public get rightIndent(): number {
+        return this._rightIndent;
+    }
+
+    /**
+     * Gets or sets the value (in points) that represents the right indent for paragraph.
+     */
+    public set rightIndent(value: number) {
+        this._rightIndent = value;
+    }
+
 
     /**
      * Gets or sets the Shading object, that refers to the shading formatting for the paragraph.
      */
-    public shading: Shading;
+    private _shading: Shading;
+
+    /**
+     * Gets or sets the Shading object, that refers to the shading formatting for the paragraph.
+     */
+    public get shading(): Shading {
+        return this._shading;
+    }
+
+    /**
+     * Gets or sets the Shading object, that refers to the shading formatting for the paragraph.
+     */
+    public set shading(value: Shading) {
+        this._shading = value;
+    }
+
 
     /**
      * Gets or sets the amount of spacing (in points) after the paragraph.
      */
-    public spaceAfter: number;
+    private _spaceAfter: number;
+
+    /**
+     * Gets or sets the amount of spacing (in points) after the paragraph.
+     */
+    public get spaceAfter(): number {
+        return this._spaceAfter;
+    }
+
+    /**
+     * Gets or sets the amount of spacing (in points) after the paragraph.
+     */
+    public set spaceAfter(value: number) {
+        this._spaceAfter = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether the amount of spacing after the paragraph is set automatically.
      */
-    public spaceAfterAuto: boolean;
+    private _spaceAfterAuto: boolean;
+
+    /**
+     * Gets or sets a value indicating whether the amount of spacing after the paragraph is set automatically.
+     */
+    public get spaceAfterAuto(): boolean {
+        return this._spaceAfterAuto;
+    }
+
+    /**
+     * Gets or sets a value indicating whether the amount of spacing after the paragraph is set automatically.
+     */
+    public set spaceAfterAuto(value: boolean) {
+        this._spaceAfterAuto = value;
+    }
+
 
     /**
      * Gets or sets the amount of spacing (in points) before the paragraph.
      */
-    public spaceBefore: number;
+    private _spaceBefore: number;
+
+    /**
+     * Gets or sets the amount of spacing (in points) before the paragraph.
+     */
+    public get spaceBefore(): number {
+        return this._spaceBefore;
+    }
+
+    /**
+     * Gets or sets the amount of spacing (in points) before the paragraph.
+     */
+    public set spaceBefore(value: number) {
+        this._spaceBefore = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether the amount of spacing before the paragraph is set automatically.
      */
-    public spaceBeforeAuto: boolean;
+    private _spaceBeforeAuto: boolean;
+
+    /**
+     * Gets or sets a value indicating whether the amount of spacing before the paragraph is set automatically.
+     */
+    public get spaceBeforeAuto(): boolean {
+        return this._spaceBeforeAuto;
+    }
+
+    /**
+     * Gets or sets a value indicating whether the amount of spacing before the paragraph is set automatically.
+     */
+    public set spaceBeforeAuto(value: boolean) {
+        this._spaceBeforeAuto = value;
+    }
+
 
     /**
      * Gets or sets the locale independent style identifier of the paragraph style applied to this formatting.
      */
-    public styleIdentifier: ParagraphFormatBase.StyleIdentifierEnum;
+    private _styleIdentifier: ParagraphFormatBase.StyleIdentifierEnum;
+
+    /**
+     * Gets or sets the locale independent style identifier of the paragraph style applied to this formatting.
+     */
+    public get styleIdentifier(): ParagraphFormatBase.StyleIdentifierEnum {
+        return this._styleIdentifier;
+    }
+
+    /**
+     * Gets or sets the locale independent style identifier of the paragraph style applied to this formatting.
+     */
+    public set styleIdentifier(value: ParagraphFormatBase.StyleIdentifierEnum) {
+        this._styleIdentifier = value;
+    }
+
 
     /**
      * Gets or sets the name of the paragraph style applied to this formatting.
      */
-    public styleName: string;
+    private _styleName: string;
+
+    /**
+     * Gets or sets the name of the paragraph style applied to this formatting.
+     */
+    public get styleName(): string {
+        return this._styleName;
+    }
+
+    /**
+     * Gets or sets the name of the paragraph style applied to this formatting.
+     */
+    public set styleName(value: string) {
+        this._styleName = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether the current paragraph should be exempted from any hyphenation which is applied in the document settings.
      */
-    public suppressAutoHyphens: boolean;
+    private _suppressAutoHyphens: boolean;
+
+    /**
+     * Gets or sets a value indicating whether the current paragraph should be exempted from any hyphenation which is applied in the document settings.
+     */
+    public get suppressAutoHyphens(): boolean {
+        return this._suppressAutoHyphens;
+    }
+
+    /**
+     * Gets or sets a value indicating whether the current paragraph should be exempted from any hyphenation which is applied in the document settings.
+     */
+    public set suppressAutoHyphens(value: boolean) {
+        this._suppressAutoHyphens = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether the current paragraph's lines should be exempted from line numbering which is applied in the parent section.
      */
-    public suppressLineNumbers: boolean;
+    private _suppressLineNumbers: boolean;
+
+    /**
+     * Gets or sets a value indicating whether the current paragraph's lines should be exempted from line numbering which is applied in the parent section.
+     */
+    public get suppressLineNumbers(): boolean {
+        return this._suppressLineNumbers;
+    }
+
+    /**
+     * Gets or sets a value indicating whether the current paragraph's lines should be exempted from line numbering which is applied in the parent section.
+     */
+    public set suppressLineNumbers(value: boolean) {
+        this._suppressLineNumbers = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether the first and last lines in the paragraph are to remain on the same page as the rest of the paragraph.
      */
-    public widowControl: boolean;
+    private _widowControl: boolean;
+
+    /**
+     * Gets or sets a value indicating whether the first and last lines in the paragraph are to remain on the same page as the rest of the paragraph.
+     */
+    public get widowControl(): boolean {
+        return this._widowControl;
+    }
+
+    /**
+     * Gets or sets a value indicating whether the first and last lines in the paragraph are to remain on the same page as the rest of the paragraph.
+     */
+    public set widowControl(value: boolean) {
+        this._widowControl = value;
+    }
+
 
     public constructor(init?: Partial< ParagraphFormatBase >) {
         super(init);

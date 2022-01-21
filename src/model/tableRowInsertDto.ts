@@ -60,12 +60,42 @@ export class TableRowInsertDto {
     /**
      * Gets or sets the count of columns. The default value is 1.
      */
-    public columnsCount: number;
+    private _columnsCount: number;
+
+    /**
+     * Gets or sets the count of columns. The default value is 1.
+     */
+    public get columnsCount(): number {
+        return this._columnsCount;
+    }
+
+    /**
+     * Gets or sets the count of columns. The default value is 1.
+     */
+    public set columnsCount(value: number) {
+        this._columnsCount = value;
+    }
+
 
     /**
      * Gets or sets table row will be inserted after row with specified 0-based index.
      */
-    public insertAfter: number;
+    private _insertAfter: number;
+
+    /**
+     * Gets or sets table row will be inserted after row with specified 0-based index.
+     */
+    public get insertAfter(): number {
+        return this._insertAfter;
+    }
+
+    /**
+     * Gets or sets table row will be inserted after row with specified 0-based index.
+     */
+    public set insertAfter(value: number) {
+        this._insertAfter = value;
+    }
+
 
     public constructor(init?: Partial< TableRowInsertDto >) {
         Object.assign(this, init);

@@ -69,17 +69,62 @@ export class AvailableFontsResponse extends WordsResponse {
     /**
      * Gets or sets the list of additional fonts, provided by Aspose team.
      */
-    public additionalFonts: Array<FontInfo>;
+    private _additionalFonts: Array<FontInfo>;
+
+    /**
+     * Gets or sets the list of additional fonts, provided by Aspose team.
+     */
+    public get additionalFonts(): Array<FontInfo> {
+        return this._additionalFonts;
+    }
+
+    /**
+     * Gets or sets the list of additional fonts, provided by Aspose team.
+     */
+    public set additionalFonts(value: Array<FontInfo>) {
+        this._additionalFonts = value;
+    }
+
 
     /**
      * Gets or sets the list of custom user fonts from user cloud storage. To use them, you should specify "fontsLocation" parameter in any request.
      */
-    public customFonts: Array<FontInfo>;
+    private _customFonts: Array<FontInfo>;
+
+    /**
+     * Gets or sets the list of custom user fonts from user cloud storage. To use them, you should specify "fontsLocation" parameter in any request.
+     */
+    public get customFonts(): Array<FontInfo> {
+        return this._customFonts;
+    }
+
+    /**
+     * Gets or sets the list of custom user fonts from user cloud storage. To use them, you should specify "fontsLocation" parameter in any request.
+     */
+    public set customFonts(value: Array<FontInfo>) {
+        this._customFonts = value;
+    }
+
 
     /**
      * Gets or sets the list of system fonts, available on the server.
      */
-    public systemFonts: Array<FontInfo>;
+    private _systemFonts: Array<FontInfo>;
+
+    /**
+     * Gets or sets the list of system fonts, available on the server.
+     */
+    public get systemFonts(): Array<FontInfo> {
+        return this._systemFonts;
+    }
+
+    /**
+     * Gets or sets the list of system fonts, available on the server.
+     */
+    public set systemFonts(value: Array<FontInfo>) {
+        this._systemFonts = value;
+    }
+
 
     public constructor(init?: Partial< AvailableFontsResponse >) {
         super(init);

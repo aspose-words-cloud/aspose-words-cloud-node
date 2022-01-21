@@ -59,7 +59,22 @@ export class ParagraphResponse extends WordsResponse {
     /**
      * Gets or sets the paragraph.
      */
-    public paragraph: Paragraph;
+    private _paragraph: Paragraph;
+
+    /**
+     * Gets or sets the paragraph.
+     */
+    public get paragraph(): Paragraph {
+        return this._paragraph;
+    }
+
+    /**
+     * Gets or sets the paragraph.
+     */
+    public set paragraph(value: Paragraph) {
+        this._paragraph = value;
+    }
+
 
     public constructor(init?: Partial< ParagraphResponse >) {
         super(init);

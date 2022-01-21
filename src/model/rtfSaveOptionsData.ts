@@ -72,25 +72,87 @@ export class RtfSaveOptionsData extends SaveOptionsData {
     /**
      * Gets or sets a value indicating whether to make output RTF documents smaller in size, but if they contain RTL (right-to-left) text, it will not be displayed correctly.
      */
-    public exportCompactSize: boolean;
+    private _exportCompactSize: boolean;
+
+    /**
+     * Gets or sets a value indicating whether to make output RTF documents smaller in size, but if they contain RTL (right-to-left) text, it will not be displayed correctly.
+     */
+    public get exportCompactSize(): boolean {
+        return this._exportCompactSize;
+    }
+
+    /**
+     * Gets or sets a value indicating whether to make output RTF documents smaller in size, but if they contain RTL (right-to-left) text, it will not be displayed correctly.
+     */
+    public set exportCompactSize(value: boolean) {
+        this._exportCompactSize = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether the keywords for "old readers" are written to RTF or not.
      */
-    public exportImagesForOldReaders: boolean;
+    private _exportImagesForOldReaders: boolean;
+
+    /**
+     * Gets or sets a value indicating whether the keywords for "old readers" are written to RTF or not.
+     */
+    public get exportImagesForOldReaders(): boolean {
+        return this._exportImagesForOldReaders;
+    }
+
+    /**
+     * Gets or sets a value indicating whether the keywords for "old readers" are written to RTF or not.
+     */
+    public set exportImagesForOldReaders(value: boolean) {
+        this._exportImagesForOldReaders = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether to use pretty formats output.
      */
-    public prettyFormat: boolean;
+    private _prettyFormat: boolean;
+
+    /**
+     * Gets or sets a value indicating whether to use pretty formats output.
+     */
+    public get prettyFormat(): boolean {
+        return this._prettyFormat;
+    }
+
+    /**
+     * Gets or sets a value indicating whether to use pretty formats output.
+     */
+    public set prettyFormat(value: boolean) {
+        this._prettyFormat = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether when true all images will be saved as WMF. This option might help to avoid WordPad warning messages.
      */
-    public saveImagesAsWmf: boolean;
+    private _saveImagesAsWmf: boolean;
+
+    /**
+     * Gets or sets a value indicating whether when true all images will be saved as WMF. This option might help to avoid WordPad warning messages.
+     */
+    public get saveImagesAsWmf(): boolean {
+        return this._saveImagesAsWmf;
+    }
+
+    /**
+     * Gets or sets a value indicating whether when true all images will be saved as WMF. This option might help to avoid WordPad warning messages.
+     */
+    public set saveImagesAsWmf(value: boolean) {
+        this._saveImagesAsWmf = value;
+    }
+
 
     public constructor(init?: Partial< RtfSaveOptionsData >) {
         super(init);
+        saveFormat = 'rtf';
+
         Object.assign(this, init);
     }
 }

@@ -62,12 +62,42 @@ export class CustomXmlPart extends CustomXmlPartLink {
     /**
      * Gets or sets the custom xml part data.
      */
-    public data: string;
+    private _data: string;
+
+    /**
+     * Gets or sets the custom xml part data.
+     */
+    public get data(): string {
+        return this._data;
+    }
+
+    /**
+     * Gets or sets the custom xml part data.
+     */
+    public set data(value: string) {
+        this._data = value;
+    }
+
 
     /**
      * Gets or sets the custom xml part id.
      */
-    public id: string;
+    private _id: string;
+
+    /**
+     * Gets or sets the custom xml part id.
+     */
+    public get id(): string {
+        return this._id;
+    }
+
+    /**
+     * Gets or sets the custom xml part id.
+     */
+    public set id(value: string) {
+        this._id = value;
+    }
+
 
     public constructor(init?: Partial< CustomXmlPart >) {
         super(init);

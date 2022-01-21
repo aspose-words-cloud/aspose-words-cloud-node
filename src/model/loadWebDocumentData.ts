@@ -62,12 +62,42 @@ export class LoadWebDocumentData {
     /**
      * Gets or sets the web document URL.
      */
-    public loadingDocumentUrl: string;
+    private _loadingDocumentUrl: string;
+
+    /**
+     * Gets or sets the web document URL.
+     */
+    public get loadingDocumentUrl(): string {
+        return this._loadingDocumentUrl;
+    }
+
+    /**
+     * Gets or sets the web document URL.
+     */
+    public set loadingDocumentUrl(value: string) {
+        this._loadingDocumentUrl = value;
+    }
+
 
     /**
      * Gets or sets the save options.
      */
-    public saveOptions: SaveOptionsData;
+    private _saveOptions: SaveOptionsData;
+
+    /**
+     * Gets or sets the save options.
+     */
+    public get saveOptions(): SaveOptionsData {
+        return this._saveOptions;
+    }
+
+    /**
+     * Gets or sets the save options.
+     */
+    public set saveOptions(value: SaveOptionsData) {
+        this._saveOptions = value;
+    }
+
 
     public constructor(init?: Partial< LoadWebDocumentData >) {
         Object.assign(this, init);

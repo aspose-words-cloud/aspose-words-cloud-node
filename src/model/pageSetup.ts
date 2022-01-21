@@ -197,149 +197,588 @@ export class PageSetup extends LinkElement {
     /**
      * Gets or sets a value indicating whether this section contains bidirectional (complex scripts) text.
      */
-    public bidi: boolean;
+    private _bidi: boolean;
+
+    /**
+     * Gets or sets a value indicating whether this section contains bidirectional (complex scripts) text.
+     */
+    public get bidi(): boolean {
+        return this._bidi;
+    }
+
+    /**
+     * Gets or sets a value indicating whether this section contains bidirectional (complex scripts) text.
+     */
+    public set bidi(value: boolean) {
+        this._bidi = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether the page border is positioned relative to intersecting texts and objects.
      */
-    public borderAlwaysInFront: boolean;
+    private _borderAlwaysInFront: boolean;
+
+    /**
+     * Gets or sets a value indicating whether the page border is positioned relative to intersecting texts and objects.
+     */
+    public get borderAlwaysInFront(): boolean {
+        return this._borderAlwaysInFront;
+    }
+
+    /**
+     * Gets or sets a value indicating whether the page border is positioned relative to intersecting texts and objects.
+     */
+    public set borderAlwaysInFront(value: boolean) {
+        this._borderAlwaysInFront = value;
+    }
+
 
     /**
      * Gets or sets the option that controls which pages the page border is printed on.
      */
-    public borderAppliesTo: PageSetup.BorderAppliesToEnum;
+    private _borderAppliesTo: PageSetup.BorderAppliesToEnum;
+
+    /**
+     * Gets or sets the option that controls which pages the page border is printed on.
+     */
+    public get borderAppliesTo(): PageSetup.BorderAppliesToEnum {
+        return this._borderAppliesTo;
+    }
+
+    /**
+     * Gets or sets the option that controls which pages the page border is printed on.
+     */
+    public set borderAppliesTo(value: PageSetup.BorderAppliesToEnum) {
+        this._borderAppliesTo = value;
+    }
+
 
     /**
      * Gets or sets the value, that indicates whether the specified page border is measured from the edge of the page or from the text it surrounds.
      */
-    public borderDistanceFrom: PageSetup.BorderDistanceFromEnum;
+    private _borderDistanceFrom: PageSetup.BorderDistanceFromEnum;
+
+    /**
+     * Gets or sets the value, that indicates whether the specified page border is measured from the edge of the page or from the text it surrounds.
+     */
+    public get borderDistanceFrom(): PageSetup.BorderDistanceFromEnum {
+        return this._borderDistanceFrom;
+    }
+
+    /**
+     * Gets or sets the value, that indicates whether the specified page border is measured from the edge of the page or from the text it surrounds.
+     */
+    public set borderDistanceFrom(value: PageSetup.BorderDistanceFromEnum) {
+        this._borderDistanceFrom = value;
+    }
+
 
     /**
      * Gets or sets the distance (in points) between the bottom edge of the page and the bottom boundary of the body text.
      */
-    public bottomMargin: number;
+    private _bottomMargin: number;
+
+    /**
+     * Gets or sets the distance (in points) between the bottom edge of the page and the bottom boundary of the body text.
+     */
+    public get bottomMargin(): number {
+        return this._bottomMargin;
+    }
+
+    /**
+     * Gets or sets the distance (in points) between the bottom edge of the page and the bottom boundary of the body text.
+     */
+    public set bottomMargin(value: number) {
+        this._bottomMargin = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether a different header or footer is used on the first page.
      */
-    public differentFirstPageHeaderFooter: boolean;
+    private _differentFirstPageHeaderFooter: boolean;
+
+    /**
+     * Gets or sets a value indicating whether a different header or footer is used on the first page.
+     */
+    public get differentFirstPageHeaderFooter(): boolean {
+        return this._differentFirstPageHeaderFooter;
+    }
+
+    /**
+     * Gets or sets a value indicating whether a different header or footer is used on the first page.
+     */
+    public set differentFirstPageHeaderFooter(value: boolean) {
+        this._differentFirstPageHeaderFooter = value;
+    }
+
 
     /**
      * Gets or sets the paper tray (bin) to use for the first page of a section.
      * The value is implementation (printer) specific.
      */
-    public firstPageTray: number;
+    private _firstPageTray: number;
+
+    /**
+     * Gets or sets the paper tray (bin) to use for the first page of a section.
+     * The value is implementation (printer) specific.
+     */
+    public get firstPageTray(): number {
+        return this._firstPageTray;
+    }
+
+    /**
+     * Gets or sets the paper tray (bin) to use for the first page of a section.
+     * The value is implementation (printer) specific.
+     */
+    public set firstPageTray(value: number) {
+        this._firstPageTray = value;
+    }
+
 
     /**
      * Gets or sets the distance (in points) between the footer and the bottom of the page.
      */
-    public footerDistance: number;
+    private _footerDistance: number;
+
+    /**
+     * Gets or sets the distance (in points) between the footer and the bottom of the page.
+     */
+    public get footerDistance(): number {
+        return this._footerDistance;
+    }
+
+    /**
+     * Gets or sets the distance (in points) between the footer and the bottom of the page.
+     */
+    public set footerDistance(value: number) {
+        this._footerDistance = value;
+    }
+
 
     /**
      * Gets or sets the amount of extra space added to the margin for document binding.
      */
-    public gutter: number;
+    private _gutter: number;
+
+    /**
+     * Gets or sets the amount of extra space added to the margin for document binding.
+     */
+    public get gutter(): number {
+        return this._gutter;
+    }
+
+    /**
+     * Gets or sets the amount of extra space added to the margin for document binding.
+     */
+    public set gutter(value: number) {
+        this._gutter = value;
+    }
+
 
     /**
      * Gets or sets the distance (in points) between the header and the top of the page.
      */
-    public headerDistance: number;
+    private _headerDistance: number;
+
+    /**
+     * Gets or sets the distance (in points) between the header and the top of the page.
+     */
+    public get headerDistance(): number {
+        return this._headerDistance;
+    }
+
+    /**
+     * Gets or sets the distance (in points) between the header and the top of the page.
+     */
+    public set headerDistance(value: number) {
+        this._headerDistance = value;
+    }
+
 
     /**
      * Gets or sets the distance (in points) between the left edge of the page and the left boundary of the body text.
      */
-    public leftMargin: number;
+    private _leftMargin: number;
+
+    /**
+     * Gets or sets the distance (in points) between the left edge of the page and the left boundary of the body text.
+     */
+    public get leftMargin(): number {
+        return this._leftMargin;
+    }
+
+    /**
+     * Gets or sets the distance (in points) between the left edge of the page and the left boundary of the body text.
+     */
+    public set leftMargin(value: number) {
+        this._leftMargin = value;
+    }
+
 
     /**
      * Gets or sets the numeric increment for line numbers.
      */
-    public lineNumberCountBy: number;
+    private _lineNumberCountBy: number;
+
+    /**
+     * Gets or sets the numeric increment for line numbers.
+     */
+    public get lineNumberCountBy(): number {
+        return this._lineNumberCountBy;
+    }
+
+    /**
+     * Gets or sets the numeric increment for line numbers.
+     */
+    public set lineNumberCountBy(value: number) {
+        this._lineNumberCountBy = value;
+    }
+
 
     /**
      * Gets or sets the distance between the right edge of line numbers and the left edge of the document.
      */
-    public lineNumberDistanceFromText: number;
+    private _lineNumberDistanceFromText: number;
+
+    /**
+     * Gets or sets the distance between the right edge of line numbers and the left edge of the document.
+     */
+    public get lineNumberDistanceFromText(): number {
+        return this._lineNumberDistanceFromText;
+    }
+
+    /**
+     * Gets or sets the distance between the right edge of line numbers and the left edge of the document.
+     */
+    public set lineNumberDistanceFromText(value: number) {
+        this._lineNumberDistanceFromText = value;
+    }
+
 
     /**
      * Gets or sets the way line numbering runs  that is, whether it starts over at the beginning of a new page or section or runs continuously.
      */
-    public lineNumberRestartMode: PageSetup.LineNumberRestartModeEnum;
+    private _lineNumberRestartMode: PageSetup.LineNumberRestartModeEnum;
+
+    /**
+     * Gets or sets the way line numbering runs  that is, whether it starts over at the beginning of a new page or section or runs continuously.
+     */
+    public get lineNumberRestartMode(): PageSetup.LineNumberRestartModeEnum {
+        return this._lineNumberRestartMode;
+    }
+
+    /**
+     * Gets or sets the way line numbering runs  that is, whether it starts over at the beginning of a new page or section or runs continuously.
+     */
+    public set lineNumberRestartMode(value: PageSetup.LineNumberRestartModeEnum) {
+        this._lineNumberRestartMode = value;
+    }
+
 
     /**
      * Gets or sets the starting line number.
      */
-    public lineStartingNumber: number;
+    private _lineStartingNumber: number;
+
+    /**
+     * Gets or sets the starting line number.
+     */
+    public get lineStartingNumber(): number {
+        return this._lineStartingNumber;
+    }
+
+    /**
+     * Gets or sets the starting line number.
+     */
+    public set lineStartingNumber(value: number) {
+        this._lineStartingNumber = value;
+    }
+
 
     /**
      * Gets or sets the orientation of the page.
      */
-    public orientation: PageSetup.OrientationEnum;
+    private _orientation: PageSetup.OrientationEnum;
+
+    /**
+     * Gets or sets the orientation of the page.
+     */
+    public get orientation(): PageSetup.OrientationEnum {
+        return this._orientation;
+    }
+
+    /**
+     * Gets or sets the orientation of the page.
+     */
+    public set orientation(value: PageSetup.OrientationEnum) {
+        this._orientation = value;
+    }
+
 
     /**
      * Gets or sets the paper tray (bin) to be used for all but the first page of a section.
      * The value is implementation (printer) specific.
      */
-    public otherPagesTray: number;
+    private _otherPagesTray: number;
+
+    /**
+     * Gets or sets the paper tray (bin) to be used for all but the first page of a section.
+     * The value is implementation (printer) specific.
+     */
+    public get otherPagesTray(): number {
+        return this._otherPagesTray;
+    }
+
+    /**
+     * Gets or sets the paper tray (bin) to be used for all but the first page of a section.
+     * The value is implementation (printer) specific.
+     */
+    public set otherPagesTray(value: number) {
+        this._otherPagesTray = value;
+    }
+
 
     /**
      * Gets or sets the height of the page in points.
      */
-    public pageHeight: number;
+    private _pageHeight: number;
+
+    /**
+     * Gets or sets the height of the page in points.
+     */
+    public get pageHeight(): number {
+        return this._pageHeight;
+    }
+
+    /**
+     * Gets or sets the height of the page in points.
+     */
+    public set pageHeight(value: number) {
+        this._pageHeight = value;
+    }
+
 
     /**
      * Gets or sets the page number format.
      */
-    public pageNumberStyle: PageSetup.PageNumberStyleEnum;
+    private _pageNumberStyle: PageSetup.PageNumberStyleEnum;
+
+    /**
+     * Gets or sets the page number format.
+     */
+    public get pageNumberStyle(): PageSetup.PageNumberStyleEnum {
+        return this._pageNumberStyle;
+    }
+
+    /**
+     * Gets or sets the page number format.
+     */
+    public set pageNumberStyle(value: PageSetup.PageNumberStyleEnum) {
+        this._pageNumberStyle = value;
+    }
+
 
     /**
      * Gets or sets the starting page number of the section.
      */
-    public pageStartingNumber: number;
+    private _pageStartingNumber: number;
+
+    /**
+     * Gets or sets the starting page number of the section.
+     */
+    public get pageStartingNumber(): number {
+        return this._pageStartingNumber;
+    }
+
+    /**
+     * Gets or sets the starting page number of the section.
+     */
+    public set pageStartingNumber(value: number) {
+        this._pageStartingNumber = value;
+    }
+
 
     /**
      * Gets or sets the width of the page in points.
      */
-    public pageWidth: number;
+    private _pageWidth: number;
+
+    /**
+     * Gets or sets the width of the page in points.
+     */
+    public get pageWidth(): number {
+        return this._pageWidth;
+    }
+
+    /**
+     * Gets or sets the width of the page in points.
+     */
+    public set pageWidth(value: number) {
+        this._pageWidth = value;
+    }
+
 
     /**
      * Gets or sets the paper size.
      */
-    public paperSize: PageSetup.PaperSizeEnum;
+    private _paperSize: PageSetup.PaperSizeEnum;
+
+    /**
+     * Gets or sets the paper size.
+     */
+    public get paperSize(): PageSetup.PaperSizeEnum {
+        return this._paperSize;
+    }
+
+    /**
+     * Gets or sets the paper size.
+     */
+    public set paperSize(value: PageSetup.PaperSizeEnum) {
+        this._paperSize = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether page numbering restarts at the beginning of the section.
      */
-    public restartPageNumbering: boolean;
+    private _restartPageNumbering: boolean;
+
+    /**
+     * Gets or sets a value indicating whether page numbering restarts at the beginning of the section.
+     */
+    public get restartPageNumbering(): boolean {
+        return this._restartPageNumbering;
+    }
+
+    /**
+     * Gets or sets a value indicating whether page numbering restarts at the beginning of the section.
+     */
+    public set restartPageNumbering(value: boolean) {
+        this._restartPageNumbering = value;
+    }
+
 
     /**
      * Gets or sets the distance (in points) between the right edge of the page and the right boundary of the body text.
      */
-    public rightMargin: number;
+    private _rightMargin: number;
+
+    /**
+     * Gets or sets the distance (in points) between the right edge of the page and the right boundary of the body text.
+     */
+    public get rightMargin(): number {
+        return this._rightMargin;
+    }
+
+    /**
+     * Gets or sets the distance (in points) between the right edge of the page and the right boundary of the body text.
+     */
+    public set rightMargin(value: number) {
+        this._rightMargin = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether Microsoft Word uses gutters for the section based on a right-to-left language or a left-to-right language.
      */
-    public rtlGutter: boolean;
+    private _rtlGutter: boolean;
+
+    /**
+     * Gets or sets a value indicating whether Microsoft Word uses gutters for the section based on a right-to-left language or a left-to-right language.
+     */
+    public get rtlGutter(): boolean {
+        return this._rtlGutter;
+    }
+
+    /**
+     * Gets or sets a value indicating whether Microsoft Word uses gutters for the section based on a right-to-left language or a left-to-right language.
+     */
+    public set rtlGutter(value: boolean) {
+        this._rtlGutter = value;
+    }
+
 
     /**
      * Gets or sets the type of section break for the specified object.
      */
-    public sectionStart: PageSetup.SectionStartEnum;
+    private _sectionStart: PageSetup.SectionStartEnum;
+
+    /**
+     * Gets or sets the type of section break for the specified object.
+     */
+    public get sectionStart(): PageSetup.SectionStartEnum {
+        return this._sectionStart;
+    }
+
+    /**
+     * Gets or sets the type of section break for the specified object.
+     */
+    public set sectionStart(value: PageSetup.SectionStartEnum) {
+        this._sectionStart = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether endnotes are printed at the end of the next section that doesn't suppress endnotes. Suppressed endnotes are printed before the endnotes in that section.
      */
-    public suppressEndnotes: boolean;
+    private _suppressEndnotes: boolean;
+
+    /**
+     * Gets or sets a value indicating whether endnotes are printed at the end of the next section that doesn't suppress endnotes. Suppressed endnotes are printed before the endnotes in that section.
+     */
+    public get suppressEndnotes(): boolean {
+        return this._suppressEndnotes;
+    }
+
+    /**
+     * Gets or sets a value indicating whether endnotes are printed at the end of the next section that doesn't suppress endnotes. Suppressed endnotes are printed before the endnotes in that section.
+     */
+    public set suppressEndnotes(value: boolean) {
+        this._suppressEndnotes = value;
+    }
+
 
     /**
      * Gets or sets the distance (in points) between the top edge of the page and the top boundary of the body text.
      */
-    public topMargin: number;
+    private _topMargin: number;
+
+    /**
+     * Gets or sets the distance (in points) between the top edge of the page and the top boundary of the body text.
+     */
+    public get topMargin(): number {
+        return this._topMargin;
+    }
+
+    /**
+     * Gets or sets the distance (in points) between the top edge of the page and the top boundary of the body text.
+     */
+    public set topMargin(value: number) {
+        this._topMargin = value;
+    }
+
 
     /**
      * Gets or sets the vertical alignment of text on each page in the document.or section.
      */
-    public verticalAlignment: PageSetup.VerticalAlignmentEnum;
+    private _verticalAlignment: PageSetup.VerticalAlignmentEnum;
+
+    /**
+     * Gets or sets the vertical alignment of text on each page in the document.or section.
+     */
+    public get verticalAlignment(): PageSetup.VerticalAlignmentEnum {
+        return this._verticalAlignment;
+    }
+
+    /**
+     * Gets or sets the vertical alignment of text on each page in the document.or section.
+     */
+    public set verticalAlignment(value: PageSetup.VerticalAlignmentEnum) {
+        this._verticalAlignment = value;
+    }
+
 
     public constructor(init?: Partial< PageSetup >) {
         super(init);

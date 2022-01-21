@@ -84,32 +84,122 @@ export class Border extends LinkElement {
     /**
      * Gets or sets the border type.
      */
-    public borderType: Border.BorderTypeEnum;
+    private _borderType: Border.BorderTypeEnum;
+
+    /**
+     * Gets or sets the border type.
+     */
+    public get borderType(): Border.BorderTypeEnum {
+        return this._borderType;
+    }
+
+    /**
+     * Gets or sets the border type.
+     */
+    public set borderType(value: Border.BorderTypeEnum) {
+        this._borderType = value;
+    }
+
 
     /**
      * Gets or sets the border color.
      */
-    public color: XmlColor;
+    private _color: XmlColor;
+
+    /**
+     * Gets or sets the border color.
+     */
+    public get color(): XmlColor {
+        return this._color;
+    }
+
+    /**
+     * Gets or sets the border color.
+     */
+    public set color(value: XmlColor) {
+        this._color = value;
+    }
+
 
     /**
      * Gets or sets the distance of the border from text or from the page edge in points.
      */
-    public distanceFromText: number;
+    private _distanceFromText: number;
+
+    /**
+     * Gets or sets the distance of the border from text or from the page edge in points.
+     */
+    public get distanceFromText(): number {
+        return this._distanceFromText;
+    }
+
+    /**
+     * Gets or sets the distance of the border from text or from the page edge in points.
+     */
+    public set distanceFromText(value: number) {
+        this._distanceFromText = value;
+    }
+
 
     /**
      * Gets or sets the border style.
      */
-    public lineStyle: Border.LineStyleEnum;
+    private _lineStyle: Border.LineStyleEnum;
+
+    /**
+     * Gets or sets the border style.
+     */
+    public get lineStyle(): Border.LineStyleEnum {
+        return this._lineStyle;
+    }
+
+    /**
+     * Gets or sets the border style.
+     */
+    public set lineStyle(value: Border.LineStyleEnum) {
+        this._lineStyle = value;
+    }
+
 
     /**
      * Gets or sets the border width in points.
      */
-    public lineWidth: number;
+    private _lineWidth: number;
+
+    /**
+     * Gets or sets the border width in points.
+     */
+    public get lineWidth(): number {
+        return this._lineWidth;
+    }
+
+    /**
+     * Gets or sets the border width in points.
+     */
+    public set lineWidth(value: number) {
+        this._lineWidth = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether the border has a shadow.
      */
-    public shadow: boolean;
+    private _shadow: boolean;
+
+    /**
+     * Gets or sets a value indicating whether the border has a shadow.
+     */
+    public get shadow(): boolean {
+        return this._shadow;
+    }
+
+    /**
+     * Gets or sets a value indicating whether the border has a shadow.
+     */
+    public set shadow(value: boolean) {
+        this._shadow = value;
+    }
+
 
     public constructor(init?: Partial< Border >) {
         super(init);

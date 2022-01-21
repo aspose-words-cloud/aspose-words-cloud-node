@@ -59,7 +59,22 @@ export class DocumentPropertyResponse extends WordsResponse {
     /**
      * Gets or sets the document property.
      */
-    public documentProperty: DocumentProperty;
+    private _documentProperty: DocumentProperty;
+
+    /**
+     * Gets or sets the document property.
+     */
+    public get documentProperty(): DocumentProperty {
+        return this._documentProperty;
+    }
+
+    /**
+     * Gets or sets the document property.
+     */
+    public set documentProperty(value: DocumentProperty) {
+        this._documentProperty = value;
+    }
+
 
     public constructor(init?: Partial< DocumentPropertyResponse >) {
         super(init);

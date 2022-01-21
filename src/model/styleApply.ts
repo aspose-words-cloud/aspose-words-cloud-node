@@ -55,7 +55,22 @@ export class StyleApply {
     /**
      * Gets or sets the case sensitive name of the style to apply.
      */
-    public styleName: string;
+    private _styleName: string;
+
+    /**
+     * Gets or sets the case sensitive name of the style to apply.
+     */
+    public get styleName(): string {
+        return this._styleName;
+    }
+
+    /**
+     * Gets or sets the case sensitive name of the style to apply.
+     */
+    public set styleName(value: string) {
+        this._styleName = value;
+    }
+
 
     public constructor(init?: Partial< StyleApply >) {
         Object.assign(this, init);

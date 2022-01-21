@@ -75,27 +75,102 @@ export class ApiError {
     /**
      * Gets or sets the API error code.
      */
-    public code: string;
+    private _code: string;
+
+    /**
+     * Gets or sets the API error code.
+     */
+    public get code(): string {
+        return this._code;
+    }
+
+    /**
+     * Gets or sets the API error code.
+     */
+    public set code(value: string) {
+        this._code = value;
+    }
+
 
     /**
      * Gets or sets the server DateTime.
      */
-    public dateTime: Date;
+    private _dateTime: Date;
+
+    /**
+     * Gets or sets the server DateTime.
+     */
+    public get dateTime(): Date {
+        return this._dateTime;
+    }
+
+    /**
+     * Gets or sets the server DateTime.
+     */
+    public set dateTime(value: Date) {
+        this._dateTime = value;
+    }
+
 
     /**
      * Gets or sets the error description.
      */
-    public description: string;
+    private _description: string;
+
+    /**
+     * Gets or sets the error description.
+     */
+    public get description(): string {
+        return this._description;
+    }
+
+    /**
+     * Gets or sets the error description.
+     */
+    public set description(value: string) {
+        this._description = value;
+    }
+
 
     /**
      * Gets or sets the inner error.
      */
-    public innerError: ApiError;
+    private _innerError: ApiError;
+
+    /**
+     * Gets or sets the inner error.
+     */
+    public get innerError(): ApiError {
+        return this._innerError;
+    }
+
+    /**
+     * Gets or sets the inner error.
+     */
+    public set innerError(value: ApiError) {
+        this._innerError = value;
+    }
+
 
     /**
      * Gets or sets the error message.
      */
-    public message: string;
+    private _message: string;
+
+    /**
+     * Gets or sets the error message.
+     */
+    public get message(): string {
+        return this._message;
+    }
+
+    /**
+     * Gets or sets the error message.
+     */
+    public set message(value: string) {
+        this._message = value;
+    }
+
 
     public constructor(init?: Partial< ApiError >) {
         Object.assign(this, init);

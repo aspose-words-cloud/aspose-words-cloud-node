@@ -59,7 +59,22 @@ export class TableResponse extends WordsResponse {
     /**
      * Gets or sets the table.
      */
-    public table: Table;
+    private _table: Table;
+
+    /**
+     * Gets or sets the table.
+     */
+    public get table(): Table {
+        return this._table;
+    }
+
+    /**
+     * Gets or sets the table.
+     */
+    public set table(value: Table) {
+        this._table = value;
+    }
+
 
     public constructor(init?: Partial< TableResponse >) {
         super(init);

@@ -82,32 +82,122 @@ export class OutlineOptionsData {
     /**
      * Gets or sets the individual bookmarks outline level.
      */
-    public bookmarksOutlineLevels: Array<BookmarksOutlineLevelData>;
+    private _bookmarksOutlineLevels: Array<BookmarksOutlineLevelData>;
+
+    /**
+     * Gets or sets the individual bookmarks outline level.
+     */
+    public get bookmarksOutlineLevels(): Array<BookmarksOutlineLevelData> {
+        return this._bookmarksOutlineLevels;
+    }
+
+    /**
+     * Gets or sets the individual bookmarks outline level.
+     */
+    public set bookmarksOutlineLevels(value: Array<BookmarksOutlineLevelData>) {
+        this._bookmarksOutlineLevels = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether to create missing outline levels when the document is exported. The default value is false.
      */
-    public createMissingOutlineLevels: boolean;
+    private _createMissingOutlineLevels: boolean;
+
+    /**
+     * Gets or sets a value indicating whether to create missing outline levels when the document is exported. The default value is false.
+     */
+    public get createMissingOutlineLevels(): boolean {
+        return this._createMissingOutlineLevels;
+    }
+
+    /**
+     * Gets or sets a value indicating whether to create missing outline levels when the document is exported. The default value is false.
+     */
+    public set createMissingOutlineLevels(value: boolean) {
+        this._createMissingOutlineLevels = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether to create outlines for headings (paragraphs formatted with the Heading styles) inside tables.
      */
-    public createOutlinesForHeadingsInTables: boolean;
+    private _createOutlinesForHeadingsInTables: boolean;
+
+    /**
+     * Gets or sets a value indicating whether to create outlines for headings (paragraphs formatted with the Heading styles) inside tables.
+     */
+    public get createOutlinesForHeadingsInTables(): boolean {
+        return this._createOutlinesForHeadingsInTables;
+    }
+
+    /**
+     * Gets or sets a value indicating whether to create outlines for headings (paragraphs formatted with the Heading styles) inside tables.
+     */
+    public set createOutlinesForHeadingsInTables(value: boolean) {
+        this._createOutlinesForHeadingsInTables = value;
+    }
+
 
     /**
      * Gets or sets the default level in the document outline at which to display Word bookmarks.
      */
-    public defaultBookmarksOutlineLevel: number;
+    private _defaultBookmarksOutlineLevel: number;
+
+    /**
+     * Gets or sets the default level in the document outline at which to display Word bookmarks.
+     */
+    public get defaultBookmarksOutlineLevel(): number {
+        return this._defaultBookmarksOutlineLevel;
+    }
+
+    /**
+     * Gets or sets the default level in the document outline at which to display Word bookmarks.
+     */
+    public set defaultBookmarksOutlineLevel(value: number) {
+        this._defaultBookmarksOutlineLevel = value;
+    }
+
 
     /**
      * Gets or sets the number of levels in the document outline to show expanded when the file is viewed.
      */
-    public expandedOutlineLevels: number;
+    private _expandedOutlineLevels: number;
+
+    /**
+     * Gets or sets the number of levels in the document outline to show expanded when the file is viewed.
+     */
+    public get expandedOutlineLevels(): number {
+        return this._expandedOutlineLevels;
+    }
+
+    /**
+     * Gets or sets the number of levels in the document outline to show expanded when the file is viewed.
+     */
+    public set expandedOutlineLevels(value: number) {
+        this._expandedOutlineLevels = value;
+    }
+
 
     /**
      * Gets or sets the number of levels of headings (paragraphs formatted with the Heading styles) to include in the document outline.
      */
-    public headingsOutlineLevels: number;
+    private _headingsOutlineLevels: number;
+
+    /**
+     * Gets or sets the number of levels of headings (paragraphs formatted with the Heading styles) to include in the document outline.
+     */
+    public get headingsOutlineLevels(): number {
+        return this._headingsOutlineLevels;
+    }
+
+    /**
+     * Gets or sets the number of levels of headings (paragraphs formatted with the Heading styles) to include in the document outline.
+     */
+    public set headingsOutlineLevels(value: number) {
+        this._headingsOutlineLevels = value;
+    }
+
 
     public constructor(init?: Partial< OutlineOptionsData >) {
         Object.assign(this, init);

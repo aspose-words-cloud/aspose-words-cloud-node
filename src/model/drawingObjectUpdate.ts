@@ -85,37 +85,142 @@ export class DrawingObjectUpdate {
     /**
      * Gets or sets the height of the DrawingObject in points.
      */
-    public height: number;
+    private _height: number;
+
+    /**
+     * Gets or sets the height of the DrawingObject in points.
+     */
+    public get height(): number {
+        return this._height;
+    }
+
+    /**
+     * Gets or sets the height of the DrawingObject in points.
+     */
+    public set height(value: number) {
+        this._height = value;
+    }
+
 
     /**
      * Gets or sets the distance in points from the origin to the left side of the image.
      */
-    public left: number;
+    private _left: number;
+
+    /**
+     * Gets or sets the distance in points from the origin to the left side of the image.
+     */
+    public get left(): number {
+        return this._left;
+    }
+
+    /**
+     * Gets or sets the distance in points from the origin to the left side of the image.
+     */
+    public set left(value: number) {
+        this._left = value;
+    }
+
 
     /**
      * Gets or sets the relative horizontal position, from which the distance to the image is measured.
      */
-    public relativeHorizontalPosition: DrawingObjectUpdate.RelativeHorizontalPositionEnum;
+    private _relativeHorizontalPosition: DrawingObjectUpdate.RelativeHorizontalPositionEnum;
+
+    /**
+     * Gets or sets the relative horizontal position, from which the distance to the image is measured.
+     */
+    public get relativeHorizontalPosition(): DrawingObjectUpdate.RelativeHorizontalPositionEnum {
+        return this._relativeHorizontalPosition;
+    }
+
+    /**
+     * Gets or sets the relative horizontal position, from which the distance to the image is measured.
+     */
+    public set relativeHorizontalPosition(value: DrawingObjectUpdate.RelativeHorizontalPositionEnum) {
+        this._relativeHorizontalPosition = value;
+    }
+
 
     /**
      * Gets or sets the relative vertical position, from which the distance to the image measured.
      */
-    public relativeVerticalPosition: DrawingObjectUpdate.RelativeVerticalPositionEnum;
+    private _relativeVerticalPosition: DrawingObjectUpdate.RelativeVerticalPositionEnum;
+
+    /**
+     * Gets or sets the relative vertical position, from which the distance to the image measured.
+     */
+    public get relativeVerticalPosition(): DrawingObjectUpdate.RelativeVerticalPositionEnum {
+        return this._relativeVerticalPosition;
+    }
+
+    /**
+     * Gets or sets the relative vertical position, from which the distance to the image measured.
+     */
+    public set relativeVerticalPosition(value: DrawingObjectUpdate.RelativeVerticalPositionEnum) {
+        this._relativeVerticalPosition = value;
+    }
+
 
     /**
      * Gets or sets the distance in points from the origin to the top side of the image.
      */
-    public top: number;
+    private _top: number;
+
+    /**
+     * Gets or sets the distance in points from the origin to the top side of the image.
+     */
+    public get top(): number {
+        return this._top;
+    }
+
+    /**
+     * Gets or sets the distance in points from the origin to the top side of the image.
+     */
+    public set top(value: number) {
+        this._top = value;
+    }
+
 
     /**
      * Gets or sets the width of the DrawingObjects in points.
      */
-    public width: number;
+    private _width: number;
+
+    /**
+     * Gets or sets the width of the DrawingObjects in points.
+     */
+    public get width(): number {
+        return this._width;
+    }
+
+    /**
+     * Gets or sets the width of the DrawingObjects in points.
+     */
+    public set width(value: number) {
+        this._width = value;
+    }
+
 
     /**
      * Gets or sets the option that controls how to wrap text around the image.
      */
-    public wrapType: DrawingObjectUpdate.WrapTypeEnum;
+    private _wrapType: DrawingObjectUpdate.WrapTypeEnum;
+
+    /**
+     * Gets or sets the option that controls how to wrap text around the image.
+     */
+    public get wrapType(): DrawingObjectUpdate.WrapTypeEnum {
+        return this._wrapType;
+    }
+
+    /**
+     * Gets or sets the option that controls how to wrap text around the image.
+     */
+    public set wrapType(value: DrawingObjectUpdate.WrapTypeEnum) {
+        this._wrapType = value;
+    }
+
 
     public constructor(init?: Partial< DrawingObjectUpdate >) {
         Object.assign(this, init);

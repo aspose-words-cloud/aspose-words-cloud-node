@@ -60,12 +60,42 @@ export class ErrorDetails {
     /**
      * Error datetime.
      */
-    public errorDateTime: Date;
+    private _errorDateTime: Date;
+
+    /**
+     * Error datetime.
+     */
+    public get errorDateTime(): Date {
+        return this._errorDateTime;
+    }
+
+    /**
+     * Error datetime.
+     */
+    public set errorDateTime(value: Date) {
+        this._errorDateTime = value;
+    }
+
 
     /**
      * The request id.
      */
-    public requestId: string;
+    private _requestId: string;
+
+    /**
+     * The request id.
+     */
+    public get requestId(): string {
+        return this._requestId;
+    }
+
+    /**
+     * The request id.
+     */
+    public set requestId(value: string) {
+        this._requestId = value;
+    }
+
 
     public constructor(init?: Partial< ErrorDetails >) {
         Object.assign(this, init);

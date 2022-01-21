@@ -109,57 +109,222 @@ export class Style extends LinkElement {
     /**
      * Gets or sets all aliases of this style. If style has no aliases then empty array of string is returned.
      */
-    public aliases: Array<string>;
+    private _aliases: Array<string>;
+
+    /**
+     * Gets or sets all aliases of this style. If style has no aliases then empty array of string is returned.
+     */
+    public get aliases(): Array<string> {
+        return this._aliases;
+    }
+
+    /**
+     * Gets or sets all aliases of this style. If style has no aliases then empty array of string is returned.
+     */
+    public set aliases(value: Array<string>) {
+        this._aliases = value;
+    }
+
 
     /**
      * Gets or sets the name of the style this style is based on.
      */
-    public baseStyleName: string;
+    private _baseStyleName: string;
+
+    /**
+     * Gets or sets the name of the style this style is based on.
+     */
+    public get baseStyleName(): string {
+        return this._baseStyleName;
+    }
+
+    /**
+     * Gets or sets the name of the style this style is based on.
+     */
+    public set baseStyleName(value: string) {
+        this._baseStyleName = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether this style is one of the built-in styles in MS Word.
      */
-    public builtIn: boolean;
+    private _builtIn: boolean;
+
+    /**
+     * Gets or sets a value indicating whether this style is one of the built-in styles in MS Word.
+     */
+    public get builtIn(): boolean {
+        return this._builtIn;
+    }
+
+    /**
+     * Gets or sets a value indicating whether this style is one of the built-in styles in MS Word.
+     */
+    public set builtIn(value: boolean) {
+        this._builtIn = value;
+    }
+
 
     /**
      * Gets or sets the character formatting of the style.
      */
-    public font: Font;
+    private _font: Font;
+
+    /**
+     * Gets or sets the character formatting of the style.
+     */
+    public get font(): Font {
+        return this._font;
+    }
+
+    /**
+     * Gets or sets the character formatting of the style.
+     */
+    public set font(value: Font) {
+        this._font = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether the style is one of the built-in Heading styles.
      */
-    public isHeading: boolean;
+    private _isHeading: boolean;
+
+    /**
+     * Gets or sets a value indicating whether the style is one of the built-in Heading styles.
+     */
+    public get isHeading(): boolean {
+        return this._isHeading;
+    }
+
+    /**
+     * Gets or sets a value indicating whether the style is one of the built-in Heading styles.
+     */
+    public set isHeading(value: boolean) {
+        this._isHeading = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether this style is shown in the Quick Style gallery inside MS Word UI.
      */
-    public isQuickStyle: boolean;
+    private _isQuickStyle: boolean;
+
+    /**
+     * Gets or sets a value indicating whether this style is shown in the Quick Style gallery inside MS Word UI.
+     */
+    public get isQuickStyle(): boolean {
+        return this._isQuickStyle;
+    }
+
+    /**
+     * Gets or sets a value indicating whether this style is shown in the Quick Style gallery inside MS Word UI.
+     */
+    public set isQuickStyle(value: boolean) {
+        this._isQuickStyle = value;
+    }
+
 
     /**
      * Gets or sets the name of the Style linked to this one. Returns Empty string if no styles are linked.
      */
-    public linkedStyleName: string;
+    private _linkedStyleName: string;
+
+    /**
+     * Gets or sets the name of the Style linked to this one. Returns Empty string if no styles are linked.
+     */
+    public get linkedStyleName(): string {
+        return this._linkedStyleName;
+    }
+
+    /**
+     * Gets or sets the name of the Style linked to this one. Returns Empty string if no styles are linked.
+     */
+    public set linkedStyleName(value: string) {
+        this._linkedStyleName = value;
+    }
+
 
     /**
      * Gets or sets the name of the style.
      */
-    public name: string;
+    private _name: string;
+
+    /**
+     * Gets or sets the name of the style.
+     */
+    public get name(): string {
+        return this._name;
+    }
+
+    /**
+     * Gets or sets the name of the style.
+     */
+    public set name(value: string) {
+        this._name = value;
+    }
+
 
     /**
      * Gets or sets the name of the style to be applied automatically to a new paragraph inserted after a paragraph formatted with the specified style.
      */
-    public nextParagraphStyleName: string;
+    private _nextParagraphStyleName: string;
+
+    /**
+     * Gets or sets the name of the style to be applied automatically to a new paragraph inserted after a paragraph formatted with the specified style.
+     */
+    public get nextParagraphStyleName(): string {
+        return this._nextParagraphStyleName;
+    }
+
+    /**
+     * Gets or sets the name of the style to be applied automatically to a new paragraph inserted after a paragraph formatted with the specified style.
+     */
+    public set nextParagraphStyleName(value: string) {
+        this._nextParagraphStyleName = value;
+    }
+
 
     /**
      * Gets or sets the locale independent style identifier for a built-in style.
      */
-    public styleIdentifier: Style.StyleIdentifierEnum;
+    private _styleIdentifier: Style.StyleIdentifierEnum;
+
+    /**
+     * Gets or sets the locale independent style identifier for a built-in style.
+     */
+    public get styleIdentifier(): Style.StyleIdentifierEnum {
+        return this._styleIdentifier;
+    }
+
+    /**
+     * Gets or sets the locale independent style identifier for a built-in style.
+     */
+    public set styleIdentifier(value: Style.StyleIdentifierEnum) {
+        this._styleIdentifier = value;
+    }
+
 
     /**
      * Gets or sets the style type (paragraph or character).
      */
-    public type: Style.TypeEnum;
+    private _type: Style.TypeEnum;
+
+    /**
+     * Gets or sets the style type (paragraph or character).
+     */
+    public get type(): Style.TypeEnum {
+        return this._type;
+    }
+
+    /**
+     * Gets or sets the style type (paragraph or character).
+     */
+    public set type(value: Style.TypeEnum) {
+        this._type = value;
+    }
+
 
     public constructor(init?: Partial< Style >) {
         super(init);

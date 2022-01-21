@@ -75,27 +75,102 @@ export class ReplaceTextParameters {
     /**
      * Gets or sets a value indicating whether flag, true means the search is case-sensitive; false means the search is not case-sensitive.
      */
-    public isMatchCase: boolean;
+    private _isMatchCase: boolean;
+
+    /**
+     * Gets or sets a value indicating whether flag, true means the search is case-sensitive; false means the search is not case-sensitive.
+     */
+    public get isMatchCase(): boolean {
+        return this._isMatchCase;
+    }
+
+    /**
+     * Gets or sets a value indicating whether flag, true means the search is case-sensitive; false means the search is not case-sensitive.
+     */
+    public set isMatchCase(value: boolean) {
+        this._isMatchCase = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether flag, means that only whole word matched are replaced.
      */
-    public isMatchWholeWord: boolean;
+    private _isMatchWholeWord: boolean;
+
+    /**
+     * Gets or sets a value indicating whether flag, means that only whole word matched are replaced.
+     */
+    public get isMatchWholeWord(): boolean {
+        return this._isMatchWholeWord;
+    }
+
+    /**
+     * Gets or sets a value indicating whether flag, means that only whole word matched are replaced.
+     */
+    public set isMatchWholeWord(value: boolean) {
+        this._isMatchWholeWord = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether flag, means that OldValue contains regex expression.
      */
-    public isOldValueRegex: boolean;
+    private _isOldValueRegex: boolean;
+
+    /**
+     * Gets or sets a value indicating whether flag, means that OldValue contains regex expression.
+     */
+    public get isOldValueRegex(): boolean {
+        return this._isOldValueRegex;
+    }
+
+    /**
+     * Gets or sets a value indicating whether flag, means that OldValue contains regex expression.
+     */
+    public set isOldValueRegex(value: boolean) {
+        this._isOldValueRegex = value;
+    }
+
 
     /**
      * Gets or sets the new text value to replace by.
      */
-    public newValue: string;
+    private _newValue: string;
+
+    /**
+     * Gets or sets the new text value to replace by.
+     */
+    public get newValue(): string {
+        return this._newValue;
+    }
+
+    /**
+     * Gets or sets the new text value to replace by.
+     */
+    public set newValue(value: string) {
+        this._newValue = value;
+    }
+
 
     /**
      * Gets or sets the old text value (or regex pattern IsOldValueRegex) to replace.
      */
-    public oldValue: string;
+    private _oldValue: string;
+
+    /**
+     * Gets or sets the old text value (or regex pattern IsOldValueRegex) to replace.
+     */
+    public get oldValue(): string {
+        return this._oldValue;
+    }
+
+    /**
+     * Gets or sets the old text value (or regex pattern IsOldValueRegex) to replace.
+     */
+    public set oldValue(value: string) {
+        this._oldValue = value;
+    }
+
 
     public constructor(init?: Partial< ReplaceTextParameters >) {
         Object.assign(this, init);

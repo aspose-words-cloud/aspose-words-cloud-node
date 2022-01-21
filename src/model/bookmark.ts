@@ -62,12 +62,42 @@ export class Bookmark extends LinkElement {
     /**
      * Gets or sets the name of the bookmark.
      */
-    public name: string;
+    private _name: string;
+
+    /**
+     * Gets or sets the name of the bookmark.
+     */
+    public get name(): string {
+        return this._name;
+    }
+
+    /**
+     * Gets or sets the name of the bookmark.
+     */
+    public set name(value: string) {
+        this._name = value;
+    }
+
 
     /**
      * Gets or sets text, enclosed in the bookmark.
      */
-    public text: string;
+    private _text: string;
+
+    /**
+     * Gets or sets text, enclosed in the bookmark.
+     */
+    public get text(): string {
+        return this._text;
+    }
+
+    /**
+     * Gets or sets text, enclosed in the bookmark.
+     */
+    public set text(value: string) {
+        this._text = value;
+    }
+
 
     public constructor(init?: Partial< Bookmark >) {
         super(init);

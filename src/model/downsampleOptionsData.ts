@@ -65,17 +65,62 @@ export class DownsampleOptionsData {
     /**
      * Gets or sets a value indicating whether images should be downsampled.
      */
-    public downsampleImages: boolean;
+    private _downsampleImages: boolean;
+
+    /**
+     * Gets or sets a value indicating whether images should be downsampled.
+     */
+    public get downsampleImages(): boolean {
+        return this._downsampleImages;
+    }
+
+    /**
+     * Gets or sets a value indicating whether images should be downsampled.
+     */
+    public set downsampleImages(value: boolean) {
+        this._downsampleImages = value;
+    }
+
 
     /**
      * Gets or sets the resolution in pixels per inch which the images should be downsampled to.
      */
-    public resolution: number;
+    private _resolution: number;
+
+    /**
+     * Gets or sets the resolution in pixels per inch which the images should be downsampled to.
+     */
+    public get resolution(): number {
+        return this._resolution;
+    }
+
+    /**
+     * Gets or sets the resolution in pixels per inch which the images should be downsampled to.
+     */
+    public set resolution(value: number) {
+        this._resolution = value;
+    }
+
 
     /**
      * Gets or sets the threshold resolution in pixels per inch. If resolution of an image in the document is less than threshold value, the downsampling algorithm will not be applied. A value of 0 means the threshold check is not used and all images that can be reduced in size are downsampled.
      */
-    public resolutionThreshold: number;
+    private _resolutionThreshold: number;
+
+    /**
+     * Gets or sets the threshold resolution in pixels per inch. If resolution of an image in the document is less than threshold value, the downsampling algorithm will not be applied. A value of 0 means the threshold check is not used and all images that can be reduced in size are downsampled.
+     */
+    public get resolutionThreshold(): number {
+        return this._resolutionThreshold;
+    }
+
+    /**
+     * Gets or sets the threshold resolution in pixels per inch. If resolution of an image in the document is less than threshold value, the downsampling algorithm will not be applied. A value of 0 means the threshold check is not used and all images that can be reduced in size are downsampled.
+     */
+    public set resolutionThreshold(value: number) {
+        this._resolutionThreshold = value;
+    }
+
 
     public constructor(init?: Partial< DownsampleOptionsData >) {
         Object.assign(this, init);

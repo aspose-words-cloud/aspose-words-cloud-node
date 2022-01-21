@@ -72,22 +72,82 @@ export class OoxmlSaveOptionsData extends SaveOptionsData {
     /**
      * Gets or sets the oOXML version for the output document.
      */
-    public compliance: string;
+    private _compliance: string;
+
+    /**
+     * Gets or sets the oOXML version for the output document.
+     */
+    public get compliance(): string {
+        return this._compliance;
+    }
+
+    /**
+     * Gets or sets the oOXML version for the output document.
+     */
+    public set compliance(value: string) {
+        this._compliance = value;
+    }
+
 
     /**
      * Gets or sets the compression level.
      */
-    public compressionLevel: OoxmlSaveOptionsData.CompressionLevelEnum;
+    private _compressionLevel: OoxmlSaveOptionsData.CompressionLevelEnum;
+
+    /**
+     * Gets or sets the compression level.
+     */
+    public get compressionLevel(): OoxmlSaveOptionsData.CompressionLevelEnum {
+        return this._compressionLevel;
+    }
+
+    /**
+     * Gets or sets the compression level.
+     */
+    public set compressionLevel(value: OoxmlSaveOptionsData.CompressionLevelEnum) {
+        this._compressionLevel = value;
+    }
+
 
     /**
      * Gets or sets the password to encrypt document using ECMA376 Standard encryption algorithm.
      */
-    public password: string;
+    private _password: string;
+
+    /**
+     * Gets or sets the password to encrypt document using ECMA376 Standard encryption algorithm.
+     */
+    public get password(): string {
+        return this._password;
+    }
+
+    /**
+     * Gets or sets the password to encrypt document using ECMA376 Standard encryption algorithm.
+     */
+    public set password(value: string) {
+        this._password = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether to use pretty formats output.
      */
-    public prettyFormat: boolean;
+    private _prettyFormat: boolean;
+
+    /**
+     * Gets or sets a value indicating whether to use pretty formats output.
+     */
+    public get prettyFormat(): boolean {
+        return this._prettyFormat;
+    }
+
+    /**
+     * Gets or sets a value indicating whether to use pretty formats output.
+     */
+    public set prettyFormat(value: boolean) {
+        this._prettyFormat = value;
+    }
+
 
     public constructor(init?: Partial< OoxmlSaveOptionsData >) {
         super(init);

@@ -97,47 +97,182 @@ export class FormField extends NodeLink {
     /**
      * Gets or sets a value indicating whether references to the specified form field are automatically updated whenever the field is exited.
      */
-    public calculateOnExit: boolean;
+    private _calculateOnExit: boolean;
+
+    /**
+     * Gets or sets a value indicating whether references to the specified form field are automatically updated whenever the field is exited.
+     */
+    public get calculateOnExit(): boolean {
+        return this._calculateOnExit;
+    }
+
+    /**
+     * Gets or sets a value indicating whether references to the specified form field are automatically updated whenever the field is exited.
+     */
+    public set calculateOnExit(value: boolean) {
+        this._calculateOnExit = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether a form field is enabled.
      */
-    public enabled: boolean;
+    private _enabled: boolean;
+
+    /**
+     * Gets or sets a value indicating whether a form field is enabled.
+     */
+    public get enabled(): boolean {
+        return this._enabled;
+    }
+
+    /**
+     * Gets or sets a value indicating whether a form field is enabled.
+     */
+    public set enabled(value: boolean) {
+        this._enabled = value;
+    }
+
 
     /**
      * Gets or sets the entry macro name for the form field.
      */
-    public entryMacro: string;
+    private _entryMacro: string;
+
+    /**
+     * Gets or sets the entry macro name for the form field.
+     */
+    public get entryMacro(): string {
+        return this._entryMacro;
+    }
+
+    /**
+     * Gets or sets the entry macro name for the form field.
+     */
+    public set entryMacro(value: string) {
+        this._entryMacro = value;
+    }
+
 
     /**
      * Gets or sets the exit macro name for the form field.
      */
-    public exitMacro: string;
+    private _exitMacro: string;
+
+    /**
+     * Gets or sets the exit macro name for the form field.
+     */
+    public get exitMacro(): string {
+        return this._exitMacro;
+    }
+
+    /**
+     * Gets or sets the exit macro name for the form field.
+     */
+    public set exitMacro(value: string) {
+        this._exitMacro = value;
+    }
+
 
     /**
      * Gets or sets text, displayed in a message box when the form field has the focus and the user presses F1.
      */
-    public helpText: string;
+    private _helpText: string;
+
+    /**
+     * Gets or sets text, displayed in a message box when the form field has the focus and the user presses F1.
+     */
+    public get helpText(): string {
+        return this._helpText;
+    }
+
+    /**
+     * Gets or sets text, displayed in a message box when the form field has the focus and the user presses F1.
+     */
+    public set helpText(value: string) {
+        this._helpText = value;
+    }
+
 
     /**
      * Gets or sets the form field name.
      */
-    public name: string;
+    private _name: string;
+
+    /**
+     * Gets or sets the form field name.
+     */
+    public get name(): string {
+        return this._name;
+    }
+
+    /**
+     * Gets or sets the form field name.
+     */
+    public set name(value: string) {
+        this._name = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether the source of the text that's displayed in a message box when a form field has the focus and the user presses F1.
      */
-    public ownHelp: boolean;
+    private _ownHelp: boolean;
+
+    /**
+     * Gets or sets a value indicating whether the source of the text that's displayed in a message box when a form field has the focus and the user presses F1.
+     */
+    public get ownHelp(): boolean {
+        return this._ownHelp;
+    }
+
+    /**
+     * Gets or sets a value indicating whether the source of the text that's displayed in a message box when a form field has the focus and the user presses F1.
+     */
+    public set ownHelp(value: boolean) {
+        this._ownHelp = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether the source of the text that's displayed in the status bar when a form field has the focus.
      */
-    public ownStatus: boolean;
+    private _ownStatus: boolean;
+
+    /**
+     * Gets or sets a value indicating whether the source of the text that's displayed in the status bar when a form field has the focus.
+     */
+    public get ownStatus(): boolean {
+        return this._ownStatus;
+    }
+
+    /**
+     * Gets or sets a value indicating whether the source of the text that's displayed in the status bar when a form field has the focus.
+     */
+    public set ownStatus(value: boolean) {
+        this._ownStatus = value;
+    }
+
 
     /**
      * Gets or sets text, displayed in the status bar when a form field has the focus.
      */
-    public statusText: string;
+    private _statusText: string;
+
+    /**
+     * Gets or sets text, displayed in the status bar when a form field has the focus.
+     */
+    public get statusText(): string {
+        return this._statusText;
+    }
+
+    /**
+     * Gets or sets text, displayed in the status bar when a form field has the focus.
+     */
+    public set statusText(value: string) {
+        this._statusText = value;
+    }
+
 
     public constructor(init?: Partial< FormField >) {
         super(init);

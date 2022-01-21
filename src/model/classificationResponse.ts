@@ -69,17 +69,62 @@ export class ClassificationResponse extends WordsResponse {
     /**
      * Gets or sets the best class name.
      */
-    public bestClassName: string;
+    private _bestClassName: string;
+
+    /**
+     * Gets or sets the best class name.
+     */
+    public get bestClassName(): string {
+        return this._bestClassName;
+    }
+
+    /**
+     * Gets or sets the best class name.
+     */
+    public set bestClassName(value: string) {
+        this._bestClassName = value;
+    }
+
 
     /**
      * Gets or sets the best class probability.
      */
-    public bestClassProbability: number;
+    private _bestClassProbability: number;
+
+    /**
+     * Gets or sets the best class probability.
+     */
+    public get bestClassProbability(): number {
+        return this._bestClassProbability;
+    }
+
+    /**
+     * Gets or sets the best class probability.
+     */
+    public set bestClassProbability(value: number) {
+        this._bestClassProbability = value;
+    }
+
 
     /**
      * Gets or sets the array of best classes results.
      */
-    public bestResults: Array<ClassificationResult>;
+    private _bestResults: Array<ClassificationResult>;
+
+    /**
+     * Gets or sets the array of best classes results.
+     */
+    public get bestResults(): Array<ClassificationResult> {
+        return this._bestResults;
+    }
+
+    /**
+     * Gets or sets the array of best classes results.
+     */
+    public set bestResults(value: Array<ClassificationResult>) {
+        this._bestResults = value;
+    }
+
 
     public constructor(init?: Partial< ClassificationResponse >) {
         super(init);

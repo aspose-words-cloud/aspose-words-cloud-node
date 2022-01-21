@@ -70,22 +70,82 @@ export class PageNumber {
     /**
      * Gets or sets text alignment, possible values are left, right, center or justify.
      */
-    public alignment: string;
+    private _alignment: string;
+
+    /**
+     * Gets or sets text alignment, possible values are left, right, center or justify.
+     */
+    public get alignment(): string {
+        return this._alignment;
+    }
+
+    /**
+     * Gets or sets text alignment, possible values are left, right, center or justify.
+     */
+    public set alignment(value: string) {
+        this._alignment = value;
+    }
+
 
     /**
      * Gets or sets the page number format, e.g. "{PAGE} of {NUMPAGES}".
      */
-    public format: string;
+    private _format: string;
+
+    /**
+     * Gets or sets the page number format, e.g. "{PAGE} of {NUMPAGES}".
+     */
+    public get format(): string {
+        return this._format;
+    }
+
+    /**
+     * Gets or sets the page number format, e.g. "{PAGE} of {NUMPAGES}".
+     */
+    public set format(value: string) {
+        this._format = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether if true the page number is added at the top of the page, else at the bottom.
      */
-    public isTop: boolean;
+    private _isTop: boolean;
+
+    /**
+     * Gets or sets a value indicating whether if true the page number is added at the top of the page, else at the bottom.
+     */
+    public get isTop(): boolean {
+        return this._isTop;
+    }
+
+    /**
+     * Gets or sets a value indicating whether if true the page number is added at the top of the page, else at the bottom.
+     */
+    public set isTop(value: boolean) {
+        this._isTop = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether if true the page number is added on first page too.
      */
-    public setPageNumberOnFirstPage: boolean;
+    private _setPageNumberOnFirstPage: boolean;
+
+    /**
+     * Gets or sets a value indicating whether if true the page number is added on first page too.
+     */
+    public get setPageNumberOnFirstPage(): boolean {
+        return this._setPageNumberOnFirstPage;
+    }
+
+    /**
+     * Gets or sets a value indicating whether if true the page number is added on first page too.
+     */
+    public set setPageNumberOnFirstPage(value: boolean) {
+        this._setPageNumberOnFirstPage = value;
+    }
+
 
     public constructor(init?: Partial< PageNumber >) {
         Object.assign(this, init);

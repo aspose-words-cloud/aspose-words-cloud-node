@@ -62,12 +62,42 @@ export class FormFieldDropDown extends FormField {
     /**
      * Gets or sets the items array of a dropdown form field.
      */
-    public dropDownItems: Array<string>;
+    private _dropDownItems: Array<string>;
+
+    /**
+     * Gets or sets the items array of a dropdown form field.
+     */
+    public get dropDownItems(): Array<string> {
+        return this._dropDownItems;
+    }
+
+    /**
+     * Gets or sets the items array of a dropdown form field.
+     */
+    public set dropDownItems(value: Array<string>) {
+        this._dropDownItems = value;
+    }
+
 
     /**
      * Gets or sets the index specifying the currently selected item in a dropdown form field.
      */
-    public dropDownSelectedIndex: number;
+    private _dropDownSelectedIndex: number;
+
+    /**
+     * Gets or sets the index specifying the currently selected item in a dropdown form field.
+     */
+    public get dropDownSelectedIndex(): number {
+        return this._dropDownSelectedIndex;
+    }
+
+    /**
+     * Gets or sets the index specifying the currently selected item in a dropdown form field.
+     */
+    public set dropDownSelectedIndex(value: number) {
+        this._dropDownSelectedIndex = value;
+    }
+
 
     public constructor(init?: Partial< FormFieldDropDown >) {
         super(init);

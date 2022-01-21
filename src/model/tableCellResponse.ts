@@ -59,7 +59,22 @@ export class TableCellResponse extends WordsResponse {
     /**
      * Gets or sets the table cell.
      */
-    public cell: TableCell;
+    private _cell: TableCell;
+
+    /**
+     * Gets or sets the table cell.
+     */
+    public get cell(): TableCell {
+        return this._cell;
+    }
+
+    /**
+     * Gets or sets the table cell.
+     */
+    public set cell(value: TableCell) {
+        this._cell = value;
+    }
+
 
     public constructor(init?: Partial< TableCellResponse >) {
         super(init);

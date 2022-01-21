@@ -65,17 +65,62 @@ export class TabStopBase {
     /**
      * Gets or sets the alignment of text at this tab stop.
      */
-    public alignment: TabStopBase.AlignmentEnum;
+    private _alignment: TabStopBase.AlignmentEnum;
+
+    /**
+     * Gets or sets the alignment of text at this tab stop.
+     */
+    public get alignment(): TabStopBase.AlignmentEnum {
+        return this._alignment;
+    }
+
+    /**
+     * Gets or sets the alignment of text at this tab stop.
+     */
+    public set alignment(value: TabStopBase.AlignmentEnum) {
+        this._alignment = value;
+    }
+
 
     /**
      * Gets or sets the type of the leader line displayed under the tab character.
      */
-    public leader: TabStopBase.LeaderEnum;
+    private _leader: TabStopBase.LeaderEnum;
+
+    /**
+     * Gets or sets the type of the leader line displayed under the tab character.
+     */
+    public get leader(): TabStopBase.LeaderEnum {
+        return this._leader;
+    }
+
+    /**
+     * Gets or sets the type of the leader line displayed under the tab character.
+     */
+    public set leader(value: TabStopBase.LeaderEnum) {
+        this._leader = value;
+    }
+
 
     /**
      * Gets or sets the position of the tab stop in points.
      */
-    public position: number;
+    private _position: number;
+
+    /**
+     * Gets or sets the position of the tab stop in points.
+     */
+    public get position(): number {
+        return this._position;
+    }
+
+    /**
+     * Gets or sets the position of the tab stop in points.
+     */
+    public set position(value: number) {
+        this._position = value;
+    }
+
 
     public constructor(init?: Partial< TabStopBase >) {
         Object.assign(this, init);

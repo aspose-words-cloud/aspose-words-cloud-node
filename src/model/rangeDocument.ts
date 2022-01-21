@@ -55,7 +55,22 @@ export class RangeDocument {
     /**
      * Gets or sets the name for a new document.
      */
-    public documentName: string;
+    private _documentName: string;
+
+    /**
+     * Gets or sets the name for a new document.
+     */
+    public get documentName(): string {
+        return this._documentName;
+    }
+
+    /**
+     * Gets or sets the name for a new document.
+     */
+    public set documentName(value: string) {
+        this._documentName = value;
+    }
+
 
     public constructor(init?: Partial< RangeDocument >) {
         Object.assign(this, init);

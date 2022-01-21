@@ -73,26 +73,92 @@ export class TextSaveOptionsData extends TxtSaveOptionsBaseData {
      * Gets or sets a value indicating whether to add bi-directional marks before each BiDi run when exporting in plain text format.
      * The default value is true.
      */
-    public addBidiMarks: boolean;
+    private _addBidiMarks: boolean;
+
+    /**
+     * Gets or sets a value indicating whether to add bi-directional marks before each BiDi run when exporting in plain text format.
+     * The default value is true.
+     */
+    public get addBidiMarks(): boolean {
+        return this._addBidiMarks;
+    }
+
+    /**
+     * Gets or sets a value indicating whether to add bi-directional marks before each BiDi run when exporting in plain text format.
+     * The default value is true.
+     */
+    public set addBidiMarks(value: boolean) {
+        this._addBidiMarks = value;
+    }
+
 
     /**
      * Gets or sets an integer value that specifies the maximum number of characters per one line.
      * The default value is 0, that means no limit.
      */
-    public maxCharactersPerLine: number;
+    private _maxCharactersPerLine: number;
+
+    /**
+     * Gets or sets an integer value that specifies the maximum number of characters per one line.
+     * The default value is 0, that means no limit.
+     */
+    public get maxCharactersPerLine(): number {
+        return this._maxCharactersPerLine;
+    }
+
+    /**
+     * Gets or sets an integer value that specifies the maximum number of characters per one line.
+     * The default value is 0, that means no limit.
+     */
+    public set maxCharactersPerLine(value: number) {
+        this._maxCharactersPerLine = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether the program should attempt to preserve layout of tables when saving in the plain text format.
      */
-    public preserveTableLayout: boolean;
+    private _preserveTableLayout: boolean;
+
+    /**
+     * Gets or sets a value indicating whether the program should attempt to preserve layout of tables when saving in the plain text format.
+     */
+    public get preserveTableLayout(): boolean {
+        return this._preserveTableLayout;
+    }
+
+    /**
+     * Gets or sets a value indicating whether the program should attempt to preserve layout of tables when saving in the plain text format.
+     */
+    public set preserveTableLayout(value: boolean) {
+        this._preserveTableLayout = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether the program should simplify list labels in case of complex label formatting not being adequately represented by plain text.
      */
-    public simplifyListLabels: boolean;
+    private _simplifyListLabels: boolean;
+
+    /**
+     * Gets or sets a value indicating whether the program should simplify list labels in case of complex label formatting not being adequately represented by plain text.
+     */
+    public get simplifyListLabels(): boolean {
+        return this._simplifyListLabels;
+    }
+
+    /**
+     * Gets or sets a value indicating whether the program should simplify list labels in case of complex label formatting not being adequately represented by plain text.
+     */
+    public set simplifyListLabels(value: boolean) {
+        this._simplifyListLabels = value;
+    }
+
 
     public constructor(init?: Partial< TextSaveOptionsData >) {
         super(init);
+        saveFormat = 'txt';
+
         Object.assign(this, init);
     }
 }

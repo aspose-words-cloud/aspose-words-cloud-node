@@ -59,7 +59,22 @@ export class TableLinkCollectionResponse extends WordsResponse {
     /**
      * Gets or sets the collection of tables.
      */
-    public tables: TableLinkCollection;
+    private _tables: TableLinkCollection;
+
+    /**
+     * Gets or sets the collection of tables.
+     */
+    public get tables(): TableLinkCollection {
+        return this._tables;
+    }
+
+    /**
+     * Gets or sets the collection of tables.
+     */
+    public set tables(value: TableLinkCollection) {
+        this._tables = value;
+    }
+
 
     public constructor(init?: Partial< TableLinkCollectionResponse >) {
         super(init);

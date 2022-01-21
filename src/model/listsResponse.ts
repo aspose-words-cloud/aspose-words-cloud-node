@@ -59,7 +59,22 @@ export class ListsResponse extends WordsResponse {
     /**
      * Gets or sets the collection of lists, contained in the document.
      */
-    public lists: Lists;
+    private _lists: Lists;
+
+    /**
+     * Gets or sets the collection of lists, contained in the document.
+     */
+    public get lists(): Lists {
+        return this._lists;
+    }
+
+    /**
+     * Gets or sets the collection of lists, contained in the document.
+     */
+    public set lists(value: Lists) {
+        this._lists = value;
+    }
+
 
     public constructor(init?: Partial< ListsResponse >) {
         super(init);

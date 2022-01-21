@@ -59,7 +59,22 @@ export class SectionPageSetupResponse extends WordsResponse {
     /**
      * Gets or sets the page setup of a section.
      */
-    public pageSetup: PageSetup;
+    private _pageSetup: PageSetup;
+
+    /**
+     * Gets or sets the page setup of a section.
+     */
+    public get pageSetup(): PageSetup {
+        return this._pageSetup;
+    }
+
+    /**
+     * Gets or sets the page setup of a section.
+     */
+    public set pageSetup(value: PageSetup) {
+        this._pageSetup = value;
+    }
+
 
     public constructor(init?: Partial< SectionPageSetupResponse >) {
         super(init);

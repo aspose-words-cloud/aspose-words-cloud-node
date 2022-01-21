@@ -57,7 +57,22 @@ export class HeaderFooterLink extends LinkElement {
     /**
      * Gets or sets the paragraph's text.
      */
-    public type: HeaderFooterLink.TypeEnum;
+    private _type: HeaderFooterLink.TypeEnum;
+
+    /**
+     * Gets or sets the paragraph's text.
+     */
+    public get type(): HeaderFooterLink.TypeEnum {
+        return this._type;
+    }
+
+    /**
+     * Gets or sets the paragraph's text.
+     */
+    public set type(value: HeaderFooterLink.TypeEnum) {
+        this._type = value;
+    }
+
 
     public constructor(init?: Partial< HeaderFooterLink >) {
         super(init);

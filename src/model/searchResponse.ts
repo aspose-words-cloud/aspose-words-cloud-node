@@ -64,12 +64,42 @@ export class SearchResponse extends WordsResponse {
     /**
      * Gets or sets the regular expression pattern used to find matches.
      */
-    public searchingPattern: string;
+    private _searchingPattern: string;
+
+    /**
+     * Gets or sets the regular expression pattern used to find matches.
+     */
+    public get searchingPattern(): string {
+        return this._searchingPattern;
+    }
+
+    /**
+     * Gets or sets the regular expression pattern used to find matches.
+     */
+    public set searchingPattern(value: string) {
+        this._searchingPattern = value;
+    }
+
 
     /**
      * Gets or sets the collection of search results.
      */
-    public searchResults: SearchResultsCollection;
+    private _searchResults: SearchResultsCollection;
+
+    /**
+     * Gets or sets the collection of search results.
+     */
+    public get searchResults(): SearchResultsCollection {
+        return this._searchResults;
+    }
+
+    /**
+     * Gets or sets the collection of search results.
+     */
+    public set searchResults(value: SearchResultsCollection) {
+        this._searchResults = value;
+    }
+
 
     public constructor(init?: Partial< SearchResponse >) {
         super(init);

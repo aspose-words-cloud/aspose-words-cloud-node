@@ -57,10 +57,27 @@ export class MhtmlSaveOptionsData extends HtmlSaveOptionsData {
     /**
      * Gets or sets a value indicating whether to use CID (Content-ID) URLs to reference resources (images, fonts, CSS) included in MHTML documents. The default value is false.
      */
-    public exportCidUrlsForMhtmlResources: boolean;
+    private _exportCidUrlsForMhtmlResources: boolean;
+
+    /**
+     * Gets or sets a value indicating whether to use CID (Content-ID) URLs to reference resources (images, fonts, CSS) included in MHTML documents. The default value is false.
+     */
+    public get exportCidUrlsForMhtmlResources(): boolean {
+        return this._exportCidUrlsForMhtmlResources;
+    }
+
+    /**
+     * Gets or sets a value indicating whether to use CID (Content-ID) URLs to reference resources (images, fonts, CSS) included in MHTML documents. The default value is false.
+     */
+    public set exportCidUrlsForMhtmlResources(value: boolean) {
+        this._exportCidUrlsForMhtmlResources = value;
+    }
+
 
     public constructor(init?: Partial< MhtmlSaveOptionsData >) {
         super(init);
+        saveFormat = 'mht';
+
         Object.assign(this, init);
     }
 }

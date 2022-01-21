@@ -60,12 +60,42 @@ export class XmlColor {
     /**
      * Gets or sets the Alpha component of color structure.
      */
-    public alpha: number;
+    private _alpha: number;
+
+    /**
+     * Gets or sets the Alpha component of color structure.
+     */
+    public get alpha(): number {
+        return this._alpha;
+    }
+
+    /**
+     * Gets or sets the Alpha component of color structure.
+     */
+    public set alpha(value: number) {
+        this._alpha = value;
+    }
+
 
     /**
      * Gets or sets the HTML string color representation.
      */
-    public web: string;
+    private _web: string;
+
+    /**
+     * Gets or sets the HTML string color representation.
+     */
+    public get web(): string {
+        return this._web;
+    }
+
+    /**
+     * Gets or sets the HTML string color representation.
+     */
+    public set web(value: string) {
+        this._web = value;
+    }
+
 
     public constructor(init?: Partial< XmlColor >) {
         Object.assign(this, init);

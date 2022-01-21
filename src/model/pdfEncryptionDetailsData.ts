@@ -70,22 +70,82 @@ export class PdfEncryptionDetailsData {
     /**
      * Gets or sets the encryption algorithm to use.
      */
-    public encryptionAlgorithm: string;
+    private _encryptionAlgorithm: string;
+
+    /**
+     * Gets or sets the encryption algorithm to use.
+     */
+    public get encryptionAlgorithm(): string {
+        return this._encryptionAlgorithm;
+    }
+
+    /**
+     * Gets or sets the encryption algorithm to use.
+     */
+    public set encryptionAlgorithm(value: string) {
+        this._encryptionAlgorithm = value;
+    }
+
 
     /**
      * Gets or sets the owner password for the encrypted PDF document.
      */
-    public ownerPassword: string;
+    private _ownerPassword: string;
+
+    /**
+     * Gets or sets the owner password for the encrypted PDF document.
+     */
+    public get ownerPassword(): string {
+        return this._ownerPassword;
+    }
+
+    /**
+     * Gets or sets the owner password for the encrypted PDF document.
+     */
+    public set ownerPassword(value: string) {
+        this._ownerPassword = value;
+    }
+
 
     /**
      * Gets or sets the operations that are allowed to a user on the encrypted PDF document.
      */
-    public permissions: string;
+    private _permissions: string;
+
+    /**
+     * Gets or sets the operations that are allowed to a user on the encrypted PDF document.
+     */
+    public get permissions(): string {
+        return this._permissions;
+    }
+
+    /**
+     * Gets or sets the operations that are allowed to a user on the encrypted PDF document.
+     */
+    public set permissions(value: string) {
+        this._permissions = value;
+    }
+
 
     /**
      * Gets or sets the user password required for opening the encrypted PDF document.
      */
-    public userPassword: string;
+    private _userPassword: string;
+
+    /**
+     * Gets or sets the user password required for opening the encrypted PDF document.
+     */
+    public get userPassword(): string {
+        return this._userPassword;
+    }
+
+    /**
+     * Gets or sets the user password required for opening the encrypted PDF document.
+     */
+    public set userPassword(value: string) {
+        this._userPassword = value;
+    }
+
 
     public constructor(init?: Partial< PdfEncryptionDetailsData >) {
         Object.assign(this, init);

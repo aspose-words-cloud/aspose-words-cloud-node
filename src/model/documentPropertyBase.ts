@@ -55,7 +55,22 @@ export class DocumentPropertyBase {
     /**
      * Gets or sets the value of the document property.
      */
-    public value: string;
+    private _value: string;
+
+    /**
+     * Gets or sets the value of the document property.
+     */
+    public get value(): string {
+        return this._value;
+    }
+
+    /**
+     * Gets or sets the value of the document property.
+     */
+    public set value(value: string) {
+        this._value = value;
+    }
+
 
     public constructor(init?: Partial< DocumentPropertyBase >) {
         Object.assign(this, init);

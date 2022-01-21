@@ -68,20 +68,69 @@ export class TiffSaveOptionsData extends ImageSaveOptionsData {
      * Gets or sets the threshold that determines the value of the binarization error in the Floyd-Steinberg method. when ImageBinarizationMethod is ImageBinarizationMethod.FloydSteinbergDithering.
      * Default value is 128.
      */
-    public thresholdForFloydSteinbergDithering: number;
+    private _thresholdForFloydSteinbergDithering: number;
+
+    /**
+     * Gets or sets the threshold that determines the value of the binarization error in the Floyd-Steinberg method. when ImageBinarizationMethod is ImageBinarizationMethod.FloydSteinbergDithering.
+     * Default value is 128.
+     */
+    public get thresholdForFloydSteinbergDithering(): number {
+        return this._thresholdForFloydSteinbergDithering;
+    }
+
+    /**
+     * Gets or sets the threshold that determines the value of the binarization error in the Floyd-Steinberg method. when ImageBinarizationMethod is ImageBinarizationMethod.FloydSteinbergDithering.
+     * Default value is 128.
+     */
+    public set thresholdForFloydSteinbergDithering(value: number) {
+        this._thresholdForFloydSteinbergDithering = value;
+    }
+
 
     /**
      * Gets or sets the method used while converting images to 1 bpp format.
      */
-    public tiffBinarizationMethod: string;
+    private _tiffBinarizationMethod: string;
+
+    /**
+     * Gets or sets the method used while converting images to 1 bpp format.
+     */
+    public get tiffBinarizationMethod(): string {
+        return this._tiffBinarizationMethod;
+    }
+
+    /**
+     * Gets or sets the method used while converting images to 1 bpp format.
+     */
+    public set tiffBinarizationMethod(value: string) {
+        this._tiffBinarizationMethod = value;
+    }
+
 
     /**
      * Gets or sets the type of compression.
      */
-    public tiffCompression: string;
+    private _tiffCompression: string;
+
+    /**
+     * Gets or sets the type of compression.
+     */
+    public get tiffCompression(): string {
+        return this._tiffCompression;
+    }
+
+    /**
+     * Gets or sets the type of compression.
+     */
+    public set tiffCompression(value: string) {
+        this._tiffCompression = value;
+    }
+
 
     public constructor(init?: Partial< TiffSaveOptionsData >) {
         super(init);
+        saveFormat = 'tiff';
+
         Object.assign(this, init);
     }
 }

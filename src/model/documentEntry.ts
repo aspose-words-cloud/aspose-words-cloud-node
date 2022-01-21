@@ -65,17 +65,62 @@ export class DocumentEntry {
     /**
      * Gets or sets the path to document to append at the server.
      */
-    public href: string;
+    private _href: string;
+
+    /**
+     * Gets or sets the path to document to append at the server.
+     */
+    public get href(): string {
+        return this._href;
+    }
+
+    /**
+     * Gets or sets the path to document to append at the server.
+     */
+    public set href(value: string) {
+        this._href = value;
+    }
+
 
     /**
      * Gets or sets the option that controls formatting will be used: appended or destination document. Can be KeepSourceFormatting or UseDestinationStyles.
      */
-    public importFormatMode: string;
+    private _importFormatMode: string;
+
+    /**
+     * Gets or sets the option that controls formatting will be used: appended or destination document. Can be KeepSourceFormatting or UseDestinationStyles.
+     */
+    public get importFormatMode(): string {
+        return this._importFormatMode;
+    }
+
+    /**
+     * Gets or sets the option that controls formatting will be used: appended or destination document. Can be KeepSourceFormatting or UseDestinationStyles.
+     */
+    public set importFormatMode(value: string) {
+        this._importFormatMode = value;
+    }
+
 
     /**
      * Gets or sets document password encrypted on API public key. The default value is null (the document has no password).
      */
-    public password: string;
+    private _password: string;
+
+    /**
+     * Gets or sets document password encrypted on API public key. The default value is null (the document has no password).
+     */
+    public get password(): string {
+        return this._password;
+    }
+
+    /**
+     * Gets or sets document password encrypted on API public key. The default value is null (the document has no password).
+     */
+    public set password(value: string) {
+        this._password = value;
+    }
+
 
     public constructor(init?: Partial< DocumentEntry >) {
         Object.assign(this, init);

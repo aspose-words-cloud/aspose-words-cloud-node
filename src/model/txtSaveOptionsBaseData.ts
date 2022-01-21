@@ -72,24 +72,88 @@ export class TxtSaveOptionsBaseData extends SaveOptionsData {
     /**
      * Gets or sets the character encoding to use when exporting in plain text format.
      */
-    public encoding: string;
+    private _encoding: string;
+
+    /**
+     * Gets or sets the character encoding to use when exporting in plain text format.
+     */
+    public get encoding(): string {
+        return this._encoding;
+    }
+
+    /**
+     * Gets or sets the character encoding to use when exporting in plain text format.
+     */
+    public set encoding(value: string) {
+        this._encoding = value;
+    }
+
 
     /**
      * Gets or sets the option that controls whether to output headers and footers when exporting in plain text format.
      * default value is TxtExportHeadersFootersMode.PrimaryOnly.
      */
-    public exportHeadersFootersMode: TxtSaveOptionsBaseData.ExportHeadersFootersModeEnum;
+    private _exportHeadersFootersMode: TxtSaveOptionsBaseData.ExportHeadersFootersModeEnum;
+
+    /**
+     * Gets or sets the option that controls whether to output headers and footers when exporting in plain text format.
+     * default value is TxtExportHeadersFootersMode.PrimaryOnly.
+     */
+    public get exportHeadersFootersMode(): TxtSaveOptionsBaseData.ExportHeadersFootersModeEnum {
+        return this._exportHeadersFootersMode;
+    }
+
+    /**
+     * Gets or sets the option that controls whether to output headers and footers when exporting in plain text format.
+     * default value is TxtExportHeadersFootersMode.PrimaryOnly.
+     */
+    public set exportHeadersFootersMode(value: TxtSaveOptionsBaseData.ExportHeadersFootersModeEnum) {
+        this._exportHeadersFootersMode = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether the page breaks should be preserved during export.
      * The default value is false.
      */
-    public forcePageBreaks: boolean;
+    private _forcePageBreaks: boolean;
+
+    /**
+     * Gets or sets a value indicating whether the page breaks should be preserved during export.
+     * The default value is false.
+     */
+    public get forcePageBreaks(): boolean {
+        return this._forcePageBreaks;
+    }
+
+    /**
+     * Gets or sets a value indicating whether the page breaks should be preserved during export.
+     * The default value is false.
+     */
+    public set forcePageBreaks(value: boolean) {
+        this._forcePageBreaks = value;
+    }
+
 
     /**
      * Gets or sets the string to use as a paragraph break when exporting in plain text format.
      */
-    public paragraphBreak: string;
+    private _paragraphBreak: string;
+
+    /**
+     * Gets or sets the string to use as a paragraph break when exporting in plain text format.
+     */
+    public get paragraphBreak(): string {
+        return this._paragraphBreak;
+    }
+
+    /**
+     * Gets or sets the string to use as a paragraph break when exporting in plain text format.
+     */
+    public set paragraphBreak(value: string) {
+        this._paragraphBreak = value;
+    }
+
 
     public constructor(init?: Partial< TxtSaveOptionsBaseData >) {
         super(init);

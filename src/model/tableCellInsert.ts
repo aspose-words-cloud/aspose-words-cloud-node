@@ -55,7 +55,22 @@ export class TableCellInsert {
     /**
      * Gets or sets the 0-based index, the table cell will be inserted after.
      */
-    public insertAfter: number;
+    private _insertAfter: number;
+
+    /**
+     * Gets or sets the 0-based index, the table cell will be inserted after.
+     */
+    public get insertAfter(): number {
+        return this._insertAfter;
+    }
+
+    /**
+     * Gets or sets the 0-based index, the table cell will be inserted after.
+     */
+    public set insertAfter(value: number) {
+        this._insertAfter = value;
+    }
+
 
     public constructor(init?: Partial< TableCellInsert >) {
         Object.assign(this, init);

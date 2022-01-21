@@ -59,7 +59,22 @@ export class TabStopsResponse extends WordsResponse {
     /**
      * Gets or sets the array of tab stops.
      */
-    public tabStops: Array<TabStop>;
+    private _tabStops: Array<TabStop>;
+
+    /**
+     * Gets or sets the array of tab stops.
+     */
+    public get tabStops(): Array<TabStop> {
+        return this._tabStops;
+    }
+
+    /**
+     * Gets or sets the array of tab stops.
+     */
+    public set tabStops(value: Array<TabStop>) {
+        this._tabStops = value;
+    }
+
 
     public constructor(init?: Partial< TabStopsResponse >) {
         super(init);

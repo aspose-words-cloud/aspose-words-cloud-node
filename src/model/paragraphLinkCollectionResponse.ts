@@ -59,7 +59,22 @@ export class ParagraphLinkCollectionResponse extends WordsResponse {
     /**
      * Gets or sets the collection of paragraphs.
      */
-    public paragraphs: ParagraphLinkCollection;
+    private _paragraphs: ParagraphLinkCollection;
+
+    /**
+     * Gets or sets the collection of paragraphs.
+     */
+    public get paragraphs(): ParagraphLinkCollection {
+        return this._paragraphs;
+    }
+
+    /**
+     * Gets or sets the collection of paragraphs.
+     */
+    public set paragraphs(value: ParagraphLinkCollection) {
+        this._paragraphs = value;
+    }
+
 
     public constructor(init?: Partial< ParagraphLinkCollectionResponse >) {
         super(init);

@@ -114,62 +114,242 @@ export class TableCellFormat extends LinkElement {
     /**
      * Gets or sets the amount of space (in points) to add below the contents of the cell.
      */
-    public bottomPadding: number;
+    private _bottomPadding: number;
+
+    /**
+     * Gets or sets the amount of space (in points) to add below the contents of the cell.
+     */
+    public get bottomPadding(): number {
+        return this._bottomPadding;
+    }
+
+    /**
+     * Gets or sets the amount of space (in points) to add below the contents of the cell.
+     */
+    public set bottomPadding(value: number) {
+        this._bottomPadding = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether to fit text in the cell, compress each paragraph to the width of the cell.
      */
-    public fitText: boolean;
+    private _fitText: boolean;
+
+    /**
+     * Gets or sets a value indicating whether to fit text in the cell, compress each paragraph to the width of the cell.
+     */
+    public get fitText(): boolean {
+        return this._fitText;
+    }
+
+    /**
+     * Gets or sets a value indicating whether to fit text in the cell, compress each paragraph to the width of the cell.
+     */
+    public set fitText(value: boolean) {
+        this._fitText = value;
+    }
+
 
     /**
      * Gets or sets the option that controls how the cell is merged horizontally with other cells in the row.
      */
-    public horizontalMerge: TableCellFormat.HorizontalMergeEnum;
+    private _horizontalMerge: TableCellFormat.HorizontalMergeEnum;
+
+    /**
+     * Gets or sets the option that controls how the cell is merged horizontally with other cells in the row.
+     */
+    public get horizontalMerge(): TableCellFormat.HorizontalMergeEnum {
+        return this._horizontalMerge;
+    }
+
+    /**
+     * Gets or sets the option that controls how the cell is merged horizontally with other cells in the row.
+     */
+    public set horizontalMerge(value: TableCellFormat.HorizontalMergeEnum) {
+        this._horizontalMerge = value;
+    }
+
 
     /**
      * Gets or sets the amount of space (in points) to add to the left of the contents of the cell.
      */
-    public leftPadding: number;
+    private _leftPadding: number;
+
+    /**
+     * Gets or sets the amount of space (in points) to add to the left of the contents of the cell.
+     */
+    public get leftPadding(): number {
+        return this._leftPadding;
+    }
+
+    /**
+     * Gets or sets the amount of space (in points) to add to the left of the contents of the cell.
+     */
+    public set leftPadding(value: number) {
+        this._leftPadding = value;
+    }
+
 
     /**
      * Gets or sets the orientation of text in a table cell.
      */
-    public orientation: TableCellFormat.OrientationEnum;
+    private _orientation: TableCellFormat.OrientationEnum;
+
+    /**
+     * Gets or sets the orientation of text in a table cell.
+     */
+    public get orientation(): TableCellFormat.OrientationEnum {
+        return this._orientation;
+    }
+
+    /**
+     * Gets or sets the orientation of text in a table cell.
+     */
+    public set orientation(value: TableCellFormat.OrientationEnum) {
+        this._orientation = value;
+    }
+
 
     /**
      * Gets or sets the preferred width of the cell.
      */
-    public preferredWidth: PreferredWidth;
+    private _preferredWidth: PreferredWidth;
+
+    /**
+     * Gets or sets the preferred width of the cell.
+     */
+    public get preferredWidth(): PreferredWidth {
+        return this._preferredWidth;
+    }
+
+    /**
+     * Gets or sets the preferred width of the cell.
+     */
+    public set preferredWidth(value: PreferredWidth) {
+        this._preferredWidth = value;
+    }
+
 
     /**
      * Gets or sets the amount of space (in points) to add to the right of the contents of the cell.
      */
-    public rightPadding: number;
+    private _rightPadding: number;
+
+    /**
+     * Gets or sets the amount of space (in points) to add to the right of the contents of the cell.
+     */
+    public get rightPadding(): number {
+        return this._rightPadding;
+    }
+
+    /**
+     * Gets or sets the amount of space (in points) to add to the right of the contents of the cell.
+     */
+    public set rightPadding(value: number) {
+        this._rightPadding = value;
+    }
+
 
     /**
      * Gets or sets the amount of space (in points) to add above the contents of the cell.
      */
-    public topPadding: number;
+    private _topPadding: number;
+
+    /**
+     * Gets or sets the amount of space (in points) to add above the contents of the cell.
+     */
+    public get topPadding(): number {
+        return this._topPadding;
+    }
+
+    /**
+     * Gets or sets the amount of space (in points) to add above the contents of the cell.
+     */
+    public set topPadding(value: number) {
+        this._topPadding = value;
+    }
+
 
     /**
      * Gets or sets the vertical alignment of text in the cell.
      */
-    public verticalAlignment: TableCellFormat.VerticalAlignmentEnum;
+    private _verticalAlignment: TableCellFormat.VerticalAlignmentEnum;
+
+    /**
+     * Gets or sets the vertical alignment of text in the cell.
+     */
+    public get verticalAlignment(): TableCellFormat.VerticalAlignmentEnum {
+        return this._verticalAlignment;
+    }
+
+    /**
+     * Gets or sets the vertical alignment of text in the cell.
+     */
+    public set verticalAlignment(value: TableCellFormat.VerticalAlignmentEnum) {
+        this._verticalAlignment = value;
+    }
+
 
     /**
      * Gets or sets the option that controls how the cell is merged with other cells vertically.
      */
-    public verticalMerge: TableCellFormat.VerticalMergeEnum;
+    private _verticalMerge: TableCellFormat.VerticalMergeEnum;
+
+    /**
+     * Gets or sets the option that controls how the cell is merged with other cells vertically.
+     */
+    public get verticalMerge(): TableCellFormat.VerticalMergeEnum {
+        return this._verticalMerge;
+    }
+
+    /**
+     * Gets or sets the option that controls how the cell is merged with other cells vertically.
+     */
+    public set verticalMerge(value: TableCellFormat.VerticalMergeEnum) {
+        this._verticalMerge = value;
+    }
+
 
     /**
      * Gets or sets the width of the cell in points.
      */
-    public width: number;
+    private _width: number;
+
+    /**
+     * Gets or sets the width of the cell in points.
+     */
+    public get width(): number {
+        return this._width;
+    }
+
+    /**
+     * Gets or sets the width of the cell in points.
+     */
+    public set width(value: number) {
+        this._width = value;
+    }
+
 
     /**
      * Gets or sets a value indicating whether to wrap text in the cell.
      */
-    public wrapText: boolean;
+    private _wrapText: boolean;
+
+    /**
+     * Gets or sets a value indicating whether to wrap text in the cell.
+     */
+    public get wrapText(): boolean {
+        return this._wrapText;
+    }
+
+    /**
+     * Gets or sets a value indicating whether to wrap text in the cell.
+     */
+    public set wrapText(value: boolean) {
+        this._wrapText = value;
+    }
+
 
     public constructor(init?: Partial< TableCellFormat >) {
         super(init);

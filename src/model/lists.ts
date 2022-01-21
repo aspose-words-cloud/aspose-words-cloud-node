@@ -59,7 +59,7 @@ export class Lists extends LinkElement {
     /**
      * Gets or sets the array of document lists.
      */
-    private _listInfo: Array<ListInfo>;
+    protected _listInfo: Array<ListInfo>;
 
     /**
      * Gets or sets the array of document lists.

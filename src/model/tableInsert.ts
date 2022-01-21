@@ -67,7 +67,7 @@ export class TableInsert {
     /**
      * Gets or sets the number of columns. The default value is 2.
      */
-    private _columnsCount: number;
+    protected _columnsCount: number;
 
     /**
      * Gets or sets the number of columns. The default value is 2.
@@ -87,7 +87,7 @@ export class TableInsert {
     /**
      * Gets or sets the position to insert the table. The table will be inserted before the specified position.
      */
-    private _position: DocumentPosition;
+    protected _position: DocumentPosition;
 
     /**
      * Gets or sets the position to insert the table. The table will be inserted before the specified position.
@@ -107,7 +107,7 @@ export class TableInsert {
     /**
      * Gets or sets the number of rows. The default value is 2.
      */
-    private _rowsCount: number;
+    protected _rowsCount: number;
 
     /**
      * Gets or sets the number of rows. The default value is 2.

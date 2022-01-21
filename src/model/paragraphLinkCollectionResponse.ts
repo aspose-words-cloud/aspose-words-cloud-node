@@ -59,7 +59,7 @@ export class ParagraphLinkCollectionResponse extends WordsResponse {
     /**
      * Gets or sets the collection of paragraphs.
      */
-    private _paragraphs: ParagraphLinkCollection;
+    protected _paragraphs: ParagraphLinkCollection;
 
     /**
      * Gets or sets the collection of paragraphs.

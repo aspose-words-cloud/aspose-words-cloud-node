@@ -55,7 +55,7 @@ export class TableCellInsertDto {
     /**
      * Gets or sets the 0-based index, the table cell will be inserted after.
      */
-    private _insertAfter: number;
+    protected _insertAfter: number;
 
     /**
      * Gets or sets the 0-based index, the table cell will be inserted after.

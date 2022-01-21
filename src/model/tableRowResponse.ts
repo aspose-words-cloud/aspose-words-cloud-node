@@ -59,7 +59,7 @@ export class TableRowResponse extends WordsResponse {
     /**
      * Gets or sets the table row.
      */
-    private _row: TableRow;
+    protected _row: TableRow;
 
     /**
      * Gets or sets the table row.

@@ -60,7 +60,7 @@ export class ErrorDetails {
     /**
      * Error datetime.
      */
-    private _errorDateTime: Date;
+    protected _errorDateTime: Date;
 
     /**
      * Error datetime.
@@ -80,7 +80,7 @@ export class ErrorDetails {
     /**
      * The request id.
      */
-    private _requestId: string;
+    protected _requestId: string;
 
     /**
      * The request id.

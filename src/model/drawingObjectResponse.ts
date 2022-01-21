@@ -59,7 +59,7 @@ export class DrawingObjectResponse extends WordsResponse {
     /**
      * Gets or sets the DrawingObject.
      */
-    private _drawingObject: DrawingObject;
+    protected _drawingObject: DrawingObject;
 
     /**
      * Gets or sets the DrawingObject.

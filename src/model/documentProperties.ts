@@ -59,7 +59,7 @@ export class DocumentProperties extends LinkElement {
     /**
      * Gets or sets the collection of document properties.
      */
-    private _list: Array<DocumentProperty>;
+    protected _list: Array<DocumentProperty>;
 
     /**
      * Gets or sets the collection of document properties.

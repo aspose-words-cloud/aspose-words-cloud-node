@@ -75,7 +75,7 @@ export class PdfDigitalSignatureDetailsData {
     /**
      * Gets or sets the certificate's filename using for signing.
      */
-    private _certificateFilename: string;
+    protected _certificateFilename: string;
 
     /**
      * Gets or sets the certificate's filename using for signing.
@@ -95,7 +95,7 @@ export class PdfDigitalSignatureDetailsData {
     /**
      * Gets or sets the hash algorithm.
      */
-    private _hashAlgorithm: string;
+    protected _hashAlgorithm: string;
 
     /**
      * Gets or sets the hash algorithm.
@@ -115,7 +115,7 @@ export class PdfDigitalSignatureDetailsData {
     /**
      * Gets or sets the location of the signing.
      */
-    private _location: string;
+    protected _location: string;
 
     /**
      * Gets or sets the location of the signing.
@@ -135,7 +135,7 @@ export class PdfDigitalSignatureDetailsData {
     /**
      * Gets or sets the reason for the signing.
      */
-    private _reason: string;
+    protected _reason: string;
 
     /**
      * Gets or sets the reason for the signing.
@@ -155,7 +155,7 @@ export class PdfDigitalSignatureDetailsData {
     /**
      * Gets or sets the date of the signing.
      */
-    private _signatureDate: Date;
+    protected _signatureDate: Date;
 
     /**
      * Gets or sets the date of the signing.

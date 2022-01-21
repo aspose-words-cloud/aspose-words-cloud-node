@@ -57,7 +57,7 @@ export class PsSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets a value indicating whether the document should be saved using a booklet printing layout.
      */
-    private _useBookFoldPrintingSettings: boolean;
+    protected _useBookFoldPrintingSettings: boolean;
 
     /**
      * Gets or sets a value indicating whether the document should be saved using a booklet printing layout.
@@ -76,7 +76,7 @@ export class PsSaveOptionsData extends FixedPageSaveOptionsData {
 
     public constructor(init?: Partial< PsSaveOptionsData >) {
         super(init);
-        saveFormat = 'ps';
+        this._saveFormat = 'ps';
 
         Object.assign(this, init);
     }

@@ -59,7 +59,7 @@ export class ParagraphResponse extends WordsResponse {
     /**
      * Gets or sets the paragraph.
      */
-    private _paragraph: Paragraph;
+    protected _paragraph: Paragraph;
 
     /**
      * Gets or sets the paragraph.

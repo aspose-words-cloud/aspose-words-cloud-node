@@ -59,7 +59,7 @@ export class FieldCollection extends LinkElement {
     /**
      * Gets or sets the collection of fields.
      */
-    private _list: Array<Field>;
+    protected _list: Array<Field>;
 
     /**
      * Gets or sets the collection of fields.

@@ -71,7 +71,7 @@ export class HeaderFooter extends HeaderFooterLink {
     /**
      * Gets or sets the child nodes.
      */
-    private _childNodes: Array<NodeLink>;
+    protected _childNodes: Array<NodeLink>;
 
     /**
      * Gets or sets the child nodes.
@@ -91,7 +91,7 @@ export class HeaderFooter extends HeaderFooterLink {
     /**
      * Gets or sets the link to DrawingObjects resource.
      */
-    private _drawingObjects: LinkElement;
+    protected _drawingObjects: LinkElement;
 
     /**
      * Gets or sets the link to DrawingObjects resource.
@@ -111,7 +111,7 @@ export class HeaderFooter extends HeaderFooterLink {
     /**
      * Gets or sets the link to Paragraphs resource.
      */
-    private _paragraphs: LinkElement;
+    protected _paragraphs: LinkElement;
 
     /**
      * Gets or sets the link to Paragraphs resource.

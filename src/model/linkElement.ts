@@ -57,7 +57,7 @@ export class LinkElement {
     /**
      * Gets or sets the link to the document.
      */
-    private _link: WordsApiLink;
+    protected _link: WordsApiLink;
 
     /**
      * Gets or sets the link to the document.

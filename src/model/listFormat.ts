@@ -67,7 +67,7 @@ export class ListFormat extends LinkElement {
     /**
      * Gets or sets a value indicating whether the paragraph has bulleted or numbered formatting applied to it.
      */
-    private _isListItem: boolean;
+    protected _isListItem: boolean;
 
     /**
      * Gets or sets a value indicating whether the paragraph has bulleted or numbered formatting applied to it.
@@ -87,7 +87,7 @@ export class ListFormat extends LinkElement {
     /**
      * Gets or sets the list id of this paragraph.
      */
-    private _listId: number;
+    protected _listId: number;
 
     /**
      * Gets or sets the list id of this paragraph.
@@ -107,7 +107,7 @@ export class ListFormat extends LinkElement {
     /**
      * Gets or sets the list level number (0 to 8) for the paragraph.
      */
-    private _listLevelNumber: number;
+    protected _listLevelNumber: number;
 
     /**
      * Gets or sets the list level number (0 to 8) for the paragraph.

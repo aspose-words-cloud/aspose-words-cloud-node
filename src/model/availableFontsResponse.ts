@@ -69,7 +69,7 @@ export class AvailableFontsResponse extends WordsResponse {
     /**
      * Gets or sets the list of additional fonts, provided by Aspose team.
      */
-    private _additionalFonts: Array<FontInfo>;
+    protected _additionalFonts: Array<FontInfo>;
 
     /**
      * Gets or sets the list of additional fonts, provided by Aspose team.
@@ -89,7 +89,7 @@ export class AvailableFontsResponse extends WordsResponse {
     /**
      * Gets or sets the list of custom user fonts from user cloud storage. To use them, you should specify "fontsLocation" parameter in any request.
      */
-    private _customFonts: Array<FontInfo>;
+    protected _customFonts: Array<FontInfo>;
 
     /**
      * Gets or sets the list of custom user fonts from user cloud storage. To use them, you should specify "fontsLocation" parameter in any request.
@@ -109,7 +109,7 @@ export class AvailableFontsResponse extends WordsResponse {
     /**
      * Gets or sets the list of system fonts, available on the server.
      */
-    private _systemFonts: Array<FontInfo>;
+    protected _systemFonts: Array<FontInfo>;
 
     /**
      * Gets or sets the list of system fonts, available on the server.

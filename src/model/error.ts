@@ -72,7 +72,7 @@ export class Error {
     /**
      * Code.
      */
-    private _code: string;
+    protected _code: string;
 
     /**
      * Code.
@@ -92,7 +92,7 @@ export class Error {
     /**
      * Description.
      */
-    private _description: string;
+    protected _description: string;
 
     /**
      * Description.
@@ -112,7 +112,7 @@ export class Error {
     /**
      * Inner Error.
      */
-    private _innerError: ErrorDetails;
+    protected _innerError: ErrorDetails;
 
     /**
      * Inner Error.
@@ -132,7 +132,7 @@ export class Error {
     /**
      * Message.
      */
-    private _message: string;
+    protected _message: string;
 
     /**
      * Message.

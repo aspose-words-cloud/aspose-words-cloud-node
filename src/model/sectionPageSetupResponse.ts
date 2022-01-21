@@ -59,7 +59,7 @@ export class SectionPageSetupResponse extends WordsResponse {
     /**
      * Gets or sets the page setup of a section.
      */
-    private _pageSetup: PageSetup;
+    protected _pageSetup: PageSetup;
 
     /**
      * Gets or sets the page setup of a section.

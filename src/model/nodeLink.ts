@@ -57,7 +57,7 @@ export class NodeLink extends LinkElement {
     /**
      * Gets or sets the node id.
      */
-    private _nodeId: string;
+    protected _nodeId: string;
 
     /**
      * Gets or sets the node id.

@@ -90,7 +90,7 @@ export class FixedPageSaveOptionsData extends SaveOptionsData {
      * Gets or sets the value determining how colors are rendered.
      * { Normal | Grayscale}.
      */
-    private _colorMode: string;
+    protected _colorMode: string;
 
     /**
      * Gets or sets the value determining how colors are rendered.
@@ -112,7 +112,7 @@ export class FixedPageSaveOptionsData extends SaveOptionsData {
     /**
      * Gets or sets the quality of the JPEG images inside PDF document.
      */
-    private _jpegQuality: number;
+    protected _jpegQuality: number;
 
     /**
      * Gets or sets the quality of the JPEG images inside PDF document.
@@ -132,7 +132,7 @@ export class FixedPageSaveOptionsData extends SaveOptionsData {
     /**
      * Gets or sets the metafile rendering options.
      */
-    private _metafileRenderingOptions: MetafileRenderingOptionsData;
+    protected _metafileRenderingOptions: MetafileRenderingOptionsData;
 
     /**
      * Gets or sets the metafile rendering options.
@@ -152,7 +152,7 @@ export class FixedPageSaveOptionsData extends SaveOptionsData {
     /**
      * Gets or sets the symbol set, that is used to represent numbers while rendering to fixed page formats.
      */
-    private _numeralFormat: string;
+    protected _numeralFormat: string;
 
     /**
      * Gets or sets the symbol set, that is used to represent numbers while rendering to fixed page formats.
@@ -174,7 +174,7 @@ export class FixedPageSaveOptionsData extends SaveOptionsData {
      * If this flag is set redundant nested canvases and empty canvases are removed, also neighbor glyphs with the same formatting are concatenated.
      * Note: The accuracy of the content display may be affected if this property is set to true.. The default value is false.
      */
-    private _optimizeOutput: boolean;
+    protected _optimizeOutput: boolean;
 
     /**
      * Gets or sets a value indicating whether it is required to optimize output of XPS.
@@ -198,7 +198,7 @@ export class FixedPageSaveOptionsData extends SaveOptionsData {
     /**
      * Gets or sets the number of pages to render.
      */
-    private _pageCount: number;
+    protected _pageCount: number;
 
     /**
      * Gets or sets the number of pages to render.
@@ -218,7 +218,7 @@ export class FixedPageSaveOptionsData extends SaveOptionsData {
     /**
      * Gets or sets the 0-based index of the first page to render.
      */
-    private _pageIndex: number;
+    protected _pageIndex: number;
 
     /**
      * Gets or sets the 0-based index of the first page to render.

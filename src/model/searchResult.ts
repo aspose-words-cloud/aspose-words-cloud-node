@@ -62,7 +62,7 @@ export class SearchResult {
     /**
      * Gets or sets the link to result range end node.
      */
-    private _rangeEnd: DocumentPosition;
+    protected _rangeEnd: DocumentPosition;
 
     /**
      * Gets or sets the link to result range end node.
@@ -82,7 +82,7 @@ export class SearchResult {
     /**
      * Gets or sets the link to result range start node.
      */
-    private _rangeStart: DocumentPosition;
+    protected _rangeStart: DocumentPosition;
 
     /**
      * Gets or sets the link to result range start node.

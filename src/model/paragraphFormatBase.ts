@@ -184,7 +184,7 @@ export class ParagraphFormatBase extends LinkElement {
     /**
      * Gets or sets a value indicating whether inter-character spacing is automatically adjusted between regions of Latin text and regions of East Asian text in the current paragraph.
      */
-    private _addSpaceBetweenFarEastAndAlpha: boolean;
+    protected _addSpaceBetweenFarEastAndAlpha: boolean;
 
     /**
      * Gets or sets a value indicating whether inter-character spacing is automatically adjusted between regions of Latin text and regions of East Asian text in the current paragraph.
@@ -204,7 +204,7 @@ export class ParagraphFormatBase extends LinkElement {
     /**
      * Gets or sets a value indicating whether inter-character spacing is automatically adjusted between regions of numbers and regions of East Asian text in the current paragraph.
      */
-    private _addSpaceBetweenFarEastAndDigit: boolean;
+    protected _addSpaceBetweenFarEastAndDigit: boolean;
 
     /**
      * Gets or sets a value indicating whether inter-character spacing is automatically adjusted between regions of numbers and regions of East Asian text in the current paragraph.
@@ -224,7 +224,7 @@ export class ParagraphFormatBase extends LinkElement {
     /**
      * Gets or sets text alignment for the paragraph.
      */
-    private _alignment: ParagraphFormatBase.AlignmentEnum;
+    protected _alignment: ParagraphFormatBase.AlignmentEnum;
 
     /**
      * Gets or sets text alignment for the paragraph.
@@ -244,7 +244,7 @@ export class ParagraphFormatBase extends LinkElement {
     /**
      * Gets or sets a value indicating whether this is a right-to-left paragraph.
      */
-    private _bidi: boolean;
+    protected _bidi: boolean;
 
     /**
      * Gets or sets a value indicating whether this is a right-to-left paragraph.
@@ -264,7 +264,7 @@ export class ParagraphFormatBase extends LinkElement {
     /**
      * Gets or sets the position for a drop cap text.
      */
-    private _dropCapPosition: ParagraphFormatBase.DropCapPositionEnum;
+    protected _dropCapPosition: ParagraphFormatBase.DropCapPositionEnum;
 
     /**
      * Gets or sets the position for a drop cap text.
@@ -285,7 +285,7 @@ export class ParagraphFormatBase extends LinkElement {
      * Gets or sets the value (in points) for a first line or hanging indent.
      * Use a positive value to set a first-line indent, and use a negative value to set a hanging indent.
      */
-    private _firstLineIndent: number;
+    protected _firstLineIndent: number;
 
     /**
      * Gets or sets the value (in points) for a first line or hanging indent.
@@ -307,7 +307,7 @@ export class ParagraphFormatBase extends LinkElement {
     /**
      * Gets or sets a value indicating whether all lines in the paragraph are to remain on the same page.
      */
-    private _keepTogether: boolean;
+    protected _keepTogether: boolean;
 
     /**
      * Gets or sets a value indicating whether all lines in the paragraph are to remain on the same page.
@@ -327,7 +327,7 @@ export class ParagraphFormatBase extends LinkElement {
     /**
      * Gets or sets a value indicating whether the paragraph is to remains on the same page as the paragraph that follows it.
      */
-    private _keepWithNext: boolean;
+    protected _keepWithNext: boolean;
 
     /**
      * Gets or sets a value indicating whether the paragraph is to remains on the same page as the paragraph that follows it.
@@ -347,7 +347,7 @@ export class ParagraphFormatBase extends LinkElement {
     /**
      * Gets or sets the value (in points), that represents the left indent for paragraph.
      */
-    private _leftIndent: number;
+    protected _leftIndent: number;
 
     /**
      * Gets or sets the value (in points), that represents the left indent for paragraph.
@@ -367,7 +367,7 @@ export class ParagraphFormatBase extends LinkElement {
     /**
      * Gets or sets the line spacing (in points) for the paragraph.
      */
-    private _lineSpacing: number;
+    protected _lineSpacing: number;
 
     /**
      * Gets or sets the line spacing (in points) for the paragraph.
@@ -387,7 +387,7 @@ export class ParagraphFormatBase extends LinkElement {
     /**
      * Gets or sets the line spacing for the paragraph.
      */
-    private _lineSpacingRule: ParagraphFormatBase.LineSpacingRuleEnum;
+    protected _lineSpacingRule: ParagraphFormatBase.LineSpacingRuleEnum;
 
     /**
      * Gets or sets the line spacing for the paragraph.
@@ -407,7 +407,7 @@ export class ParagraphFormatBase extends LinkElement {
     /**
      * Gets or sets the number of lines of the paragraph text used to calculate the drop cap height.
      */
-    private _linesToDrop: number;
+    protected _linesToDrop: number;
 
     /**
      * Gets or sets the number of lines of the paragraph text used to calculate the drop cap height.
@@ -427,7 +427,7 @@ export class ParagraphFormatBase extends LinkElement {
     /**
      * Gets or sets a value indicating whether SpaceBefore and SpaceAfter will be ignored between the paragraphs of the same style.
      */
-    private _noSpaceBetweenParagraphsOfSameStyle: boolean;
+    protected _noSpaceBetweenParagraphsOfSameStyle: boolean;
 
     /**
      * Gets or sets a value indicating whether SpaceBefore and SpaceAfter will be ignored between the paragraphs of the same style.
@@ -447,7 +447,7 @@ export class ParagraphFormatBase extends LinkElement {
     /**
      * Gets or sets the outline level of the paragraph in the document.
      */
-    private _outlineLevel: ParagraphFormatBase.OutlineLevelEnum;
+    protected _outlineLevel: ParagraphFormatBase.OutlineLevelEnum;
 
     /**
      * Gets or sets the outline level of the paragraph in the document.
@@ -467,7 +467,7 @@ export class ParagraphFormatBase extends LinkElement {
     /**
      * Gets or sets a value indicating whether a page break is forced before the paragraph.
      */
-    private _pageBreakBefore: boolean;
+    protected _pageBreakBefore: boolean;
 
     /**
      * Gets or sets a value indicating whether a page break is forced before the paragraph.
@@ -487,7 +487,7 @@ export class ParagraphFormatBase extends LinkElement {
     /**
      * Gets or sets the value (in points) that represents the right indent for paragraph.
      */
-    private _rightIndent: number;
+    protected _rightIndent: number;
 
     /**
      * Gets or sets the value (in points) that represents the right indent for paragraph.
@@ -507,7 +507,7 @@ export class ParagraphFormatBase extends LinkElement {
     /**
      * Gets or sets the Shading object, that refers to the shading formatting for the paragraph.
      */
-    private _shading: Shading;
+    protected _shading: Shading;
 
     /**
      * Gets or sets the Shading object, that refers to the shading formatting for the paragraph.
@@ -527,7 +527,7 @@ export class ParagraphFormatBase extends LinkElement {
     /**
      * Gets or sets the amount of spacing (in points) after the paragraph.
      */
-    private _spaceAfter: number;
+    protected _spaceAfter: number;
 
     /**
      * Gets or sets the amount of spacing (in points) after the paragraph.
@@ -547,7 +547,7 @@ export class ParagraphFormatBase extends LinkElement {
     /**
      * Gets or sets a value indicating whether the amount of spacing after the paragraph is set automatically.
      */
-    private _spaceAfterAuto: boolean;
+    protected _spaceAfterAuto: boolean;
 
     /**
      * Gets or sets a value indicating whether the amount of spacing after the paragraph is set automatically.
@@ -567,7 +567,7 @@ export class ParagraphFormatBase extends LinkElement {
     /**
      * Gets or sets the amount of spacing (in points) before the paragraph.
      */
-    private _spaceBefore: number;
+    protected _spaceBefore: number;
 
     /**
      * Gets or sets the amount of spacing (in points) before the paragraph.
@@ -587,7 +587,7 @@ export class ParagraphFormatBase extends LinkElement {
     /**
      * Gets or sets a value indicating whether the amount of spacing before the paragraph is set automatically.
      */
-    private _spaceBeforeAuto: boolean;
+    protected _spaceBeforeAuto: boolean;
 
     /**
      * Gets or sets a value indicating whether the amount of spacing before the paragraph is set automatically.
@@ -607,7 +607,7 @@ export class ParagraphFormatBase extends LinkElement {
     /**
      * Gets or sets the locale independent style identifier of the paragraph style applied to this formatting.
      */
-    private _styleIdentifier: ParagraphFormatBase.StyleIdentifierEnum;
+    protected _styleIdentifier: ParagraphFormatBase.StyleIdentifierEnum;
 
     /**
      * Gets or sets the locale independent style identifier of the paragraph style applied to this formatting.
@@ -627,7 +627,7 @@ export class ParagraphFormatBase extends LinkElement {
     /**
      * Gets or sets the name of the paragraph style applied to this formatting.
      */
-    private _styleName: string;
+    protected _styleName: string;
 
     /**
      * Gets or sets the name of the paragraph style applied to this formatting.
@@ -647,7 +647,7 @@ export class ParagraphFormatBase extends LinkElement {
     /**
      * Gets or sets a value indicating whether the current paragraph should be exempted from any hyphenation which is applied in the document settings.
      */
-    private _suppressAutoHyphens: boolean;
+    protected _suppressAutoHyphens: boolean;
 
     /**
      * Gets or sets a value indicating whether the current paragraph should be exempted from any hyphenation which is applied in the document settings.
@@ -667,7 +667,7 @@ export class ParagraphFormatBase extends LinkElement {
     /**
      * Gets or sets a value indicating whether the current paragraph's lines should be exempted from line numbering which is applied in the parent section.
      */
-    private _suppressLineNumbers: boolean;
+    protected _suppressLineNumbers: boolean;
 
     /**
      * Gets or sets a value indicating whether the current paragraph's lines should be exempted from line numbering which is applied in the parent section.
@@ -687,7 +687,7 @@ export class ParagraphFormatBase extends LinkElement {
     /**
      * Gets or sets a value indicating whether the first and last lines in the paragraph are to remain on the same page as the rest of the paragraph.
      */
-    private _widowControl: boolean;
+    protected _widowControl: boolean;
 
     /**
      * Gets or sets a value indicating whether the first and last lines in the paragraph are to remain on the same page as the rest of the paragraph.

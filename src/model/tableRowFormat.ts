@@ -72,7 +72,7 @@ export class TableRowFormat extends LinkElement {
     /**
      * Gets or sets a value indicating whether the text in a table row is allowed to split across a page break.
      */
-    private _allowBreakAcrossPages: boolean;
+    protected _allowBreakAcrossPages: boolean;
 
     /**
      * Gets or sets a value indicating whether the text in a table row is allowed to split across a page break.
@@ -92,7 +92,7 @@ export class TableRowFormat extends LinkElement {
     /**
      * Gets or sets a value indicating whether the row is repeated as a table heading on every page when the table spans more than one page.
      */
-    private _headingFormat: boolean;
+    protected _headingFormat: boolean;
 
     /**
      * Gets or sets a value indicating whether the row is repeated as a table heading on every page when the table spans more than one page.
@@ -112,7 +112,7 @@ export class TableRowFormat extends LinkElement {
     /**
      * Gets or sets the height of the table row in points.
      */
-    private _height: number;
+    protected _height: number;
 
     /**
      * Gets or sets the height of the table row in points.
@@ -132,7 +132,7 @@ export class TableRowFormat extends LinkElement {
     /**
      * Gets or sets the rule for determining the height of the table row.
      */
-    private _heightRule: TableRowFormat.HeightRuleEnum;
+    protected _heightRule: TableRowFormat.HeightRuleEnum;
 
     /**
      * Gets or sets the rule for determining the height of the table row.

@@ -256,7 +256,7 @@ export class Font extends LinkElement {
     /**
      * Gets or sets a value indicating whether the font is formatted as all capital letters.
      */
-    private _allCaps: boolean;
+    protected _allCaps: boolean;
 
     /**
      * Gets or sets a value indicating whether the font is formatted as all capital letters.
@@ -276,7 +276,7 @@ export class Font extends LinkElement {
     /**
      * Gets or sets a value indicating whether the contents of this run shall have right-to-left characteristics.
      */
-    private _bidi: boolean;
+    protected _bidi: boolean;
 
     /**
      * Gets or sets a value indicating whether the contents of this run shall have right-to-left characteristics.
@@ -296,7 +296,7 @@ export class Font extends LinkElement {
     /**
      * Gets or sets a value indicating whether the font is formatted as bold.
      */
-    private _bold: boolean;
+    protected _bold: boolean;
 
     /**
      * Gets or sets a value indicating whether the font is formatted as bold.
@@ -316,7 +316,7 @@ export class Font extends LinkElement {
     /**
      * Gets or sets a value indicating whether the right-to-left text is formatted as bold.
      */
-    private _boldBi: boolean;
+    protected _boldBi: boolean;
 
     /**
      * Gets or sets a value indicating whether the right-to-left text is formatted as bold.
@@ -336,7 +336,7 @@ export class Font extends LinkElement {
     /**
      * Gets or sets the border object, that specifies border for the font.
      */
-    private _border: Border;
+    protected _border: Border;
 
     /**
      * Gets or sets the border object, that specifies border for the font.
@@ -356,7 +356,7 @@ export class Font extends LinkElement {
     /**
      * Gets or sets the color of the font.
      */
-    private _color: XmlColor;
+    protected _color: XmlColor;
 
     /**
      * Gets or sets the color of the font.
@@ -376,7 +376,7 @@ export class Font extends LinkElement {
     /**
      * Gets or sets a value indicating whether the contents of this run shall be treated as complex script text regardless of their Unicode character values when determining the formatting for this run.
      */
-    private _complexScript: boolean;
+    protected _complexScript: boolean;
 
     /**
      * Gets or sets a value indicating whether the contents of this run shall be treated as complex script text regardless of their Unicode character values when determining the formatting for this run.
@@ -396,7 +396,7 @@ export class Font extends LinkElement {
     /**
      * Gets or sets a value indicating whether the font is formatted as double strikethrough text.
      */
-    private _doubleStrikeThrough: boolean;
+    protected _doubleStrikeThrough: boolean;
 
     /**
      * Gets or sets a value indicating whether the font is formatted as double strikethrough text.
@@ -416,7 +416,7 @@ export class Font extends LinkElement {
     /**
      * Gets or sets a value indicating whether the font is formatted as embossed.
      */
-    private _emboss: boolean;
+    protected _emboss: boolean;
 
     /**
      * Gets or sets a value indicating whether the font is formatted as embossed.
@@ -436,7 +436,7 @@ export class Font extends LinkElement {
     /**
      * Gets or sets a value indicating whether the font is formatted as engraved.
      */
-    private _engrave: boolean;
+    protected _engrave: boolean;
 
     /**
      * Gets or sets a value indicating whether the font is formatted as engraved.
@@ -456,7 +456,7 @@ export class Font extends LinkElement {
     /**
      * Gets or sets a value indicating whether the font is formatted as hidden text.
      */
-    private _hidden: boolean;
+    protected _hidden: boolean;
 
     /**
      * Gets or sets a value indicating whether the font is formatted as hidden text.
@@ -476,7 +476,7 @@ export class Font extends LinkElement {
     /**
      * Gets or sets the highlight (marker) color.
      */
-    private _highlightColor: XmlColor;
+    protected _highlightColor: XmlColor;
 
     /**
      * Gets or sets the highlight (marker) color.
@@ -496,7 +496,7 @@ export class Font extends LinkElement {
     /**
      * Gets or sets a value indicating whether the font is formatted as italic.
      */
-    private _italic: boolean;
+    protected _italic: boolean;
 
     /**
      * Gets or sets a value indicating whether the font is formatted as italic.
@@ -516,7 +516,7 @@ export class Font extends LinkElement {
     /**
      * Gets or sets a value indicating whether the right-to-left text is formatted as italic.
      */
-    private _italicBi: boolean;
+    protected _italicBi: boolean;
 
     /**
      * Gets or sets a value indicating whether the right-to-left text is formatted as italic.
@@ -536,7 +536,7 @@ export class Font extends LinkElement {
     /**
      * Gets or sets the font size at which kerning starts.
      */
-    private _kerning: number;
+    protected _kerning: number;
 
     /**
      * Gets or sets the font size at which kerning starts.
@@ -556,7 +556,7 @@ export class Font extends LinkElement {
     /**
      * Gets or sets the locale identifier (language) of the formatted characters.
      */
-    private _localeId: number;
+    protected _localeId: number;
 
     /**
      * Gets or sets the locale identifier (language) of the formatted characters.
@@ -576,7 +576,7 @@ export class Font extends LinkElement {
     /**
      * Gets or sets the locale identifier (language) of the formatted right-to-left characters.
      */
-    private _localeIdBi: number;
+    protected _localeIdBi: number;
 
     /**
      * Gets or sets the locale identifier (language) of the formatted right-to-left characters.
@@ -596,7 +596,7 @@ export class Font extends LinkElement {
     /**
      * Gets or sets the locale identifier (language) of the formatted Asian characters.
      */
-    private _localeIdFarEast: number;
+    protected _localeIdFarEast: number;
 
     /**
      * Gets or sets the locale identifier (language) of the formatted Asian characters.
@@ -616,7 +616,7 @@ export class Font extends LinkElement {
     /**
      * Gets or sets the name of the font.
      */
-    private _name: string;
+    protected _name: string;
 
     /**
      * Gets or sets the name of the font.
@@ -636,7 +636,7 @@ export class Font extends LinkElement {
     /**
      * Gets or sets the font used for Latin text (characters with character codes from 0 (zero) through 127).
      */
-    private _nameAscii: string;
+    protected _nameAscii: string;
 
     /**
      * Gets or sets the font used for Latin text (characters with character codes from 0 (zero) through 127).
@@ -656,7 +656,7 @@ export class Font extends LinkElement {
     /**
      * Gets or sets the name of the font in a right-to-left language document.
      */
-    private _nameBi: string;
+    protected _nameBi: string;
 
     /**
      * Gets or sets the name of the font in a right-to-left language document.
@@ -676,7 +676,7 @@ export class Font extends LinkElement {
     /**
      * Gets or sets the East Asian font name.
      */
-    private _nameFarEast: string;
+    protected _nameFarEast: string;
 
     /**
      * Gets or sets the East Asian font name.
@@ -696,7 +696,7 @@ export class Font extends LinkElement {
     /**
      * Gets or sets the font used for characters with character codes from 128 through 255.
      */
-    private _nameOther: string;
+    protected _nameOther: string;
 
     /**
      * Gets or sets the font used for characters with character codes from 128 through 255.
@@ -716,7 +716,7 @@ export class Font extends LinkElement {
     /**
      * Gets or sets a value indicating whether the formatted characters are not to be spell checked.
      */
-    private _noProofing: boolean;
+    protected _noProofing: boolean;
 
     /**
      * Gets or sets a value indicating whether the formatted characters are not to be spell checked.
@@ -736,7 +736,7 @@ export class Font extends LinkElement {
     /**
      * Gets or sets a value indicating whether the font is formatted as outline.
      */
-    private _outline: boolean;
+    protected _outline: boolean;
 
     /**
      * Gets or sets a value indicating whether the font is formatted as outline.
@@ -757,7 +757,7 @@ export class Font extends LinkElement {
      * Gets or sets the position of text (in points) relative to the base line.
      * A positive number raises the text, and a negative number lowers it.
      */
-    private _position: number;
+    protected _position: number;
 
     /**
      * Gets or sets the position of text (in points) relative to the base line.
@@ -779,7 +779,7 @@ export class Font extends LinkElement {
     /**
      * Gets or sets character width scaling in percent.
      */
-    private _scaling: number;
+    protected _scaling: number;
 
     /**
      * Gets or sets character width scaling in percent.
@@ -799,7 +799,7 @@ export class Font extends LinkElement {
     /**
      * Gets or sets a value indicating whether the font is formatted as shadowed.
      */
-    private _shadow: boolean;
+    protected _shadow: boolean;
 
     /**
      * Gets or sets a value indicating whether the font is formatted as shadowed.
@@ -819,7 +819,7 @@ export class Font extends LinkElement {
     /**
      * Gets or sets the font size in points.
      */
-    private _size: number;
+    protected _size: number;
 
     /**
      * Gets or sets the font size in points.
@@ -839,7 +839,7 @@ export class Font extends LinkElement {
     /**
      * Gets or sets the font size in points used in a right-to-left document.
      */
-    private _sizeBi: number;
+    protected _sizeBi: number;
 
     /**
      * Gets or sets the font size in points used in a right-to-left document.
@@ -859,7 +859,7 @@ export class Font extends LinkElement {
     /**
      * Gets or sets a value indicating whether the font is formatted as small capital letters.
      */
-    private _smallCaps: boolean;
+    protected _smallCaps: boolean;
 
     /**
      * Gets or sets a value indicating whether the font is formatted as small capital letters.
@@ -879,7 +879,7 @@ export class Font extends LinkElement {
     /**
      * Gets or sets the spacing (in points) between characters.
      */
-    private _spacing: number;
+    protected _spacing: number;
 
     /**
      * Gets or sets the spacing (in points) between characters.
@@ -899,7 +899,7 @@ export class Font extends LinkElement {
     /**
      * Gets or sets a value indicating whether the font is formatted as strikethrough text.
      */
-    private _strikeThrough: boolean;
+    protected _strikeThrough: boolean;
 
     /**
      * Gets or sets a value indicating whether the font is formatted as strikethrough text.
@@ -919,7 +919,7 @@ export class Font extends LinkElement {
     /**
      * Gets or sets the locale independent style identifier of the character style applied to this formatting.
      */
-    private _styleIdentifier: Font.StyleIdentifierEnum;
+    protected _styleIdentifier: Font.StyleIdentifierEnum;
 
     /**
      * Gets or sets the locale independent style identifier of the character style applied to this formatting.
@@ -939,7 +939,7 @@ export class Font extends LinkElement {
     /**
      * Gets or sets the name of the character style applied to this formatting.
      */
-    private _styleName: string;
+    protected _styleName: string;
 
     /**
      * Gets or sets the name of the character style applied to this formatting.
@@ -959,7 +959,7 @@ export class Font extends LinkElement {
     /**
      * Gets or sets a value indicating whether the font is formatted as subscript.
      */
-    private _subscript: boolean;
+    protected _subscript: boolean;
 
     /**
      * Gets or sets a value indicating whether the font is formatted as subscript.
@@ -979,7 +979,7 @@ export class Font extends LinkElement {
     /**
      * Gets or sets a value indicating whether the font is formatted as superscript.
      */
-    private _superscript: boolean;
+    protected _superscript: boolean;
 
     /**
      * Gets or sets a value indicating whether the font is formatted as superscript.
@@ -999,7 +999,7 @@ export class Font extends LinkElement {
     /**
      * Gets or sets the font animation effect.
      */
-    private _textEffect: Font.TextEffectEnum;
+    protected _textEffect: Font.TextEffectEnum;
 
     /**
      * Gets or sets the font animation effect.
@@ -1019,7 +1019,7 @@ export class Font extends LinkElement {
     /**
      * Gets or sets the type of underline applied to the font.
      */
-    private _underline: Font.UnderlineEnum;
+    protected _underline: Font.UnderlineEnum;
 
     /**
      * Gets or sets the type of underline applied to the font.
@@ -1039,7 +1039,7 @@ export class Font extends LinkElement {
     /**
      * Gets or sets the color of the underline applied to the font.
      */
-    private _underlineColor: XmlColor;
+    protected _underlineColor: XmlColor;
 
     /**
      * Gets or sets the color of the underline applied to the font.

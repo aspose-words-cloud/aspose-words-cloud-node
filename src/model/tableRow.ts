@@ -66,7 +66,7 @@ export class TableRow extends NodeLink {
     /**
      * Gets or sets the formatting properties of a row.
      */
-    private _rowFormat: TableRowFormat;
+    protected _rowFormat: TableRowFormat;
 
     /**
      * Gets or sets the formatting properties of a row.
@@ -86,7 +86,7 @@ export class TableRow extends NodeLink {
     /**
      * Gets or sets the collection of rows.
      */
-    private _tableCellList: Array<TableCell>;
+    protected _tableCellList: Array<TableCell>;
 
     /**
      * Gets or sets the collection of rows.

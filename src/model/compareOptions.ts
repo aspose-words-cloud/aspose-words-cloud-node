@@ -100,7 +100,7 @@ export class CompareOptions {
     /**
      * Gets or sets whether accept revisions before comparison or not.
      */
-    private _acceptAllRevisionsBeforeComparison: boolean;
+    protected _acceptAllRevisionsBeforeComparison: boolean;
 
     /**
      * Gets or sets whether accept revisions before comparison or not.
@@ -120,7 +120,7 @@ export class CompareOptions {
     /**
      * Gets or sets a value indicating whether documents comparison is case insensitive. By default comparison is case sensitive.
      */
-    private _ignoreCaseChanges: boolean;
+    protected _ignoreCaseChanges: boolean;
 
     /**
      * Gets or sets a value indicating whether documents comparison is case insensitive. By default comparison is case sensitive.
@@ -140,7 +140,7 @@ export class CompareOptions {
     /**
      * Gets or sets a value indicating whether comments content is ignored. By default comments are not ignored.
      */
-    private _ignoreComments: boolean;
+    protected _ignoreComments: boolean;
 
     /**
      * Gets or sets a value indicating whether comments content is ignored. By default comments are not ignored.
@@ -160,7 +160,7 @@ export class CompareOptions {
     /**
      * Gets or sets a value indicating whether fields content is ignored. By default fields are not ignored.
      */
-    private _ignoreFields: boolean;
+    protected _ignoreFields: boolean;
 
     /**
      * Gets or sets a value indicating whether fields content is ignored. By default fields are not ignored.
@@ -180,7 +180,7 @@ export class CompareOptions {
     /**
      * Gets or sets a value indicating whether footnotes/endnotes content is ignored. By default footnotes/endnotes are not ignored.
      */
-    private _ignoreFootnotes: boolean;
+    protected _ignoreFootnotes: boolean;
 
     /**
      * Gets or sets a value indicating whether footnotes/endnotes content is ignored. By default footnotes/endnotes are not ignored.
@@ -200,7 +200,7 @@ export class CompareOptions {
     /**
      * Gets or sets a value indicating whether formatting is ignored. By default document formatting is not ignored.
      */
-    private _ignoreFormatting: boolean;
+    protected _ignoreFormatting: boolean;
 
     /**
      * Gets or sets a value indicating whether formatting is ignored. By default document formatting is not ignored.
@@ -220,7 +220,7 @@ export class CompareOptions {
     /**
      * Gets or sets a value indicating whether headers and footers content is ignored. By default headers and footers are not ignored.
      */
-    private _ignoreHeadersAndFooters: boolean;
+    protected _ignoreHeadersAndFooters: boolean;
 
     /**
      * Gets or sets a value indicating whether headers and footers content is ignored. By default headers and footers are not ignored.
@@ -240,7 +240,7 @@ export class CompareOptions {
     /**
      * Gets or sets a value indicating whether tables content is ignored. By default tables are not ignored.
      */
-    private _ignoreTables: boolean;
+    protected _ignoreTables: boolean;
 
     /**
      * Gets or sets a value indicating whether tables content is ignored. By default tables are not ignored.
@@ -260,7 +260,7 @@ export class CompareOptions {
     /**
      * Gets or sets a value indicating whether textboxes content is ignored. By default textboxes are not ignored.
      */
-    private _ignoreTextboxes: boolean;
+    protected _ignoreTextboxes: boolean;
 
     /**
      * Gets or sets a value indicating whether textboxes content is ignored. By default textboxes are not ignored.
@@ -280,7 +280,7 @@ export class CompareOptions {
     /**
      * Gets or sets the option that controls which document shall be used as a target during comparison.
      */
-    private _target: CompareOptions.TargetEnum;
+    protected _target: CompareOptions.TargetEnum;
 
     /**
      * Gets or sets the option that controls which document shall be used as a target during comparison.

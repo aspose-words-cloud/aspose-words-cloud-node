@@ -65,7 +65,7 @@ export class ProtectionRequest {
     /**
      * Gets or sets the new password.
      */
-    private _newPassword: string;
+    protected _newPassword: string;
 
     /**
      * Gets or sets the new password.
@@ -85,7 +85,7 @@ export class ProtectionRequest {
     /**
      * Gets or sets the current password.
      */
-    private _password: string;
+    protected _password: string;
 
     /**
      * Gets or sets the current password.
@@ -105,7 +105,7 @@ export class ProtectionRequest {
     /**
      * Gets or sets the new type of protection.
      */
-    private _protectionType: string;
+    protected _protectionType: string;
 
     /**
      * Gets or sets the new type of protection.

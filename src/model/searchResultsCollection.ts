@@ -59,7 +59,7 @@ export class SearchResultsCollection extends LinkElement {
     /**
      * Gets or sets the collection of comments.
      */
-    private _resultsList: Array<SearchResult>;
+    protected _resultsList: Array<SearchResult>;
 
     /**
      * Gets or sets the collection of comments.

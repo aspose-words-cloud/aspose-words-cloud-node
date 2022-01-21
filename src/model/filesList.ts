@@ -57,7 +57,7 @@ export class FilesList {
     /**
      * Files and folders contained by folder StorageFile.
      */
-    private _value: Array<StorageFile>;
+    protected _value: Array<StorageFile>;
 
     /**
      * Files and folders contained by folder StorageFile.

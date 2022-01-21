@@ -55,7 +55,7 @@ export class RangeDocumentDto {
     /**
      * Gets or sets the name for a new document.
      */
-    private _documentName: string;
+    protected _documentName: string;
 
     /**
      * Gets or sets the name for a new document.

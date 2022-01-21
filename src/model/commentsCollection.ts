@@ -59,7 +59,7 @@ export class CommentsCollection extends LinkElement {
     /**
      * Gets or sets the collection of comments.
      */
-    private _commentList: Array<Comment>;
+    protected _commentList: Array<Comment>;
 
     /**
      * Gets or sets the collection of comments.

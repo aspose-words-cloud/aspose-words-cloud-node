@@ -59,7 +59,7 @@ export class FormFieldsResponse extends WordsResponse {
     /**
      * Gets or sets the collection of form fields.
      */
-    private _formFields: FormFieldCollection;
+    protected _formFields: FormFieldCollection;
 
     /**
      * Gets or sets the collection of form fields.

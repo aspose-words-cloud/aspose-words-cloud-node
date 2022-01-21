@@ -114,7 +114,7 @@ export class ImageSaveOptionsData extends FixedPageSaveOptionsData {
      * This property has effect only when saving to raster image formats.
      * The default value is 96.
      */
-    private _horizontalResolution: number;
+    protected _horizontalResolution: number;
 
     /**
      * Gets or sets the horizontal resolution in dots per inch for the generated images.
@@ -138,7 +138,7 @@ export class ImageSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets the brightness level of the image.
      */
-    private _imageBrightness: number;
+    protected _imageBrightness: number;
 
     /**
      * Gets or sets the brightness level of the image.
@@ -158,7 +158,7 @@ export class ImageSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets the color mode of the image.
      */
-    private _imageColorMode: string;
+    protected _imageColorMode: string;
 
     /**
      * Gets or sets the color mode of the image.
@@ -178,7 +178,7 @@ export class ImageSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets the contrast level of the image.
      */
-    private _imageContrast: number;
+    protected _imageContrast: number;
 
     /**
      * Gets or sets the contrast level of the image.
@@ -198,7 +198,7 @@ export class ImageSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets the background (paper) color of the image.
      */
-    private _paperColor: string;
+    protected _paperColor: string;
 
     /**
      * Gets or sets the background (paper) color of the image.
@@ -218,7 +218,7 @@ export class ImageSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets the pixel format of the image.
      */
-    private _pixelFormat: string;
+    protected _pixelFormat: string;
 
     /**
      * Gets or sets the pixel format of the image.
@@ -240,7 +240,7 @@ export class ImageSaveOptionsData extends FixedPageSaveOptionsData {
      * This property has effect only when saving to raster image formats.
      * The default value is 96.
      */
-    private _resolution: number;
+    protected _resolution: number;
 
     /**
      * Gets or sets both horizontal and vertical resolution in dots per inch for the generated images.
@@ -264,7 +264,7 @@ export class ImageSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets the zoom factor of the image.
      */
-    private _scale: number;
+    protected _scale: number;
 
     /**
      * Gets or sets the zoom factor of the image.
@@ -284,7 +284,7 @@ export class ImageSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets a value indicating whether to use anti-aliasing for rendering.
      */
-    private _useAntiAliasing: boolean;
+    protected _useAntiAliasing: boolean;
 
     /**
      * Gets or sets a value indicating whether to use anti-aliasing for rendering.
@@ -304,7 +304,7 @@ export class ImageSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets a value indicating whether to use GDI+ or Aspose.Words metafile renderer when saving to EMF.
      */
-    private _useGdiEmfRenderer: boolean;
+    protected _useGdiEmfRenderer: boolean;
 
     /**
      * Gets or sets a value indicating whether to use GDI+ or Aspose.Words metafile renderer when saving to EMF.
@@ -324,7 +324,7 @@ export class ImageSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets a value indicating whether to use high quality (i.e. slow) rendering algorithms.
      */
-    private _useHighQualityRendering: boolean;
+    protected _useHighQualityRendering: boolean;
 
     /**
      * Gets or sets a value indicating whether to use high quality (i.e. slow) rendering algorithms.
@@ -346,7 +346,7 @@ export class ImageSaveOptionsData extends FixedPageSaveOptionsData {
      * This property has effect only when saving to raster image formats.
      * The default value is 96.
      */
-    private _verticalResolution: number;
+    protected _verticalResolution: number;
 
     /**
      * Gets or sets the vertical resolution in dots per inch for the generated images.

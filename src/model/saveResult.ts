@@ -67,7 +67,7 @@ export class SaveResult {
     /**
      * Gets or sets the list of links to additional items (css, images etc).
      */
-    private _additionalItems: Array<FileLink>;
+    protected _additionalItems: Array<FileLink>;
 
     /**
      * Gets or sets the list of links to additional items (css, images etc).
@@ -87,7 +87,7 @@ export class SaveResult {
     /**
      * Gets or sets the link to destination document.
      */
-    private _destDocument: FileLink;
+    protected _destDocument: FileLink;
 
     /**
      * Gets or sets the link to destination document.
@@ -107,7 +107,7 @@ export class SaveResult {
     /**
      * Gets or sets the link to source document.
      */
-    private _sourceDocument: FileLink;
+    protected _sourceDocument: FileLink;
 
     /**
      * Gets or sets the link to source document.

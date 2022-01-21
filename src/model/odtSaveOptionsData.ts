@@ -72,7 +72,7 @@ export class OdtSaveOptionsData extends SaveOptionsData {
     /**
      * Gets or sets a value indicating whether export should correspond to ODT specification 1.1 strictly.
      */
-    private _isStrictSchema11: boolean;
+    protected _isStrictSchema11: boolean;
 
     /**
      * Gets or sets a value indicating whether export should correspond to ODT specification 1.1 strictly.
@@ -93,7 +93,7 @@ export class OdtSaveOptionsData extends SaveOptionsData {
      * Gets or sets the units of measure to apply to document content. The default value is Aspose.Words.Saving.OdtSaveMeasureUnit.Centimeters.
      * Open Office uses centimeters when specifying lengths, widths and other measurable formatting and content properties in documents whereas MS Office uses inches.
      */
-    private _measureUnit: OdtSaveOptionsData.MeasureUnitEnum;
+    protected _measureUnit: OdtSaveOptionsData.MeasureUnitEnum;
 
     /**
      * Gets or sets the units of measure to apply to document content. The default value is Aspose.Words.Saving.OdtSaveMeasureUnit.Centimeters.
@@ -115,7 +115,7 @@ export class OdtSaveOptionsData extends SaveOptionsData {
     /**
      * Gets or sets the password to encrypt document.
      */
-    private _password: string;
+    protected _password: string;
 
     /**
      * Gets or sets the password to encrypt document.
@@ -135,7 +135,7 @@ export class OdtSaveOptionsData extends SaveOptionsData {
     /**
      * Gets or sets a value indicating whether to use pretty formats output.
      */
-    private _prettyFormat: boolean;
+    protected _prettyFormat: boolean;
 
     /**
      * Gets or sets a value indicating whether to use pretty formats output.
@@ -154,7 +154,7 @@ export class OdtSaveOptionsData extends SaveOptionsData {
 
     public constructor(init?: Partial< OdtSaveOptionsData >) {
         super(init);
-        saveFormat = 'odt';
+        this._saveFormat = 'odt';
 
         Object.assign(this, init);
     }

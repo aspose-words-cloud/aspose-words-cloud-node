@@ -75,7 +75,7 @@ export class StorageFile {
     /**
      * True if it is a folder.
      */
-    private _isFolder: boolean;
+    protected _isFolder: boolean;
 
     /**
      * True if it is a folder.
@@ -95,7 +95,7 @@ export class StorageFile {
     /**
      * File or folder last modified DateTime.
      */
-    private _modifiedDate: Date;
+    protected _modifiedDate: Date;
 
     /**
      * File or folder last modified DateTime.
@@ -115,7 +115,7 @@ export class StorageFile {
     /**
      * File or folder name.
      */
-    private _name: string;
+    protected _name: string;
 
     /**
      * File or folder name.
@@ -135,7 +135,7 @@ export class StorageFile {
     /**
      * File or folder path.
      */
-    private _path: string;
+    protected _path: string;
 
     /**
      * File or folder path.
@@ -155,7 +155,7 @@ export class StorageFile {
     /**
      * File or folder size.
      */
-    private _size: number;
+    protected _size: number;
 
     /**
      * File or folder size.

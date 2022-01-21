@@ -59,7 +59,7 @@ export class RevisionsModificationResponse extends WordsResponse {
     /**
      * Gets or sets the result of the modification operations for the revisions collection.
      */
-    private _result: ModificationOperationResult;
+    protected _result: ModificationOperationResult;
 
     /**
      * Gets or sets the result of the modification operations for the revisions collection.

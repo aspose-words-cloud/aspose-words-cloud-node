@@ -62,7 +62,7 @@ export class XamlFlowSaveOptionsData extends SaveOptionsData {
     /**
      * Gets or sets the physical folder where images are saved when exporting.
      */
-    private _imagesFolder: string;
+    protected _imagesFolder: string;
 
     /**
      * Gets or sets the physical folder where images are saved when exporting.
@@ -82,7 +82,7 @@ export class XamlFlowSaveOptionsData extends SaveOptionsData {
     /**
      * Gets or sets the name of the folder used to construct image URIs.
      */
-    private _imagesFolderAlias: string;
+    protected _imagesFolderAlias: string;
 
     /**
      * Gets or sets the name of the folder used to construct image URIs.
@@ -101,7 +101,7 @@ export class XamlFlowSaveOptionsData extends SaveOptionsData {
 
     public constructor(init?: Partial< XamlFlowSaveOptionsData >) {
         super(init);
-        saveFormat = 'xamlflow';
+        this._saveFormat = 'xamlflow';
 
         Object.assign(this, init);
     }

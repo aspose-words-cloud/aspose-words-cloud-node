@@ -59,7 +59,7 @@ export class FootnoteCollection extends LinkElement {
     /**
      * Gets or sets the collection of footnotes.
      */
-    private _list: Array<Footnote>;
+    protected _list: Array<Footnote>;
 
     /**
      * Gets or sets the collection of footnotes.

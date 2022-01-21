@@ -62,7 +62,7 @@ export class FilesUploadResult {
     /**
      * List of errors.
      */
-    private _errors: Array<Error>;
+    protected _errors: Array<Error>;
 
     /**
      * List of errors.
@@ -82,7 +82,7 @@ export class FilesUploadResult {
     /**
      * List of uploaded file names.
      */
-    private _uploaded: Array<string>;
+    protected _uploaded: Array<string>;
 
     /**
      * List of uploaded file names.

@@ -60,7 +60,7 @@ export class ClassificationResult {
     /**
      * Gets or sets the name of the class.
      */
-    private _className: string;
+    protected _className: string;
 
     /**
      * Gets or sets the name of the class.
@@ -80,7 +80,7 @@ export class ClassificationResult {
     /**
      * Gets or sets the probability of class.
      */
-    private _classProbability: number;
+    protected _classProbability: number;
 
     /**
      * Gets or sets the probability of class.

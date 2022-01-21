@@ -60,7 +60,7 @@ export class BookmarksOutlineLevelData {
     /**
      * Gets or sets the bookmark's level.
      */
-    private _bookmarksOutlineLevel: number;
+    protected _bookmarksOutlineLevel: number;
 
     /**
      * Gets or sets the bookmark's level.
@@ -80,7 +80,7 @@ export class BookmarksOutlineLevelData {
     /**
      * Gets or sets the bookmark's name.
      */
-    private _name: string;
+    protected _name: string;
 
     /**
      * Gets or sets the bookmark's name.

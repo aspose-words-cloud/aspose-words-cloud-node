@@ -59,7 +59,7 @@ export class CustomXmlPartsResponse extends WordsResponse {
     /**
      * Gets or sets the collection of comments.
      */
-    private _customXmlParts: CustomXmlPartsCollection;
+    protected _customXmlParts: CustomXmlPartsCollection;
 
     /**
      * Gets or sets the collection of comments.

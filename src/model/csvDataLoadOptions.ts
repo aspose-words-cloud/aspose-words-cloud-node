@@ -70,7 +70,7 @@ export class CsvDataLoadOptions {
     /**
      * Gets or sets the character that is used to comment lines of CSV data.
      */
-    private _commentChar: string;
+    protected _commentChar: string;
 
     /**
      * Gets or sets the character that is used to comment lines of CSV data.
@@ -90,7 +90,7 @@ export class CsvDataLoadOptions {
     /**
      * Gets or sets the character to be used as a column delimiter.
      */
-    private _delimiter: string;
+    protected _delimiter: string;
 
     /**
      * Gets or sets the character to be used as a column delimiter.
@@ -110,7 +110,7 @@ export class CsvDataLoadOptions {
     /**
      * Gets or sets a value indicating whether the first record of CSV data contains column names.
      */
-    private _hasHeaders: boolean;
+    protected _hasHeaders: boolean;
 
     /**
      * Gets or sets a value indicating whether the first record of CSV data contains column names.
@@ -130,7 +130,7 @@ export class CsvDataLoadOptions {
     /**
      * Gets or sets the character that is used to quote field values.
      */
-    private _quoteChar: string;
+    protected _quoteChar: string;
 
     /**
      * Gets or sets the character that is used to quote field values.

@@ -197,7 +197,7 @@ export class PageSetup extends LinkElement {
     /**
      * Gets or sets a value indicating whether this section contains bidirectional (complex scripts) text.
      */
-    private _bidi: boolean;
+    protected _bidi: boolean;
 
     /**
      * Gets or sets a value indicating whether this section contains bidirectional (complex scripts) text.
@@ -217,7 +217,7 @@ export class PageSetup extends LinkElement {
     /**
      * Gets or sets a value indicating whether the page border is positioned relative to intersecting texts and objects.
      */
-    private _borderAlwaysInFront: boolean;
+    protected _borderAlwaysInFront: boolean;
 
     /**
      * Gets or sets a value indicating whether the page border is positioned relative to intersecting texts and objects.
@@ -237,7 +237,7 @@ export class PageSetup extends LinkElement {
     /**
      * Gets or sets the option that controls which pages the page border is printed on.
      */
-    private _borderAppliesTo: PageSetup.BorderAppliesToEnum;
+    protected _borderAppliesTo: PageSetup.BorderAppliesToEnum;
 
     /**
      * Gets or sets the option that controls which pages the page border is printed on.
@@ -257,7 +257,7 @@ export class PageSetup extends LinkElement {
     /**
      * Gets or sets the value, that indicates whether the specified page border is measured from the edge of the page or from the text it surrounds.
      */
-    private _borderDistanceFrom: PageSetup.BorderDistanceFromEnum;
+    protected _borderDistanceFrom: PageSetup.BorderDistanceFromEnum;
 
     /**
      * Gets or sets the value, that indicates whether the specified page border is measured from the edge of the page or from the text it surrounds.
@@ -277,7 +277,7 @@ export class PageSetup extends LinkElement {
     /**
      * Gets or sets the distance (in points) between the bottom edge of the page and the bottom boundary of the body text.
      */
-    private _bottomMargin: number;
+    protected _bottomMargin: number;
 
     /**
      * Gets or sets the distance (in points) between the bottom edge of the page and the bottom boundary of the body text.
@@ -297,7 +297,7 @@ export class PageSetup extends LinkElement {
     /**
      * Gets or sets a value indicating whether a different header or footer is used on the first page.
      */
-    private _differentFirstPageHeaderFooter: boolean;
+    protected _differentFirstPageHeaderFooter: boolean;
 
     /**
      * Gets or sets a value indicating whether a different header or footer is used on the first page.
@@ -318,7 +318,7 @@ export class PageSetup extends LinkElement {
      * Gets or sets the paper tray (bin) to use for the first page of a section.
      * The value is implementation (printer) specific.
      */
-    private _firstPageTray: number;
+    protected _firstPageTray: number;
 
     /**
      * Gets or sets the paper tray (bin) to use for the first page of a section.
@@ -340,7 +340,7 @@ export class PageSetup extends LinkElement {
     /**
      * Gets or sets the distance (in points) between the footer and the bottom of the page.
      */
-    private _footerDistance: number;
+    protected _footerDistance: number;
 
     /**
      * Gets or sets the distance (in points) between the footer and the bottom of the page.
@@ -360,7 +360,7 @@ export class PageSetup extends LinkElement {
     /**
      * Gets or sets the amount of extra space added to the margin for document binding.
      */
-    private _gutter: number;
+    protected _gutter: number;
 
     /**
      * Gets or sets the amount of extra space added to the margin for document binding.
@@ -380,7 +380,7 @@ export class PageSetup extends LinkElement {
     /**
      * Gets or sets the distance (in points) between the header and the top of the page.
      */
-    private _headerDistance: number;
+    protected _headerDistance: number;
 
     /**
      * Gets or sets the distance (in points) between the header and the top of the page.
@@ -400,7 +400,7 @@ export class PageSetup extends LinkElement {
     /**
      * Gets or sets the distance (in points) between the left edge of the page and the left boundary of the body text.
      */
-    private _leftMargin: number;
+    protected _leftMargin: number;
 
     /**
      * Gets or sets the distance (in points) between the left edge of the page and the left boundary of the body text.
@@ -420,7 +420,7 @@ export class PageSetup extends LinkElement {
     /**
      * Gets or sets the numeric increment for line numbers.
      */
-    private _lineNumberCountBy: number;
+    protected _lineNumberCountBy: number;
 
     /**
      * Gets or sets the numeric increment for line numbers.
@@ -440,7 +440,7 @@ export class PageSetup extends LinkElement {
     /**
      * Gets or sets the distance between the right edge of line numbers and the left edge of the document.
      */
-    private _lineNumberDistanceFromText: number;
+    protected _lineNumberDistanceFromText: number;
 
     /**
      * Gets or sets the distance between the right edge of line numbers and the left edge of the document.
@@ -460,7 +460,7 @@ export class PageSetup extends LinkElement {
     /**
      * Gets or sets the way line numbering runs  that is, whether it starts over at the beginning of a new page or section or runs continuously.
      */
-    private _lineNumberRestartMode: PageSetup.LineNumberRestartModeEnum;
+    protected _lineNumberRestartMode: PageSetup.LineNumberRestartModeEnum;
 
     /**
      * Gets or sets the way line numbering runs  that is, whether it starts over at the beginning of a new page or section or runs continuously.
@@ -480,7 +480,7 @@ export class PageSetup extends LinkElement {
     /**
      * Gets or sets the starting line number.
      */
-    private _lineStartingNumber: number;
+    protected _lineStartingNumber: number;
 
     /**
      * Gets or sets the starting line number.
@@ -500,7 +500,7 @@ export class PageSetup extends LinkElement {
     /**
      * Gets or sets the orientation of the page.
      */
-    private _orientation: PageSetup.OrientationEnum;
+    protected _orientation: PageSetup.OrientationEnum;
 
     /**
      * Gets or sets the orientation of the page.
@@ -521,7 +521,7 @@ export class PageSetup extends LinkElement {
      * Gets or sets the paper tray (bin) to be used for all but the first page of a section.
      * The value is implementation (printer) specific.
      */
-    private _otherPagesTray: number;
+    protected _otherPagesTray: number;
 
     /**
      * Gets or sets the paper tray (bin) to be used for all but the first page of a section.
@@ -543,7 +543,7 @@ export class PageSetup extends LinkElement {
     /**
      * Gets or sets the height of the page in points.
      */
-    private _pageHeight: number;
+    protected _pageHeight: number;
 
     /**
      * Gets or sets the height of the page in points.
@@ -563,7 +563,7 @@ export class PageSetup extends LinkElement {
     /**
      * Gets or sets the page number format.
      */
-    private _pageNumberStyle: PageSetup.PageNumberStyleEnum;
+    protected _pageNumberStyle: PageSetup.PageNumberStyleEnum;
 
     /**
      * Gets or sets the page number format.
@@ -583,7 +583,7 @@ export class PageSetup extends LinkElement {
     /**
      * Gets or sets the starting page number of the section.
      */
-    private _pageStartingNumber: number;
+    protected _pageStartingNumber: number;
 
     /**
      * Gets or sets the starting page number of the section.
@@ -603,7 +603,7 @@ export class PageSetup extends LinkElement {
     /**
      * Gets or sets the width of the page in points.
      */
-    private _pageWidth: number;
+    protected _pageWidth: number;
 
     /**
      * Gets or sets the width of the page in points.
@@ -623,7 +623,7 @@ export class PageSetup extends LinkElement {
     /**
      * Gets or sets the paper size.
      */
-    private _paperSize: PageSetup.PaperSizeEnum;
+    protected _paperSize: PageSetup.PaperSizeEnum;
 
     /**
      * Gets or sets the paper size.
@@ -643,7 +643,7 @@ export class PageSetup extends LinkElement {
     /**
      * Gets or sets a value indicating whether page numbering restarts at the beginning of the section.
      */
-    private _restartPageNumbering: boolean;
+    protected _restartPageNumbering: boolean;
 
     /**
      * Gets or sets a value indicating whether page numbering restarts at the beginning of the section.
@@ -663,7 +663,7 @@ export class PageSetup extends LinkElement {
     /**
      * Gets or sets the distance (in points) between the right edge of the page and the right boundary of the body text.
      */
-    private _rightMargin: number;
+    protected _rightMargin: number;
 
     /**
      * Gets or sets the distance (in points) between the right edge of the page and the right boundary of the body text.
@@ -683,7 +683,7 @@ export class PageSetup extends LinkElement {
     /**
      * Gets or sets a value indicating whether Microsoft Word uses gutters for the section based on a right-to-left language or a left-to-right language.
      */
-    private _rtlGutter: boolean;
+    protected _rtlGutter: boolean;
 
     /**
      * Gets or sets a value indicating whether Microsoft Word uses gutters for the section based on a right-to-left language or a left-to-right language.
@@ -703,7 +703,7 @@ export class PageSetup extends LinkElement {
     /**
      * Gets or sets the type of section break for the specified object.
      */
-    private _sectionStart: PageSetup.SectionStartEnum;
+    protected _sectionStart: PageSetup.SectionStartEnum;
 
     /**
      * Gets or sets the type of section break for the specified object.
@@ -723,7 +723,7 @@ export class PageSetup extends LinkElement {
     /**
      * Gets or sets a value indicating whether endnotes are printed at the end of the next section that doesn't suppress endnotes. Suppressed endnotes are printed before the endnotes in that section.
      */
-    private _suppressEndnotes: boolean;
+    protected _suppressEndnotes: boolean;
 
     /**
      * Gets or sets a value indicating whether endnotes are printed at the end of the next section that doesn't suppress endnotes. Suppressed endnotes are printed before the endnotes in that section.
@@ -743,7 +743,7 @@ export class PageSetup extends LinkElement {
     /**
      * Gets or sets the distance (in points) between the top edge of the page and the top boundary of the body text.
      */
-    private _topMargin: number;
+    protected _topMargin: number;
 
     /**
      * Gets or sets the distance (in points) between the top edge of the page and the top boundary of the body text.
@@ -763,7 +763,7 @@ export class PageSetup extends LinkElement {
     /**
      * Gets or sets the vertical alignment of text on each page in the document.or section.
      */
-    private _verticalAlignment: PageSetup.VerticalAlignmentEnum;
+    protected _verticalAlignment: PageSetup.VerticalAlignmentEnum;
 
     /**
      * Gets or sets the vertical alignment of text on each page in the document.or section.

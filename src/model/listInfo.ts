@@ -91,7 +91,7 @@ export class ListInfo extends LinkElement {
     /**
      * Gets or sets a value indicating whether this list is a definition of a list style.
      */
-    private _isListStyleDefinition: boolean;
+    protected _isListStyleDefinition: boolean;
 
     /**
      * Gets or sets a value indicating whether this list is a definition of a list style.
@@ -111,7 +111,7 @@ export class ListInfo extends LinkElement {
     /**
      * Gets or sets a value indicating whether this list is a reference to a list style.
      */
-    private _isListStyleReference: boolean;
+    protected _isListStyleReference: boolean;
 
     /**
      * Gets or sets a value indicating whether this list is a reference to a list style.
@@ -131,7 +131,7 @@ export class ListInfo extends LinkElement {
     /**
      * Gets or sets a value indicating whether the list contains 9 levels; false when 1 level.
      */
-    private _isMultiLevel: boolean;
+    protected _isMultiLevel: boolean;
 
     /**
      * Gets or sets a value indicating whether the list contains 9 levels; false when 1 level.
@@ -151,7 +151,7 @@ export class ListInfo extends LinkElement {
     /**
      * Gets or sets a value indicating whether list should be restarted at each section. The default value is false.
      */
-    private _isRestartAtEachSection: boolean;
+    protected _isRestartAtEachSection: boolean;
 
     /**
      * Gets or sets a value indicating whether list should be restarted at each section. The default value is false.
@@ -171,7 +171,7 @@ export class ListInfo extends LinkElement {
     /**
      * Gets or sets the unique identifier of the list.
      */
-    private _listId: number;
+    protected _listId: number;
 
     /**
      * Gets or sets the unique identifier of the list.
@@ -191,7 +191,7 @@ export class ListInfo extends LinkElement {
     /**
      * Gets or sets the collection of list levels for this list.
      */
-    private _listLevels: ListLevels;
+    protected _listLevels: ListLevels;
 
     /**
      * Gets or sets the collection of list levels for this list.
@@ -211,7 +211,7 @@ export class ListInfo extends LinkElement {
     /**
      * Gets or sets the list style that this list references or defines.
      */
-    private _style: Style;
+    protected _style: Style;
 
     /**
      * Gets or sets the list style that this list references or defines.

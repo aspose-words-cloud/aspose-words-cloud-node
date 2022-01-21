@@ -58,7 +58,7 @@ export class MarkdownSaveOptionsData extends TxtSaveOptionsBaseData {
      * Gets or sets the value, that specifies how to align contents in tables when exporting into the Markdown format.
      * The default value is Auto.
      */
-    private _tableContentAlignment: MarkdownSaveOptionsData.TableContentAlignmentEnum;
+    protected _tableContentAlignment: MarkdownSaveOptionsData.TableContentAlignmentEnum;
 
     /**
      * Gets or sets the value, that specifies how to align contents in tables when exporting into the Markdown format.
@@ -79,7 +79,7 @@ export class MarkdownSaveOptionsData extends TxtSaveOptionsBaseData {
 
     public constructor(init?: Partial< MarkdownSaveOptionsData >) {
         super(init);
-        saveFormat = 'md';
+        this._saveFormat = 'md';
 
         Object.assign(this, init);
     }

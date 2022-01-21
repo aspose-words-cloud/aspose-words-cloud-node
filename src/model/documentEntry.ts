@@ -65,7 +65,7 @@ export class DocumentEntry {
     /**
      * Gets or sets the path to document to append at the server.
      */
-    private _href: string;
+    protected _href: string;
 
     /**
      * Gets or sets the path to document to append at the server.
@@ -85,7 +85,7 @@ export class DocumentEntry {
     /**
      * Gets or sets the option that controls formatting will be used: appended or destination document. Can be KeepSourceFormatting or UseDestinationStyles.
      */
-    private _importFormatMode: string;
+    protected _importFormatMode: string;
 
     /**
      * Gets or sets the option that controls formatting will be used: appended or destination document. Can be KeepSourceFormatting or UseDestinationStyles.
@@ -105,7 +105,7 @@ export class DocumentEntry {
     /**
      * Gets or sets document password encrypted on API public key. The default value is null (the document has no password).
      */
-    private _password: string;
+    protected _password: string;
 
     /**
      * Gets or sets document password encrypted on API public key. The default value is null (the document has no password).

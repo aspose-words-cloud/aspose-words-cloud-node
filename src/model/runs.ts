@@ -59,7 +59,7 @@ export class Runs extends LinkElement {
     /**
      * Gets or sets the collection of runs.
      */
-    private _list: Array<Run>;
+    protected _list: Array<Run>;
 
     /**
      * Gets or sets the collection of runs.

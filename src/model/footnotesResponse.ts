@@ -59,7 +59,7 @@ export class FootnotesResponse extends WordsResponse {
     /**
      * Gets or sets the collection of footnotes.
      */
-    private _footnotes: FootnoteCollection;
+    protected _footnotes: FootnoteCollection;
 
     /**
      * Gets or sets the collection of footnotes.

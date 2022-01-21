@@ -65,7 +65,7 @@ export class UserInformation {
     /**
      * Gets or sets user address.
      */
-    private _address: string;
+    protected _address: string;
 
     /**
      * Gets or sets user address.
@@ -85,7 +85,7 @@ export class UserInformation {
     /**
      * Gets or sets user initials.
      */
-    private _initials: string;
+    protected _initials: string;
 
     /**
      * Gets or sets user initials.
@@ -105,7 +105,7 @@ export class UserInformation {
     /**
      * Gets or sets user name.
      */
-    private _name: string;
+    protected _name: string;
 
     /**
      * Gets or sets user name.

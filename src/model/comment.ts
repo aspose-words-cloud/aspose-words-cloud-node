@@ -91,7 +91,7 @@ export class Comment extends CommentLink {
     /**
      * Gets or sets the author name for a comment.
      */
-    private _author: string;
+    protected _author: string;
 
     /**
      * Gets or sets the author name for a comment.
@@ -111,7 +111,7 @@ export class Comment extends CommentLink {
     /**
      * Gets or sets the content of the comment.
      */
-    private _content: StoryChildNodes;
+    protected _content: StoryChildNodes;
 
     /**
      * Gets or sets the content of the comment.
@@ -131,7 +131,7 @@ export class Comment extends CommentLink {
     /**
      * Gets or sets the date and time that the comment was made.
      */
-    private _dateTime: Date;
+    protected _dateTime: Date;
 
     /**
      * Gets or sets the date and time that the comment was made.
@@ -151,7 +151,7 @@ export class Comment extends CommentLink {
     /**
      * Gets or sets the initials of the user associated with a specific comment.
      */
-    private _initial: string;
+    protected _initial: string;
 
     /**
      * Gets or sets the initials of the user associated with a specific comment.
@@ -171,7 +171,7 @@ export class Comment extends CommentLink {
     /**
      * Gets or sets the link to comment range end node.
      */
-    private _rangeEnd: DocumentPosition;
+    protected _rangeEnd: DocumentPosition;
 
     /**
      * Gets or sets the link to comment range end node.
@@ -191,7 +191,7 @@ export class Comment extends CommentLink {
     /**
      * Gets or sets the link to comment range start node.
      */
-    private _rangeStart: DocumentPosition;
+    protected _rangeStart: DocumentPosition;
 
     /**
      * Gets or sets the link to comment range start node.
@@ -211,7 +211,7 @@ export class Comment extends CommentLink {
     /**
      * Gets or sets text of the comment.
      */
-    private _text: string;
+    protected _text: string;
 
     /**
      * Gets or sets text of the comment.

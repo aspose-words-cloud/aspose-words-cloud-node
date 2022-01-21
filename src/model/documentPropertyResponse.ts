@@ -59,7 +59,7 @@ export class DocumentPropertyResponse extends WordsResponse {
     /**
      * Gets or sets the document property.
      */
-    private _documentProperty: DocumentProperty;
+    protected _documentProperty: DocumentProperty;
 
     /**
      * Gets or sets the document property.

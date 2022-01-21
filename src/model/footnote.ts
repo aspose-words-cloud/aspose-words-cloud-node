@@ -81,7 +81,7 @@ export class Footnote extends FootnoteLink {
     /**
      * Gets or sets the content of the footnote.
      */
-    private _content: StoryChildNodes;
+    protected _content: StoryChildNodes;
 
     /**
      * Gets or sets the content of the footnote.
@@ -101,7 +101,7 @@ export class Footnote extends FootnoteLink {
     /**
      * Gets or sets the value, that specifies whether this is a footnote or endnote.
      */
-    private _footnoteType: Footnote.FootnoteTypeEnum;
+    protected _footnoteType: Footnote.FootnoteTypeEnum;
 
     /**
      * Gets or sets the value, that specifies whether this is a footnote or endnote.
@@ -121,7 +121,7 @@ export class Footnote extends FootnoteLink {
     /**
      * Gets or sets the link to comment range start node.
      */
-    private _position: DocumentPosition;
+    protected _position: DocumentPosition;
 
     /**
      * Gets or sets the link to comment range start node.
@@ -142,7 +142,7 @@ export class Footnote extends FootnoteLink {
      * Gets or sets the custom reference mark to be used for this footnote.
      * Default value is Empty, meaning auto-numbered footnotes are used.
      */
-    private _referenceMark: string;
+    protected _referenceMark: string;
 
     /**
      * Gets or sets the custom reference mark to be used for this footnote.
@@ -164,7 +164,7 @@ export class Footnote extends FootnoteLink {
     /**
      * Gets or sets text of the footnote.
      */
-    private _text: string;
+    protected _text: string;
 
     /**
      * Gets or sets text of the footnote.

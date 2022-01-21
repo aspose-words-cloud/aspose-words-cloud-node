@@ -84,7 +84,7 @@ export class Border extends LinkElement {
     /**
      * Gets or sets the border type.
      */
-    private _borderType: Border.BorderTypeEnum;
+    protected _borderType: Border.BorderTypeEnum;
 
     /**
      * Gets or sets the border type.
@@ -104,7 +104,7 @@ export class Border extends LinkElement {
     /**
      * Gets or sets the border color.
      */
-    private _color: XmlColor;
+    protected _color: XmlColor;
 
     /**
      * Gets or sets the border color.
@@ -124,7 +124,7 @@ export class Border extends LinkElement {
     /**
      * Gets or sets the distance of the border from text or from the page edge in points.
      */
-    private _distanceFromText: number;
+    protected _distanceFromText: number;
 
     /**
      * Gets or sets the distance of the border from text or from the page edge in points.
@@ -144,7 +144,7 @@ export class Border extends LinkElement {
     /**
      * Gets or sets the border style.
      */
-    private _lineStyle: Border.LineStyleEnum;
+    protected _lineStyle: Border.LineStyleEnum;
 
     /**
      * Gets or sets the border style.
@@ -164,7 +164,7 @@ export class Border extends LinkElement {
     /**
      * Gets or sets the border width in points.
      */
-    private _lineWidth: number;
+    protected _lineWidth: number;
 
     /**
      * Gets or sets the border width in points.
@@ -184,7 +184,7 @@ export class Border extends LinkElement {
     /**
      * Gets or sets a value indicating whether the border has a shadow.
      */
-    private _shadow: boolean;
+    protected _shadow: boolean;
 
     /**
      * Gets or sets a value indicating whether the border has a shadow.

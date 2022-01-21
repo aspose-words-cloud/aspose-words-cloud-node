@@ -70,7 +70,7 @@ export class PageNumber {
     /**
      * Gets or sets text alignment, possible values are left, right, center or justify.
      */
-    private _alignment: string;
+    protected _alignment: string;
 
     /**
      * Gets or sets text alignment, possible values are left, right, center or justify.
@@ -90,7 +90,7 @@ export class PageNumber {
     /**
      * Gets or sets the page number format, e.g. "{PAGE} of {NUMPAGES}".
      */
-    private _format: string;
+    protected _format: string;
 
     /**
      * Gets or sets the page number format, e.g. "{PAGE} of {NUMPAGES}".
@@ -110,7 +110,7 @@ export class PageNumber {
     /**
      * Gets or sets a value indicating whether if true the page number is added at the top of the page, else at the bottom.
      */
-    private _isTop: boolean;
+    protected _isTop: boolean;
 
     /**
      * Gets or sets a value indicating whether if true the page number is added at the top of the page, else at the bottom.
@@ -130,7 +130,7 @@ export class PageNumber {
     /**
      * Gets or sets a value indicating whether if true the page number is added on first page too.
      */
-    private _setPageNumberOnFirstPage: boolean;
+    protected _setPageNumberOnFirstPage: boolean;
 
     /**
      * Gets or sets a value indicating whether if true the page number is added on first page too.

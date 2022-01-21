@@ -59,7 +59,7 @@ export class ParagraphFormatResponse extends WordsResponse {
     /**
      * Gets or sets the formatting properties of a paragraph.
      */
-    private _paragraphFormat: ParagraphFormat;
+    protected _paragraphFormat: ParagraphFormat;
 
     /**
      * Gets or sets the formatting properties of a paragraph.

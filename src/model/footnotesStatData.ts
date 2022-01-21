@@ -60,7 +60,7 @@ export class FootnotesStatData {
     /**
      * Gets or sets the total count of paragraphs in footnotes.
      */
-    private _paragraphCount: number;
+    protected _paragraphCount: number;
 
     /**
      * Gets or sets the total count of paragraphs in footnotes.
@@ -80,7 +80,7 @@ export class FootnotesStatData {
     /**
      * Gets or sets the total count of words in footnotes.
      */
-    private _wordCount: number;
+    protected _wordCount: number;
 
     /**
      * Gets or sets the total count of words in footnotes.

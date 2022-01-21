@@ -59,7 +59,7 @@ export class FieldNamesResponse extends WordsResponse {
     /**
      * Gets or sets the collection of mail merge fields.
      */
-    private _fieldNames: FieldNames;
+    protected _fieldNames: FieldNames;
 
     /**
      * Gets or sets the collection of mail merge fields.

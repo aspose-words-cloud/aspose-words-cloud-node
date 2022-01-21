@@ -57,7 +57,7 @@ export class DrawingObjectCollection extends LinkElement {
     /**
      * Gets or sets the collection of DrawingObjects links.
      */
-    private _list: Array<LinkElement>;
+    protected _list: Array<LinkElement>;
 
     /**
      * Gets or sets the collection of DrawingObjects links.

@@ -59,7 +59,7 @@ export class StyleResponse extends WordsResponse {
     /**
      * Gets or sets the style, containded in the document.
      */
-    private _style: Style;
+    protected _style: Style;
 
     /**
      * Gets or sets the style, containded in the document.

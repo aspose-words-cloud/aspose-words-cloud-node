@@ -75,7 +75,7 @@ export class ReplaceTextParameters {
     /**
      * Gets or sets a value indicating whether flag, true means the search is case-sensitive; false means the search is not case-sensitive.
      */
-    private _isMatchCase: boolean;
+    protected _isMatchCase: boolean;
 
     /**
      * Gets or sets a value indicating whether flag, true means the search is case-sensitive; false means the search is not case-sensitive.
@@ -95,7 +95,7 @@ export class ReplaceTextParameters {
     /**
      * Gets or sets a value indicating whether flag, means that only whole word matched are replaced.
      */
-    private _isMatchWholeWord: boolean;
+    protected _isMatchWholeWord: boolean;
 
     /**
      * Gets or sets a value indicating whether flag, means that only whole word matched are replaced.
@@ -115,7 +115,7 @@ export class ReplaceTextParameters {
     /**
      * Gets or sets a value indicating whether flag, means that OldValue contains regex expression.
      */
-    private _isOldValueRegex: boolean;
+    protected _isOldValueRegex: boolean;
 
     /**
      * Gets or sets a value indicating whether flag, means that OldValue contains regex expression.
@@ -135,7 +135,7 @@ export class ReplaceTextParameters {
     /**
      * Gets or sets the new text value to replace by.
      */
-    private _newValue: string;
+    protected _newValue: string;
 
     /**
      * Gets or sets the new text value to replace by.
@@ -155,7 +155,7 @@ export class ReplaceTextParameters {
     /**
      * Gets or sets the old text value (or regex pattern IsOldValueRegex) to replace.
      */
-    private _oldValue: string;
+    protected _oldValue: string;
 
     /**
      * Gets or sets the old text value (or regex pattern IsOldValueRegex) to replace.

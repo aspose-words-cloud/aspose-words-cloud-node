@@ -57,7 +57,7 @@ export class WordMLSaveOptionsData extends SaveOptionsData {
     /**
      * Gets or sets a value indicating whether to use pretty formats output.
      */
-    private _prettyFormat: boolean;
+    protected _prettyFormat: boolean;
 
     /**
      * Gets or sets a value indicating whether to use pretty formats output.
@@ -76,7 +76,7 @@ export class WordMLSaveOptionsData extends SaveOptionsData {
 
     public constructor(init?: Partial< WordMLSaveOptionsData >) {
         super(init);
-        saveFormat = 'wml';
+        this._saveFormat = 'wml';
 
         Object.assign(this, init);
     }

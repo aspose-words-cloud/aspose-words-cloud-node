@@ -62,7 +62,7 @@ export class ParagraphFormat extends ParagraphFormatBase {
     /**
      * Gets or sets a value indicating whether the paragraph style is one of the built-in Heading styles.
      */
-    private _isHeading: boolean;
+    protected _isHeading: boolean;
 
     /**
      * Gets or sets a value indicating whether the paragraph style is one of the built-in Heading styles.
@@ -82,7 +82,7 @@ export class ParagraphFormat extends ParagraphFormatBase {
     /**
      * Gets or sets a value indicating whether the paragraph is an item in a bulleted or numbered list.
      */
-    private _isListItem: boolean;
+    protected _isListItem: boolean;
 
     /**
      * Gets or sets a value indicating whether the paragraph is an item in a bulleted or numbered list.

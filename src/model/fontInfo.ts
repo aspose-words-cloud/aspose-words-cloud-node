@@ -70,7 +70,7 @@ export class FontInfo {
     /**
      * Gets or sets the path to the font file if any.
      */
-    private _filePath: string;
+    protected _filePath: string;
 
     /**
      * Gets or sets the path to the font file if any.
@@ -90,7 +90,7 @@ export class FontInfo {
     /**
      * Gets or sets the family name of the font.
      */
-    private _fontFamilyName: string;
+    protected _fontFamilyName: string;
 
     /**
      * Gets or sets the family name of the font.
@@ -110,7 +110,7 @@ export class FontInfo {
     /**
      * Gets or sets the full name of the font.
      */
-    private _fullFontName: string;
+    protected _fullFontName: string;
 
     /**
      * Gets or sets the full name of the font.
@@ -130,7 +130,7 @@ export class FontInfo {
     /**
      * Gets or sets the version string of the font.
      */
-    private _version: string;
+    protected _version: string;
 
     /**
      * Gets or sets the version string of the font.

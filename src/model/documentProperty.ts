@@ -68,7 +68,7 @@ export class DocumentProperty extends LinkElement {
      * Gets or sets a value indicating whether the property is built-in or not.
      * If true the property is built-in, if false the property is custom.
      */
-    private _builtIn: boolean;
+    protected _builtIn: boolean;
 
     /**
      * Gets or sets a value indicating whether the property is built-in or not.
@@ -90,7 +90,7 @@ export class DocumentProperty extends LinkElement {
     /**
      * Gets or sets the name of the document property.
      */
-    private _name: string;
+    protected _name: string;
 
     /**
      * Gets or sets the name of the document property.
@@ -110,7 +110,7 @@ export class DocumentProperty extends LinkElement {
     /**
      * Gets or sets the value of the document property.
      */
-    private _value: string;
+    protected _value: string;
 
     /**
      * Gets or sets the value of the document property.

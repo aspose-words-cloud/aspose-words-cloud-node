@@ -62,7 +62,7 @@ export class ModificationOperationResult {
     /**
      * Gets or sets the link to the dest document (result of the modification operation).
      */
-    private _dest: FileLink;
+    protected _dest: FileLink;
 
     /**
      * Gets or sets the link to the dest document (result of the modification operation).
@@ -82,7 +82,7 @@ export class ModificationOperationResult {
     /**
      * Gets or sets the link to the source document (source for the modification operation).
      */
-    private _source: FileLink;
+    protected _source: FileLink;
 
     /**
      * Gets or sets the link to the source document (source for the modification operation).

@@ -59,7 +59,7 @@ export class SplitDocumentResponse extends WordsResponse {
     /**
      * Gets or sets the result of document splitting.
      */
-    private _splitResult: SplitDocumentResult;
+    protected _splitResult: SplitDocumentResult;
 
     /**
      * Gets or sets the result of document splitting.

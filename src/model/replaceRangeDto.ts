@@ -60,7 +60,7 @@ export class ReplaceRangeDto {
     /**
      * Gets or sets the range's text.
      */
-    private _text: string;
+    protected _text: string;
 
     /**
      * Gets or sets the range's text.
@@ -80,7 +80,7 @@ export class ReplaceRangeDto {
     /**
      * Gets or sets the range's text type.
      */
-    private _textType: ReplaceRangeDto.TextTypeEnum;
+    protected _textType: ReplaceRangeDto.TextTypeEnum;
 
     /**
      * Gets or sets the range's text type.

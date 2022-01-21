@@ -70,7 +70,7 @@ export class PdfEncryptionDetailsData {
     /**
      * Gets or sets the encryption algorithm to use.
      */
-    private _encryptionAlgorithm: string;
+    protected _encryptionAlgorithm: string;
 
     /**
      * Gets or sets the encryption algorithm to use.
@@ -90,7 +90,7 @@ export class PdfEncryptionDetailsData {
     /**
      * Gets or sets the owner password for the encrypted PDF document.
      */
-    private _ownerPassword: string;
+    protected _ownerPassword: string;
 
     /**
      * Gets or sets the owner password for the encrypted PDF document.
@@ -110,7 +110,7 @@ export class PdfEncryptionDetailsData {
     /**
      * Gets or sets the operations that are allowed to a user on the encrypted PDF document.
      */
-    private _permissions: string;
+    protected _permissions: string;
 
     /**
      * Gets or sets the operations that are allowed to a user on the encrypted PDF document.
@@ -130,7 +130,7 @@ export class PdfEncryptionDetailsData {
     /**
      * Gets or sets the user password required for opening the encrypted PDF document.
      */
-    private _userPassword: string;
+    protected _userPassword: string;
 
     /**
      * Gets or sets the user password required for opening the encrypted PDF document.

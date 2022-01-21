@@ -79,7 +79,7 @@ export class Section extends LinkElement {
     /**
      * Gets or sets the list of child nodes.
      */
-    private _childNodes: Array<NodeLink>;
+    protected _childNodes: Array<NodeLink>;
 
     /**
      * Gets or sets the list of child nodes.
@@ -99,7 +99,7 @@ export class Section extends LinkElement {
     /**
      * Gets or sets the link to HeaderFooters resource.
      */
-    private _headerFooters: LinkElement;
+    protected _headerFooters: LinkElement;
 
     /**
      * Gets or sets the link to HeaderFooters resource.
@@ -119,7 +119,7 @@ export class Section extends LinkElement {
     /**
      * Gets or sets the link to PageSetup resource.
      */
-    private _pageSetup: LinkElement;
+    protected _pageSetup: LinkElement;
 
     /**
      * Gets or sets the link to PageSetup resource.
@@ -139,7 +139,7 @@ export class Section extends LinkElement {
     /**
      * Gets or sets the link to Paragraphs resource.
      */
-    private _paragraphs: LinkElement;
+    protected _paragraphs: LinkElement;
 
     /**
      * Gets or sets the link to Paragraphs resource.
@@ -159,7 +159,7 @@ export class Section extends LinkElement {
     /**
      * Gets or sets the link to Tables resource.
      */
-    private _tables: LinkElement;
+    protected _tables: LinkElement;
 
     /**
      * Gets or sets the link to Tables resource.

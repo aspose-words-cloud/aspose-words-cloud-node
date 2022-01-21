@@ -68,7 +68,7 @@ export class TiffSaveOptionsData extends ImageSaveOptionsData {
      * Gets or sets the threshold that determines the value of the binarization error in the Floyd-Steinberg method. when ImageBinarizationMethod is ImageBinarizationMethod.FloydSteinbergDithering.
      * Default value is 128.
      */
-    private _thresholdForFloydSteinbergDithering: number;
+    protected _thresholdForFloydSteinbergDithering: number;
 
     /**
      * Gets or sets the threshold that determines the value of the binarization error in the Floyd-Steinberg method. when ImageBinarizationMethod is ImageBinarizationMethod.FloydSteinbergDithering.
@@ -90,7 +90,7 @@ export class TiffSaveOptionsData extends ImageSaveOptionsData {
     /**
      * Gets or sets the method used while converting images to 1 bpp format.
      */
-    private _tiffBinarizationMethod: string;
+    protected _tiffBinarizationMethod: string;
 
     /**
      * Gets or sets the method used while converting images to 1 bpp format.
@@ -110,7 +110,7 @@ export class TiffSaveOptionsData extends ImageSaveOptionsData {
     /**
      * Gets or sets the type of compression.
      */
-    private _tiffCompression: string;
+    protected _tiffCompression: string;
 
     /**
      * Gets or sets the type of compression.
@@ -129,7 +129,7 @@ export class TiffSaveOptionsData extends ImageSaveOptionsData {
 
     public constructor(init?: Partial< TiffSaveOptionsData >) {
         super(init);
-        saveFormat = 'tiff';
+        this._saveFormat = 'tiff';
 
         Object.assign(this, init);
     }

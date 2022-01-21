@@ -59,7 +59,7 @@ export class TableRowFormatResponse extends WordsResponse {
     /**
      * Gets or sets the formatting properties of a table row.
      */
-    private _rowFormat: TableRowFormat;
+    protected _rowFormat: TableRowFormat;
 
     /**
      * Gets or sets the formatting properties of a table row.

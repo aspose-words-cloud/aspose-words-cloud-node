@@ -59,7 +59,7 @@ export class TableLinkCollection extends LinkElement {
     /**
      * Gets or sets the collection of table's links.
      */
-    private _tableLinkList: Array<TableLink>;
+    protected _tableLinkList: Array<TableLink>;
 
     /**
      * Gets or sets the collection of table's links.

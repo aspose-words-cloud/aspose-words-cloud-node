@@ -59,7 +59,7 @@ export class DocumentResponse extends WordsResponse {
     /**
      * Gets or sets the document description.
      */
-    private _document: Document;
+    protected _document: Document;
 
     /**
      * Gets or sets the document description.

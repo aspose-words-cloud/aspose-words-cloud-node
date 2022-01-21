@@ -88,7 +88,7 @@ export class ReportEngineSettings {
     /**
      * Gets or sets the options for parsing CSV data.
      */
-    private _csvDataLoadOptions: CsvDataLoadOptions;
+    protected _csvDataLoadOptions: CsvDataLoadOptions;
 
     /**
      * Gets or sets the options for parsing CSV data.
@@ -108,7 +108,7 @@ export class ReportEngineSettings {
     /**
      * Gets or sets the name to reference the data source object in the template.
      */
-    private _dataSourceName: string;
+    protected _dataSourceName: string;
 
     /**
      * Gets or sets the name to reference the data source object in the template.
@@ -128,7 +128,7 @@ export class ReportEngineSettings {
     /**
      * Gets or sets type of datasource.
      */
-    private _dataSourceType: ReportEngineSettings.DataSourceTypeEnum;
+    protected _dataSourceType: ReportEngineSettings.DataSourceTypeEnum;
 
     /**
      * Gets or sets type of datasource.
@@ -148,7 +148,7 @@ export class ReportEngineSettings {
     /**
      * Gets or sets the options for parsing JSON data.
      */
-    private _jsonDataLoadOptions: JsonDataLoadOptions;
+    protected _jsonDataLoadOptions: JsonDataLoadOptions;
 
     /**
      * Gets or sets the options for parsing JSON data.
@@ -168,7 +168,7 @@ export class ReportEngineSettings {
     /**
      * Gets or sets type of options to build report.
      */
-    private _reportBuildOptions: Array<ReportBuildOptions>;
+    protected _reportBuildOptions: Array<ReportBuildOptions>;
 
     /**
      * Gets or sets type of options to build report.
@@ -188,7 +188,7 @@ export class ReportEngineSettings {
     /**
      * Gets or sets the options for parsing XML data.
      */
-    private _xmlDataLoadOptions: XmlDataLoadOptions;
+    protected _xmlDataLoadOptions: XmlDataLoadOptions;
 
     /**
      * Gets or sets the options for parsing XML data.

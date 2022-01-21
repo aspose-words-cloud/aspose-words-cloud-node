@@ -114,7 +114,7 @@ export class TableCellFormat extends LinkElement {
     /**
      * Gets or sets the amount of space (in points) to add below the contents of the cell.
      */
-    private _bottomPadding: number;
+    protected _bottomPadding: number;
 
     /**
      * Gets or sets the amount of space (in points) to add below the contents of the cell.
@@ -134,7 +134,7 @@ export class TableCellFormat extends LinkElement {
     /**
      * Gets or sets a value indicating whether to fit text in the cell, compress each paragraph to the width of the cell.
      */
-    private _fitText: boolean;
+    protected _fitText: boolean;
 
     /**
      * Gets or sets a value indicating whether to fit text in the cell, compress each paragraph to the width of the cell.
@@ -154,7 +154,7 @@ export class TableCellFormat extends LinkElement {
     /**
      * Gets or sets the option that controls how the cell is merged horizontally with other cells in the row.
      */
-    private _horizontalMerge: TableCellFormat.HorizontalMergeEnum;
+    protected _horizontalMerge: TableCellFormat.HorizontalMergeEnum;
 
     /**
      * Gets or sets the option that controls how the cell is merged horizontally with other cells in the row.
@@ -174,7 +174,7 @@ export class TableCellFormat extends LinkElement {
     /**
      * Gets or sets the amount of space (in points) to add to the left of the contents of the cell.
      */
-    private _leftPadding: number;
+    protected _leftPadding: number;
 
     /**
      * Gets or sets the amount of space (in points) to add to the left of the contents of the cell.
@@ -194,7 +194,7 @@ export class TableCellFormat extends LinkElement {
     /**
      * Gets or sets the orientation of text in a table cell.
      */
-    private _orientation: TableCellFormat.OrientationEnum;
+    protected _orientation: TableCellFormat.OrientationEnum;
 
     /**
      * Gets or sets the orientation of text in a table cell.
@@ -214,7 +214,7 @@ export class TableCellFormat extends LinkElement {
     /**
      * Gets or sets the preferred width of the cell.
      */
-    private _preferredWidth: PreferredWidth;
+    protected _preferredWidth: PreferredWidth;
 
     /**
      * Gets or sets the preferred width of the cell.
@@ -234,7 +234,7 @@ export class TableCellFormat extends LinkElement {
     /**
      * Gets or sets the amount of space (in points) to add to the right of the contents of the cell.
      */
-    private _rightPadding: number;
+    protected _rightPadding: number;
 
     /**
      * Gets or sets the amount of space (in points) to add to the right of the contents of the cell.
@@ -254,7 +254,7 @@ export class TableCellFormat extends LinkElement {
     /**
      * Gets or sets the amount of space (in points) to add above the contents of the cell.
      */
-    private _topPadding: number;
+    protected _topPadding: number;
 
     /**
      * Gets or sets the amount of space (in points) to add above the contents of the cell.
@@ -274,7 +274,7 @@ export class TableCellFormat extends LinkElement {
     /**
      * Gets or sets the vertical alignment of text in the cell.
      */
-    private _verticalAlignment: TableCellFormat.VerticalAlignmentEnum;
+    protected _verticalAlignment: TableCellFormat.VerticalAlignmentEnum;
 
     /**
      * Gets or sets the vertical alignment of text in the cell.
@@ -294,7 +294,7 @@ export class TableCellFormat extends LinkElement {
     /**
      * Gets or sets the option that controls how the cell is merged with other cells vertically.
      */
-    private _verticalMerge: TableCellFormat.VerticalMergeEnum;
+    protected _verticalMerge: TableCellFormat.VerticalMergeEnum;
 
     /**
      * Gets or sets the option that controls how the cell is merged with other cells vertically.
@@ -314,7 +314,7 @@ export class TableCellFormat extends LinkElement {
     /**
      * Gets or sets the width of the cell in points.
      */
-    private _width: number;
+    protected _width: number;
 
     /**
      * Gets or sets the width of the cell in points.
@@ -334,7 +334,7 @@ export class TableCellFormat extends LinkElement {
     /**
      * Gets or sets a value indicating whether to wrap text in the cell.
      */
-    private _wrapText: boolean;
+    protected _wrapText: boolean;
 
     /**
      * Gets or sets a value indicating whether to wrap text in the cell.

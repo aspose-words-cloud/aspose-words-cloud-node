@@ -59,7 +59,7 @@ export class ListsResponse extends WordsResponse {
     /**
      * Gets or sets the collection of lists, contained in the document.
      */
-    private _lists: Lists;
+    protected _lists: Lists;
 
     /**
      * Gets or sets the collection of lists, contained in the document.

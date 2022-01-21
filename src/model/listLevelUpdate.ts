@@ -100,7 +100,7 @@ export class ListLevelUpdate {
     /**
      * Gets or sets the justification of the actual number of the list item.
      */
-    private _alignment: ListLevelUpdate.AlignmentEnum;
+    protected _alignment: ListLevelUpdate.AlignmentEnum;
 
     /**
      * Gets or sets the justification of the actual number of the list item.
@@ -120,7 +120,7 @@ export class ListLevelUpdate {
     /**
      * Gets or sets a value indicating whether the level turns all inherited numbers to Arabic, false if it preserves their number style.
      */
-    private _isLegal: boolean;
+    protected _isLegal: boolean;
 
     /**
      * Gets or sets a value indicating whether the level turns all inherited numbers to Arabic, false if it preserves their number style.
@@ -140,7 +140,7 @@ export class ListLevelUpdate {
     /**
      * Gets or sets the number format for the list level.
      */
-    private _numberFormat: string;
+    protected _numberFormat: string;
 
     /**
      * Gets or sets the number format for the list level.
@@ -160,7 +160,7 @@ export class ListLevelUpdate {
     /**
      * Gets or sets the position (in points) of the number or bullet for the list level.
      */
-    private _numberPosition: number;
+    protected _numberPosition: number;
 
     /**
      * Gets or sets the position (in points) of the number or bullet for the list level.
@@ -180,7 +180,7 @@ export class ListLevelUpdate {
     /**
      * Gets or sets the number style for this list level.
      */
-    private _numberStyle: ListLevelUpdate.NumberStyleEnum;
+    protected _numberStyle: ListLevelUpdate.NumberStyleEnum;
 
     /**
      * Gets or sets the number style for this list level.
@@ -200,7 +200,7 @@ export class ListLevelUpdate {
     /**
      * Gets or sets the list level that must appear before the specified list level restarts numbering.
      */
-    private _restartAfterLevel: number;
+    protected _restartAfterLevel: number;
 
     /**
      * Gets or sets the list level that must appear before the specified list level restarts numbering.
@@ -220,7 +220,7 @@ export class ListLevelUpdate {
     /**
      * Gets or sets the starting number for this list level.
      */
-    private _startAt: number;
+    protected _startAt: number;
 
     /**
      * Gets or sets the starting number for this list level.
@@ -240,7 +240,7 @@ export class ListLevelUpdate {
     /**
      * Gets or sets the tab position (in points) for the list level.
      */
-    private _tabPosition: number;
+    protected _tabPosition: number;
 
     /**
      * Gets or sets the tab position (in points) for the list level.
@@ -260,7 +260,7 @@ export class ListLevelUpdate {
     /**
      * Gets or sets the position (in points) for the second line of wrapping text for the list level.
      */
-    private _textPosition: number;
+    protected _textPosition: number;
 
     /**
      * Gets or sets the position (in points) for the second line of wrapping text for the list level.
@@ -280,7 +280,7 @@ export class ListLevelUpdate {
     /**
      * Gets or sets the character to be inserted after the number for the list level.
      */
-    private _trailingCharacter: ListLevelUpdate.TrailingCharacterEnum;
+    protected _trailingCharacter: ListLevelUpdate.TrailingCharacterEnum;
 
     /**
      * Gets or sets the character to be inserted after the number for the list level.

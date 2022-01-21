@@ -92,7 +92,7 @@ export class DrawingObjectInsert {
     /**
      * Gets or sets the height of the DrawingObject in points.
      */
-    private _height: number;
+    protected _height: number;
 
     /**
      * Gets or sets the height of the DrawingObject in points.
@@ -112,7 +112,7 @@ export class DrawingObjectInsert {
     /**
      * Gets or sets the distance in points from the origin to the left side of the image.
      */
-    private _left: number;
+    protected _left: number;
 
     /**
      * Gets or sets the distance in points from the origin to the left side of the image.
@@ -132,7 +132,7 @@ export class DrawingObjectInsert {
     /**
      * Gets or sets the position, before which the DrawingObject will be inserted.
      */
-    private _position: DocumentPosition;
+    protected _position: DocumentPosition;
 
     /**
      * Gets or sets the position, before which the DrawingObject will be inserted.
@@ -152,7 +152,7 @@ export class DrawingObjectInsert {
     /**
      * Gets or sets the relative horizontal position, from which the distance to the image is measured.
      */
-    private _relativeHorizontalPosition: DrawingObjectInsert.RelativeHorizontalPositionEnum;
+    protected _relativeHorizontalPosition: DrawingObjectInsert.RelativeHorizontalPositionEnum;
 
     /**
      * Gets or sets the relative horizontal position, from which the distance to the image is measured.
@@ -172,7 +172,7 @@ export class DrawingObjectInsert {
     /**
      * Gets or sets the relative vertical position, from which the distance to the image is measured.
      */
-    private _relativeVerticalPosition: DrawingObjectInsert.RelativeVerticalPositionEnum;
+    protected _relativeVerticalPosition: DrawingObjectInsert.RelativeVerticalPositionEnum;
 
     /**
      * Gets or sets the relative vertical position, from which the distance to the image is measured.
@@ -192,7 +192,7 @@ export class DrawingObjectInsert {
     /**
      * Gets or sets the distance in points from the origin to the top side of the image.
      */
-    private _top: number;
+    protected _top: number;
 
     /**
      * Gets or sets the distance in points from the origin to the top side of the image.
@@ -212,7 +212,7 @@ export class DrawingObjectInsert {
     /**
      * Gets or sets the width of the DrawingObjects in points.
      */
-    private _width: number;
+    protected _width: number;
 
     /**
      * Gets or sets the width of the DrawingObjects in points.
@@ -232,7 +232,7 @@ export class DrawingObjectInsert {
     /**
      * Gets or sets the option indicating how to wrap text around the image.
      */
-    private _wrapType: DrawingObjectInsert.WrapTypeEnum;
+    protected _wrapType: DrawingObjectInsert.WrapTypeEnum;
 
     /**
      * Gets or sets the option indicating how to wrap text around the image.

@@ -59,7 +59,7 @@ export class TableLinkCollectionResponse extends WordsResponse {
     /**
      * Gets or sets the collection of tables.
      */
-    private _tables: TableLinkCollection;
+    protected _tables: TableLinkCollection;
 
     /**
      * Gets or sets the collection of tables.

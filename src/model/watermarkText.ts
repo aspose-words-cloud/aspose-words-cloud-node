@@ -60,7 +60,7 @@ export class WatermarkText {
     /**
      * Gets or sets the watermark rotation angle.
      */
-    private _rotationAngle: number;
+    protected _rotationAngle: number;
 
     /**
      * Gets or sets the watermark rotation angle.
@@ -80,7 +80,7 @@ export class WatermarkText {
     /**
      * Gets or sets the watermark text.
      */
-    private _text: string;
+    protected _text: string;
 
     /**
      * Gets or sets the watermark text.

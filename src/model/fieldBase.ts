@@ -60,7 +60,7 @@ export class FieldBase {
     /**
      * Gets or sets the field code.
      */
-    private _fieldCode: string;
+    protected _fieldCode: string;
 
     /**
      * Gets or sets the field code.
@@ -80,7 +80,7 @@ export class FieldBase {
     /**
      * Gets or sets the LCID of the field.
      */
-    private _localeId: string;
+    protected _localeId: string;
 
     /**
      * Gets or sets the LCID of the field.

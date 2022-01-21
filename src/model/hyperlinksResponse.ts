@@ -59,7 +59,7 @@ export class HyperlinksResponse extends WordsResponse {
     /**
      * Gets or sets the collection of hyperlinks.
      */
-    private _hyperlinks: Hyperlinks;
+    protected _hyperlinks: Hyperlinks;
 
     /**
      * Gets or sets the collection of hyperlinks.

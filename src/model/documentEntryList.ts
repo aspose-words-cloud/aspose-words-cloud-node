@@ -62,7 +62,7 @@ export class DocumentEntryList {
     /**
      * Gets or sets a value indicating whether to apply headers and footers from base document to appending documents. The default value is true.
      */
-    private _applyBaseDocumentHeadersAndFootersToAppendingDocuments: boolean;
+    protected _applyBaseDocumentHeadersAndFootersToAppendingDocuments: boolean;
 
     /**
      * Gets or sets a value indicating whether to apply headers and footers from base document to appending documents. The default value is true.
@@ -82,7 +82,7 @@ export class DocumentEntryList {
     /**
      * Gets or sets the list of documents.
      */
-    private _documentEntries: Array<DocumentEntry>;
+    protected _documentEntries: Array<DocumentEntry>;
 
     /**
      * Gets or sets the list of documents.

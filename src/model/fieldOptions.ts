@@ -117,7 +117,7 @@ export class FieldOptions {
     /**
      * Gets or sets BuiltIn Templates Paths.
      */
-    private _builtInTemplatesPaths: Array<string>;
+    protected _builtInTemplatesPaths: Array<string>;
 
     /**
      * Gets or sets BuiltIn Templates Paths.
@@ -137,7 +137,7 @@ export class FieldOptions {
     /**
      * Gets or sets Curren tUser.
      */
-    private _currentUser: UserInformation;
+    protected _currentUser: UserInformation;
 
     /**
      * Gets or sets Curren tUser.
@@ -157,7 +157,7 @@ export class FieldOptions {
     /**
      * Gets or sets Custom Toc Style Separator.
      */
-    private _customTocStyleSeparator: string;
+    protected _customTocStyleSeparator: string;
 
     /**
      * Gets or sets Custom Toc Style Separator.
@@ -177,7 +177,7 @@ export class FieldOptions {
     /**
      * Gets or sets Default Document Author.
      */
-    private _defaultDocumentAuthor: string;
+    protected _defaultDocumentAuthor: string;
 
     /**
      * Gets or sets Default Document Author.
@@ -197,7 +197,7 @@ export class FieldOptions {
     /**
      * Gets or sets Field Index Format.
      */
-    private _fieldIndexFormat: FieldOptions.FieldIndexFormatEnum;
+    protected _fieldIndexFormat: FieldOptions.FieldIndexFormatEnum;
 
     /**
      * Gets or sets Field Index Format.
@@ -218,7 +218,7 @@ export class FieldOptions {
      * Gets or sets Field Update Culture Name.
      * It is used for all fields if FieldUpdateCultureSource is FieldCode.
      */
-    private _fieldUpdateCultureName: string;
+    protected _fieldUpdateCultureName: string;
 
     /**
      * Gets or sets Field Update Culture Name.
@@ -240,7 +240,7 @@ export class FieldOptions {
     /**
      * Gets or sets Field Update Culture Source.
      */
-    private _fieldUpdateCultureSource: FieldOptions.FieldUpdateCultureSourceEnum;
+    protected _fieldUpdateCultureSource: FieldOptions.FieldUpdateCultureSourceEnum;
 
     /**
      * Gets or sets Field Update Culture Source.
@@ -260,7 +260,7 @@ export class FieldOptions {
     /**
      * Gets or sets File Name.
      */
-    private _fileName: string;
+    protected _fileName: string;
 
     /**
      * Gets or sets File Name.
@@ -280,7 +280,7 @@ export class FieldOptions {
     /**
      * Gets or sets if Bidi Text Supported OnUpdate.
      */
-    private _isBidiTextSupportedOnUpdate: boolean;
+    protected _isBidiTextSupportedOnUpdate: boolean;
 
     /**
      * Gets or sets if Bidi Text Supported OnUpdate.
@@ -300,7 +300,7 @@ export class FieldOptions {
     /**
      * Gets or sets if Legacy Number Format.
      */
-    private _legacyNumberFormat: boolean;
+    protected _legacyNumberFormat: boolean;
 
     /**
      * Gets or sets if Legacy Number Format.
@@ -321,7 +321,7 @@ export class FieldOptions {
      * Gets or sets PreProcess Culture Name.
      * It is a culture code for DOC fields.
      */
-    private _preProcessCultureName: string;
+    protected _preProcessCultureName: string;
 
     /**
      * Gets or sets PreProcess Culture Name.
@@ -343,7 +343,7 @@ export class FieldOptions {
     /**
      * Gets or sets Template Name.
      */
-    private _templateName: string;
+    protected _templateName: string;
 
     /**
      * Gets or sets Template Name.
@@ -363,7 +363,7 @@ export class FieldOptions {
     /**
      * Gets or sets if Use Invariant Culture Number Format.
      */
-    private _useInvariantCultureNumberFormat: boolean;
+    protected _useInvariantCultureNumberFormat: boolean;
 
     /**
      * Gets or sets if Use Invariant Culture Number Format.

@@ -59,7 +59,7 @@ export class FormFieldCollection extends LinkElement {
     /**
      * Gets or sets the collection of form fields.
      */
-    private _list: Array<FormField>;
+    protected _list: Array<FormField>;
 
     /**
      * Gets or sets the collection of form fields.

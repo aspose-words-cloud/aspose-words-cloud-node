@@ -57,7 +57,7 @@ export class FieldNames extends LinkElement {
     /**
      * Gets or sets the collection of fields names.
      */
-    private _names: Array<string>;
+    protected _names: Array<string>;
 
     /**
      * Gets or sets the collection of fields names.

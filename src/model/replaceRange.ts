@@ -60,7 +60,7 @@ export class ReplaceRange {
     /**
      * Gets or sets the range's text.
      */
-    private _text: string;
+    protected _text: string;
 
     /**
      * Gets or sets the range's text.
@@ -80,7 +80,7 @@ export class ReplaceRange {
     /**
      * Gets or sets the range's text type.
      */
-    private _textType: ReplaceRange.TextTypeEnum;
+    protected _textType: ReplaceRange.TextTypeEnum;
 
     /**
      * Gets or sets the range's text type.

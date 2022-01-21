@@ -59,7 +59,7 @@ export class Bookmarks extends LinkElement {
     /**
      * Gets or sets the array of bookmarks.
      */
-    private _bookmarkList: Array<Bookmark>;
+    protected _bookmarkList: Array<Bookmark>;
 
     /**
      * Gets or sets the array of bookmarks.

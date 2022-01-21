@@ -74,7 +74,7 @@ export class OfficeMathObject extends OfficeMathLink {
     /**
      * Gets or sets the content of a footnote.
      */
-    private _content: StoryChildNodes;
+    protected _content: StoryChildNodes;
 
     /**
      * Gets or sets the content of a footnote.
@@ -94,7 +94,7 @@ export class OfficeMathObject extends OfficeMathLink {
     /**
      * Gets or sets the display format type of the OfficeMath object. This display format defines whether an equation is displayed inline with the text or displayed on its own line.
      */
-    private _displayType: OfficeMathObject.DisplayTypeEnum;
+    protected _displayType: OfficeMathObject.DisplayTypeEnum;
 
     /**
      * Gets or sets the display format type of the OfficeMath object. This display format defines whether an equation is displayed inline with the text or displayed on its own line.
@@ -114,7 +114,7 @@ export class OfficeMathObject extends OfficeMathLink {
     /**
      * Gets or sets the justification of the OfficeMath object.
      */
-    private _justification: OfficeMathObject.JustificationEnum;
+    protected _justification: OfficeMathObject.JustificationEnum;
 
     /**
      * Gets or sets the justification of the OfficeMath object.
@@ -134,7 +134,7 @@ export class OfficeMathObject extends OfficeMathLink {
     /**
      * Gets or sets the type of the OfficeMath object.
      */
-    private _mathObjectType: OfficeMathObject.MathObjectTypeEnum;
+    protected _mathObjectType: OfficeMathObject.MathObjectTypeEnum;
 
     /**
      * Gets or sets the type of the OfficeMath object.

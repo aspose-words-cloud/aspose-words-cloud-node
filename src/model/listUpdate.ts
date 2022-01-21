@@ -55,7 +55,7 @@ export class ListUpdate {
     /**
      * Gets or sets a value indicating whether list should be restarted at each section. The default value is false.
      */
-    private _isRestartAtEachSection: boolean;
+    protected _isRestartAtEachSection: boolean;
 
     /**
      * Gets or sets a value indicating whether list should be restarted at each section. The default value is false.

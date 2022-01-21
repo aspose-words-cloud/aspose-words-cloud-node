@@ -123,7 +123,7 @@ export class HtmlFixedSaveOptionsData extends FixedPageSaveOptionsData {
      * Gets or sets the prefix which is added to all class names in style.css file.
      * Default value is "aw".
      */
-    private _cssClassNamesPrefix: string;
+    protected _cssClassNamesPrefix: string;
 
     /**
      * Gets or sets the prefix which is added to all class names in style.css file.
@@ -145,7 +145,7 @@ export class HtmlFixedSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets the character encoding.
      */
-    private _encoding: string;
+    protected _encoding: string;
 
     /**
      * Gets or sets the character encoding.
@@ -165,7 +165,7 @@ export class HtmlFixedSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets a value indicating whether the CSS (Cascading Style Sheet) should be embedded into the Html document.
      */
-    private _exportEmbeddedCss: boolean;
+    protected _exportEmbeddedCss: boolean;
 
     /**
      * Gets or sets a value indicating whether the CSS (Cascading Style Sheet) should be embedded into the Html document.
@@ -185,7 +185,7 @@ export class HtmlFixedSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets a value indicating whether fonts should be embedded into the Html document in Base64 format.
      */
-    private _exportEmbeddedFonts: boolean;
+    protected _exportEmbeddedFonts: boolean;
 
     /**
      * Gets or sets a value indicating whether fonts should be embedded into the Html document in Base64 format.
@@ -205,7 +205,7 @@ export class HtmlFixedSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets a value indicating whether images should be embedded into the Html document in Base64 format.
      */
-    private _exportEmbeddedImages: boolean;
+    protected _exportEmbeddedImages: boolean;
 
     /**
      * Gets or sets a value indicating whether images should be embedded into the Html document in Base64 format.
@@ -225,7 +225,7 @@ export class HtmlFixedSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets a value indicating whether form fields are exported as interactive items (as 'input' tag) rather than converted to text or graphics.
      */
-    private _exportFormFields: boolean;
+    protected _exportFormFields: boolean;
 
     /**
      * Gets or sets a value indicating whether form fields are exported as interactive items (as 'input' tag) rather than converted to text or graphics.
@@ -245,7 +245,7 @@ export class HtmlFixedSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets the export format of fonts.
      */
-    private _fontFormat: string;
+    protected _fontFormat: string;
 
     /**
      * Gets or sets the export format of fonts.
@@ -266,7 +266,7 @@ export class HtmlFixedSaveOptionsData extends FixedPageSaveOptionsData {
      * Gets or sets the horizontal alignment of pages in the HTML document.
      * The default value is HtmlFixedHorizontalPageAlignment.Center.
      */
-    private _pageHorizontalAlignment: string;
+    protected _pageHorizontalAlignment: string;
 
     /**
      * Gets or sets the horizontal alignment of pages in the HTML document.
@@ -290,7 +290,7 @@ export class HtmlFixedSaveOptionsData extends FixedPageSaveOptionsData {
      * The margins value is measured in points and should be equal to or greater than 0.
      * Default value is 10 points.
      */
-    private _pageMargins: number;
+    protected _pageMargins: number;
 
     /**
      * Gets or sets the margin around pages in HTML document.
@@ -314,7 +314,7 @@ export class HtmlFixedSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets the physical folder where resources are saved when exporting the document.
      */
-    private _resourcesFolder: string;
+    protected _resourcesFolder: string;
 
     /**
      * Gets or sets the physical folder where resources are saved when exporting the document.
@@ -334,7 +334,7 @@ export class HtmlFixedSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets the name of the folder used to construct resource URIs.
      */
-    private _resourcesFolderAlias: string;
+    protected _resourcesFolderAlias: string;
 
     /**
      * Gets or sets the name of the folder used to construct resource URIs.
@@ -354,7 +354,7 @@ export class HtmlFixedSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets a value indicating whether "@font-face" CSS rules should be placed into a separate file "fontFaces.css" when a document is being saved with external stylesheet (that is, when Aspose.Words.Saving.HtmlFixedSaveOptions.ExportEmbeddedCss is false). The default value is false, all CSS rules are written into single file "styles.css".
      */
-    private _saveFontFaceCssSeparately: boolean;
+    protected _saveFontFaceCssSeparately: boolean;
 
     /**
      * Gets or sets a value indicating whether "@font-face" CSS rules should be placed into a separate file "fontFaces.css" when a document is being saved with external stylesheet (that is, when Aspose.Words.Saving.HtmlFixedSaveOptions.ExportEmbeddedCss is false). The default value is false, all CSS rules are written into single file "styles.css".
@@ -374,7 +374,7 @@ export class HtmlFixedSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets a value indicating whether to show border around pages.
      */
-    private _showPageBorder: boolean;
+    protected _showPageBorder: boolean;
 
     /**
      * Gets or sets a value indicating whether to show border around pages.
@@ -394,7 +394,7 @@ export class HtmlFixedSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets a value indicating whether fonts from target machine must be used to display the document. If this flag is set to true, Aspose.Words.Saving.HtmlFixedSaveOptions.FontFormat and Aspose.Words.Saving.HtmlFixedSaveOptions.ExportEmbeddedFonts properties do not have effect, also Aspose.Words.Saving.HtmlFixedSaveOptions.ResourceSavingCallback is not fired for fonts. The default value is false.
      */
-    private _useTargetMachineFonts: boolean;
+    protected _useTargetMachineFonts: boolean;
 
     /**
      * Gets or sets a value indicating whether fonts from target machine must be used to display the document. If this flag is set to true, Aspose.Words.Saving.HtmlFixedSaveOptions.FontFormat and Aspose.Words.Saving.HtmlFixedSaveOptions.ExportEmbeddedFonts properties do not have effect, also Aspose.Words.Saving.HtmlFixedSaveOptions.ResourceSavingCallback is not fired for fonts. The default value is false.
@@ -413,7 +413,7 @@ export class HtmlFixedSaveOptionsData extends FixedPageSaveOptionsData {
 
     public constructor(init?: Partial< HtmlFixedSaveOptionsData >) {
         super(init);
-        saveFormat = 'htmlfixed';
+        this._saveFormat = 'htmlfixed';
 
         Object.assign(this, init);
     }

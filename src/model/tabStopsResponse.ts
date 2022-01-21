@@ -59,7 +59,7 @@ export class TabStopsResponse extends WordsResponse {
     /**
      * Gets or sets the array of tab stops.
      */
-    private _tabStops: Array<TabStop>;
+    protected _tabStops: Array<TabStop>;
 
     /**
      * Gets or sets the array of tab stops.

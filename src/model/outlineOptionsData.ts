@@ -82,7 +82,7 @@ export class OutlineOptionsData {
     /**
      * Gets or sets the individual bookmarks outline level.
      */
-    private _bookmarksOutlineLevels: Array<BookmarksOutlineLevelData>;
+    protected _bookmarksOutlineLevels: Array<BookmarksOutlineLevelData>;
 
     /**
      * Gets or sets the individual bookmarks outline level.
@@ -102,7 +102,7 @@ export class OutlineOptionsData {
     /**
      * Gets or sets a value indicating whether to create missing outline levels when the document is exported. The default value is false.
      */
-    private _createMissingOutlineLevels: boolean;
+    protected _createMissingOutlineLevels: boolean;
 
     /**
      * Gets or sets a value indicating whether to create missing outline levels when the document is exported. The default value is false.
@@ -122,7 +122,7 @@ export class OutlineOptionsData {
     /**
      * Gets or sets a value indicating whether to create outlines for headings (paragraphs formatted with the Heading styles) inside tables.
      */
-    private _createOutlinesForHeadingsInTables: boolean;
+    protected _createOutlinesForHeadingsInTables: boolean;
 
     /**
      * Gets or sets a value indicating whether to create outlines for headings (paragraphs formatted with the Heading styles) inside tables.
@@ -142,7 +142,7 @@ export class OutlineOptionsData {
     /**
      * Gets or sets the default level in the document outline at which to display Word bookmarks.
      */
-    private _defaultBookmarksOutlineLevel: number;
+    protected _defaultBookmarksOutlineLevel: number;
 
     /**
      * Gets or sets the default level in the document outline at which to display Word bookmarks.
@@ -162,7 +162,7 @@ export class OutlineOptionsData {
     /**
      * Gets or sets the number of levels in the document outline to show expanded when the file is viewed.
      */
-    private _expandedOutlineLevels: number;
+    protected _expandedOutlineLevels: number;
 
     /**
      * Gets or sets the number of levels in the document outline to show expanded when the file is viewed.
@@ -182,7 +182,7 @@ export class OutlineOptionsData {
     /**
      * Gets or sets the number of levels of headings (paragraphs formatted with the Heading styles) to include in the document outline.
      */
-    private _headingsOutlineLevels: number;
+    protected _headingsOutlineLevels: number;
 
     /**
      * Gets or sets the number of levels of headings (paragraphs formatted with the Heading styles) to include in the document outline.

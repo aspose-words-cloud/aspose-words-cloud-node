@@ -59,7 +59,7 @@ export class FootnoteResponse extends WordsResponse {
     /**
      * Gets or sets the footnote.
      */
-    private _footnote: Footnote;
+    protected _footnote: Footnote;
 
     /**
      * Gets or sets the footnote.

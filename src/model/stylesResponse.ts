@@ -59,7 +59,7 @@ export class StylesResponse extends WordsResponse {
     /**
      * Gets or sets the array of styles.
      */
-    private _styles: Array<Style>;
+    protected _styles: Array<Style>;
 
     /**
      * Gets or sets the array of styles.

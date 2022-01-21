@@ -67,7 +67,7 @@ export class FormFieldCheckbox extends FormField {
     /**
      * Gets or sets the size of the checkbox in points. Has effect only when IsCheckBoxExactSize is true.
      */
-    private _checkBoxSize: number;
+    protected _checkBoxSize: number;
 
     /**
      * Gets or sets the size of the checkbox in points. Has effect only when IsCheckBoxExactSize is true.
@@ -87,7 +87,7 @@ export class FormFieldCheckbox extends FormField {
     /**
      * Gets or sets the checked status of the check box form field.
      */
-    private _checked: boolean;
+    protected _checked: boolean;
 
     /**
      * Gets or sets the checked status of the check box form field.
@@ -107,7 +107,7 @@ export class FormFieldCheckbox extends FormField {
     /**
      * Gets or sets a value indicating whether the size of the textbox is automatic or specified explicitly.
      */
-    private _isCheckBoxExactSize: boolean;
+    protected _isCheckBoxExactSize: boolean;
 
     /**
      * Gets or sets a value indicating whether the size of the textbox is automatic or specified explicitly.

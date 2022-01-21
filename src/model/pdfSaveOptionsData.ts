@@ -185,7 +185,7 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets the PDF standards compliance level for output documents.
      */
-    private _compliance: string;
+    protected _compliance: string;
 
     /**
      * Gets or sets the PDF standards compliance level for output documents.
@@ -207,7 +207,7 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
      * When clicked the hyperlink will lead to the corresponding footnote/endnote.
      * The default value is false.
      */
-    private _createNoteHyperlinks: boolean;
+    protected _createNoteHyperlinks: boolean;
 
     /**
      * Gets or sets a value indicating whether to convert footnote/endnote references in main text story into active hyperlinks.
@@ -232,7 +232,7 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
      * Gets or sets the option that controls the way CustomDocumentProperties are exported to PDF file.
      * The default value is None.
      */
-    private _customPropertiesExport: string;
+    protected _customPropertiesExport: string;
 
     /**
      * Gets or sets the option that controls the way CustomDocumentProperties are exported to PDF file.
@@ -254,7 +254,7 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets the details for signing the output PDF document.
      */
-    private _digitalSignatureDetails: PdfDigitalSignatureDetailsData;
+    protected _digitalSignatureDetails: PdfDigitalSignatureDetailsData;
 
     /**
      * Gets or sets the details for signing the output PDF document.
@@ -274,7 +274,7 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets a value indicating whether the window’s title bar should display the document title taken from the Title entry of the document information dictionary.
      */
-    private _displayDocTitle: boolean;
+    protected _displayDocTitle: boolean;
 
     /**
      * Gets or sets a value indicating whether the window’s title bar should display the document title taken from the Title entry of the document information dictionary.
@@ -294,7 +294,7 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets the downsample options.
      */
-    private _downsampleOptions: DownsampleOptionsData;
+    protected _downsampleOptions: DownsampleOptionsData;
 
     /**
      * Gets or sets the downsample options.
@@ -314,7 +314,7 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets a value indicating whether fonts are embedded into the resulting PDF documents.
      */
-    private _embedFullFonts: boolean;
+    protected _embedFullFonts: boolean;
 
     /**
      * Gets or sets a value indicating whether fonts are embedded into the resulting PDF documents.
@@ -334,7 +334,7 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets the details for encrypting the output PDF document.
      */
-    private _encryptionDetails: PdfEncryptionDetailsData;
+    protected _encryptionDetails: PdfEncryptionDetailsData;
 
     /**
      * Gets or sets the details for encrypting the output PDF document.
@@ -354,7 +354,7 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets a value indicating whether to export document structure.
      */
-    private _exportDocumentStructure: boolean;
+    protected _exportDocumentStructure: boolean;
 
     /**
      * Gets or sets a value indicating whether to export document structure.
@@ -374,7 +374,7 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets a value determining whether or not to create a "Span" tag in the document structure to export the text language.
      */
-    private _exportLanguageToSpanTag: boolean;
+    protected _exportLanguageToSpanTag: boolean;
 
     /**
      * Gets or sets a value determining whether or not to create a "Span" tag in the document structure to export the text language.
@@ -394,7 +394,7 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets the font embedding mode.
      */
-    private _fontEmbeddingMode: string;
+    protected _fontEmbeddingMode: string;
 
     /**
      * Gets or sets the font embedding mode.
@@ -415,7 +415,7 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
      * Gets or sets the option that controls how bookmarks in headers/footers are exported.
      * The default value is Aspose.Words.Saving.HeaderFooterBookmarksExportMode.All.
      */
-    private _headerFooterBookmarksExportMode: PdfSaveOptionsData.HeaderFooterBookmarksExportModeEnum;
+    protected _headerFooterBookmarksExportMode: PdfSaveOptionsData.HeaderFooterBookmarksExportModeEnum;
 
     /**
      * Gets or sets the option that controls how bookmarks in headers/footers are exported.
@@ -437,7 +437,7 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets the option that controls how the color space will be selected for the images in PDF document.
      */
-    private _imageColorSpaceExportMode: string;
+    protected _imageColorSpaceExportMode: string;
 
     /**
      * Gets or sets the option that controls how the color space will be selected for the images in PDF document.
@@ -457,7 +457,7 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets the compression type to be used for all images in the document.
      */
-    private _imageCompression: string;
+    protected _imageCompression: string;
 
     /**
      * Gets or sets the compression type to be used for all images in the document.
@@ -477,7 +477,7 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets a value indicating whether image interpolation shall be performed by a conforming reader. When false is specified, the flag is not written to the output document and the default behavior of reader is used instead.
      */
-    private _interpolateImages: boolean;
+    protected _interpolateImages: boolean;
 
     /**
      * Gets or sets a value indicating whether image interpolation shall be performed by a conforming reader. When false is specified, the flag is not written to the output document and the default behavior of reader is used instead.
@@ -497,7 +497,7 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets a value indicating whether hyperlinks in the output Pdf document are forced to be opened in a new window (or tab) of a browser.
      */
-    private _openHyperlinksInNewWindow: boolean;
+    protected _openHyperlinksInNewWindow: boolean;
 
     /**
      * Gets or sets a value indicating whether hyperlinks in the output Pdf document are forced to be opened in a new window (or tab) of a browser.
@@ -517,7 +517,7 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets the outline options.
      */
-    private _outlineOptions: OutlineOptionsData;
+    protected _outlineOptions: OutlineOptionsData;
 
     /**
      * Gets or sets the outline options.
@@ -537,7 +537,7 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets the option that controls how the PDF document should be displayed when opened in the PDF reader.
      */
-    private _pageMode: string;
+    protected _pageMode: string;
 
     /**
      * Gets or sets the option that controls how the PDF document should be displayed when opened in the PDF reader.
@@ -557,7 +557,7 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets a value indicating whether to preblend transparent images with black background color.
      */
-    private _preblendImages: boolean;
+    protected _preblendImages: boolean;
 
     /**
      * Gets or sets a value indicating whether to preblend transparent images with black background color.
@@ -577,7 +577,7 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets a value indicating whether to preserve Microsoft Word form fields as form fields in PDF or convert them to text.
      */
-    private _preserveFormFields: boolean;
+    protected _preserveFormFields: boolean;
 
     /**
      * Gets or sets a value indicating whether to preserve Microsoft Word form fields as form fields in PDF or convert them to text.
@@ -597,7 +597,7 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets the compression type to be used for all textual content in the document.
      */
-    private _textCompression: string;
+    protected _textCompression: string;
 
     /**
      * Gets or sets the compression type to be used for all textual content in the document.
@@ -617,7 +617,7 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets a value indicating whether the document should be saved using a booklet printing layout.
      */
-    private _useBookFoldPrintingSettings: boolean;
+    protected _useBookFoldPrintingSettings: boolean;
 
     /**
      * Gets or sets a value indicating whether the document should be saved using a booklet printing layout.
@@ -637,7 +637,7 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets a value indicating whether to substitute TrueType fonts Arial, Times New Roman, Courier New and Symbol with core PDF Type 1 fonts.
      */
-    private _useCoreFonts: boolean;
+    protected _useCoreFonts: boolean;
 
     /**
      * Gets or sets a value indicating whether to substitute TrueType fonts Arial, Times New Roman, Courier New and Symbol with core PDF Type 1 fonts.
@@ -657,7 +657,7 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets the option that controls what type of zoom should be applied when a document is opened with a PDF viewer.
      */
-    private _zoomBehavior: string;
+    protected _zoomBehavior: string;
 
     /**
      * Gets or sets the option that controls what type of zoom should be applied when a document is opened with a PDF viewer.
@@ -677,7 +677,7 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets the zoom factor (in percentages) for a document.
      */
-    private _zoomFactor: number;
+    protected _zoomFactor: number;
 
     /**
      * Gets or sets the zoom factor (in percentages) for a document.
@@ -696,7 +696,7 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
 
     public constructor(init?: Partial< PdfSaveOptionsData >) {
         super(init);
-        saveFormat = 'pdf';
+        this._saveFormat = 'pdf';
 
         Object.assign(this, init);
     }

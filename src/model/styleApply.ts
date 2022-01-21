@@ -55,7 +55,7 @@ export class StyleApply {
     /**
      * Gets or sets the case sensitive name of the style to apply.
      */
-    private _styleName: string;
+    protected _styleName: string;
 
     /**
      * Gets or sets the case sensitive name of the style to apply.

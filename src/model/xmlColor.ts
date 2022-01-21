@@ -60,7 +60,7 @@ export class XmlColor {
     /**
      * Gets or sets the Alpha component of color structure.
      */
-    private _alpha: number;
+    protected _alpha: number;
 
     /**
      * Gets or sets the Alpha component of color structure.
@@ -80,7 +80,7 @@ export class XmlColor {
     /**
      * Gets or sets the HTML string color representation.
      */
-    private _web: string;
+    protected _web: string;
 
     /**
      * Gets or sets the HTML string color representation.

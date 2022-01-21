@@ -60,7 +60,7 @@ export class PreferredWidth {
     /**
      * Gets or sets the unit of measure used for this preferred width value.
      */
-    private _type: PreferredWidth.TypeEnum;
+    protected _type: PreferredWidth.TypeEnum;
 
     /**
      * Gets or sets the unit of measure used for this preferred width value.
@@ -80,7 +80,7 @@ export class PreferredWidth {
     /**
      * Gets or sets the preferred width value. The unit of measure is specified in the Type property.
      */
-    private _value: number;
+    protected _value: number;
 
     /**
      * Gets or sets the preferred width value. The unit of measure is specified in the Type property.

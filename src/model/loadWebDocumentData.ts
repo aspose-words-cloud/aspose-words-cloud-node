@@ -62,7 +62,7 @@ export class LoadWebDocumentData {
     /**
      * Gets or sets the web document URL.
      */
-    private _loadingDocumentUrl: string;
+    protected _loadingDocumentUrl: string;
 
     /**
      * Gets or sets the web document URL.
@@ -82,7 +82,7 @@ export class LoadWebDocumentData {
     /**
      * Gets or sets the save options.
      */
-    private _saveOptions: SaveOptionsData;
+    protected _saveOptions: SaveOptionsData;
 
     /**
      * Gets or sets the save options.

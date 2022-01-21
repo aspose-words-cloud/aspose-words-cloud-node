@@ -62,7 +62,7 @@ export class CustomXmlPart extends CustomXmlPartLink {
     /**
      * Gets or sets the custom xml part data.
      */
-    private _data: string;
+    protected _data: string;
 
     /**
      * Gets or sets the custom xml part data.
@@ -82,7 +82,7 @@ export class CustomXmlPart extends CustomXmlPartLink {
     /**
      * Gets or sets the custom xml part id.
      */
-    private _id: string;
+    protected _id: string;
 
     /**
      * Gets or sets the custom xml part id.

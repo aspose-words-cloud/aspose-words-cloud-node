@@ -60,7 +60,7 @@ export class TableRowInsertDto {
     /**
      * Gets or sets the count of columns. The default value is 1.
      */
-    private _columnsCount: number;
+    protected _columnsCount: number;
 
     /**
      * Gets or sets the count of columns. The default value is 1.
@@ -80,7 +80,7 @@ export class TableRowInsertDto {
     /**
      * Gets or sets table row will be inserted after row with specified 0-based index.
      */
-    private _insertAfter: number;
+    protected _insertAfter: number;
 
     /**
      * Gets or sets table row will be inserted after row with specified 0-based index.

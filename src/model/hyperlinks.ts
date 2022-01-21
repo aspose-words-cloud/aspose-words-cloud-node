@@ -59,7 +59,7 @@ export class Hyperlinks extends LinkElement {
     /**
      * Gets or sets the array of Hyperlink.
      */
-    private _hyperlinkList: Array<Hyperlink>;
+    protected _hyperlinkList: Array<Hyperlink>;
 
     /**
      * Gets or sets the array of Hyperlink.

@@ -65,7 +65,7 @@ export class TabStopBase {
     /**
      * Gets or sets the alignment of text at this tab stop.
      */
-    private _alignment: TabStopBase.AlignmentEnum;
+    protected _alignment: TabStopBase.AlignmentEnum;
 
     /**
      * Gets or sets the alignment of text at this tab stop.
@@ -85,7 +85,7 @@ export class TabStopBase {
     /**
      * Gets or sets the type of the leader line displayed under the tab character.
      */
-    private _leader: TabStopBase.LeaderEnum;
+    protected _leader: TabStopBase.LeaderEnum;
 
     /**
      * Gets or sets the type of the leader line displayed under the tab character.
@@ -105,7 +105,7 @@ export class TabStopBase {
     /**
      * Gets or sets the position of the tab stop in points.
      */
-    private _position: number;
+    protected _position: number;
 
     /**
      * Gets or sets the position of the tab stop in points.

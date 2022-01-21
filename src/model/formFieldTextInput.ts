@@ -72,7 +72,7 @@ export class FormFieldTextInput extends FormField {
     /**
      * Gets or sets the maximum length for the text field. Zero when the length is not limited.
      */
-    private _maxLength: number;
+    protected _maxLength: number;
 
     /**
      * Gets or sets the maximum length for the text field. Zero when the length is not limited.
@@ -92,7 +92,7 @@ export class FormFieldTextInput extends FormField {
     /**
      * Gets or sets the default string or a calculation expression of the text form field.
      */
-    private _textInputDefault: string;
+    protected _textInputDefault: string;
 
     /**
      * Gets or sets the default string or a calculation expression of the text form field.
@@ -112,7 +112,7 @@ export class FormFieldTextInput extends FormField {
     /**
      * Gets or sets text formatting for the text form field.
      */
-    private _textInputFormat: string;
+    protected _textInputFormat: string;
 
     /**
      * Gets or sets text formatting for the text form field.
@@ -132,7 +132,7 @@ export class FormFieldTextInput extends FormField {
     /**
      * Gets or sets the type of the text form field.
      */
-    private _textInputType: FormFieldTextInput.TextInputTypeEnum;
+    protected _textInputType: FormFieldTextInput.TextInputTypeEnum;
 
     /**
      * Gets or sets the type of the text form field.

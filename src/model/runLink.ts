@@ -57,7 +57,7 @@ export class RunLink extends NodeLink {
     /**
      * Gets or sets the run's text.
      */
-    private _text: string;
+    protected _text: string;
 
     /**
      * Gets or sets the run's text.

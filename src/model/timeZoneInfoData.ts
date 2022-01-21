@@ -70,7 +70,7 @@ export class TimeZoneInfoData {
     /**
      * Gets or sets base utc offset in hh:mm:ss format.
      */
-    private _baseUtcOffset: string;
+    protected _baseUtcOffset: string;
 
     /**
      * Gets or sets base utc offset in hh:mm:ss format.
@@ -90,7 +90,7 @@ export class TimeZoneInfoData {
     /**
      * Gets or sets display name.
      */
-    private _displayName: string;
+    protected _displayName: string;
 
     /**
      * Gets or sets display name.
@@ -110,7 +110,7 @@ export class TimeZoneInfoData {
     /**
      * Gets or sets an Id string for CustomTimeZoneInfo.
      */
-    private _id: string;
+    protected _id: string;
 
     /**
      * Gets or sets an Id string for CustomTimeZoneInfo.
@@ -130,7 +130,7 @@ export class TimeZoneInfoData {
     /**
      * Gets or sets standard display name.
      */
-    private _standardDisplayName: string;
+    protected _standardDisplayName: string;
 
     /**
      * Gets or sets standard display name.

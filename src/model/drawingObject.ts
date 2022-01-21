@@ -104,7 +104,7 @@ export class DrawingObject extends DrawingObjectLink {
     /**
      * Gets or sets the height of the DrawingObject in points.
      */
-    private _height: number;
+    protected _height: number;
 
     /**
      * Gets or sets the height of the DrawingObject in points.
@@ -124,7 +124,7 @@ export class DrawingObject extends DrawingObjectLink {
     /**
      * Gets or sets the link to image data. Can be null if shape does not have an image.
      */
-    private _imageDataLink: WordsApiLink;
+    protected _imageDataLink: WordsApiLink;
 
     /**
      * Gets or sets the link to image data. Can be null if shape does not have an image.
@@ -144,7 +144,7 @@ export class DrawingObject extends DrawingObjectLink {
     /**
      * Gets or sets the distance in points from the origin to the left side of the image.
      */
-    private _left: number;
+    protected _left: number;
 
     /**
      * Gets or sets the distance in points from the origin to the left side of the image.
@@ -164,7 +164,7 @@ export class DrawingObject extends DrawingObjectLink {
     /**
      * Gets or sets the link to OLE object. Can be null if shape does not have OLE data.
      */
-    private _oleDataLink: WordsApiLink;
+    protected _oleDataLink: WordsApiLink;
 
     /**
      * Gets or sets the link to OLE object. Can be null if shape does not have OLE data.
@@ -184,7 +184,7 @@ export class DrawingObject extends DrawingObjectLink {
     /**
      * Gets or sets the relative horizontal position, from which the distance to the image is measured.
      */
-    private _relativeHorizontalPosition: DrawingObject.RelativeHorizontalPositionEnum;
+    protected _relativeHorizontalPosition: DrawingObject.RelativeHorizontalPositionEnum;
 
     /**
      * Gets or sets the relative horizontal position, from which the distance to the image is measured.
@@ -204,7 +204,7 @@ export class DrawingObject extends DrawingObjectLink {
     /**
      * Gets or sets the relative vertical position, from which the distance to the image is measured.
      */
-    private _relativeVerticalPosition: DrawingObject.RelativeVerticalPositionEnum;
+    protected _relativeVerticalPosition: DrawingObject.RelativeVerticalPositionEnum;
 
     /**
      * Gets or sets the relative vertical position, from which the distance to the image is measured.
@@ -224,7 +224,7 @@ export class DrawingObject extends DrawingObjectLink {
     /**
      * Gets or sets the list of links that originate from this DrawingObjectDto.
      */
-    private _renderLinks: Array<WordsApiLink>;
+    protected _renderLinks: Array<WordsApiLink>;
 
     /**
      * Gets or sets the list of links that originate from this DrawingObjectDto.
@@ -244,7 +244,7 @@ export class DrawingObject extends DrawingObjectLink {
     /**
      * Gets or sets the distance in points from the origin to the top side of the image.
      */
-    private _top: number;
+    protected _top: number;
 
     /**
      * Gets or sets the distance in points from the origin to the top side of the image.
@@ -264,7 +264,7 @@ export class DrawingObject extends DrawingObjectLink {
     /**
      * Gets or sets the width of the DrawingObjects in points.
      */
-    private _width: number;
+    protected _width: number;
 
     /**
      * Gets or sets the width of the DrawingObjects in points.
@@ -284,7 +284,7 @@ export class DrawingObject extends DrawingObjectLink {
     /**
      * Gets or sets the option that controls how to wrap text around the image.
      */
-    private _wrapType: DrawingObject.WrapTypeEnum;
+    protected _wrapType: DrawingObject.WrapTypeEnum;
 
     /**
      * Gets or sets the option that controls how to wrap text around the image.

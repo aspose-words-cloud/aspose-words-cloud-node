@@ -116,7 +116,7 @@ export class ListLevel extends LinkElement {
     /**
      * Gets or sets the justification of the actual number of the list item.
      */
-    private _alignment: ListLevel.AlignmentEnum;
+    protected _alignment: ListLevel.AlignmentEnum;
 
     /**
      * Gets or sets the justification of the actual number of the list item.
@@ -136,7 +136,7 @@ export class ListLevel extends LinkElement {
     /**
      * Gets or sets character formatting used for the list label.
      */
-    private _font: Font;
+    protected _font: Font;
 
     /**
      * Gets or sets character formatting used for the list label.
@@ -156,7 +156,7 @@ export class ListLevel extends LinkElement {
     /**
      * Gets or sets a value indicating whether the level turns all inherited numbers to Arabic, false if it preserves their number style.
      */
-    private _isLegal: boolean;
+    protected _isLegal: boolean;
 
     /**
      * Gets or sets a value indicating whether the level turns all inherited numbers to Arabic, false if it preserves their number style.
@@ -176,7 +176,7 @@ export class ListLevel extends LinkElement {
     /**
      * Gets or sets the paragraph style that is linked to this list level.
      */
-    private _linkedStyle: Style;
+    protected _linkedStyle: Style;
 
     /**
      * Gets or sets the paragraph style that is linked to this list level.
@@ -196,7 +196,7 @@ export class ListLevel extends LinkElement {
     /**
      * Gets or sets the number format for the list level.
      */
-    private _numberFormat: string;
+    protected _numberFormat: string;
 
     /**
      * Gets or sets the number format for the list level.
@@ -216,7 +216,7 @@ export class ListLevel extends LinkElement {
     /**
      * Gets or sets the position (in points) of the number or bullet for the list level.
      */
-    private _numberPosition: number;
+    protected _numberPosition: number;
 
     /**
      * Gets or sets the position (in points) of the number or bullet for the list level.
@@ -236,7 +236,7 @@ export class ListLevel extends LinkElement {
     /**
      * Gets or sets the number style for this list level.
      */
-    private _numberStyle: ListLevel.NumberStyleEnum;
+    protected _numberStyle: ListLevel.NumberStyleEnum;
 
     /**
      * Gets or sets the number style for this list level.
@@ -256,7 +256,7 @@ export class ListLevel extends LinkElement {
     /**
      * Gets or sets the list level, that must appear before the specified list level restarts numbering.
      */
-    private _restartAfterLevel: number;
+    protected _restartAfterLevel: number;
 
     /**
      * Gets or sets the list level, that must appear before the specified list level restarts numbering.
@@ -276,7 +276,7 @@ export class ListLevel extends LinkElement {
     /**
      * Gets or sets the starting number for this list level.
      */
-    private _startAt: number;
+    protected _startAt: number;
 
     /**
      * Gets or sets the starting number for this list level.
@@ -296,7 +296,7 @@ export class ListLevel extends LinkElement {
     /**
      * Gets or sets the tab position (in points) for the list level.
      */
-    private _tabPosition: number;
+    protected _tabPosition: number;
 
     /**
      * Gets or sets the tab position (in points) for the list level.
@@ -316,7 +316,7 @@ export class ListLevel extends LinkElement {
     /**
      * Gets or sets the position (in points) for the second line of wrapping text for the list level.
      */
-    private _textPosition: number;
+    protected _textPosition: number;
 
     /**
      * Gets or sets the position (in points) for the second line of wrapping text for the list level.
@@ -336,7 +336,7 @@ export class ListLevel extends LinkElement {
     /**
      * Gets or sets the character inserted after the number for the list level.
      */
-    private _trailingCharacter: ListLevel.TrailingCharacterEnum;
+    protected _trailingCharacter: ListLevel.TrailingCharacterEnum;
 
     /**
      * Gets or sets the character inserted after the number for the list level.

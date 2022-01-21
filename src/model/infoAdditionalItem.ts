@@ -60,7 +60,7 @@ export class InfoAdditionalItem {
     /**
      * Gets or sets Key.
      */
-    private _key: string;
+    protected _key: string;
 
     /**
      * Gets or sets Key.
@@ -80,7 +80,7 @@ export class InfoAdditionalItem {
     /**
      * Gets or sets Value.
      */
-    private _value: string;
+    protected _value: string;
 
     /**
      * Gets or sets Value.

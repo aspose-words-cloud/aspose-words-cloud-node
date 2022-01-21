@@ -79,7 +79,7 @@ export class DocumentStatData {
     /**
      * Gets or sets the detailed statistics on footnotes.
      */
-    private _footnotesStatData: FootnotesStatData;
+    protected _footnotesStatData: FootnotesStatData;
 
     /**
      * Gets or sets the detailed statistics on footnotes.
@@ -99,7 +99,7 @@ export class DocumentStatData {
     /**
      * Gets or sets the total count of pages in the document.
      */
-    private _pageCount: number;
+    protected _pageCount: number;
 
     /**
      * Gets or sets the total count of pages in the document.
@@ -119,7 +119,7 @@ export class DocumentStatData {
     /**
      * Gets or sets the detailed statistics on all pages.
      */
-    private _pageStatData: Array<PageStatData>;
+    protected _pageStatData: Array<PageStatData>;
 
     /**
      * Gets or sets the detailed statistics on all pages.
@@ -139,7 +139,7 @@ export class DocumentStatData {
     /**
      * Gets or sets the total count of paragraphs in the document.
      */
-    private _paragraphCount: number;
+    protected _paragraphCount: number;
 
     /**
      * Gets or sets the total count of paragraphs in the document.
@@ -159,7 +159,7 @@ export class DocumentStatData {
     /**
      * Gets or sets the total count of words in the document.
      */
-    private _wordCount: number;
+    protected _wordCount: number;
 
     /**
      * Gets or sets the total count of words in the document.

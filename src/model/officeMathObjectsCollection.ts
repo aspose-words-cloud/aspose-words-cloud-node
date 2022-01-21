@@ -59,7 +59,7 @@ export class OfficeMathObjectsCollection extends LinkElement {
     /**
      * Gets or sets the collection of OfficeMath objects.
      */
-    private _list: Array<OfficeMathObject>;
+    protected _list: Array<OfficeMathObject>;
 
     /**
      * Gets or sets the collection of OfficeMath objects.

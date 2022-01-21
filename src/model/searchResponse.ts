@@ -64,7 +64,7 @@ export class SearchResponse extends WordsResponse {
     /**
      * Gets or sets the regular expression pattern used to find matches.
      */
-    private _searchingPattern: string;
+    protected _searchingPattern: string;
 
     /**
      * Gets or sets the regular expression pattern used to find matches.
@@ -84,7 +84,7 @@ export class SearchResponse extends WordsResponse {
     /**
      * Gets or sets the collection of search results.
      */
-    private _searchResults: SearchResultsCollection;
+    protected _searchResults: SearchResultsCollection;
 
     /**
      * Gets or sets the collection of search results.

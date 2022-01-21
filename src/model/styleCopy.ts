@@ -55,7 +55,7 @@ export class StyleCopy {
     /**
      * Gets or sets the case sensitive name of the style to copy from it.
      */
-    private _styleName: string;
+    protected _styleName: string;
 
     /**
      * Gets or sets the case sensitive name of the style to copy from it.

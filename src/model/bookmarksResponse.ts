@@ -59,7 +59,7 @@ export class BookmarksResponse extends WordsResponse {
     /**
      * Gets or sets the collection of bookmarks.
      */
-    private _bookmarks: Bookmarks;
+    protected _bookmarks: Bookmarks;
 
     /**
      * Gets or sets the collection of bookmarks.

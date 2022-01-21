@@ -62,7 +62,7 @@ export class FormFieldDropDown extends FormField {
     /**
      * Gets or sets the items array of a dropdown form field.
      */
-    private _dropDownItems: Array<string>;
+    protected _dropDownItems: Array<string>;
 
     /**
      * Gets or sets the items array of a dropdown form field.
@@ -82,7 +82,7 @@ export class FormFieldDropDown extends FormField {
     /**
      * Gets or sets the index specifying the currently selected item in a dropdown form field.
      */
-    private _dropDownSelectedIndex: number;
+    protected _dropDownSelectedIndex: number;
 
     /**
      * Gets or sets the index specifying the currently selected item in a dropdown form field.

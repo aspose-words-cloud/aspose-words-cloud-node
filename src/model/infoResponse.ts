@@ -69,7 +69,7 @@ export class InfoResponse extends WordsResponse {
     /**
      * Gets or sets additional info.
      */
-    private _additionalInfo: Array<InfoAdditionalItem>;
+    protected _additionalInfo: Array<InfoAdditionalItem>;
 
     /**
      * Gets or sets additional info.
@@ -89,7 +89,7 @@ export class InfoResponse extends WordsResponse {
     /**
      * Gets or sets application name.
      */
-    private _name: string;
+    protected _name: string;
 
     /**
      * Gets or sets application name.
@@ -109,7 +109,7 @@ export class InfoResponse extends WordsResponse {
     /**
      * Gets or sets version.
      */
-    private _version: string;
+    protected _version: string;
 
     /**
      * Gets or sets version.

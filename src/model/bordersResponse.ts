@@ -59,7 +59,7 @@ export class BordersResponse extends WordsResponse {
     /**
      * Gets or sets the collection of borders.
      */
-    private _borders: BordersCollection;
+    protected _borders: BordersCollection;
 
     /**
      * Gets or sets the collection of borders.

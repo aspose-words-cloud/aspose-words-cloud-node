@@ -66,7 +66,7 @@ export class StatDataResponse extends WordsResponse {
     /**
      * Gets or sets the link to the document.
      */
-    private _documentLink: FileLink;
+    protected _documentLink: FileLink;
 
     /**
      * Gets or sets the link to the document.
@@ -86,7 +86,7 @@ export class StatDataResponse extends WordsResponse {
     /**
      * Gets or sets the statistical data of the document.
      */
-    private _statData: DocumentStatData;
+    protected _statData: DocumentStatData;
 
     /**
      * Gets or sets the statistical data of the document.

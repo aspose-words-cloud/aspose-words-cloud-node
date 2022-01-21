@@ -66,7 +66,7 @@ export class Table extends NodeLink {
     /**
      * Gets or sets table properties.
      */
-    private _tableProperties: TableProperties;
+    protected _tableProperties: TableProperties;
 
     /**
      * Gets or sets table properties.
@@ -86,7 +86,7 @@ export class Table extends NodeLink {
     /**
      * Gets or sets the collection of table's rows.
      */
-    private _tableRowList: Array<TableRow>;
+    protected _tableRowList: Array<TableRow>;
 
     /**
      * Gets or sets the collection of table's rows.

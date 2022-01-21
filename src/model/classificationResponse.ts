@@ -69,7 +69,7 @@ export class ClassificationResponse extends WordsResponse {
     /**
      * Gets or sets the best class name.
      */
-    private _bestClassName: string;
+    protected _bestClassName: string;
 
     /**
      * Gets or sets the best class name.
@@ -89,7 +89,7 @@ export class ClassificationResponse extends WordsResponse {
     /**
      * Gets or sets the best class probability.
      */
-    private _bestClassProbability: number;
+    protected _bestClassProbability: number;
 
     /**
      * Gets or sets the best class probability.
@@ -109,7 +109,7 @@ export class ClassificationResponse extends WordsResponse {
     /**
      * Gets or sets the array of best classes results.
      */
-    private _bestResults: Array<ClassificationResult>;
+    protected _bestResults: Array<ClassificationResult>;
 
     /**
      * Gets or sets the array of best classes results.

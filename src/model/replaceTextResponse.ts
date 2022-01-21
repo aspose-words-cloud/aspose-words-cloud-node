@@ -64,7 +64,7 @@ export class ReplaceTextResponse extends WordsResponse {
     /**
      * Gets or sets the link to the document.
      */
-    private _documentLink: FileLink;
+    protected _documentLink: FileLink;
 
     /**
      * Gets or sets the link to the document.
@@ -84,7 +84,7 @@ export class ReplaceTextResponse extends WordsResponse {
     /**
      * Gets or sets the number of occurrences of the captured text in the document.
      */
-    private _matches: number;
+    protected _matches: number;
 
     /**
      * Gets or sets the number of occurrences of the captured text in the document.

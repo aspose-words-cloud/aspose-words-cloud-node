@@ -75,7 +75,7 @@ export class ApiError {
     /**
      * Gets or sets the API error code.
      */
-    private _code: string;
+    protected _code: string;
 
     /**
      * Gets or sets the API error code.
@@ -95,7 +95,7 @@ export class ApiError {
     /**
      * Gets or sets the server DateTime.
      */
-    private _dateTime: Date;
+    protected _dateTime: Date;
 
     /**
      * Gets or sets the server DateTime.
@@ -115,7 +115,7 @@ export class ApiError {
     /**
      * Gets or sets the error description.
      */
-    private _description: string;
+    protected _description: string;
 
     /**
      * Gets or sets the error description.
@@ -135,7 +135,7 @@ export class ApiError {
     /**
      * Gets or sets the inner error.
      */
-    private _innerError: ApiError;
+    protected _innerError: ApiError;
 
     /**
      * Gets or sets the inner error.
@@ -155,7 +155,7 @@ export class ApiError {
     /**
      * Gets or sets the error message.
      */
-    private _message: string;
+    protected _message: string;
 
     /**
      * Gets or sets the error message.

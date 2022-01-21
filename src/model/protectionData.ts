@@ -55,7 +55,7 @@ export class ProtectionData {
     /**
      * Gets or sets type of the protection.
      */
-    private _protectionType: string;
+    protected _protectionType: string;
 
     /**
      * Gets or sets type of the protection.

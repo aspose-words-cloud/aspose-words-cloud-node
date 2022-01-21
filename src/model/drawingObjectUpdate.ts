@@ -85,7 +85,7 @@ export class DrawingObjectUpdate {
     /**
      * Gets or sets the height of the DrawingObject in points.
      */
-    private _height: number;
+    protected _height: number;
 
     /**
      * Gets or sets the height of the DrawingObject in points.
@@ -105,7 +105,7 @@ export class DrawingObjectUpdate {
     /**
      * Gets or sets the distance in points from the origin to the left side of the image.
      */
-    private _left: number;
+    protected _left: number;
 
     /**
      * Gets or sets the distance in points from the origin to the left side of the image.
@@ -125,7 +125,7 @@ export class DrawingObjectUpdate {
     /**
      * Gets or sets the relative horizontal position, from which the distance to the image is measured.
      */
-    private _relativeHorizontalPosition: DrawingObjectUpdate.RelativeHorizontalPositionEnum;
+    protected _relativeHorizontalPosition: DrawingObjectUpdate.RelativeHorizontalPositionEnum;
 
     /**
      * Gets or sets the relative horizontal position, from which the distance to the image is measured.
@@ -145,7 +145,7 @@ export class DrawingObjectUpdate {
     /**
      * Gets or sets the relative vertical position, from which the distance to the image measured.
      */
-    private _relativeVerticalPosition: DrawingObjectUpdate.RelativeVerticalPositionEnum;
+    protected _relativeVerticalPosition: DrawingObjectUpdate.RelativeVerticalPositionEnum;
 
     /**
      * Gets or sets the relative vertical position, from which the distance to the image measured.
@@ -165,7 +165,7 @@ export class DrawingObjectUpdate {
     /**
      * Gets or sets the distance in points from the origin to the top side of the image.
      */
-    private _top: number;
+    protected _top: number;
 
     /**
      * Gets or sets the distance in points from the origin to the top side of the image.
@@ -185,7 +185,7 @@ export class DrawingObjectUpdate {
     /**
      * Gets or sets the width of the DrawingObjects in points.
      */
-    private _width: number;
+    protected _width: number;
 
     /**
      * Gets or sets the width of the DrawingObjects in points.
@@ -205,7 +205,7 @@ export class DrawingObjectUpdate {
     /**
      * Gets or sets the option that controls how to wrap text around the image.
      */
-    private _wrapType: DrawingObjectUpdate.WrapTypeEnum;
+    protected _wrapType: DrawingObjectUpdate.WrapTypeEnum;
 
     /**
      * Gets or sets the option that controls how to wrap text around the image.

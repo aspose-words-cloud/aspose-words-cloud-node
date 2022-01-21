@@ -59,7 +59,7 @@ export class CustomXmlPartsCollection extends LinkElement {
     /**
      * Gets or sets the collection of CustomXmlPart.
      */
-    private _customXmlPartsList: Array<CustomXmlPart>;
+    protected _customXmlPartsList: Array<CustomXmlPart>;
 
     /**
      * Gets or sets the collection of CustomXmlPart.

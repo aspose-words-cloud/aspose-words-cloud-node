@@ -59,7 +59,7 @@ export class SectionLinkCollection extends LinkElement {
     /**
      * Gets or sets the collection of section's links.
      */
-    private _sectionLinkList: Array<SectionLink>;
+    protected _sectionLinkList: Array<SectionLink>;
 
     /**
      * Gets or sets the collection of section's links.

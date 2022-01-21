@@ -97,7 +97,7 @@ export class FormField extends NodeLink {
     /**
      * Gets or sets a value indicating whether references to the specified form field are automatically updated whenever the field is exited.
      */
-    private _calculateOnExit: boolean;
+    protected _calculateOnExit: boolean;
 
     /**
      * Gets or sets a value indicating whether references to the specified form field are automatically updated whenever the field is exited.
@@ -117,7 +117,7 @@ export class FormField extends NodeLink {
     /**
      * Gets or sets a value indicating whether a form field is enabled.
      */
-    private _enabled: boolean;
+    protected _enabled: boolean;
 
     /**
      * Gets or sets a value indicating whether a form field is enabled.
@@ -137,7 +137,7 @@ export class FormField extends NodeLink {
     /**
      * Gets or sets the entry macro name for the form field.
      */
-    private _entryMacro: string;
+    protected _entryMacro: string;
 
     /**
      * Gets or sets the entry macro name for the form field.
@@ -157,7 +157,7 @@ export class FormField extends NodeLink {
     /**
      * Gets or sets the exit macro name for the form field.
      */
-    private _exitMacro: string;
+    protected _exitMacro: string;
 
     /**
      * Gets or sets the exit macro name for the form field.
@@ -177,7 +177,7 @@ export class FormField extends NodeLink {
     /**
      * Gets or sets text, displayed in a message box when the form field has the focus and the user presses F1.
      */
-    private _helpText: string;
+    protected _helpText: string;
 
     /**
      * Gets or sets text, displayed in a message box when the form field has the focus and the user presses F1.
@@ -197,7 +197,7 @@ export class FormField extends NodeLink {
     /**
      * Gets or sets the form field name.
      */
-    private _name: string;
+    protected _name: string;
 
     /**
      * Gets or sets the form field name.
@@ -217,7 +217,7 @@ export class FormField extends NodeLink {
     /**
      * Gets or sets a value indicating whether the source of the text that's displayed in a message box when a form field has the focus and the user presses F1.
      */
-    private _ownHelp: boolean;
+    protected _ownHelp: boolean;
 
     /**
      * Gets or sets a value indicating whether the source of the text that's displayed in a message box when a form field has the focus and the user presses F1.
@@ -237,7 +237,7 @@ export class FormField extends NodeLink {
     /**
      * Gets or sets a value indicating whether the source of the text that's displayed in the status bar when a form field has the focus.
      */
-    private _ownStatus: boolean;
+    protected _ownStatus: boolean;
 
     /**
      * Gets or sets a value indicating whether the source of the text that's displayed in the status bar when a form field has the focus.
@@ -257,7 +257,7 @@ export class FormField extends NodeLink {
     /**
      * Gets or sets text, displayed in the status bar when a form field has the focus.
      */
-    private _statusText: string;
+    protected _statusText: string;
 
     /**
      * Gets or sets text, displayed in the status bar when a form field has the focus.

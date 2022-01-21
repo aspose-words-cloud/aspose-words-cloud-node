@@ -59,7 +59,7 @@ export class HeaderFootersResponse extends WordsResponse {
     /**
      * Gets or sets the collection of HeaderFooter elements.
      */
-    private _headerFooters: HeaderFooterLinkCollection;
+    protected _headerFooters: HeaderFooterLinkCollection;
 
     /**
      * Gets or sets the collection of HeaderFooter elements.

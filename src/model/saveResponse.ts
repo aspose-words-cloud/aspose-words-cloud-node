@@ -59,7 +59,7 @@ export class SaveResponse extends WordsResponse {
     /**
      * Gets or sets the save result.
      */
-    private _saveResult: SaveResult;
+    protected _saveResult: SaveResult;
 
     /**
      * Gets or sets the save result.

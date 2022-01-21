@@ -62,7 +62,7 @@ export class PublicKeyResponse extends WordsResponse {
     /**
      * Gets or sets RSA key exponent as Base64 string.
      */
-    private _exponent: string;
+    protected _exponent: string;
 
     /**
      * Gets or sets RSA key exponent as Base64 string.
@@ -82,7 +82,7 @@ export class PublicKeyResponse extends WordsResponse {
     /**
      * Gets or sets RSA key modulus as Base64 string.
      */
-    private _modulus: string;
+    protected _modulus: string;
 
     /**
      * Gets or sets RSA key modulus as Base64 string.

@@ -57,7 +57,7 @@ export class StoryChildNodes {
     /**
      * Gets or sets the list of child nodes.
      */
-    private _childNodes: Array<NodeLink>;
+    protected _childNodes: Array<NodeLink>;
 
     /**
      * Gets or sets the list of child nodes.

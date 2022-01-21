@@ -109,7 +109,7 @@ export class Style extends LinkElement {
     /**
      * Gets or sets all aliases of this style. If style has no aliases then empty array of string is returned.
      */
-    private _aliases: Array<string>;
+    protected _aliases: Array<string>;
 
     /**
      * Gets or sets all aliases of this style. If style has no aliases then empty array of string is returned.
@@ -129,7 +129,7 @@ export class Style extends LinkElement {
     /**
      * Gets or sets the name of the style this style is based on.
      */
-    private _baseStyleName: string;
+    protected _baseStyleName: string;
 
     /**
      * Gets or sets the name of the style this style is based on.
@@ -149,7 +149,7 @@ export class Style extends LinkElement {
     /**
      * Gets or sets a value indicating whether this style is one of the built-in styles in MS Word.
      */
-    private _builtIn: boolean;
+    protected _builtIn: boolean;
 
     /**
      * Gets or sets a value indicating whether this style is one of the built-in styles in MS Word.
@@ -169,7 +169,7 @@ export class Style extends LinkElement {
     /**
      * Gets or sets the character formatting of the style.
      */
-    private _font: Font;
+    protected _font: Font;
 
     /**
      * Gets or sets the character formatting of the style.
@@ -189,7 +189,7 @@ export class Style extends LinkElement {
     /**
      * Gets or sets a value indicating whether the style is one of the built-in Heading styles.
      */
-    private _isHeading: boolean;
+    protected _isHeading: boolean;
 
     /**
      * Gets or sets a value indicating whether the style is one of the built-in Heading styles.
@@ -209,7 +209,7 @@ export class Style extends LinkElement {
     /**
      * Gets or sets a value indicating whether this style is shown in the Quick Style gallery inside MS Word UI.
      */
-    private _isQuickStyle: boolean;
+    protected _isQuickStyle: boolean;
 
     /**
      * Gets or sets a value indicating whether this style is shown in the Quick Style gallery inside MS Word UI.
@@ -229,7 +229,7 @@ export class Style extends LinkElement {
     /**
      * Gets or sets the name of the Style linked to this one. Returns Empty string if no styles are linked.
      */
-    private _linkedStyleName: string;
+    protected _linkedStyleName: string;
 
     /**
      * Gets or sets the name of the Style linked to this one. Returns Empty string if no styles are linked.
@@ -249,7 +249,7 @@ export class Style extends LinkElement {
     /**
      * Gets or sets the name of the style.
      */
-    private _name: string;
+    protected _name: string;
 
     /**
      * Gets or sets the name of the style.
@@ -269,7 +269,7 @@ export class Style extends LinkElement {
     /**
      * Gets or sets the name of the style to be applied automatically to a new paragraph inserted after a paragraph formatted with the specified style.
      */
-    private _nextParagraphStyleName: string;
+    protected _nextParagraphStyleName: string;
 
     /**
      * Gets or sets the name of the style to be applied automatically to a new paragraph inserted after a paragraph formatted with the specified style.
@@ -289,7 +289,7 @@ export class Style extends LinkElement {
     /**
      * Gets or sets the locale independent style identifier for a built-in style.
      */
-    private _styleIdentifier: Style.StyleIdentifierEnum;
+    protected _styleIdentifier: Style.StyleIdentifierEnum;
 
     /**
      * Gets or sets the locale independent style identifier for a built-in style.
@@ -309,7 +309,7 @@ export class Style extends LinkElement {
     /**
      * Gets or sets the style type (paragraph or character).
      */
-    private _type: Style.TypeEnum;
+    protected _type: Style.TypeEnum;
 
     /**
      * Gets or sets the style type (paragraph or character).

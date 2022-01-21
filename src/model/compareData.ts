@@ -77,7 +77,7 @@ export class CompareData {
     /**
      * Gets or sets the initials of the author to use for revisions.
      */
-    private _author: string;
+    protected _author: string;
 
     /**
      * Gets or sets the initials of the author to use for revisions.
@@ -97,7 +97,7 @@ export class CompareData {
     /**
      * Gets or sets the compare options.
      */
-    private _compareOptions: CompareOptions;
+    protected _compareOptions: CompareOptions;
 
     /**
      * Gets or sets the compare options.
@@ -117,7 +117,7 @@ export class CompareData {
     /**
      * Gets or sets the path to document to compare at the server.
      */
-    private _comparingWithDocument: string;
+    protected _comparingWithDocument: string;
 
     /**
      * Gets or sets the path to document to compare at the server.
@@ -137,7 +137,7 @@ export class CompareData {
     /**
      * Gets or sets the date and time to use for revisions.
      */
-    private _dateTime: Date;
+    protected _dateTime: Date;
 
     /**
      * Gets or sets the date and time to use for revisions.
@@ -157,7 +157,7 @@ export class CompareData {
     /**
      * Gets or sets the result document format.
      */
-    private _resultDocumentFormat: string;
+    protected _resultDocumentFormat: string;
 
     /**
      * Gets or sets the result document format.

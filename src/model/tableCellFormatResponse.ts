@@ -59,7 +59,7 @@ export class TableCellFormatResponse extends WordsResponse {
     /**
      * Gets or sets the formatting properties of a table cell.
      */
-    private _cellFormat: TableCellFormat;
+    protected _cellFormat: TableCellFormat;
 
     /**
      * Gets or sets the formatting properties of a table cell.

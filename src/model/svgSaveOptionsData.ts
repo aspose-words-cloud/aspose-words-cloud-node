@@ -82,7 +82,7 @@ export class SvgSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets a value indicating whether images should be embedded into SVG document as base64.
      */
-    private _exportEmbeddedImages: boolean;
+    protected _exportEmbeddedImages: boolean;
 
     /**
      * Gets or sets a value indicating whether images should be embedded into SVG document as base64.
@@ -102,7 +102,7 @@ export class SvgSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets a value indicating whether the output SVG should fill the available viewport area (browser window or container). When set to true width and height of output SVG are set to 100%.
      */
-    private _fitToViewPort: boolean;
+    protected _fitToViewPort: boolean;
 
     /**
      * Gets or sets a value indicating whether the output SVG should fill the available viewport area (browser window or container). When set to true width and height of output SVG are set to 100%.
@@ -122,7 +122,7 @@ export class SvgSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets the physical folder where resources (images) are saved when exporting.
      */
-    private _resourcesFolder: string;
+    protected _resourcesFolder: string;
 
     /**
      * Gets or sets the physical folder where resources (images) are saved when exporting.
@@ -142,7 +142,7 @@ export class SvgSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets the name of the folder used to construct image URIs.
      */
-    private _resourcesFolderAlias: string;
+    protected _resourcesFolderAlias: string;
 
     /**
      * Gets or sets the name of the folder used to construct image URIs.
@@ -162,7 +162,7 @@ export class SvgSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets a value indicating whether to show or hide page stepper.
      */
-    private _showPageBorder: boolean;
+    protected _showPageBorder: boolean;
 
     /**
      * Gets or sets a value indicating whether to show or hide page stepper.
@@ -182,7 +182,7 @@ export class SvgSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets the option that controls how text should be rendered.
      */
-    private _textOutputMode: string;
+    protected _textOutputMode: string;
 
     /**
      * Gets or sets the option that controls how text should be rendered.
@@ -201,7 +201,7 @@ export class SvgSaveOptionsData extends FixedPageSaveOptionsData {
 
     public constructor(init?: Partial< SvgSaveOptionsData >) {
         super(init);
-        saveFormat = 'svg';
+        this._saveFormat = 'svg';
 
         Object.assign(this, init);
     }

@@ -55,7 +55,7 @@ export class WordsResponse {
     /**
      * Gets or sets the request Id.
      */
-    private _requestId: string;
+    protected _requestId: string;
 
     /**
      * Gets or sets the request Id.

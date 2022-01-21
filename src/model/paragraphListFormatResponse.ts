@@ -59,7 +59,7 @@ export class ParagraphListFormatResponse extends WordsResponse {
     /**
      * Gets or sets the list format for a paragraph.
      */
-    private _listFormat: ListFormat;
+    protected _listFormat: ListFormat;
 
     /**
      * Gets or sets the list format for a paragraph.

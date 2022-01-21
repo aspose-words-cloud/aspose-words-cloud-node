@@ -59,7 +59,7 @@ export class ListLevels extends LinkElement {
     /**
      * Gets or sets the collection of list levels for this list.
      */
-    private _listLevel: Array<ListLevel>;
+    protected _listLevel: Array<ListLevel>;
 
     /**
      * Gets or sets the collection of list levels for this list.

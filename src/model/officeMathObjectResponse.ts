@@ -59,7 +59,7 @@ export class OfficeMathObjectResponse extends WordsResponse {
     /**
      * Gets or sets the OfficeMath object.
      */
-    private _officeMathObject: OfficeMathObject;
+    protected _officeMathObject: OfficeMathObject;
 
     /**
      * Gets or sets the OfficeMath object.

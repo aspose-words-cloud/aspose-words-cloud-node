@@ -55,7 +55,7 @@ export class DocumentPropertyBase {
     /**
      * Gets or sets the value of the document property.
      */
-    private _value: string;
+    protected _value: string;
 
     /**
      * Gets or sets the value of the document property.

@@ -62,7 +62,7 @@ export class Hyperlink extends LinkElement {
     /**
      * Gets or sets the hypelink's display text.
      */
-    private _displayText: string;
+    protected _displayText: string;
 
     /**
      * Gets or sets the hypelink's display text.
@@ -82,7 +82,7 @@ export class Hyperlink extends LinkElement {
     /**
      * Gets or sets the value.
      */
-    private _value: string;
+    protected _value: string;
 
     /**
      * Gets or sets the value.

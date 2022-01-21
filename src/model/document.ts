@@ -84,7 +84,7 @@ export class Document {
     /**
      * Gets or sets the document properties.
      */
-    private _documentProperties: DocumentProperties;
+    protected _documentProperties: DocumentProperties;
 
     /**
      * Gets or sets the document properties.
@@ -104,7 +104,7 @@ export class Document {
     /**
      * Gets or sets the name of the file.
      */
-    private _fileName: string;
+    protected _fileName: string;
 
     /**
      * Gets or sets the name of the file.
@@ -124,7 +124,7 @@ export class Document {
     /**
      * Gets or sets a value indicating whether the document is encrypted and requires a password to open.
      */
-    private _isEncrypted: boolean;
+    protected _isEncrypted: boolean;
 
     /**
      * Gets or sets a value indicating whether the document is encrypted and requires a password to open.
@@ -144,7 +144,7 @@ export class Document {
     /**
      * Gets or sets a value indicating whether the document contains a digital signature. This property merely informs that a digital signature is present on a document, but it does not specify whether the signature is valid or not.
      */
-    private _isSigned: boolean;
+    protected _isSigned: boolean;
 
     /**
      * Gets or sets a value indicating whether the document contains a digital signature. This property merely informs that a digital signature is present on a document, but it does not specify whether the signature is valid or not.
@@ -164,7 +164,7 @@ export class Document {
     /**
      * Gets or sets the list of links that originate from this document.
      */
-    private _links: Array<Link>;
+    protected _links: Array<Link>;
 
     /**
      * Gets or sets the list of links that originate from this document.
@@ -184,7 +184,7 @@ export class Document {
     /**
      * Gets or sets the original format of the document.
      */
-    private _sourceFormat: Document.SourceFormatEnum;
+    protected _sourceFormat: Document.SourceFormatEnum;
 
     /**
      * Gets or sets the original format of the document.

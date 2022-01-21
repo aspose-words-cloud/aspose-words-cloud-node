@@ -60,7 +60,7 @@ export class StyleInsert {
     /**
      * Gets or sets the case sensitive name of the style to create.
      */
-    private _styleName: string;
+    protected _styleName: string;
 
     /**
      * Gets or sets the case sensitive name of the style to create.
@@ -80,7 +80,7 @@ export class StyleInsert {
     /**
      * Gets or sets the StyleType value that specifies the type of the style to create.
      */
-    private _styleType: StyleInsert.StyleTypeEnum;
+    protected _styleType: StyleInsert.StyleTypeEnum;
 
     /**
      * Gets or sets the StyleType value that specifies the type of the style to create.

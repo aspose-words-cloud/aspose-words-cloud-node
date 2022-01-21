@@ -75,7 +75,7 @@ export class MetafileRenderingOptionsData {
     /**
      * Gets or sets the option that controls how EMF+ Dual metafiles should be rendered.
      */
-    private _emfPlusDualRenderingMode: string;
+    protected _emfPlusDualRenderingMode: string;
 
     /**
      * Gets or sets the option that controls how EMF+ Dual metafiles should be rendered.
@@ -95,7 +95,7 @@ export class MetafileRenderingOptionsData {
     /**
      * Gets or sets a value indicating whether the raster operations should be emulated.
      */
-    private _emulateRasterOperations: boolean;
+    protected _emulateRasterOperations: boolean;
 
     /**
      * Gets or sets a value indicating whether the raster operations should be emulated.
@@ -115,7 +115,7 @@ export class MetafileRenderingOptionsData {
     /**
      * Gets or sets the option that controls how metafile images should be rendered.
      */
-    private _renderingMode: string;
+    protected _renderingMode: string;
 
     /**
      * Gets or sets the option that controls how metafile images should be rendered.
@@ -136,7 +136,7 @@ export class MetafileRenderingOptionsData {
      * Gets or sets a value indicating whether to scale fonts in WMF metafile according to metafile size on the page.
      * The default value is true.
      */
-    private _scaleWmfFontsToMetafileSize: boolean;
+    protected _scaleWmfFontsToMetafileSize: boolean;
 
     /**
      * Gets or sets a value indicating whether to scale fonts in WMF metafile according to metafile size on the page.
@@ -158,7 +158,7 @@ export class MetafileRenderingOptionsData {
     /**
      * Gets or sets the flag, that controls how WMF metafiles with embedded EMF metafiles should be rendered.
      */
-    private _useEmfEmbeddedToWmf: boolean;
+    protected _useEmfEmbeddedToWmf: boolean;
 
     /**
      * Gets or sets the flag, that controls how WMF metafiles with embedded EMF metafiles should be rendered.

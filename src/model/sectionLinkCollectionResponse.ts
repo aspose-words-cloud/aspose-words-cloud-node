@@ -59,7 +59,7 @@ export class SectionLinkCollectionResponse extends WordsResponse {
     /**
      * Gets or sets the collection of sections.
      */
-    private _sections: SectionLinkCollection;
+    protected _sections: SectionLinkCollection;
 
     /**
      * Gets or sets the collection of sections.

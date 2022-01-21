@@ -72,7 +72,7 @@ export class PageStatData {
     /**
      * Gets or sets the detailed statistics on the footnotes.
      */
-    private _footnotesStatData: FootnotesStatData;
+    protected _footnotesStatData: FootnotesStatData;
 
     /**
      * Gets or sets the detailed statistics on the footnotes.
@@ -92,7 +92,7 @@ export class PageStatData {
     /**
      * Gets or sets the page number.
      */
-    private _pageNumber: number;
+    protected _pageNumber: number;
 
     /**
      * Gets or sets the page number.
@@ -112,7 +112,7 @@ export class PageStatData {
     /**
      * Gets or sets the total count of paragraphs in the page.
      */
-    private _paragraphCount: number;
+    protected _paragraphCount: number;
 
     /**
      * Gets or sets the total count of paragraphs in the page.
@@ -132,7 +132,7 @@ export class PageStatData {
     /**
      * Gets or sets the total count of words in the page.
      */
-    private _wordCount: number;
+    protected _wordCount: number;
 
     /**
      * Gets or sets the total count of words in the page.

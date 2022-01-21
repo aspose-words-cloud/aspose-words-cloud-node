@@ -59,7 +59,7 @@ export class RunsResponse extends WordsResponse {
     /**
      * Gets or sets the collection of Run elements.
      */
-    private _runs: Runs;
+    protected _runs: Runs;
 
     /**
      * Gets or sets the collection of Run elements.

@@ -59,7 +59,7 @@ export class SectionResponse extends WordsResponse {
     /**
      * Gets or sets the section.
      */
-    private _section: Section;
+    protected _section: Section;
 
     /**
      * Gets or sets the section.

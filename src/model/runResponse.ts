@@ -59,7 +59,7 @@ export class RunResponse extends WordsResponse {
     /**
      * Gets or sets the Run element.
      */
-    private _run: Run;
+    protected _run: Run;
 
     /**
      * Gets or sets the Run element.

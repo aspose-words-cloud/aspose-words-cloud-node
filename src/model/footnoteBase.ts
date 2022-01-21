@@ -72,7 +72,7 @@ export class FootnoteBase {
     /**
      * Gets or sets the option, that specifies whether this is a footnote or endnote.
      */
-    private _footnoteType: FootnoteBase.FootnoteTypeEnum;
+    protected _footnoteType: FootnoteBase.FootnoteTypeEnum;
 
     /**
      * Gets or sets the option, that specifies whether this is a footnote or endnote.
@@ -92,7 +92,7 @@ export class FootnoteBase {
     /**
      * Gets or sets the link to comment range start node.
      */
-    private _position: DocumentPosition;
+    protected _position: DocumentPosition;
 
     /**
      * Gets or sets the link to comment range start node.
@@ -113,7 +113,7 @@ export class FootnoteBase {
      * Gets or sets the custom reference mark to be used for this footnote.
      * Default value is Empty, meaning auto-numbered footnotes are used.
      */
-    private _referenceMark: string;
+    protected _referenceMark: string;
 
     /**
      * Gets or sets the custom reference mark to be used for this footnote.
@@ -135,7 +135,7 @@ export class FootnoteBase {
     /**
      * Gets or sets text of the footnote.
      */
-    private _text: string;
+    protected _text: string;
 
     /**
      * Gets or sets text of the footnote.

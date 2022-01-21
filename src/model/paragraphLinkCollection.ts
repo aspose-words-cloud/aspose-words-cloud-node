@@ -59,7 +59,7 @@ export class ParagraphLinkCollection extends LinkElement {
     /**
      * Gets or sets the collection of paragraph's links.
      */
-    private _paragraphLinkList: Array<ParagraphLink>;
+    protected _paragraphLinkList: Array<ParagraphLink>;
 
     /**
      * Gets or sets the collection of paragraph's links.

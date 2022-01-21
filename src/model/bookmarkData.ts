@@ -60,7 +60,7 @@ export class BookmarkData {
     /**
      * Gets or sets the name of the bookmark.
      */
-    private _name: string;
+    protected _name: string;
 
     /**
      * Gets or sets the name of the bookmark.
@@ -80,7 +80,7 @@ export class BookmarkData {
     /**
      * Gets or sets text, enclosed in the bookmark.
      */
-    private _text: string;
+    protected _text: string;
 
     /**
      * Gets or sets text, enclosed in the bookmark.

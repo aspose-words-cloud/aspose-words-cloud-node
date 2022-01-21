@@ -60,7 +60,7 @@ export class ListFormatUpdate {
     /**
      * Gets or sets the list id of this paragraph.
      */
-    private _listId: number;
+    protected _listId: number;
 
     /**
      * Gets or sets the list id of this paragraph.
@@ -80,7 +80,7 @@ export class ListFormatUpdate {
     /**
      * Gets or sets the list level number (0 to 8) for the paragraph.
      */
-    private _listLevelNumber: number;
+    protected _listLevelNumber: number;
 
     /**
      * Gets or sets the list level number (0 to 8) for the paragraph.

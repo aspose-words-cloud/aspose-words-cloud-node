@@ -67,7 +67,7 @@ export class SplitDocumentResult {
     /**
      * Gets or sets the list of pages.
      */
-    private _pages: Array<FileLink>;
+    protected _pages: Array<FileLink>;
 
     /**
      * Gets or sets the list of pages.
@@ -87,7 +87,7 @@ export class SplitDocumentResult {
     /**
      * Gets or sets the link to the source document.
      */
-    private _sourceDocument: FileLink;
+    protected _sourceDocument: FileLink;
 
     /**
      * Gets or sets the link to the source document.
@@ -107,7 +107,7 @@ export class SplitDocumentResult {
     /**
      * Gets or sets the link to the file archive with pages.
      */
-    private _zippedPages: FileLink;
+    protected _zippedPages: FileLink;
 
     /**
      * Gets or sets the link to the file archive with pages.

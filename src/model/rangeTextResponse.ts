@@ -57,7 +57,7 @@ export class RangeTextResponse extends WordsResponse {
     /**
      * Gets or sets the range's text.
      */
-    private _text: string;
+    protected _text: string;
 
     /**
      * Gets or sets the range's text.

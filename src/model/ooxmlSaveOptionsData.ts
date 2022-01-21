@@ -72,7 +72,7 @@ export class OoxmlSaveOptionsData extends SaveOptionsData {
     /**
      * Gets or sets the oOXML version for the output document.
      */
-    private _compliance: string;
+    protected _compliance: string;
 
     /**
      * Gets or sets the oOXML version for the output document.
@@ -92,7 +92,7 @@ export class OoxmlSaveOptionsData extends SaveOptionsData {
     /**
      * Gets or sets the compression level.
      */
-    private _compressionLevel: OoxmlSaveOptionsData.CompressionLevelEnum;
+    protected _compressionLevel: OoxmlSaveOptionsData.CompressionLevelEnum;
 
     /**
      * Gets or sets the compression level.
@@ -112,7 +112,7 @@ export class OoxmlSaveOptionsData extends SaveOptionsData {
     /**
      * Gets or sets the password to encrypt document using ECMA376 Standard encryption algorithm.
      */
-    private _password: string;
+    protected _password: string;
 
     /**
      * Gets or sets the password to encrypt document using ECMA376 Standard encryption algorithm.
@@ -132,7 +132,7 @@ export class OoxmlSaveOptionsData extends SaveOptionsData {
     /**
      * Gets or sets a value indicating whether to use pretty formats output.
      */
-    private _prettyFormat: boolean;
+    protected _prettyFormat: boolean;
 
     /**
      * Gets or sets a value indicating whether to use pretty formats output.

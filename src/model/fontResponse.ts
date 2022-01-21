@@ -59,7 +59,7 @@ export class FontResponse extends WordsResponse {
     /**
      * Gets or sets the font.
      */
-    private _font: Font;
+    protected _font: Font;
 
     /**
      * Gets or sets the font.

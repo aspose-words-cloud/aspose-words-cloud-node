@@ -70,7 +70,7 @@ export class StyleUpdate {
     /**
      * Gets or sets the name of the style this style is based on.
      */
-    private _baseStyleName: string;
+    protected _baseStyleName: string;
 
     /**
      * Gets or sets the name of the style this style is based on.
@@ -90,7 +90,7 @@ export class StyleUpdate {
     /**
      * Gets or sets a value indicating whether this style is shown in the Quick Style gallery inside MS Word UI.
      */
-    private _isQuickStyle: boolean;
+    protected _isQuickStyle: boolean;
 
     /**
      * Gets or sets a value indicating whether this style is shown in the Quick Style gallery inside MS Word UI.
@@ -110,7 +110,7 @@ export class StyleUpdate {
     /**
      * Gets or sets the name of the style.
      */
-    private _name: string;
+    protected _name: string;
 
     /**
      * Gets or sets the name of the style.
@@ -130,7 +130,7 @@ export class StyleUpdate {
     /**
      * Gets or sets the name of the style to be applied automatically to a new paragraph inserted after a paragraph formatted with the specified style.
      */
-    private _nextParagraphStyleName: string;
+    protected _nextParagraphStyleName: string;
 
     /**
      * Gets or sets the name of the style to be applied automatically to a new paragraph inserted after a paragraph formatted with the specified style.

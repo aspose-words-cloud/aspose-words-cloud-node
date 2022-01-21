@@ -59,7 +59,7 @@ export class FieldResponse extends WordsResponse {
     /**
      * Gets or sets the field.
      */
-    private _field: Field;
+    protected _field: Field;
 
     /**
      * Gets or sets the field.

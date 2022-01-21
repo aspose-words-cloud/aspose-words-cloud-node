@@ -74,7 +74,7 @@ export class XpsSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets the level in the XPS document outline at which to display Word bookmarks.
      */
-    private _bookmarksOutlineLevel: number;
+    protected _bookmarksOutlineLevel: number;
 
     /**
      * Gets or sets the level in the XPS document outline at which to display Word bookmarks.
@@ -94,7 +94,7 @@ export class XpsSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets the number of heading levels (paragraphs formatted with the Heading styles) to include in the XPS document outline.
      */
-    private _headingsOutlineLevels: number;
+    protected _headingsOutlineLevels: number;
 
     /**
      * Gets or sets the number of heading levels (paragraphs formatted with the Heading styles) to include in the XPS document outline.
@@ -114,7 +114,7 @@ export class XpsSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets the outline options.
      */
-    private _outlineOptions: OutlineOptionsData;
+    protected _outlineOptions: OutlineOptionsData;
 
     /**
      * Gets or sets the outline options.
@@ -134,7 +134,7 @@ export class XpsSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets a value indicating whether the document should be saved using a booklet printing layout.
      */
-    private _useBookFoldPrintingSettings: boolean;
+    protected _useBookFoldPrintingSettings: boolean;
 
     /**
      * Gets or sets a value indicating whether the document should be saved using a booklet printing layout.
@@ -153,7 +153,7 @@ export class XpsSaveOptionsData extends FixedPageSaveOptionsData {
 
     public constructor(init?: Partial< XpsSaveOptionsData >) {
         super(init);
-        saveFormat = 'xps';
+        this._saveFormat = 'xps';
 
         Object.assign(this, init);
     }

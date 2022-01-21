@@ -73,7 +73,7 @@ export class DocSaveOptionsData extends SaveOptionsData {
      * Gets or sets a value indicating when False, that small metafiles are not compressed for performance reason.
      * The default value is true, all metafiles are compressed regardless of its size.
      */
-    private _alwaysCompressMetafiles: boolean;
+    protected _alwaysCompressMetafiles: boolean;
 
     /**
      * Gets or sets a value indicating when False, that small metafiles are not compressed for performance reason.
@@ -95,7 +95,7 @@ export class DocSaveOptionsData extends SaveOptionsData {
     /**
      * Gets or sets the password.
      */
-    private _password: string;
+    protected _password: string;
 
     /**
      * Gets or sets the password.
@@ -116,7 +116,7 @@ export class DocSaveOptionsData extends SaveOptionsData {
      * Gets or sets a value indicating when False, that PictureBullet data is not saved to the output document.
      * The default value is true.
      */
-    private _savePictureBullet: boolean;
+    protected _savePictureBullet: boolean;
 
     /**
      * Gets or sets a value indicating when False, that PictureBullet data is not saved to the output document.
@@ -138,7 +138,7 @@ export class DocSaveOptionsData extends SaveOptionsData {
     /**
      * Gets or sets a value indicating whether to save RoutingSlip data to output document.
      */
-    private _saveRoutingSlip: boolean;
+    protected _saveRoutingSlip: boolean;
 
     /**
      * Gets or sets a value indicating whether to save RoutingSlip data to output document.
@@ -157,7 +157,7 @@ export class DocSaveOptionsData extends SaveOptionsData {
 
     public constructor(init?: Partial< DocSaveOptionsData >) {
         super(init);
-        saveFormat = 'doc';
+        this._saveFormat = 'doc';
 
         Object.assign(this, init);
     }

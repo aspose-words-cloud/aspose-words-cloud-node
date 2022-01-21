@@ -124,7 +124,7 @@ export class TableProperties extends LinkElement {
     /**
      * Gets or sets the option that controls how an inline table is aligned in the document.
      */
-    private _alignment: TableProperties.AlignmentEnum;
+    protected _alignment: TableProperties.AlignmentEnum;
 
     /**
      * Gets or sets the option that controls how an inline table is aligned in the document.
@@ -144,7 +144,7 @@ export class TableProperties extends LinkElement {
     /**
      * Gets or sets a value indicating whether to automatically resize cells in a table to fit their contents.
      */
-    private _allowAutoFit: boolean;
+    protected _allowAutoFit: boolean;
 
     /**
      * Gets or sets a value indicating whether to automatically resize cells in a table to fit their contents.
@@ -164,7 +164,7 @@ export class TableProperties extends LinkElement {
     /**
      * Gets or sets a value indicating whether this is a right-to-left table.
      */
-    private _bidi: boolean;
+    protected _bidi: boolean;
 
     /**
      * Gets or sets a value indicating whether this is a right-to-left table.
@@ -184,7 +184,7 @@ export class TableProperties extends LinkElement {
     /**
      * Gets or sets the amount of space (in points) to add below the contents of cells.
      */
-    private _bottomPadding: number;
+    protected _bottomPadding: number;
 
     /**
      * Gets or sets the amount of space (in points) to add below the contents of cells.
@@ -204,7 +204,7 @@ export class TableProperties extends LinkElement {
     /**
      * Gets or sets the amount of space (in points) between the cells.
      */
-    private _cellSpacing: number;
+    protected _cellSpacing: number;
 
     /**
      * Gets or sets the amount of space (in points) between the cells.
@@ -224,7 +224,7 @@ export class TableProperties extends LinkElement {
     /**
      * Gets or sets the value, that represents the left indent of the table.
      */
-    private _leftIndent: number;
+    protected _leftIndent: number;
 
     /**
      * Gets or sets the value, that represents the left indent of the table.
@@ -244,7 +244,7 @@ export class TableProperties extends LinkElement {
     /**
      * Gets or sets the amount of space (in points) to add to the left of the contents of cells.
      */
-    private _leftPadding: number;
+    protected _leftPadding: number;
 
     /**
      * Gets or sets the amount of space (in points) to add to the left of the contents of cells.
@@ -265,7 +265,7 @@ export class TableProperties extends LinkElement {
      * Gets or sets the table preferred width.
      * Preferred width can be specified as a percentage, number of points or a special "auto" value.
      */
-    private _preferredWidth: PreferredWidth;
+    protected _preferredWidth: PreferredWidth;
 
     /**
      * Gets or sets the table preferred width.
@@ -287,7 +287,7 @@ export class TableProperties extends LinkElement {
     /**
      * Gets or sets the amount of space (in points) to add to the right of the contents of cells.
      */
-    private _rightPadding: number;
+    protected _rightPadding: number;
 
     /**
      * Gets or sets the amount of space (in points) to add to the right of the contents of cells.
@@ -307,7 +307,7 @@ export class TableProperties extends LinkElement {
     /**
      * Gets or sets the locale independent style identifier of the table style applied to this table.
      */
-    private _styleIdentifier: TableProperties.StyleIdentifierEnum;
+    protected _styleIdentifier: TableProperties.StyleIdentifierEnum;
 
     /**
      * Gets or sets the locale independent style identifier of the table style applied to this table.
@@ -327,7 +327,7 @@ export class TableProperties extends LinkElement {
     /**
      * Gets or sets the name of the table style applied to this table.
      */
-    private _styleName: string;
+    protected _styleName: string;
 
     /**
      * Gets or sets the name of the table style applied to this table.
@@ -347,7 +347,7 @@ export class TableProperties extends LinkElement {
     /**
      * Gets or sets the bit flags, that specify how a table style is applied to this table.
      */
-    private _styleOptions: TableProperties.StyleOptionsEnum;
+    protected _styleOptions: TableProperties.StyleOptionsEnum;
 
     /**
      * Gets or sets the bit flags, that specify how a table style is applied to this table.
@@ -367,7 +367,7 @@ export class TableProperties extends LinkElement {
     /**
      * Gets or sets the option that controls text wrapping for the table.
      */
-    private _textWrapping: TableProperties.TextWrappingEnum;
+    protected _textWrapping: TableProperties.TextWrappingEnum;
 
     /**
      * Gets or sets the option that controls text wrapping for the table.
@@ -387,7 +387,7 @@ export class TableProperties extends LinkElement {
     /**
      * Gets or sets the amount of space (in points) to add above the contents of cells.
      */
-    private _topPadding: number;
+    protected _topPadding: number;
 
     /**
      * Gets or sets the amount of space (in points) to add above the contents of cells.

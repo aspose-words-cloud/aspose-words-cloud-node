@@ -67,7 +67,7 @@ export class Shading {
     /**
      * Gets or sets the color that's applied to the background of the Shading object.
      */
-    private _backgroundPatternColor: XmlColor;
+    protected _backgroundPatternColor: XmlColor;
 
     /**
      * Gets or sets the color that's applied to the background of the Shading object.
@@ -87,7 +87,7 @@ export class Shading {
     /**
      * Gets or sets the color that's applied to the foreground of the Shading object.
      */
-    private _foregroundPatternColor: XmlColor;
+    protected _foregroundPatternColor: XmlColor;
 
     /**
      * Gets or sets the color that's applied to the foreground of the Shading object.
@@ -107,7 +107,7 @@ export class Shading {
     /**
      * Gets or sets the shading texture.
      */
-    private _texture: Shading.TextureEnum;
+    protected _texture: Shading.TextureEnum;
 
     /**
      * Gets or sets the shading texture.

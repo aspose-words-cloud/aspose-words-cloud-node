@@ -59,7 +59,7 @@ export class BordersCollection extends LinkElement {
     /**
      * Gets or sets the collection of comments.
      */
-    private _list: Array<Border>;
+    protected _list: Array<Border>;
 
     /**
      * Gets or sets the collection of comments.

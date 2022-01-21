@@ -73,7 +73,7 @@ export class TextSaveOptionsData extends TxtSaveOptionsBaseData {
      * Gets or sets a value indicating whether to add bi-directional marks before each BiDi run when exporting in plain text format.
      * The default value is true.
      */
-    private _addBidiMarks: boolean;
+    protected _addBidiMarks: boolean;
 
     /**
      * Gets or sets a value indicating whether to add bi-directional marks before each BiDi run when exporting in plain text format.
@@ -96,7 +96,7 @@ export class TextSaveOptionsData extends TxtSaveOptionsBaseData {
      * Gets or sets an integer value that specifies the maximum number of characters per one line.
      * The default value is 0, that means no limit.
      */
-    private _maxCharactersPerLine: number;
+    protected _maxCharactersPerLine: number;
 
     /**
      * Gets or sets an integer value that specifies the maximum number of characters per one line.
@@ -118,7 +118,7 @@ export class TextSaveOptionsData extends TxtSaveOptionsBaseData {
     /**
      * Gets or sets a value indicating whether the program should attempt to preserve layout of tables when saving in the plain text format.
      */
-    private _preserveTableLayout: boolean;
+    protected _preserveTableLayout: boolean;
 
     /**
      * Gets or sets a value indicating whether the program should attempt to preserve layout of tables when saving in the plain text format.
@@ -138,7 +138,7 @@ export class TextSaveOptionsData extends TxtSaveOptionsBaseData {
     /**
      * Gets or sets a value indicating whether the program should simplify list labels in case of complex label formatting not being adequately represented by plain text.
      */
-    private _simplifyListLabels: boolean;
+    protected _simplifyListLabels: boolean;
 
     /**
      * Gets or sets a value indicating whether the program should simplify list labels in case of complex label formatting not being adequately represented by plain text.
@@ -157,7 +157,7 @@ export class TextSaveOptionsData extends TxtSaveOptionsBaseData {
 
     public constructor(init?: Partial< TextSaveOptionsData >) {
         super(init);
-        saveFormat = 'txt';
+        this._saveFormat = 'txt';
 
         Object.assign(this, init);
     }

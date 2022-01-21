@@ -62,7 +62,7 @@ export class DocumentPosition {
     /**
      * Gets or sets the link to a node.
      */
-    private _node: NodeLink;
+    protected _node: NodeLink;
 
     /**
      * Gets or sets the link to a node.
@@ -82,7 +82,7 @@ export class DocumentPosition {
     /**
      * Gets or sets the offset in the node.
      */
-    private _offset: number;
+    protected _offset: number;
 
     /**
      * Gets or sets the offset in the node.

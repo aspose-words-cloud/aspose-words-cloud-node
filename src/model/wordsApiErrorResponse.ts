@@ -59,7 +59,7 @@ export class WordsApiErrorResponse extends WordsResponse {
     /**
      * Gets or sets the API error.
      */
-    private _error: ApiError;
+    protected _error: ApiError;
 
     /**
      * Gets or sets the API error.

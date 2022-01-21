@@ -62,7 +62,7 @@ export class Field extends FieldLink {
     /**
      * Gets or sets the LCID of the field.
      */
-    private _localeId: string;
+    protected _localeId: string;
 
     /**
      * Gets or sets the LCID of the field.
@@ -82,7 +82,7 @@ export class Field extends FieldLink {
     /**
      * Gets or sets the field result.
      */
-    private _result: string;
+    protected _result: string;
 
     /**
      * Gets or sets the field result.

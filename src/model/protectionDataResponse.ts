@@ -66,7 +66,7 @@ export class ProtectionDataResponse extends WordsResponse {
     /**
      * Gets or sets the link to the document.
      */
-    private _documentLink: FileLink;
+    protected _documentLink: FileLink;
 
     /**
      * Gets or sets the link to the document.
@@ -86,7 +86,7 @@ export class ProtectionDataResponse extends WordsResponse {
     /**
      * Gets or sets the protection properties of the document.
      */
-    private _protectionData: ProtectionData;
+    protected _protectionData: ProtectionData;
 
     /**
      * Gets or sets the protection properties of the document.

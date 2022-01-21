@@ -59,7 +59,7 @@ export class ListResponse extends WordsResponse {
     /**
      * Gets or sets the list information.
      */
-    private _list: ListInfo;
+    protected _list: ListInfo;
 
     /**
      * Gets or sets the list information.

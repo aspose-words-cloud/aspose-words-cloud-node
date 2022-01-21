@@ -55,7 +55,7 @@ export class ListInsert {
     /**
      * Gets or sets the option that controls how list should be restarted at each section.
      */
-    private _template: ListInsert.TemplateEnum;
+    protected _template: ListInsert.TemplateEnum;
 
     /**
      * Gets or sets the option that controls how list should be restarted at each section.

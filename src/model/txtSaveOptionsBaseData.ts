@@ -72,7 +72,7 @@ export class TxtSaveOptionsBaseData extends SaveOptionsData {
     /**
      * Gets or sets the character encoding to use when exporting in plain text format.
      */
-    private _encoding: string;
+    protected _encoding: string;
 
     /**
      * Gets or sets the character encoding to use when exporting in plain text format.
@@ -93,7 +93,7 @@ export class TxtSaveOptionsBaseData extends SaveOptionsData {
      * Gets or sets the option that controls whether to output headers and footers when exporting in plain text format.
      * default value is TxtExportHeadersFootersMode.PrimaryOnly.
      */
-    private _exportHeadersFootersMode: TxtSaveOptionsBaseData.ExportHeadersFootersModeEnum;
+    protected _exportHeadersFootersMode: TxtSaveOptionsBaseData.ExportHeadersFootersModeEnum;
 
     /**
      * Gets or sets the option that controls whether to output headers and footers when exporting in plain text format.
@@ -116,7 +116,7 @@ export class TxtSaveOptionsBaseData extends SaveOptionsData {
      * Gets or sets a value indicating whether the page breaks should be preserved during export.
      * The default value is false.
      */
-    private _forcePageBreaks: boolean;
+    protected _forcePageBreaks: boolean;
 
     /**
      * Gets or sets a value indicating whether the page breaks should be preserved during export.
@@ -138,7 +138,7 @@ export class TxtSaveOptionsBaseData extends SaveOptionsData {
     /**
      * Gets or sets the string to use as a paragraph break when exporting in plain text format.
      */
-    private _paragraphBreak: string;
+    protected _paragraphBreak: string;
 
     /**
      * Gets or sets the string to use as a paragraph break when exporting in plain text format.

@@ -59,7 +59,7 @@ export class HeaderFooterLinkCollection extends LinkElement {
     /**
      * Gets or sets the collection of HeaderFooter's links.
      */
-    private _list: Array<HeaderFooterLink>;
+    protected _list: Array<HeaderFooterLink>;
 
     /**
      * Gets or sets the collection of HeaderFooter's links.

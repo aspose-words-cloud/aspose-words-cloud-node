@@ -59,7 +59,7 @@ export class CommentResponse extends WordsResponse {
     /**
      * Gets or sets the comment.
      */
-    private _comment: Comment;
+    protected _comment: Comment;
 
     /**
      * Gets or sets the comment.

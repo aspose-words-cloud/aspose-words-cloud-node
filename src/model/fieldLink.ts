@@ -57,7 +57,7 @@ export class FieldLink extends NodeLink {
     /**
      * Gets or sets the field code.
      */
-    private _fieldCode: string;
+    protected _fieldCode: string;
 
     /**
      * Gets or sets the field code.

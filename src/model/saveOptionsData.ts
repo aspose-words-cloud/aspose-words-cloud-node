@@ -127,7 +127,7 @@ export class SaveOptionsData {
     /**
      * Gets or sets a boolean value indicating whether to allow embedding fonts with PostScript outlines when embedding TrueType fonts in a document upon it is saved. The default value is false..
      */
-    private _allowEmbeddingPostScriptFonts: boolean;
+    protected _allowEmbeddingPostScriptFonts: boolean;
 
     /**
      * Gets or sets a boolean value indicating whether to allow embedding fonts with PostScript outlines when embedding TrueType fonts in a document upon it is saved. The default value is false..
@@ -147,7 +147,7 @@ export class SaveOptionsData {
     /**
      * Gets or sets CustomTimeZoneInfo.
      */
-    private _customTimeZoneInfoData: TimeZoneInfoData;
+    protected _customTimeZoneInfoData: TimeZoneInfoData;
 
     /**
      * Gets or sets CustomTimeZoneInfo.
@@ -167,7 +167,7 @@ export class SaveOptionsData {
     /**
      * Gets or sets the value determining how 3D effects are rendered.
      */
-    private _dml3DEffectsRenderingMode: SaveOptionsData.Dml3DEffectsRenderingModeEnum;
+    protected _dml3DEffectsRenderingMode: SaveOptionsData.Dml3DEffectsRenderingModeEnum;
 
     /**
      * Gets or sets the value determining how 3D effects are rendered.
@@ -188,7 +188,7 @@ export class SaveOptionsData {
      * Gets or sets the value determining how DrawingML effects are rendered.
      * { Simplified | None | Fine }.
      */
-    private _dmlEffectsRenderingMode: string;
+    protected _dmlEffectsRenderingMode: string;
 
     /**
      * Gets or sets the value determining how DrawingML effects are rendered.
@@ -210,7 +210,7 @@ export class SaveOptionsData {
     /**
      * Gets or sets the option that controls how DrawingML shapes are rendered.
      */
-    private _dmlRenderingMode: string;
+    protected _dmlRenderingMode: string;
 
     /**
      * Gets or sets the option that controls how DrawingML shapes are rendered.
@@ -230,7 +230,7 @@ export class SaveOptionsData {
     /**
      * Gets or sets the name of destination file.
      */
-    private _fileName: string;
+    protected _fileName: string;
 
     /**
      * Gets or sets the name of destination file.
@@ -251,7 +251,7 @@ export class SaveOptionsData {
      * Gets or sets value determining which document formats are allowed to be mapped by Aspose.Words.Markup.StructuredDocumentTag.XmlMapping.
      * By default only Aspose.Words.LoadFormat.FlatOpc document format is allowed to be mapped.
      */
-    private _flatOpcXmlMappingOnly: boolean;
+    protected _flatOpcXmlMappingOnly: boolean;
 
     /**
      * Gets or sets value determining which document formats are allowed to be mapped by Aspose.Words.Markup.StructuredDocumentTag.XmlMapping.
@@ -273,7 +273,7 @@ export class SaveOptionsData {
     /**
      * Gets or sets the value determining how ink (InkML) objects are rendered.
      */
-    private _imlRenderingMode: string;
+    protected _imlRenderingMode: string;
 
     /**
      * Gets or sets the value determining how ink (InkML) objects are rendered.
@@ -293,7 +293,7 @@ export class SaveOptionsData {
     /**
      * Gets or sets the format of save.
      */
-    private _saveFormat: string;
+    protected _saveFormat: string;
 
     /**
      * Gets or sets the format of save.
@@ -308,7 +308,7 @@ export class SaveOptionsData {
      * Gets or sets a value determining whether the Aspose.Words.Properties.BuiltInDocumentProperties.CreatedTime property is updated before saving.
      * Default value is false.
      */
-    private _updateCreatedTimeProperty: boolean;
+    protected _updateCreatedTimeProperty: boolean;
 
     /**
      * Gets or sets a value determining whether the Aspose.Words.Properties.BuiltInDocumentProperties.CreatedTime property is updated before saving.
@@ -330,7 +330,7 @@ export class SaveOptionsData {
     /**
      * Gets or sets a value indicating whether fields should be updated before saving the document to a fixed page format. The default value is true.
      */
-    private _updateFields: boolean;
+    protected _updateFields: boolean;
 
     /**
      * Gets or sets a value indicating whether fields should be updated before saving the document to a fixed page format. The default value is true.
@@ -350,7 +350,7 @@ export class SaveOptionsData {
     /**
      * Gets or sets a value indicating whether the Aspose.Words.Properties.BuiltInDocumentProperties.LastPrinted property is updated before saving.
      */
-    private _updateLastPrintedProperty: boolean;
+    protected _updateLastPrintedProperty: boolean;
 
     /**
      * Gets or sets a value indicating whether the Aspose.Words.Properties.BuiltInDocumentProperties.LastPrinted property is updated before saving.
@@ -370,7 +370,7 @@ export class SaveOptionsData {
     /**
      * Gets or sets a value indicating whether the Aspose.Words.Properties.BuiltInDocumentProperties.LastSavedTime property is updated before saving.
      */
-    private _updateLastSavedTimeProperty: boolean;
+    protected _updateLastSavedTimeProperty: boolean;
 
     /**
      * Gets or sets a value indicating whether the Aspose.Words.Properties.BuiltInDocumentProperties.LastSavedTime property is updated before saving.
@@ -390,7 +390,7 @@ export class SaveOptionsData {
     /**
      * Gets or sets a value indicating whether content of StructuredDocumentTag is updated before saving.
      */
-    private _updateSdtContent: boolean;
+    protected _updateSdtContent: boolean;
 
     /**
      * Gets or sets a value indicating whether content of StructuredDocumentTag is updated before saving.
@@ -411,7 +411,7 @@ export class SaveOptionsData {
      * Gets or sets a value indicating whether to zip output or not.
      * The default value is false.
      */
-    private _zipOutput: boolean;
+    protected _zipOutput: boolean;
 
     /**
      * Gets or sets a value indicating whether to zip output or not.

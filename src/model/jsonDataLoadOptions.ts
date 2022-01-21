@@ -67,7 +67,7 @@ export class JsonDataLoadOptions {
      * an object for a JSON root element. If a JSON root element contains a single complex
      * property, such an object is not created by default.
      */
-    private _alwaysGenerateRootObject: boolean;
+    protected _alwaysGenerateRootObject: boolean;
 
     /**
      * Gets or sets a value indicating whether a generated data source will always contain
@@ -92,7 +92,7 @@ export class JsonDataLoadOptions {
      * Gets or sets exact formats for parsing JSON date-time values while loading JSON.
      * The default is null.
      */
-    private _exactDateTimeParseFormats: Array<string>;
+    protected _exactDateTimeParseFormats: Array<string>;
 
     /**
      * Gets or sets exact formats for parsing JSON date-time values while loading JSON.
@@ -116,7 +116,7 @@ export class JsonDataLoadOptions {
      * and string) while loading JSON. Such a mode does not affect parsing of date-time
      * values. The default is Aspose.Words.Reporting.JsonSimpleValueParseMode.Loose.
      */
-    private _simpleValueParseMode: JsonDataLoadOptions.SimpleValueParseModeEnum;
+    protected _simpleValueParseMode: JsonDataLoadOptions.SimpleValueParseModeEnum;
 
     /**
      * Gets or sets a mode for parsing JSON simple values (null, boolean, number, integer,

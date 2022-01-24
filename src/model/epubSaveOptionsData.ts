@@ -61,7 +61,7 @@ export class EpubSaveOptionsData extends HtmlSaveOptionsData {
 
     public constructor(init?: Partial< EpubSaveOptionsData >) {
         super(init);
-        this._saveFormat = 'epub';
+        saveFormat = 'epub';
 
         Object.assign(this, init);
     }

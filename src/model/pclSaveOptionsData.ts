@@ -71,7 +71,7 @@ export class PclSaveOptionsData extends FixedPageSaveOptionsData {
 
     public constructor(init?: Partial< PclSaveOptionsData >) {
         super(init);
-        this._saveFormat = 'pcl';
+        saveFormat = 'pcl';
 
         Object.assign(this, init);
     }

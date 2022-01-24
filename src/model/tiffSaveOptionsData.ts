@@ -82,7 +82,7 @@ export class TiffSaveOptionsData extends ImageSaveOptionsData {
 
     public constructor(init?: Partial< TiffSaveOptionsData >) {
         super(init);
-        this._saveFormat = 'tiff';
+        saveFormat = 'tiff';
 
         Object.assign(this, init);
     }

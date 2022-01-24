@@ -93,7 +93,7 @@ export class TextSaveOptionsData extends TxtSaveOptionsBaseData {
 
     public constructor(init?: Partial< TextSaveOptionsData >) {
         super(init);
-        this._saveFormat = 'txt';
+        saveFormat = 'txt';
 
         Object.assign(this, init);
     }

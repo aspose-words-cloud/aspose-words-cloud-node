@@ -52,7 +52,7 @@ export class BmpSaveOptionsData extends ImageSaveOptionsData {
 
     public constructor(init?: Partial< BmpSaveOptionsData >) {
         super(init);
-        this._saveFormat = 'bmp';
+        saveFormat = 'bmp';
 
         Object.assign(this, init);
     }

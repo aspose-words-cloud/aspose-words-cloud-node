@@ -61,7 +61,7 @@ export class PsSaveOptionsData extends FixedPageSaveOptionsData {
 
     public constructor(init?: Partial< PsSaveOptionsData >) {
         super(init);
-        this._saveFormat = 'ps';
+        saveFormat = 'ps';
 
         Object.assign(this, init);
     }

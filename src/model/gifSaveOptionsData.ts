@@ -52,7 +52,7 @@ export class GifSaveOptionsData extends ImageSaveOptionsData {
 
     public constructor(init?: Partial< GifSaveOptionsData >) {
         super(init);
-        this._saveFormat = 'gif';
+        saveFormat = 'gif';
 
         Object.assign(this, init);
     }

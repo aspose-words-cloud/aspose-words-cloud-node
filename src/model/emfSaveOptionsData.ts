@@ -52,7 +52,7 @@ export class EmfSaveOptionsData extends ImageSaveOptionsData {
 
     public constructor(init?: Partial< EmfSaveOptionsData >) {
         super(init);
-        this._saveFormat = 'emf';
+        saveFormat = 'emf';
 
         Object.assign(this, init);
     }

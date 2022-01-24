@@ -52,7 +52,7 @@ export class FlatOpcMacroSaveOptionsData extends OoxmlSaveOptionsData {
 
     public constructor(init?: Partial< FlatOpcMacroSaveOptionsData >) {
         super(init);
-        this._saveFormat = 'fopc_macro';
+        saveFormat = 'fopc_macro';
 
         Object.assign(this, init);
     }

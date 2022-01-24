@@ -52,7 +52,7 @@ export class DotxSaveOptionsData extends OoxmlSaveOptionsData {
 
     public constructor(init?: Partial< DotxSaveOptionsData >) {
         super(init);
-        this._saveFormat = 'dotx';
+        saveFormat = 'dotx';
 
         Object.assign(this, init);
     }

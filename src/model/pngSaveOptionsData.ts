@@ -52,7 +52,7 @@ export class PngSaveOptionsData extends ImageSaveOptionsData {
 
     public constructor(init?: Partial< PngSaveOptionsData >) {
         super(init);
-        this._saveFormat = 'png';
+        saveFormat = 'png';
 
         Object.assign(this, init);
     }

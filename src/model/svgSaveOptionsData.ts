@@ -111,7 +111,7 @@ export class SvgSaveOptionsData extends FixedPageSaveOptionsData {
 
     public constructor(init?: Partial< SvgSaveOptionsData >) {
         super(init);
-        this._saveFormat = 'svg';
+        saveFormat = 'svg';
 
         Object.assign(this, init);
     }

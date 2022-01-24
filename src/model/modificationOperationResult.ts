@@ -62,42 +62,12 @@ export class ModificationOperationResult {
     /**
      * Gets or sets the link to the dest document (result of the modification operation).
      */
-    protected _dest: FileLink;
-
-    /**
-     * Gets or sets the link to the dest document (result of the modification operation).
-     */
-    public get dest(): FileLink {
-        return this._dest;
-    }
-
-    /**
-     * Gets or sets the link to the dest document (result of the modification operation).
-     */
-    public set dest(value: FileLink) {
-        this._dest = value;
-    }
-
+    public dest: FileLink;
 
     /**
      * Gets or sets the link to the source document (source for the modification operation).
      */
-    protected _source: FileLink;
-
-    /**
-     * Gets or sets the link to the source document (source for the modification operation).
-     */
-    public get source(): FileLink {
-        return this._source;
-    }
-
-    /**
-     * Gets or sets the link to the source document (source for the modification operation).
-     */
-    public set source(value: FileLink) {
-        this._source = value;
-    }
-
+    public source: FileLink;
 
     public constructor(init?: Partial< ModificationOperationResult >) {
         Object.assign(this, init);

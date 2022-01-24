@@ -60,42 +60,12 @@ export class ClassificationResult {
     /**
      * Gets or sets the name of the class.
      */
-    protected _className: string;
-
-    /**
-     * Gets or sets the name of the class.
-     */
-    public get className(): string {
-        return this._className;
-    }
-
-    /**
-     * Gets or sets the name of the class.
-     */
-    public set className(value: string) {
-        this._className = value;
-    }
-
+    public className: string;
 
     /**
      * Gets or sets the probability of class.
      */
-    protected _classProbability: number;
-
-    /**
-     * Gets or sets the probability of class.
-     */
-    public get classProbability(): number {
-        return this._classProbability;
-    }
-
-    /**
-     * Gets or sets the probability of class.
-     */
-    public set classProbability(value: number) {
-        this._classProbability = value;
-    }
-
+    public classProbability: number;
 
     public constructor(init?: Partial< ClassificationResult >) {
         Object.assign(this, init);

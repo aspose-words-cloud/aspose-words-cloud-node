@@ -59,22 +59,7 @@ export class ParagraphListFormatResponse extends WordsResponse {
     /**
      * Gets or sets the list format for a paragraph.
      */
-    protected _listFormat: ListFormat;
-
-    /**
-     * Gets or sets the list format for a paragraph.
-     */
-    public get listFormat(): ListFormat {
-        return this._listFormat;
-    }
-
-    /**
-     * Gets or sets the list format for a paragraph.
-     */
-    public set listFormat(value: ListFormat) {
-        this._listFormat = value;
-    }
-
+    public listFormat: ListFormat;
 
     public constructor(init?: Partial< ParagraphListFormatResponse >) {
         super(init);

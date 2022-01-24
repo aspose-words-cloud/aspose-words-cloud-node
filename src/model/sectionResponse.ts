@@ -59,22 +59,7 @@ export class SectionResponse extends WordsResponse {
     /**
      * Gets or sets the section.
      */
-    protected _section: Section;
-
-    /**
-     * Gets or sets the section.
-     */
-    public get section(): Section {
-        return this._section;
-    }
-
-    /**
-     * Gets or sets the section.
-     */
-    public set section(value: Section) {
-        this._section = value;
-    }
-
+    public section: Section;
 
     public constructor(init?: Partial< SectionResponse >) {
         super(init);

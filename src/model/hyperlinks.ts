@@ -59,22 +59,7 @@ export class Hyperlinks extends LinkElement {
     /**
      * Gets or sets the array of Hyperlink.
      */
-    protected _hyperlinkList: Array<Hyperlink>;
-
-    /**
-     * Gets or sets the array of Hyperlink.
-     */
-    public get hyperlinkList(): Array<Hyperlink> {
-        return this._hyperlinkList;
-    }
-
-    /**
-     * Gets or sets the array of Hyperlink.
-     */
-    public set hyperlinkList(value: Array<Hyperlink>) {
-        this._hyperlinkList = value;
-    }
-
+    public hyperlinkList: Array<Hyperlink>;
 
     public constructor(init?: Partial< Hyperlinks >) {
         super(init);

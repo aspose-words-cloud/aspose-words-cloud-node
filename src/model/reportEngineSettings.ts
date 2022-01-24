@@ -88,122 +88,32 @@ export class ReportEngineSettings {
     /**
      * Gets or sets the options for parsing CSV data.
      */
-    protected _csvDataLoadOptions: CsvDataLoadOptions;
-
-    /**
-     * Gets or sets the options for parsing CSV data.
-     */
-    public get csvDataLoadOptions(): CsvDataLoadOptions {
-        return this._csvDataLoadOptions;
-    }
-
-    /**
-     * Gets or sets the options for parsing CSV data.
-     */
-    public set csvDataLoadOptions(value: CsvDataLoadOptions) {
-        this._csvDataLoadOptions = value;
-    }
-
+    public csvDataLoadOptions: CsvDataLoadOptions;
 
     /**
      * Gets or sets the name to reference the data source object in the template.
      */
-    protected _dataSourceName: string;
-
-    /**
-     * Gets or sets the name to reference the data source object in the template.
-     */
-    public get dataSourceName(): string {
-        return this._dataSourceName;
-    }
-
-    /**
-     * Gets or sets the name to reference the data source object in the template.
-     */
-    public set dataSourceName(value: string) {
-        this._dataSourceName = value;
-    }
-
+    public dataSourceName: string;
 
     /**
      * Gets or sets type of datasource.
      */
-    protected _dataSourceType: ReportEngineSettings.DataSourceTypeEnum;
-
-    /**
-     * Gets or sets type of datasource.
-     */
-    public get dataSourceType(): ReportEngineSettings.DataSourceTypeEnum {
-        return this._dataSourceType;
-    }
-
-    /**
-     * Gets or sets type of datasource.
-     */
-    public set dataSourceType(value: ReportEngineSettings.DataSourceTypeEnum) {
-        this._dataSourceType = value;
-    }
-
+    public dataSourceType: ReportEngineSettings.DataSourceTypeEnum;
 
     /**
      * Gets or sets the options for parsing JSON data.
      */
-    protected _jsonDataLoadOptions: JsonDataLoadOptions;
-
-    /**
-     * Gets or sets the options for parsing JSON data.
-     */
-    public get jsonDataLoadOptions(): JsonDataLoadOptions {
-        return this._jsonDataLoadOptions;
-    }
-
-    /**
-     * Gets or sets the options for parsing JSON data.
-     */
-    public set jsonDataLoadOptions(value: JsonDataLoadOptions) {
-        this._jsonDataLoadOptions = value;
-    }
-
+    public jsonDataLoadOptions: JsonDataLoadOptions;
 
     /**
      * Gets or sets type of options to build report.
      */
-    protected _reportBuildOptions: Array<ReportBuildOptions>;
-
-    /**
-     * Gets or sets type of options to build report.
-     */
-    public get reportBuildOptions(): Array<ReportBuildOptions> {
-        return this._reportBuildOptions;
-    }
-
-    /**
-     * Gets or sets type of options to build report.
-     */
-    public set reportBuildOptions(value: Array<ReportBuildOptions>) {
-        this._reportBuildOptions = value;
-    }
-
+    public reportBuildOptions: Array<ReportBuildOptions>;
 
     /**
      * Gets or sets the options for parsing XML data.
      */
-    protected _xmlDataLoadOptions: XmlDataLoadOptions;
-
-    /**
-     * Gets or sets the options for parsing XML data.
-     */
-    public get xmlDataLoadOptions(): XmlDataLoadOptions {
-        return this._xmlDataLoadOptions;
-    }
-
-    /**
-     * Gets or sets the options for parsing XML data.
-     */
-    public set xmlDataLoadOptions(value: XmlDataLoadOptions) {
-        this._xmlDataLoadOptions = value;
-    }
-
+    public xmlDataLoadOptions: XmlDataLoadOptions;
 
     public constructor(init?: Partial< ReportEngineSettings >) {
         Object.assign(this, init);

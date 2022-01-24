@@ -59,22 +59,7 @@ export class FootnotesResponse extends WordsResponse {
     /**
      * Gets or sets the collection of footnotes.
      */
-    protected _footnotes: FootnoteCollection;
-
-    /**
-     * Gets or sets the collection of footnotes.
-     */
-    public get footnotes(): FootnoteCollection {
-        return this._footnotes;
-    }
-
-    /**
-     * Gets or sets the collection of footnotes.
-     */
-    public set footnotes(value: FootnoteCollection) {
-        this._footnotes = value;
-    }
-
+    public footnotes: FootnoteCollection;
 
     public constructor(init?: Partial< FootnotesResponse >) {
         super(init);

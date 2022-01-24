@@ -55,22 +55,7 @@ export class ProtectionData {
     /**
      * Gets or sets type of the protection.
      */
-    protected _protectionType: string;
-
-    /**
-     * Gets or sets type of the protection.
-     */
-    public get protectionType(): string {
-        return this._protectionType;
-    }
-
-    /**
-     * Gets or sets type of the protection.
-     */
-    public set protectionType(value: string) {
-        this._protectionType = value;
-    }
-
+    public protectionType: string;
 
     public constructor(init?: Partial< ProtectionData >) {
         Object.assign(this, init);

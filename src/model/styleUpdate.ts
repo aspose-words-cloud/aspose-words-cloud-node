@@ -70,82 +70,22 @@ export class StyleUpdate {
     /**
      * Gets or sets the name of the style this style is based on.
      */
-    protected _baseStyleName: string;
-
-    /**
-     * Gets or sets the name of the style this style is based on.
-     */
-    public get baseStyleName(): string {
-        return this._baseStyleName;
-    }
-
-    /**
-     * Gets or sets the name of the style this style is based on.
-     */
-    public set baseStyleName(value: string) {
-        this._baseStyleName = value;
-    }
-
+    public baseStyleName: string;
 
     /**
      * Gets or sets a value indicating whether this style is shown in the Quick Style gallery inside MS Word UI.
      */
-    protected _isQuickStyle: boolean;
-
-    /**
-     * Gets or sets a value indicating whether this style is shown in the Quick Style gallery inside MS Word UI.
-     */
-    public get isQuickStyle(): boolean {
-        return this._isQuickStyle;
-    }
-
-    /**
-     * Gets or sets a value indicating whether this style is shown in the Quick Style gallery inside MS Word UI.
-     */
-    public set isQuickStyle(value: boolean) {
-        this._isQuickStyle = value;
-    }
-
+    public isQuickStyle: boolean;
 
     /**
      * Gets or sets the name of the style.
      */
-    protected _name: string;
-
-    /**
-     * Gets or sets the name of the style.
-     */
-    public get name(): string {
-        return this._name;
-    }
-
-    /**
-     * Gets or sets the name of the style.
-     */
-    public set name(value: string) {
-        this._name = value;
-    }
-
+    public name: string;
 
     /**
      * Gets or sets the name of the style to be applied automatically to a new paragraph inserted after a paragraph formatted with the specified style.
      */
-    protected _nextParagraphStyleName: string;
-
-    /**
-     * Gets or sets the name of the style to be applied automatically to a new paragraph inserted after a paragraph formatted with the specified style.
-     */
-    public get nextParagraphStyleName(): string {
-        return this._nextParagraphStyleName;
-    }
-
-    /**
-     * Gets or sets the name of the style to be applied automatically to a new paragraph inserted after a paragraph formatted with the specified style.
-     */
-    public set nextParagraphStyleName(value: string) {
-        this._nextParagraphStyleName = value;
-    }
-
+    public nextParagraphStyleName: string;
 
     public constructor(init?: Partial< StyleUpdate >) {
         Object.assign(this, init);

@@ -55,22 +55,7 @@ export class TableCellInsertDto {
     /**
      * Gets or sets the 0-based index, the table cell will be inserted after.
      */
-    protected _insertAfter: number;
-
-    /**
-     * Gets or sets the 0-based index, the table cell will be inserted after.
-     */
-    public get insertAfter(): number {
-        return this._insertAfter;
-    }
-
-    /**
-     * Gets or sets the 0-based index, the table cell will be inserted after.
-     */
-    public set insertAfter(value: number) {
-        this._insertAfter = value;
-    }
-
+    public insertAfter: number;
 
     public constructor(init?: Partial< TableCellInsertDto >) {
         Object.assign(this, init);

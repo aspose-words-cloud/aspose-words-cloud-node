@@ -60,42 +60,12 @@ export class BookmarkData {
     /**
      * Gets or sets the name of the bookmark.
      */
-    protected _name: string;
-
-    /**
-     * Gets or sets the name of the bookmark.
-     */
-    public get name(): string {
-        return this._name;
-    }
-
-    /**
-     * Gets or sets the name of the bookmark.
-     */
-    public set name(value: string) {
-        this._name = value;
-    }
-
+    public name: string;
 
     /**
      * Gets or sets text, enclosed in the bookmark.
      */
-    protected _text: string;
-
-    /**
-     * Gets or sets text, enclosed in the bookmark.
-     */
-    public get text(): string {
-        return this._text;
-    }
-
-    /**
-     * Gets or sets text, enclosed in the bookmark.
-     */
-    public set text(value: string) {
-        this._text = value;
-    }
-
+    public text: string;
 
     public constructor(init?: Partial< BookmarkData >) {
         Object.assign(this, init);

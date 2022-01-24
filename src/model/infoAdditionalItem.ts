@@ -60,42 +60,12 @@ export class InfoAdditionalItem {
     /**
      * Gets or sets Key.
      */
-    protected _key: string;
-
-    /**
-     * Gets or sets Key.
-     */
-    public get key(): string {
-        return this._key;
-    }
-
-    /**
-     * Gets or sets Key.
-     */
-    public set key(value: string) {
-        this._key = value;
-    }
-
+    public key: string;
 
     /**
      * Gets or sets Value.
      */
-    protected _value: string;
-
-    /**
-     * Gets or sets Value.
-     */
-    public get value(): string {
-        return this._value;
-    }
-
-    /**
-     * Gets or sets Value.
-     */
-    public set value(value: string) {
-        this._value = value;
-    }
-
+    public value: string;
 
     public constructor(init?: Partial< InfoAdditionalItem >) {
         Object.assign(this, init);

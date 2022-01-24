@@ -67,62 +67,17 @@ export class SplitDocumentResult {
     /**
      * Gets or sets the list of pages.
      */
-    protected _pages: Array<FileLink>;
-
-    /**
-     * Gets or sets the list of pages.
-     */
-    public get pages(): Array<FileLink> {
-        return this._pages;
-    }
-
-    /**
-     * Gets or sets the list of pages.
-     */
-    public set pages(value: Array<FileLink>) {
-        this._pages = value;
-    }
-
+    public pages: Array<FileLink>;
 
     /**
      * Gets or sets the link to the source document.
      */
-    protected _sourceDocument: FileLink;
-
-    /**
-     * Gets or sets the link to the source document.
-     */
-    public get sourceDocument(): FileLink {
-        return this._sourceDocument;
-    }
-
-    /**
-     * Gets or sets the link to the source document.
-     */
-    public set sourceDocument(value: FileLink) {
-        this._sourceDocument = value;
-    }
-
+    public sourceDocument: FileLink;
 
     /**
      * Gets or sets the link to the file archive with pages.
      */
-    protected _zippedPages: FileLink;
-
-    /**
-     * Gets or sets the link to the file archive with pages.
-     */
-    public get zippedPages(): FileLink {
-        return this._zippedPages;
-    }
-
-    /**
-     * Gets or sets the link to the file archive with pages.
-     */
-    public set zippedPages(value: FileLink) {
-        this._zippedPages = value;
-    }
-
+    public zippedPages: FileLink;
 
     public constructor(init?: Partial< SplitDocumentResult >) {
         Object.assign(this, init);

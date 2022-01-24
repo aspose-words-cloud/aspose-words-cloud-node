@@ -59,22 +59,7 @@ export class OfficeMathObjectsResponse extends WordsResponse {
     /**
      * Gets or sets the collection of OfficeMath objects.
      */
-    protected _officeMathObjects: OfficeMathObjectsCollection;
-
-    /**
-     * Gets or sets the collection of OfficeMath objects.
-     */
-    public get officeMathObjects(): OfficeMathObjectsCollection {
-        return this._officeMathObjects;
-    }
-
-    /**
-     * Gets or sets the collection of OfficeMath objects.
-     */
-    public set officeMathObjects(value: OfficeMathObjectsCollection) {
-        this._officeMathObjects = value;
-    }
-
+    public officeMathObjects: OfficeMathObjectsCollection;
 
     public constructor(init?: Partial< OfficeMathObjectsResponse >) {
         super(init);

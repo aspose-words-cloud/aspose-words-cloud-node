@@ -67,62 +67,17 @@ export class FormFieldCheckbox extends FormField {
     /**
      * Gets or sets the size of the checkbox in points. Has effect only when IsCheckBoxExactSize is true.
      */
-    protected _checkBoxSize: number;
-
-    /**
-     * Gets or sets the size of the checkbox in points. Has effect only when IsCheckBoxExactSize is true.
-     */
-    public get checkBoxSize(): number {
-        return this._checkBoxSize;
-    }
-
-    /**
-     * Gets or sets the size of the checkbox in points. Has effect only when IsCheckBoxExactSize is true.
-     */
-    public set checkBoxSize(value: number) {
-        this._checkBoxSize = value;
-    }
-
+    public checkBoxSize: number;
 
     /**
      * Gets or sets the checked status of the check box form field.
      */
-    protected _checked: boolean;
-
-    /**
-     * Gets or sets the checked status of the check box form field.
-     */
-    public get checked(): boolean {
-        return this._checked;
-    }
-
-    /**
-     * Gets or sets the checked status of the check box form field.
-     */
-    public set checked(value: boolean) {
-        this._checked = value;
-    }
-
+    public checked: boolean;
 
     /**
      * Gets or sets a value indicating whether the size of the textbox is automatic or specified explicitly.
      */
-    protected _isCheckBoxExactSize: boolean;
-
-    /**
-     * Gets or sets a value indicating whether the size of the textbox is automatic or specified explicitly.
-     */
-    public get isCheckBoxExactSize(): boolean {
-        return this._isCheckBoxExactSize;
-    }
-
-    /**
-     * Gets or sets a value indicating whether the size of the textbox is automatic or specified explicitly.
-     */
-    public set isCheckBoxExactSize(value: boolean) {
-        this._isCheckBoxExactSize = value;
-    }
-
+    public isCheckBoxExactSize: boolean;
 
     public constructor(init?: Partial< FormFieldCheckbox >) {
         super(init);

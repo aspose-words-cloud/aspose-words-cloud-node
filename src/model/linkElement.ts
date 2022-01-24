@@ -57,22 +57,7 @@ export class LinkElement {
     /**
      * Gets or sets the link to the document.
      */
-    protected _link: WordsApiLink;
-
-    /**
-     * Gets or sets the link to the document.
-     */
-    public get link(): WordsApiLink {
-        return this._link;
-    }
-
-    /**
-     * Gets or sets the link to the document.
-     */
-    public set link(value: WordsApiLink) {
-        this._link = value;
-    }
-
+    public link: WordsApiLink;
 
     public constructor(init?: Partial< LinkElement >) {
         Object.assign(this, init);

@@ -59,22 +59,7 @@ export class WordsApiErrorResponse extends WordsResponse {
     /**
      * Gets or sets the API error.
      */
-    protected _error: ApiError;
-
-    /**
-     * Gets or sets the API error.
-     */
-    public get error(): ApiError {
-        return this._error;
-    }
-
-    /**
-     * Gets or sets the API error.
-     */
-    public set error(value: ApiError) {
-        this._error = value;
-    }
-
+    public error: ApiError;
 
     public constructor(init?: Partial< WordsApiErrorResponse >) {
         super(init);

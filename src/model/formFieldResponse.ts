@@ -59,22 +59,7 @@ export class FormFieldResponse extends WordsResponse {
     /**
      * Gets or sets the form field.
      */
-    protected _formField: FormField;
-
-    /**
-     * Gets or sets the form field.
-     */
-    public get formField(): FormField {
-        return this._formField;
-    }
-
-    /**
-     * Gets or sets the form field.
-     */
-    public set formField(value: FormField) {
-        this._formField = value;
-    }
-
+    public formField: FormField;
 
     public constructor(init?: Partial< FormFieldResponse >) {
         super(init);

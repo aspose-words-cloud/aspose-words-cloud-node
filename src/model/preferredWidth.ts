@@ -60,42 +60,12 @@ export class PreferredWidth {
     /**
      * Gets or sets the unit of measure used for this preferred width value.
      */
-    protected _type: PreferredWidth.TypeEnum;
-
-    /**
-     * Gets or sets the unit of measure used for this preferred width value.
-     */
-    public get type(): PreferredWidth.TypeEnum {
-        return this._type;
-    }
-
-    /**
-     * Gets or sets the unit of measure used for this preferred width value.
-     */
-    public set type(value: PreferredWidth.TypeEnum) {
-        this._type = value;
-    }
-
+    public type: PreferredWidth.TypeEnum;
 
     /**
      * Gets or sets the preferred width value. The unit of measure is specified in the Type property.
      */
-    protected _value: number;
-
-    /**
-     * Gets or sets the preferred width value. The unit of measure is specified in the Type property.
-     */
-    public get value(): number {
-        return this._value;
-    }
-
-    /**
-     * Gets or sets the preferred width value. The unit of measure is specified in the Type property.
-     */
-    public set value(value: number) {
-        this._value = value;
-    }
-
+    public value: number;
 
     public constructor(init?: Partial< PreferredWidth >) {
         Object.assign(this, init);

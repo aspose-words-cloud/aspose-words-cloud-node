@@ -59,22 +59,7 @@ export class FootnoteResponse extends WordsResponse {
     /**
      * Gets or sets the footnote.
      */
-    protected _footnote: Footnote;
-
-    /**
-     * Gets or sets the footnote.
-     */
-    public get footnote(): Footnote {
-        return this._footnote;
-    }
-
-    /**
-     * Gets or sets the footnote.
-     */
-    public set footnote(value: Footnote) {
-        this._footnote = value;
-    }
-
+    public footnote: Footnote;
 
     public constructor(init?: Partial< FootnoteResponse >) {
         super(init);

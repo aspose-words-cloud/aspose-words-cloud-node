@@ -59,22 +59,7 @@ export class CustomXmlPartsResponse extends WordsResponse {
     /**
      * Gets or sets the collection of comments.
      */
-    protected _customXmlParts: CustomXmlPartsCollection;
-
-    /**
-     * Gets or sets the collection of comments.
-     */
-    public get customXmlParts(): CustomXmlPartsCollection {
-        return this._customXmlParts;
-    }
-
-    /**
-     * Gets or sets the collection of comments.
-     */
-    public set customXmlParts(value: CustomXmlPartsCollection) {
-        this._customXmlParts = value;
-    }
-
+    public customXmlParts: CustomXmlPartsCollection;
 
     public constructor(init?: Partial< CustomXmlPartsResponse >) {
         super(init);

@@ -62,42 +62,12 @@ export class SearchResult {
     /**
      * Gets or sets the link to result range end node.
      */
-    protected _rangeEnd: DocumentPosition;
-
-    /**
-     * Gets or sets the link to result range end node.
-     */
-    public get rangeEnd(): DocumentPosition {
-        return this._rangeEnd;
-    }
-
-    /**
-     * Gets or sets the link to result range end node.
-     */
-    public set rangeEnd(value: DocumentPosition) {
-        this._rangeEnd = value;
-    }
-
+    public rangeEnd: DocumentPosition;
 
     /**
      * Gets or sets the link to result range start node.
      */
-    protected _rangeStart: DocumentPosition;
-
-    /**
-     * Gets or sets the link to result range start node.
-     */
-    public get rangeStart(): DocumentPosition {
-        return this._rangeStart;
-    }
-
-    /**
-     * Gets or sets the link to result range start node.
-     */
-    public set rangeStart(value: DocumentPosition) {
-        this._rangeStart = value;
-    }
-
+    public rangeStart: DocumentPosition;
 
     public constructor(init?: Partial< SearchResult >) {
         Object.assign(this, init);

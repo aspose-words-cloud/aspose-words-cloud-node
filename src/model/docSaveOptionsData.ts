@@ -73,87 +73,23 @@ export class DocSaveOptionsData extends SaveOptionsData {
      * Gets or sets a value indicating when False, that small metafiles are not compressed for performance reason.
      * The default value is true, all metafiles are compressed regardless of its size.
      */
-    protected _alwaysCompressMetafiles: boolean;
-
-    /**
-     * Gets or sets a value indicating when False, that small metafiles are not compressed for performance reason.
-     * The default value is true, all metafiles are compressed regardless of its size.
-     */
-    public get alwaysCompressMetafiles(): boolean {
-        return this._alwaysCompressMetafiles;
-    }
-
-    /**
-     * Gets or sets a value indicating when False, that small metafiles are not compressed for performance reason.
-     * The default value is true, all metafiles are compressed regardless of its size.
-     */
-    public set alwaysCompressMetafiles(value: boolean) {
-        this._alwaysCompressMetafiles = value;
-    }
-
+    public alwaysCompressMetafiles: boolean;
 
     /**
      * Gets or sets the password.
      */
-    protected _password: string;
-
-    /**
-     * Gets or sets the password.
-     */
-    public get password(): string {
-        return this._password;
-    }
-
-    /**
-     * Gets or sets the password.
-     */
-    public set password(value: string) {
-        this._password = value;
-    }
-
+    public password: string;
 
     /**
      * Gets or sets a value indicating when False, that PictureBullet data is not saved to the output document.
      * The default value is true.
      */
-    protected _savePictureBullet: boolean;
-
-    /**
-     * Gets or sets a value indicating when False, that PictureBullet data is not saved to the output document.
-     * The default value is true.
-     */
-    public get savePictureBullet(): boolean {
-        return this._savePictureBullet;
-    }
-
-    /**
-     * Gets or sets a value indicating when False, that PictureBullet data is not saved to the output document.
-     * The default value is true.
-     */
-    public set savePictureBullet(value: boolean) {
-        this._savePictureBullet = value;
-    }
-
+    public savePictureBullet: boolean;
 
     /**
      * Gets or sets a value indicating whether to save RoutingSlip data to output document.
      */
-    protected _saveRoutingSlip: boolean;
-
-    /**
-     * Gets or sets a value indicating whether to save RoutingSlip data to output document.
-     */
-    public get saveRoutingSlip(): boolean {
-        return this._saveRoutingSlip;
-    }
-
-    /**
-     * Gets or sets a value indicating whether to save RoutingSlip data to output document.
-     */
-    public set saveRoutingSlip(value: boolean) {
-        this._saveRoutingSlip = value;
-    }
-
+    public saveRoutingSlip: boolean;
 
     public constructor(init?: Partial< DocSaveOptionsData >) {
         super(init);

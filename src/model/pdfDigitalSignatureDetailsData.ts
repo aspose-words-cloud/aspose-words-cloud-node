@@ -75,102 +75,27 @@ export class PdfDigitalSignatureDetailsData {
     /**
      * Gets or sets the certificate's filename using for signing.
      */
-    protected _certificateFilename: string;
-
-    /**
-     * Gets or sets the certificate's filename using for signing.
-     */
-    public get certificateFilename(): string {
-        return this._certificateFilename;
-    }
-
-    /**
-     * Gets or sets the certificate's filename using for signing.
-     */
-    public set certificateFilename(value: string) {
-        this._certificateFilename = value;
-    }
-
+    public certificateFilename: string;
 
     /**
      * Gets or sets the hash algorithm.
      */
-    protected _hashAlgorithm: string;
-
-    /**
-     * Gets or sets the hash algorithm.
-     */
-    public get hashAlgorithm(): string {
-        return this._hashAlgorithm;
-    }
-
-    /**
-     * Gets or sets the hash algorithm.
-     */
-    public set hashAlgorithm(value: string) {
-        this._hashAlgorithm = value;
-    }
-
+    public hashAlgorithm: string;
 
     /**
      * Gets or sets the location of the signing.
      */
-    protected _location: string;
-
-    /**
-     * Gets or sets the location of the signing.
-     */
-    public get location(): string {
-        return this._location;
-    }
-
-    /**
-     * Gets or sets the location of the signing.
-     */
-    public set location(value: string) {
-        this._location = value;
-    }
-
+    public location: string;
 
     /**
      * Gets or sets the reason for the signing.
      */
-    protected _reason: string;
-
-    /**
-     * Gets or sets the reason for the signing.
-     */
-    public get reason(): string {
-        return this._reason;
-    }
-
-    /**
-     * Gets or sets the reason for the signing.
-     */
-    public set reason(value: string) {
-        this._reason = value;
-    }
-
+    public reason: string;
 
     /**
      * Gets or sets the date of the signing.
      */
-    protected _signatureDate: Date;
-
-    /**
-     * Gets or sets the date of the signing.
-     */
-    public get signatureDate(): Date {
-        return this._signatureDate;
-    }
-
-    /**
-     * Gets or sets the date of the signing.
-     */
-    public set signatureDate(value: Date) {
-        this._signatureDate = value;
-    }
-
+    public signatureDate: Date;
 
     public constructor(init?: Partial< PdfDigitalSignatureDetailsData >) {
         Object.assign(this, init);

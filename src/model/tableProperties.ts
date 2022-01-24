@@ -124,285 +124,73 @@ export class TableProperties extends LinkElement {
     /**
      * Gets or sets the option that controls how an inline table is aligned in the document.
      */
-    protected _alignment: TableProperties.AlignmentEnum;
-
-    /**
-     * Gets or sets the option that controls how an inline table is aligned in the document.
-     */
-    public get alignment(): TableProperties.AlignmentEnum {
-        return this._alignment;
-    }
-
-    /**
-     * Gets or sets the option that controls how an inline table is aligned in the document.
-     */
-    public set alignment(value: TableProperties.AlignmentEnum) {
-        this._alignment = value;
-    }
-
+    public alignment: TableProperties.AlignmentEnum;
 
     /**
      * Gets or sets a value indicating whether to automatically resize cells in a table to fit their contents.
      */
-    protected _allowAutoFit: boolean;
-
-    /**
-     * Gets or sets a value indicating whether to automatically resize cells in a table to fit their contents.
-     */
-    public get allowAutoFit(): boolean {
-        return this._allowAutoFit;
-    }
-
-    /**
-     * Gets or sets a value indicating whether to automatically resize cells in a table to fit their contents.
-     */
-    public set allowAutoFit(value: boolean) {
-        this._allowAutoFit = value;
-    }
-
+    public allowAutoFit: boolean;
 
     /**
      * Gets or sets a value indicating whether this is a right-to-left table.
      */
-    protected _bidi: boolean;
-
-    /**
-     * Gets or sets a value indicating whether this is a right-to-left table.
-     */
-    public get bidi(): boolean {
-        return this._bidi;
-    }
-
-    /**
-     * Gets or sets a value indicating whether this is a right-to-left table.
-     */
-    public set bidi(value: boolean) {
-        this._bidi = value;
-    }
-
+    public bidi: boolean;
 
     /**
      * Gets or sets the amount of space (in points) to add below the contents of cells.
      */
-    protected _bottomPadding: number;
-
-    /**
-     * Gets or sets the amount of space (in points) to add below the contents of cells.
-     */
-    public get bottomPadding(): number {
-        return this._bottomPadding;
-    }
-
-    /**
-     * Gets or sets the amount of space (in points) to add below the contents of cells.
-     */
-    public set bottomPadding(value: number) {
-        this._bottomPadding = value;
-    }
-
+    public bottomPadding: number;
 
     /**
      * Gets or sets the amount of space (in points) between the cells.
      */
-    protected _cellSpacing: number;
-
-    /**
-     * Gets or sets the amount of space (in points) between the cells.
-     */
-    public get cellSpacing(): number {
-        return this._cellSpacing;
-    }
-
-    /**
-     * Gets or sets the amount of space (in points) between the cells.
-     */
-    public set cellSpacing(value: number) {
-        this._cellSpacing = value;
-    }
-
+    public cellSpacing: number;
 
     /**
      * Gets or sets the value, that represents the left indent of the table.
      */
-    protected _leftIndent: number;
-
-    /**
-     * Gets or sets the value, that represents the left indent of the table.
-     */
-    public get leftIndent(): number {
-        return this._leftIndent;
-    }
-
-    /**
-     * Gets or sets the value, that represents the left indent of the table.
-     */
-    public set leftIndent(value: number) {
-        this._leftIndent = value;
-    }
-
+    public leftIndent: number;
 
     /**
      * Gets or sets the amount of space (in points) to add to the left of the contents of cells.
      */
-    protected _leftPadding: number;
-
-    /**
-     * Gets or sets the amount of space (in points) to add to the left of the contents of cells.
-     */
-    public get leftPadding(): number {
-        return this._leftPadding;
-    }
-
-    /**
-     * Gets or sets the amount of space (in points) to add to the left of the contents of cells.
-     */
-    public set leftPadding(value: number) {
-        this._leftPadding = value;
-    }
-
+    public leftPadding: number;
 
     /**
      * Gets or sets the table preferred width.
      * Preferred width can be specified as a percentage, number of points or a special "auto" value.
      */
-    protected _preferredWidth: PreferredWidth;
-
-    /**
-     * Gets or sets the table preferred width.
-     * Preferred width can be specified as a percentage, number of points or a special "auto" value.
-     */
-    public get preferredWidth(): PreferredWidth {
-        return this._preferredWidth;
-    }
-
-    /**
-     * Gets or sets the table preferred width.
-     * Preferred width can be specified as a percentage, number of points or a special "auto" value.
-     */
-    public set preferredWidth(value: PreferredWidth) {
-        this._preferredWidth = value;
-    }
-
+    public preferredWidth: PreferredWidth;
 
     /**
      * Gets or sets the amount of space (in points) to add to the right of the contents of cells.
      */
-    protected _rightPadding: number;
-
-    /**
-     * Gets or sets the amount of space (in points) to add to the right of the contents of cells.
-     */
-    public get rightPadding(): number {
-        return this._rightPadding;
-    }
-
-    /**
-     * Gets or sets the amount of space (in points) to add to the right of the contents of cells.
-     */
-    public set rightPadding(value: number) {
-        this._rightPadding = value;
-    }
-
+    public rightPadding: number;
 
     /**
      * Gets or sets the locale independent style identifier of the table style applied to this table.
      */
-    protected _styleIdentifier: TableProperties.StyleIdentifierEnum;
-
-    /**
-     * Gets or sets the locale independent style identifier of the table style applied to this table.
-     */
-    public get styleIdentifier(): TableProperties.StyleIdentifierEnum {
-        return this._styleIdentifier;
-    }
-
-    /**
-     * Gets or sets the locale independent style identifier of the table style applied to this table.
-     */
-    public set styleIdentifier(value: TableProperties.StyleIdentifierEnum) {
-        this._styleIdentifier = value;
-    }
-
+    public styleIdentifier: TableProperties.StyleIdentifierEnum;
 
     /**
      * Gets or sets the name of the table style applied to this table.
      */
-    protected _styleName: string;
-
-    /**
-     * Gets or sets the name of the table style applied to this table.
-     */
-    public get styleName(): string {
-        return this._styleName;
-    }
-
-    /**
-     * Gets or sets the name of the table style applied to this table.
-     */
-    public set styleName(value: string) {
-        this._styleName = value;
-    }
-
+    public styleName: string;
 
     /**
      * Gets or sets the bit flags, that specify how a table style is applied to this table.
      */
-    protected _styleOptions: TableProperties.StyleOptionsEnum;
-
-    /**
-     * Gets or sets the bit flags, that specify how a table style is applied to this table.
-     */
-    public get styleOptions(): TableProperties.StyleOptionsEnum {
-        return this._styleOptions;
-    }
-
-    /**
-     * Gets or sets the bit flags, that specify how a table style is applied to this table.
-     */
-    public set styleOptions(value: TableProperties.StyleOptionsEnum) {
-        this._styleOptions = value;
-    }
-
+    public styleOptions: TableProperties.StyleOptionsEnum;
 
     /**
      * Gets or sets the option that controls text wrapping for the table.
      */
-    protected _textWrapping: TableProperties.TextWrappingEnum;
-
-    /**
-     * Gets or sets the option that controls text wrapping for the table.
-     */
-    public get textWrapping(): TableProperties.TextWrappingEnum {
-        return this._textWrapping;
-    }
-
-    /**
-     * Gets or sets the option that controls text wrapping for the table.
-     */
-    public set textWrapping(value: TableProperties.TextWrappingEnum) {
-        this._textWrapping = value;
-    }
-
+    public textWrapping: TableProperties.TextWrappingEnum;
 
     /**
      * Gets or sets the amount of space (in points) to add above the contents of cells.
      */
-    protected _topPadding: number;
-
-    /**
-     * Gets or sets the amount of space (in points) to add above the contents of cells.
-     */
-    public get topPadding(): number {
-        return this._topPadding;
-    }
-
-    /**
-     * Gets or sets the amount of space (in points) to add above the contents of cells.
-     */
-    public set topPadding(value: number) {
-        this._topPadding = value;
-    }
-
+    public topPadding: number;
 
     public constructor(init?: Partial< TableProperties >) {
         super(init);

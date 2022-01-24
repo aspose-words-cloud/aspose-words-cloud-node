@@ -70,82 +70,22 @@ export class CsvDataLoadOptions {
     /**
      * Gets or sets the character that is used to comment lines of CSV data.
      */
-    protected _commentChar: string;
-
-    /**
-     * Gets or sets the character that is used to comment lines of CSV data.
-     */
-    public get commentChar(): string {
-        return this._commentChar;
-    }
-
-    /**
-     * Gets or sets the character that is used to comment lines of CSV data.
-     */
-    public set commentChar(value: string) {
-        this._commentChar = value;
-    }
-
+    public commentChar: string;
 
     /**
      * Gets or sets the character to be used as a column delimiter.
      */
-    protected _delimiter: string;
-
-    /**
-     * Gets or sets the character to be used as a column delimiter.
-     */
-    public get delimiter(): string {
-        return this._delimiter;
-    }
-
-    /**
-     * Gets or sets the character to be used as a column delimiter.
-     */
-    public set delimiter(value: string) {
-        this._delimiter = value;
-    }
-
+    public delimiter: string;
 
     /**
      * Gets or sets a value indicating whether the first record of CSV data contains column names.
      */
-    protected _hasHeaders: boolean;
-
-    /**
-     * Gets or sets a value indicating whether the first record of CSV data contains column names.
-     */
-    public get hasHeaders(): boolean {
-        return this._hasHeaders;
-    }
-
-    /**
-     * Gets or sets a value indicating whether the first record of CSV data contains column names.
-     */
-    public set hasHeaders(value: boolean) {
-        this._hasHeaders = value;
-    }
-
+    public hasHeaders: boolean;
 
     /**
      * Gets or sets the character that is used to quote field values.
      */
-    protected _quoteChar: string;
-
-    /**
-     * Gets or sets the character that is used to quote field values.
-     */
-    public get quoteChar(): string {
-        return this._quoteChar;
-    }
-
-    /**
-     * Gets or sets the character that is used to quote field values.
-     */
-    public set quoteChar(value: string) {
-        this._quoteChar = value;
-    }
-
+    public quoteChar: string;
 
     public constructor(init?: Partial< CsvDataLoadOptions >) {
         Object.assign(this, init);

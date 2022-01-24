@@ -59,22 +59,7 @@ export class HyperlinksResponse extends WordsResponse {
     /**
      * Gets or sets the collection of hyperlinks.
      */
-    protected _hyperlinks: Hyperlinks;
-
-    /**
-     * Gets or sets the collection of hyperlinks.
-     */
-    public get hyperlinks(): Hyperlinks {
-        return this._hyperlinks;
-    }
-
-    /**
-     * Gets or sets the collection of hyperlinks.
-     */
-    public set hyperlinks(value: Hyperlinks) {
-        this._hyperlinks = value;
-    }
-
+    public hyperlinks: Hyperlinks;
 
     public constructor(init?: Partial< HyperlinksResponse >) {
         super(init);

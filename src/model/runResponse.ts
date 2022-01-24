@@ -59,22 +59,7 @@ export class RunResponse extends WordsResponse {
     /**
      * Gets or sets the Run element.
      */
-    protected _run: Run;
-
-    /**
-     * Gets or sets the Run element.
-     */
-    public get run(): Run {
-        return this._run;
-    }
-
-    /**
-     * Gets or sets the Run element.
-     */
-    public set run(value: Run) {
-        this._run = value;
-    }
-
+    public run: Run;
 
     public constructor(init?: Partial< RunResponse >) {
         super(init);

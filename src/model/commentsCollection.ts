@@ -59,22 +59,7 @@ export class CommentsCollection extends LinkElement {
     /**
      * Gets or sets the collection of comments.
      */
-    protected _commentList: Array<Comment>;
-
-    /**
-     * Gets or sets the collection of comments.
-     */
-    public get commentList(): Array<Comment> {
-        return this._commentList;
-    }
-
-    /**
-     * Gets or sets the collection of comments.
-     */
-    public set commentList(value: Array<Comment>) {
-        this._commentList = value;
-    }
-
+    public commentList: Array<Comment>;
 
     public constructor(init?: Partial< CommentsCollection >) {
         super(init);

@@ -57,22 +57,7 @@ export class RangeTextResponse extends WordsResponse {
     /**
      * Gets or sets the range's text.
      */
-    protected _text: string;
-
-    /**
-     * Gets or sets the range's text.
-     */
-    public get text(): string {
-        return this._text;
-    }
-
-    /**
-     * Gets or sets the range's text.
-     */
-    public set text(value: string) {
-        this._text = value;
-    }
-
+    public text: string;
 
     public constructor(init?: Partial< RangeTextResponse >) {
         super(init);

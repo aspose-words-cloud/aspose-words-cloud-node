@@ -59,22 +59,7 @@ export class BorderResponse extends WordsResponse {
     /**
      * Gets or sets the border.
      */
-    protected _border: Border;
-
-    /**
-     * Gets or sets the border.
-     */
-    public get border(): Border {
-        return this._border;
-    }
-
-    /**
-     * Gets or sets the border.
-     */
-    public set border(value: Border) {
-        this._border = value;
-    }
-
+    public border: Border;
 
     public constructor(init?: Partial< BorderResponse >) {
         super(init);

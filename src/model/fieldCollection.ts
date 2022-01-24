@@ -59,22 +59,7 @@ export class FieldCollection extends LinkElement {
     /**
      * Gets or sets the collection of fields.
      */
-    protected _list: Array<Field>;
-
-    /**
-     * Gets or sets the collection of fields.
-     */
-    public get list(): Array<Field> {
-        return this._list;
-    }
-
-    /**
-     * Gets or sets the collection of fields.
-     */
-    public set list(value: Array<Field>) {
-        this._list = value;
-    }
-
+    public list: Array<Field>;
 
     public constructor(init?: Partial< FieldCollection >) {
         super(init);

@@ -62,42 +62,12 @@ export class Hyperlink extends LinkElement {
     /**
      * Gets or sets the hypelink's display text.
      */
-    protected _displayText: string;
-
-    /**
-     * Gets or sets the hypelink's display text.
-     */
-    public get displayText(): string {
-        return this._displayText;
-    }
-
-    /**
-     * Gets or sets the hypelink's display text.
-     */
-    public set displayText(value: string) {
-        this._displayText = value;
-    }
-
+    public displayText: string;
 
     /**
      * Gets or sets the value.
      */
-    protected _value: string;
-
-    /**
-     * Gets or sets the value.
-     */
-    public get value(): string {
-        return this._value;
-    }
-
-    /**
-     * Gets or sets the value.
-     */
-    public set value(value: string) {
-        this._value = value;
-    }
-
+    public value: string;
 
     public constructor(init?: Partial< Hyperlink >) {
         super(init);

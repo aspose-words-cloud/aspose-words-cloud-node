@@ -57,22 +57,7 @@ export class WordMLSaveOptionsData extends SaveOptionsData {
     /**
      * Gets or sets a value indicating whether to use pretty formats output.
      */
-    protected _prettyFormat: boolean;
-
-    /**
-     * Gets or sets a value indicating whether to use pretty formats output.
-     */
-    public get prettyFormat(): boolean {
-        return this._prettyFormat;
-    }
-
-    /**
-     * Gets or sets a value indicating whether to use pretty formats output.
-     */
-    public set prettyFormat(value: boolean) {
-        this._prettyFormat = value;
-    }
-
+    public prettyFormat: boolean;
 
     public constructor(init?: Partial< WordMLSaveOptionsData >) {
         super(init);

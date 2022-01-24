@@ -79,102 +79,27 @@ export class DocumentStatData {
     /**
      * Gets or sets the detailed statistics on footnotes.
      */
-    protected _footnotesStatData: FootnotesStatData;
-
-    /**
-     * Gets or sets the detailed statistics on footnotes.
-     */
-    public get footnotesStatData(): FootnotesStatData {
-        return this._footnotesStatData;
-    }
-
-    /**
-     * Gets or sets the detailed statistics on footnotes.
-     */
-    public set footnotesStatData(value: FootnotesStatData) {
-        this._footnotesStatData = value;
-    }
-
+    public footnotesStatData: FootnotesStatData;
 
     /**
      * Gets or sets the total count of pages in the document.
      */
-    protected _pageCount: number;
-
-    /**
-     * Gets or sets the total count of pages in the document.
-     */
-    public get pageCount(): number {
-        return this._pageCount;
-    }
-
-    /**
-     * Gets or sets the total count of pages in the document.
-     */
-    public set pageCount(value: number) {
-        this._pageCount = value;
-    }
-
+    public pageCount: number;
 
     /**
      * Gets or sets the detailed statistics on all pages.
      */
-    protected _pageStatData: Array<PageStatData>;
-
-    /**
-     * Gets or sets the detailed statistics on all pages.
-     */
-    public get pageStatData(): Array<PageStatData> {
-        return this._pageStatData;
-    }
-
-    /**
-     * Gets or sets the detailed statistics on all pages.
-     */
-    public set pageStatData(value: Array<PageStatData>) {
-        this._pageStatData = value;
-    }
-
+    public pageStatData: Array<PageStatData>;
 
     /**
      * Gets or sets the total count of paragraphs in the document.
      */
-    protected _paragraphCount: number;
-
-    /**
-     * Gets or sets the total count of paragraphs in the document.
-     */
-    public get paragraphCount(): number {
-        return this._paragraphCount;
-    }
-
-    /**
-     * Gets or sets the total count of paragraphs in the document.
-     */
-    public set paragraphCount(value: number) {
-        this._paragraphCount = value;
-    }
-
+    public paragraphCount: number;
 
     /**
      * Gets or sets the total count of words in the document.
      */
-    protected _wordCount: number;
-
-    /**
-     * Gets or sets the total count of words in the document.
-     */
-    public get wordCount(): number {
-        return this._wordCount;
-    }
-
-    /**
-     * Gets or sets the total count of words in the document.
-     */
-    public set wordCount(value: number) {
-        this._wordCount = value;
-    }
-
+    public wordCount: number;
 
     public constructor(init?: Partial< DocumentStatData >) {
         Object.assign(this, init);

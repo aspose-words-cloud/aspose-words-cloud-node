@@ -59,22 +59,7 @@ export class DocumentProperties extends LinkElement {
     /**
      * Gets or sets the collection of document properties.
      */
-    protected _list: Array<DocumentProperty>;
-
-    /**
-     * Gets or sets the collection of document properties.
-     */
-    public get list(): Array<DocumentProperty> {
-        return this._list;
-    }
-
-    /**
-     * Gets or sets the collection of document properties.
-     */
-    public set list(value: Array<DocumentProperty>) {
-        this._list = value;
-    }
-
+    public list: Array<DocumentProperty>;
 
     public constructor(init?: Partial< DocumentProperties >) {
         super(init);

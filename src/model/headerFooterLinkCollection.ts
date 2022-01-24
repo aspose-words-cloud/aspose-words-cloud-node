@@ -59,22 +59,7 @@ export class HeaderFooterLinkCollection extends LinkElement {
     /**
      * Gets or sets the collection of HeaderFooter's links.
      */
-    protected _list: Array<HeaderFooterLink>;
-
-    /**
-     * Gets or sets the collection of HeaderFooter's links.
-     */
-    public get list(): Array<HeaderFooterLink> {
-        return this._list;
-    }
-
-    /**
-     * Gets or sets the collection of HeaderFooter's links.
-     */
-    public set list(value: Array<HeaderFooterLink>) {
-        this._list = value;
-    }
-
+    public list: Array<HeaderFooterLink>;
 
     public constructor(init?: Partial< HeaderFooterLinkCollection >) {
         super(init);

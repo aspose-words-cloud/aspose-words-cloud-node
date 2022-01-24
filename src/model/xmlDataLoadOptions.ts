@@ -57,26 +57,7 @@ export class XmlDataLoadOptions {
      * element. If an XML root element has no attributes and all its child elements have same names, such an object
      * is not created by default.
      */
-    protected _alwaysGenerateRootObject: boolean;
-
-    /**
-     * Gets or sets a flag indicating whether a generated data source will always contain an object for an XML root
-     * element. If an XML root element has no attributes and all its child elements have same names, such an object
-     * is not created by default.
-     */
-    public get alwaysGenerateRootObject(): boolean {
-        return this._alwaysGenerateRootObject;
-    }
-
-    /**
-     * Gets or sets a flag indicating whether a generated data source will always contain an object for an XML root
-     * element. If an XML root element has no attributes and all its child elements have same names, such an object
-     * is not created by default.
-     */
-    public set alwaysGenerateRootObject(value: boolean) {
-        this._alwaysGenerateRootObject = value;
-    }
-
+    public alwaysGenerateRootObject: boolean;
 
     public constructor(init?: Partial< XmlDataLoadOptions >) {
         Object.assign(this, init);

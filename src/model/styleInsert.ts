@@ -60,42 +60,12 @@ export class StyleInsert {
     /**
      * Gets or sets the case sensitive name of the style to create.
      */
-    protected _styleName: string;
-
-    /**
-     * Gets or sets the case sensitive name of the style to create.
-     */
-    public get styleName(): string {
-        return this._styleName;
-    }
-
-    /**
-     * Gets or sets the case sensitive name of the style to create.
-     */
-    public set styleName(value: string) {
-        this._styleName = value;
-    }
-
+    public styleName: string;
 
     /**
      * Gets or sets the StyleType value that specifies the type of the style to create.
      */
-    protected _styleType: StyleInsert.StyleTypeEnum;
-
-    /**
-     * Gets or sets the StyleType value that specifies the type of the style to create.
-     */
-    public get styleType(): StyleInsert.StyleTypeEnum {
-        return this._styleType;
-    }
-
-    /**
-     * Gets or sets the StyleType value that specifies the type of the style to create.
-     */
-    public set styleType(value: StyleInsert.StyleTypeEnum) {
-        this._styleType = value;
-    }
-
+    public styleType: StyleInsert.StyleTypeEnum;
 
     public constructor(init?: Partial< StyleInsert >) {
         Object.assign(this, init);

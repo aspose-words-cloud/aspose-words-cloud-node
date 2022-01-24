@@ -127,308 +127,81 @@ export class SaveOptionsData {
     /**
      * Gets or sets a boolean value indicating whether to allow embedding fonts with PostScript outlines when embedding TrueType fonts in a document upon it is saved. The default value is false..
      */
-    protected _allowEmbeddingPostScriptFonts: boolean;
-
-    /**
-     * Gets or sets a boolean value indicating whether to allow embedding fonts with PostScript outlines when embedding TrueType fonts in a document upon it is saved. The default value is false..
-     */
-    public get allowEmbeddingPostScriptFonts(): boolean {
-        return this._allowEmbeddingPostScriptFonts;
-    }
-
-    /**
-     * Gets or sets a boolean value indicating whether to allow embedding fonts with PostScript outlines when embedding TrueType fonts in a document upon it is saved. The default value is false..
-     */
-    public set allowEmbeddingPostScriptFonts(value: boolean) {
-        this._allowEmbeddingPostScriptFonts = value;
-    }
-
+    public allowEmbeddingPostScriptFonts: boolean;
 
     /**
      * Gets or sets CustomTimeZoneInfo.
      */
-    protected _customTimeZoneInfoData: TimeZoneInfoData;
-
-    /**
-     * Gets or sets CustomTimeZoneInfo.
-     */
-    public get customTimeZoneInfoData(): TimeZoneInfoData {
-        return this._customTimeZoneInfoData;
-    }
-
-    /**
-     * Gets or sets CustomTimeZoneInfo.
-     */
-    public set customTimeZoneInfoData(value: TimeZoneInfoData) {
-        this._customTimeZoneInfoData = value;
-    }
-
+    public customTimeZoneInfoData: TimeZoneInfoData;
 
     /**
      * Gets or sets the value determining how 3D effects are rendered.
      */
-    protected _dml3DEffectsRenderingMode: SaveOptionsData.Dml3DEffectsRenderingModeEnum;
-
-    /**
-     * Gets or sets the value determining how 3D effects are rendered.
-     */
-    public get dml3DEffectsRenderingMode(): SaveOptionsData.Dml3DEffectsRenderingModeEnum {
-        return this._dml3DEffectsRenderingMode;
-    }
-
-    /**
-     * Gets or sets the value determining how 3D effects are rendered.
-     */
-    public set dml3DEffectsRenderingMode(value: SaveOptionsData.Dml3DEffectsRenderingModeEnum) {
-        this._dml3DEffectsRenderingMode = value;
-    }
-
+    public dml3DEffectsRenderingMode: SaveOptionsData.Dml3DEffectsRenderingModeEnum;
 
     /**
      * Gets or sets the value determining how DrawingML effects are rendered.
      * { Simplified | None | Fine }.
      */
-    protected _dmlEffectsRenderingMode: string;
-
-    /**
-     * Gets or sets the value determining how DrawingML effects are rendered.
-     * { Simplified | None | Fine }.
-     */
-    public get dmlEffectsRenderingMode(): string {
-        return this._dmlEffectsRenderingMode;
-    }
-
-    /**
-     * Gets or sets the value determining how DrawingML effects are rendered.
-     * { Simplified | None | Fine }.
-     */
-    public set dmlEffectsRenderingMode(value: string) {
-        this._dmlEffectsRenderingMode = value;
-    }
-
+    public dmlEffectsRenderingMode: string;
 
     /**
      * Gets or sets the option that controls how DrawingML shapes are rendered.
      */
-    protected _dmlRenderingMode: string;
-
-    /**
-     * Gets or sets the option that controls how DrawingML shapes are rendered.
-     */
-    public get dmlRenderingMode(): string {
-        return this._dmlRenderingMode;
-    }
-
-    /**
-     * Gets or sets the option that controls how DrawingML shapes are rendered.
-     */
-    public set dmlRenderingMode(value: string) {
-        this._dmlRenderingMode = value;
-    }
-
+    public dmlRenderingMode: string;
 
     /**
      * Gets or sets the name of destination file.
      */
-    protected _fileName: string;
-
-    /**
-     * Gets or sets the name of destination file.
-     */
-    public get fileName(): string {
-        return this._fileName;
-    }
-
-    /**
-     * Gets or sets the name of destination file.
-     */
-    public set fileName(value: string) {
-        this._fileName = value;
-    }
-
+    public fileName: string;
 
     /**
      * Gets or sets value determining which document formats are allowed to be mapped by Aspose.Words.Markup.StructuredDocumentTag.XmlMapping.
      * By default only Aspose.Words.LoadFormat.FlatOpc document format is allowed to be mapped.
      */
-    protected _flatOpcXmlMappingOnly: boolean;
-
-    /**
-     * Gets or sets value determining which document formats are allowed to be mapped by Aspose.Words.Markup.StructuredDocumentTag.XmlMapping.
-     * By default only Aspose.Words.LoadFormat.FlatOpc document format is allowed to be mapped.
-     */
-    public get flatOpcXmlMappingOnly(): boolean {
-        return this._flatOpcXmlMappingOnly;
-    }
-
-    /**
-     * Gets or sets value determining which document formats are allowed to be mapped by Aspose.Words.Markup.StructuredDocumentTag.XmlMapping.
-     * By default only Aspose.Words.LoadFormat.FlatOpc document format is allowed to be mapped.
-     */
-    public set flatOpcXmlMappingOnly(value: boolean) {
-        this._flatOpcXmlMappingOnly = value;
-    }
-
+    public flatOpcXmlMappingOnly: boolean;
 
     /**
      * Gets or sets the value determining how ink (InkML) objects are rendered.
      */
-    protected _imlRenderingMode: string;
-
-    /**
-     * Gets or sets the value determining how ink (InkML) objects are rendered.
-     */
-    public get imlRenderingMode(): string {
-        return this._imlRenderingMode;
-    }
-
-    /**
-     * Gets or sets the value determining how ink (InkML) objects are rendered.
-     */
-    public set imlRenderingMode(value: string) {
-        this._imlRenderingMode = value;
-    }
-
+    public imlRenderingMode: string;
 
     /**
      * Gets or sets the format of save.
      */
-    protected _saveFormat: string;
-
-    /**
-     * Gets or sets the format of save.
-     */
-    public get saveFormat(): string {
-        return this._saveFormat;
-    }
-
-
+    public saveFormat: string;
 
     /**
      * Gets or sets a value determining whether the Aspose.Words.Properties.BuiltInDocumentProperties.CreatedTime property is updated before saving.
      * Default value is false.
      */
-    protected _updateCreatedTimeProperty: boolean;
-
-    /**
-     * Gets or sets a value determining whether the Aspose.Words.Properties.BuiltInDocumentProperties.CreatedTime property is updated before saving.
-     * Default value is false.
-     */
-    public get updateCreatedTimeProperty(): boolean {
-        return this._updateCreatedTimeProperty;
-    }
-
-    /**
-     * Gets or sets a value determining whether the Aspose.Words.Properties.BuiltInDocumentProperties.CreatedTime property is updated before saving.
-     * Default value is false.
-     */
-    public set updateCreatedTimeProperty(value: boolean) {
-        this._updateCreatedTimeProperty = value;
-    }
-
+    public updateCreatedTimeProperty: boolean;
 
     /**
      * Gets or sets a value indicating whether fields should be updated before saving the document to a fixed page format. The default value is true.
      */
-    protected _updateFields: boolean;
-
-    /**
-     * Gets or sets a value indicating whether fields should be updated before saving the document to a fixed page format. The default value is true.
-     */
-    public get updateFields(): boolean {
-        return this._updateFields;
-    }
-
-    /**
-     * Gets or sets a value indicating whether fields should be updated before saving the document to a fixed page format. The default value is true.
-     */
-    public set updateFields(value: boolean) {
-        this._updateFields = value;
-    }
-
+    public updateFields: boolean;
 
     /**
      * Gets or sets a value indicating whether the Aspose.Words.Properties.BuiltInDocumentProperties.LastPrinted property is updated before saving.
      */
-    protected _updateLastPrintedProperty: boolean;
-
-    /**
-     * Gets or sets a value indicating whether the Aspose.Words.Properties.BuiltInDocumentProperties.LastPrinted property is updated before saving.
-     */
-    public get updateLastPrintedProperty(): boolean {
-        return this._updateLastPrintedProperty;
-    }
-
-    /**
-     * Gets or sets a value indicating whether the Aspose.Words.Properties.BuiltInDocumentProperties.LastPrinted property is updated before saving.
-     */
-    public set updateLastPrintedProperty(value: boolean) {
-        this._updateLastPrintedProperty = value;
-    }
-
+    public updateLastPrintedProperty: boolean;
 
     /**
      * Gets or sets a value indicating whether the Aspose.Words.Properties.BuiltInDocumentProperties.LastSavedTime property is updated before saving.
      */
-    protected _updateLastSavedTimeProperty: boolean;
-
-    /**
-     * Gets or sets a value indicating whether the Aspose.Words.Properties.BuiltInDocumentProperties.LastSavedTime property is updated before saving.
-     */
-    public get updateLastSavedTimeProperty(): boolean {
-        return this._updateLastSavedTimeProperty;
-    }
-
-    /**
-     * Gets or sets a value indicating whether the Aspose.Words.Properties.BuiltInDocumentProperties.LastSavedTime property is updated before saving.
-     */
-    public set updateLastSavedTimeProperty(value: boolean) {
-        this._updateLastSavedTimeProperty = value;
-    }
-
+    public updateLastSavedTimeProperty: boolean;
 
     /**
      * Gets or sets a value indicating whether content of StructuredDocumentTag is updated before saving.
      */
-    protected _updateSdtContent: boolean;
-
-    /**
-     * Gets or sets a value indicating whether content of StructuredDocumentTag is updated before saving.
-     */
-    public get updateSdtContent(): boolean {
-        return this._updateSdtContent;
-    }
-
-    /**
-     * Gets or sets a value indicating whether content of StructuredDocumentTag is updated before saving.
-     */
-    public set updateSdtContent(value: boolean) {
-        this._updateSdtContent = value;
-    }
-
+    public updateSdtContent: boolean;
 
     /**
      * Gets or sets a value indicating whether to zip output or not.
      * The default value is false.
      */
-    protected _zipOutput: boolean;
-
-    /**
-     * Gets or sets a value indicating whether to zip output or not.
-     * The default value is false.
-     */
-    public get zipOutput(): boolean {
-        return this._zipOutput;
-    }
-
-    /**
-     * Gets or sets a value indicating whether to zip output or not.
-     * The default value is false.
-     */
-    public set zipOutput(value: boolean) {
-        this._zipOutput = value;
-    }
-
+    public zipOutput: boolean;
 
     public constructor(init?: Partial< SaveOptionsData >) {
         Object.assign(this, init);

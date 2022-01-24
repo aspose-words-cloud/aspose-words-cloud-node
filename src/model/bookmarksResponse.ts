@@ -59,22 +59,7 @@ export class BookmarksResponse extends WordsResponse {
     /**
      * Gets or sets the collection of bookmarks.
      */
-    protected _bookmarks: Bookmarks;
-
-    /**
-     * Gets or sets the collection of bookmarks.
-     */
-    public get bookmarks(): Bookmarks {
-        return this._bookmarks;
-    }
-
-    /**
-     * Gets or sets the collection of bookmarks.
-     */
-    public set bookmarks(value: Bookmarks) {
-        this._bookmarks = value;
-    }
-
+    public bookmarks: Bookmarks;
 
     public constructor(init?: Partial< BookmarksResponse >) {
         super(init);

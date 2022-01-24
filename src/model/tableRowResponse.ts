@@ -59,22 +59,7 @@ export class TableRowResponse extends WordsResponse {
     /**
      * Gets or sets the table row.
      */
-    protected _row: TableRow;
-
-    /**
-     * Gets or sets the table row.
-     */
-    public get row(): TableRow {
-        return this._row;
-    }
-
-    /**
-     * Gets or sets the table row.
-     */
-    public set row(value: TableRow) {
-        this._row = value;
-    }
-
+    public row: TableRow;
 
     public constructor(init?: Partial< TableRowResponse >) {
         super(init);

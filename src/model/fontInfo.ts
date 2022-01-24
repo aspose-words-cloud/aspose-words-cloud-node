@@ -70,82 +70,22 @@ export class FontInfo {
     /**
      * Gets or sets the path to the font file if any.
      */
-    protected _filePath: string;
-
-    /**
-     * Gets or sets the path to the font file if any.
-     */
-    public get filePath(): string {
-        return this._filePath;
-    }
-
-    /**
-     * Gets or sets the path to the font file if any.
-     */
-    public set filePath(value: string) {
-        this._filePath = value;
-    }
-
+    public filePath: string;
 
     /**
      * Gets or sets the family name of the font.
      */
-    protected _fontFamilyName: string;
-
-    /**
-     * Gets or sets the family name of the font.
-     */
-    public get fontFamilyName(): string {
-        return this._fontFamilyName;
-    }
-
-    /**
-     * Gets or sets the family name of the font.
-     */
-    public set fontFamilyName(value: string) {
-        this._fontFamilyName = value;
-    }
-
+    public fontFamilyName: string;
 
     /**
      * Gets or sets the full name of the font.
      */
-    protected _fullFontName: string;
-
-    /**
-     * Gets or sets the full name of the font.
-     */
-    public get fullFontName(): string {
-        return this._fullFontName;
-    }
-
-    /**
-     * Gets or sets the full name of the font.
-     */
-    public set fullFontName(value: string) {
-        this._fullFontName = value;
-    }
-
+    public fullFontName: string;
 
     /**
      * Gets or sets the version string of the font.
      */
-    protected _version: string;
-
-    /**
-     * Gets or sets the version string of the font.
-     */
-    public get version(): string {
-        return this._version;
-    }
-
-    /**
-     * Gets or sets the version string of the font.
-     */
-    public set version(value: string) {
-        this._version = value;
-    }
-
+    public version: string;
 
     public constructor(init?: Partial< FontInfo >) {
         Object.assign(this, init);

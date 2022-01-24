@@ -67,75 +67,20 @@ export class JsonDataLoadOptions {
      * an object for a JSON root element. If a JSON root element contains a single complex
      * property, such an object is not created by default.
      */
-    protected _alwaysGenerateRootObject: boolean;
-
-    /**
-     * Gets or sets a value indicating whether a generated data source will always contain
-     * an object for a JSON root element. If a JSON root element contains a single complex
-     * property, such an object is not created by default.
-     */
-    public get alwaysGenerateRootObject(): boolean {
-        return this._alwaysGenerateRootObject;
-    }
-
-    /**
-     * Gets or sets a value indicating whether a generated data source will always contain
-     * an object for a JSON root element. If a JSON root element contains a single complex
-     * property, such an object is not created by default.
-     */
-    public set alwaysGenerateRootObject(value: boolean) {
-        this._alwaysGenerateRootObject = value;
-    }
-
+    public alwaysGenerateRootObject: boolean;
 
     /**
      * Gets or sets exact formats for parsing JSON date-time values while loading JSON.
      * The default is null.
      */
-    protected _exactDateTimeParseFormats: Array<string>;
-
-    /**
-     * Gets or sets exact formats for parsing JSON date-time values while loading JSON.
-     * The default is null.
-     */
-    public get exactDateTimeParseFormats(): Array<string> {
-        return this._exactDateTimeParseFormats;
-    }
-
-    /**
-     * Gets or sets exact formats for parsing JSON date-time values while loading JSON.
-     * The default is null.
-     */
-    public set exactDateTimeParseFormats(value: Array<string>) {
-        this._exactDateTimeParseFormats = value;
-    }
-
+    public exactDateTimeParseFormats: Array<string>;
 
     /**
      * Gets or sets a mode for parsing JSON simple values (null, boolean, number, integer,
      * and string) while loading JSON. Such a mode does not affect parsing of date-time
      * values. The default is Aspose.Words.Reporting.JsonSimpleValueParseMode.Loose.
      */
-    protected _simpleValueParseMode: JsonDataLoadOptions.SimpleValueParseModeEnum;
-
-    /**
-     * Gets or sets a mode for parsing JSON simple values (null, boolean, number, integer,
-     * and string) while loading JSON. Such a mode does not affect parsing of date-time
-     * values. The default is Aspose.Words.Reporting.JsonSimpleValueParseMode.Loose.
-     */
-    public get simpleValueParseMode(): JsonDataLoadOptions.SimpleValueParseModeEnum {
-        return this._simpleValueParseMode;
-    }
-
-    /**
-     * Gets or sets a mode for parsing JSON simple values (null, boolean, number, integer,
-     * and string) while loading JSON. Such a mode does not affect parsing of date-time
-     * values. The default is Aspose.Words.Reporting.JsonSimpleValueParseMode.Loose.
-     */
-    public set simpleValueParseMode(value: JsonDataLoadOptions.SimpleValueParseModeEnum) {
-        this._simpleValueParseMode = value;
-    }
-
+    public simpleValueParseMode: JsonDataLoadOptions.SimpleValueParseModeEnum;
 
     public constructor(init?: Partial< JsonDataLoadOptions >) {
         Object.assign(this, init);

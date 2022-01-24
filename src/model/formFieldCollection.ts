@@ -59,22 +59,7 @@ export class FormFieldCollection extends LinkElement {
     /**
      * Gets or sets the collection of form fields.
      */
-    protected _list: Array<FormField>;
-
-    /**
-     * Gets or sets the collection of form fields.
-     */
-    public get list(): Array<FormField> {
-        return this._list;
-    }
-
-    /**
-     * Gets or sets the collection of form fields.
-     */
-    public set list(value: Array<FormField>) {
-        this._list = value;
-    }
-
+    public list: Array<FormField>;
 
     public constructor(init?: Partial< FormFieldCollection >) {
         super(init);

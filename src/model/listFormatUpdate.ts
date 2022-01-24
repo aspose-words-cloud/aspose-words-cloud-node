@@ -60,42 +60,12 @@ export class ListFormatUpdate {
     /**
      * Gets or sets the list id of this paragraph.
      */
-    protected _listId: number;
-
-    /**
-     * Gets or sets the list id of this paragraph.
-     */
-    public get listId(): number {
-        return this._listId;
-    }
-
-    /**
-     * Gets or sets the list id of this paragraph.
-     */
-    public set listId(value: number) {
-        this._listId = value;
-    }
-
+    public listId: number;
 
     /**
      * Gets or sets the list level number (0 to 8) for the paragraph.
      */
-    protected _listLevelNumber: number;
-
-    /**
-     * Gets or sets the list level number (0 to 8) for the paragraph.
-     */
-    public get listLevelNumber(): number {
-        return this._listLevelNumber;
-    }
-
-    /**
-     * Gets or sets the list level number (0 to 8) for the paragraph.
-     */
-    public set listLevelNumber(value: number) {
-        this._listLevelNumber = value;
-    }
-
+    public listLevelNumber: number;
 
     public constructor(init?: Partial< ListFormatUpdate >) {
         Object.assign(this, init);

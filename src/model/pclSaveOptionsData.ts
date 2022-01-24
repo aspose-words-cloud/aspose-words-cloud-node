@@ -62,42 +62,12 @@ export class PclSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets the font name, that will be used if no expected font is found in printer and built-in fonts collections.
      */
-    protected _falllbackFontName: string;
-
-    /**
-     * Gets or sets the font name, that will be used if no expected font is found in printer and built-in fonts collections.
-     */
-    public get falllbackFontName(): string {
-        return this._falllbackFontName;
-    }
-
-    /**
-     * Gets or sets the font name, that will be used if no expected font is found in printer and built-in fonts collections.
-     */
-    public set falllbackFontName(value: string) {
-        this._falllbackFontName = value;
-    }
-
+    public falllbackFontName: string;
 
     /**
      * Gets or sets a value indicating whether complex transformed elements should be rasterized before saving to PCL document.. The default value is true.
      */
-    protected _rasterizeTransformedElements: boolean;
-
-    /**
-     * Gets or sets a value indicating whether complex transformed elements should be rasterized before saving to PCL document.. The default value is true.
-     */
-    public get rasterizeTransformedElements(): boolean {
-        return this._rasterizeTransformedElements;
-    }
-
-    /**
-     * Gets or sets a value indicating whether complex transformed elements should be rasterized before saving to PCL document.. The default value is true.
-     */
-    public set rasterizeTransformedElements(value: boolean) {
-        this._rasterizeTransformedElements = value;
-    }
-
+    public rasterizeTransformedElements: boolean;
 
     public constructor(init?: Partial< PclSaveOptionsData >) {
         super(init);

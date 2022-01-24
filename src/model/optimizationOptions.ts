@@ -55,22 +55,7 @@ export class OptimizationOptions {
     /**
      * Gets or sets the specific MSWord version.
      */
-    protected _msWordVersion: OptimizationOptions.MsWordVersionEnum;
-
-    /**
-     * Gets or sets the specific MSWord version.
-     */
-    public get msWordVersion(): OptimizationOptions.MsWordVersionEnum {
-        return this._msWordVersion;
-    }
-
-    /**
-     * Gets or sets the specific MSWord version.
-     */
-    public set msWordVersion(value: OptimizationOptions.MsWordVersionEnum) {
-        this._msWordVersion = value;
-    }
-
+    public msWordVersion: OptimizationOptions.MsWordVersionEnum;
 
     public constructor(init?: Partial< OptimizationOptions >) {
         Object.assign(this, init);

@@ -81,105 +81,28 @@ export class Footnote extends FootnoteLink {
     /**
      * Gets or sets the content of the footnote.
      */
-    protected _content: StoryChildNodes;
-
-    /**
-     * Gets or sets the content of the footnote.
-     */
-    public get content(): StoryChildNodes {
-        return this._content;
-    }
-
-    /**
-     * Gets or sets the content of the footnote.
-     */
-    public set content(value: StoryChildNodes) {
-        this._content = value;
-    }
-
+    public content: StoryChildNodes;
 
     /**
      * Gets or sets the value, that specifies whether this is a footnote or endnote.
      */
-    protected _footnoteType: Footnote.FootnoteTypeEnum;
-
-    /**
-     * Gets or sets the value, that specifies whether this is a footnote or endnote.
-     */
-    public get footnoteType(): Footnote.FootnoteTypeEnum {
-        return this._footnoteType;
-    }
-
-    /**
-     * Gets or sets the value, that specifies whether this is a footnote or endnote.
-     */
-    public set footnoteType(value: Footnote.FootnoteTypeEnum) {
-        this._footnoteType = value;
-    }
-
+    public footnoteType: Footnote.FootnoteTypeEnum;
 
     /**
      * Gets or sets the link to comment range start node.
      */
-    protected _position: DocumentPosition;
-
-    /**
-     * Gets or sets the link to comment range start node.
-     */
-    public get position(): DocumentPosition {
-        return this._position;
-    }
-
-    /**
-     * Gets or sets the link to comment range start node.
-     */
-    public set position(value: DocumentPosition) {
-        this._position = value;
-    }
-
+    public position: DocumentPosition;
 
     /**
      * Gets or sets the custom reference mark to be used for this footnote.
      * Default value is Empty, meaning auto-numbered footnotes are used.
      */
-    protected _referenceMark: string;
-
-    /**
-     * Gets or sets the custom reference mark to be used for this footnote.
-     * Default value is Empty, meaning auto-numbered footnotes are used.
-     */
-    public get referenceMark(): string {
-        return this._referenceMark;
-    }
-
-    /**
-     * Gets or sets the custom reference mark to be used for this footnote.
-     * Default value is Empty, meaning auto-numbered footnotes are used.
-     */
-    public set referenceMark(value: string) {
-        this._referenceMark = value;
-    }
-
+    public referenceMark: string;
 
     /**
      * Gets or sets text of the footnote.
      */
-    protected _text: string;
-
-    /**
-     * Gets or sets text of the footnote.
-     */
-    public get text(): string {
-        return this._text;
-    }
-
-    /**
-     * Gets or sets text of the footnote.
-     */
-    public set text(value: string) {
-        this._text = value;
-    }
-
+    public text: string;
 
     public constructor(init?: Partial< Footnote >) {
         super(init);

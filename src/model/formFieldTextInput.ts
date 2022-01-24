@@ -72,82 +72,22 @@ export class FormFieldTextInput extends FormField {
     /**
      * Gets or sets the maximum length for the text field. Zero when the length is not limited.
      */
-    protected _maxLength: number;
-
-    /**
-     * Gets or sets the maximum length for the text field. Zero when the length is not limited.
-     */
-    public get maxLength(): number {
-        return this._maxLength;
-    }
-
-    /**
-     * Gets or sets the maximum length for the text field. Zero when the length is not limited.
-     */
-    public set maxLength(value: number) {
-        this._maxLength = value;
-    }
-
+    public maxLength: number;
 
     /**
      * Gets or sets the default string or a calculation expression of the text form field.
      */
-    protected _textInputDefault: string;
-
-    /**
-     * Gets or sets the default string or a calculation expression of the text form field.
-     */
-    public get textInputDefault(): string {
-        return this._textInputDefault;
-    }
-
-    /**
-     * Gets or sets the default string or a calculation expression of the text form field.
-     */
-    public set textInputDefault(value: string) {
-        this._textInputDefault = value;
-    }
-
+    public textInputDefault: string;
 
     /**
      * Gets or sets text formatting for the text form field.
      */
-    protected _textInputFormat: string;
-
-    /**
-     * Gets or sets text formatting for the text form field.
-     */
-    public get textInputFormat(): string {
-        return this._textInputFormat;
-    }
-
-    /**
-     * Gets or sets text formatting for the text form field.
-     */
-    public set textInputFormat(value: string) {
-        this._textInputFormat = value;
-    }
-
+    public textInputFormat: string;
 
     /**
      * Gets or sets the type of the text form field.
      */
-    protected _textInputType: FormFieldTextInput.TextInputTypeEnum;
-
-    /**
-     * Gets or sets the type of the text form field.
-     */
-    public get textInputType(): FormFieldTextInput.TextInputTypeEnum {
-        return this._textInputType;
-    }
-
-    /**
-     * Gets or sets the type of the text form field.
-     */
-    public set textInputType(value: FormFieldTextInput.TextInputTypeEnum) {
-        this._textInputType = value;
-    }
-
+    public textInputType: FormFieldTextInput.TextInputTypeEnum;
 
     public constructor(init?: Partial< FormFieldTextInput >) {
         super(init);

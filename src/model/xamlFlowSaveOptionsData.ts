@@ -62,42 +62,12 @@ export class XamlFlowSaveOptionsData extends SaveOptionsData {
     /**
      * Gets or sets the physical folder where images are saved when exporting.
      */
-    protected _imagesFolder: string;
-
-    /**
-     * Gets or sets the physical folder where images are saved when exporting.
-     */
-    public get imagesFolder(): string {
-        return this._imagesFolder;
-    }
-
-    /**
-     * Gets or sets the physical folder where images are saved when exporting.
-     */
-    public set imagesFolder(value: string) {
-        this._imagesFolder = value;
-    }
-
+    public imagesFolder: string;
 
     /**
      * Gets or sets the name of the folder used to construct image URIs.
      */
-    protected _imagesFolderAlias: string;
-
-    /**
-     * Gets or sets the name of the folder used to construct image URIs.
-     */
-    public get imagesFolderAlias(): string {
-        return this._imagesFolderAlias;
-    }
-
-    /**
-     * Gets or sets the name of the folder used to construct image URIs.
-     */
-    public set imagesFolderAlias(value: string) {
-        this._imagesFolderAlias = value;
-    }
-
+    public imagesFolderAlias: string;
 
     public constructor(init?: Partial< XamlFlowSaveOptionsData >) {
         super(init);

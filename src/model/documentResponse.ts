@@ -59,22 +59,7 @@ export class DocumentResponse extends WordsResponse {
     /**
      * Gets or sets the document description.
      */
-    protected _document: Document;
-
-    /**
-     * Gets or sets the document description.
-     */
-    public get document(): Document {
-        return this._document;
-    }
-
-    /**
-     * Gets or sets the document description.
-     */
-    public set document(value: Document) {
-        this._document = value;
-    }
-
+    public document: Document;
 
     public constructor(init?: Partial< DocumentResponse >) {
         super(init);

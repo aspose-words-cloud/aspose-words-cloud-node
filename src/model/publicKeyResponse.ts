@@ -62,42 +62,12 @@ export class PublicKeyResponse extends WordsResponse {
     /**
      * Gets or sets RSA key exponent as Base64 string.
      */
-    protected _exponent: string;
-
-    /**
-     * Gets or sets RSA key exponent as Base64 string.
-     */
-    public get exponent(): string {
-        return this._exponent;
-    }
-
-    /**
-     * Gets or sets RSA key exponent as Base64 string.
-     */
-    public set exponent(value: string) {
-        this._exponent = value;
-    }
-
+    public exponent: string;
 
     /**
      * Gets or sets RSA key modulus as Base64 string.
      */
-    protected _modulus: string;
-
-    /**
-     * Gets or sets RSA key modulus as Base64 string.
-     */
-    public get modulus(): string {
-        return this._modulus;
-    }
-
-    /**
-     * Gets or sets RSA key modulus as Base64 string.
-     */
-    public set modulus(value: string) {
-        this._modulus = value;
-    }
-
+    public modulus: string;
 
     public constructor(init?: Partial< PublicKeyResponse >) {
         super(init);

@@ -59,22 +59,7 @@ export class SplitDocumentResponse extends WordsResponse {
     /**
      * Gets or sets the result of document splitting.
      */
-    protected _splitResult: SplitDocumentResult;
-
-    /**
-     * Gets or sets the result of document splitting.
-     */
-    public get splitResult(): SplitDocumentResult {
-        return this._splitResult;
-    }
-
-    /**
-     * Gets or sets the result of document splitting.
-     */
-    public set splitResult(value: SplitDocumentResult) {
-        this._splitResult = value;
-    }
-
+    public splitResult: SplitDocumentResult;
 
     public constructor(init?: Partial< SplitDocumentResponse >) {
         super(init);

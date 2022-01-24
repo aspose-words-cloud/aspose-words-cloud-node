@@ -70,82 +70,22 @@ export class TimeZoneInfoData {
     /**
      * Gets or sets base utc offset in hh:mm:ss format.
      */
-    protected _baseUtcOffset: string;
-
-    /**
-     * Gets or sets base utc offset in hh:mm:ss format.
-     */
-    public get baseUtcOffset(): string {
-        return this._baseUtcOffset;
-    }
-
-    /**
-     * Gets or sets base utc offset in hh:mm:ss format.
-     */
-    public set baseUtcOffset(value: string) {
-        this._baseUtcOffset = value;
-    }
-
+    public baseUtcOffset: string;
 
     /**
      * Gets or sets display name.
      */
-    protected _displayName: string;
-
-    /**
-     * Gets or sets display name.
-     */
-    public get displayName(): string {
-        return this._displayName;
-    }
-
-    /**
-     * Gets or sets display name.
-     */
-    public set displayName(value: string) {
-        this._displayName = value;
-    }
-
+    public displayName: string;
 
     /**
      * Gets or sets an Id string for CustomTimeZoneInfo.
      */
-    protected _id: string;
-
-    /**
-     * Gets or sets an Id string for CustomTimeZoneInfo.
-     */
-    public get id(): string {
-        return this._id;
-    }
-
-    /**
-     * Gets or sets an Id string for CustomTimeZoneInfo.
-     */
-    public set id(value: string) {
-        this._id = value;
-    }
-
+    public id: string;
 
     /**
      * Gets or sets standard display name.
      */
-    protected _standardDisplayName: string;
-
-    /**
-     * Gets or sets standard display name.
-     */
-    public get standardDisplayName(): string {
-        return this._standardDisplayName;
-    }
-
-    /**
-     * Gets or sets standard display name.
-     */
-    public set standardDisplayName(value: string) {
-        this._standardDisplayName = value;
-    }
-
+    public standardDisplayName: string;
 
     public constructor(init?: Partial< TimeZoneInfoData >) {
         Object.assign(this, init);

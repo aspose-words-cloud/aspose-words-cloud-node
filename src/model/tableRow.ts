@@ -66,42 +66,12 @@ export class TableRow extends NodeLink {
     /**
      * Gets or sets the formatting properties of a row.
      */
-    protected _rowFormat: TableRowFormat;
-
-    /**
-     * Gets or sets the formatting properties of a row.
-     */
-    public get rowFormat(): TableRowFormat {
-        return this._rowFormat;
-    }
-
-    /**
-     * Gets or sets the formatting properties of a row.
-     */
-    public set rowFormat(value: TableRowFormat) {
-        this._rowFormat = value;
-    }
-
+    public rowFormat: TableRowFormat;
 
     /**
      * Gets or sets the collection of rows.
      */
-    protected _tableCellList: Array<TableCell>;
-
-    /**
-     * Gets or sets the collection of rows.
-     */
-    public get tableCellList(): Array<TableCell> {
-        return this._tableCellList;
-    }
-
-    /**
-     * Gets or sets the collection of rows.
-     */
-    public set tableCellList(value: Array<TableCell>) {
-        this._tableCellList = value;
-    }
-
+    public tableCellList: Array<TableCell>;
 
     public constructor(init?: Partial< TableRow >) {
         super(init);

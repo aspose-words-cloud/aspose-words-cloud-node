@@ -84,122 +84,32 @@ export class Document {
     /**
      * Gets or sets the document properties.
      */
-    protected _documentProperties: DocumentProperties;
-
-    /**
-     * Gets or sets the document properties.
-     */
-    public get documentProperties(): DocumentProperties {
-        return this._documentProperties;
-    }
-
-    /**
-     * Gets or sets the document properties.
-     */
-    public set documentProperties(value: DocumentProperties) {
-        this._documentProperties = value;
-    }
-
+    public documentProperties: DocumentProperties;
 
     /**
      * Gets or sets the name of the file.
      */
-    protected _fileName: string;
-
-    /**
-     * Gets or sets the name of the file.
-     */
-    public get fileName(): string {
-        return this._fileName;
-    }
-
-    /**
-     * Gets or sets the name of the file.
-     */
-    public set fileName(value: string) {
-        this._fileName = value;
-    }
-
+    public fileName: string;
 
     /**
      * Gets or sets a value indicating whether the document is encrypted and requires a password to open.
      */
-    protected _isEncrypted: boolean;
-
-    /**
-     * Gets or sets a value indicating whether the document is encrypted and requires a password to open.
-     */
-    public get isEncrypted(): boolean {
-        return this._isEncrypted;
-    }
-
-    /**
-     * Gets or sets a value indicating whether the document is encrypted and requires a password to open.
-     */
-    public set isEncrypted(value: boolean) {
-        this._isEncrypted = value;
-    }
-
+    public isEncrypted: boolean;
 
     /**
      * Gets or sets a value indicating whether the document contains a digital signature. This property merely informs that a digital signature is present on a document, but it does not specify whether the signature is valid or not.
      */
-    protected _isSigned: boolean;
-
-    /**
-     * Gets or sets a value indicating whether the document contains a digital signature. This property merely informs that a digital signature is present on a document, but it does not specify whether the signature is valid or not.
-     */
-    public get isSigned(): boolean {
-        return this._isSigned;
-    }
-
-    /**
-     * Gets or sets a value indicating whether the document contains a digital signature. This property merely informs that a digital signature is present on a document, but it does not specify whether the signature is valid or not.
-     */
-    public set isSigned(value: boolean) {
-        this._isSigned = value;
-    }
-
+    public isSigned: boolean;
 
     /**
      * Gets or sets the list of links that originate from this document.
      */
-    protected _links: Array<Link>;
-
-    /**
-     * Gets or sets the list of links that originate from this document.
-     */
-    public get links(): Array<Link> {
-        return this._links;
-    }
-
-    /**
-     * Gets or sets the list of links that originate from this document.
-     */
-    public set links(value: Array<Link>) {
-        this._links = value;
-    }
-
+    public links: Array<Link>;
 
     /**
      * Gets or sets the original format of the document.
      */
-    protected _sourceFormat: Document.SourceFormatEnum;
-
-    /**
-     * Gets or sets the original format of the document.
-     */
-    public get sourceFormat(): Document.SourceFormatEnum {
-        return this._sourceFormat;
-    }
-
-    /**
-     * Gets or sets the original format of the document.
-     */
-    public set sourceFormat(value: Document.SourceFormatEnum) {
-        this._sourceFormat = value;
-    }
-
+    public sourceFormat: Document.SourceFormatEnum;
 
     public constructor(init?: Partial< Document >) {
         Object.assign(this, init);

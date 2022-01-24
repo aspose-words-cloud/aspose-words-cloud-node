@@ -75,102 +75,27 @@ export class StorageFile {
     /**
      * True if it is a folder.
      */
-    protected _isFolder: boolean;
-
-    /**
-     * True if it is a folder.
-     */
-    public get isFolder(): boolean {
-        return this._isFolder;
-    }
-
-    /**
-     * True if it is a folder.
-     */
-    public set isFolder(value: boolean) {
-        this._isFolder = value;
-    }
-
+    public isFolder: boolean;
 
     /**
      * File or folder last modified DateTime.
      */
-    protected _modifiedDate: Date;
-
-    /**
-     * File or folder last modified DateTime.
-     */
-    public get modifiedDate(): Date {
-        return this._modifiedDate;
-    }
-
-    /**
-     * File or folder last modified DateTime.
-     */
-    public set modifiedDate(value: Date) {
-        this._modifiedDate = value;
-    }
-
+    public modifiedDate: Date;
 
     /**
      * File or folder name.
      */
-    protected _name: string;
-
-    /**
-     * File or folder name.
-     */
-    public get name(): string {
-        return this._name;
-    }
-
-    /**
-     * File or folder name.
-     */
-    public set name(value: string) {
-        this._name = value;
-    }
-
+    public name: string;
 
     /**
      * File or folder path.
      */
-    protected _path: string;
-
-    /**
-     * File or folder path.
-     */
-    public get path(): string {
-        return this._path;
-    }
-
-    /**
-     * File or folder path.
-     */
-    public set path(value: string) {
-        this._path = value;
-    }
-
+    public path: string;
 
     /**
      * File or folder size.
      */
-    protected _size: number;
-
-    /**
-     * File or folder size.
-     */
-    public get size(): number {
-        return this._size;
-    }
-
-    /**
-     * File or folder size.
-     */
-    public set size(value: number) {
-        this._size = value;
-    }
-
+    public size: number;
 
     public constructor(init?: Partial< StorageFile >) {
         Object.assign(this, init);

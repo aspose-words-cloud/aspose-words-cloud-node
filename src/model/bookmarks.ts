@@ -59,22 +59,7 @@ export class Bookmarks extends LinkElement {
     /**
      * Gets or sets the array of bookmarks.
      */
-    protected _bookmarkList: Array<Bookmark>;
-
-    /**
-     * Gets or sets the array of bookmarks.
-     */
-    public get bookmarkList(): Array<Bookmark> {
-        return this._bookmarkList;
-    }
-
-    /**
-     * Gets or sets the array of bookmarks.
-     */
-    public set bookmarkList(value: Array<Bookmark>) {
-        this._bookmarkList = value;
-    }
-
+    public bookmarkList: Array<Bookmark>;
 
     public constructor(init?: Partial< Bookmarks >) {
         super(init);

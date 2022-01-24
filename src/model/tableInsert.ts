@@ -67,62 +67,17 @@ export class TableInsert {
     /**
      * Gets or sets the number of columns. The default value is 2.
      */
-    protected _columnsCount: number;
-
-    /**
-     * Gets or sets the number of columns. The default value is 2.
-     */
-    public get columnsCount(): number {
-        return this._columnsCount;
-    }
-
-    /**
-     * Gets or sets the number of columns. The default value is 2.
-     */
-    public set columnsCount(value: number) {
-        this._columnsCount = value;
-    }
-
+    public columnsCount: number;
 
     /**
      * Gets or sets the position to insert the table. The table will be inserted before the specified position.
      */
-    protected _position: DocumentPosition;
-
-    /**
-     * Gets or sets the position to insert the table. The table will be inserted before the specified position.
-     */
-    public get position(): DocumentPosition {
-        return this._position;
-    }
-
-    /**
-     * Gets or sets the position to insert the table. The table will be inserted before the specified position.
-     */
-    public set position(value: DocumentPosition) {
-        this._position = value;
-    }
-
+    public position: DocumentPosition;
 
     /**
      * Gets or sets the number of rows. The default value is 2.
      */
-    protected _rowsCount: number;
-
-    /**
-     * Gets or sets the number of rows. The default value is 2.
-     */
-    public get rowsCount(): number {
-        return this._rowsCount;
-    }
-
-    /**
-     * Gets or sets the number of rows. The default value is 2.
-     */
-    public set rowsCount(value: number) {
-        this._rowsCount = value;
-    }
-
+    public rowsCount: number;
 
     public constructor(init?: Partial< TableInsert >) {
         Object.assign(this, init);

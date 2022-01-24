@@ -100,202 +100,52 @@ export class CompareOptions {
     /**
      * Gets or sets whether accept revisions before comparison or not.
      */
-    protected _acceptAllRevisionsBeforeComparison: boolean;
-
-    /**
-     * Gets or sets whether accept revisions before comparison or not.
-     */
-    public get acceptAllRevisionsBeforeComparison(): boolean {
-        return this._acceptAllRevisionsBeforeComparison;
-    }
-
-    /**
-     * Gets or sets whether accept revisions before comparison or not.
-     */
-    public set acceptAllRevisionsBeforeComparison(value: boolean) {
-        this._acceptAllRevisionsBeforeComparison = value;
-    }
-
+    public acceptAllRevisionsBeforeComparison: boolean;
 
     /**
      * Gets or sets a value indicating whether documents comparison is case insensitive. By default comparison is case sensitive.
      */
-    protected _ignoreCaseChanges: boolean;
-
-    /**
-     * Gets or sets a value indicating whether documents comparison is case insensitive. By default comparison is case sensitive.
-     */
-    public get ignoreCaseChanges(): boolean {
-        return this._ignoreCaseChanges;
-    }
-
-    /**
-     * Gets or sets a value indicating whether documents comparison is case insensitive. By default comparison is case sensitive.
-     */
-    public set ignoreCaseChanges(value: boolean) {
-        this._ignoreCaseChanges = value;
-    }
-
+    public ignoreCaseChanges: boolean;
 
     /**
      * Gets or sets a value indicating whether comments content is ignored. By default comments are not ignored.
      */
-    protected _ignoreComments: boolean;
-
-    /**
-     * Gets or sets a value indicating whether comments content is ignored. By default comments are not ignored.
-     */
-    public get ignoreComments(): boolean {
-        return this._ignoreComments;
-    }
-
-    /**
-     * Gets or sets a value indicating whether comments content is ignored. By default comments are not ignored.
-     */
-    public set ignoreComments(value: boolean) {
-        this._ignoreComments = value;
-    }
-
+    public ignoreComments: boolean;
 
     /**
      * Gets or sets a value indicating whether fields content is ignored. By default fields are not ignored.
      */
-    protected _ignoreFields: boolean;
-
-    /**
-     * Gets or sets a value indicating whether fields content is ignored. By default fields are not ignored.
-     */
-    public get ignoreFields(): boolean {
-        return this._ignoreFields;
-    }
-
-    /**
-     * Gets or sets a value indicating whether fields content is ignored. By default fields are not ignored.
-     */
-    public set ignoreFields(value: boolean) {
-        this._ignoreFields = value;
-    }
-
+    public ignoreFields: boolean;
 
     /**
      * Gets or sets a value indicating whether footnotes/endnotes content is ignored. By default footnotes/endnotes are not ignored.
      */
-    protected _ignoreFootnotes: boolean;
-
-    /**
-     * Gets or sets a value indicating whether footnotes/endnotes content is ignored. By default footnotes/endnotes are not ignored.
-     */
-    public get ignoreFootnotes(): boolean {
-        return this._ignoreFootnotes;
-    }
-
-    /**
-     * Gets or sets a value indicating whether footnotes/endnotes content is ignored. By default footnotes/endnotes are not ignored.
-     */
-    public set ignoreFootnotes(value: boolean) {
-        this._ignoreFootnotes = value;
-    }
-
+    public ignoreFootnotes: boolean;
 
     /**
      * Gets or sets a value indicating whether formatting is ignored. By default document formatting is not ignored.
      */
-    protected _ignoreFormatting: boolean;
-
-    /**
-     * Gets or sets a value indicating whether formatting is ignored. By default document formatting is not ignored.
-     */
-    public get ignoreFormatting(): boolean {
-        return this._ignoreFormatting;
-    }
-
-    /**
-     * Gets or sets a value indicating whether formatting is ignored. By default document formatting is not ignored.
-     */
-    public set ignoreFormatting(value: boolean) {
-        this._ignoreFormatting = value;
-    }
-
+    public ignoreFormatting: boolean;
 
     /**
      * Gets or sets a value indicating whether headers and footers content is ignored. By default headers and footers are not ignored.
      */
-    protected _ignoreHeadersAndFooters: boolean;
-
-    /**
-     * Gets or sets a value indicating whether headers and footers content is ignored. By default headers and footers are not ignored.
-     */
-    public get ignoreHeadersAndFooters(): boolean {
-        return this._ignoreHeadersAndFooters;
-    }
-
-    /**
-     * Gets or sets a value indicating whether headers and footers content is ignored. By default headers and footers are not ignored.
-     */
-    public set ignoreHeadersAndFooters(value: boolean) {
-        this._ignoreHeadersAndFooters = value;
-    }
-
+    public ignoreHeadersAndFooters: boolean;
 
     /**
      * Gets or sets a value indicating whether tables content is ignored. By default tables are not ignored.
      */
-    protected _ignoreTables: boolean;
-
-    /**
-     * Gets or sets a value indicating whether tables content is ignored. By default tables are not ignored.
-     */
-    public get ignoreTables(): boolean {
-        return this._ignoreTables;
-    }
-
-    /**
-     * Gets or sets a value indicating whether tables content is ignored. By default tables are not ignored.
-     */
-    public set ignoreTables(value: boolean) {
-        this._ignoreTables = value;
-    }
-
+    public ignoreTables: boolean;
 
     /**
      * Gets or sets a value indicating whether textboxes content is ignored. By default textboxes are not ignored.
      */
-    protected _ignoreTextboxes: boolean;
-
-    /**
-     * Gets or sets a value indicating whether textboxes content is ignored. By default textboxes are not ignored.
-     */
-    public get ignoreTextboxes(): boolean {
-        return this._ignoreTextboxes;
-    }
-
-    /**
-     * Gets or sets a value indicating whether textboxes content is ignored. By default textboxes are not ignored.
-     */
-    public set ignoreTextboxes(value: boolean) {
-        this._ignoreTextboxes = value;
-    }
-
+    public ignoreTextboxes: boolean;
 
     /**
      * Gets or sets the option that controls which document shall be used as a target during comparison.
      */
-    protected _target: CompareOptions.TargetEnum;
-
-    /**
-     * Gets or sets the option that controls which document shall be used as a target during comparison.
-     */
-    public get target(): CompareOptions.TargetEnum {
-        return this._target;
-    }
-
-    /**
-     * Gets or sets the option that controls which document shall be used as a target during comparison.
-     */
-    public set target(value: CompareOptions.TargetEnum) {
-        this._target = value;
-    }
-
+    public target: CompareOptions.TargetEnum;
 
     public constructor(init?: Partial< CompareOptions >) {
         Object.assign(this, init);

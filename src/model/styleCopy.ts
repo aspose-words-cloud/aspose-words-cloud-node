@@ -55,22 +55,7 @@ export class StyleCopy {
     /**
      * Gets or sets the case sensitive name of the style to copy from it.
      */
-    protected _styleName: string;
-
-    /**
-     * Gets or sets the case sensitive name of the style to copy from it.
-     */
-    public get styleName(): string {
-        return this._styleName;
-    }
-
-    /**
-     * Gets or sets the case sensitive name of the style to copy from it.
-     */
-    public set styleName(value: string) {
-        this._styleName = value;
-    }
-
+    public styleName: string;
 
     public constructor(init?: Partial< StyleCopy >) {
         Object.assign(this, init);

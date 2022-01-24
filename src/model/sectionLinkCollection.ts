@@ -59,22 +59,7 @@ export class SectionLinkCollection extends LinkElement {
     /**
      * Gets or sets the collection of section's links.
      */
-    protected _sectionLinkList: Array<SectionLink>;
-
-    /**
-     * Gets or sets the collection of section's links.
-     */
-    public get sectionLinkList(): Array<SectionLink> {
-        return this._sectionLinkList;
-    }
-
-    /**
-     * Gets or sets the collection of section's links.
-     */
-    public set sectionLinkList(value: Array<SectionLink>) {
-        this._sectionLinkList = value;
-    }
-
+    public sectionLinkList: Array<SectionLink>;
 
     public constructor(init?: Partial< SectionLinkCollection >) {
         super(init);

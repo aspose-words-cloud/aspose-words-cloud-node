@@ -82,122 +82,32 @@ export class CommentBase {
     /**
      * Gets or sets the author name for a comment.
      */
-    protected _author: string;
-
-    /**
-     * Gets or sets the author name for a comment.
-     */
-    public get author(): string {
-        return this._author;
-    }
-
-    /**
-     * Gets or sets the author name for a comment.
-     */
-    public set author(value: string) {
-        this._author = value;
-    }
-
+    public author: string;
 
     /**
      * Gets or sets the date and time that the comment was made.
      */
-    protected _dateTime: Date;
-
-    /**
-     * Gets or sets the date and time that the comment was made.
-     */
-    public get dateTime(): Date {
-        return this._dateTime;
-    }
-
-    /**
-     * Gets or sets the date and time that the comment was made.
-     */
-    public set dateTime(value: Date) {
-        this._dateTime = value;
-    }
-
+    public dateTime: Date;
 
     /**
      * Gets or sets the initials of the user associated with a specific comment.
      */
-    protected _initial: string;
-
-    /**
-     * Gets or sets the initials of the user associated with a specific comment.
-     */
-    public get initial(): string {
-        return this._initial;
-    }
-
-    /**
-     * Gets or sets the initials of the user associated with a specific comment.
-     */
-    public set initial(value: string) {
-        this._initial = value;
-    }
-
+    public initial: string;
 
     /**
      * Gets or sets the link to comment range end node.
      */
-    protected _rangeEnd: DocumentPosition;
-
-    /**
-     * Gets or sets the link to comment range end node.
-     */
-    public get rangeEnd(): DocumentPosition {
-        return this._rangeEnd;
-    }
-
-    /**
-     * Gets or sets the link to comment range end node.
-     */
-    public set rangeEnd(value: DocumentPosition) {
-        this._rangeEnd = value;
-    }
-
+    public rangeEnd: DocumentPosition;
 
     /**
      * Gets or sets the link to comment range start node.
      */
-    protected _rangeStart: DocumentPosition;
-
-    /**
-     * Gets or sets the link to comment range start node.
-     */
-    public get rangeStart(): DocumentPosition {
-        return this._rangeStart;
-    }
-
-    /**
-     * Gets or sets the link to comment range start node.
-     */
-    public set rangeStart(value: DocumentPosition) {
-        this._rangeStart = value;
-    }
-
+    public rangeStart: DocumentPosition;
 
     /**
      * Gets or sets text of the comment.
      */
-    protected _text: string;
-
-    /**
-     * Gets or sets text of the comment.
-     */
-    public get text(): string {
-        return this._text;
-    }
-
-    /**
-     * Gets or sets text of the comment.
-     */
-    public set text(value: string) {
-        this._text = value;
-    }
-
+    public text: string;
 
     public constructor(init?: Partial< CommentBase >) {
         Object.assign(this, init);

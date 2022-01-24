@@ -59,22 +59,7 @@ export class SearchResultsCollection extends LinkElement {
     /**
      * Gets or sets the collection of comments.
      */
-    protected _resultsList: Array<SearchResult>;
-
-    /**
-     * Gets or sets the collection of comments.
-     */
-    public get resultsList(): Array<SearchResult> {
-        return this._resultsList;
-    }
-
-    /**
-     * Gets or sets the collection of comments.
-     */
-    public set resultsList(value: Array<SearchResult>) {
-        this._resultsList = value;
-    }
-
+    public resultsList: Array<SearchResult>;
 
     public constructor(init?: Partial< SearchResultsCollection >) {
         super(init);

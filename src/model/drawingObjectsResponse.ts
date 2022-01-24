@@ -59,22 +59,7 @@ export class DrawingObjectsResponse extends WordsResponse {
     /**
      * Gets or sets the collection of DrawingObjects.
      */
-    protected _drawingObjects: DrawingObjectCollection;
-
-    /**
-     * Gets or sets the collection of DrawingObjects.
-     */
-    public get drawingObjects(): DrawingObjectCollection {
-        return this._drawingObjects;
-    }
-
-    /**
-     * Gets or sets the collection of DrawingObjects.
-     */
-    public set drawingObjects(value: DrawingObjectCollection) {
-        this._drawingObjects = value;
-    }
-
+    public drawingObjects: DrawingObjectCollection;
 
     public constructor(init?: Partial< DrawingObjectsResponse >) {
         super(init);

@@ -72,85 +72,23 @@ export class OdtSaveOptionsData extends SaveOptionsData {
     /**
      * Gets or sets a value indicating whether export should correspond to ODT specification 1.1 strictly.
      */
-    protected _isStrictSchema11: boolean;
-
-    /**
-     * Gets or sets a value indicating whether export should correspond to ODT specification 1.1 strictly.
-     */
-    public get isStrictSchema11(): boolean {
-        return this._isStrictSchema11;
-    }
-
-    /**
-     * Gets or sets a value indicating whether export should correspond to ODT specification 1.1 strictly.
-     */
-    public set isStrictSchema11(value: boolean) {
-        this._isStrictSchema11 = value;
-    }
-
+    public isStrictSchema11: boolean;
 
     /**
      * Gets or sets the units of measure to apply to document content. The default value is Aspose.Words.Saving.OdtSaveMeasureUnit.Centimeters.
      * Open Office uses centimeters when specifying lengths, widths and other measurable formatting and content properties in documents whereas MS Office uses inches.
      */
-    protected _measureUnit: OdtSaveOptionsData.MeasureUnitEnum;
-
-    /**
-     * Gets or sets the units of measure to apply to document content. The default value is Aspose.Words.Saving.OdtSaveMeasureUnit.Centimeters.
-     * Open Office uses centimeters when specifying lengths, widths and other measurable formatting and content properties in documents whereas MS Office uses inches.
-     */
-    public get measureUnit(): OdtSaveOptionsData.MeasureUnitEnum {
-        return this._measureUnit;
-    }
-
-    /**
-     * Gets or sets the units of measure to apply to document content. The default value is Aspose.Words.Saving.OdtSaveMeasureUnit.Centimeters.
-     * Open Office uses centimeters when specifying lengths, widths and other measurable formatting and content properties in documents whereas MS Office uses inches.
-     */
-    public set measureUnit(value: OdtSaveOptionsData.MeasureUnitEnum) {
-        this._measureUnit = value;
-    }
-
+    public measureUnit: OdtSaveOptionsData.MeasureUnitEnum;
 
     /**
      * Gets or sets the password to encrypt document.
      */
-    protected _password: string;
-
-    /**
-     * Gets or sets the password to encrypt document.
-     */
-    public get password(): string {
-        return this._password;
-    }
-
-    /**
-     * Gets or sets the password to encrypt document.
-     */
-    public set password(value: string) {
-        this._password = value;
-    }
-
+    public password: string;
 
     /**
      * Gets or sets a value indicating whether to use pretty formats output.
      */
-    protected _prettyFormat: boolean;
-
-    /**
-     * Gets or sets a value indicating whether to use pretty formats output.
-     */
-    public get prettyFormat(): boolean {
-        return this._prettyFormat;
-    }
-
-    /**
-     * Gets or sets a value indicating whether to use pretty formats output.
-     */
-    public set prettyFormat(value: boolean) {
-        this._prettyFormat = value;
-    }
-
+    public prettyFormat: boolean;
 
     public constructor(init?: Partial< OdtSaveOptionsData >) {
         super(init);

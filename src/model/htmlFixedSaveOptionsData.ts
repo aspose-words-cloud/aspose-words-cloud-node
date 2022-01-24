@@ -123,293 +123,75 @@ export class HtmlFixedSaveOptionsData extends FixedPageSaveOptionsData {
      * Gets or sets the prefix which is added to all class names in style.css file.
      * Default value is "aw".
      */
-    protected _cssClassNamesPrefix: string;
-
-    /**
-     * Gets or sets the prefix which is added to all class names in style.css file.
-     * Default value is "aw".
-     */
-    public get cssClassNamesPrefix(): string {
-        return this._cssClassNamesPrefix;
-    }
-
-    /**
-     * Gets or sets the prefix which is added to all class names in style.css file.
-     * Default value is "aw".
-     */
-    public set cssClassNamesPrefix(value: string) {
-        this._cssClassNamesPrefix = value;
-    }
-
+    public cssClassNamesPrefix: string;
 
     /**
      * Gets or sets the character encoding.
      */
-    protected _encoding: string;
-
-    /**
-     * Gets or sets the character encoding.
-     */
-    public get encoding(): string {
-        return this._encoding;
-    }
-
-    /**
-     * Gets or sets the character encoding.
-     */
-    public set encoding(value: string) {
-        this._encoding = value;
-    }
-
+    public encoding: string;
 
     /**
      * Gets or sets a value indicating whether the CSS (Cascading Style Sheet) should be embedded into the Html document.
      */
-    protected _exportEmbeddedCss: boolean;
-
-    /**
-     * Gets or sets a value indicating whether the CSS (Cascading Style Sheet) should be embedded into the Html document.
-     */
-    public get exportEmbeddedCss(): boolean {
-        return this._exportEmbeddedCss;
-    }
-
-    /**
-     * Gets or sets a value indicating whether the CSS (Cascading Style Sheet) should be embedded into the Html document.
-     */
-    public set exportEmbeddedCss(value: boolean) {
-        this._exportEmbeddedCss = value;
-    }
-
+    public exportEmbeddedCss: boolean;
 
     /**
      * Gets or sets a value indicating whether fonts should be embedded into the Html document in Base64 format.
      */
-    protected _exportEmbeddedFonts: boolean;
-
-    /**
-     * Gets or sets a value indicating whether fonts should be embedded into the Html document in Base64 format.
-     */
-    public get exportEmbeddedFonts(): boolean {
-        return this._exportEmbeddedFonts;
-    }
-
-    /**
-     * Gets or sets a value indicating whether fonts should be embedded into the Html document in Base64 format.
-     */
-    public set exportEmbeddedFonts(value: boolean) {
-        this._exportEmbeddedFonts = value;
-    }
-
+    public exportEmbeddedFonts: boolean;
 
     /**
      * Gets or sets a value indicating whether images should be embedded into the Html document in Base64 format.
      */
-    protected _exportEmbeddedImages: boolean;
-
-    /**
-     * Gets or sets a value indicating whether images should be embedded into the Html document in Base64 format.
-     */
-    public get exportEmbeddedImages(): boolean {
-        return this._exportEmbeddedImages;
-    }
-
-    /**
-     * Gets or sets a value indicating whether images should be embedded into the Html document in Base64 format.
-     */
-    public set exportEmbeddedImages(value: boolean) {
-        this._exportEmbeddedImages = value;
-    }
-
+    public exportEmbeddedImages: boolean;
 
     /**
      * Gets or sets a value indicating whether form fields are exported as interactive items (as 'input' tag) rather than converted to text or graphics.
      */
-    protected _exportFormFields: boolean;
-
-    /**
-     * Gets or sets a value indicating whether form fields are exported as interactive items (as 'input' tag) rather than converted to text or graphics.
-     */
-    public get exportFormFields(): boolean {
-        return this._exportFormFields;
-    }
-
-    /**
-     * Gets or sets a value indicating whether form fields are exported as interactive items (as 'input' tag) rather than converted to text or graphics.
-     */
-    public set exportFormFields(value: boolean) {
-        this._exportFormFields = value;
-    }
-
+    public exportFormFields: boolean;
 
     /**
      * Gets or sets the export format of fonts.
      */
-    protected _fontFormat: string;
-
-    /**
-     * Gets or sets the export format of fonts.
-     */
-    public get fontFormat(): string {
-        return this._fontFormat;
-    }
-
-    /**
-     * Gets or sets the export format of fonts.
-     */
-    public set fontFormat(value: string) {
-        this._fontFormat = value;
-    }
-
+    public fontFormat: string;
 
     /**
      * Gets or sets the horizontal alignment of pages in the HTML document.
      * The default value is HtmlFixedHorizontalPageAlignment.Center.
      */
-    protected _pageHorizontalAlignment: string;
-
-    /**
-     * Gets or sets the horizontal alignment of pages in the HTML document.
-     * The default value is HtmlFixedHorizontalPageAlignment.Center.
-     */
-    public get pageHorizontalAlignment(): string {
-        return this._pageHorizontalAlignment;
-    }
-
-    /**
-     * Gets or sets the horizontal alignment of pages in the HTML document.
-     * The default value is HtmlFixedHorizontalPageAlignment.Center.
-     */
-    public set pageHorizontalAlignment(value: string) {
-        this._pageHorizontalAlignment = value;
-    }
-
+    public pageHorizontalAlignment: string;
 
     /**
      * Gets or sets the margin around pages in HTML document.
      * The margins value is measured in points and should be equal to or greater than 0.
      * Default value is 10 points.
      */
-    protected _pageMargins: number;
-
-    /**
-     * Gets or sets the margin around pages in HTML document.
-     * The margins value is measured in points and should be equal to or greater than 0.
-     * Default value is 10 points.
-     */
-    public get pageMargins(): number {
-        return this._pageMargins;
-    }
-
-    /**
-     * Gets or sets the margin around pages in HTML document.
-     * The margins value is measured in points and should be equal to or greater than 0.
-     * Default value is 10 points.
-     */
-    public set pageMargins(value: number) {
-        this._pageMargins = value;
-    }
-
+    public pageMargins: number;
 
     /**
      * Gets or sets the physical folder where resources are saved when exporting the document.
      */
-    protected _resourcesFolder: string;
-
-    /**
-     * Gets or sets the physical folder where resources are saved when exporting the document.
-     */
-    public get resourcesFolder(): string {
-        return this._resourcesFolder;
-    }
-
-    /**
-     * Gets or sets the physical folder where resources are saved when exporting the document.
-     */
-    public set resourcesFolder(value: string) {
-        this._resourcesFolder = value;
-    }
-
+    public resourcesFolder: string;
 
     /**
      * Gets or sets the name of the folder used to construct resource URIs.
      */
-    protected _resourcesFolderAlias: string;
-
-    /**
-     * Gets or sets the name of the folder used to construct resource URIs.
-     */
-    public get resourcesFolderAlias(): string {
-        return this._resourcesFolderAlias;
-    }
-
-    /**
-     * Gets or sets the name of the folder used to construct resource URIs.
-     */
-    public set resourcesFolderAlias(value: string) {
-        this._resourcesFolderAlias = value;
-    }
-
+    public resourcesFolderAlias: string;
 
     /**
      * Gets or sets a value indicating whether "@font-face" CSS rules should be placed into a separate file "fontFaces.css" when a document is being saved with external stylesheet (that is, when Aspose.Words.Saving.HtmlFixedSaveOptions.ExportEmbeddedCss is false). The default value is false, all CSS rules are written into single file "styles.css".
      */
-    protected _saveFontFaceCssSeparately: boolean;
-
-    /**
-     * Gets or sets a value indicating whether "@font-face" CSS rules should be placed into a separate file "fontFaces.css" when a document is being saved with external stylesheet (that is, when Aspose.Words.Saving.HtmlFixedSaveOptions.ExportEmbeddedCss is false). The default value is false, all CSS rules are written into single file "styles.css".
-     */
-    public get saveFontFaceCssSeparately(): boolean {
-        return this._saveFontFaceCssSeparately;
-    }
-
-    /**
-     * Gets or sets a value indicating whether "@font-face" CSS rules should be placed into a separate file "fontFaces.css" when a document is being saved with external stylesheet (that is, when Aspose.Words.Saving.HtmlFixedSaveOptions.ExportEmbeddedCss is false). The default value is false, all CSS rules are written into single file "styles.css".
-     */
-    public set saveFontFaceCssSeparately(value: boolean) {
-        this._saveFontFaceCssSeparately = value;
-    }
-
+    public saveFontFaceCssSeparately: boolean;
 
     /**
      * Gets or sets a value indicating whether to show border around pages.
      */
-    protected _showPageBorder: boolean;
-
-    /**
-     * Gets or sets a value indicating whether to show border around pages.
-     */
-    public get showPageBorder(): boolean {
-        return this._showPageBorder;
-    }
-
-    /**
-     * Gets or sets a value indicating whether to show border around pages.
-     */
-    public set showPageBorder(value: boolean) {
-        this._showPageBorder = value;
-    }
-
+    public showPageBorder: boolean;
 
     /**
      * Gets or sets a value indicating whether fonts from target machine must be used to display the document. If this flag is set to true, Aspose.Words.Saving.HtmlFixedSaveOptions.FontFormat and Aspose.Words.Saving.HtmlFixedSaveOptions.ExportEmbeddedFonts properties do not have effect, also Aspose.Words.Saving.HtmlFixedSaveOptions.ResourceSavingCallback is not fired for fonts. The default value is false.
      */
-    protected _useTargetMachineFonts: boolean;
-
-    /**
-     * Gets or sets a value indicating whether fonts from target machine must be used to display the document. If this flag is set to true, Aspose.Words.Saving.HtmlFixedSaveOptions.FontFormat and Aspose.Words.Saving.HtmlFixedSaveOptions.ExportEmbeddedFonts properties do not have effect, also Aspose.Words.Saving.HtmlFixedSaveOptions.ResourceSavingCallback is not fired for fonts. The default value is false.
-     */
-    public get useTargetMachineFonts(): boolean {
-        return this._useTargetMachineFonts;
-    }
-
-    /**
-     * Gets or sets a value indicating whether fonts from target machine must be used to display the document. If this flag is set to true, Aspose.Words.Saving.HtmlFixedSaveOptions.FontFormat and Aspose.Words.Saving.HtmlFixedSaveOptions.ExportEmbeddedFonts properties do not have effect, also Aspose.Words.Saving.HtmlFixedSaveOptions.ResourceSavingCallback is not fired for fonts. The default value is false.
-     */
-    public set useTargetMachineFonts(value: boolean) {
-        this._useTargetMachineFonts = value;
-    }
-
+    public useTargetMachineFonts: boolean;
 
     public constructor(init?: Partial< HtmlFixedSaveOptionsData >) {
         super(init);

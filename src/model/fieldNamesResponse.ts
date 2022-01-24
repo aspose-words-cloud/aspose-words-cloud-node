@@ -59,22 +59,7 @@ export class FieldNamesResponse extends WordsResponse {
     /**
      * Gets or sets the collection of mail merge fields.
      */
-    protected _fieldNames: FieldNames;
-
-    /**
-     * Gets or sets the collection of mail merge fields.
-     */
-    public get fieldNames(): FieldNames {
-        return this._fieldNames;
-    }
-
-    /**
-     * Gets or sets the collection of mail merge fields.
-     */
-    public set fieldNames(value: FieldNames) {
-        this._fieldNames = value;
-    }
-
+    public fieldNames: FieldNames;
 
     public constructor(init?: Partial< FieldNamesResponse >) {
         super(init);

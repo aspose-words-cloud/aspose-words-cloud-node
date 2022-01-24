@@ -100,202 +100,52 @@ export class ListLevelUpdate {
     /**
      * Gets or sets the justification of the actual number of the list item.
      */
-    protected _alignment: ListLevelUpdate.AlignmentEnum;
-
-    /**
-     * Gets or sets the justification of the actual number of the list item.
-     */
-    public get alignment(): ListLevelUpdate.AlignmentEnum {
-        return this._alignment;
-    }
-
-    /**
-     * Gets or sets the justification of the actual number of the list item.
-     */
-    public set alignment(value: ListLevelUpdate.AlignmentEnum) {
-        this._alignment = value;
-    }
-
+    public alignment: ListLevelUpdate.AlignmentEnum;
 
     /**
      * Gets or sets a value indicating whether the level turns all inherited numbers to Arabic, false if it preserves their number style.
      */
-    protected _isLegal: boolean;
-
-    /**
-     * Gets or sets a value indicating whether the level turns all inherited numbers to Arabic, false if it preserves their number style.
-     */
-    public get isLegal(): boolean {
-        return this._isLegal;
-    }
-
-    /**
-     * Gets or sets a value indicating whether the level turns all inherited numbers to Arabic, false if it preserves their number style.
-     */
-    public set isLegal(value: boolean) {
-        this._isLegal = value;
-    }
-
+    public isLegal: boolean;
 
     /**
      * Gets or sets the number format for the list level.
      */
-    protected _numberFormat: string;
-
-    /**
-     * Gets or sets the number format for the list level.
-     */
-    public get numberFormat(): string {
-        return this._numberFormat;
-    }
-
-    /**
-     * Gets or sets the number format for the list level.
-     */
-    public set numberFormat(value: string) {
-        this._numberFormat = value;
-    }
-
+    public numberFormat: string;
 
     /**
      * Gets or sets the position (in points) of the number or bullet for the list level.
      */
-    protected _numberPosition: number;
-
-    /**
-     * Gets or sets the position (in points) of the number or bullet for the list level.
-     */
-    public get numberPosition(): number {
-        return this._numberPosition;
-    }
-
-    /**
-     * Gets or sets the position (in points) of the number or bullet for the list level.
-     */
-    public set numberPosition(value: number) {
-        this._numberPosition = value;
-    }
-
+    public numberPosition: number;
 
     /**
      * Gets or sets the number style for this list level.
      */
-    protected _numberStyle: ListLevelUpdate.NumberStyleEnum;
-
-    /**
-     * Gets or sets the number style for this list level.
-     */
-    public get numberStyle(): ListLevelUpdate.NumberStyleEnum {
-        return this._numberStyle;
-    }
-
-    /**
-     * Gets or sets the number style for this list level.
-     */
-    public set numberStyle(value: ListLevelUpdate.NumberStyleEnum) {
-        this._numberStyle = value;
-    }
-
+    public numberStyle: ListLevelUpdate.NumberStyleEnum;
 
     /**
      * Gets or sets the list level that must appear before the specified list level restarts numbering.
      */
-    protected _restartAfterLevel: number;
-
-    /**
-     * Gets or sets the list level that must appear before the specified list level restarts numbering.
-     */
-    public get restartAfterLevel(): number {
-        return this._restartAfterLevel;
-    }
-
-    /**
-     * Gets or sets the list level that must appear before the specified list level restarts numbering.
-     */
-    public set restartAfterLevel(value: number) {
-        this._restartAfterLevel = value;
-    }
-
+    public restartAfterLevel: number;
 
     /**
      * Gets or sets the starting number for this list level.
      */
-    protected _startAt: number;
-
-    /**
-     * Gets or sets the starting number for this list level.
-     */
-    public get startAt(): number {
-        return this._startAt;
-    }
-
-    /**
-     * Gets or sets the starting number for this list level.
-     */
-    public set startAt(value: number) {
-        this._startAt = value;
-    }
-
+    public startAt: number;
 
     /**
      * Gets or sets the tab position (in points) for the list level.
      */
-    protected _tabPosition: number;
-
-    /**
-     * Gets or sets the tab position (in points) for the list level.
-     */
-    public get tabPosition(): number {
-        return this._tabPosition;
-    }
-
-    /**
-     * Gets or sets the tab position (in points) for the list level.
-     */
-    public set tabPosition(value: number) {
-        this._tabPosition = value;
-    }
-
+    public tabPosition: number;
 
     /**
      * Gets or sets the position (in points) for the second line of wrapping text for the list level.
      */
-    protected _textPosition: number;
-
-    /**
-     * Gets or sets the position (in points) for the second line of wrapping text for the list level.
-     */
-    public get textPosition(): number {
-        return this._textPosition;
-    }
-
-    /**
-     * Gets or sets the position (in points) for the second line of wrapping text for the list level.
-     */
-    public set textPosition(value: number) {
-        this._textPosition = value;
-    }
-
+    public textPosition: number;
 
     /**
      * Gets or sets the character to be inserted after the number for the list level.
      */
-    protected _trailingCharacter: ListLevelUpdate.TrailingCharacterEnum;
-
-    /**
-     * Gets or sets the character to be inserted after the number for the list level.
-     */
-    public get trailingCharacter(): ListLevelUpdate.TrailingCharacterEnum {
-        return this._trailingCharacter;
-    }
-
-    /**
-     * Gets or sets the character to be inserted after the number for the list level.
-     */
-    public set trailingCharacter(value: ListLevelUpdate.TrailingCharacterEnum) {
-        this._trailingCharacter = value;
-    }
-
+    public trailingCharacter: ListLevelUpdate.TrailingCharacterEnum;
 
     public constructor(init?: Partial< ListLevelUpdate >) {
         Object.assign(this, init);

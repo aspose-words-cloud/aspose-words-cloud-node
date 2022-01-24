@@ -57,22 +57,7 @@ export class FieldLink extends NodeLink {
     /**
      * Gets or sets the field code.
      */
-    protected _fieldCode: string;
-
-    /**
-     * Gets or sets the field code.
-     */
-    public get fieldCode(): string {
-        return this._fieldCode;
-    }
-
-    /**
-     * Gets or sets the field code.
-     */
-    public set fieldCode(value: string) {
-        this._fieldCode = value;
-    }
-
+    public fieldCode: string;
 
     public constructor(init?: Partial< FieldLink >) {
         super(init);

@@ -68,64 +68,17 @@ export class DocumentProperty extends LinkElement {
      * Gets or sets a value indicating whether the property is built-in or not.
      * If true the property is built-in, if false the property is custom.
      */
-    protected _builtIn: boolean;
-
-    /**
-     * Gets or sets a value indicating whether the property is built-in or not.
-     * If true the property is built-in, if false the property is custom.
-     */
-    public get builtIn(): boolean {
-        return this._builtIn;
-    }
-
-    /**
-     * Gets or sets a value indicating whether the property is built-in or not.
-     * If true the property is built-in, if false the property is custom.
-     */
-    public set builtIn(value: boolean) {
-        this._builtIn = value;
-    }
-
+    public builtIn: boolean;
 
     /**
      * Gets or sets the name of the document property.
      */
-    protected _name: string;
-
-    /**
-     * Gets or sets the name of the document property.
-     */
-    public get name(): string {
-        return this._name;
-    }
-
-    /**
-     * Gets or sets the name of the document property.
-     */
-    public set name(value: string) {
-        this._name = value;
-    }
-
+    public name: string;
 
     /**
      * Gets or sets the value of the document property.
      */
-    protected _value: string;
-
-    /**
-     * Gets or sets the value of the document property.
-     */
-    public get value(): string {
-        return this._value;
-    }
-
-    /**
-     * Gets or sets the value of the document property.
-     */
-    public set value(value: string) {
-        this._value = value;
-    }
-
+    public value: string;
 
     public constructor(init?: Partial< DocumentProperty >) {
         super(init);

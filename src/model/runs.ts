@@ -59,22 +59,7 @@ export class Runs extends LinkElement {
     /**
      * Gets or sets the collection of runs.
      */
-    protected _list: Array<Run>;
-
-    /**
-     * Gets or sets the collection of runs.
-     */
-    public get list(): Array<Run> {
-        return this._list;
-    }
-
-    /**
-     * Gets or sets the collection of runs.
-     */
-    public set list(value: Array<Run>) {
-        this._list = value;
-    }
-
+    public list: Array<Run>;
 
     public constructor(init?: Partial< Runs >) {
         super(init);

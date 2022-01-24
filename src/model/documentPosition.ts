@@ -62,42 +62,12 @@ export class DocumentPosition {
     /**
      * Gets or sets the link to a node.
      */
-    protected _node: NodeLink;
-
-    /**
-     * Gets or sets the link to a node.
-     */
-    public get node(): NodeLink {
-        return this._node;
-    }
-
-    /**
-     * Gets or sets the link to a node.
-     */
-    public set node(value: NodeLink) {
-        this._node = value;
-    }
-
+    public node: NodeLink;
 
     /**
      * Gets or sets the offset in the node.
      */
-    protected _offset: number;
-
-    /**
-     * Gets or sets the offset in the node.
-     */
-    public get offset(): number {
-        return this._offset;
-    }
-
-    /**
-     * Gets or sets the offset in the node.
-     */
-    public set offset(value: number) {
-        this._offset = value;
-    }
-
+    public offset: number;
 
     public constructor(init?: Partial< DocumentPosition >) {
         Object.assign(this, init);

@@ -59,22 +59,7 @@ export class HeaderFootersResponse extends WordsResponse {
     /**
      * Gets or sets the collection of HeaderFooter elements.
      */
-    protected _headerFooters: HeaderFooterLinkCollection;
-
-    /**
-     * Gets or sets the collection of HeaderFooter elements.
-     */
-    public get headerFooters(): HeaderFooterLinkCollection {
-        return this._headerFooters;
-    }
-
-    /**
-     * Gets or sets the collection of HeaderFooter elements.
-     */
-    public set headerFooters(value: HeaderFooterLinkCollection) {
-        this._headerFooters = value;
-    }
-
+    public headerFooters: HeaderFooterLinkCollection;
 
     public constructor(init?: Partial< HeaderFootersResponse >) {
         super(init);

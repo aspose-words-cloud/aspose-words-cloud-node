@@ -64,42 +64,12 @@ export class ReplaceTextResponse extends WordsResponse {
     /**
      * Gets or sets the link to the document.
      */
-    protected _documentLink: FileLink;
-
-    /**
-     * Gets or sets the link to the document.
-     */
-    public get documentLink(): FileLink {
-        return this._documentLink;
-    }
-
-    /**
-     * Gets or sets the link to the document.
-     */
-    public set documentLink(value: FileLink) {
-        this._documentLink = value;
-    }
-
+    public documentLink: FileLink;
 
     /**
      * Gets or sets the number of occurrences of the captured text in the document.
      */
-    protected _matches: number;
-
-    /**
-     * Gets or sets the number of occurrences of the captured text in the document.
-     */
-    public get matches(): number {
-        return this._matches;
-    }
-
-    /**
-     * Gets or sets the number of occurrences of the captured text in the document.
-     */
-    public set matches(value: number) {
-        this._matches = value;
-    }
-
+    public matches: number;
 
     public constructor(init?: Partial< ReplaceTextResponse >) {
         super(init);

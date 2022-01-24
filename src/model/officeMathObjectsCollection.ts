@@ -59,22 +59,7 @@ export class OfficeMathObjectsCollection extends LinkElement {
     /**
      * Gets or sets the collection of OfficeMath objects.
      */
-    protected _list: Array<OfficeMathObject>;
-
-    /**
-     * Gets or sets the collection of OfficeMath objects.
-     */
-    public get list(): Array<OfficeMathObject> {
-        return this._list;
-    }
-
-    /**
-     * Gets or sets the collection of OfficeMath objects.
-     */
-    public set list(value: Array<OfficeMathObject>) {
-        this._list = value;
-    }
-
+    public list: Array<OfficeMathObject>;
 
     public constructor(init?: Partial< OfficeMathObjectsCollection >) {
         super(init);

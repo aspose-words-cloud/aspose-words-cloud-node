@@ -59,22 +59,7 @@ export class FootnoteCollection extends LinkElement {
     /**
      * Gets or sets the collection of footnotes.
      */
-    protected _list: Array<Footnote>;
-
-    /**
-     * Gets or sets the collection of footnotes.
-     */
-    public get list(): Array<Footnote> {
-        return this._list;
-    }
-
-    /**
-     * Gets or sets the collection of footnotes.
-     */
-    public set list(value: Array<Footnote>) {
-        this._list = value;
-    }
-
+    public list: Array<Footnote>;
 
     public constructor(init?: Partial< FootnoteCollection >) {
         super(init);

@@ -55,22 +55,7 @@ export class WordsResponse {
     /**
      * Gets or sets the request Id.
      */
-    protected _requestId: string;
-
-    /**
-     * Gets or sets the request Id.
-     */
-    public get requestId(): string {
-        return this._requestId;
-    }
-
-    /**
-     * Gets or sets the request Id.
-     */
-    public set requestId(value: string) {
-        this._requestId = value;
-    }
-
+    public requestId: string;
 
     public constructor(init?: Partial< WordsResponse >) {
         Object.assign(this, init);

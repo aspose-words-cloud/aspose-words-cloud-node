@@ -67,62 +67,17 @@ export class Shading {
     /**
      * Gets or sets the color that's applied to the background of the Shading object.
      */
-    protected _backgroundPatternColor: XmlColor;
-
-    /**
-     * Gets or sets the color that's applied to the background of the Shading object.
-     */
-    public get backgroundPatternColor(): XmlColor {
-        return this._backgroundPatternColor;
-    }
-
-    /**
-     * Gets or sets the color that's applied to the background of the Shading object.
-     */
-    public set backgroundPatternColor(value: XmlColor) {
-        this._backgroundPatternColor = value;
-    }
-
+    public backgroundPatternColor: XmlColor;
 
     /**
      * Gets or sets the color that's applied to the foreground of the Shading object.
      */
-    protected _foregroundPatternColor: XmlColor;
-
-    /**
-     * Gets or sets the color that's applied to the foreground of the Shading object.
-     */
-    public get foregroundPatternColor(): XmlColor {
-        return this._foregroundPatternColor;
-    }
-
-    /**
-     * Gets or sets the color that's applied to the foreground of the Shading object.
-     */
-    public set foregroundPatternColor(value: XmlColor) {
-        this._foregroundPatternColor = value;
-    }
-
+    public foregroundPatternColor: XmlColor;
 
     /**
      * Gets or sets the shading texture.
      */
-    protected _texture: Shading.TextureEnum;
-
-    /**
-     * Gets or sets the shading texture.
-     */
-    public get texture(): Shading.TextureEnum {
-        return this._texture;
-    }
-
-    /**
-     * Gets or sets the shading texture.
-     */
-    public set texture(value: Shading.TextureEnum) {
-        this._texture = value;
-    }
-
+    public texture: Shading.TextureEnum;
 
     public constructor(init?: Partial< Shading >) {
         Object.assign(this, init);

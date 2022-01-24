@@ -55,22 +55,7 @@ export class ListUpdate {
     /**
      * Gets or sets a value indicating whether list should be restarted at each section. The default value is false.
      */
-    protected _isRestartAtEachSection: boolean;
-
-    /**
-     * Gets or sets a value indicating whether list should be restarted at each section. The default value is false.
-     */
-    public get isRestartAtEachSection(): boolean {
-        return this._isRestartAtEachSection;
-    }
-
-    /**
-     * Gets or sets a value indicating whether list should be restarted at each section. The default value is false.
-     */
-    public set isRestartAtEachSection(value: boolean) {
-        this._isRestartAtEachSection = value;
-    }
-
+    public isRestartAtEachSection: boolean;
 
     public constructor(init?: Partial< ListUpdate >) {
         Object.assign(this, init);

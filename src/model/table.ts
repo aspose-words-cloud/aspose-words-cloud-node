@@ -66,42 +66,12 @@ export class Table extends NodeLink {
     /**
      * Gets or sets table properties.
      */
-    protected _tableProperties: TableProperties;
-
-    /**
-     * Gets or sets table properties.
-     */
-    public get tableProperties(): TableProperties {
-        return this._tableProperties;
-    }
-
-    /**
-     * Gets or sets table properties.
-     */
-    public set tableProperties(value: TableProperties) {
-        this._tableProperties = value;
-    }
-
+    public tableProperties: TableProperties;
 
     /**
      * Gets or sets the collection of table's rows.
      */
-    protected _tableRowList: Array<TableRow>;
-
-    /**
-     * Gets or sets the collection of table's rows.
-     */
-    public get tableRowList(): Array<TableRow> {
-        return this._tableRowList;
-    }
-
-    /**
-     * Gets or sets the collection of table's rows.
-     */
-    public set tableRowList(value: Array<TableRow>) {
-        this._tableRowList = value;
-    }
-
+    public tableRowList: Array<TableRow>;
 
     public constructor(init?: Partial< Table >) {
         super(init);

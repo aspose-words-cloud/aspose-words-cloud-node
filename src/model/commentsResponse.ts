@@ -59,22 +59,7 @@ export class CommentsResponse extends WordsResponse {
     /**
      * Gets or sets the collection of comments.
      */
-    protected _comments: CommentsCollection;
-
-    /**
-     * Gets or sets the collection of comments.
-     */
-    public get comments(): CommentsCollection {
-        return this._comments;
-    }
-
-    /**
-     * Gets or sets the collection of comments.
-     */
-    public set comments(value: CommentsCollection) {
-        this._comments = value;
-    }
-
+    public comments: CommentsCollection;
 
     public constructor(init?: Partial< CommentsResponse >) {
         super(init);

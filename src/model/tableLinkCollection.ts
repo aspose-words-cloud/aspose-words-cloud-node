@@ -59,22 +59,7 @@ export class TableLinkCollection extends LinkElement {
     /**
      * Gets or sets the collection of table's links.
      */
-    protected _tableLinkList: Array<TableLink>;
-
-    /**
-     * Gets or sets the collection of table's links.
-     */
-    public get tableLinkList(): Array<TableLink> {
-        return this._tableLinkList;
-    }
-
-    /**
-     * Gets or sets the collection of table's links.
-     */
-    public set tableLinkList(value: Array<TableLink>) {
-        this._tableLinkList = value;
-    }
-
+    public tableLinkList: Array<TableLink>;
 
     public constructor(init?: Partial< TableLinkCollection >) {
         super(init);

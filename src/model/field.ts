@@ -62,42 +62,12 @@ export class Field extends FieldLink {
     /**
      * Gets or sets the LCID of the field.
      */
-    protected _localeId: string;
-
-    /**
-     * Gets or sets the LCID of the field.
-     */
-    public get localeId(): string {
-        return this._localeId;
-    }
-
-    /**
-     * Gets or sets the LCID of the field.
-     */
-    public set localeId(value: string) {
-        this._localeId = value;
-    }
-
+    public localeId: string;
 
     /**
      * Gets or sets the field result.
      */
-    protected _result: string;
-
-    /**
-     * Gets or sets the field result.
-     */
-    public get result(): string {
-        return this._result;
-    }
-
-    /**
-     * Gets or sets the field result.
-     */
-    public set result(value: string) {
-        this._result = value;
-    }
-
+    public result: string;
 
     public constructor(init?: Partial< Field >) {
         super(init);

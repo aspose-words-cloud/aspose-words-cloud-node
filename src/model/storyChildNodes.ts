@@ -57,22 +57,7 @@ export class StoryChildNodes {
     /**
      * Gets or sets the list of child nodes.
      */
-    protected _childNodes: Array<NodeLink>;
-
-    /**
-     * Gets or sets the list of child nodes.
-     */
-    public get childNodes(): Array<NodeLink> {
-        return this._childNodes;
-    }
-
-    /**
-     * Gets or sets the list of child nodes.
-     */
-    public set childNodes(value: Array<NodeLink>) {
-        this._childNodes = value;
-    }
-
+    public childNodes: Array<NodeLink>;
 
     public constructor(init?: Partial< StoryChildNodes >) {
         Object.assign(this, init);

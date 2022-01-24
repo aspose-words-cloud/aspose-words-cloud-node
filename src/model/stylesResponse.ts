@@ -59,22 +59,7 @@ export class StylesResponse extends WordsResponse {
     /**
      * Gets or sets the array of styles.
      */
-    protected _styles: Array<Style>;
-
-    /**
-     * Gets or sets the array of styles.
-     */
-    public get styles(): Array<Style> {
-        return this._styles;
-    }
-
-    /**
-     * Gets or sets the array of styles.
-     */
-    public set styles(value: Array<Style>) {
-        this._styles = value;
-    }
-
+    public styles: Array<Style>;
 
     public constructor(init?: Partial< StylesResponse >) {
         super(init);

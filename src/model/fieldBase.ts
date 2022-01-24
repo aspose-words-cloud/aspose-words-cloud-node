@@ -60,42 +60,12 @@ export class FieldBase {
     /**
      * Gets or sets the field code.
      */
-    protected _fieldCode: string;
-
-    /**
-     * Gets or sets the field code.
-     */
-    public get fieldCode(): string {
-        return this._fieldCode;
-    }
-
-    /**
-     * Gets or sets the field code.
-     */
-    public set fieldCode(value: string) {
-        this._fieldCode = value;
-    }
-
+    public fieldCode: string;
 
     /**
      * Gets or sets the LCID of the field.
      */
-    protected _localeId: string;
-
-    /**
-     * Gets or sets the LCID of the field.
-     */
-    public get localeId(): string {
-        return this._localeId;
-    }
-
-    /**
-     * Gets or sets the LCID of the field.
-     */
-    public set localeId(value: string) {
-        this._localeId = value;
-    }
-
+    public localeId: string;
 
     public constructor(init?: Partial< FieldBase >) {
         Object.assign(this, init);

@@ -59,22 +59,7 @@ export class SectionLinkCollectionResponse extends WordsResponse {
     /**
      * Gets or sets the collection of sections.
      */
-    protected _sections: SectionLinkCollection;
-
-    /**
-     * Gets or sets the collection of sections.
-     */
-    public get sections(): SectionLinkCollection {
-        return this._sections;
-    }
-
-    /**
-     * Gets or sets the collection of sections.
-     */
-    public set sections(value: SectionLinkCollection) {
-        this._sections = value;
-    }
-
+    public sections: SectionLinkCollection;
 
     public constructor(init?: Partial< SectionLinkCollectionResponse >) {
         super(init);

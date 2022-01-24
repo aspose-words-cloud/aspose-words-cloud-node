@@ -59,22 +59,7 @@ export class SaveResponse extends WordsResponse {
     /**
      * Gets or sets the save result.
      */
-    protected _saveResult: SaveResult;
-
-    /**
-     * Gets or sets the save result.
-     */
-    public get saveResult(): SaveResult {
-        return this._saveResult;
-    }
-
-    /**
-     * Gets or sets the save result.
-     */
-    public set saveResult(value: SaveResult) {
-        this._saveResult = value;
-    }
-
+    public saveResult: SaveResult;
 
     public constructor(init?: Partial< SaveResponse >) {
         super(init);

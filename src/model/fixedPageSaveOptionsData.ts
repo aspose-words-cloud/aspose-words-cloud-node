@@ -90,150 +90,39 @@ export class FixedPageSaveOptionsData extends SaveOptionsData {
      * Gets or sets the value determining how colors are rendered.
      * { Normal | Grayscale}.
      */
-    protected _colorMode: string;
-
-    /**
-     * Gets or sets the value determining how colors are rendered.
-     * { Normal | Grayscale}.
-     */
-    public get colorMode(): string {
-        return this._colorMode;
-    }
-
-    /**
-     * Gets or sets the value determining how colors are rendered.
-     * { Normal | Grayscale}.
-     */
-    public set colorMode(value: string) {
-        this._colorMode = value;
-    }
-
+    public colorMode: string;
 
     /**
      * Gets or sets the quality of the JPEG images inside PDF document.
      */
-    protected _jpegQuality: number;
-
-    /**
-     * Gets or sets the quality of the JPEG images inside PDF document.
-     */
-    public get jpegQuality(): number {
-        return this._jpegQuality;
-    }
-
-    /**
-     * Gets or sets the quality of the JPEG images inside PDF document.
-     */
-    public set jpegQuality(value: number) {
-        this._jpegQuality = value;
-    }
-
+    public jpegQuality: number;
 
     /**
      * Gets or sets the metafile rendering options.
      */
-    protected _metafileRenderingOptions: MetafileRenderingOptionsData;
-
-    /**
-     * Gets or sets the metafile rendering options.
-     */
-    public get metafileRenderingOptions(): MetafileRenderingOptionsData {
-        return this._metafileRenderingOptions;
-    }
-
-    /**
-     * Gets or sets the metafile rendering options.
-     */
-    public set metafileRenderingOptions(value: MetafileRenderingOptionsData) {
-        this._metafileRenderingOptions = value;
-    }
-
+    public metafileRenderingOptions: MetafileRenderingOptionsData;
 
     /**
      * Gets or sets the symbol set, that is used to represent numbers while rendering to fixed page formats.
      */
-    protected _numeralFormat: string;
-
-    /**
-     * Gets or sets the symbol set, that is used to represent numbers while rendering to fixed page formats.
-     */
-    public get numeralFormat(): string {
-        return this._numeralFormat;
-    }
-
-    /**
-     * Gets or sets the symbol set, that is used to represent numbers while rendering to fixed page formats.
-     */
-    public set numeralFormat(value: string) {
-        this._numeralFormat = value;
-    }
-
+    public numeralFormat: string;
 
     /**
      * Gets or sets a value indicating whether it is required to optimize output of XPS.
      * If this flag is set redundant nested canvases and empty canvases are removed, also neighbor glyphs with the same formatting are concatenated.
      * Note: The accuracy of the content display may be affected if this property is set to true.. The default value is false.
      */
-    protected _optimizeOutput: boolean;
-
-    /**
-     * Gets or sets a value indicating whether it is required to optimize output of XPS.
-     * If this flag is set redundant nested canvases and empty canvases are removed, also neighbor glyphs with the same formatting are concatenated.
-     * Note: The accuracy of the content display may be affected if this property is set to true.. The default value is false.
-     */
-    public get optimizeOutput(): boolean {
-        return this._optimizeOutput;
-    }
-
-    /**
-     * Gets or sets a value indicating whether it is required to optimize output of XPS.
-     * If this flag is set redundant nested canvases and empty canvases are removed, also neighbor glyphs with the same formatting are concatenated.
-     * Note: The accuracy of the content display may be affected if this property is set to true.. The default value is false.
-     */
-    public set optimizeOutput(value: boolean) {
-        this._optimizeOutput = value;
-    }
-
+    public optimizeOutput: boolean;
 
     /**
      * Gets or sets the number of pages to render.
      */
-    protected _pageCount: number;
-
-    /**
-     * Gets or sets the number of pages to render.
-     */
-    public get pageCount(): number {
-        return this._pageCount;
-    }
-
-    /**
-     * Gets or sets the number of pages to render.
-     */
-    public set pageCount(value: number) {
-        this._pageCount = value;
-    }
-
+    public pageCount: number;
 
     /**
      * Gets or sets the 0-based index of the first page to render.
      */
-    protected _pageIndex: number;
-
-    /**
-     * Gets or sets the 0-based index of the first page to render.
-     */
-    public get pageIndex(): number {
-        return this._pageIndex;
-    }
-
-    /**
-     * Gets or sets the 0-based index of the first page to render.
-     */
-    public set pageIndex(value: number) {
-        this._pageIndex = value;
-    }
-
+    public pageIndex: number;
 
     public constructor(init?: Partial< FixedPageSaveOptionsData >) {
         super(init);

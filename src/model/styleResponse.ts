@@ -59,22 +59,7 @@ export class StyleResponse extends WordsResponse {
     /**
      * Gets or sets the style, containded in the document.
      */
-    protected _style: Style;
-
-    /**
-     * Gets or sets the style, containded in the document.
-     */
-    public get style(): Style {
-        return this._style;
-    }
-
-    /**
-     * Gets or sets the style, containded in the document.
-     */
-    public set style(value: Style) {
-        this._style = value;
-    }
-
+    public style: Style;
 
     public constructor(init?: Partial< StyleResponse >) {
         super(init);

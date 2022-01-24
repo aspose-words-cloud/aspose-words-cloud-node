@@ -82,122 +82,32 @@ export class SvgSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets a value indicating whether images should be embedded into SVG document as base64.
      */
-    protected _exportEmbeddedImages: boolean;
-
-    /**
-     * Gets or sets a value indicating whether images should be embedded into SVG document as base64.
-     */
-    public get exportEmbeddedImages(): boolean {
-        return this._exportEmbeddedImages;
-    }
-
-    /**
-     * Gets or sets a value indicating whether images should be embedded into SVG document as base64.
-     */
-    public set exportEmbeddedImages(value: boolean) {
-        this._exportEmbeddedImages = value;
-    }
-
+    public exportEmbeddedImages: boolean;
 
     /**
      * Gets or sets a value indicating whether the output SVG should fill the available viewport area (browser window or container). When set to true width and height of output SVG are set to 100%.
      */
-    protected _fitToViewPort: boolean;
-
-    /**
-     * Gets or sets a value indicating whether the output SVG should fill the available viewport area (browser window or container). When set to true width and height of output SVG are set to 100%.
-     */
-    public get fitToViewPort(): boolean {
-        return this._fitToViewPort;
-    }
-
-    /**
-     * Gets or sets a value indicating whether the output SVG should fill the available viewport area (browser window or container). When set to true width and height of output SVG are set to 100%.
-     */
-    public set fitToViewPort(value: boolean) {
-        this._fitToViewPort = value;
-    }
-
+    public fitToViewPort: boolean;
 
     /**
      * Gets or sets the physical folder where resources (images) are saved when exporting.
      */
-    protected _resourcesFolder: string;
-
-    /**
-     * Gets or sets the physical folder where resources (images) are saved when exporting.
-     */
-    public get resourcesFolder(): string {
-        return this._resourcesFolder;
-    }
-
-    /**
-     * Gets or sets the physical folder where resources (images) are saved when exporting.
-     */
-    public set resourcesFolder(value: string) {
-        this._resourcesFolder = value;
-    }
-
+    public resourcesFolder: string;
 
     /**
      * Gets or sets the name of the folder used to construct image URIs.
      */
-    protected _resourcesFolderAlias: string;
-
-    /**
-     * Gets or sets the name of the folder used to construct image URIs.
-     */
-    public get resourcesFolderAlias(): string {
-        return this._resourcesFolderAlias;
-    }
-
-    /**
-     * Gets or sets the name of the folder used to construct image URIs.
-     */
-    public set resourcesFolderAlias(value: string) {
-        this._resourcesFolderAlias = value;
-    }
-
+    public resourcesFolderAlias: string;
 
     /**
      * Gets or sets a value indicating whether to show or hide page stepper.
      */
-    protected _showPageBorder: boolean;
-
-    /**
-     * Gets or sets a value indicating whether to show or hide page stepper.
-     */
-    public get showPageBorder(): boolean {
-        return this._showPageBorder;
-    }
-
-    /**
-     * Gets or sets a value indicating whether to show or hide page stepper.
-     */
-    public set showPageBorder(value: boolean) {
-        this._showPageBorder = value;
-    }
-
+    public showPageBorder: boolean;
 
     /**
      * Gets or sets the option that controls how text should be rendered.
      */
-    protected _textOutputMode: string;
-
-    /**
-     * Gets or sets the option that controls how text should be rendered.
-     */
-    public get textOutputMode(): string {
-        return this._textOutputMode;
-    }
-
-    /**
-     * Gets or sets the option that controls how text should be rendered.
-     */
-    public set textOutputMode(value: string) {
-        this._textOutputMode = value;
-    }
-
+    public textOutputMode: string;
 
     public constructor(init?: Partial< SvgSaveOptionsData >) {
         super(init);

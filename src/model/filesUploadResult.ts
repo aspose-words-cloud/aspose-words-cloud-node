@@ -62,42 +62,12 @@ export class FilesUploadResult {
     /**
      * List of errors.
      */
-    protected _errors: Array<Error>;
-
-    /**
-     * List of errors.
-     */
-    public get errors(): Array<Error> {
-        return this._errors;
-    }
-
-    /**
-     * List of errors.
-     */
-    public set errors(value: Array<Error>) {
-        this._errors = value;
-    }
-
+    public errors: Array<Error>;
 
     /**
      * List of uploaded file names.
      */
-    protected _uploaded: Array<string>;
-
-    /**
-     * List of uploaded file names.
-     */
-    public get uploaded(): Array<string> {
-        return this._uploaded;
-    }
-
-    /**
-     * List of uploaded file names.
-     */
-    public set uploaded(value: Array<string>) {
-        this._uploaded = value;
-    }
-
+    public uploaded: Array<string>;
 
     public constructor(init?: Partial< FilesUploadResult >) {
         Object.assign(this, init);

@@ -59,22 +59,7 @@ export class BordersCollection extends LinkElement {
     /**
      * Gets or sets the collection of comments.
      */
-    protected _list: Array<Border>;
-
-    /**
-     * Gets or sets the collection of comments.
-     */
-    public get list(): Array<Border> {
-        return this._list;
-    }
-
-    /**
-     * Gets or sets the collection of comments.
-     */
-    public set list(value: Array<Border>) {
-        this._list = value;
-    }
-
+    public list: Array<Border>;
 
     public constructor(init?: Partial< BordersCollection >) {
         super(init);

@@ -67,62 +67,17 @@ export class SaveResult {
     /**
      * Gets or sets the list of links to additional items (css, images etc).
      */
-    protected _additionalItems: Array<FileLink>;
-
-    /**
-     * Gets or sets the list of links to additional items (css, images etc).
-     */
-    public get additionalItems(): Array<FileLink> {
-        return this._additionalItems;
-    }
-
-    /**
-     * Gets or sets the list of links to additional items (css, images etc).
-     */
-    public set additionalItems(value: Array<FileLink>) {
-        this._additionalItems = value;
-    }
-
+    public additionalItems: Array<FileLink>;
 
     /**
      * Gets or sets the link to destination document.
      */
-    protected _destDocument: FileLink;
-
-    /**
-     * Gets or sets the link to destination document.
-     */
-    public get destDocument(): FileLink {
-        return this._destDocument;
-    }
-
-    /**
-     * Gets or sets the link to destination document.
-     */
-    public set destDocument(value: FileLink) {
-        this._destDocument = value;
-    }
-
+    public destDocument: FileLink;
 
     /**
      * Gets or sets the link to source document.
      */
-    protected _sourceDocument: FileLink;
-
-    /**
-     * Gets or sets the link to source document.
-     */
-    public get sourceDocument(): FileLink {
-        return this._sourceDocument;
-    }
-
-    /**
-     * Gets or sets the link to source document.
-     */
-    public set sourceDocument(value: FileLink) {
-        this._sourceDocument = value;
-    }
-
+    public sourceDocument: FileLink;
 
     public constructor(init?: Partial< SaveResult >) {
         Object.assign(this, init);

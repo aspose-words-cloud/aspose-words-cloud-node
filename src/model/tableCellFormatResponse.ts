@@ -59,22 +59,7 @@ export class TableCellFormatResponse extends WordsResponse {
     /**
      * Gets or sets the formatting properties of a table cell.
      */
-    protected _cellFormat: TableCellFormat;
-
-    /**
-     * Gets or sets the formatting properties of a table cell.
-     */
-    public get cellFormat(): TableCellFormat {
-        return this._cellFormat;
-    }
-
-    /**
-     * Gets or sets the formatting properties of a table cell.
-     */
-    public set cellFormat(value: TableCellFormat) {
-        this._cellFormat = value;
-    }
-
+    public cellFormat: TableCellFormat;
 
     public constructor(init?: Partial< TableCellFormatResponse >) {
         super(init);

@@ -65,62 +65,17 @@ export class UserInformation {
     /**
      * Gets or sets user address.
      */
-    protected _address: string;
-
-    /**
-     * Gets or sets user address.
-     */
-    public get address(): string {
-        return this._address;
-    }
-
-    /**
-     * Gets or sets user address.
-     */
-    public set address(value: string) {
-        this._address = value;
-    }
-
+    public address: string;
 
     /**
      * Gets or sets user initials.
      */
-    protected _initials: string;
-
-    /**
-     * Gets or sets user initials.
-     */
-    public get initials(): string {
-        return this._initials;
-    }
-
-    /**
-     * Gets or sets user initials.
-     */
-    public set initials(value: string) {
-        this._initials = value;
-    }
-
+    public initials: string;
 
     /**
      * Gets or sets user name.
      */
-    protected _name: string;
-
-    /**
-     * Gets or sets user name.
-     */
-    public get name(): string {
-        return this._name;
-    }
-
-    /**
-     * Gets or sets user name.
-     */
-    public set name(value: string) {
-        this._name = value;
-    }
-
+    public name: string;
 
     public constructor(init?: Partial< UserInformation >) {
         Object.assign(this, init);

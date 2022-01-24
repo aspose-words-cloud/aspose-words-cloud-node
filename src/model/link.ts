@@ -71,82 +71,22 @@ export class Link {
     /**
      * Gets or sets the "href" attribute with the link's IRI. atom:link elements MUST have an href attribute, whose value MUST be a IRI reference.
      */
-    protected _href: string;
-
-    /**
-     * Gets or sets the "href" attribute with the link's IRI. atom:link elements MUST have an href attribute, whose value MUST be a IRI reference.
-     */
-    public get href(): string {
-        return this._href;
-    }
-
-    /**
-     * Gets or sets the "href" attribute with the link's IRI. atom:link elements MUST have an href attribute, whose value MUST be a IRI reference.
-     */
-    public set href(value: string) {
-        this._href = value;
-    }
-
+    public href: string;
 
     /**
      * Gets or sets the option that controls whether atom:link elements MAY have a "rel" attribute that indicates the link relation type.  If the "rel" attribute is not present, the link element MUST be interpreted as if the link relation type is "alternate".
      */
-    protected _rel: string;
-
-    /**
-     * Gets or sets the option that controls whether atom:link elements MAY have a "rel" attribute that indicates the link relation type.  If the "rel" attribute is not present, the link element MUST be interpreted as if the link relation type is "alternate".
-     */
-    public get rel(): string {
-        return this._rel;
-    }
-
-    /**
-     * Gets or sets the option that controls whether atom:link elements MAY have a "rel" attribute that indicates the link relation type.  If the "rel" attribute is not present, the link element MUST be interpreted as if the link relation type is "alternate".
-     */
-    public set rel(value: string) {
-        this._rel = value;
-    }
-
+    public rel: string;
 
     /**
      * Gets or sets the "title" attribute, that conveys human-readable information about the link. The content of the "title" attribute is Language-Sensitive.
      */
-    protected _title: string;
-
-    /**
-     * Gets or sets the "title" attribute, that conveys human-readable information about the link. The content of the "title" attribute is Language-Sensitive.
-     */
-    public get title(): string {
-        return this._title;
-    }
-
-    /**
-     * Gets or sets the "title" attribute, that conveys human-readable information about the link. The content of the "title" attribute is Language-Sensitive.
-     */
-    public set title(value: string) {
-        this._title = value;
-    }
-
+    public title: string;
 
     /**
      * Gets or sets the "type" attribute. The "type" attribute's value is an advisory media type: it is a hint about the type of the representation that is expected to be returned when the value of the href attribute is dereferenced. Note that the type attribute does not override the actual media type returned with the representation.
      */
-    protected _type: string;
-
-    /**
-     * Gets or sets the "type" attribute. The "type" attribute's value is an advisory media type: it is a hint about the type of the representation that is expected to be returned when the value of the href attribute is dereferenced. Note that the type attribute does not override the actual media type returned with the representation.
-     */
-    public get type(): string {
-        return this._type;
-    }
-
-    /**
-     * Gets or sets the "type" attribute. The "type" attribute's value is an advisory media type: it is a hint about the type of the representation that is expected to be returned when the value of the href attribute is dereferenced. Note that the type attribute does not override the actual media type returned with the representation.
-     */
-    public set type(value: string) {
-        this._type = value;
-    }
-
+    public type: string;
 
     public constructor(init?: Partial< Link >) {
         Object.assign(this, init);

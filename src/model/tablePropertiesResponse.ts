@@ -59,22 +59,7 @@ export class TablePropertiesResponse extends WordsResponse {
     /**
      * Gets or sets the table.
      */
-    protected _properties: TableProperties;
-
-    /**
-     * Gets or sets the table.
-     */
-    public get properties(): TableProperties {
-        return this._properties;
-    }
-
-    /**
-     * Gets or sets the table.
-     */
-    public set properties(value: TableProperties) {
-        this._properties = value;
-    }
-
+    public properties: TableProperties;
 
     public constructor(init?: Partial< TablePropertiesResponse >) {
         super(init);

@@ -16,6 +16,12 @@ Feel free to explore the [Developer's Guide](https://docs.aspose.cloud/display/w
 - Add & remove watermarks and protection.
 - Read & write access to Document Object Model.
 
+## Enhancements in Version 22.2
+
+- Made 'SaveOprionsData.SaveFormat' property readonly with default value.
+- Added subclasses for all formats of SaveOprionsData with specified SaveFormat.
+
+
 ## Enhancements in Version 22.1
 
 - Added 'FieldOptions.FieldUpdateCultureName' to set Culture for fields

@@ -71,7 +71,7 @@ export class XamlFlowSaveOptionsData extends SaveOptionsData {
 
     public constructor(init?: Partial< XamlFlowSaveOptionsData >) {
         super(init);
-        saveFormat = 'xamlflow';
+        this.saveFormat = 'xamlflow';
 
         Object.assign(this, init);
     }

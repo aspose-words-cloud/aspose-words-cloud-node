@@ -61,7 +61,7 @@ export class MhtmlSaveOptionsData extends HtmlSaveOptionsData {
 
     public constructor(init?: Partial< MhtmlSaveOptionsData >) {
         super(init);
-        saveFormat = 'mht';
+        this.saveFormat = 'mht';
 
         Object.assign(this, init);
     }

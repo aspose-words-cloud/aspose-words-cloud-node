@@ -61,7 +61,7 @@ export class WordMLSaveOptionsData extends SaveOptionsData {
 
     public constructor(init?: Partial< WordMLSaveOptionsData >) {
         super(init);
-        saveFormat = 'wml';
+        this.saveFormat = 'wml';
 
         Object.assign(this, init);
     }

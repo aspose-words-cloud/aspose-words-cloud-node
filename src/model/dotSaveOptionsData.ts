@@ -52,7 +52,7 @@ export class DotSaveOptionsData extends DocSaveOptionsData {
 
     public constructor(init?: Partial< DotSaveOptionsData >) {
         super(init);
-        saveFormat = 'dot';
+        this.saveFormat = 'dot';
 
         Object.assign(this, init);
     }

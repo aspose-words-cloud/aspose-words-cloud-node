@@ -72,7 +72,7 @@ export class XamlFixedSaveOptionsData extends FixedPageSaveOptionsData {
 
     public constructor(init?: Partial< XamlFixedSaveOptionsData >) {
         super(init);
-        saveFormat = 'xamlfixed';
+        this.saveFormat = 'xamlfixed';
 
         Object.assign(this, init);
     }

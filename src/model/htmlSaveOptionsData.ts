@@ -452,7 +452,7 @@ export class HtmlSaveOptionsData extends SaveOptionsData {
 
     public constructor(init?: Partial< HtmlSaveOptionsData >) {
         super(init);
-        saveFormat = 'html';
+        this.saveFormat = 'html';
 
         Object.assign(this, init);
     }

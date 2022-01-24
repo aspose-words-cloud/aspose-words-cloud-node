@@ -93,7 +93,7 @@ export class DocSaveOptionsData extends SaveOptionsData {
 
     public constructor(init?: Partial< DocSaveOptionsData >) {
         super(init);
-        saveFormat = 'doc';
+        this.saveFormat = 'doc';
 
         Object.assign(this, init);
     }

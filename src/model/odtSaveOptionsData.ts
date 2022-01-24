@@ -92,7 +92,7 @@ export class OdtSaveOptionsData extends SaveOptionsData {
 
     public constructor(init?: Partial< OdtSaveOptionsData >) {
         super(init);
-        saveFormat = 'odt';
+        this.saveFormat = 'odt';
 
         Object.assign(this, init);
     }

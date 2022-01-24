@@ -195,7 +195,7 @@ export class HtmlFixedSaveOptionsData extends FixedPageSaveOptionsData {
 
     public constructor(init?: Partial< HtmlFixedSaveOptionsData >) {
         super(init);
-        saveFormat = 'htmlfixed';
+        this.saveFormat = 'htmlfixed';
 
         Object.assign(this, init);
     }

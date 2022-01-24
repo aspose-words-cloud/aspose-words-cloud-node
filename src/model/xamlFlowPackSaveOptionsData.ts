@@ -52,7 +52,7 @@ export class XamlFlowPackSaveOptionsData extends XamlFlowSaveOptionsData {
 
     public constructor(init?: Partial< XamlFlowPackSaveOptionsData >) {
         super(init);
-        saveFormat = 'xamlflow_pack';
+        this.saveFormat = 'xamlflow_pack';
 
         Object.assign(this, init);
     }

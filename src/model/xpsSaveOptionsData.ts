@@ -93,7 +93,7 @@ export class XpsSaveOptionsData extends FixedPageSaveOptionsData {
 
     public constructor(init?: Partial< XpsSaveOptionsData >) {
         super(init);
-        saveFormat = 'xps';
+        this.saveFormat = 'xps';
 
         Object.assign(this, init);
     }

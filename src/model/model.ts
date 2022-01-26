@@ -178,6 +178,7 @@ import * as importedOfficeMathObjectResponse from './officeMathObjectResponse';
 import * as importedOfficeMathObjectsCollection from './officeMathObjectsCollection';
 import * as importedOfficeMathObjectsResponse from './officeMathObjectsResponse';
 import * as importedOoxmlSaveOptionsData from './ooxmlSaveOptionsData';
+import * as importedOpenXpsSaveOptionsData from './openXpsSaveOptionsData';
 import * as importedOptimizationOptions from './optimizationOptions';
 import * as importedOttSaveOptionsData from './ottSaveOptionsData';
 import * as importedOutlineOptionsData from './outlineOptionsData';
@@ -442,6 +443,7 @@ export * from './officeMathObjectResponse';
 export * from './officeMathObjectsCollection';
 export * from './officeMathObjectsResponse';
 export * from './ooxmlSaveOptionsData';
+export * from './openXpsSaveOptionsData';
 export * from './optimizationOptions';
 export * from './ottSaveOptionsData';
 export * from './outlineOptionsData';
@@ -800,6 +802,7 @@ const typeMap = {
     OfficeMathObjectsCollection: importedOfficeMathObjectsCollection.OfficeMathObjectsCollection,
     OfficeMathObjectsResponse: importedOfficeMathObjectsResponse.OfficeMathObjectsResponse,
     OoxmlSaveOptionsData: importedOoxmlSaveOptionsData.OoxmlSaveOptionsData,
+    OpenXpsSaveOptionsData: importedOpenXpsSaveOptionsData.OpenXpsSaveOptionsData,
     OptimizationOptions: importedOptimizationOptions.OptimizationOptions,
     OttSaveOptionsData: importedOttSaveOptionsData.OttSaveOptionsData,
     OutlineOptionsData: importedOutlineOptionsData.OutlineOptionsData,

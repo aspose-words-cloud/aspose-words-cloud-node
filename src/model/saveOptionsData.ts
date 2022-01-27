@@ -167,7 +167,7 @@ export class SaveOptionsData {
     public imlRenderingMode: string;
 
     /**
-     * Gets or sets the format of save.
+     * Gets the format of save.
      */
     public saveFormat: string;
 

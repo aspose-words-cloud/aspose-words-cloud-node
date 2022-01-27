@@ -313,6 +313,8 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
 
     public constructor(init?: Partial< PdfSaveOptionsData >) {
         super(init);
+        this.saveFormat = 'pdf';
+
         Object.assign(this, init);
     }
 }

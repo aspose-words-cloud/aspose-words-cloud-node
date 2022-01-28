@@ -35,7 +35,7 @@ export const importsMapFootnoteBase = {
 /**
  * Footnote base class.
  */
-export class FootnoteBase {
+export abstract class FootnoteBase {
     /**
      * Attribute type map
      */

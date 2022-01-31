@@ -35,7 +35,7 @@ export const importsMapCommentBase = {
 /**
  * Comment.
  */
-export class CommentBase {
+export abstract class CommentBase {
     /**
      * Attribute type map
      */

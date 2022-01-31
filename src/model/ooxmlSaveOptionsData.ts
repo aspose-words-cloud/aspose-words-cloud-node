@@ -35,7 +35,7 @@ export const importsMapOoxmlSaveOptionsData = {
 /**
  * Container class for docx/docm/dotx/dotm/flatopc save options.
  */
-export class OoxmlSaveOptionsData extends SaveOptionsData {
+export abstract class OoxmlSaveOptionsData extends SaveOptionsData {
     /**
      * Attribute type map
      */

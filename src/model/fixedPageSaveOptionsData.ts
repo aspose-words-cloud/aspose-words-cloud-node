@@ -37,7 +37,7 @@ export const importsMapFixedPageSaveOptionsData = {
 /**
  * Contains common options that can be specified when saving a document into fixed page formats (PDF, XPS, images etc).
  */
-export class FixedPageSaveOptionsData extends SaveOptionsData {
+export abstract class FixedPageSaveOptionsData extends SaveOptionsData {
     /**
      * Attribute type map
      */

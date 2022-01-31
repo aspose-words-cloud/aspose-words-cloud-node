@@ -33,7 +33,7 @@ export const importsMapFieldBase = {
 /**
  * Field.
  */
-export class FieldBase {
+export abstract class FieldBase {
     /**
      * Attribute type map
      */

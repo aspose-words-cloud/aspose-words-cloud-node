@@ -33,7 +33,7 @@ export const importsMapRunBase = {
 /**
  * Run element.
  */
-export class RunBase {
+export abstract class RunBase {
     /**
      * Attribute type map
      */

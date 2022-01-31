@@ -35,7 +35,7 @@ export const importsMapTxtSaveOptionsBaseData = {
 /**
  * Base class for save options of text formats.
  */
-export class TxtSaveOptionsBaseData extends SaveOptionsData {
+export abstract class TxtSaveOptionsBaseData extends SaveOptionsData {
     /**
      * Attribute type map
      */

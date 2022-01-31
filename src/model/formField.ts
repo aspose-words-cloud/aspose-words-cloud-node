@@ -35,7 +35,7 @@ export const importsMapFormField = {
 /**
  * FromField.
  */
-export abstract class FormField extends NodeLink {
+export class FormField extends NodeLink {
     /**
      * Attribute type map
      */

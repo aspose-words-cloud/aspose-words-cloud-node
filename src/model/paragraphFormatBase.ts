@@ -37,7 +37,7 @@ export const importsMapParagraphFormatBase = {
 /**
  * Paragraph format element base class.
  */
-export abstract class ParagraphFormatBase extends LinkElement {
+export class ParagraphFormatBase extends LinkElement {
     /**
      * Attribute type map
      */

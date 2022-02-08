@@ -25,13 +25,14 @@
  * --------------------------------------------------------------------------------
  */
 
+import http = require("http");
 import { v4 as uuidv4 } from 'uuid';
 import { Readable } from "stream";
 import { IncomingMessage } from 'http';
 import request = require("request");
 import RSA = require('node-rsa');
 import { Configuration } from "../internal/configuration";
-import { addQueryParameterToUrl, parseMultipartBody } from "../internal/requestHelper";
+import { addQueryParameterToUrl, getBoundary, parseFilesCollection, findMultipartElement, parseMultipart } from "../internal/requestHelper";
 import { ObjectSerializer } from "../internal/objectSerializer";
 import * as importedApiError from './apiError';
 import * as importedAvailableFontsResponse from './availableFontsResponse';
@@ -600,6 +601,7 @@ const enumsMap = {
     "FootnoteBase.FootnoteTypeEnum": importedFootnoteBase.FootnoteBase.FootnoteTypeEnum,
     "FormFieldTextInput.TextInputTypeEnum": importedFormFieldTextInput.FormFieldTextInput.TextInputTypeEnum,
     "HeaderFooterLink.TypeEnum": importedHeaderFooterLink.HeaderFooterLink.TypeEnum,
+    "HtmlSaveOptionsData.CssStyleSheetTypeEnum": importedHtmlSaveOptionsData.HtmlSaveOptionsData.CssStyleSheetTypeEnum,
     "HtmlSaveOptionsData.HtmlVersionEnum": importedHtmlSaveOptionsData.HtmlSaveOptionsData.HtmlVersionEnum,
     "HtmlSaveOptionsData.MetafileFormatEnum": importedHtmlSaveOptionsData.HtmlSaveOptionsData.MetafileFormatEnum,
     "HtmlSaveOptionsData.OfficeMathOutputModeEnum": importedHtmlSaveOptionsData.HtmlSaveOptionsData.OfficeMathOutputModeEnum,
@@ -936,7 +938,7 @@ export interface RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(response: Buffer, _boundary?: string): any;
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any;
 }
 
 /**
@@ -1034,7 +1036,7 @@ export class AcceptAllRevisionsRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "RevisionsModificationResponse");
 	}
 }
@@ -1119,13 +1121,15 @@ export class AcceptAllRevisionsOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new AcceptAllRevisionsOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "RevisionsModificationResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new AcceptAllRevisionsOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "RevisionsModificationResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -1245,7 +1249,7 @@ export class AppendDocumentRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "DocumentResponse");
 	}
 }
@@ -1360,13 +1364,15 @@ export class AppendDocumentOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new AppendDocumentOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "DocumentResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new AppendDocumentOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "DocumentResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -1502,7 +1508,7 @@ export class ApplyStyleToDocumentElementRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "WordsResponse");
 	}
 }
@@ -1633,13 +1639,15 @@ export class ApplyStyleToDocumentElementOnlineRequest implements RequestInterfac
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new ApplyStyleToDocumentElementOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "WordsResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new ApplyStyleToDocumentElementOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "WordsResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -1771,7 +1779,7 @@ export class BuildReportRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "DocumentResponse");
 	}
 }
@@ -1874,7 +1882,7 @@ export class BuildReportOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
 }
@@ -1935,7 +1943,7 @@ export class ClassifyRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ClassificationResponse");
 	}
 }
@@ -2032,7 +2040,7 @@ export class ClassifyDocumentRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ClassificationResponse");
 	}
 }
@@ -2123,7 +2131,7 @@ export class ClassifyDocumentOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ClassificationResponse");
 	}
 }
@@ -2236,7 +2244,7 @@ export class CompareDocumentRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "DocumentResponse");
 	}
 }
@@ -2353,13 +2361,15 @@ export class CompareDocumentOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new CompareDocumentOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "DocumentResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new CompareDocumentOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "DocumentResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -2461,7 +2471,7 @@ export class ConvertDocumentRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
 }
@@ -2545,7 +2555,7 @@ export class CopyFileRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -2623,7 +2633,7 @@ export class CopyFolderRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -2742,7 +2752,7 @@ export class CopyStyleRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "StyleResponse");
 	}
 }
@@ -2857,13 +2867,15 @@ export class CopyStyleOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new CopyStyleOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "StyleResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new CopyStyleOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "StyleResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -2921,7 +2933,7 @@ export class CreateDocumentRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "DocumentResponse");
 	}
 }
@@ -2982,7 +2994,7 @@ export class CreateFolderRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -3117,7 +3129,7 @@ export class CreateOrUpdateDocumentPropertyRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "DocumentPropertyResponse");
 	}
 }
@@ -3248,13 +3260,15 @@ export class CreateOrUpdateDocumentPropertyOnlineRequest implements RequestInter
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new CreateOrUpdateDocumentPropertyOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "DocumentPropertyResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new CreateOrUpdateDocumentPropertyOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "DocumentPropertyResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -3368,7 +3382,7 @@ export class DeleteAllParagraphTabStopsRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "TabStopsResponse");
 	}
 }
@@ -3475,13 +3489,15 @@ export class DeleteAllParagraphTabStopsOnlineRequest implements RequestInterface
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new DeleteAllParagraphTabStopsOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "TabStopsResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new DeleteAllParagraphTabStopsOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "TabStopsResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -3607,7 +3623,7 @@ export class DeleteBorderRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "BorderResponse");
 	}
 }
@@ -3726,13 +3742,15 @@ export class DeleteBorderOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new DeleteBorderOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "BorderResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new DeleteBorderOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "BorderResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -3842,7 +3860,7 @@ export class DeleteBordersRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "BordersResponse");
 	}
 }
@@ -3945,13 +3963,15 @@ export class DeleteBordersOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new DeleteBordersOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "BordersResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new DeleteBordersOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "BordersResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -4071,7 +4091,7 @@ export class DeleteCommentRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -4171,7 +4191,7 @@ export class DeleteCommentOnlineRequest implements RequestInterface {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
-            encoding: null,
+            json: true,
         };
 
         if (Object.keys(formParams).length > 0) {
@@ -4184,8 +4204,8 @@ export class DeleteCommentOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        return _response;
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return parseFilesCollection(_response, _headers);
 	}
 }
 
@@ -4287,7 +4307,7 @@ export class DeleteCommentsRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -4371,7 +4391,7 @@ export class DeleteCommentsOnlineRequest implements RequestInterface {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
-            encoding: null,
+            json: true,
         };
 
         if (Object.keys(formParams).length > 0) {
@@ -4384,8 +4404,8 @@ export class DeleteCommentsOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        return _response;
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return parseFilesCollection(_response, _headers);
 	}
 }
 
@@ -4503,7 +4523,7 @@ export class DeleteCustomXmlPartRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -4603,7 +4623,7 @@ export class DeleteCustomXmlPartOnlineRequest implements RequestInterface {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
-            encoding: null,
+            json: true,
         };
 
         if (Object.keys(formParams).length > 0) {
@@ -4616,8 +4636,8 @@ export class DeleteCustomXmlPartOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        return _response;
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return parseFilesCollection(_response, _headers);
 	}
 }
 
@@ -4719,7 +4739,7 @@ export class DeleteCustomXmlPartsRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -4803,7 +4823,7 @@ export class DeleteCustomXmlPartsOnlineRequest implements RequestInterface {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
-            encoding: null,
+            json: true,
         };
 
         if (Object.keys(formParams).length > 0) {
@@ -4816,8 +4836,8 @@ export class DeleteCustomXmlPartsOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        return _response;
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return parseFilesCollection(_response, _headers);
 	}
 }
 
@@ -4935,7 +4955,7 @@ export class DeleteDocumentPropertyRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -5035,7 +5055,7 @@ export class DeleteDocumentPropertyOnlineRequest implements RequestInterface {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
-            encoding: null,
+            json: true,
         };
 
         if (Object.keys(formParams).length > 0) {
@@ -5048,8 +5068,8 @@ export class DeleteDocumentPropertyOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        return _response;
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return parseFilesCollection(_response, _headers);
 	}
 }
 
@@ -5173,7 +5193,7 @@ export class DeleteDrawingObjectRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -5279,7 +5299,7 @@ export class DeleteDrawingObjectOnlineRequest implements RequestInterface {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
-            encoding: null,
+            json: true,
         };
 
         if (Object.keys(formParams).length > 0) {
@@ -5292,8 +5312,8 @@ export class DeleteDrawingObjectOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        return _response;
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return parseFilesCollection(_response, _headers);
 	}
 }
 
@@ -5417,7 +5437,7 @@ export class DeleteFieldRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -5523,7 +5543,7 @@ export class DeleteFieldOnlineRequest implements RequestInterface {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
-            encoding: null,
+            json: true,
         };
 
         if (Object.keys(formParams).length > 0) {
@@ -5536,8 +5556,8 @@ export class DeleteFieldOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        return _response;
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return parseFilesCollection(_response, _headers);
 	}
 }
 
@@ -5645,7 +5665,7 @@ export class DeleteFieldsRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -5735,7 +5755,7 @@ export class DeleteFieldsOnlineRequest implements RequestInterface {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
-            encoding: null,
+            json: true,
         };
 
         if (Object.keys(formParams).length > 0) {
@@ -5748,8 +5768,8 @@ export class DeleteFieldsOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        return _response;
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return parseFilesCollection(_response, _headers);
 	}
 }
 
@@ -5815,7 +5835,7 @@ export class DeleteFileRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -5882,7 +5902,7 @@ export class DeleteFolderRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -6007,7 +6027,7 @@ export class DeleteFootnoteRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -6113,7 +6133,7 @@ export class DeleteFootnoteOnlineRequest implements RequestInterface {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
-            encoding: null,
+            json: true,
         };
 
         if (Object.keys(formParams).length > 0) {
@@ -6126,8 +6146,8 @@ export class DeleteFootnoteOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        return _response;
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return parseFilesCollection(_response, _headers);
 	}
 }
 
@@ -6251,7 +6271,7 @@ export class DeleteFormFieldRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -6357,7 +6377,7 @@ export class DeleteFormFieldOnlineRequest implements RequestInterface {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
-            encoding: null,
+            json: true,
         };
 
         if (Object.keys(formParams).length > 0) {
@@ -6370,8 +6390,8 @@ export class DeleteFormFieldOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        return _response;
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return parseFilesCollection(_response, _headers);
 	}
 }
 
@@ -6500,7 +6520,7 @@ export class DeleteHeaderFooterRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -6611,7 +6631,7 @@ export class DeleteHeaderFooterOnlineRequest implements RequestInterface {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
-            encoding: null,
+            json: true,
         };
 
         if (Object.keys(formParams).length > 0) {
@@ -6624,8 +6644,8 @@ export class DeleteHeaderFooterOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        return _response;
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return parseFilesCollection(_response, _headers);
 	}
 }
 
@@ -6744,7 +6764,7 @@ export class DeleteHeadersFootersRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -6845,7 +6865,7 @@ export class DeleteHeadersFootersOnlineRequest implements RequestInterface {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
-            encoding: null,
+            json: true,
         };
 
         if (Object.keys(formParams).length > 0) {
@@ -6858,8 +6878,8 @@ export class DeleteHeadersFootersOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        return _response;
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return parseFilesCollection(_response, _headers);
 	}
 }
 
@@ -6961,7 +6981,7 @@ export class DeleteMacrosRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -7045,7 +7065,7 @@ export class DeleteMacrosOnlineRequest implements RequestInterface {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
-            encoding: null,
+            json: true,
         };
 
         if (Object.keys(formParams).length > 0) {
@@ -7058,8 +7078,8 @@ export class DeleteMacrosOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        return _response;
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return parseFilesCollection(_response, _headers);
 	}
 }
 
@@ -7183,7 +7203,7 @@ export class DeleteOfficeMathObjectRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -7289,7 +7309,7 @@ export class DeleteOfficeMathObjectOnlineRequest implements RequestInterface {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
-            encoding: null,
+            json: true,
         };
 
         if (Object.keys(formParams).length > 0) {
@@ -7302,8 +7322,8 @@ export class DeleteOfficeMathObjectOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        return _response;
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return parseFilesCollection(_response, _headers);
 	}
 }
 
@@ -7427,7 +7447,7 @@ export class DeleteParagraphRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -7552,7 +7572,7 @@ export class DeleteParagraphListFormatRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ParagraphListFormatResponse");
 	}
 }
@@ -7671,13 +7691,15 @@ export class DeleteParagraphListFormatOnlineRequest implements RequestInterface 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new DeleteParagraphListFormatOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "ParagraphListFormatResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new DeleteParagraphListFormatOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "ParagraphListFormatResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -7784,7 +7806,7 @@ export class DeleteParagraphOnlineRequest implements RequestInterface {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
-            encoding: null,
+            json: true,
         };
 
         if (Object.keys(formParams).length > 0) {
@@ -7797,8 +7819,8 @@ export class DeleteParagraphOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        return _response;
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return parseFilesCollection(_response, _headers);
 	}
 }
 
@@ -7926,7 +7948,7 @@ export class DeleteParagraphTabStopRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "TabStopsResponse");
 	}
 }
@@ -8049,13 +8071,15 @@ export class DeleteParagraphTabStopOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new DeleteParagraphTabStopOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "TabStopsResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new DeleteParagraphTabStopOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "TabStopsResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -8186,7 +8210,7 @@ export class DeleteRunRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -8297,7 +8321,7 @@ export class DeleteRunOnlineRequest implements RequestInterface {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
-            encoding: null,
+            json: true,
         };
 
         if (Object.keys(formParams).length > 0) {
@@ -8310,8 +8334,8 @@ export class DeleteRunOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        return _response;
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return parseFilesCollection(_response, _headers);
 	}
 }
 
@@ -8429,7 +8453,7 @@ export class DeleteSectionRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -8529,7 +8553,7 @@ export class DeleteSectionOnlineRequest implements RequestInterface {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
-            encoding: null,
+            json: true,
         };
 
         if (Object.keys(formParams).length > 0) {
@@ -8542,8 +8566,8 @@ export class DeleteSectionOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        return _response;
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return parseFilesCollection(_response, _headers);
 	}
 }
 
@@ -8667,7 +8691,7 @@ export class DeleteTableRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -8797,7 +8821,7 @@ export class DeleteTableCellRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -8908,7 +8932,7 @@ export class DeleteTableCellOnlineRequest implements RequestInterface {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
-            encoding: null,
+            json: true,
         };
 
         if (Object.keys(formParams).length > 0) {
@@ -8921,8 +8945,8 @@ export class DeleteTableCellOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        return _response;
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return parseFilesCollection(_response, _headers);
 	}
 }
 
@@ -9027,7 +9051,7 @@ export class DeleteTableOnlineRequest implements RequestInterface {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
-            encoding: null,
+            json: true,
         };
 
         if (Object.keys(formParams).length > 0) {
@@ -9040,8 +9064,8 @@ export class DeleteTableOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        return _response;
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return parseFilesCollection(_response, _headers);
 	}
 }
 
@@ -9170,7 +9194,7 @@ export class DeleteTableRowRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -9281,7 +9305,7 @@ export class DeleteTableRowOnlineRequest implements RequestInterface {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
-            encoding: null,
+            json: true,
         };
 
         if (Object.keys(formParams).length > 0) {
@@ -9294,8 +9318,8 @@ export class DeleteTableRowOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        return _response;
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return parseFilesCollection(_response, _headers);
 	}
 }
 
@@ -9397,7 +9421,7 @@ export class DeleteWatermarkRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "DocumentResponse");
 	}
 }
@@ -9494,13 +9518,15 @@ export class DeleteWatermarkOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new DeleteWatermarkOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "DocumentResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new DeleteWatermarkOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "DocumentResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -9568,7 +9594,7 @@ export class DownloadFileRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
 }
@@ -9703,7 +9729,7 @@ export class ExecuteMailMergeRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "DocumentResponse");
 	}
 }
@@ -9808,7 +9834,7 @@ export class ExecuteMailMergeOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
 }
@@ -9853,7 +9879,7 @@ export class GetAvailableFontsRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "AvailableFontsResponse");
 	}
 }
@@ -9954,7 +9980,7 @@ export class GetBookmarkByNameRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "BookmarkResponse");
 	}
 }
@@ -10049,7 +10075,7 @@ export class GetBookmarkByNameOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "BookmarkResponse");
 	}
 }
@@ -10134,7 +10160,7 @@ export class GetBookmarksRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "BookmarksResponse");
 	}
 }
@@ -10213,7 +10239,7 @@ export class GetBookmarksOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "BookmarksResponse");
 	}
 }
@@ -10320,7 +10346,7 @@ export class GetBorderRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "BorderResponse");
 	}
 }
@@ -10421,7 +10447,7 @@ export class GetBorderOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "BorderResponse");
 	}
 }
@@ -10512,7 +10538,7 @@ export class GetBordersRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "BordersResponse");
 	}
 }
@@ -10597,7 +10623,7 @@ export class GetBordersOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "BordersResponse");
 	}
 }
@@ -10698,7 +10724,7 @@ export class GetCommentRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "CommentResponse");
 	}
 }
@@ -10793,7 +10819,7 @@ export class GetCommentOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "CommentResponse");
 	}
 }
@@ -10878,7 +10904,7 @@ export class GetCommentsRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "CommentsResponse");
 	}
 }
@@ -10957,7 +10983,7 @@ export class GetCommentsOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "CommentsResponse");
 	}
 }
@@ -11058,7 +11084,7 @@ export class GetCustomXmlPartRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "CustomXmlPartResponse");
 	}
 }
@@ -11153,7 +11179,7 @@ export class GetCustomXmlPartOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "CustomXmlPartResponse");
 	}
 }
@@ -11238,7 +11264,7 @@ export class GetCustomXmlPartsRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "CustomXmlPartsResponse");
 	}
 }
@@ -11317,7 +11343,7 @@ export class GetCustomXmlPartsOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "CustomXmlPartsResponse");
 	}
 }
@@ -11402,7 +11428,7 @@ export class GetDocumentRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "DocumentResponse");
 	}
 }
@@ -11509,7 +11535,7 @@ export class GetDocumentDrawingObjectByIndexRequest implements RequestInterface 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "DrawingObjectResponse");
 	}
 }
@@ -11610,7 +11636,7 @@ export class GetDocumentDrawingObjectByIndexOnlineRequest implements RequestInte
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "DrawingObjectResponse");
 	}
 }
@@ -11717,7 +11743,7 @@ export class GetDocumentDrawingObjectImageDataRequest implements RequestInterfac
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
 }
@@ -11818,7 +11844,7 @@ export class GetDocumentDrawingObjectImageDataOnlineRequest implements RequestIn
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
 }
@@ -11925,7 +11951,7 @@ export class GetDocumentDrawingObjectOleDataRequest implements RequestInterface 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
 }
@@ -12026,7 +12052,7 @@ export class GetDocumentDrawingObjectOleDataOnlineRequest implements RequestInte
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
 }
@@ -12117,7 +12143,7 @@ export class GetDocumentDrawingObjectsRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "DrawingObjectsResponse");
 	}
 }
@@ -12202,7 +12228,7 @@ export class GetDocumentDrawingObjectsOnlineRequest implements RequestInterface 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "DrawingObjectsResponse");
 	}
 }
@@ -12293,7 +12319,7 @@ export class GetDocumentFieldNamesRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "FieldNamesResponse");
 	}
 }
@@ -12378,7 +12404,7 @@ export class GetDocumentFieldNamesOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "FieldNamesResponse");
 	}
 }
@@ -12479,7 +12505,7 @@ export class GetDocumentHyperlinkByIndexRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "HyperlinkResponse");
 	}
 }
@@ -12574,7 +12600,7 @@ export class GetDocumentHyperlinkByIndexOnlineRequest implements RequestInterfac
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "HyperlinkResponse");
 	}
 }
@@ -12659,7 +12685,7 @@ export class GetDocumentHyperlinksRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "HyperlinksResponse");
 	}
 }
@@ -12738,7 +12764,7 @@ export class GetDocumentHyperlinksOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "HyperlinksResponse");
 	}
 }
@@ -12823,7 +12849,7 @@ export class GetDocumentPropertiesRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "DocumentPropertiesResponse");
 	}
 }
@@ -12902,7 +12928,7 @@ export class GetDocumentPropertiesOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "DocumentPropertiesResponse");
 	}
 }
@@ -13003,7 +13029,7 @@ export class GetDocumentPropertyRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "DocumentPropertyResponse");
 	}
 }
@@ -13098,7 +13124,7 @@ export class GetDocumentPropertyOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "DocumentPropertyResponse");
 	}
 }
@@ -13183,7 +13209,7 @@ export class GetDocumentProtectionRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ProtectionDataResponse");
 	}
 }
@@ -13262,7 +13288,7 @@ export class GetDocumentProtectionOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ProtectionDataResponse");
 	}
 }
@@ -13365,7 +13391,7 @@ export class GetDocumentStatisticsRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "StatDataResponse");
 	}
 }
@@ -13462,7 +13488,7 @@ export class GetDocumentStatisticsOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "StatDataResponse");
 	}
 }
@@ -13575,7 +13601,7 @@ export class GetDocumentWithFormatRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
 }
@@ -13682,7 +13708,7 @@ export class GetFieldRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "FieldResponse");
 	}
 }
@@ -13783,7 +13809,7 @@ export class GetFieldOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "FieldResponse");
 	}
 }
@@ -13874,7 +13900,7 @@ export class GetFieldsRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "FieldsResponse");
 	}
 }
@@ -13959,7 +13985,7 @@ export class GetFieldsOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "FieldsResponse");
 	}
 }
@@ -14020,7 +14046,7 @@ export class GetFilesListRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "FilesList");
 	}
 }
@@ -14127,7 +14153,7 @@ export class GetFootnoteRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "FootnoteResponse");
 	}
 }
@@ -14228,7 +14254,7 @@ export class GetFootnoteOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "FootnoteResponse");
 	}
 }
@@ -14319,7 +14345,7 @@ export class GetFootnotesRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "FootnotesResponse");
 	}
 }
@@ -14404,7 +14430,7 @@ export class GetFootnotesOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "FootnotesResponse");
 	}
 }
@@ -14511,7 +14537,7 @@ export class GetFormFieldRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "FormFieldResponse");
 	}
 }
@@ -14612,7 +14638,7 @@ export class GetFormFieldOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "FormFieldResponse");
 	}
 }
@@ -14703,7 +14729,7 @@ export class GetFormFieldsRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "FormFieldsResponse");
 	}
 }
@@ -14788,7 +14814,7 @@ export class GetFormFieldsOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "FormFieldsResponse");
 	}
 }
@@ -14895,7 +14921,7 @@ export class GetHeaderFooterRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "HeaderFooterResponse");
 	}
 }
@@ -15018,7 +15044,7 @@ export class GetHeaderFooterOfSectionRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "HeaderFooterResponse");
 	}
 }
@@ -15135,7 +15161,7 @@ export class GetHeaderFooterOfSectionOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "HeaderFooterResponse");
 	}
 }
@@ -15236,7 +15262,7 @@ export class GetHeaderFooterOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "HeaderFooterResponse");
 	}
 }
@@ -15338,7 +15364,7 @@ export class GetHeaderFootersRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "HeaderFootersResponse");
 	}
 }
@@ -15434,7 +15460,7 @@ export class GetHeaderFootersOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "HeaderFootersResponse");
 	}
 }
@@ -15474,7 +15500,7 @@ export class GetInfoRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "InfoResponse");
 	}
 }
@@ -15575,7 +15601,7 @@ export class GetListRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ListResponse");
 	}
 }
@@ -15670,7 +15696,7 @@ export class GetListOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ListResponse");
 	}
 }
@@ -15755,7 +15781,7 @@ export class GetListsRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ListsResponse");
 	}
 }
@@ -15834,7 +15860,7 @@ export class GetListsOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ListsResponse");
 	}
 }
@@ -15941,7 +15967,7 @@ export class GetOfficeMathObjectRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "OfficeMathObjectResponse");
 	}
 }
@@ -16042,7 +16068,7 @@ export class GetOfficeMathObjectOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "OfficeMathObjectResponse");
 	}
 }
@@ -16133,7 +16159,7 @@ export class GetOfficeMathObjectsRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "OfficeMathObjectsResponse");
 	}
 }
@@ -16218,7 +16244,7 @@ export class GetOfficeMathObjectsOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "OfficeMathObjectsResponse");
 	}
 }
@@ -16325,7 +16351,7 @@ export class GetParagraphRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ParagraphResponse");
 	}
 }
@@ -16432,7 +16458,7 @@ export class GetParagraphFormatRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ParagraphFormatResponse");
 	}
 }
@@ -16533,7 +16559,7 @@ export class GetParagraphFormatOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ParagraphFormatResponse");
 	}
 }
@@ -16640,7 +16666,7 @@ export class GetParagraphListFormatRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ParagraphListFormatResponse");
 	}
 }
@@ -16741,7 +16767,7 @@ export class GetParagraphListFormatOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ParagraphListFormatResponse");
 	}
 }
@@ -16842,7 +16868,7 @@ export class GetParagraphOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ParagraphResponse");
 	}
 }
@@ -16933,7 +16959,7 @@ export class GetParagraphsRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ParagraphLinkCollectionResponse");
 	}
 }
@@ -17018,7 +17044,7 @@ export class GetParagraphsOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ParagraphLinkCollectionResponse");
 	}
 }
@@ -17125,7 +17151,7 @@ export class GetParagraphTabStopsRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "TabStopsResponse");
 	}
 }
@@ -17226,7 +17252,7 @@ export class GetParagraphTabStopsOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "TabStopsResponse");
 	}
 }
@@ -17266,7 +17292,7 @@ export class GetPublicKeyRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "PublicKeyResponse");
 	}
 }
@@ -17373,7 +17399,7 @@ export class GetRangeTextRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "RangeTextResponse");
 	}
 }
@@ -17474,7 +17500,7 @@ export class GetRangeTextOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "RangeTextResponse");
 	}
 }
@@ -17586,7 +17612,7 @@ export class GetRunRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "RunResponse");
 	}
 }
@@ -17698,7 +17724,7 @@ export class GetRunFontRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "FontResponse");
 	}
 }
@@ -17804,7 +17830,7 @@ export class GetRunFontOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "FontResponse");
 	}
 }
@@ -17910,7 +17936,7 @@ export class GetRunOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "RunResponse");
 	}
 }
@@ -18006,7 +18032,7 @@ export class GetRunsRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "RunsResponse");
 	}
 }
@@ -18096,7 +18122,7 @@ export class GetRunsOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "RunsResponse");
 	}
 }
@@ -18197,7 +18223,7 @@ export class GetSectionRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "SectionResponse");
 	}
 }
@@ -18292,7 +18318,7 @@ export class GetSectionOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "SectionResponse");
 	}
 }
@@ -18393,7 +18419,7 @@ export class GetSectionPageSetupRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "SectionPageSetupResponse");
 	}
 }
@@ -18488,7 +18514,7 @@ export class GetSectionPageSetupOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "SectionPageSetupResponse");
 	}
 }
@@ -18573,7 +18599,7 @@ export class GetSectionsRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "SectionLinkCollectionResponse");
 	}
 }
@@ -18652,7 +18678,7 @@ export class GetSectionsOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "SectionLinkCollectionResponse");
 	}
 }
@@ -18753,7 +18779,7 @@ export class GetStyleRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "StyleResponse");
 	}
 }
@@ -18854,7 +18880,7 @@ export class GetStyleFromDocumentElementRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "StyleResponse");
 	}
 }
@@ -18949,7 +18975,7 @@ export class GetStyleFromDocumentElementOnlineRequest implements RequestInterfac
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "StyleResponse");
 	}
 }
@@ -19044,7 +19070,7 @@ export class GetStyleOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "StyleResponse");
 	}
 }
@@ -19129,7 +19155,7 @@ export class GetStylesRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "StylesResponse");
 	}
 }
@@ -19208,7 +19234,7 @@ export class GetStylesOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "StylesResponse");
 	}
 }
@@ -19315,7 +19341,7 @@ export class GetTableRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "TableResponse");
 	}
 }
@@ -19427,7 +19453,7 @@ export class GetTableCellRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "TableCellResponse");
 	}
 }
@@ -19539,7 +19565,7 @@ export class GetTableCellFormatRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "TableCellFormatResponse");
 	}
 }
@@ -19645,7 +19671,7 @@ export class GetTableCellFormatOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "TableCellFormatResponse");
 	}
 }
@@ -19751,7 +19777,7 @@ export class GetTableCellOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "TableCellResponse");
 	}
 }
@@ -19852,7 +19878,7 @@ export class GetTableOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "TableResponse");
 	}
 }
@@ -19959,7 +19985,7 @@ export class GetTablePropertiesRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "TablePropertiesResponse");
 	}
 }
@@ -20060,7 +20086,7 @@ export class GetTablePropertiesOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "TablePropertiesResponse");
 	}
 }
@@ -20172,7 +20198,7 @@ export class GetTableRowRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "TableRowResponse");
 	}
 }
@@ -20284,7 +20310,7 @@ export class GetTableRowFormatRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "TableRowFormatResponse");
 	}
 }
@@ -20390,7 +20416,7 @@ export class GetTableRowFormatOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "TableRowFormatResponse");
 	}
 }
@@ -20496,7 +20522,7 @@ export class GetTableRowOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "TableRowResponse");
 	}
 }
@@ -20587,7 +20613,7 @@ export class GetTablesRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "TableLinkCollectionResponse");
 	}
 }
@@ -20672,7 +20698,7 @@ export class GetTablesOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "TableLinkCollectionResponse");
 	}
 }
@@ -20791,7 +20817,7 @@ export class InsertCommentRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "CommentResponse");
 	}
 }
@@ -20906,13 +20932,15 @@ export class InsertCommentOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new InsertCommentOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "CommentResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new InsertCommentOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "CommentResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -21032,7 +21060,7 @@ export class InsertCustomXmlPartRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "CustomXmlPartResponse");
 	}
 }
@@ -21147,13 +21175,15 @@ export class InsertCustomXmlPartOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new InsertCustomXmlPartOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "CustomXmlPartResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new InsertCustomXmlPartOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "CustomXmlPartResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -21303,7 +21333,7 @@ export class InsertDrawingObjectRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "DrawingObjectResponse");
 	}
 }
@@ -21442,13 +21472,15 @@ export class InsertDrawingObjectOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new InsertDrawingObjectOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "DrawingObjectResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new InsertDrawingObjectOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "DrawingObjectResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -21580,7 +21612,7 @@ export class InsertFieldRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "FieldResponse");
 	}
 }
@@ -21707,13 +21739,15 @@ export class InsertFieldOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new InsertFieldOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "FieldResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new InsertFieldOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "FieldResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -21839,7 +21873,7 @@ export class InsertFootnoteRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "FootnoteResponse");
 	}
 }
@@ -21960,13 +21994,15 @@ export class InsertFootnoteOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new InsertFootnoteOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "FootnoteResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new InsertFootnoteOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "FootnoteResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -22098,7 +22134,7 @@ export class InsertFormFieldRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "FormFieldResponse");
 	}
 }
@@ -22225,13 +22261,15 @@ export class InsertFormFieldOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new InsertFormFieldOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "FormFieldResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new InsertFormFieldOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "FormFieldResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -22362,7 +22400,7 @@ export class InsertHeaderFooterRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "HeaderFooterResponse");
 	}
 }
@@ -22488,13 +22526,15 @@ export class InsertHeaderFooterOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new InsertHeaderFooterOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "HeaderFooterResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new InsertHeaderFooterOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "HeaderFooterResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -22614,7 +22654,7 @@ export class InsertListRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ListResponse");
 	}
 }
@@ -22729,13 +22769,15 @@ export class InsertListOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new InsertListOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "ListResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new InsertListOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "ListResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -22865,7 +22907,7 @@ export class InsertOrUpdateParagraphTabStopRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "TabStopsResponse");
 	}
 }
@@ -22990,13 +23032,15 @@ export class InsertOrUpdateParagraphTabStopOnlineRequest implements RequestInter
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new InsertOrUpdateParagraphTabStopOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "TabStopsResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new InsertOrUpdateParagraphTabStopOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "TabStopsResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -23116,7 +23160,7 @@ export class InsertPageNumbersRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "DocumentResponse");
 	}
 }
@@ -23231,13 +23275,15 @@ export class InsertPageNumbersOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new InsertPageNumbersOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "DocumentResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new InsertPageNumbersOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "DocumentResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -23369,7 +23415,7 @@ export class InsertParagraphRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ParagraphResponse");
 	}
 }
@@ -23496,13 +23542,15 @@ export class InsertParagraphOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new InsertParagraphOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "ParagraphResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new InsertParagraphOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "ParagraphResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -23639,7 +23687,7 @@ export class InsertRunRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "RunResponse");
 	}
 }
@@ -23771,13 +23819,15 @@ export class InsertRunOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new InsertRunOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "RunResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new InsertRunOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "RunResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -23897,7 +23947,7 @@ export class InsertStyleRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "StyleResponse");
 	}
 }
@@ -24012,13 +24062,15 @@ export class InsertStyleOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new InsertStyleOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "StyleResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new InsertStyleOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "StyleResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -24144,7 +24196,7 @@ export class InsertTableRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "TableResponse");
 	}
 }
@@ -24274,7 +24326,7 @@ export class InsertTableCellRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "TableCellResponse");
 	}
 }
@@ -24400,13 +24452,15 @@ export class InsertTableCellOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new InsertTableCellOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "TableCellResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new InsertTableCellOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "TableCellResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -24528,13 +24582,15 @@ export class InsertTableOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new InsertTableOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "TableResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new InsertTableOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "TableResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -24665,7 +24721,7 @@ export class InsertTableRowRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "TableRowResponse");
 	}
 }
@@ -24791,13 +24847,15 @@ export class InsertTableRowOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new InsertTableRowOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "TableRowResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new InsertTableRowOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "TableRowResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -24925,7 +24983,7 @@ export class InsertWatermarkImageRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "DocumentResponse");
 	}
 }
@@ -25052,13 +25110,15 @@ export class InsertWatermarkImageOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new InsertWatermarkImageOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "DocumentResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new InsertWatermarkImageOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "DocumentResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -25178,7 +25238,7 @@ export class InsertWatermarkTextRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "DocumentResponse");
 	}
 }
@@ -25293,13 +25353,15 @@ export class InsertWatermarkTextOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new InsertWatermarkTextOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "DocumentResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new InsertWatermarkTextOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "DocumentResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -25361,7 +25423,7 @@ export class LoadWebDocumentRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "SaveResponse");
 	}
 }
@@ -25445,7 +25507,7 @@ export class MoveFileRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -25523,7 +25585,7 @@ export class MoveFolderRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -25642,7 +25704,7 @@ export class OptimizeDocumentRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -25744,7 +25806,7 @@ export class OptimizeDocumentOnlineRequest implements RequestInterface {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
-            encoding: null,
+            json: true,
         };
 
         if (Object.keys(formParams).length > 0) {
@@ -25757,8 +25819,8 @@ export class OptimizeDocumentOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        return _response;
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return parseFilesCollection(_response, _headers);
 	}
 }
 
@@ -25864,7 +25926,7 @@ export class ProtectDocumentRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ProtectionDataResponse");
 	}
 }
@@ -25967,13 +26029,15 @@ export class ProtectDocumentOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new ProtectDocumentOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "ProtectionDataResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new ProtectDocumentOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "ProtectionDataResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -26065,7 +26129,7 @@ export class RejectAllRevisionsRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "RevisionsModificationResponse");
 	}
 }
@@ -26150,13 +26214,15 @@ export class RejectAllRevisionsOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new RejectAllRevisionsOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "RevisionsModificationResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new RejectAllRevisionsOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "RevisionsModificationResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -26270,7 +26336,7 @@ export class RemoveRangeRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "DocumentResponse");
 	}
 }
@@ -26377,13 +26443,15 @@ export class RemoveRangeOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new RemoveRangeOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "DocumentResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new RemoveRangeOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "DocumentResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -26519,7 +26587,7 @@ export class RenderDrawingObjectRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
 }
@@ -26648,7 +26716,7 @@ export class RenderDrawingObjectOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
 }
@@ -26783,7 +26851,7 @@ export class RenderMathObjectRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
 }
@@ -26912,7 +26980,7 @@ export class RenderMathObjectOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
 }
@@ -27035,7 +27103,7 @@ export class RenderPageRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
 }
@@ -27152,7 +27220,7 @@ export class RenderPageOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
 }
@@ -27287,7 +27355,7 @@ export class RenderParagraphRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
 }
@@ -27416,7 +27484,7 @@ export class RenderParagraphOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
 }
@@ -27551,7 +27619,7 @@ export class RenderTableRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
 }
@@ -27680,7 +27748,7 @@ export class RenderTableOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
 }
@@ -27799,7 +27867,7 @@ export class ReplaceTextRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ReplaceTextResponse");
 	}
 }
@@ -27914,13 +27982,15 @@ export class ReplaceTextOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new ReplaceTextOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "ReplaceTextResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new ReplaceTextOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "ReplaceTextResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -28050,7 +28120,7 @@ export class ReplaceWithTextRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "DocumentResponse");
 	}
 }
@@ -28175,13 +28245,15 @@ export class ReplaceWithTextOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new ReplaceWithTextOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "DocumentResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new ReplaceWithTextOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "DocumentResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -28222,7 +28294,7 @@ export class ResetCacheRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -28329,7 +28401,7 @@ export class SaveAsRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "SaveResponse");
 	}
 }
@@ -28432,13 +28504,15 @@ export class SaveAsOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new SaveAsOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "SaveResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new SaveAsOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "SaveResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -28562,7 +28636,7 @@ export class SaveAsRangeRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "DocumentResponse");
 	}
 }
@@ -28681,13 +28755,15 @@ export class SaveAsRangeOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new SaveAsRangeOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "DocumentResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new SaveAsRangeOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "DocumentResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -28897,7 +28973,7 @@ export class SaveAsTiffRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "SaveResponse");
 	}
 }
@@ -29102,13 +29178,15 @@ export class SaveAsTiffOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new SaveAsTiffOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "SaveResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new SaveAsTiffOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "SaveResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -29205,7 +29283,7 @@ export class SearchRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "SearchResponse");
 	}
 }
@@ -29295,7 +29373,7 @@ export class SearchOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "SearchResponse");
 	}
 }
@@ -29426,7 +29504,7 @@ export class SplitDocumentRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "SplitDocumentResponse");
 	}
 }
@@ -29551,13 +29629,15 @@ export class SplitDocumentOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new SplitDocumentOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "SplitDocumentResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new SplitDocumentOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "SplitDocumentResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -29665,7 +29745,7 @@ export class UnprotectDocumentRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ProtectionDataResponse");
 	}
 }
@@ -29768,13 +29848,15 @@ export class UnprotectDocumentOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new UnprotectDocumentOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "ProtectionDataResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new UnprotectDocumentOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "ProtectionDataResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -29910,7 +29992,7 @@ export class UpdateBookmarkRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "BookmarkResponse");
 	}
 }
@@ -30041,13 +30123,15 @@ export class UpdateBookmarkOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new UpdateBookmarkOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "BookmarkResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new UpdateBookmarkOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "BookmarkResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -30189,7 +30273,7 @@ export class UpdateBorderRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "BorderResponse");
 	}
 }
@@ -30326,13 +30410,15 @@ export class UpdateBorderOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new UpdateBorderOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "BorderResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new UpdateBorderOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "BorderResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -30468,7 +30554,7 @@ export class UpdateCommentRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "CommentResponse");
 	}
 }
@@ -30599,13 +30685,15 @@ export class UpdateCommentOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new UpdateCommentOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "CommentResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new UpdateCommentOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "CommentResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -30741,7 +30829,7 @@ export class UpdateCustomXmlPartRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "CustomXmlPartResponse");
 	}
 }
@@ -30872,13 +30960,15 @@ export class UpdateCustomXmlPartOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new UpdateCustomXmlPartOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "CustomXmlPartResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new UpdateCustomXmlPartOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "CustomXmlPartResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -31044,7 +31134,7 @@ export class UpdateDrawingObjectRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "DrawingObjectResponse");
 	}
 }
@@ -31199,13 +31289,15 @@ export class UpdateDrawingObjectOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new UpdateDrawingObjectOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "DrawingObjectResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new UpdateDrawingObjectOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "DrawingObjectResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -31347,7 +31439,7 @@ export class UpdateFieldRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "FieldResponse");
 	}
 }
@@ -31484,13 +31576,15 @@ export class UpdateFieldOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new UpdateFieldOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "FieldResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new UpdateFieldOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "FieldResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -31582,7 +31676,7 @@ export class UpdateFieldsRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "DocumentResponse");
 	}
 }
@@ -31667,13 +31761,15 @@ export class UpdateFieldsOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new UpdateFieldsOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "DocumentResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new UpdateFieldsOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "DocumentResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -31815,7 +31911,7 @@ export class UpdateFootnoteRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "FootnoteResponse");
 	}
 }
@@ -31952,13 +32048,15 @@ export class UpdateFootnoteOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new UpdateFootnoteOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "FootnoteResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new UpdateFootnoteOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "FootnoteResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -32100,7 +32198,7 @@ export class UpdateFormFieldRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "FormFieldResponse");
 	}
 }
@@ -32237,13 +32335,15 @@ export class UpdateFormFieldOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new UpdateFormFieldOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "FormFieldResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new UpdateFormFieldOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "FormFieldResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -32379,7 +32479,7 @@ export class UpdateListRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ListResponse");
 	}
 }
@@ -32530,7 +32630,7 @@ export class UpdateListLevelRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ListResponse");
 	}
 }
@@ -32677,13 +32777,15 @@ export class UpdateListLevelOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new UpdateListLevelOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "ListResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new UpdateListLevelOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "ListResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -32815,13 +32917,15 @@ export class UpdateListOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new UpdateListOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "ListResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new UpdateListOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "ListResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -32963,7 +33067,7 @@ export class UpdateParagraphFormatRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ParagraphFormatResponse");
 	}
 }
@@ -33100,13 +33204,15 @@ export class UpdateParagraphFormatOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new UpdateParagraphFormatOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "ParagraphFormatResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new UpdateParagraphFormatOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "ParagraphFormatResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -33248,7 +33354,7 @@ export class UpdateParagraphListFormatRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ParagraphListFormatResponse");
 	}
 }
@@ -33385,13 +33491,15 @@ export class UpdateParagraphListFormatOnlineRequest implements RequestInterface 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new UpdateParagraphListFormatOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "ParagraphListFormatResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new UpdateParagraphListFormatOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "ParagraphListFormatResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -33538,7 +33646,7 @@ export class UpdateRunRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "RunResponse");
 	}
 }
@@ -33684,7 +33792,7 @@ export class UpdateRunFontRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "FontResponse");
 	}
 }
@@ -33826,13 +33934,15 @@ export class UpdateRunFontOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new UpdateRunFontOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "FontResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new UpdateRunFontOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "FontResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -33975,13 +34085,15 @@ export class UpdateRunOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new UpdateRunOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "RunResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new UpdateRunOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "RunResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -34117,7 +34229,7 @@ export class UpdateSectionPageSetupRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "SectionPageSetupResponse");
 	}
 }
@@ -34248,13 +34360,15 @@ export class UpdateSectionPageSetupOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new UpdateSectionPageSetupOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "SectionPageSetupResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new UpdateSectionPageSetupOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "SectionPageSetupResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -34390,7 +34504,7 @@ export class UpdateStyleRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "StyleResponse");
 	}
 }
@@ -34521,13 +34635,15 @@ export class UpdateStyleOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new UpdateStyleOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "StyleResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new UpdateStyleOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "StyleResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -34674,7 +34790,7 @@ export class UpdateTableCellFormatRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "TableCellFormatResponse");
 	}
 }
@@ -34816,13 +34932,15 @@ export class UpdateTableCellFormatOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new UpdateTableCellFormatOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "TableCellFormatResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new UpdateTableCellFormatOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "TableCellFormatResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -34964,7 +35082,7 @@ export class UpdateTablePropertiesRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "TablePropertiesResponse");
 	}
 }
@@ -35101,13 +35219,15 @@ export class UpdateTablePropertiesOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new UpdateTablePropertiesOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "TablePropertiesResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new UpdateTablePropertiesOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "TablePropertiesResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -35254,7 +35374,7 @@ export class UpdateTableRowFormatRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "TableRowFormatResponse");
 	}
 }
@@ -35396,13 +35516,15 @@ export class UpdateTableRowFormatOnlineRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new UpdateTableRowFormatOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "TableRowFormatResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new UpdateTableRowFormatOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "TableRowFormatResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -35488,7 +35610,7 @@ export class UploadFileRequest implements RequestInterface {
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "FilesUploadResult");
 	}
 }
@@ -35506,7 +35628,7 @@ export class AcceptAllRevisionsOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35522,7 +35644,7 @@ export class AppendDocumentOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35538,7 +35660,7 @@ export class ApplyStyleToDocumentElementOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35554,7 +35676,7 @@ export class CompareDocumentOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35570,7 +35692,7 @@ export class CopyStyleOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35586,7 +35708,7 @@ export class CreateOrUpdateDocumentPropertyOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35602,7 +35724,7 @@ export class DeleteAllParagraphTabStopsOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35618,7 +35740,7 @@ export class DeleteBorderOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35634,7 +35756,7 @@ export class DeleteBordersOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35650,7 +35772,7 @@ export class DeleteParagraphListFormatOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35666,7 +35788,7 @@ export class DeleteParagraphTabStopOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35682,7 +35804,7 @@ export class DeleteWatermarkOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35698,7 +35820,7 @@ export class InsertCommentOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35714,7 +35836,7 @@ export class InsertCustomXmlPartOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35730,7 +35852,7 @@ export class InsertDrawingObjectOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35746,7 +35868,7 @@ export class InsertFieldOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35762,7 +35884,7 @@ export class InsertFootnoteOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35778,7 +35900,7 @@ export class InsertFormFieldOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35794,7 +35916,7 @@ export class InsertHeaderFooterOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35810,7 +35932,7 @@ export class InsertListOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35826,7 +35948,7 @@ export class InsertOrUpdateParagraphTabStopOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35842,7 +35964,7 @@ export class InsertPageNumbersOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35858,7 +35980,7 @@ export class InsertParagraphOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35874,7 +35996,7 @@ export class InsertRunOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35890,7 +36012,7 @@ export class InsertStyleOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35906,7 +36028,7 @@ export class InsertTableCellOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35922,7 +36044,7 @@ export class InsertTableOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35938,7 +36060,7 @@ export class InsertTableRowOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35954,7 +36076,7 @@ export class InsertWatermarkImageOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35970,7 +36092,7 @@ export class InsertWatermarkTextOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35986,7 +36108,7 @@ export class ProtectDocumentOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36002,7 +36124,7 @@ export class RejectAllRevisionsOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36018,7 +36140,7 @@ export class RemoveRangeOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36034,7 +36156,7 @@ export class ReplaceTextOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36050,7 +36172,7 @@ export class ReplaceWithTextOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36066,7 +36188,7 @@ export class SaveAsOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36082,7 +36204,7 @@ export class SaveAsRangeOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36098,7 +36220,7 @@ export class SaveAsTiffOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36114,7 +36236,7 @@ export class SplitDocumentOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36130,7 +36252,7 @@ export class UnprotectDocumentOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36146,7 +36268,7 @@ export class UpdateBookmarkOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36162,7 +36284,7 @@ export class UpdateBorderOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36178,7 +36300,7 @@ export class UpdateCommentOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36194,7 +36316,7 @@ export class UpdateCustomXmlPartOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36210,7 +36332,7 @@ export class UpdateDrawingObjectOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36226,7 +36348,7 @@ export class UpdateFieldOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36242,7 +36364,7 @@ export class UpdateFieldsOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36258,7 +36380,7 @@ export class UpdateFootnoteOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36274,7 +36396,7 @@ export class UpdateFormFieldOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36290,7 +36412,7 @@ export class UpdateListLevelOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36306,7 +36428,7 @@ export class UpdateListOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36322,7 +36444,7 @@ export class UpdateParagraphFormatOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36338,7 +36460,7 @@ export class UpdateParagraphListFormatOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36354,7 +36476,7 @@ export class UpdateRunFontOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36370,7 +36492,7 @@ export class UpdateRunOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36386,7 +36508,7 @@ export class UpdateSectionPageSetupOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36402,7 +36524,7 @@ export class UpdateStyleOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36418,7 +36540,7 @@ export class UpdateTableCellFormatOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36434,7 +36556,7 @@ export class UpdateTablePropertiesOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36450,5 +36572,5 @@ export class UpdateTableRowFormatOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }

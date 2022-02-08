@@ -58,7 +58,7 @@ export class HtmlSaveOptionsData extends SaveOptionsData {
         {
             name: "cssStyleSheetType",
             baseName: "CssStyleSheetType",
-            type: "string",
+            type: "HtmlSaveOptionsData.CssStyleSheetTypeEnum",
         },
         {
             name: "documentSplitCriteria",
@@ -264,7 +264,7 @@ export class HtmlSaveOptionsData extends SaveOptionsData {
     /**
      * Gets or sets the option that controls how the CSS styles are exported.
      */
-    public cssStyleSheetType: string;
+    public cssStyleSheetType: HtmlSaveOptionsData.CssStyleSheetTypeEnum;
 
     /**
      * Gets or sets the option that controls how the document should be split when saving.
@@ -464,6 +464,12 @@ export class HtmlSaveOptionsData extends SaveOptionsData {
 // tslint:disable:quotemark
 // tslint:disable-next-line:no-namespace
 export namespace HtmlSaveOptionsData {
+    export enum CssStyleSheetTypeEnum {
+        Inline = 'Inline' as any,
+        Embedded = 'Embedded' as any,
+        External = 'External' as any
+    }
+
     export enum HtmlVersionEnum {
         Xhtml = 'Xhtml' as any,
         Html5 = 'Html5' as any

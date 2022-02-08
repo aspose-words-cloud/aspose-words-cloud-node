@@ -18,9 +18,11 @@ Feel free to explore the [Developer's Guide](https://docs.aspose.cloud/display/w
 
 ## Enhancements in Version 22.2
 
-- Made 'SaveOprionsData.SaveFormat' property readonly with default value.
+- Made 'SaveOptionsData.SaveFormat' property readonly with default value.
 - Added subclasses for all formats of SaveOprionsData with specified SaveFormat.
 - 'SaveOptionsData', 'FixedPageSaveOptionsData', 'ImageSaveOptionsData', 'OoxmlSaveOptionsData', 'TxtSaveOptionsBaseData' classes now is abstract.
+- Online methods returns the dictionary of files with included original filename as key instead of single file content in 'Document' property.
+- Changed 'CssStyleSheetType' property type to enum instead of string in 'HtmlSaveOptionsData'.
 
 
 ## Enhancements in Version 22.1

@@ -98,6 +98,33 @@ describe("convertDocument", () => {
        });
     });
 
+    // Test for converting document online to html with additional files like css and images.
+    describe("saveAsOnlineHtmlMultifile test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const localName = "test_multi_pages.docx";
+
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + "Common/" + localName);
+            const requestSaveOptionsData = new model.HtmlSaveOptionsData({
+                fileName: BaseTest.remoteBaseTestOutFolder + "/TestSaveAsHtml.html",
+                cssStyleSheetType: model.HtmlSaveOptionsData.CssStyleSheetTypeEnum.External,
+                cssStyleSheetFileName: BaseTest.remoteBaseTestOutFolder + "/TestSaveAsHtml.css"
+            })
+            const request = new model.SaveAsOnlineRequest({
+                document: requestDocument,
+                saveOptionsData: requestSaveOptionsData
+            });
+
+            // Act
+            return wordsApi.saveAsOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+            });
+
+       });
+    });
+
     // Test for converting document to one of the available formats.
     describe("saveAsDocx test", () => {
         it("should return response with code 200", () => {

@@ -357,7 +357,7 @@ export function findMultipartElement(parts: any[], name: string): any {
         var subn = null;
         subs.forEach(element => {
             if (element.trim().startsWith("name=")) {
-                subn = element.trim().substr(5).replaceAll('"', '');
+                subn = element.trim().substr(5).replace(new RegExp('"', 'g'), '');
             }
         });
         if (subn === name) {
@@ -383,7 +383,7 @@ export function parseFilesCollection(response: Buffer, headers: http.IncomingHtt
             var filename = null;
             subs.forEach(element => {
                 if (element.trim().startsWith("filename=")) {
-                    filename = element.trim().substr(9).replaceAll('"', '');
+                    filename = element.trim().substr(9).replace(new RegExp('"', 'g'), '');
                 }
             });
             result.set(filename, part.body);

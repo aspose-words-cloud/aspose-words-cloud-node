@@ -5625,7 +5625,12 @@ export class WordsApi {
                         for await (const x of stream) {
                             chunks.push(x);
                         }
-                        return Buffer.concat(chunks);
+                        if (chunks.length > 0 && typeof(chunks[0]) === 'number') {
+                            return Buffer.from(chunks);
+                        }
+                        else {
+                            return Buffer.concat(chunks);
+                        }
                     };
 
                     if (value instanceof require("stream").Readable) {

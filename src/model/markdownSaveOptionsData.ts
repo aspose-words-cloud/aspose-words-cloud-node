@@ -62,6 +62,8 @@ export class MarkdownSaveOptionsData extends TxtSaveOptionsBaseData {
 
     public constructor(init?: Partial< MarkdownSaveOptionsData >) {
         super(init);
+        this.saveFormat = 'md';
+
         Object.assign(this, init);
     }
 }

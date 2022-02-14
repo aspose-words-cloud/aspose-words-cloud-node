@@ -33,7 +33,7 @@ export const importsMapDocumentPropertyBase = {
 /**
  * Words document property DTO base class.
  */
-export class DocumentPropertyBase {
+export abstract class DocumentPropertyBase {
     /**
      * Attribute type map
      */

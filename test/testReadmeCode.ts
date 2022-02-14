@@ -26,7 +26,7 @@
  */
 
 import "mocha";
-import { WordsApi, UploadFileRequest, SaveAsRequest, SaveOptionsData } from "../src/api";
+import { WordsApi, UploadFileRequest, SaveAsRequest, PdfSaveOptionsData } from "../src/api";
 import { createReadStream } from "fs";
 import * as BaseTest from "./baseTest";
 import { fail } from "assert";
@@ -58,9 +58,8 @@ describe("Readme code tests", () => {
                 // save the file as pdf in the cloud
                 const request = new SaveAsRequest({
                     name: "uploaded.docx",
-                    saveOptionsData: new SaveOptionsData(
+                    saveOptionsData: new PdfSaveOptionsData(
                         {
-                            saveFormat: "pdf",
                             fileName: "destination.pdf"
                         })
                 });

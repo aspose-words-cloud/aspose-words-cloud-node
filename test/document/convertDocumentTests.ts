@@ -50,8 +50,7 @@ describe("convertDocument", () => {
                 BaseTest.localBaseTestDataFolder + "Common/" + localName
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const requestSaveOptionsData = new model.SaveOptionsData({
-                    saveFormat: "pdf",
+                const requestSaveOptionsData = new model.PdfSaveOptionsData({
                     fileName: BaseTest.remoteBaseTestOutFolder + "/TestSaveAs.pdf"
                 })
                 const request = new model.SaveAsRequest({
@@ -81,8 +80,7 @@ describe("convertDocument", () => {
             const localName = "test_multi_pages.docx";
 
             const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + "Common/" + localName);
-            const requestSaveOptionsData = new model.SaveOptionsData({
-                saveFormat: "pdf",
+            const requestSaveOptionsData = new model.PdfSaveOptionsData({
                 fileName: BaseTest.remoteBaseTestOutFolder + "/TestSaveAs.pdf"
             })
             const request = new model.SaveAsOnlineRequest({
@@ -112,8 +110,7 @@ describe("convertDocument", () => {
                 BaseTest.localBaseTestDataFolder + localFolder + "/" + localName
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const requestSaveOptionsData = new model.SaveOptionsData({
-                    saveFormat: "docx",
+                const requestSaveOptionsData = new model.DocxSaveOptionsData({
                     fileName: BaseTest.remoteBaseTestOutFolder + "/TestSaveAsFromPdfToDoc.docx"
                 })
                 const request = new model.SaveAsRequest({
@@ -149,7 +146,6 @@ describe("convertDocument", () => {
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const requestSaveOptions = new model.TiffSaveOptionsData({
-                    saveFormat: "tiff",
                     fileName: BaseTest.remoteBaseTestOutFolder + "/abc.tiff"
                 })
                 const request = new model.SaveAsTiffRequest({
@@ -180,7 +176,6 @@ describe("convertDocument", () => {
 
             const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + "Common/" + localName);
             const requestSaveOptions = new model.TiffSaveOptionsData({
-                saveFormat: "tiff",
                 fileName: BaseTest.remoteBaseTestOutFolder + "/abc.tiff"
             })
             const request = new model.SaveAsTiffOnlineRequest({

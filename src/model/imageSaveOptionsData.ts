@@ -35,7 +35,7 @@ export const importsMapImageSaveOptionsData = {
 /**
  * Container abstract class for image save options.
  */
-export class ImageSaveOptionsData extends FixedPageSaveOptionsData {
+export abstract class ImageSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Attribute type map
      */

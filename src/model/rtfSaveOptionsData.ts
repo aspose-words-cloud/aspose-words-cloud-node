@@ -91,6 +91,8 @@ export class RtfSaveOptionsData extends SaveOptionsData {
 
     public constructor(init?: Partial< RtfSaveOptionsData >) {
         super(init);
+        this.saveFormat = 'rtf';
+
         Object.assign(this, init);
     }
 }

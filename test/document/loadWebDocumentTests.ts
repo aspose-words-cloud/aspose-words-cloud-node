@@ -39,9 +39,8 @@ describe("loadWebDocument", () => {
     describe("loadWebDocument test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            const requestDataSaveOptions = new model.SaveOptionsData({
+            const requestDataSaveOptions = new model.DocSaveOptionsData({
                 fileName: "google.doc",
-                saveFormat: "doc",
                 dmlEffectsRenderingMode: "1",
                 dmlRenderingMode: "1",
                 updateSdtContent: false,

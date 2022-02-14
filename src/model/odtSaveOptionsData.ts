@@ -92,6 +92,8 @@ export class OdtSaveOptionsData extends SaveOptionsData {
 
     public constructor(init?: Partial< OdtSaveOptionsData >) {
         super(init);
+        this.saveFormat = 'odt';
+
         Object.assign(this, init);
     }
 }

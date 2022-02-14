@@ -52,6 +52,8 @@ export class JpegSaveOptionsData extends ImageSaveOptionsData {
 
     public constructor(init?: Partial< JpegSaveOptionsData >) {
         super(init);
+        this.saveFormat = 'jpeg';
+
         Object.assign(this, init);
     }
 }

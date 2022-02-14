@@ -1,6 +1,6 @@
 /*
  * --------------------------------------------------------------------------------
- * <copyright company="Aspose" file="xamlFixedSaveOptionsData.ts">
+ * <copyright company="Aspose" file="flatOpcMacroSaveOptionsData.ts">
  *   Copyright (c) 2022 Aspose.Words for Cloud
  * </copyright>
  * <summary>
@@ -26,53 +26,33 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
-import { FixedPageSaveOptionsData } from './fixedPageSaveOptionsData';
+import { OoxmlSaveOptionsData } from './ooxmlSaveOptionsData';
 
-export const importsMapXamlFixedSaveOptionsData = {
-    FixedPageSaveOptionsData,
+export const importsMapFlatOpcMacroSaveOptionsData = {
+    OoxmlSaveOptionsData,
 };
 
 /**
- * Container class for xaml fixed save options.
+ * Container class for fopc_macro save options.
  */
-export class XamlFixedSaveOptionsData extends FixedPageSaveOptionsData {
+export class FlatOpcMacroSaveOptionsData extends OoxmlSaveOptionsData {
     /**
      * Attribute type map
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
-        {
-            name: "resourcesFolder",
-            baseName: "ResourcesFolder",
-            type: "string",
-        },
-        {
-            name: "resourcesFolderAlias",
-            baseName: "ResourcesFolderAlias",
-            type: "string",
-        }
     ];
 
     /**
      * Returns attribute type map
      */
     public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(XamlFixedSaveOptionsData.attributeTypeMap);
+        return super.getAttributeTypeMap().concat(FlatOpcMacroSaveOptionsData.attributeTypeMap);
     }
 
-    /**
-     * Gets or sets the physical folder where resources (images and fonts) are saved when exporting a document to fixed page Xaml format.
-     * The default value is null.
-     */
-    public resourcesFolder: string;
 
-    /**
-     * Gets or sets the name of the folder used to construct image URIs written into an fixed page Xaml document. The default value is null.
-     */
-    public resourcesFolderAlias: string;
-
-    public constructor(init?: Partial< XamlFixedSaveOptionsData >) {
+    public constructor(init?: Partial< FlatOpcMacroSaveOptionsData >) {
         super(init);
-        this.saveFormat = 'xamlfixed';
+        this.saveFormat = 'fopc_macro';
 
         Object.assign(this, init);
     }

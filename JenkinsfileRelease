@@ -79,7 +79,7 @@ node('words-linux') {
                 
 				gitlabCommitStatus("audit security") {
 					stage('audit security'){
-                        sh "npm audit fix"
+                        sh "npm audit fix --production"
 						sh "npm audit --production --audit-level=moderate"
                     }
                 }

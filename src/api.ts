@@ -32,7 +32,7 @@ import FormData = require("form-data");
 import RSA = require('node-rsa');
 
 import { Configuration } from "./internal/configuration";
-import { invokeApiMethod, getBoundary, parseMultipartBody } from "./internal/requestHelper";
+import { invokeApiMethod, getBoundary, parseBatchParts } from "./internal/requestHelper";
 import { ObjectSerializer } from "./internal/objectSerializer";
 import * as model from "./model/model";
 import { BatchPartRequest } from "./model/batchPartRequest";
@@ -94,7 +94,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.RevisionsModificationResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -112,7 +112,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.AcceptAllRevisionsOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -130,7 +130,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DocumentResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -148,7 +148,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.AppendDocumentOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -166,7 +166,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.WordsResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -184,7 +184,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ApplyStyleToDocumentElementOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -202,7 +202,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DocumentResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -220,7 +220,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -238,7 +238,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ClassificationResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -256,7 +256,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ClassificationResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -274,7 +274,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ClassificationResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -292,7 +292,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DocumentResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -310,7 +310,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.CompareDocumentOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -328,7 +328,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -376,7 +376,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.StyleResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -394,7 +394,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.CopyStyleOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -412,7 +412,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DocumentResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -445,7 +445,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DocumentPropertyResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -463,7 +463,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.CreateOrUpdateDocumentPropertyOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -481,7 +481,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.TabStopsResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -499,7 +499,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DeleteAllParagraphTabStopsOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -517,7 +517,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.BorderResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -535,7 +535,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DeleteBorderOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -553,7 +553,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.BordersResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -571,7 +571,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DeleteBordersOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -594,7 +594,7 @@ export class WordsApi {
      * Removes a comment from the document.
      * @param requestObj contains request parameters
      */
-    public async deleteCommentOnline(requestObj: model.DeleteCommentOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+    public async deleteCommentOnline(requestObj: model.DeleteCommentOnlineRequest): Promise< model.WordsIncomingMessage< Map<string, Buffer> > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "request" was null or undefined when calling deleteCommentOnline.');
         }
@@ -602,9 +602,9 @@ export class WordsApi {
         const requestOptions = requestObj.createRequestOptions(this.configuration, await this._getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = new model.WordsIncomingMessage< Buffer >();    
+        const result = new model.WordsIncomingMessage< Map<string, Buffer> >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -627,7 +627,7 @@ export class WordsApi {
      * Removes all comments from the document.
      * @param requestObj contains request parameters
      */
-    public async deleteCommentsOnline(requestObj: model.DeleteCommentsOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+    public async deleteCommentsOnline(requestObj: model.DeleteCommentsOnlineRequest): Promise< model.WordsIncomingMessage< Map<string, Buffer> > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "request" was null or undefined when calling deleteCommentsOnline.');
         }
@@ -635,9 +635,9 @@ export class WordsApi {
         const requestOptions = requestObj.createRequestOptions(this.configuration, await this._getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = new model.WordsIncomingMessage< Buffer >();    
+        const result = new model.WordsIncomingMessage< Map<string, Buffer> >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -660,7 +660,7 @@ export class WordsApi {
      * Removes the custom xml part from the document.
      * @param requestObj contains request parameters
      */
-    public async deleteCustomXmlPartOnline(requestObj: model.DeleteCustomXmlPartOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+    public async deleteCustomXmlPartOnline(requestObj: model.DeleteCustomXmlPartOnlineRequest): Promise< model.WordsIncomingMessage< Map<string, Buffer> > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "request" was null or undefined when calling deleteCustomXmlPartOnline.');
         }
@@ -668,9 +668,9 @@ export class WordsApi {
         const requestOptions = requestObj.createRequestOptions(this.configuration, await this._getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = new model.WordsIncomingMessage< Buffer >();    
+        const result = new model.WordsIncomingMessage< Map<string, Buffer> >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -693,7 +693,7 @@ export class WordsApi {
      * Removes all custom xml parts from the document.
      * @param requestObj contains request parameters
      */
-    public async deleteCustomXmlPartsOnline(requestObj: model.DeleteCustomXmlPartsOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+    public async deleteCustomXmlPartsOnline(requestObj: model.DeleteCustomXmlPartsOnlineRequest): Promise< model.WordsIncomingMessage< Map<string, Buffer> > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "request" was null or undefined when calling deleteCustomXmlPartsOnline.');
         }
@@ -701,9 +701,9 @@ export class WordsApi {
         const requestOptions = requestObj.createRequestOptions(this.configuration, await this._getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = new model.WordsIncomingMessage< Buffer >();    
+        const result = new model.WordsIncomingMessage< Map<string, Buffer> >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -726,7 +726,7 @@ export class WordsApi {
      * Removes a document property.
      * @param requestObj contains request parameters
      */
-    public async deleteDocumentPropertyOnline(requestObj: model.DeleteDocumentPropertyOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+    public async deleteDocumentPropertyOnline(requestObj: model.DeleteDocumentPropertyOnlineRequest): Promise< model.WordsIncomingMessage< Map<string, Buffer> > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "request" was null or undefined when calling deleteDocumentPropertyOnline.');
         }
@@ -734,9 +734,9 @@ export class WordsApi {
         const requestOptions = requestObj.createRequestOptions(this.configuration, await this._getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = new model.WordsIncomingMessage< Buffer >();    
+        const result = new model.WordsIncomingMessage< Map<string, Buffer> >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -759,7 +759,7 @@ export class WordsApi {
      * Removes a DrawingObject from the document node.
      * @param requestObj contains request parameters
      */
-    public async deleteDrawingObjectOnline(requestObj: model.DeleteDrawingObjectOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+    public async deleteDrawingObjectOnline(requestObj: model.DeleteDrawingObjectOnlineRequest): Promise< model.WordsIncomingMessage< Map<string, Buffer> > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "request" was null or undefined when calling deleteDrawingObjectOnline.');
         }
@@ -767,9 +767,9 @@ export class WordsApi {
         const requestOptions = requestObj.createRequestOptions(this.configuration, await this._getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = new model.WordsIncomingMessage< Buffer >();    
+        const result = new model.WordsIncomingMessage< Map<string, Buffer> >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -792,7 +792,7 @@ export class WordsApi {
      * Removes a field from the document node.
      * @param requestObj contains request parameters
      */
-    public async deleteFieldOnline(requestObj: model.DeleteFieldOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+    public async deleteFieldOnline(requestObj: model.DeleteFieldOnlineRequest): Promise< model.WordsIncomingMessage< Map<string, Buffer> > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "request" was null or undefined when calling deleteFieldOnline.');
         }
@@ -800,9 +800,9 @@ export class WordsApi {
         const requestOptions = requestObj.createRequestOptions(this.configuration, await this._getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = new model.WordsIncomingMessage< Buffer >();    
+        const result = new model.WordsIncomingMessage< Map<string, Buffer> >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -825,7 +825,7 @@ export class WordsApi {
      * Removes fields from the document node.
      * @param requestObj contains request parameters
      */
-    public async deleteFieldsOnline(requestObj: model.DeleteFieldsOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+    public async deleteFieldsOnline(requestObj: model.DeleteFieldsOnlineRequest): Promise< model.WordsIncomingMessage< Map<string, Buffer> > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "request" was null or undefined when calling deleteFieldsOnline.');
         }
@@ -833,9 +833,9 @@ export class WordsApi {
         const requestOptions = requestObj.createRequestOptions(this.configuration, await this._getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = new model.WordsIncomingMessage< Buffer >();    
+        const result = new model.WordsIncomingMessage< Map<string, Buffer> >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -888,7 +888,7 @@ export class WordsApi {
      * Removes a footnote from the document node.
      * @param requestObj contains request parameters
      */
-    public async deleteFootnoteOnline(requestObj: model.DeleteFootnoteOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+    public async deleteFootnoteOnline(requestObj: model.DeleteFootnoteOnlineRequest): Promise< model.WordsIncomingMessage< Map<string, Buffer> > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "request" was null or undefined when calling deleteFootnoteOnline.');
         }
@@ -896,9 +896,9 @@ export class WordsApi {
         const requestOptions = requestObj.createRequestOptions(this.configuration, await this._getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = new model.WordsIncomingMessage< Buffer >();    
+        const result = new model.WordsIncomingMessage< Map<string, Buffer> >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -921,7 +921,7 @@ export class WordsApi {
      * Removes a form field from the document node.
      * @param requestObj contains request parameters
      */
-    public async deleteFormFieldOnline(requestObj: model.DeleteFormFieldOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+    public async deleteFormFieldOnline(requestObj: model.DeleteFormFieldOnlineRequest): Promise< model.WordsIncomingMessage< Map<string, Buffer> > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "request" was null or undefined when calling deleteFormFieldOnline.');
         }
@@ -929,9 +929,9 @@ export class WordsApi {
         const requestOptions = requestObj.createRequestOptions(this.configuration, await this._getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = new model.WordsIncomingMessage< Buffer >();    
+        const result = new model.WordsIncomingMessage< Map<string, Buffer> >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -954,7 +954,7 @@ export class WordsApi {
      * Removes a HeaderFooter object from the document section.
      * @param requestObj contains request parameters
      */
-    public async deleteHeaderFooterOnline(requestObj: model.DeleteHeaderFooterOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+    public async deleteHeaderFooterOnline(requestObj: model.DeleteHeaderFooterOnlineRequest): Promise< model.WordsIncomingMessage< Map<string, Buffer> > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "request" was null or undefined when calling deleteHeaderFooterOnline.');
         }
@@ -962,9 +962,9 @@ export class WordsApi {
         const requestOptions = requestObj.createRequestOptions(this.configuration, await this._getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = new model.WordsIncomingMessage< Buffer >();    
+        const result = new model.WordsIncomingMessage< Map<string, Buffer> >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -987,7 +987,7 @@ export class WordsApi {
      * Removes HeaderFooter objects from the document section.
      * @param requestObj contains request parameters
      */
-    public async deleteHeadersFootersOnline(requestObj: model.DeleteHeadersFootersOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+    public async deleteHeadersFootersOnline(requestObj: model.DeleteHeadersFootersOnlineRequest): Promise< model.WordsIncomingMessage< Map<string, Buffer> > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "request" was null or undefined when calling deleteHeadersFootersOnline.');
         }
@@ -995,9 +995,9 @@ export class WordsApi {
         const requestOptions = requestObj.createRequestOptions(this.configuration, await this._getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = new model.WordsIncomingMessage< Buffer >();    
+        const result = new model.WordsIncomingMessage< Map<string, Buffer> >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -1020,7 +1020,7 @@ export class WordsApi {
      * Removes macros from the document.
      * @param requestObj contains request parameters
      */
-    public async deleteMacrosOnline(requestObj: model.DeleteMacrosOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+    public async deleteMacrosOnline(requestObj: model.DeleteMacrosOnlineRequest): Promise< model.WordsIncomingMessage< Map<string, Buffer> > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "request" was null or undefined when calling deleteMacrosOnline.');
         }
@@ -1028,9 +1028,9 @@ export class WordsApi {
         const requestOptions = requestObj.createRequestOptions(this.configuration, await this._getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = new model.WordsIncomingMessage< Buffer >();    
+        const result = new model.WordsIncomingMessage< Map<string, Buffer> >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -1053,7 +1053,7 @@ export class WordsApi {
      * Removes an OfficeMath object from the document node.
      * @param requestObj contains request parameters
      */
-    public async deleteOfficeMathObjectOnline(requestObj: model.DeleteOfficeMathObjectOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+    public async deleteOfficeMathObjectOnline(requestObj: model.DeleteOfficeMathObjectOnlineRequest): Promise< model.WordsIncomingMessage< Map<string, Buffer> > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "request" was null or undefined when calling deleteOfficeMathObjectOnline.');
         }
@@ -1061,9 +1061,9 @@ export class WordsApi {
         const requestOptions = requestObj.createRequestOptions(this.configuration, await this._getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = new model.WordsIncomingMessage< Buffer >();    
+        const result = new model.WordsIncomingMessage< Map<string, Buffer> >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -1096,7 +1096,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ParagraphListFormatResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -1114,7 +1114,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DeleteParagraphListFormatOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -1122,7 +1122,7 @@ export class WordsApi {
      * Removes a paragraph from the document node.
      * @param requestObj contains request parameters
      */
-    public async deleteParagraphOnline(requestObj: model.DeleteParagraphOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+    public async deleteParagraphOnline(requestObj: model.DeleteParagraphOnlineRequest): Promise< model.WordsIncomingMessage< Map<string, Buffer> > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "request" was null or undefined when calling deleteParagraphOnline.');
         }
@@ -1130,9 +1130,9 @@ export class WordsApi {
         const requestOptions = requestObj.createRequestOptions(this.configuration, await this._getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = new model.WordsIncomingMessage< Buffer >();    
+        const result = new model.WordsIncomingMessage< Map<string, Buffer> >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -1150,7 +1150,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.TabStopsResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -1168,7 +1168,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DeleteParagraphTabStopOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -1191,7 +1191,7 @@ export class WordsApi {
      * Removes a Run object from the paragraph.
      * @param requestObj contains request parameters
      */
-    public async deleteRunOnline(requestObj: model.DeleteRunOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+    public async deleteRunOnline(requestObj: model.DeleteRunOnlineRequest): Promise< model.WordsIncomingMessage< Map<string, Buffer> > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "request" was null or undefined when calling deleteRunOnline.');
         }
@@ -1199,9 +1199,9 @@ export class WordsApi {
         const requestOptions = requestObj.createRequestOptions(this.configuration, await this._getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = new model.WordsIncomingMessage< Buffer >();    
+        const result = new model.WordsIncomingMessage< Map<string, Buffer> >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -1224,7 +1224,7 @@ export class WordsApi {
      * Removes a section from the document.
      * @param requestObj contains request parameters
      */
-    public async deleteSectionOnline(requestObj: model.DeleteSectionOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+    public async deleteSectionOnline(requestObj: model.DeleteSectionOnlineRequest): Promise< model.WordsIncomingMessage< Map<string, Buffer> > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "request" was null or undefined when calling deleteSectionOnline.');
         }
@@ -1232,9 +1232,9 @@ export class WordsApi {
         const requestOptions = requestObj.createRequestOptions(this.configuration, await this._getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = new model.WordsIncomingMessage< Buffer >();    
+        const result = new model.WordsIncomingMessage< Map<string, Buffer> >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -1272,7 +1272,7 @@ export class WordsApi {
      * Removes a cell from the table row.
      * @param requestObj contains request parameters
      */
-    public async deleteTableCellOnline(requestObj: model.DeleteTableCellOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+    public async deleteTableCellOnline(requestObj: model.DeleteTableCellOnlineRequest): Promise< model.WordsIncomingMessage< Map<string, Buffer> > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "request" was null or undefined when calling deleteTableCellOnline.');
         }
@@ -1280,9 +1280,9 @@ export class WordsApi {
         const requestOptions = requestObj.createRequestOptions(this.configuration, await this._getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = new model.WordsIncomingMessage< Buffer >();    
+        const result = new model.WordsIncomingMessage< Map<string, Buffer> >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -1290,7 +1290,7 @@ export class WordsApi {
      * Removes a table from the document node.
      * @param requestObj contains request parameters
      */
-    public async deleteTableOnline(requestObj: model.DeleteTableOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+    public async deleteTableOnline(requestObj: model.DeleteTableOnlineRequest): Promise< model.WordsIncomingMessage< Map<string, Buffer> > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "request" was null or undefined when calling deleteTableOnline.');
         }
@@ -1298,9 +1298,9 @@ export class WordsApi {
         const requestOptions = requestObj.createRequestOptions(this.configuration, await this._getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = new model.WordsIncomingMessage< Buffer >();    
+        const result = new model.WordsIncomingMessage< Map<string, Buffer> >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -1323,7 +1323,7 @@ export class WordsApi {
      * Removes a row from the table.
      * @param requestObj contains request parameters
      */
-    public async deleteTableRowOnline(requestObj: model.DeleteTableRowOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+    public async deleteTableRowOnline(requestObj: model.DeleteTableRowOnlineRequest): Promise< model.WordsIncomingMessage< Map<string, Buffer> > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "request" was null or undefined when calling deleteTableRowOnline.');
         }
@@ -1331,9 +1331,9 @@ export class WordsApi {
         const requestOptions = requestObj.createRequestOptions(this.configuration, await this._getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = new model.WordsIncomingMessage< Buffer >();    
+        const result = new model.WordsIncomingMessage< Map<string, Buffer> >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -1351,7 +1351,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DocumentResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -1369,7 +1369,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DeleteWatermarkOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -1387,7 +1387,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -1405,7 +1405,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DocumentResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -1423,7 +1423,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -1441,7 +1441,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.AvailableFontsResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -1459,7 +1459,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.BookmarkResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -1477,7 +1477,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.BookmarkResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -1495,7 +1495,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.BookmarksResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -1513,7 +1513,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.BookmarksResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -1531,7 +1531,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.BorderResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -1549,7 +1549,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.BorderResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -1567,7 +1567,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.BordersResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -1585,7 +1585,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.BordersResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -1603,7 +1603,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.CommentResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -1621,7 +1621,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.CommentResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -1639,7 +1639,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.CommentsResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -1657,7 +1657,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.CommentsResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -1675,7 +1675,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.CustomXmlPartResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -1693,7 +1693,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.CustomXmlPartResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -1711,7 +1711,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.CustomXmlPartsResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -1729,7 +1729,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.CustomXmlPartsResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -1747,7 +1747,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DocumentResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -1765,7 +1765,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DrawingObjectResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -1783,7 +1783,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DrawingObjectResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -1801,7 +1801,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -1819,7 +1819,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -1837,7 +1837,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -1855,7 +1855,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -1873,7 +1873,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DrawingObjectsResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -1891,7 +1891,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DrawingObjectsResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -1909,7 +1909,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.FieldNamesResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -1927,7 +1927,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.FieldNamesResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -1945,7 +1945,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.HyperlinkResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -1963,7 +1963,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.HyperlinkResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -1981,7 +1981,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.HyperlinksResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -1999,7 +1999,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.HyperlinksResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2017,7 +2017,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DocumentPropertiesResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2035,7 +2035,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DocumentPropertiesResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2053,7 +2053,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DocumentPropertyResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2071,7 +2071,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DocumentPropertyResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2089,7 +2089,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ProtectionDataResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2107,7 +2107,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ProtectionDataResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2125,7 +2125,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.StatDataResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2143,7 +2143,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.StatDataResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2161,7 +2161,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2179,7 +2179,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.FieldResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2197,7 +2197,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.FieldResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2215,7 +2215,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.FieldsResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2233,7 +2233,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.FieldsResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2251,7 +2251,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.FilesList >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2269,7 +2269,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.FootnoteResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2287,7 +2287,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.FootnoteResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2305,7 +2305,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.FootnotesResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2323,7 +2323,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.FootnotesResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2341,7 +2341,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.FormFieldResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2359,7 +2359,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.FormFieldResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2377,7 +2377,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.FormFieldsResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2395,7 +2395,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.FormFieldsResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2413,7 +2413,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.HeaderFooterResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2431,7 +2431,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.HeaderFooterResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2449,7 +2449,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.HeaderFooterResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2467,7 +2467,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.HeaderFooterResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2485,7 +2485,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.HeaderFootersResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2503,7 +2503,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.HeaderFootersResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2521,7 +2521,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.InfoResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2539,7 +2539,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ListResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2557,7 +2557,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ListResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2575,7 +2575,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ListsResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2593,7 +2593,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ListsResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2611,7 +2611,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.OfficeMathObjectResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2629,7 +2629,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.OfficeMathObjectResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2647,7 +2647,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.OfficeMathObjectsResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2665,7 +2665,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.OfficeMathObjectsResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2683,7 +2683,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ParagraphResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2701,7 +2701,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ParagraphFormatResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2719,7 +2719,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ParagraphFormatResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2737,7 +2737,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ParagraphListFormatResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2755,7 +2755,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ParagraphListFormatResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2773,7 +2773,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ParagraphResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2791,7 +2791,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ParagraphLinkCollectionResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2809,7 +2809,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ParagraphLinkCollectionResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2827,7 +2827,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.TabStopsResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2845,7 +2845,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.TabStopsResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2863,7 +2863,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.PublicKeyResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2881,7 +2881,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.RangeTextResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2899,7 +2899,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.RangeTextResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2917,7 +2917,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.RunResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2935,7 +2935,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.FontResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2953,7 +2953,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.FontResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2971,7 +2971,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.RunResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -2989,7 +2989,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.RunsResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3007,7 +3007,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.RunsResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3025,7 +3025,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.SectionResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3043,7 +3043,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.SectionResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3061,7 +3061,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.SectionPageSetupResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3079,7 +3079,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.SectionPageSetupResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3097,7 +3097,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.SectionLinkCollectionResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3115,7 +3115,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.SectionLinkCollectionResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3133,7 +3133,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.StyleResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3151,7 +3151,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.StyleResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3169,7 +3169,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.StyleResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3187,7 +3187,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.StyleResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3205,7 +3205,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.StylesResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3223,7 +3223,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.StylesResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3241,7 +3241,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.TableResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3259,7 +3259,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.TableCellResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3277,7 +3277,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.TableCellFormatResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3295,7 +3295,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.TableCellFormatResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3313,7 +3313,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.TableCellResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3331,7 +3331,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.TableResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3349,7 +3349,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.TablePropertiesResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3367,7 +3367,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.TablePropertiesResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3385,7 +3385,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.TableRowResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3403,7 +3403,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.TableRowFormatResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3421,7 +3421,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.TableRowFormatResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3439,7 +3439,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.TableRowResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3457,7 +3457,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.TableLinkCollectionResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3475,7 +3475,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.TableLinkCollectionResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3493,7 +3493,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.CommentResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3511,7 +3511,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.InsertCommentOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3529,7 +3529,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.CustomXmlPartResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3547,7 +3547,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.InsertCustomXmlPartOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3565,7 +3565,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DrawingObjectResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3583,7 +3583,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.InsertDrawingObjectOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3601,7 +3601,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.FieldResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3619,7 +3619,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.InsertFieldOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3637,7 +3637,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.FootnoteResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3655,7 +3655,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.InsertFootnoteOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3673,7 +3673,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.FormFieldResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3691,7 +3691,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.InsertFormFieldOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3709,7 +3709,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.HeaderFooterResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3727,7 +3727,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.InsertHeaderFooterOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3745,7 +3745,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ListResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3763,7 +3763,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.InsertListOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3781,7 +3781,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.TabStopsResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3799,7 +3799,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.InsertOrUpdateParagraphTabStopOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3817,7 +3817,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DocumentResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3835,7 +3835,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.InsertPageNumbersOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3853,7 +3853,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ParagraphResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3871,7 +3871,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.InsertParagraphOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3889,7 +3889,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.RunResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3907,7 +3907,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.InsertRunOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3925,7 +3925,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.StyleResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3943,7 +3943,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.InsertStyleOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3961,7 +3961,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.TableResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3979,7 +3979,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.TableCellResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -3997,7 +3997,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.InsertTableCellOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -4015,7 +4015,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.InsertTableOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -4033,7 +4033,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.TableRowResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -4051,7 +4051,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.InsertTableRowOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -4069,7 +4069,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DocumentResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -4087,7 +4087,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.InsertWatermarkImageOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -4105,7 +4105,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DocumentResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -4123,7 +4123,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.InsertWatermarkTextOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -4141,7 +4141,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.SaveResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -4194,7 +4194,7 @@ export class WordsApi {
      * Applies document content optimization options, specific to a particular versions of Microsoft Word.
      * @param requestObj contains request parameters
      */
-    public async optimizeDocumentOnline(requestObj: model.OptimizeDocumentOnlineRequest): Promise< model.WordsIncomingMessage< Buffer > > {
+    public async optimizeDocumentOnline(requestObj: model.OptimizeDocumentOnlineRequest): Promise< model.WordsIncomingMessage< Map<string, Buffer> > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "request" was null or undefined when calling optimizeDocumentOnline.');
         }
@@ -4202,9 +4202,9 @@ export class WordsApi {
         const requestOptions = requestObj.createRequestOptions(this.configuration, await this._getKey()); 
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = new model.WordsIncomingMessage< Buffer >();    
+        const result = new model.WordsIncomingMessage< Map<string, Buffer> >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -4222,7 +4222,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ProtectionDataResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -4240,7 +4240,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ProtectDocumentOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -4258,7 +4258,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.RevisionsModificationResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -4276,7 +4276,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.RejectAllRevisionsOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -4294,7 +4294,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DocumentResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -4312,7 +4312,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.RemoveRangeOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -4330,7 +4330,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -4348,7 +4348,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -4366,7 +4366,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -4384,7 +4384,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -4402,7 +4402,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -4420,7 +4420,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -4438,7 +4438,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -4456,7 +4456,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -4474,7 +4474,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -4492,7 +4492,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< Buffer >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -4510,7 +4510,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ReplaceTextResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -4528,7 +4528,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ReplaceTextOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -4546,7 +4546,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DocumentResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -4564,7 +4564,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ReplaceWithTextOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -4597,7 +4597,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.SaveResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -4615,7 +4615,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.SaveAsOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -4633,7 +4633,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DocumentResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -4651,7 +4651,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.SaveAsRangeOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -4669,7 +4669,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.SaveResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -4687,7 +4687,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.SaveAsTiffOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -4705,7 +4705,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.SearchResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -4723,7 +4723,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.SearchResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -4741,7 +4741,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.SplitDocumentResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -4759,7 +4759,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.SplitDocumentOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -4777,7 +4777,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ProtectionDataResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -4795,7 +4795,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.UnprotectDocumentOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -4813,7 +4813,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.BookmarkResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -4831,7 +4831,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.UpdateBookmarkOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -4849,7 +4849,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.BorderResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -4867,7 +4867,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.UpdateBorderOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -4885,7 +4885,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.CommentResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -4903,7 +4903,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.UpdateCommentOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -4921,7 +4921,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.CustomXmlPartResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -4939,7 +4939,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.UpdateCustomXmlPartOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -4957,7 +4957,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DrawingObjectResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -4975,7 +4975,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.UpdateDrawingObjectOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -4993,7 +4993,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.FieldResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -5011,7 +5011,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.UpdateFieldOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -5029,7 +5029,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.DocumentResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -5047,7 +5047,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.UpdateFieldsOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -5065,7 +5065,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.FootnoteResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -5083,7 +5083,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.UpdateFootnoteOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -5101,7 +5101,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.FormFieldResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -5119,7 +5119,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.UpdateFormFieldOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -5137,7 +5137,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ListResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -5155,7 +5155,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ListResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -5173,7 +5173,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.UpdateListLevelOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -5191,7 +5191,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.UpdateListOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -5209,7 +5209,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ParagraphFormatResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -5227,7 +5227,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.UpdateParagraphFormatOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -5245,7 +5245,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.ParagraphListFormatResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -5263,7 +5263,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.UpdateParagraphListFormatOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -5281,7 +5281,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.RunResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -5299,7 +5299,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.FontResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -5317,7 +5317,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.UpdateRunFontOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -5335,7 +5335,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.UpdateRunOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -5353,7 +5353,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.SectionPageSetupResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -5371,7 +5371,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.UpdateSectionPageSetupOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -5389,7 +5389,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.StyleResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -5407,7 +5407,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.UpdateStyleOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -5425,7 +5425,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.TableCellFormatResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -5443,7 +5443,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.UpdateTableCellFormatOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -5461,7 +5461,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.TablePropertiesResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -5479,7 +5479,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.UpdateTablePropertiesOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -5497,7 +5497,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.TableRowFormatResponse >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -5515,7 +5515,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.UpdateTableRowFormatOnlineResponse >();
         result.response = response;
-        result.body = requestObj.createResponse(response.body, getBoundary(response.headers));
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -5533,7 +5533,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.FilesUploadResult >();    
         result.response = response;
-        result.body = requestObj.createResponse(response.body);
+        result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
     }
 
@@ -5625,7 +5625,12 @@ export class WordsApi {
                         for await (const x of stream) {
                             chunks.push(x);
                         }
-                        return Buffer.concat(chunks);
+                        if (chunks.length > 0 && typeof(chunks[0]) === 'number') {
+                            return Buffer.from(chunks);
+                        }
+                        else {
+                            return Buffer.concat(chunks);
+                        }
                     };
 
                     if (value instanceof require("stream").Readable) {
@@ -5687,7 +5692,7 @@ export class WordsApi {
         const response = await invokeApiMethod(requestOptions, this.configuration);
 
         // parse the response
-        const responseParts = parseMultipartBody(response.body, getBoundary(response.headers), true);
+        const responseParts = parseBatchParts(response.body, getBoundary(response.headers), true);
 
         const data = new Array();
         for (const responsePart of responseParts) {
@@ -5707,16 +5712,15 @@ export class WordsApi {
 
                     switch (responsePart.headers["content-type"].split(';')[0]) {
                         case "application/json": {
-                            data.push(requestMap[id].createResponse(JSON.parse(responsePart.body)));
+                            data.push(requestMap[id].createResponse(JSON.parse(responsePart.body), responsePart.headers));
                             break;
                         }
                         case "application/octet-stream": {
-                            data.push(requestMap[id].createResponse(responsePart.body));
+                            data.push(requestMap[id].createResponse(responsePart.body, responsePart.headers));
                             break;
                         }
                         case "multipart/mixed": {
-                            const partBoundary = getBoundary(responsePart.headers);
-                            data.push(requestMap[id].createResponse(responsePart.body, partBoundary));
+                            data.push(requestMap[id].createResponse(responsePart.body, responsePart.headers));
                             break;
                         }
                         default: {

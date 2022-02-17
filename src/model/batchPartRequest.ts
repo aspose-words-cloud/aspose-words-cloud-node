@@ -25,6 +25,7 @@
  * --------------------------------------------------------------------------------
  */
 
+import http = require("http");
 import { Readable } from 'stream';
 import request = require('request');
 import RSA = require('node-rsa');
@@ -75,12 +76,8 @@ export class BatchPartRequest {
 	/**
 	 * create response from string
 	 */
-	createResponse(response: Buffer, _boundary?: string): any {
-        if (_boundary == null) {
-            return this.innerRequest.createResponse(response);
-        }
-
-        return this.innerRequest.createResponse(response, _boundary);
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return this.innerRequest.createResponse(_response, _headers);
     }
 
 	/**

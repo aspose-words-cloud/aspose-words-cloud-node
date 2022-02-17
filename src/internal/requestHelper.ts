@@ -192,8 +192,80 @@ async function invokeApiMethodInternal(requestOptions: request.OptionsWithUri, c
 /**
  * Parse multipart response body for given boundary
  */
-export function parseMultipartBody(multipartBodyBuffer, boundary, withStatus) {
-	const allParts = [];
+export function parseMultipart(body: Buffer, boundary: string): any {
+    const allParts = [];
+
+    let partHeaders = [];
+	let info = ''; 
+    let buffer = [];
+
+    const UNKNOWN = 0;
+    const PART_HEADERS = 1;
+    const CONTENT = 4;
+    const PART_END = 5;
+
+    let state = UNKNOWN; 
+	let lastline = '';
+
+	for (let i = 0; i < body.length; i++) {
+		const oneByte = body[i];
+		const prevByte = i > 0 ? body[i-1] : null;
+		const newLineDetected = ((oneByte === 0x0a) && (prevByte === 0x0d)) ? true : false;
+		const newLineChar = ((oneByte === 0x0a) || (oneByte === 0x0d)) ? true : false;
+
+		if(!newLineChar)
+			lastline += String.fromCharCode(oneByte);
+
+		if((UNKNOWN === state) && newLineDetected){
+			if(("--"+boundary) === lastline){
+				state = PART_HEADERS;
+                lastline = '';
+			};
+		} else
+        if((PART_HEADERS === state) && newLineDetected){
+            if (lastline !== '') {
+                partHeaders.push(lastline);
+            }
+            else {
+                state = CONTENT;
+            }
+            lastline = '';
+        } else  
+		if(CONTENT === state){
+			if(lastline.length > (boundary.length+4)) lastline='';
+			if(((("--" + boundary) === lastline))){              
+                const part = { 
+                    headers: partHeaders.reduce((headers, header) => {
+                        if (header.indexOf(':') !== -1) {
+                            const [ key, value ] = header.split(/:\s+/)
+                            headers[key.toLowerCase()] = value
+                        }
+                        return headers
+                        }, {}),
+                    body: Buffer.from(buffer.slice(0,buffer.length - lastline.length - 1))
+                };
+
+				allParts.push(part);
+
+				buffer = []; lastline = ''; state = PART_END; partHeaders = []; info = '';
+			} else {
+				buffer.push(oneByte);
+			}
+			if(newLineDetected) lastline='';
+		} else
+		if(PART_END === state){
+			if(newLineDetected)
+				state = PART_HEADERS;
+		}
+	}
+	return allParts;
+}
+
+/**
+ * Parse multipart response body for batch part
+ */
+export function parseBatchParts(multipartBodyBuffer: Buffer, boundary: string, withStatus: boolean): any {
+    const allParts = [];
 
     let partHeaders = [];
 	let info = ''; 
@@ -272,6 +344,56 @@ export function parseMultipartBody(multipartBodyBuffer, boundary, withStatus) {
 		}
 	}
 	return allParts;
+}
+
+/**
+ * Get multipart part by name
+ */
+export function findMultipartElement(parts: any[], name: string): any {
+    for (const id in parts) {
+        const part = parts[id];
+        const disp = part.headers['content-disposition'];
+        const subs = disp.split(';');
+        var subn = null;
+        subs.forEach(element => {
+            if (element.trim().startsWith("name=")) {
+                subn = element.trim().substr(5).replace(new RegExp('"', 'g'), '');
+            }
+        });
+        if (subn === name) {
+            return part;
+        }
+    }
+
+    return null;
+}
+
+/**
+ * Get files collection from Response
+ */
+export function parseFilesCollection(response: Buffer, headers: http.IncomingHttpHeaders): Map<string, Buffer> {
+    var result = new Map<string, Buffer>();
+    if (headers["content-type"]?.startsWith("multipart/mixed")) {
+        const boundary = getBoundary(headers);
+        const parts = parseMultipart(response, boundary);
+        for (const id in parts) {
+            const part = parts[id];
+            const disp = part.headers['content-disposition'];
+            const subs = disp.split(';');
+            var filename = null;
+            subs.forEach(element => {
+                if (element.trim().startsWith("filename=")) {
+                    filename = element.trim().substr(9).replace(new RegExp('"', 'g'), '');
+                }
+            });
+            result.set(filename, part.body);
+        };
+    }
+    else {
+        result.set("", response);
+    }
+
+    return result;
 }
 
 /**

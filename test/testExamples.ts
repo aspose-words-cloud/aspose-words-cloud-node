@@ -95,7 +95,7 @@ describe("examples", () => {
             .then((requestResult) => {
                 // tslint:disable-next-line:no-console
                 console.log("Result of Request: ", requestResult);
-                fs.writeFileSync("test_result.docx", requestResult.body.document);
+                fs.writeFileSync("test_result.docx", requestResult.body.document.entries().next().value);
             });
         });
     });

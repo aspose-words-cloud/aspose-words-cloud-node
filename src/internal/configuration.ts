@@ -62,6 +62,16 @@ export class Configuration {
      */
     public timeout: number = 100;
 
+    /**
+     * RSA public key modulus as base64 string. Optional.
+    **/
+    public modulus: string;
+
+    /**
+     * RSA public key exponent as base64 string. Optional.
+    **/
+    public exponent: string;
+
     constructor(clientId: string, clientSecret: string, baseUrl?: string, debugMode?: boolean) {
         if (baseUrl) {
             this.baseUrl = baseUrl;

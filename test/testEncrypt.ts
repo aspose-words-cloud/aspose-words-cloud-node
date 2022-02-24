@@ -42,6 +42,18 @@ describe("open encypted document", () => {
     describe("getEncryptedDocumentParagraphs test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
+
+            return wordsApi.encrypt("12345")
+            .then((result) => {
+                expect(result).to.not.be.empty;
+            });
+        });
+    });
+
+    // Test for getting all paragraphs.
+    describe("getEncryptedDocumentParagraphs test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
             const remoteFileName = "TestGetEncryptedDocumentParagraphs.docx";
 
             return wordsApi.uploadFileToStorage(

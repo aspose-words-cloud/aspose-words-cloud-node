@@ -200,6 +200,7 @@ import * as importedParagraphResponse from './paragraphResponse';
 import * as importedPclSaveOptionsData from './pclSaveOptionsData';
 import * as importedPdfDigitalSignatureDetailsData from './pdfDigitalSignatureDetailsData';
 import * as importedPdfEncryptionDetailsData from './pdfEncryptionDetailsData';
+import * as importedPdfPermissions from './pdfPermissions';
 import * as importedPdfSaveOptionsData from './pdfSaveOptionsData';
 import * as importedPngSaveOptionsData from './pngSaveOptionsData';
 import * as importedPreferredWidth from './preferredWidth';
@@ -465,6 +466,7 @@ export * from './paragraphResponse';
 export * from './pclSaveOptionsData';
 export * from './pdfDigitalSignatureDetailsData';
 export * from './pdfEncryptionDetailsData';
+export * from './pdfPermissions';
 export * from './pdfSaveOptionsData';
 export * from './pngSaveOptionsData';
 export * from './preferredWidth';
@@ -594,6 +596,8 @@ const enumsMap = {
     "DrawingObjectUpdate.WrapTypeEnum": importedDrawingObjectUpdate.DrawingObjectUpdate.WrapTypeEnum,
     "FieldOptions.FieldIndexFormatEnum": importedFieldOptions.FieldOptions.FieldIndexFormatEnum,
     "FieldOptions.FieldUpdateCultureSourceEnum": importedFieldOptions.FieldOptions.FieldUpdateCultureSourceEnum,
+    "FixedPageSaveOptionsData.ColorModeEnum": importedFixedPageSaveOptionsData.FixedPageSaveOptionsData.ColorModeEnum,
+    "FixedPageSaveOptionsData.NumeralFormatEnum": importedFixedPageSaveOptionsData.FixedPageSaveOptionsData.NumeralFormatEnum,
     "Font.StyleIdentifierEnum": importedFont.Font.StyleIdentifierEnum,
     "Font.TextEffectEnum": importedFont.Font.TextEffectEnum,
     "Font.UnderlineEnum": importedFont.Font.UnderlineEnum,
@@ -601,10 +605,18 @@ const enumsMap = {
     "FootnoteBase.FootnoteTypeEnum": importedFootnoteBase.FootnoteBase.FootnoteTypeEnum,
     "FormFieldTextInput.TextInputTypeEnum": importedFormFieldTextInput.FormFieldTextInput.TextInputTypeEnum,
     "HeaderFooterLink.TypeEnum": importedHeaderFooterLink.HeaderFooterLink.TypeEnum,
+    "HtmlFixedSaveOptionsData.FontFormatEnum": importedHtmlFixedSaveOptionsData.HtmlFixedSaveOptionsData.FontFormatEnum,
+    "HtmlFixedSaveOptionsData.PageHorizontalAlignmentEnum": importedHtmlFixedSaveOptionsData.HtmlFixedSaveOptionsData.PageHorizontalAlignmentEnum,
     "HtmlSaveOptionsData.CssStyleSheetTypeEnum": importedHtmlSaveOptionsData.HtmlSaveOptionsData.CssStyleSheetTypeEnum,
+    "HtmlSaveOptionsData.DocumentSplitCriteriaEnum": importedHtmlSaveOptionsData.HtmlSaveOptionsData.DocumentSplitCriteriaEnum,
+    "HtmlSaveOptionsData.ExportHeadersFootersModeEnum": importedHtmlSaveOptionsData.HtmlSaveOptionsData.ExportHeadersFootersModeEnum,
+    "HtmlSaveOptionsData.ExportListLabelsEnum": importedHtmlSaveOptionsData.HtmlSaveOptionsData.ExportListLabelsEnum,
     "HtmlSaveOptionsData.HtmlVersionEnum": importedHtmlSaveOptionsData.HtmlSaveOptionsData.HtmlVersionEnum,
     "HtmlSaveOptionsData.MetafileFormatEnum": importedHtmlSaveOptionsData.HtmlSaveOptionsData.MetafileFormatEnum,
     "HtmlSaveOptionsData.OfficeMathOutputModeEnum": importedHtmlSaveOptionsData.HtmlSaveOptionsData.OfficeMathOutputModeEnum,
+    "HtmlSaveOptionsData.TableWidthOutputModeEnum": importedHtmlSaveOptionsData.HtmlSaveOptionsData.TableWidthOutputModeEnum,
+    "ImageSaveOptionsData.ImageColorModeEnum": importedImageSaveOptionsData.ImageSaveOptionsData.ImageColorModeEnum,
+    "ImageSaveOptionsData.PixelFormatEnum": importedImageSaveOptionsData.ImageSaveOptionsData.PixelFormatEnum,
     "JsonDataLoadOptions.SimpleValueParseModeEnum": importedJsonDataLoadOptions.JsonDataLoadOptions.SimpleValueParseModeEnum,
     "ListInsert.TemplateEnum": importedListInsert.ListInsert.TemplateEnum,
     "ListLevel.AlignmentEnum": importedListLevel.ListLevel.AlignmentEnum,
@@ -614,10 +626,13 @@ const enumsMap = {
     "ListLevelUpdate.NumberStyleEnum": importedListLevelUpdate.ListLevelUpdate.NumberStyleEnum,
     "ListLevelUpdate.TrailingCharacterEnum": importedListLevelUpdate.ListLevelUpdate.TrailingCharacterEnum,
     "MarkdownSaveOptionsData.TableContentAlignmentEnum": importedMarkdownSaveOptionsData.MarkdownSaveOptionsData.TableContentAlignmentEnum,
+    "MetafileRenderingOptionsData.EmfPlusDualRenderingModeEnum": importedMetafileRenderingOptionsData.MetafileRenderingOptionsData.EmfPlusDualRenderingModeEnum,
+    "MetafileRenderingOptionsData.RenderingModeEnum": importedMetafileRenderingOptionsData.MetafileRenderingOptionsData.RenderingModeEnum,
     "OdtSaveOptionsData.MeasureUnitEnum": importedOdtSaveOptionsData.OdtSaveOptionsData.MeasureUnitEnum,
     "OfficeMathObject.DisplayTypeEnum": importedOfficeMathObject.OfficeMathObject.DisplayTypeEnum,
     "OfficeMathObject.JustificationEnum": importedOfficeMathObject.OfficeMathObject.JustificationEnum,
     "OfficeMathObject.MathObjectTypeEnum": importedOfficeMathObject.OfficeMathObject.MathObjectTypeEnum,
+    "OoxmlSaveOptionsData.ComplianceEnum": importedOoxmlSaveOptionsData.OoxmlSaveOptionsData.ComplianceEnum,
     "OoxmlSaveOptionsData.CompressionLevelEnum": importedOoxmlSaveOptionsData.OoxmlSaveOptionsData.CompressionLevelEnum,
     "OptimizationOptions.MsWordVersionEnum": importedOptimizationOptions.OptimizationOptions.MsWordVersionEnum,
     "PageSetup.BorderAppliesToEnum": importedPageSetup.PageSetup.BorderAppliesToEnum,
@@ -633,16 +648,29 @@ const enumsMap = {
     "ParagraphFormatBase.LineSpacingRuleEnum": importedParagraphFormatBase.ParagraphFormatBase.LineSpacingRuleEnum,
     "ParagraphFormatBase.OutlineLevelEnum": importedParagraphFormatBase.ParagraphFormatBase.OutlineLevelEnum,
     "ParagraphFormatBase.StyleIdentifierEnum": importedParagraphFormatBase.ParagraphFormatBase.StyleIdentifierEnum,
+    "PdfDigitalSignatureDetailsData.HashAlgorithmEnum": importedPdfDigitalSignatureDetailsData.PdfDigitalSignatureDetailsData.HashAlgorithmEnum,
+    "PdfEncryptionDetailsData.EncryptionAlgorithmEnum": importedPdfEncryptionDetailsData.PdfEncryptionDetailsData.EncryptionAlgorithmEnum,
+    "PdfSaveOptionsData.ComplianceEnum": importedPdfSaveOptionsData.PdfSaveOptionsData.ComplianceEnum,
+    "PdfSaveOptionsData.CustomPropertiesExportEnum": importedPdfSaveOptionsData.PdfSaveOptionsData.CustomPropertiesExportEnum,
+    "PdfSaveOptionsData.FontEmbeddingModeEnum": importedPdfSaveOptionsData.PdfSaveOptionsData.FontEmbeddingModeEnum,
     "PdfSaveOptionsData.HeaderFooterBookmarksExportModeEnum": importedPdfSaveOptionsData.PdfSaveOptionsData.HeaderFooterBookmarksExportModeEnum,
+    "PdfSaveOptionsData.ImageColorSpaceExportModeEnum": importedPdfSaveOptionsData.PdfSaveOptionsData.ImageColorSpaceExportModeEnum,
+    "PdfSaveOptionsData.PageModeEnum": importedPdfSaveOptionsData.PdfSaveOptionsData.PageModeEnum,
+    "PdfSaveOptionsData.TextCompressionEnum": importedPdfSaveOptionsData.PdfSaveOptionsData.TextCompressionEnum,
+    "PdfSaveOptionsData.ZoomBehaviorEnum": importedPdfSaveOptionsData.PdfSaveOptionsData.ZoomBehaviorEnum,
     "PreferredWidth.TypeEnum": importedPreferredWidth.PreferredWidth.TypeEnum,
     "ReplaceRange.TextTypeEnum": importedReplaceRange.ReplaceRange.TextTypeEnum,
     "ReplaceRangeDto.TextTypeEnum": importedReplaceRangeDto.ReplaceRangeDto.TextTypeEnum,
     "ReportEngineSettings.DataSourceTypeEnum": importedReportEngineSettings.ReportEngineSettings.DataSourceTypeEnum,
     "SaveOptionsData.Dml3DEffectsRenderingModeEnum": importedSaveOptionsData.SaveOptionsData.Dml3DEffectsRenderingModeEnum,
+    "SaveOptionsData.DmlEffectsRenderingModeEnum": importedSaveOptionsData.SaveOptionsData.DmlEffectsRenderingModeEnum,
+    "SaveOptionsData.DmlRenderingModeEnum": importedSaveOptionsData.SaveOptionsData.DmlRenderingModeEnum,
+    "SaveOptionsData.ImlRenderingModeEnum": importedSaveOptionsData.SaveOptionsData.ImlRenderingModeEnum,
     "Shading.TextureEnum": importedShading.Shading.TextureEnum,
     "Style.StyleIdentifierEnum": importedStyle.Style.StyleIdentifierEnum,
     "Style.TypeEnum": importedStyle.Style.TypeEnum,
     "StyleInsert.StyleTypeEnum": importedStyleInsert.StyleInsert.StyleTypeEnum,
+    "SvgSaveOptionsData.TextOutputModeEnum": importedSvgSaveOptionsData.SvgSaveOptionsData.TextOutputModeEnum,
     "TableCellFormat.HorizontalMergeEnum": importedTableCellFormat.TableCellFormat.HorizontalMergeEnum,
     "TableCellFormat.OrientationEnum": importedTableCellFormat.TableCellFormat.OrientationEnum,
     "TableCellFormat.VerticalAlignmentEnum": importedTableCellFormat.TableCellFormat.VerticalAlignmentEnum,
@@ -654,6 +682,8 @@ const enumsMap = {
     "TableRowFormat.HeightRuleEnum": importedTableRowFormat.TableRowFormat.HeightRuleEnum,
     "TabStopBase.AlignmentEnum": importedTabStopBase.TabStopBase.AlignmentEnum,
     "TabStopBase.LeaderEnum": importedTabStopBase.TabStopBase.LeaderEnum,
+    "TiffSaveOptionsData.TiffBinarizationMethodEnum": importedTiffSaveOptionsData.TiffSaveOptionsData.TiffBinarizationMethodEnum,
+    "TiffSaveOptionsData.TiffCompressionEnum": importedTiffSaveOptionsData.TiffSaveOptionsData.TiffCompressionEnum,
     "TxtSaveOptionsBaseData.ExportHeadersFootersModeEnum": importedTxtSaveOptionsBaseData.TxtSaveOptionsBaseData.ExportHeadersFootersModeEnum,
 
 };
@@ -825,6 +855,7 @@ const typeMap = {
     PclSaveOptionsData: importedPclSaveOptionsData.PclSaveOptionsData,
     PdfDigitalSignatureDetailsData: importedPdfDigitalSignatureDetailsData.PdfDigitalSignatureDetailsData,
     PdfEncryptionDetailsData: importedPdfEncryptionDetailsData.PdfEncryptionDetailsData,
+    PdfPermissions: importedPdfPermissions.PdfPermissions,
     PdfSaveOptionsData: importedPdfSaveOptionsData.PdfSaveOptionsData,
     PngSaveOptionsData: importedPngSaveOptionsData.PngSaveOptionsData,
     PreferredWidth: importedPreferredWidth.PreferredWidth,

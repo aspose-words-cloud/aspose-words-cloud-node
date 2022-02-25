@@ -63,7 +63,7 @@ export class HtmlSaveOptionsData extends SaveOptionsData {
         {
             name: "documentSplitCriteria",
             baseName: "DocumentSplitCriteria",
-            type: "string",
+            type: "HtmlSaveOptionsData.DocumentSplitCriteriaEnum",
         },
         {
             name: "documentSplitHeadingLevel",
@@ -98,7 +98,7 @@ export class HtmlSaveOptionsData extends SaveOptionsData {
         {
             name: "exportHeadersFootersMode",
             baseName: "ExportHeadersFootersMode",
-            type: "string",
+            type: "HtmlSaveOptionsData.ExportHeadersFootersModeEnum",
         },
         {
             name: "exportImagesAsBase64",
@@ -113,7 +113,7 @@ export class HtmlSaveOptionsData extends SaveOptionsData {
         {
             name: "exportListLabels",
             baseName: "ExportListLabels",
-            type: "string",
+            type: "HtmlSaveOptionsData.ExportListLabelsEnum",
         },
         {
             name: "exportOriginalUrlForLinkedImages",
@@ -233,7 +233,7 @@ export class HtmlSaveOptionsData extends SaveOptionsData {
         {
             name: "tableWidthOutputMode",
             baseName: "TableWidthOutputMode",
-            type: "string",
+            type: "HtmlSaveOptionsData.TableWidthOutputModeEnum",
         }
     ];
 
@@ -269,7 +269,7 @@ export class HtmlSaveOptionsData extends SaveOptionsData {
     /**
      * Gets or sets the option that controls how the document should be split when saving.
      */
-    public documentSplitCriteria: string;
+    public documentSplitCriteria: HtmlSaveOptionsData.DocumentSplitCriteriaEnum;
 
     /**
      * Gets or sets the maximum level of headings at which to split the document.
@@ -305,7 +305,7 @@ export class HtmlSaveOptionsData extends SaveOptionsData {
     /**
      * Gets or sets the option that controls how headers and footers are exported.
      */
-    public exportHeadersFootersMode: string;
+    public exportHeadersFootersMode: HtmlSaveOptionsData.ExportHeadersFootersModeEnum;
 
     /**
      * Gets or sets a value indicating whether images are saved in Base64 format.
@@ -320,7 +320,7 @@ export class HtmlSaveOptionsData extends SaveOptionsData {
     /**
      * Gets or sets the option that controls how list labels are exported.
      */
-    public exportListLabels: string;
+    public exportListLabels: HtmlSaveOptionsData.ExportListLabelsEnum;
 
     /**
      * Gets or sets a value indicating whether the original URL should be used as the URL of the linked images.
@@ -448,7 +448,7 @@ export class HtmlSaveOptionsData extends SaveOptionsData {
     /**
      * Gets or sets the option that controls how table, row and cell widths are exported.
      */
-    public tableWidthOutputMode: string;
+    public tableWidthOutputMode: HtmlSaveOptionsData.TableWidthOutputModeEnum;
 
     public constructor(init?: Partial< HtmlSaveOptionsData >) {
         super(init);
@@ -470,6 +470,27 @@ export namespace HtmlSaveOptionsData {
         External = 'External' as any
     }
 
+    export enum DocumentSplitCriteriaEnum {
+        None = 'None' as any,
+        PageBreak = 'PageBreak' as any,
+        ColumnBreak = 'ColumnBreak' as any,
+        SectionBreak = 'SectionBreak' as any,
+        HeadingParagraph = 'HeadingParagraph' as any
+    }
+
+    export enum ExportHeadersFootersModeEnum {
+        None = 'None' as any,
+        PerSection = 'PerSection' as any,
+        FirstSectionHeaderLastSectionFooter = 'FirstSectionHeaderLastSectionFooter' as any,
+        FirstPageHeaderFooterPerSection = 'FirstPageHeaderFooterPerSection' as any
+    }
+
+    export enum ExportListLabelsEnum {
+        Auto = 'Auto' as any,
+        AsInlineText = 'AsInlineText' as any,
+        ByHtmlTags = 'ByHtmlTags' as any
+    }
+
     export enum HtmlVersionEnum {
         Xhtml = 'Xhtml' as any,
         Html5 = 'Html5' as any
@@ -485,6 +506,12 @@ export namespace HtmlSaveOptionsData {
         Image = 'Image' as any,
         MathML = 'MathML' as any,
         Text = 'Text' as any
+    }
+
+    export enum TableWidthOutputModeEnum {
+        All = 'All' as any,
+        RelativeOnly = 'RelativeOnly' as any,
+        None = 'None' as any
     }
 }
 // tslint:enable:quotemark

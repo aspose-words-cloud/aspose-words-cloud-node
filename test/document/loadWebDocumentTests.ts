@@ -41,8 +41,8 @@ describe("loadWebDocument", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const requestDataSaveOptions = new model.DocSaveOptionsData({
                 fileName: "google.doc",
-                dmlEffectsRenderingMode: "1",
-                dmlRenderingMode: "1",
+                dmlEffectsRenderingMode: model.DocSaveOptionsData.DmlEffectsRenderingModeEnum.None,
+                dmlRenderingMode: model.DocSaveOptionsData.DmlRenderingModeEnum.DrawingML,
                 updateSdtContent: false,
                 zipOutput: false
             })

@@ -45,7 +45,7 @@ export abstract class FixedPageSaveOptionsData extends SaveOptionsData {
         {
             name: "colorMode",
             baseName: "ColorMode",
-            type: "string",
+            type: "FixedPageSaveOptionsData.ColorModeEnum",
         },
         {
             name: "jpegQuality",
@@ -60,7 +60,7 @@ export abstract class FixedPageSaveOptionsData extends SaveOptionsData {
         {
             name: "numeralFormat",
             baseName: "NumeralFormat",
-            type: "string",
+            type: "FixedPageSaveOptionsData.NumeralFormatEnum",
         },
         {
             name: "optimizeOutput",
@@ -90,7 +90,7 @@ export abstract class FixedPageSaveOptionsData extends SaveOptionsData {
      * Gets or sets the value determining how colors are rendered.
      * { Normal | Grayscale}.
      */
-    public colorMode: string;
+    public colorMode: FixedPageSaveOptionsData.ColorModeEnum;
 
     /**
      * Gets or sets the quality of the JPEG images inside PDF document.
@@ -105,7 +105,7 @@ export abstract class FixedPageSaveOptionsData extends SaveOptionsData {
     /**
      * Gets or sets the symbol set, that is used to represent numbers while rendering to fixed page formats.
      */
-    public numeralFormat: string;
+    public numeralFormat: FixedPageSaveOptionsData.NumeralFormatEnum;
 
     /**
      * Gets or sets a value indicating whether it is required to optimize output of XPS.
@@ -129,4 +129,25 @@ export abstract class FixedPageSaveOptionsData extends SaveOptionsData {
         Object.assign(this, init);
     }
 }
+
+/**
+ * Enums for FixedPageSaveOptionsData
+ */
+// tslint:disable:quotemark
+// tslint:disable-next-line:no-namespace
+export namespace FixedPageSaveOptionsData {
+    export enum ColorModeEnum {
+        Normal = 'Normal' as any,
+        Grayscale = 'Grayscale' as any
+    }
+
+    export enum NumeralFormatEnum {
+        European = 'European' as any,
+        ArabicIndic = 'ArabicIndic' as any,
+        EasternArabicIndic = 'EasternArabicIndic' as any,
+        Context = 'Context' as any,
+        System = 'System' as any
+    }
+}
+// tslint:enable:quotemark
 

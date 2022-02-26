@@ -43,7 +43,7 @@ export abstract class OoxmlSaveOptionsData extends SaveOptionsData {
         {
             name: "compliance",
             baseName: "Compliance",
-            type: "string",
+            type: "OoxmlSaveOptionsData.ComplianceEnum",
         },
         {
             name: "compressionLevel",
@@ -72,7 +72,7 @@ export abstract class OoxmlSaveOptionsData extends SaveOptionsData {
     /**
      * Gets or sets the oOXML version for the output document.
      */
-    public compliance: string;
+    public compliance: OoxmlSaveOptionsData.ComplianceEnum;
 
     /**
      * Gets or sets the compression level.
@@ -101,6 +101,12 @@ export abstract class OoxmlSaveOptionsData extends SaveOptionsData {
 // tslint:disable:quotemark
 // tslint:disable-next-line:no-namespace
 export namespace OoxmlSaveOptionsData {
+    export enum ComplianceEnum {
+        Ecma376_2006 = 'Ecma376_2006' as any,
+        Iso29500_2008_Transitional = 'Iso29500_2008_Transitional' as any,
+        Iso29500_2008_Strict = 'Iso29500_2008_Strict' as any
+    }
+
     export enum CompressionLevelEnum {
         Normal = 'Normal' as any,
         Maximum = 'Maximum' as any,

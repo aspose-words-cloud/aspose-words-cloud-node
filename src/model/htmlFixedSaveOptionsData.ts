@@ -73,12 +73,12 @@ export class HtmlFixedSaveOptionsData extends FixedPageSaveOptionsData {
         {
             name: "fontFormat",
             baseName: "FontFormat",
-            type: "string",
+            type: "HtmlFixedSaveOptionsData.FontFormatEnum",
         },
         {
             name: "pageHorizontalAlignment",
             baseName: "PageHorizontalAlignment",
-            type: "string",
+            type: "HtmlFixedSaveOptionsData.PageHorizontalAlignmentEnum",
         },
         {
             name: "pageMargins",
@@ -153,13 +153,13 @@ export class HtmlFixedSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets the export format of fonts.
      */
-    public fontFormat: string;
+    public fontFormat: HtmlFixedSaveOptionsData.FontFormatEnum;
 
     /**
      * Gets or sets the horizontal alignment of pages in the HTML document.
      * The default value is HtmlFixedHorizontalPageAlignment.Center.
      */
-    public pageHorizontalAlignment: string;
+    public pageHorizontalAlignment: HtmlFixedSaveOptionsData.PageHorizontalAlignmentEnum;
 
     /**
      * Gets or sets the margin around pages in HTML document.
@@ -200,4 +200,23 @@ export class HtmlFixedSaveOptionsData extends FixedPageSaveOptionsData {
         Object.assign(this, init);
     }
 }
+
+/**
+ * Enums for HtmlFixedSaveOptionsData
+ */
+// tslint:disable:quotemark
+// tslint:disable-next-line:no-namespace
+export namespace HtmlFixedSaveOptionsData {
+    export enum FontFormatEnum {
+        Woff = 'Woff' as any,
+        Ttf = 'Ttf' as any
+    }
+
+    export enum PageHorizontalAlignmentEnum {
+        Left = 'Left' as any,
+        Center = 'Center' as any,
+        Right = 'Right' as any
+    }
+}
+// tslint:enable:quotemark
 

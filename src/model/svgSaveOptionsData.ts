@@ -68,7 +68,7 @@ export class SvgSaveOptionsData extends FixedPageSaveOptionsData {
         {
             name: "textOutputMode",
             baseName: "TextOutputMode",
-            type: "string",
+            type: "SvgSaveOptionsData.TextOutputModeEnum",
         }
     ];
 
@@ -107,7 +107,7 @@ export class SvgSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets the option that controls how text should be rendered.
      */
-    public textOutputMode: string;
+    public textOutputMode: SvgSaveOptionsData.TextOutputModeEnum;
 
     public constructor(init?: Partial< SvgSaveOptionsData >) {
         super(init);
@@ -116,4 +116,18 @@ export class SvgSaveOptionsData extends FixedPageSaveOptionsData {
         Object.assign(this, init);
     }
 }
+
+/**
+ * Enums for SvgSaveOptionsData
+ */
+// tslint:disable:quotemark
+// tslint:disable-next-line:no-namespace
+export namespace SvgSaveOptionsData {
+    export enum TextOutputModeEnum {
+        UseSvgFonts = 'UseSvgFonts' as any,
+        UseTargetMachineFonts = 'UseTargetMachineFonts' as any,
+        UsePlacedGlyphs = 'UsePlacedGlyphs' as any
+    }
+}
+// tslint:enable:quotemark
 

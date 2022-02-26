@@ -48,12 +48,12 @@ export class TiffSaveOptionsData extends ImageSaveOptionsData {
         {
             name: "tiffBinarizationMethod",
             baseName: "TiffBinarizationMethod",
-            type: "string",
+            type: "TiffSaveOptionsData.TiffBinarizationMethodEnum",
         },
         {
             name: "tiffCompression",
             baseName: "TiffCompression",
-            type: "string",
+            type: "TiffSaveOptionsData.TiffCompressionEnum",
         }
     ];
 
@@ -73,12 +73,12 @@ export class TiffSaveOptionsData extends ImageSaveOptionsData {
     /**
      * Gets or sets the method used while converting images to 1 bpp format.
      */
-    public tiffBinarizationMethod: string;
+    public tiffBinarizationMethod: TiffSaveOptionsData.TiffBinarizationMethodEnum;
 
     /**
      * Gets or sets the type of compression.
      */
-    public tiffCompression: string;
+    public tiffCompression: TiffSaveOptionsData.TiffCompressionEnum;
 
     public constructor(init?: Partial< TiffSaveOptionsData >) {
         super(init);
@@ -87,4 +87,25 @@ export class TiffSaveOptionsData extends ImageSaveOptionsData {
         Object.assign(this, init);
     }
 }
+
+/**
+ * Enums for TiffSaveOptionsData
+ */
+// tslint:disable:quotemark
+// tslint:disable-next-line:no-namespace
+export namespace TiffSaveOptionsData {
+    export enum TiffBinarizationMethodEnum {
+        Threshold = 'Threshold' as any,
+        FloydSteinbergDithering = 'FloydSteinbergDithering' as any
+    }
+
+    export enum TiffCompressionEnum {
+        None = 'None' as any,
+        Rle = 'Rle' as any,
+        Lzw = 'Lzw' as any,
+        Ccitt3 = 'Ccitt3' as any,
+        Ccitt4 = 'Ccitt4' as any
+    }
+}
+// tslint:enable:quotemark
 

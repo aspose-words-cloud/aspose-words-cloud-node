@@ -46,7 +46,7 @@ export class PdfDigitalSignatureDetailsData {
         {
             name: "hashAlgorithm",
             baseName: "HashAlgorithm",
-            type: "string",
+            type: "PdfDigitalSignatureDetailsData.HashAlgorithmEnum",
         },
         {
             name: "location",
@@ -80,7 +80,7 @@ export class PdfDigitalSignatureDetailsData {
     /**
      * Gets or sets the hash algorithm.
      */
-    public hashAlgorithm: string;
+    public hashAlgorithm: PdfDigitalSignatureDetailsData.HashAlgorithmEnum;
 
     /**
      * Gets or sets the location of the signing.
@@ -101,4 +101,20 @@ export class PdfDigitalSignatureDetailsData {
         Object.assign(this, init);
     }
 }
+
+/**
+ * Enums for PdfDigitalSignatureDetailsData
+ */
+// tslint:disable:quotemark
+// tslint:disable-next-line:no-namespace
+export namespace PdfDigitalSignatureDetailsData {
+    export enum HashAlgorithmEnum {
+        Sha1 = 'Sha1' as any,
+        Sha256 = 'Sha256' as any,
+        Sha384 = 'Sha384' as any,
+        Sha512 = 'Sha512' as any,
+        Md5 = 'Md5' as any
+    }
+}
+// tslint:enable:quotemark
 

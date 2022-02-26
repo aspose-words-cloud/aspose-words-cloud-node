@@ -58,12 +58,12 @@ export abstract class SaveOptionsData {
         {
             name: "dmlEffectsRenderingMode",
             baseName: "DmlEffectsRenderingMode",
-            type: "string",
+            type: "SaveOptionsData.DmlEffectsRenderingModeEnum",
         },
         {
             name: "dmlRenderingMode",
             baseName: "DmlRenderingMode",
-            type: "string",
+            type: "SaveOptionsData.DmlRenderingModeEnum",
         },
         {
             name: "fileName",
@@ -78,7 +78,7 @@ export abstract class SaveOptionsData {
         {
             name: "imlRenderingMode",
             baseName: "ImlRenderingMode",
-            type: "string",
+            type: "SaveOptionsData.ImlRenderingModeEnum",
         },
         {
             name: "saveFormat",
@@ -143,12 +143,12 @@ export abstract class SaveOptionsData {
      * Gets or sets the value determining how DrawingML effects are rendered.
      * { Simplified | None | Fine }.
      */
-    public dmlEffectsRenderingMode: string;
+    public dmlEffectsRenderingMode: SaveOptionsData.DmlEffectsRenderingModeEnum;
 
     /**
      * Gets or sets the option that controls how DrawingML shapes are rendered.
      */
-    public dmlRenderingMode: string;
+    public dmlRenderingMode: SaveOptionsData.DmlRenderingModeEnum;
 
     /**
      * Gets or sets the name of destination file.
@@ -164,7 +164,7 @@ export abstract class SaveOptionsData {
     /**
      * Gets or sets the value determining how ink (InkML) objects are rendered.
      */
-    public imlRenderingMode: string;
+    public imlRenderingMode: SaveOptionsData.ImlRenderingModeEnum;
 
     /**
      * Gets the format of save.
@@ -217,6 +217,22 @@ export namespace SaveOptionsData {
     export enum Dml3DEffectsRenderingModeEnum {
         Basic = 'Basic' as any,
         Advanced = 'Advanced' as any
+    }
+
+    export enum DmlEffectsRenderingModeEnum {
+        Simplified = 'Simplified' as any,
+        None = 'None' as any,
+        Fine = 'Fine' as any
+    }
+
+    export enum DmlRenderingModeEnum {
+        Fallback = 'Fallback' as any,
+        DrawingML = 'DrawingML' as any
+    }
+
+    export enum ImlRenderingModeEnum {
+        Fallback = 'Fallback' as any,
+        InkML = 'InkML' as any
     }
 }
 // tslint:enable:quotemark

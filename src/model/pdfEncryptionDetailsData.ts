@@ -26,8 +26,10 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { PdfPermissions } from './pdfPermissions';
 
 export const importsMapPdfEncryptionDetailsData = {
+    PdfPermissions,
 };
 
 /**
@@ -41,7 +43,7 @@ export class PdfEncryptionDetailsData {
         {
             name: "encryptionAlgorithm",
             baseName: "EncryptionAlgorithm",
-            type: "string",
+            type: "PdfEncryptionDetailsData.EncryptionAlgorithmEnum",
         },
         {
             name: "ownerPassword",
@@ -51,7 +53,7 @@ export class PdfEncryptionDetailsData {
         {
             name: "permissions",
             baseName: "Permissions",
-            type: "string",
+            type: "Array<PdfPermissions>",
         },
         {
             name: "userPassword",
@@ -70,7 +72,7 @@ export class PdfEncryptionDetailsData {
     /**
      * Gets or sets the encryption algorithm to use.
      */
-    public encryptionAlgorithm: string;
+    public encryptionAlgorithm: PdfEncryptionDetailsData.EncryptionAlgorithmEnum;
 
     /**
      * Gets or sets the owner password for the encrypted PDF document.
@@ -80,7 +82,7 @@ export class PdfEncryptionDetailsData {
     /**
      * Gets or sets the operations that are allowed to a user on the encrypted PDF document.
      */
-    public permissions: string;
+    public permissions: Array<PdfPermissions>;
 
     /**
      * Gets or sets the user password required for opening the encrypted PDF document.
@@ -91,4 +93,17 @@ export class PdfEncryptionDetailsData {
         Object.assign(this, init);
     }
 }
+
+/**
+ * Enums for PdfEncryptionDetailsData
+ */
+// tslint:disable:quotemark
+// tslint:disable-next-line:no-namespace
+export namespace PdfEncryptionDetailsData {
+    export enum EncryptionAlgorithmEnum {
+        RC4_40 = 'RC4_40' as any,
+        RC4_128 = 'RC4_128' as any
+    }
+}
+// tslint:enable:quotemark
 

@@ -327,7 +327,7 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
 export namespace PdfSaveOptionsData {
     export enum ComplianceEnum {
         Pdf17 = 'Pdf17' as any,
-        Pdf15 = 'Pdf15' as any,
+        Pdf20 = 'Pdf20' as any,
         PdfA1a = 'PdfA1a' as any,
         PdfA1b = 'PdfA1b' as any,
         PdfA2a = 'PdfA2a' as any,

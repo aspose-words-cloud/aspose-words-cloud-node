@@ -41,11 +41,6 @@ export class PdfEncryptionDetailsData {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "encryptionAlgorithm",
-            baseName: "EncryptionAlgorithm",
-            type: "PdfEncryptionDetailsData.EncryptionAlgorithmEnum",
-        },
-        {
             name: "ownerPassword",
             baseName: "OwnerPassword",
             type: "string",
@@ -70,11 +65,6 @@ export class PdfEncryptionDetailsData {
     }
 
     /**
-     * Gets or sets the encryption algorithm to use.
-     */
-    public encryptionAlgorithm: PdfEncryptionDetailsData.EncryptionAlgorithmEnum;
-
-    /**
      * Gets or sets the owner password for the encrypted PDF document.
      */
     public ownerPassword: string;
@@ -93,17 +83,4 @@ export class PdfEncryptionDetailsData {
         Object.assign(this, init);
     }
 }
-
-/**
- * Enums for PdfEncryptionDetailsData
- */
-// tslint:disable:quotemark
-// tslint:disable-next-line:no-namespace
-export namespace PdfEncryptionDetailsData {
-    export enum EncryptionAlgorithmEnum {
-        RC4_40 = 'RC4_40' as any,
-        RC4_128 = 'RC4_128' as any
-    }
-}
-// tslint:enable:quotemark
 

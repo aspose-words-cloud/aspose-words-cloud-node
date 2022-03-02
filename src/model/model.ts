@@ -649,7 +649,6 @@ const enumsMap = {
     "ParagraphFormatBase.OutlineLevelEnum": importedParagraphFormatBase.ParagraphFormatBase.OutlineLevelEnum,
     "ParagraphFormatBase.StyleIdentifierEnum": importedParagraphFormatBase.ParagraphFormatBase.StyleIdentifierEnum,
     "PdfDigitalSignatureDetailsData.HashAlgorithmEnum": importedPdfDigitalSignatureDetailsData.PdfDigitalSignatureDetailsData.HashAlgorithmEnum,
-    "PdfEncryptionDetailsData.EncryptionAlgorithmEnum": importedPdfEncryptionDetailsData.PdfEncryptionDetailsData.EncryptionAlgorithmEnum,
     "PdfSaveOptionsData.ComplianceEnum": importedPdfSaveOptionsData.PdfSaveOptionsData.ComplianceEnum,
     "PdfSaveOptionsData.CustomPropertiesExportEnum": importedPdfSaveOptionsData.PdfSaveOptionsData.CustomPropertiesExportEnum,
     "PdfSaveOptionsData.FontEmbeddingModeEnum": importedPdfSaveOptionsData.PdfSaveOptionsData.FontEmbeddingModeEnum,

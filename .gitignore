@@ -15,3 +15,5 @@ dist/*
 # reports
 reports/*
 /Settings/servercreds.json
+
+package-lock.json

@@ -28,7 +28,6 @@
 import http = require("http");
 import { Readable } from 'stream';
 import request = require('request');
-import RSA = require('node-rsa');
 import { Configuration } from "../internal/configuration";
 import { RequestInterface } from './model';
 import { v4 as uuidv4 } from 'uuid';

@@ -186,7 +186,6 @@ export function parseMultipart(body: Buffer, boundary: string): any {
     const allParts = [];
 
     let partHeaders = [];
-	let info = ''; 
     let buffer = [];
 
     const UNKNOWN = 0;
@@ -237,7 +236,7 @@ export function parseMultipart(body: Buffer, boundary: string): any {
 
 				allParts.push(part);
 
-				buffer = []; lastline = ''; state = PART_END; partHeaders = []; info = '';
+				buffer = []; lastline = ''; state = PART_END; partHeaders = [];
 			} else {
 				buffer.push(oneByte);
 			}

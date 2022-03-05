@@ -339,11 +339,10 @@ export function parseBatchParts(multipartBodyBuffer: Buffer, boundary: string, w
  * Get multipart part by name
  */
 export function findMultipartElement(parts: any[], name: string): any {
-    for (const id in parts) {
-        const part = parts[id];
+    for (const part of parts) {
         const disp = part.headers['content-disposition'];
         const subs = disp.split(';');
-        var subn = null;
+        let subn = null;
         subs.forEach(element => {
             if (element.trim().startsWith("name=")) {
                 subn = element.trim().substr(5).replace(new RegExp('"', 'g'), '');
@@ -361,15 +360,14 @@ export function findMultipartElement(parts: any[], name: string): any {
  * Get files collection from Response
  */
 export function parseFilesCollection(response: Buffer, headers: http.IncomingHttpHeaders): Map<string, Buffer> {
-    var result = new Map<string, Buffer>();
+    const result = new Map<string, Buffer>();
     if (headers["content-type"]?.startsWith("multipart/mixed")) {
         const boundary = getBoundary(headers);
         const parts = parseMultipart(response, boundary);
-        for (const id in parts) {
-            const part = parts[id];
+        for (const part of parts) {
             const disp = part.headers['content-disposition'];
             const subs = disp.split(';');
-            var filename = null;
+            let filename = null;
             subs.forEach(element => {
                 if (element.trim().startsWith("filename=")) {
                     filename = element.trim().substr(9).replace(new RegExp('"', 'g'), '');

@@ -64,12 +64,12 @@ export class Configuration {
 
     /**
      * RSA public key modulus as base64 string. Optional.
-    **/
+     */
     public modulus: string;
 
     /**
      * RSA public key exponent as base64 string. Optional.
-    **/
+     */
     public exponent: string;
 
     constructor(clientId: string, clientSecret: string, baseUrl?: string, debugMode?: boolean) {

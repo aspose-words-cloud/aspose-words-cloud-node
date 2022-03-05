@@ -42,7 +42,7 @@ export * from "./model/batchPartRequest";
 
 /**
  * encryptor interface
-**/
+ */
 export interface Encryptor {
     /**
      * Encrypt string.
